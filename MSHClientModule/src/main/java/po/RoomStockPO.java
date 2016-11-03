@@ -7,9 +7,21 @@ import util.RoomType;
  * Created by SilverNarcissus on 16/10/14.
  */
 public class RoomStockPO {
+    /**
+     * 房间所属酒店编号
+     */
     private String hotelID;
+    /**
+     * 房间类型
+     */
     private RoomType roomType;
+    /**
+     * 可用房间数量
+     */
     private int availableQuantity;
+    /**
+     * 记录日期
+     */
     private DateUtil date;
 
     public String getHotelID() {

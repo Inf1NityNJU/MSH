@@ -6,18 +6,36 @@ import util.Place;
  * Created by Sorumi on 16/10/11.
  */
 public class HotelPO {
+    /**
+     * 酒店编号
+     */
     private String ID;
+    /**
+     * 酒店名称
+     */
     private String name;
+    /**
+     * 酒店地址
+     */
     private String address;
+    /**
+     * 酒店所属商圈
+     */
     private Place place;
+    /**
+     * 酒店星级
+     */
     private int star;
+    /**
+     * 酒店简介
+     */
     private String introduction;
+    /**
+     * 酒店设施
+     */
     private String Facilities;
 
-    /**
-     *
-     * @return
-     */
+
     public String getID() {
         return ID;
     }

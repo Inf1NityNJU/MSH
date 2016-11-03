@@ -90,6 +90,14 @@ public class HotelBLService_Driver {
             else {
                 System.out.println("Delete hotel Failed!");
             }
+
+            testMessage = hotelBLService.deleteHotelRoom(testHotelID);
+            if(testMessage == ResultMessage.SUCCESS){
+                System.out.println("Delete hotel room Success!");
+            }
+            else {
+                System.out.println("Delete hotel room Failed!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
