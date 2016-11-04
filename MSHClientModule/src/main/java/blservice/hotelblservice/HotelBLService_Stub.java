@@ -76,7 +76,6 @@ public class HotelBLService_Stub implements HotelBLService {
         return  ResultMessage.NOT_EXIST;
     }
 
-    @Override
     public ResultMessage deleteHotelRoom(String hotelID) throws HotelNotFoundException {
         if (hotelID.equals("000000")) {
             System.out.println("Delete Success!");
