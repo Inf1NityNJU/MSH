@@ -8,10 +8,25 @@ import util.DateUtil;
  */
 public class CreditVO {
 
+    /**
+     * 信用记录对应订单ID
+     */
     public String orderID;
+    /**
+     * 信用记录日期
+     */
     public DateUtil date;
+    /**
+     * 信用记录变化数值
+     */
     public int deltaCredit;
+    /**
+     * 信用记录结果数值
+     */
     public int resultCredit;
+    /**
+     * 信用记录动作
+     */
     public CreditAction creditAction;
 
     /**

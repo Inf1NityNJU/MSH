@@ -4,9 +4,21 @@ package po;
  * Created by SilverNarcissus on 16/10/11.
  */
 public class SalesmanPO {
+    /**
+     * 网站营销人员ID
+     */
     private String salesmanID;
+    /**
+     * 网站营销人员姓名
+     */
     private String salesmanName;
+    /**
+     * 网站营销人员账号
+     */
     private String account;
+    /**
+     * 网站营销人员密码
+     */
     private String password;
 
     public String getAccount() {

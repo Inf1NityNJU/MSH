@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/10/30.
  */
-public class MockClient extends MockUser {
+public class MockClient extends Client {
 
     private ClientVO exampleClientVO = new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0);
 

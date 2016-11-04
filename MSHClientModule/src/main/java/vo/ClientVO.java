@@ -6,11 +6,29 @@ import util.DateUtil;
  * Created by Kray on 2016/10/12.
  */
 public class ClientVO {
+    /**
+     * 客户ID
+     */
     public String clientID;
+    /**
+     * 客户姓名
+     */
     public String clientName;
+    /**
+     * 客户信用值
+     */
     public int credit;
+    /**
+     * 客户等级
+     */
     public int level;
+    /**
+     * 客户生日
+     */
     public DateUtil birthday;
+    /**
+     * 客户类别
+     */
     public int type;
 
     /**

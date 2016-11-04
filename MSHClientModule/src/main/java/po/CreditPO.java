@@ -9,11 +9,29 @@ import java.util.Date;
  */
 public class CreditPO {
 
+    /**
+     * 信用记录对应订单ID
+     */
     private String orderID;
+    /**
+     * 信用记录日期
+     */
     private Date date;
+    /**
+     * 信用记录变化数值
+     */
     private int deltaCredit;
+    /**
+     * 信用记录结果数值
+     */
     private int resultCredit;
+    /**
+     * 信用记录动作
+     */
     private CreditAction creditAction;
+    /**
+     * 信用记录所属客户ID
+     */
     private String clientID;
 
     /**

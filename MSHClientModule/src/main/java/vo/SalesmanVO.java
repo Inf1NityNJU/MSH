@@ -4,7 +4,13 @@ package vo;
  * Created by Kray on 2016/10/12.
  */
 public class SalesmanVO {
+    /**
+     * 网站营销人员ID
+     */
     public String salesmanID;
+    /**
+     * 网站营销人员姓名
+     */
     public String salesmanName;
 
     /**

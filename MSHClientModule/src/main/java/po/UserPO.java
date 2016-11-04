@@ -4,7 +4,13 @@ package po;
  * Created by Kray on 2016/10/30.
  */
 public class UserPO {
+    /**
+     * 用户账号
+     */
     private String account;
+    /**
+     * 用户密码
+     */
     private String password;
 
     public UserPO(String account, String password) {

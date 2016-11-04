@@ -1,22 +1,51 @@
 package po;
 
+import util.DateUtil;
+
 import java.util.Date;
 
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
 public class ClientPO{
+    /**
+     * 客户ID
+     */
     private String clientID;
+    /**
+     * 客户姓名
+     */
     private String clientName;
+    /**
+     * 客户信用值
+     */
     private int credit;
+    /**
+     * 客户等级
+     */
     private int level;
-    private Date birthday;
+    /**
+     * 客户生日
+     */
+    private DateUtil birthday;
+    /**
+     * 客户联系方式
+     */
     private String contactInfo;
+    /**
+     * 客户所属企业,若是普通用户则为空
+     */
     private String Enterprise;
+    /**
+     * 客户账号
+     */
     private String account;
+    /**
+     * 客户密码
+     */
     private String password;
 
-    public ClientPO(String clientID, String clientName, int credit, int level, Date birthday, String contactInfo, String enterprise, String account, String password) {
+    public ClientPO(String clientID, String clientName, int credit, int level, DateUtil birthday, String contactInfo, String enterprise, String account, String password) {
         this.clientID = clientID;
         this.clientName = clientName;
         this.credit = credit;
@@ -60,11 +89,11 @@ public class ClientPO{
         this.level = level;
     }
 
-    public Date getBirthday() {
+    public DateUtil getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(DateUtil birthday) {
         this.birthday = birthday;
     }
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/10/30.
  */
-public class MockSalesman extends MockUser {
+public class MockSalesman extends Salesman {
 
     private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "老王");
 

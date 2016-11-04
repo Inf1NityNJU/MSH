@@ -4,8 +4,17 @@ package vo;
  * Created by Kray on 2016/10/12.
  */
 public class StaffVO {
+    /**
+     * 酒店工作人员ID
+     */
     public String staffID;
+    /**
+     * 酒店工作人员姓名
+     */
     public String staffName;
+    /**
+     * 酒店工作人员对应酒店ID
+     */
     public String hotelID;
 
     /**

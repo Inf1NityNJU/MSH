@@ -4,10 +4,25 @@ package po;
  * Created by SilverNarcissus on 16/10/11.
  */
 public class StaffPO {
+    /**
+     * 酒店工作人员ID
+     */
     private String staffID;
+    /**
+     * 酒店工作人员姓名
+     */
     private String staffName;
+    /**
+     * 酒店工作人员对应酒店ID
+     */
     private String hotelID;
+    /**
+     * 酒店工作人员账号
+     */
     private String account;
+    /**
+     * 酒店工作人员密码
+     */
     private String password;
 
     public String getAccount() {
