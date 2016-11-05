@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class HotelBLServiceImpl implements HotelBLService {
     private Hotel hotel;
     private HotelRoom hotelRoom;
-    public HotelBLServiceImpl(boolean isMock){
+    protected HotelBLServiceImpl(boolean isMock){
         if(isMock){
             hotel=new MockHotel();
             hotelRoom=new MockHotelRoom();

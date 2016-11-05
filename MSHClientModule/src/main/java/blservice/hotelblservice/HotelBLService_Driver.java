@@ -1,7 +1,9 @@
 package blservice.hotelblservice;
 
+import bl.hotelbl.HotelBLServiceImpl;
 import util.HotelNotFoundException;
 import util.ResultMessage;
+import util.RoomType;
 import vo.FilterFlagsVO;
 import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
@@ -17,6 +19,7 @@ public class HotelBLService_Driver {
     private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null,null,null,0,0,null,null,0,0,0,0,null);
     private static final Hotel_DetailVO TEST_HOTEL_DETIAL_VO = new Hotel_DetailVO(null,null,null,null,0,null,null,null);
     private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null,0,0,null);
+    private static final RoomType testType=RoomType.SingleRoom;
     //
     //dirver
     public void drive(HotelBLService hotelBLService){
@@ -91,7 +94,7 @@ public class HotelBLService_Driver {
                 System.out.println("Delete hotel Failed!");
             }
 
-            testMessage = hotelBLService.deleteHotelRoom(testHotelID);
+            testMessage = hotelBLService.deleteHotelRoom(testHotelID,testType);
             if(testMessage == ResultMessage.SUCCESS){
                 System.out.println("Delete hotel room Success!");
             }
