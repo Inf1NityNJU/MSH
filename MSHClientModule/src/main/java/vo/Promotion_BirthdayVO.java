@@ -7,10 +7,25 @@ import util.PromotionType;
  * Created by vivian on 16/10/22.
  */
 public class Promotion_BirthdayVO {
-    public String promotionID;
-    public PromotionType promotionType;
+    /**
+     * 策略编号
+     */
+    private String promotionID;
+
+    /**
+     * 策略类型
+     */
+    private PromotionType promotionType;
+
+    /**
+     * 客户生日
+     */
     public DateUtil bithday;
-    public double promotionDiscount;
+
+    /**
+     * 策略折扣
+     */
+    private double promotionDiscount;
 
     /**
      * 生日折扣促销策略，包含策略ID，策略类型，客户生日，策略折扣

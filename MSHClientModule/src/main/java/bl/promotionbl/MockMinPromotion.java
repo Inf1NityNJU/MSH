@@ -18,7 +18,7 @@ public class MockMinPromotion extends MinPromotion {
      * @param rvo
      * @param clientID
      * @param hotelID
-     * @return
+     * @return 符合条件的最小网站促销策略
      */
     public double getMinWebProm(DateUtil date, ArrayList<OrderRoomVO> rvo, String clientID, String hotelID){
         return 0.80;
@@ -30,7 +30,7 @@ public class MockMinPromotion extends MinPromotion {
      * @param rvo
      * @param clientID
      * @param hotelID
-     * @return
+     * @return 符合条件的最小酒店促销策略
      */
     public double getMinHotelProm(DateUtil date, ArrayList<OrderRoomVO> rvo, String clientID, String hotelID){
         return 0.80;

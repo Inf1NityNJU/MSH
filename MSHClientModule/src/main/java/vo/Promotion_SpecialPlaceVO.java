@@ -1,18 +1,43 @@
 package vo;
 
 import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 
 /**
  * Created by vivian on 16/10/24.
  */
 public class Promotion_SpecialPlaceVO {
-    public String promotionID;
-    public PromotionType promotionType;
-    public DateUtil startDate;
-    public DateUtil endDate;
-    public double promotionDiscount;
-    public String specialPlace;
+    /**
+     * 策略编号
+     */
+    private String promotionID;
+
+    /**
+     * 策略类型
+     */
+    private PromotionType promotionType;
+
+    /**
+     * 策略执行开始日期
+     */
+    private DateUtil startDate;
+
+    /**
+     * 策略执行结束日期
+     */
+    private DateUtil endDate;
+
+    /**
+     * 策略折扣
+     */
+    private double promotionDiscount;
+
+    public String specialPlace; /**
+     * 策略涉及的商圈
+     */
+    private Place place;
+
 
     /**
      * VIP特定商圈折扣促销策略，包括策略ID，策略类型，优惠起始时间，优惠结束时间，策略折扣，特定商圈
@@ -21,14 +46,14 @@ public class Promotion_SpecialPlaceVO {
      * @param startDate
      * @param endDate
      * @param promotionDiscount
-     * @param specialPlace
+     * @param place
      */
-    public Promotion_SpecialPlaceVO(String promotionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String specialPlace) {
+    public Promotion_SpecialPlaceVO(String promotionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, Place place) {
         this.promotionID = promotionID;
         this.promotionType = promotionType;
         this.startDate = startDate;
         this.endDate = endDate;
         this.promotionDiscount = promotionDiscount;
-        this.specialPlace = specialPlace;
+        this.place = place;
     }
 }

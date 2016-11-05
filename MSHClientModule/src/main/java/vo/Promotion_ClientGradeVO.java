@@ -7,12 +7,35 @@ import util.PromotionType;
  * Created by vivian on 16/10/24.
  */
 public class Promotion_ClientGradeVO {
-    public String promotionID;
-    public PromotionType promotionType;
-    public DateUtil startDate;
-    public DateUtil endDate;
-    public double promotionDiscount;
-    public int clientGrade;
+    /**
+     * 策略编号
+     */
+    private String promotionID;
+
+    /**
+     * 策略类型
+     */
+    private PromotionType promotionType;
+
+    /**
+     * 策略执行开始日期
+     */
+    private DateUtil startDate;
+
+    /**
+     * 策略执行结束日期
+     */
+    private DateUtil endDate;
+
+    /**
+     * 策略折扣
+     */
+    private double promotionDiscount;
+
+    /**
+     * 执行策略所需的最低用户等级
+     */
+    private int clientGrade;
 
     /**
      * 会员等级折扣促销策略，包括策略ID，策略类型，优惠起始时间，优惠结束时间，策略折扣，会员等级
