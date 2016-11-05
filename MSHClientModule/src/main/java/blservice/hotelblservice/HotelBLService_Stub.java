@@ -3,6 +3,7 @@ package blservice.hotelblservice;
 import util.HotelNotFoundException;
 import util.InfoInvalidException;
 import util.ResultMessage;
+import util.RoomType;
 import vo.FilterFlagsVO;
 import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
@@ -76,7 +77,7 @@ public class HotelBLService_Stub implements HotelBLService {
         return  ResultMessage.NOT_EXIST;
     }
 
-    public ResultMessage deleteHotelRoom(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException {
         if (hotelID.equals("000000")) {
             System.out.println("Delete Success!");
             return ResultMessage.SUCCESS;

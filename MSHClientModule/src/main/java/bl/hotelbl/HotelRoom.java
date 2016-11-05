@@ -3,6 +3,7 @@ package bl.hotelbl;
 import util.HotelNotFoundException;
 import util.InfoInvalidException;
 import util.ResultMessage;
+import util.RoomType;
 import vo.HotelRoomVO;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class HotelRoom {
      * @return 删除成功与否
      * @throws HotelNotFoundException
      */
-    public ResultMessage deleteHotelRoom(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException {
         return  null;
     }
 }

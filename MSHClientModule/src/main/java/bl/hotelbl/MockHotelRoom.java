@@ -66,7 +66,7 @@ public class MockHotelRoom extends HotelRoom {
      * @throws HotelNotFoundException
      */
     @Override
-    public ResultMessage deleteHotelRoom(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException {
         if (hotelID.equals("000000")) {
             System.out.println("Delete Success!");
             return ResultMessage.SUCCESS;

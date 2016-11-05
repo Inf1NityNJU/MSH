@@ -3,6 +3,7 @@ package blservice.hotelblservice;
 import util.HotelNotFoundException;
 import util.InfoInvalidException;
 import util.ResultMessage;
+import util.RoomType;
 import vo.FilterFlagsVO;
 import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
@@ -81,5 +82,5 @@ public interface HotelBLService {
      * @return 删除成功与否
      * @throws HotelNotFoundException
      */
-    public ResultMessage deleteHotelRoom(String hotelID) throws HotelNotFoundException;
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException;
 }

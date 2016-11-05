@@ -3,6 +3,7 @@ package bl.hotelbl;
 import util.HotelNotFoundException;
 import util.InfoInvalidException;
 import util.ResultMessage;
+import util.RoomType;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;
 

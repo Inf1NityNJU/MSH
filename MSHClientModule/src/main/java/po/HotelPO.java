@@ -33,7 +33,7 @@ public class HotelPO {
     /**
      * 酒店设施
      */
-    private String Facilities;
+    private String facilities;
 
 
     public String getID() {
@@ -85,11 +85,11 @@ public class HotelPO {
     }
 
     public String getFacilities() {
-        return Facilities;
+        return facilities;
     }
 
     public void setFacilities(String facilities) {
-        Facilities = facilities;
+        this.facilities = facilities;
     }
 
     /**
@@ -109,6 +109,6 @@ public class HotelPO {
         this.place = place;
         this.star = star;
         this.introduction = introduction;
-        Facilities = facilities;
+        this.facilities = facilities;
     }
 }
