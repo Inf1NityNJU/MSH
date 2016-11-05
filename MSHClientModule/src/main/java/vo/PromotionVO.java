@@ -12,52 +12,52 @@ public class PromotionVO {
     /**
      * 策略编号
      */
-    private String promotionID;
+    public String promotionID;
 
     /**
      * 策略类型
      */
-    private PromotionType promotionType;
+    public PromotionType promotionType;
 
     /**
      * 策略执行开始日期
      */
-    private DateUtil startDate;
+    public DateUtil startDate;
 
     /**
      * 策略执行结束日期
      */
-    private DateUtil endDate;
+    public DateUtil endDate;
 
     /**
      * 策略折扣
      */
-    private double promotionDiscount;
+    public double promotionDiscount;
 
     /**
      * 策略涉及的公司名称
      */
-    private String companyName;
+    public String companyName;
 
     /**
      * 策略涉及的酒店编号
      */
-    private String hotelID;
+    public String hotelID;
 
     /**
      * 策略涉及的商圈
      */
-    private Place place;
+    public Place place;
 
     /**
      * 执行策略所需的最低用户等级
      */
-    private int clientGrade;
+    public int clientGrade;
 
     /**
      * 执行策略所需的最低房间数量
      */
-    private int roomQuantity;
+    public int roomQuantity;
 
     /**
      *

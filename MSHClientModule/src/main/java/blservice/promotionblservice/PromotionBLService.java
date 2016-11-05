@@ -54,7 +54,7 @@ public interface PromotionBLService {
      * @param HotelID
      * @return
      */
-    public ArrayList<PromotionVO> searchHotelPromotionsByHotelID(String HotelID);
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID);
 
     /**
      * 查看网站的所有促销策略

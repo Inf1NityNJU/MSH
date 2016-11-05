@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class Promotion {
-    private PromotionVO pvo = new PromotionVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
+    private PromotionVO pvo;
 
     /**
      * 增加一个促销策略

@@ -52,7 +52,7 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     }
 
     @Override
-    public ArrayList<PromotionVO> searchHotelPromotionsByHotelID(String HotelID) {
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID) {
         return promotion.searchHotelPromotions(HotelID);
     }
 

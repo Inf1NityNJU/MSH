@@ -11,32 +11,32 @@ public class Promotion_SpecialPlaceVO {
     /**
      * 策略编号
      */
-    private String promotionID;
+    public String promotionID;
 
     /**
      * 策略类型
      */
-    private PromotionType promotionType;
+    public PromotionType promotionType;
 
     /**
      * 策略执行开始日期
      */
-    private DateUtil startDate;
+    public DateUtil startDate;
 
     /**
      * 策略执行结束日期
      */
-    private DateUtil endDate;
+    public DateUtil endDate;
 
     /**
      * 策略折扣
      */
-    private double promotionDiscount;
+    public double promotionDiscount;
 
     public String specialPlace; /**
      * 策略涉及的商圈
      */
-    private Place place;
+    public Place place;
 
 
     /**

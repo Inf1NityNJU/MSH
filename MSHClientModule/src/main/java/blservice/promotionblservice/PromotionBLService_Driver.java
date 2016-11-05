@@ -49,7 +49,14 @@ public class PromotionBLService_Driver {
             System.out.println("Get Failed");
         }
 
-        ArrayList<PromotionVO> pvos = promotionBLService.searchHotelPromotionsByHotelID("00000000");
+        ArrayList<PromotionVO> pvos = promotionBLService.searchPromotions(PromotionType.Hotel_Birthday);
+        if(pvos!=null){
+            System.out.println("Get Promotions Success");
+        }else{
+            System.out.println("Get Promotions Failed");
+        }
+
+        pvos = promotionBLService.searchHotelPromotions("00000000");
         if(pvos!=null){
             System.out.println("Get HotelPromotions Success");
         }else{

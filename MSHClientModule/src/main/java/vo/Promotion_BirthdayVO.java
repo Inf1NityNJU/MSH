@@ -10,12 +10,12 @@ public class Promotion_BirthdayVO {
     /**
      * 策略编号
      */
-    private String promotionID;
+    public String promotionID;
 
     /**
      * 策略类型
      */
-    private PromotionType promotionType;
+    public PromotionType promotionType;
 
     /**
      * 客户生日
@@ -25,7 +25,7 @@ public class Promotion_BirthdayVO {
     /**
      * 策略折扣
      */
-    private double promotionDiscount;
+    public double promotionDiscount;
 
     /**
      * 生日折扣促销策略，包含策略ID，策略类型，客户生日，策略折扣

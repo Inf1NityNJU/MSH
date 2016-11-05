@@ -48,7 +48,20 @@ public class PromotionBLService_Stub implements PromotionBLService{
     }
 
     @Override
-    public ArrayList<PromotionVO> searchHotelPromotionsByHotelID(String HotelID) {
+    public ArrayList<PromotionVO> searchPromotions(PromotionType promotionType) {
+        ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
+        PromotionVO promotionVO1 = new PromotionVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
+        PromotionVO promotionVO2 = new PromotionVO("201610120103", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
+        if(promotionType==PromotionType.Hotel_Birthday){
+            promotionVOs.add(promotionVO1);
+            promotionVOs.add(promotionVO2);
+        }
+        return promotionVOs;
+    }
+
+
+    @Override
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID) {
         ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
         PromotionVO promotionVO1 = new PromotionVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
         PromotionVO promotionVO2 = new PromotionVO("201610120103", PromotionType.Hotel_Amount, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
