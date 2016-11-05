@@ -5,6 +5,7 @@ import po.CreditPO;
 import po.SalesmanPO;
 import po.StaffPO;
 import util.CreditAction;
+import util.DateUtil;
 import util.ResultMessage;
 
 import java.util.Date;
@@ -14,11 +15,11 @@ import java.util.Date;
  */
 public class UserDataService_Stub implements UserDataService{
 
-    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new Date(),
+    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015,10,10),
             "18795963603", "no_enterprise", "songkuixi", "123456");
     StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "admin", "password");
     SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "admin", "password");
-    CreditPO exampleCreditPO = new CreditPO("20161012010112340000", new Date(), 20, 500, CreditAction.ADD_CREDIT, "000000007");
+    CreditPO exampleCreditPO = new CreditPO("20161012010112340000", new DateUtil(2015,10,10), 20, 500, CreditAction.ADD_CREDIT, "000000007");
 
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO){
         System.out.println("Add Sucessfully!");

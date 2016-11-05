@@ -2,7 +2,7 @@ package po;
 
 import util.CreditAction;
 
-import java.util.Date;
+import util.DateUtil;
 
 /**
  * Created by SilverNarcissus on 16/10/11.
@@ -16,7 +16,7 @@ public class CreditPO {
     /**
      * 信用记录日期
      */
-    private Date date;
+    private DateUtil date;
     /**
      * 信用记录变化数值
      */
@@ -46,11 +46,11 @@ public class CreditPO {
         this.orderID = orderID;
     }
 
-    public Date getDate() {
+    public DateUtil getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateUtil date) {
         this.date = date;
     }
 
@@ -86,7 +86,7 @@ public class CreditPO {
         this.clientID = clientID;
     }
 
-    public CreditPO(String orderID, Date date, int deltaCredit, int resultCredit, CreditAction creditAction, String clientID) {
+    public CreditPO(String orderID, DateUtil date, int deltaCredit, int resultCredit, CreditAction creditAction, String clientID) {
         this.orderID = orderID;
         this.date = date;
         this.deltaCredit = deltaCredit;
@@ -97,7 +97,7 @@ public class CreditPO {
 
     public CreditPO(CreditAction creditAction, String clientID) {
         this.orderID = "-1";
-        this.date = new Date();
+        this.date = new DateUtil(2015,10,10);
         this.deltaCredit = 0;
         this.resultCredit = 500;
         this.creditAction = CreditAction.INIT_CREDIT;
