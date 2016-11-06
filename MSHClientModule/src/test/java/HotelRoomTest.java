@@ -18,7 +18,7 @@ public class HotelRoomTest {
     private HotelRoom hotelRoom;
     //Test constant
     private static final String testHotelID = "000000";
-    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null,0,0,null);
+    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null, 0, 0, null);
     private static final RoomType testType = RoomType.SingleRoom;
 
 
