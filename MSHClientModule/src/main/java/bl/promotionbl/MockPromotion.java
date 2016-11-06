@@ -101,8 +101,8 @@ public class MockPromotion extends Promotion{
      */
     public ArrayList<PromotionVO> searchWebPromotions(){
         ArrayList<PromotionVO> pvos = new ArrayList<PromotionVO>();
-        PromotionVO promotionVO = new PromotionVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, null, null, null, 0, 0);
-        pvos.add(pvo);
+        PromotionVO promotionVO = new PromotionVO("201610120103", PromotionType.Web_SpecilaDate, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, null, null, null, 0, 0);
+        pvos.add(promotionVO);
             return pvos;
     }
 

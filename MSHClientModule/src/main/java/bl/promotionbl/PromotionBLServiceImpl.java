@@ -18,13 +18,13 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     private MinPromotion minPromotion;
 
     protected PromotionBLServiceImpl(boolean isMock){
-        if(isMock){
-            promotion = new MockPromotion();
-            minPromotion = new MockMinPromotion();
-        }else {
+//        if(isMock){
+//            promotion = new MockPromotion();
+//            minPromotion = new MockMinPromotion();
+//        }else {
             promotion = new Promotion();
             minPromotion = new MinPromotion();
-        }
+//        }
     }
     @Override
     public ResultMessage addPromotion(PromotionVO pvo) {
