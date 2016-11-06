@@ -7,9 +7,24 @@ import util.RoomType;
  */
 public class OrderRoomPO {
 
+    /**
+     * 订单ID
+     */
     private String orderID;
+
+    /**
+     * 房间类型
+     */
     private RoomType roomType;
+
+    /**
+     * 数量
+     */
     private int quantity;
+
+    /**
+     * 价格
+     */
     private double price;
 
     public String getOrderID() {

@@ -8,10 +8,20 @@ import util.RoomType;
  */
 public class OrderRoom {
 
-    public ResultMessage modifyQuantity(RoomType roomtype, int quantity) {
+    /**
+     * 修改数量
+     * @param quantity
+     * @return 是否修改成功
+     */
+    public ResultMessage modifyQuantity(int quantity) {
         return ResultMessage.SUCCESS;
     }
 
+
+    /**
+     * 计算房间价格小计
+     * @return 房间价格小计
+     */
     public double getTotal() {
         return 0.0;
     }

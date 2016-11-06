@@ -80,11 +80,10 @@ public class Order {
     /**
      * 编辑评分评价
      * @param orderID
-     * @param score
-     * @param comment
+     * @param assessment
      * @return 是否成功
      */
-    public ResultMessage editAssessment(String orderID, int score, String comment) {
+    public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
         return ResultMessage.SUCCESS;
     }
 

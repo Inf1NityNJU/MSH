@@ -1,10 +1,7 @@
 package bl.orderbl;
 
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -38,7 +35,8 @@ public class MockOrder extends Order {
      * @return BillVO
      */
     public BillVO getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity){
-        return new BillVO(null, null, 300, 300);
+        PromotionVO hotelPromotion = new PromotionVO("201610130101", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "01011234", null, null, 0, 0);
+        return new BillVO(hotelPromotion, null, 300, 300);
     }
 
     /**
@@ -96,11 +94,10 @@ public class MockOrder extends Order {
     /**
      * 编辑评分评价
      * @param orderID
-     * @param score
-     * @param comment
+     * @param assessment
      * @return 是否成功
      */
-    public ResultMessage editAssessment(String orderID, int score, String comment) {
+    public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
         if (orderID.equals("20161026010112340000")) {
             return ResultMessage.FAILED;
         } else {
@@ -127,6 +124,11 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 通过订单ID搜索订单
+     * @param orderID
+     * @return OrderVO
+     */
     public ArrayList<OrderRoomVO> searchOrderRoomByOrderID(String orderID) {
         if (orderID.equals("20161026010112340000")) {
             ArrayList<OrderRoomVO> roomVOs = new ArrayList<OrderRoomVO>();
@@ -137,7 +139,11 @@ public class MockOrder extends Order {
         }
     }
 
-
+    /**
+     * 通过订单ID搜索评分评价
+     * @param orderID
+     * @return AssessmentVO
+     */
     public AssessmentVO searchAssessmentByOrderID(String orderID) {
         if (orderID.equals("20161026010112340000")) {
             return new AssessmentVO(5, 5, 5, 5, "很舒适");
@@ -146,6 +152,12 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 通过订单状态、关键字搜索订单
+     * @param os
+     * @param keyword
+     * @return OrderVO列表
+     */
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
         ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 
@@ -191,6 +203,13 @@ public class MockOrder extends Order {
         return orderVOs;
     }
 
+    /**
+     * 通过客户ID、订单状态、关键字搜索订单
+     * @param clientID
+     * @param os
+     * @param keyword
+     * @return OrderVO列表
+     */
     public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
         if (clientID.equals("000000001")) {
             return searchOrder(os, keyword);
@@ -199,6 +218,13 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 通过酒店ID、订单状态、关键字搜索订单
+     * @param hotelID
+     * @param os
+     * @param keyword
+     * @return OrderVO列表
+     */
     public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword) {
         if (hotelID.equals("01011234")) {
             return searchOrder(os, keyword);

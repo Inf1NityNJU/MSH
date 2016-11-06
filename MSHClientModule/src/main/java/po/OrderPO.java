@@ -10,27 +10,99 @@ import util.TimeUtil;
  */
 public class OrderPO {
 
+    /**
+     * 订单ID
+     */
     private String orderID;
+
+    /**
+     * 酒店ID
+     */
     private String hotelID;
+
+    /**
+     * 客户ID
+     */
     private String clientID;
 
+    /**
+     * 预计入住日期
+     */
     private DateUtil checkInDate;
+
+    /**
+     * 预计退房日期
+     */
     private DateUtil checkOutDate;
+
+    /**
+     * 实际入住时间
+     */
     private TimeUtil checkInTime;
+
+    /**
+     * 实际退房时间
+     */
     private TimeUtil checkOutTime;
+
+    /**
+     * 预定时间
+     */
     private TimeUtil bookedTime;
+
+    /**
+     * 撤销时间
+     */
     private TimeUtil cancelledTime;
+
+    /**
+     * 最晚执行时间
+     */
     private TimeUtil latestExecuteTime;
 
+    /**
+     * 人数
+     */
     private int peopleQuantity;
+
+    /**
+     * 有无儿童
+     */
     private boolean hasChildren;
+
+    /**
+     * 订单状态
+     */
     private OrderState state;
 
+    /**
+     * 网站促销策略类型
+     */
     private PromotionType websitePromotionType;
+
+    /**
+     * 网站促销策略折扣
+     */
     private double websitePromotionDiscount;
+
+    /**
+     * 酒店促销策略类型
+     */
     private PromotionType hotelPromotionType;
+
+    /**
+     * 酒店促销策略折扣
+     */
     private double hotelPromotionDiscount;
+
+    /**
+     * 原价
+     */
     private double originPrice;
+
+    /**
+     * 总价
+     */
     private double totalPrice;
 
     public String getOrderID() {
