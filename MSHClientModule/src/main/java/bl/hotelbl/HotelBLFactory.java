@@ -10,14 +10,14 @@ public class HotelBLFactory {
     private static HotelBLServiceImpl mockHotelBLServiceImpl;
 
     public synchronized static HotelBLServiceImpl getHotelBLServiceImpl(){
-        if(realHotelBLServiceImpl==null){
-            realHotelBLServiceImpl=new HotelBLServiceImpl(false);
+        if(realHotelBLServiceImpl == null){
+            realHotelBLServiceImpl = new HotelBLServiceImpl(false);
         }
         return realHotelBLServiceImpl;
     }
     public synchronized static HotelBLServiceImpl getMockHotelBLServiceImpl(){
-        if(mockHotelBLServiceImpl==null){
-            mockHotelBLServiceImpl=new HotelBLServiceImpl(true);
+        if(mockHotelBLServiceImpl == null){
+            mockHotelBLServiceImpl = new HotelBLServiceImpl(true);
         }
         return mockHotelBLServiceImpl;
     }

@@ -23,24 +23,24 @@ public class HotelRoomTest {
     private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null,null,null,0,0,null,null,0,0,0,0,null);
     private static final Hotel_DetailVO TEST_HOTEL_DETIAL_VO = new Hotel_DetailVO("000000",null,null,null,0,null,null,null);
     private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null,0,0,null);
-    private static final RoomType testType=RoomType.SingleRoom;
+    private static final RoomType testType = RoomType.SingleRoom;
 
 
     public HotelRoomTest(){
-        hotelBLServiceImpl= HotelBLFactory.getMockHotelBLServiceImpl();
+        hotelBLServiceImpl = HotelBLFactory.getMockHotelBLServiceImpl();
     }
 
     @Test
-    public void testGetHotelRoom(){
-        ArrayList<HotelRoomVO> hotelRoomVOs=hotelBLServiceImpl.getRoom(testHotelID);
+    public void testGetHotelRoom() {
+        ArrayList<HotelRoomVO> hotelRoomVOs = hotelBLServiceImpl.getRoom(testHotelID);
         assertFalse(hotelRoomVOs.isEmpty());
     }
 
     @Test
-    public void testAddHotelRoom(){
+    public void testAddHotelRoom() {
         try {
-            ResultMessage resultMessage=hotelBLServiceImpl.addRoom(testHotelRoomVO);
-            assertEquals(resultMessage,ResultMessage.SUCCESS);
+            ResultMessage resultMessage = hotelBLServiceImpl.addRoom(testHotelRoomVO);
+            assertEquals(resultMessage, ResultMessage.SUCCESS);
         } catch (InfoInvalidException e) {
             e.printStackTrace();
             fail();
@@ -48,10 +48,10 @@ public class HotelRoomTest {
     }
 
     @Test
-    public void testUpdateHotelRoomInfo(){
+    public void testUpdateHotelRoomInfo() {
         try {
-            ResultMessage resultMessage=hotelBLServiceImpl.updateHotelRoomInfo(testHotelRoomVO);
-            assertEquals(resultMessage,ResultMessage.SUCCESS);
+            ResultMessage resultMessage = hotelBLServiceImpl.updateHotelRoomInfo(testHotelRoomVO);
+            assertEquals(resultMessage, ResultMessage.SUCCESS);
         } catch (InfoInvalidException e) {
             e.printStackTrace();
             fail();
@@ -59,10 +59,10 @@ public class HotelRoomTest {
     }
 
     @Test
-    public void testDeleteHotelRoom(){
+    public void testDeleteHotelRoom() {
         try {
-            ResultMessage resultMessage=hotelBLServiceImpl.deleteHotelRoom(testHotelID,testType);
-            assertEquals(resultMessage,ResultMessage.SUCCESS);
+            ResultMessage resultMessage = hotelBLServiceImpl.deleteHotelRoom(testHotelID,testType);
+            assertEquals(resultMessage, ResultMessage.SUCCESS);
         } catch (HotelNotFoundException e) {
             e.printStackTrace();
             fail();

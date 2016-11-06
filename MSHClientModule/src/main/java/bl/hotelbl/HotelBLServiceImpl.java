@@ -19,12 +19,12 @@ public class HotelBLServiceImpl implements HotelBLService {
     private HotelRoom hotelRoom;
     protected HotelBLServiceImpl(boolean isMock){
         if(isMock){
-            hotel=new MockHotel();
-            hotelRoom=new MockHotelRoom();
+            hotel = new MockHotel();
+            hotelRoom = new MockHotelRoom();
         }
         else{
-            hotel=new Hotel();
-            hotelRoom=new HotelRoom();
+            hotel = new Hotel();
+            hotelRoom = new HotelRoom();
         }
     }
 

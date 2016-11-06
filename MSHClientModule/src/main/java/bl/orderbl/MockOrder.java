@@ -13,22 +13,50 @@ import java.util.ArrayList;
  */
 public class MockOrder extends Order {
 
-    public ResultMessage modifyRoomQuantity(RoomType roomtype, int quantity){
-        if (roomtype == RoomType.SingleRoom) {
+    /**
+     * 修改订单房间数量
+     * @param type
+     * @param quantity
+     * @return 是否成功修改
+     */
+    public ResultMessage modifyRoomQuantity(RoomType type, int quantity){
+        if (type == RoomType.SingleRoom) {
             return ResultMessage.FAILED;
         } else {
             return ResultMessage.SUCCESS;
         }
     }
 
-    public Bill getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity){
-        return new MockBill(300, 300);
+    /**
+     * 得到账单
+     * @param date
+     * @param start
+     * @param end
+     * @param birthday
+     * @param hotelID
+     * @param quantity
+     * @return BillVO
+     */
+    public BillVO getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity){
+        return new BillVO(null, null, 300, 300);
     }
 
+    /**
+     * 生成订单
+     * @param latest
+     * @param peopleQuantity
+     * @param hasChildren
+     * @return 是否成功生成
+     */
     public ResultMessage generate(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
         return ResultMessage.SUCCESS;
     }
 
+    /**
+     * 撤销订单
+     * @param orderID
+     * @return 是否成功撤销
+     */
     public ResultMessage revoke(String orderID) {
         if (orderID.equals("20161026010112340000")) {
             return ResultMessage.FAILED;
@@ -37,6 +65,12 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 更新入住
+     * @param orderID
+     * @param time
+     * @return 是否成功
+     */
     public ResultMessage checkIn(String orderID, TimeUtil time) {
         if (orderID.equals("20161026010112340000")) {
             return ResultMessage.FAILED;
@@ -45,6 +79,12 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 更新退房
+     * @param orderID
+     * @param time
+     * @return 是否成功
+     */
     public ResultMessage checkOut(String orderID, TimeUtil time) {
         if (orderID.equals("20161026010112340000")) {
             return ResultMessage.FAILED;
@@ -53,6 +93,13 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 编辑评分评价
+     * @param orderID
+     * @param score
+     * @param comment
+     * @return 是否成功
+     */
     public ResultMessage editAssessment(String orderID, int score, String comment) {
         if (orderID.equals("20161026010112340000")) {
             return ResultMessage.FAILED;
@@ -61,6 +108,11 @@ public class MockOrder extends Order {
         }
     }
 
+    /**
+     * 通过订单ID搜索订单
+     * @param orderID
+     * @return OrderVO
+     */
     public OrderVO searchOrderByID(String orderID) {
         if (orderID.equals("20161026010112340000")) {
             ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
