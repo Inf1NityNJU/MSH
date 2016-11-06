@@ -19,7 +19,6 @@ public class MinPromotionTest {
         minPromotion = new MockMinPromotion();
     }
 
-
     @Test
     private void testMinWebProm(){
         double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), new ArrayList<OrderRoomVO>(), "000000007", "00000000");
