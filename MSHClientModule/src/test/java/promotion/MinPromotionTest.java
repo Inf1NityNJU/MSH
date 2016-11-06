@@ -25,6 +25,7 @@ public class MinPromotionTest {
         assertEquals(0.80, discount, 0);
     }
 
+    @Test
     private void testMinHotelProm(){
         double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), new ArrayList<OrderRoomVO>(), "000000007", "00000000");
         assertEquals(0.80, discount, 0);

@@ -10,6 +10,13 @@ import util.ResultMessage;
  * Created by Kray on 2016/11/6.
  */
 public class UserBLServiceImpl implements UserBLService {
+
+    /**
+     * 登录
+     * @param account
+     * @param password
+     * @return 当前登录状态
+     */
     public LoginState login(String account, String password){
         return null;
     }
