@@ -6,19 +6,12 @@ import blservice.hotelblservice.HotelBLService;
  * Created by SilverNarcissus on 16/11/5.
  */
 public class HotelBLFactory {
-    private static HotelBLServiceImpl realHotelBLServiceImpl;
-    private static HotelBLServiceImpl mockHotelBLServiceImpl;
+    private static HotelBLServiceImpl HotelBLServiceImpl;
 
-    public synchronized static HotelBLServiceImpl getHotelBLServiceImpl(){
-        if(realHotelBLServiceImpl == null){
-            realHotelBLServiceImpl = new HotelBLServiceImpl(false);
+    public synchronized static HotelBLServiceImpl getHotelBLServiceImpl() {
+        if (HotelBLServiceImpl == null) {
+            HotelBLServiceImpl = new HotelBLServiceImpl(false);
         }
-        return realHotelBLServiceImpl;
-    }
-    public synchronized static HotelBLServiceImpl getMockHotelBLServiceImpl(){
-        if(mockHotelBLServiceImpl == null){
-            mockHotelBLServiceImpl = new HotelBLServiceImpl(true);
-        }
-        return mockHotelBLServiceImpl;
+        return HotelBLServiceImpl;
     }
 }
