@@ -17,15 +17,10 @@ import java.util.ArrayList;
 public class HotelBLServiceImpl implements HotelBLService {
     private Hotel hotel;
     private HotelRoom hotelRoom;
-    protected HotelBLServiceImpl(boolean isMock){
-//        if(isMock){
-//            hotel = new MockHotel();
-//            hotelRoom = new MockHotelRoom();
-//        }
-//        else{
-            hotel = new Hotel();
-            hotelRoom = new HotelRoom();
-//        }
+
+    protected HotelBLServiceImpl(Hotel hotel,HotelRoom hotelRoom){
+        this.hotel=hotel;
+        this.hotelRoom=hotelRoom;
     }
 
     @Override

@@ -10,8 +10,16 @@ public class HotelBLFactory {
 
     public synchronized static HotelBLServiceImpl getHotelBLServiceImpl() {
         if (HotelBLServiceImpl == null) {
-            HotelBLServiceImpl = new HotelBLServiceImpl(false);
+            HotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
         }
         return HotelBLServiceImpl;
+    }
+
+    private synchronized static Hotel getHotel(){
+        return new Hotel();
+    }
+
+    private synchronized static HotelRoom getHotelRoom(){
+        return new HotelRoom();
     }
 }

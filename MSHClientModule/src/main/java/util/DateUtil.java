@@ -14,4 +14,9 @@ public class DateUtil {
         this.month = month;
         this.day = day;
     }
+    @Override
+    public boolean equals(Object o){
+        DateUtil dateUtil=(DateUtil) o;
+        return this.year==dateUtil.year&&this.month==dateUtil.month&&this.day==dateUtil.day;
+    }
 }
