@@ -5,6 +5,7 @@ import bl.userbl.Salesman;
 import org.junit.Test;
 import util.LoginState;
 import util.ResultMessage;
+import vo.ClientVO;
 import vo.SalesmanVO;
 
 import java.util.ArrayList;
@@ -40,7 +41,8 @@ public class SalesmanTest {
     @Test
     public void testSearchSalesmanByID() throws Exception {
         SalesmanVO svo = salesman.searchSalesmanByID("100001");
-        assertEquals(new SalesmanVO("100001", "老王"), svo);
+        assertEquals(new SalesmanVO("100001", "老王").salesmanID, svo.salesmanID);
+        assertEquals(new SalesmanVO("100001", "老王").salesmanName, svo.salesmanName);
         svo = salesman.searchSalesmanByID("100002");
         assertEquals(null, svo);
     }
@@ -65,10 +67,25 @@ public class SalesmanTest {
     public void testSearchSalesman() throws Exception {
         ArrayList<SalesmanVO> asvo = new ArrayList<SalesmanVO>();
         asvo.add(new SalesmanVO("100012","老二"));
-        assertEquals(asvo,salesman.searchSalesman("老二"));
+
+        ArrayList<SalesmanVO> tmpAsvoS = salesman.searchSalesman("老二");
+        for(int i = 0; i < asvo.size(); i++) {
+            SalesmanVO tmpAsvo = asvo.get(i);
+            assertEquals(tmpAsvo.salesmanID, tmpAsvoS.get(i).salesmanID);
+            assertEquals(tmpAsvo.salesmanName, tmpAsvoS.get(i).salesmanName);
+        }
+
+        asvo.clear();
         asvo.add(new SalesmanVO("100011","老大"));
+        asvo.add(new SalesmanVO("100012","老二"));
         asvo.add(new SalesmanVO("100013","老三"));
         asvo.add(new SalesmanVO("100014","老四"));
-        assertEquals(asvo,salesman.searchSalesman("1000"));
+
+        tmpAsvoS = salesman.searchSalesman("1000");
+        for(int i = 0; i < asvo.size(); i++) {
+            SalesmanVO tmpAsvo = asvo.get(i);
+            assertEquals(tmpAsvo.salesmanID, tmpAsvoS.get(i).salesmanID);
+            assertEquals(tmpAsvo.salesmanName, tmpAsvoS.get(i).salesmanName);
+        }
     }
 }

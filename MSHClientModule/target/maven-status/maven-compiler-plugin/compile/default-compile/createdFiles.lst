@@ -1,0 +1,4 @@
+bl/promotionbl/PromotionBLServiceImpl.class
+bl/hotelbl/HotelBLServiceImpl.class
+bl/userbl/UserBLServiceImpl.class
+bl/hotelbl/HotelBLFactory.class

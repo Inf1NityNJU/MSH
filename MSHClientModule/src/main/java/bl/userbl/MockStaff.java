@@ -91,7 +91,7 @@ public class MockStaff extends Staff {
         StaffVO exampleStaffVO3 = new StaffVO("300013","老三","25010001");
         StaffVO exampleStaffVO4 = new StaffVO("300014","老四","25010003");
         ArrayList<StaffVO> StaffVOs = new ArrayList<StaffVO>();
-        if(keyword.equals("1000")){
+        if(keyword.equals("3000")){
             StaffVOs.add(exampleStaffVO1);
             StaffVOs.add(exampleStaffVO2);
             StaffVOs.add(exampleStaffVO3);
