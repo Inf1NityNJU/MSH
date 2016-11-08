@@ -26,7 +26,7 @@ public class MinPromotionTest {
     }
 
 
-   
+
 
     @Test
         public void testMinHotelProm(){

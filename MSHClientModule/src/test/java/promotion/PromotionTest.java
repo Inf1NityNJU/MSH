@@ -12,6 +12,8 @@ import vo.PromotionVO;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by vivian on 16/11/6.
@@ -48,7 +50,9 @@ public class PromotionTest {
     @Test
     public void testSearchByID(){
         PromotionVO pvo = promotion.searchByID("201610120102");
+//        assertFalse(!pvo.equals(new PromotionVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0)));
         assertEquals(new PromotionVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0), pvo);
+//        assertNotNull(pvo);
         pvo = promotion.searchByID("201610120103");
         assertEquals(null, pvo);
     }
