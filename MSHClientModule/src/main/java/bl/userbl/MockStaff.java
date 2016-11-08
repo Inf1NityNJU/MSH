@@ -20,7 +20,11 @@ public class MockStaff extends Staff {
      * @return
      */
     public LoginState login(String account, String password){
-        return LoginState.LOGIN_SUCCESS_Staff;
+        if(account.equals("adminStaff") && password.equals("12345678")) {
+            return LoginState.LOGIN_SUCCESS_Staff;
+        }else{
+            return LoginState.LOGIN_FAIL;
+        }
     }
 
     /**
@@ -56,7 +60,7 @@ public class MockStaff extends Staff {
      * @return
      */
     public ResultMessage updateStaff(StaffVO StaffVO){
-        if(StaffVO.staffID.equals("100001")) {
+        if(StaffVO.staffID.equals("300001")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -69,7 +73,7 @@ public class MockStaff extends Staff {
      * @return
      */
     public ResultMessage deleteStaff(String StaffID){
-        if(StaffID.equals("100001")) {
+        if(StaffID.equals("300001")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -83,11 +87,11 @@ public class MockStaff extends Staff {
      */
     public ArrayList<StaffVO> searchStaff(String keyword){
         StaffVO exampleStaffVO1 = new StaffVO("300011","老大","25010001");
-        StaffVO exampleStaffVO2 = new StaffVO("300012","老大","25010002");
-        StaffVO exampleStaffVO3 = new StaffVO("300013","老大","25010001");
-        StaffVO exampleStaffVO4 = new StaffVO("300014","老大","25010003");
+        StaffVO exampleStaffVO2 = new StaffVO("300012","老二","25010002");
+        StaffVO exampleStaffVO3 = new StaffVO("300013","老三","25010001");
+        StaffVO exampleStaffVO4 = new StaffVO("300014","老四","25010003");
         ArrayList<StaffVO> StaffVOs = new ArrayList<StaffVO>();
-        if(keyword.equals("1000")){
+        if(keyword.equals("3000")){
             StaffVOs.add(exampleStaffVO1);
             StaffVOs.add(exampleStaffVO2);
             StaffVOs.add(exampleStaffVO3);

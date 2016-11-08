@@ -1,3 +1,5 @@
+package hotel;
+
 import bl.hotelbl.HotelRoom;
 import bl.hotelbl.MockHotelRoom;
 import org.junit.Test;
@@ -36,7 +38,7 @@ public class HotelRoomTest {
     public void testAddHotelRoom() {
         try {
             ResultMessage resultMessage = hotelRoom.addRoom(testHotelRoomVO);
-            assertEquals(resultMessage, ResultMessage.SUCCESS);
+            assertEquals(ResultMessage.SUCCESS, resultMessage);
         } catch (InfoInvalidException e) {
             e.printStackTrace();
             fail();
@@ -47,7 +49,7 @@ public class HotelRoomTest {
     public void testUpdateHotelRoomInfo() {
         try {
             ResultMessage resultMessage = hotelRoom.updateHotelRoomInfo(testHotelRoomVO);
-            assertEquals(resultMessage, ResultMessage.SUCCESS);
+            assertEquals(ResultMessage.SUCCESS, resultMessage);
         } catch (InfoInvalidException e) {
             e.printStackTrace();
             fail();
@@ -58,7 +60,7 @@ public class HotelRoomTest {
     public void testDeleteHotelRoom() {
         try {
             ResultMessage resultMessage = hotelRoom.deleteHotelRoom(testHotelID,testType);
-            assertEquals(resultMessage, ResultMessage.SUCCESS);
+            assertEquals(ResultMessage.SUCCESS, resultMessage);
         } catch (HotelNotFoundException e) {
             e.printStackTrace();
             fail();

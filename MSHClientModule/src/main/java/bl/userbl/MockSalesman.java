@@ -20,7 +20,11 @@ public class MockSalesman extends Salesman {
      * @return
      */
     public LoginState login(String account, String password){
-        return LoginState.LOGIN_SUCCESS_Salesman;
+        if(account.equals("adminSalesman") && password.equals("12345678")) {
+            return LoginState.LOGIN_SUCCESS_Salesman;
+        }else{
+            return LoginState.LOGIN_FAIL;
+        }
     }
 
     /**
@@ -83,9 +87,9 @@ public class MockSalesman extends Salesman {
      */
     public ArrayList<SalesmanVO> searchSalesman(String keyword){
         SalesmanVO exampleSalesmanVO1 = new SalesmanVO("100011","老大");
-        SalesmanVO exampleSalesmanVO2 = new SalesmanVO("100012","老大");
-        SalesmanVO exampleSalesmanVO3 = new SalesmanVO("100013","老大");
-        SalesmanVO exampleSalesmanVO4 = new SalesmanVO("100014","老大");
+        SalesmanVO exampleSalesmanVO2 = new SalesmanVO("100012","老二");
+        SalesmanVO exampleSalesmanVO3 = new SalesmanVO("100013","老三");
+        SalesmanVO exampleSalesmanVO4 = new SalesmanVO("100014","老四");
         ArrayList<SalesmanVO> salesmanVOs = new ArrayList<SalesmanVO>();
         if(keyword.equals("1000")){
             salesmanVOs.add(exampleSalesmanVO1);

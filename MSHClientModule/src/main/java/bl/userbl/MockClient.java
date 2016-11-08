@@ -19,7 +19,11 @@ public class MockClient extends Client {
      * @return
      */
     public LoginState login(String account, String password){
-        return LoginState.LOGIN_SUCCESS_Client;
+        if(account.equals("adminClient") && password.equals("12345678")) {
+            return LoginState.LOGIN_SUCCESS_Client;
+        }else{
+            return LoginState.LOGIN_FAIL;
+        }
     }
 
     /**
@@ -121,7 +125,6 @@ public class MockClient extends Client {
      * @return
      */
     public ArrayList<CreditVO> searchCreditByClientID(String clientID){
-
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);

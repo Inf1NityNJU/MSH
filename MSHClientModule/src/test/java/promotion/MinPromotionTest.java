@@ -19,14 +19,17 @@ public class MinPromotionTest {
         minPromotion = new MockMinPromotion();
     }
 
-
     @Test
     public void testMinWebProm(){
         double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), new ArrayList<OrderRoomVO>(), "000000007", "00000000");
         assertEquals(0.80, discount, 0);
     }
 
-    public void testMinHotelProm(){
+
+   
+
+    @Test
+        public void testMinHotelProm(){
         double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), new ArrayList<OrderRoomVO>(), "000000007", "00000000");
         assertEquals(0.80, discount, 0);
     }
