@@ -1,5 +1,7 @@
 package util;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Sorumi on 16/10/12.
  */
@@ -14,9 +16,17 @@ public class DateUtil {
         this.month = month;
         this.day = day;
     }
+
+    private boolean compareData(DateUtil date){
+        return judgeEqual(year,date.year)&&judgeEqual(month,date.month)&&judgeEqual(day,date.day);
+    }
+
     @Override
     public boolean equals(Object o){
-        DateUtil dateUtil=(DateUtil) o;
-        return this.year==dateUtil.year&&this.month==dateUtil.month&&this.day==dateUtil.day;
+        if(o instanceof DateUtil) {
+            DateUtil dateUtil = (DateUtil) o;
+            return compareData(dateUtil);
+        }
+        return false;
     }
 }
