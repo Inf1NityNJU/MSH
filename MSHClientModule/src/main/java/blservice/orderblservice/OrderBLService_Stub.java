@@ -13,19 +13,84 @@ import java.util.ArrayList;
  */
 public class OrderBLService_Stub implements OrderBLService {
 
-    public BillVO price(String hotelID, String clientID, DateUtil checkInDate, DateUtil checkOutDate, ArrayList<OrderRoomVO> rvo) {
+    public ResultMessage checkCredit() {
+        return ResultMessage.SUCCESS;
+    }
+
+    public ResultMessage modifyDate(DateUtil start, DateUtil end) {
+        if (start.equals(new DateUtil(2016, 11, 10))) {
+            return ResultMessage.FAILED;
+        } else {
+            return ResultMessage.SUCCESS;
+        }
+    }
+
+    public ResultMessage modifyRoomQuantity(RoomType type, int quantity) {
+        if (type == RoomType.SingleRoom && quantity > 3) {
+            return ResultMessage.FAILED;
+        } else {
+            return ResultMessage.SUCCESS;
+        }
+    }
+
+    public BillVO getBill(String hotelID, DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, int quantity) {
         return new BillVO(null, null, 300, 300);
     }
 
-    public ResultMessage generate(String hotelID, String clientID, DateUtil checkInDate, DateUtil checkOutDate, ArrayList<OrderRoomVO> rvo,
-                                  TimeUtil latestExecuteTime, int peopleQuantity, boolean hasChildren) {
+    public ResultMessage generateOrder(String hotelID, TimeUtil latest, int peopleQuantity, boolean hasChildren) {
         if (hotelID.equals("01011234"))
             return ResultMessage.SUCCESS;
         else
             return ResultMessage.FAILED;
     }
 
-    public ArrayList<OrderVO> orders(OrderState os) {
+
+    public ResultMessage revokeOrder(String orderID) {
+        if (orderID.equals("20161012010112340000")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.NOT_EXIST;
+        }
+    }
+
+    public ResultMessage checkInOrder(String orderID, TimeUtil time) {
+        if (orderID.equals("20161012010112340000")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.NOT_EXIST;
+        }
+    }
+
+    public ResultMessage checkOutOrder(String orderID, TimeUtil time) {
+        if (orderID.equals("20161012010112340000")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.NOT_EXIST;
+        }
+    }
+
+    public ResultMessage editOrderAssessment(String orderID, AssessmentVO assessment) {
+        if (orderID.equals("20161012010112340000"))
+            return ResultMessage.SUCCESS;
+        else
+            return ResultMessage.NOT_EXIST;
+
+    }
+
+    public OrderVO searchOrderByID(String orderID) {
+        if (orderID.equals("20161012010112340000")) {
+            ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
+            OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
+            rooms.add(room1);
+            return new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+                    new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
+                    null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
+        } else {
+            return null;
+        }
+    }
+
+    public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
         ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
@@ -70,77 +135,17 @@ public class OrderBLService_Stub implements OrderBLService {
         return orderVOs;
     }
 
-    public ArrayList<OrderVO> clientOrders(String clientID, OrderState os) {
+    public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
         if (clientID.equals("000000001"))
-            return orders(os);
+            return searchOrder(os, null);
         else
             return new ArrayList<OrderVO>();
     }
 
-    public ArrayList<OrderVO> hotelOrders(String hotelID, OrderState os) {
+    public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword) {
         if (hotelID.equals("01011234"))
-            return orders(os);
+            return searchOrder(os, null);
         else
             return new ArrayList<OrderVO>();
-    }
-
-    public OrderVO getOrder(String orderID) {
-
-        if (orderID.equals("20161012010112340000")) {
-            ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
-            OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
-            rooms.add(room1);
-            return new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
-                    new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
-                    null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
-        } else {
-            return null;
-        }
-    }
-
-    public ResultMessage revokeOrder(String orderID) {
-        if (orderID.equals("20161012010112340000")) {
-            return ResultMessage.SUCCESS;
-        } else {
-            return ResultMessage.NOT_EXIST;
-        }
-    }
-
-    public ResultMessage addCheckInTime(TimeUtil checkInTime, String orderID) {
-        if (orderID.equals("20161012010112340000")) {
-            return ResultMessage.SUCCESS;
-        } else {
-            return ResultMessage.NOT_EXIST;
-        }
-    }
-
-    public ResultMessage addCheckOutTime(TimeUtil checkOutTime, String orderID) {
-        if (orderID.equals("20161012010112340000")) {
-            return ResultMessage.SUCCESS;
-        } else {
-            return ResultMessage.NOT_EXIST;
-        }
-    }
-
-    public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
-        if (orderID.equals("20161012010112340000"))
-            return ResultMessage.SUCCESS;
-        else
-            return ResultMessage.NOT_EXIST;
-
-    }
-
-    public ArrayList<AssessmentVO> hotelAssessment(String hotelID) {
-        if (hotelID.equals("01011234")) {
-            ArrayList<AssessmentVO> assessmentVOs = new ArrayList<AssessmentVO>();
-            AssessmentVO assessment1 = new AssessmentVO(5,5,5,5, "很好很舒适，下次再来");
-            AssessmentVO assessment2 = new AssessmentVO(4,5,4,5, "");
-            assessmentVOs.add(assessment1);
-            assessmentVOs.add(assessment2);
-
-            return assessmentVOs;
-        } else {
-            return new ArrayList<AssessmentVO>();
-        }
     }
 }
