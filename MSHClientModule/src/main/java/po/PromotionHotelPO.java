@@ -45,22 +45,12 @@ public class PromotionHotelPO {
     private String hotelID;
 
     /**
-     * 策略涉及的商圈
-     */
-    private Place place;
-
-    /**
-     * 执行策略所需的最低用户等级
-     */
-    private int clientGrade;
-
-    /**
      * 执行策略所需的最低房间数量
      */
     private int roomQuantity;
 
 
-    public PromotionHotelPO(String promptionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID, Place place, int clientGrade, int roomQuantity) {
+    public PromotionHotelPO(String promptionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID,  int roomQuantity) {
         this.promotionID = promptionID;
         this.promotionType = promotionType;
         this.startDate = startDate;
@@ -68,8 +58,6 @@ public class PromotionHotelPO {
         this.promotionDiscount = promotionDiscount;
         this.companyName = companyName;
         this.hotelID = hotelID;
-        this.place = place;
-        this.clientGrade = clientGrade;
         this.roomQuantity = roomQuantity;
     }
 
@@ -127,22 +115,6 @@ public class PromotionHotelPO {
 
     public void setHotelID(String hotelID) {
         this.hotelID = hotelID;
-    }
-
-    public Place getPlace() {
-        return place;
-    }
-
-    public void setPlace(Place place) {
-        this.place = place;
-    }
-
-    public int getClientGrade() {
-        return clientGrade;
-    }
-
-    public void setClientGrade(int clientGrade) {
-        this.clientGrade = clientGrade;
     }
 
     public int getRoomQuantity() {
