@@ -24,10 +24,6 @@ public class HotelRoomVO {
     }
 
 
-    private boolean compareData(HotelRoomVO rvo){
-        return judgeEqual(roomType, rvo.roomType)&&judgeEqual(price,rvo.price)&&judgeEqual(totalQuantity,rvo.totalQuantity)&&judgeEqual(roomStockVOs,rvo.roomStockVOs);
-    }
-
     @Override
     public boolean equals(Object o){
         if(o instanceof HotelRoomVO){
@@ -40,5 +36,9 @@ public class HotelRoomVO {
     @Override
     public int hashCode(){
         return (int)price;
+    }
+
+    private boolean compareData(HotelRoomVO rvo){
+        return judgeEqual(roomType, rvo.roomType)&&judgeEqual(price,rvo.price)&&judgeEqual(totalQuantity,rvo.totalQuantity)&&judgeEqual(roomStockVOs,rvo.roomStockVOs);
     }
 }
