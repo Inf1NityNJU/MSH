@@ -70,19 +70,6 @@ public class PromotionBLService_Driver {
             System.out.println("Get WebPromotions Failed");
         }
 
-        double discount = promotionBLService.getMinHotelProm(new DateUtil(2016, 10, 13), rooms, "000000001", "01011234");
-        if(discount>0){
-            System.out.println("Get MinHotelPromotion Success");
-        }else{
-            System.out.println("Get MinHotelPromotion Failed");
-        }
-
-        discount = promotionBLService.getMinWebProm(new DateUtil(2016, 10, 13), rooms, "000000002", "01011234");
-        if(discount>0){
-            System.out.println("Get MinHWebPromotion Success");
-        }else{
-            System.out.println("Get MinWebPromotion Failed");
-        }
 
     }
 }

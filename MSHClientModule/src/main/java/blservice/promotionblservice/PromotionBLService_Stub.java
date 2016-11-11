@@ -83,13 +83,4 @@ public class PromotionBLService_Stub implements PromotionBLService{
         return promotionVOs;
     }
 
-    @Override
-    public double getMinHotelProm(DateUtil date, ArrayList<OrderRoomVO> rvo, String clientID, String hotelID) {
-        return 0.80;
-    }
-
-    @Override
-    public double getMinWebProm(DateUtil date, ArrayList<OrderRoomVO> rvo, String clientID, String hotelID) {
-        return 0.80;
-    }
 }

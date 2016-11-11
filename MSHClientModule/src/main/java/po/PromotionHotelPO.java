@@ -7,7 +7,7 @@ import util.PromotionType;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class PromotionPO {
+public class PromotionHotelPO {
 
     /**
      * 策略编号
@@ -60,7 +60,7 @@ public class PromotionPO {
     private int roomQuantity;
 
 
-    public PromotionPO(String promptionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID, Place place, int clientGrade, int roomQuantity) {
+    public PromotionHotelPO(String promptionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID, Place place, int clientGrade, int roomQuantity) {
         this.promotionID = promptionID;
         this.promotionType = promotionType;
         this.startDate = startDate;
