@@ -20,7 +20,7 @@ public class Salesman extends User {
      */
     public LoginState login(String account, String password) {
         if (true) {
-            //去找
+            //去DB找
             super.setCurrentID("STRING FROM DB");
 
             return LoginState.LOGIN_SUCCESS_Staff;

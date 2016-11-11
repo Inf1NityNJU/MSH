@@ -1,6 +1,8 @@
 package blservice.userblservice;
 
 import bl.userbl.Client;
+import bl.userbl.User;
+import sun.nio.cs.US_ASCII;
 import util.*;
 import vo.*;
 
@@ -10,6 +12,8 @@ import java.util.ArrayList;
  * Created by Kray on 2016/10/12.
  */
 public class UserBLService_Stub implements UserBLService {
+
+    private ClientVO exampleClientVO = new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0);
 
     public LoginState login(String account, String password) {
         if (account.equals("admin") && password.equals("12345678")) {
@@ -51,8 +55,7 @@ public class UserBLService_Stub implements UserBLService {
      * @return 查到的用户
      */
     public UserVO searchByID(String userID) {
-        ClientVO clientVO = (ClientVO) userVO;
-        if (clientID.equals("000000007")) {
+        if (userID.equals("000000007")) {
             return exampleClientVO;
         } else {
             return null;
@@ -66,7 +69,13 @@ public class UserBLService_Stub implements UserBLService {
      * @return 是否更新成功
      */
     public ResultMessage update(UserVO userVO) {
-        return user.update(userVO);
+        ClientVO clientVO = (ClientVO) userVO;
+        if (clientVO.clientID.equals("000000007")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            System.out.println("Client Exist");
+            return ResultMessage.FAILED;
+        }
     }
 
     /**
@@ -76,7 +85,13 @@ public class UserBLService_Stub implements UserBLService {
      * @return 是否删除成功
      */
     public ResultMessage delete(UserVO userVO) {
-        return user.delete(userVO);
+        ClientVO clientVO = (ClientVO) userVO;
+        if (clientVO.clientID.equals("000000007")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            System.out.println("Client Exist");
+            return ResultMessage.FAILED;
+        }
     }
 
     /**
@@ -86,7 +101,13 @@ public class UserBLService_Stub implements UserBLService {
      * @return 返回的用户列表
      */
     public ArrayList search(String keyword) {
-        return user.search(keyword);
+        ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
+        if(keyword.equals("000000007")){
+            clientVOs.add(exampleClientVO);
+            return clientVOs;
+        }else{
+            return clientVOs;
+        }
     }
 
     public ResultMessage addCreditRecord(String clientID, int credit, CreditAction creditAction) {
