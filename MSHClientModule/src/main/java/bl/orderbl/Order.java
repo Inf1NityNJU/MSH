@@ -97,24 +97,6 @@ public class Order {
     }
 
     /**
-     * 通过订单ID搜索订单房间列表
-     * @param orderID
-     * @return OrderRoomVO列表
-     */
-    public ArrayList<OrderRoomVO> searchOrderRoomByOrderID(String orderID) {
-        return null;
-    }
-
-    /**
-     * 通过订单ID搜索评分评价
-     * @param orderID
-     * @return AssessmentVO
-     */
-    public AssessmentVO searchAssessmentByOrderID(String orderID) {
-        return null;
-    }
-
-    /**
      * 通过订单状态、关键字搜索订单
      * @param os
      * @param keyword

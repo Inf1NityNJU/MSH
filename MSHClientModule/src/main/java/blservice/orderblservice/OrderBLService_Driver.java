@@ -20,75 +20,39 @@ public class OrderBLService_Driver {
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
 
-        BillVO bill = orderBLService.price("01011234", "000000001", new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), rooms);
+        ResultMessage rm = orderBLService.checkCredit("000000001");
+        if (rm == ResultMessage.SUCCESS) {
+            System.out.print("Credit enough");
+        } else {
+            System.out.print("Credit not enough");
+        }
+
+        rm = orderBLService.modifyDate(new DateUtil(2016, 11, 10), new DateUtil(2016, 11, 14));
+        if (rm == ResultMessage.SUCCESS) {
+            System.out.print("Modify Success");
+        } else {
+            System.out.print("Modify Failed");
+        }
+
+        rm = orderBLService.modifyRoomQuantity(RoomType.SingleRoom, 2);
+        if (rm == ResultMessage.SUCCESS) {
+            System.out.print("Modify Success");
+        } else {
+            System.out.print("Modify Failed");
+        }
+
+        BillVO bill = orderBLService.getBill("01011234", new DateUtil(2016, 10, 9),  new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), new DateUtil(1996, 6, 11), 3);
         if (bill != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        ResultMessage rm = orderBLService.generate("01011234", "000000001", new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), rooms,
-                new TimeUtil(2016, 10, 12, 14, 0, 0), 2, false);
+        rm = orderBLService.generateOrder("01011234", new TimeUtil(2016, 10, 12, 18, 0, 0), 3, false);
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Generate Success");
         } else {
             System.out.print("Generate Failed");
-        }
-
-        ArrayList<OrderVO> orders = orderBLService.orders(null);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        orders = orderBLService.orders(OrderState.Unexecuted);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        orders = orderBLService.orders(OrderState.Executed);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        orders = orderBLService.orders(OrderState.Abnormal);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        orders = orderBLService.orders(OrderState.Cancelled);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        orders = orderBLService.clientOrders("000000001", null);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        orders = orderBLService.hotelOrders("01011234", null);
-        if (orders != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
-        }
-
-        OrderVO order = orderBLService.getOrder("20161012010112340000");
-        if (order != null) {
-            System.out.print("Success");
-        } else {
-            System.out.print("Failed");
         }
 
         rm = orderBLService.revokeOrder("20161012010112340000");
@@ -98,29 +62,78 @@ public class OrderBLService_Driver {
             System.out.print("Revoke Failed");
         }
 
-        rm = orderBLService.addCheckInTime(null, "20161012010112340000");
+        rm = orderBLService.checkInOrder("20161012010112340000", new TimeUtil(2016, 10, 17, 18, 0, 0));
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Add Success");
         } else {
             System.out.print("Add Failed");
         }
 
-        rm = orderBLService.addCheckOutTime(null, "20161012010112340000");
+        rm = orderBLService.checkOutOrder("20161012010112340000", new TimeUtil(2016, 10, 18, 18, 0, 0));
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Add Success");
         } else {
             System.out.print("Add Failed");
         }
 
-        rm = orderBLService.editAssessment("20161012010112340000", new AssessmentVO(5,5,5,5, "很好很舒适，下次再来"));
+        rm = orderBLService.editOrderAssessment("20161012010112340000", new AssessmentVO(5,5,5,5, "很好很舒适，下次再来"));
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Edit Success");
         } else {
             System.out.print("Edit Failed");
         }
 
-        ArrayList<AssessmentVO> assessment = orderBLService.hotelAssessment("01011234");
-        if (assessment != null) {
+        OrderVO order = orderBLService.searchOrderByID("20161012010112340000");
+        if (order != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        ArrayList<OrderVO> orders = orderBLService.searchOrder(null, null);
+        if (orders != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        orders = orderBLService.searchOrder(OrderState.Unexecuted, null);
+        if (orders != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        orders = orderBLService.searchOrder(OrderState.Executed, null);
+        if (orders != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        orders = orderBLService.searchOrder(OrderState.Abnormal, null);
+        if (orders != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        orders = orderBLService.searchOrder(OrderState.Cancelled, null);
+        if (orders != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        orders = orderBLService.searchClientOrder("000000001", null, null);
+        if (orders != null) {
+            System.out.print("Success");
+        } else {
+            System.out.print("Failed");
+        }
+
+        orders = orderBLService.searchHotelOrder("01011234", null, null);
+        if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
