@@ -2,6 +2,8 @@ package vo;
 
 import util.Place;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Kray on 2016/10/12.
  */
@@ -47,7 +49,49 @@ public class Hotel_DetailVO {
         this.star = star;
         this.introduction = introduction;
         this.facilities = facilities;
-        this.assessmentVO=assessmentVO;
+        this.assessmentVO = assessmentVO;
+    }
+
+    /**
+     * 比较两个VO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Hotel_DetailVO) {
+            Hotel_DetailVO h_dvo = (Hotel_DetailVO) o;
+            return compareData(h_dvo);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return star;
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param h_dvo
+     * @return 比较结果
+     */
+    private boolean compareData(Hotel_DetailVO h_dvo) {
+        return judgeEqual(ID, h_dvo.ID)
+                && judgeEqual(name, h_dvo.name)
+                && judgeEqual(address, h_dvo.address)
+                && judgeEqual(place, h_dvo.place)
+                && judgeEqual(star, h_dvo.star)
+                && judgeEqual(introduction, h_dvo.introduction)
+                && judgeEqual(facilities, h_dvo.facilities)
+                && judgeEqual(assessmentVO, h_dvo.assessmentVO);
     }
 }
 

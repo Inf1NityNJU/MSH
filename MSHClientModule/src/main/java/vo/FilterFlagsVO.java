@@ -4,6 +4,8 @@ import util.DateUtil;
 import util.Place;
 import util.RoomType;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by SilverNarcissus on 16/10/12.
  */
@@ -70,5 +72,51 @@ public class FilterFlagsVO {
         this.minScore = minScore;
         this.maxScore = maxScore;
         this.bookedClientID = bookedClientID;
+    }
+
+    /**
+     * 比较两个VO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof FilterFlagsVO) {
+            FilterFlagsVO filterFlagsVO = (FilterFlagsVO) o;
+            return compareData(filterFlagsVO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return star;
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param filterFlagsVO
+     * @return 比较结果
+     */
+    private boolean compareData(FilterFlagsVO filterFlagsVO) {
+        return judgeEqual(place, filterFlagsVO.place)
+                && judgeEqual(name, filterFlagsVO.name)
+                && judgeEqual(roomType, filterFlagsVO.roomType)
+                && judgeEqual(minPrice, filterFlagsVO.minPrice)
+                && judgeEqual(maxPrice, filterFlagsVO.maxPrice)
+                && judgeEqual(checkInDate, filterFlagsVO.checkInDate)
+                && judgeEqual(checkOutDate, filterFlagsVO.checkOutDate)
+                && judgeEqual(quantity, filterFlagsVO.quantity)
+                && judgeEqual(star,filterFlagsVO.star )
+                && judgeEqual(minScore, filterFlagsVO.minPrice)
+                && judgeEqual(maxScore, filterFlagsVO.maxPrice)
+                && judgeEqual(bookedClientID, filterFlagsVO.bookedClientID);
     }
 }
