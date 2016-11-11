@@ -13,56 +13,69 @@ public class Salesman extends User {
 
     /**
      * 登录
+     *
      * @param account
      * @param password
-     * @return  当前登录状态
+     * @return 当前登录状态
      */
-    public LoginState login(String account, String password){
-        return null;
+    public LoginState login(String account, String password) {
+        if (true) {
+            //去找
+            super.setCurrentID("STRING FROM DB");
+
+            return LoginState.LOGIN_SUCCESS_Staff;
+        } else {
+            return LoginState.LOGIN_FAIL;
+        }
     }
 
     /**
      * 增加网站营销人员
+     *
      * @param salesmanVO
-     * @return  是否增加成功
+     * @return 是否增加成功
      */
-    public ResultMessage add(SalesmanVO salesmanVO){
+    public ResultMessage add(SalesmanVO salesmanVO) {
         return null;
     }
 
     /**
      * 根据ID查找网站营销人员
+     *
      * @param SalesmanID
-     * @return  符合ID的SalesmanVO
+     * @return 符合ID的SalesmanVO
      */
-    public SalesmanVO searchByID(String SalesmanID){
+    public SalesmanVO searchByID(String SalesmanID) {
         return null;
     }
 
     /**
      * 更新网站营销人员
+     *
      * @param salesmanVO
-     * @return   是否更新成功
+     * @return 是否更新成功
      */
-    public ResultMessage update(SalesmanVO salesmanVO){
+    public ResultMessage update(SalesmanVO salesmanVO) {
         return null;
     }
 
     /**
      * 删除网站营销人员
+     *
      * @param salesmanID
-     * @return  是否删除成功
+     * @return 是否删除成功
      */
-    public ResultMessage delete(String salesmanID){
+    public ResultMessage delete(String salesmanID) {
         return null;
     }
 
     /**
      * 根据关键词搜索网站营销人员
+     *
      * @param keyword
-     * @return  符合关键词的所有网站营销人员
+     * @return 符合关键词的所有网站营销人员
      */
-    public ArrayList<SalesmanVO> search(String keyword){
+    public ArrayList<SalesmanVO> search(String keyword) {
         return null;
     }
 

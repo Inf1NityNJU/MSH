@@ -37,7 +37,7 @@ public class CreditVO {
      * @param creditAction
      * @param orderVO
      */
-    public CreditVO(int deltaCredit, int resultCredit, CreditAction creditAction, OrderVO orderVO, DateUtil date){
+    public CreditVO(int deltaCredit, int resultCredit, CreditAction creditAction, OrderVO orderVO, DateUtil date) {
         this.date = date;
         this.deltaCredit = deltaCredit;
         this.resultCredit = resultCredit;

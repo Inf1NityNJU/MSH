@@ -15,10 +15,11 @@ public class SalesmanVO extends UserVO {
 
     /**
      * 网站营销人员的构造方法,包括人员ID和姓名
+     *
      * @param id
      * @param name
      */
-    public SalesmanVO(String id, String name){
+    public SalesmanVO(String id, String name) {
         this.salesmanID = id;
         this.salesmanName = name;
     }

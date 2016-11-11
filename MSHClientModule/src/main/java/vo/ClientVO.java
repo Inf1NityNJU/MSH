@@ -33,6 +33,7 @@ public class ClientVO extends UserVO {
 
     /**
      * 客户构造方法,包括 id,姓名,等级,生日,信用值,类型
+     *
      * @param id
      * @param name
      * @param level
@@ -40,7 +41,7 @@ public class ClientVO extends UserVO {
      * @param credit
      * @param type
      */
-    public ClientVO(String id, String name, int level, DateUtil birthday, int credit, int type){
+    public ClientVO(String id, String name, int level, DateUtil birthday, int credit, int type) {
         this.clientID = id;
         this.clientName = name;
         this.credit = credit;

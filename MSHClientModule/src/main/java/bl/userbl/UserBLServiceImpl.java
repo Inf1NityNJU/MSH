@@ -20,7 +20,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
     private LoginState loginState;
     private String currentID;
 
-    protected UserBLServiceImpl(User user, LoginState loginState){
+    protected UserBLServiceImpl(User user, LoginState loginState) {
         this.user = user;
         this.loginState = loginState;
     }
@@ -30,21 +30,21 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      *
      * @param account
      * @param password
-     * @return  当前登录状态
+     * @return 当前登录状态
      */
-    public LoginState login(String account, String password){
+    public LoginState login(String account, String password) {
         return user.login(account, password);
     }
 
     /**
      * 登出
      *
-     * @return  当前登录状态
+     * @return 当前登录状态
      */
-    public LoginState logout(){
-        if(loginState != LoginState.LOGOUT) {
+    public LoginState logout() {
+        if (loginState != LoginState.LOGOUT) {
             return user.logout();
-        }else{
+        } else {
             System.out.println("Already Logout");
             return null;
         }
@@ -56,7 +56,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * @param account
      * @param oldPassword
      * @param newPassword
-     * @return  重置密码结果状态
+     * @return 重置密码结果状态
      */
     public ResetState reset(String account, String oldPassword, String newPassword) {
         return user.resetPassword(account, oldPassword, newPassword);
@@ -66,9 +66,9 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 增加用户
      *
      * @param userVO
-     * @return  是否增加成功
+     * @return 是否增加成功
      */
-    public ResultMessage add(UserVO userVO){
+    public ResultMessage add(UserVO userVO) {
         return user.add(userVO);
     }
 
@@ -76,9 +76,9 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 根据ID查找用户
      *
      * @param userID
-     * @return  查到的用户
+     * @return 查到的用户
      */
-    public UserVO searchByID(String userID){
+    public UserVO searchByID(String userID) {
         return user.searchByID(userID);
     }
 
@@ -86,9 +86,9 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 更新用户信息
      *
      * @param userVO
-     * @return  是否更新成功
+     * @return 是否更新成功
      */
-    public ResultMessage update(UserVO userVO){
+    public ResultMessage update(UserVO userVO) {
         return user.update(userVO);
     }
 
@@ -96,9 +96,9 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 删除用户
      *
      * @param userVO
-     * @return  是否删除成功
+     * @return 是否删除成功
      */
-    public ResultMessage delete(UserVO userVO){
+    public ResultMessage delete(UserVO userVO) {
         return user.delete(userVO);
     }
 
@@ -106,7 +106,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 搜索符合关键词的用户列表
      *
      * @param keyword
-     * @return  返回的用户列表
+     * @return 返回的用户列表
      */
     public ArrayList search(String keyword) {
         return user.search(keyword);
@@ -120,11 +120,11 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * @param creditAction
      * @return 增加是否成功
      */
-    public ResultMessage addCreditRecord(String clientID, int credit, CreditAction creditAction){
-        if(user instanceof Client) {
-            Client client = (Client)user;
+    public ResultMessage addCreditRecord(String clientID, int credit, CreditAction creditAction) {
+        if (user instanceof Client) {
+            Client client = (Client) user;
             return null;
-        }else{
+        } else {
             return null;
         }
     }
@@ -144,12 +144,12 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 根据客户ID获得总信用值
      *
      * @param id
-     * @return  该客户的总信用值
+     * @return 该客户的总信用值
      */
-    public int getCreditOfID(String id){
-        if(user instanceof Client){
+    public int getCreditOfID(String id) {
+        if (user instanceof Client) {
             return user.getCreditOfID(id);
-        }else{
+        } else {
             return -1;
         }
     }
@@ -157,9 +157,9 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
     /**
      * 得到当前登录状态下的客户ID
      *
-     * @return  当前登录状态下的客户ID
+     * @return 当前登录状态下的客户ID
      */
-    public String getCurrentID(){
+    public String getCurrentID() {
         return this.currentID;
     }
 
