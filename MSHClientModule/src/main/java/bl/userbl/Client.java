@@ -19,7 +19,11 @@ public class Client extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password){
-        return null;
+        if(true){
+            return LoginState.LOGIN_SUCCESS_Client;
+        }else{
+            return LoginState.LOGIN_FAIL;
+        }
     }
 
     /**
@@ -27,7 +31,7 @@ public class Client extends User {
      * @param clientVO
      * @return  是否添加成功
      */
-    public ResultMessage addClient(ClientVO clientVO){
+    public ResultMessage add(ClientVO clientVO){
         return null;
     }
 
@@ -36,7 +40,7 @@ public class Client extends User {
      * @param clientID
      * @return  查询到的ClientVO
      */
-    public ClientVO searchClientByID(String clientID){
+    public ClientVO searchByID(String clientID){
         return null;
     }
 
@@ -45,7 +49,7 @@ public class Client extends User {
      * @param clientVO
      * @return  是否更新成功
      */
-    public ResultMessage updateClient(ClientVO clientVO){
+    public ResultMessage update(ClientVO clientVO){
         return null;
     }
 
@@ -54,7 +58,7 @@ public class Client extends User {
      * @param clientID
      * @return  是否删除成功
      */
-    public ResultMessage deleteClient(String clientID){
+    public ResultMessage delete(String clientID){
         return null;
     }
 
@@ -63,7 +67,7 @@ public class Client extends User {
      * @param keyword
      * @return  符合关键词的所有客户
      */
-    public ArrayList<ClientVO> searchClient(String keyword){
+    public ArrayList<ClientVO> search(String keyword){
         return null;
     }
 
@@ -73,7 +77,7 @@ public class Client extends User {
      * @param creditVO
      * @return  是否增加成功
      */
-    public ResultMessage addCreditByClientID(String clientID, CreditVO creditVO){
+    public ResultMessage addCreditByID(String clientID, CreditVO creditVO){
         return null;
     }
 
@@ -82,7 +86,8 @@ public class Client extends User {
      * @param clientID
      * @return  该客户的所有信用记录
      */
-    public ArrayList<CreditVO> searchCreditByClientID(String clientID) {
+    public ArrayList<CreditVO> searchCreditByID(String clientID) {
         return null;
     }
+
 }

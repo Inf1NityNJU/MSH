@@ -29,16 +29,16 @@ public class ClientTest {
     }
 
     @Test
-    public void testAddClient() throws Exception {
-        ResultMessage rm = client.addClient(new ClientVO("000000008","老宋头",0, new DateUtil(2016,1,1),500,0));
+    public void testAdd() throws Exception {
+        ResultMessage rm = client.add(new ClientVO("000000008","老宋头",0, new DateUtil(2016,1,1),500,0));
         assertEquals(ResultMessage.SUCCESS,rm);
-        rm = client.addClient(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0));
+        rm = client.add(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0));
         assertEquals(ResultMessage.FAILED,rm);
     }
 
     @Test
-    public void testSearchClientByID() throws Exception {
-        ClientVO cvo = client.searchClientByID("000000007");
+    public void testSearchByID() throws Exception {
+        ClientVO cvo = client.searchByID("000000007");
         assertEquals(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0).birthday.day, cvo.birthday.day);
         assertEquals(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0).birthday.month, cvo.birthday.month);
         assertEquals(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0).birthday.year, cvo.birthday.year);
@@ -47,23 +47,23 @@ public class ClientTest {
         assertEquals(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0).credit, cvo.credit);
         assertEquals(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0).type, cvo.type);
         assertEquals(new ClientVO("000000007","老宋",0, new DateUtil(2016,1,1),500,0).level, cvo.level);
-        cvo = client.searchClientByID("000000009");
+        cvo = client.searchByID("000000009");
         assertEquals(null, cvo);
     }
 
     @Test
-    public void testUpdateClient() throws Exception {
-        ResultMessage rm = client.updateClient(new ClientVO("000000007","老宋", 0, new DateUtil(2016,1,1), 1500,0));
+    public void testUpdate() throws Exception {
+        ResultMessage rm = client.update(new ClientVO("000000007","老宋", 0, new DateUtil(2016,1,1), 1500,0));
         assertEquals(ResultMessage.SUCCESS,rm);
-        rm = client.updateClient(new ClientVO("000000009","老宋头",0, new DateUtil(2016,1,1),500,0));
+        rm = client.update(new ClientVO("000000009","老宋头",0, new DateUtil(2016,1,1),500,0));
         assertEquals(ResultMessage.FAILED,rm);
     }
 
     @Test
-    public void testDeleteClient() throws Exception {
-        ResultMessage rm = client.deleteClient("000000007");
+    public void testDelete() throws Exception {
+        ResultMessage rm = client.delete("000000007");
         assertEquals(ResultMessage.SUCCESS,rm);
-        rm = client.deleteClient("000000009");
+        rm = client.delete("000000009");
         assertEquals(ResultMessage.FAILED,rm);
     }
 
@@ -107,22 +107,22 @@ public class ClientTest {
     }
 
     @Test
-    public void testAddCreditByClientID() throws Exception {
+    public void testAddCreditByID() throws Exception {
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
-        ResultMessage rm = client.addCreditByClientID("000000007", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        ResultMessage rm = client.addCreditByID("000000007", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016,11,1)));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.addCreditByClientID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016,11,1)));
         assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
-    public void testSearchCreditByClientID() throws Exception {
+    public void testSearchCreditByID() throws Exception {
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
@@ -132,7 +132,7 @@ public class ClientTest {
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016,10,12)));
         for(int i = 0; i < acvo.size(); i++) {
             CreditVO tmpAcvo = acvo.get(i);
-            ArrayList<CreditVO> tmpAcvoS = client.searchCreditByClientID("000000001");
+            ArrayList<CreditVO> tmpAcvoS = client.searchCreditByID("000000001");
             for(int j = 0; j < tmpAcvoS.size(); j++) {
                 assertEquals(tmpAcvo.creditAction, tmpAcvoS.get(j).creditAction);
                 assertEquals(tmpAcvo.deltaCredit, tmpAcvoS.get(j).deltaCredit);
@@ -150,7 +150,7 @@ public class ClientTest {
                 new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null), new DateUtil(2016,10,12)));
         for(int i = 0; i < acvo.size(); i++) {
             CreditVO tmpAcvo = acvo.get(i);
-            ArrayList<CreditVO> tmpAcvoS = client.searchCreditByClientID("000000004");
+            ArrayList<CreditVO> tmpAcvoS = client.searchCreditByID("000000004");
             for(int j = 0; j < tmpAcvoS.size(); j++) {
                 assertEquals(tmpAcvo.creditAction, tmpAcvoS.get(j).creditAction);
                 assertEquals(tmpAcvo.deltaCredit, tmpAcvoS.get(j).deltaCredit);

@@ -26,7 +26,7 @@ public class Salesman extends User {
      * @param salesmanVO
      * @return  是否增加成功
      */
-    public ResultMessage addSalesman(SalesmanVO salesmanVO){
+    public ResultMessage add(SalesmanVO salesmanVO){
         return null;
     }
 
@@ -35,7 +35,7 @@ public class Salesman extends User {
      * @param SalesmanID
      * @return  符合ID的SalesmanVO
      */
-    public SalesmanVO searchSalesmanByID(String SalesmanID){
+    public SalesmanVO searchByID(String SalesmanID){
         return null;
     }
 
@@ -44,7 +44,7 @@ public class Salesman extends User {
      * @param salesmanVO
      * @return   是否更新成功
      */
-    public ResultMessage updateSalesman(SalesmanVO salesmanVO){
+    public ResultMessage update(SalesmanVO salesmanVO){
         return null;
     }
 
@@ -53,7 +53,7 @@ public class Salesman extends User {
      * @param salesmanID
      * @return  是否删除成功
      */
-    public ResultMessage deleteSalesman(String salesmanID){
+    public ResultMessage delete(String salesmanID){
         return null;
     }
 
@@ -62,7 +62,7 @@ public class Salesman extends User {
      * @param keyword
      * @return  符合关键词的所有网站营销人员
      */
-    public ArrayList<SalesmanVO> searchSalesman(String keyword){
+    public ArrayList<SalesmanVO> search(String keyword){
         return null;
     }
 

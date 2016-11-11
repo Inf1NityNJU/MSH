@@ -3,7 +3,7 @@ package vo;
 /**
  * Created by Kray on 2016/10/12.
  */
-public class SalesmanVO {
+public class SalesmanVO extends UserVO {
     /**
      * 网站营销人员ID
      */

@@ -26,7 +26,7 @@ public class Staff extends User {
      * @param StaffVO
      * @return  是否增加成功
      */
-    public ResultMessage addStaff(StaffVO StaffVO){
+    public ResultMessage add(StaffVO StaffVO){
         return null;
     }
 
@@ -35,7 +35,7 @@ public class Staff extends User {
      * @param StaffID
      * @return  符合ID的StaffVO
      */
-    public StaffVO searchStaffByID(String StaffID){
+    public StaffVO searchByID(String StaffID){
         return null;
     }
 
@@ -44,7 +44,7 @@ public class Staff extends User {
      * @param StaffVO
      * @return   是否更新成功
      */
-    public ResultMessage updateStaff(StaffVO StaffVO){
+    public ResultMessage update(StaffVO StaffVO){
         return null;
     }
 
@@ -53,7 +53,7 @@ public class Staff extends User {
      * @param StaffID
      * @return  是否删除成功
      */
-    public ResultMessage deleteStaff(String StaffID){
+    public ResultMessage delete(String StaffID){
         return null;
     }
 
@@ -62,7 +62,7 @@ public class Staff extends User {
      * @param keyword
      * @return  符合关键词的所有酒店工作人员
      */
-    public ArrayList<StaffVO> searchStaff(String keyword){
+    public ArrayList<StaffVO> search(String keyword){
         return null;
     }
 }

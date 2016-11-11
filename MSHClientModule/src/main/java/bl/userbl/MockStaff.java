@@ -32,7 +32,7 @@ public class MockStaff extends Staff {
      * @param StaffVO
      * @return
      */
-    public ResultMessage addStaff(StaffVO StaffVO){
+    public ResultMessage add(StaffVO StaffVO){
         if(!StaffVO.staffID.equals("300001")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -46,7 +46,7 @@ public class MockStaff extends Staff {
      * @param StaffID
      * @return
      */
-    public StaffVO searchStaffByID(String StaffID){
+    public StaffVO searchByID(String StaffID){
         if(StaffID.equals("300001")) {
             return exampleStaffVO;
         }else{
@@ -59,7 +59,7 @@ public class MockStaff extends Staff {
      * @param StaffVO
      * @return
      */
-    public ResultMessage updateStaff(StaffVO StaffVO){
+    public ResultMessage update(StaffVO StaffVO){
         if(StaffVO.staffID.equals("300001")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -72,7 +72,7 @@ public class MockStaff extends Staff {
      * @param StaffID
      * @return
      */
-    public ResultMessage deleteStaff(String StaffID){
+    public ResultMessage delete(String StaffID){
         if(StaffID.equals("300001")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -85,7 +85,7 @@ public class MockStaff extends Staff {
      * @param keyword
      * @return
      */
-    public ArrayList<StaffVO> searchStaff(String keyword){
+    public ArrayList<StaffVO> search(String keyword){
         StaffVO exampleStaffVO1 = new StaffVO("300011","老大","25010001");
         StaffVO exampleStaffVO2 = new StaffVO("300012","老二","25010002");
         StaffVO exampleStaffVO3 = new StaffVO("300013","老三","25010001");

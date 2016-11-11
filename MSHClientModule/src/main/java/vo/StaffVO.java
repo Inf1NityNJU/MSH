@@ -3,7 +3,7 @@ package vo;
 /**
  * Created by Kray on 2016/10/12.
  */
-public class StaffVO {
+public class StaffVO extends UserVO {
     /**
      * 酒店工作人员ID
      */
