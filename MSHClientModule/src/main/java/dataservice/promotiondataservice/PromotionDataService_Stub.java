@@ -39,6 +39,6 @@ public class PromotionDataService_Stub implements PromotionDataService{
 
     @Override
     public PromotionHotelPO searchByPromotionID(String promotionID) {
-        return new PromotionHotelPO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
+        return new PromotionHotelPO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, 0);
     }
 }

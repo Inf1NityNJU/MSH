@@ -25,6 +25,7 @@ public class HotelRoomVO {
 
     /**
      * 比较两个VO
+     *
      * @param o
      * @return 比较结果
      */
