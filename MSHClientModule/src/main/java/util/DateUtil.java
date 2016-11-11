@@ -29,4 +29,9 @@ public class DateUtil {
         }
         return false;
     }
+
+    @Override
+    public int hashCode(){
+        return year;
+    }
 }

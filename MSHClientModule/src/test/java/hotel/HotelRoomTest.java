@@ -34,7 +34,9 @@ public class HotelRoomTest {
     public void testEnum(){
         HotelRoomVO rvo1=new HotelRoomVO(null,20,31,null);
         HotelRoomVO rvo2=new HotelRoomVO(null,20,31,null);
-        assertEquals(rvo1,rvo2);
+        RoomType r=RoomType.DoubleDouble;
+        RoomType r2=RoomType.DoubleDouble;
+        assertEquals("",r.getClass().getName());
     }
     @Test
     public void testGetHotelRoom() {

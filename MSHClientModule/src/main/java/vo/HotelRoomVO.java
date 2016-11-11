@@ -37,4 +37,8 @@ public class HotelRoomVO {
         return false;
     }
 
+    @Override
+    public int hashCode(){
+        return (int)price;
+    }
 }
