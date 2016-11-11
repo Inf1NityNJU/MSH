@@ -13,14 +13,4 @@
         <module>MSHServerModule</module>
         <module>MSHCommonModule</module>
     </modules>
-    <!--<dependencies>-->
-        <!--<dependency>-->
-            <!--<groupId>infinity</groupId>-->
-            <!--<artifactId>MSHCommonModule</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
-    <!--</dependencies>-->
-
-
 </project>

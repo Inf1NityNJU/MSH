@@ -1,6 +1,5 @@
 package dataservice.userdataservice;
 
-import bl.userbl.User;
 import po.*;
 import util.CreditAction;
 
