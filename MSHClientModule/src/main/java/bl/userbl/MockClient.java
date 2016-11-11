@@ -31,7 +31,7 @@ public class MockClient extends Client {
      * @param clientVO
      * @return
      */
-    public ResultMessage addClient(ClientVO clientVO){
+    public ResultMessage add(ClientVO clientVO){
         if(!clientVO.clientID.equals("000000007")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -45,7 +45,7 @@ public class MockClient extends Client {
      * @param clientID
      * @return
      */
-    public ClientVO searchClientByID(String clientID){
+    public ClientVO searchByID(String clientID){
         if(clientID.equals("000000007")) {
             return exampleClientVO;
         } else {
@@ -58,7 +58,7 @@ public class MockClient extends Client {
      * @param clientVO
      * @return
      */
-    public ResultMessage updateClient(ClientVO clientVO){
+    public ResultMessage update(ClientVO clientVO){
         if(clientVO.clientID.equals("000000007")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -71,7 +71,7 @@ public class MockClient extends Client {
      * @param clientID
      * @return
      */
-    public ResultMessage deleteClient(String clientID){
+    public ResultMessage delete(String clientID){
         if(clientID.equals("000000007")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -84,7 +84,7 @@ public class MockClient extends Client {
      * @param keyword
      * @return
      */
-    public ArrayList<ClientVO> searchClient(String keyword){
+    public ArrayList<ClientVO> search(String keyword){
         ClientVO exampleClientVO1 = new ClientVO("000000001","老大",0, new DateUtil(2016,1,1),500,0);
         ClientVO exampleClientVO2 = new ClientVO("000000002","老二",0, new DateUtil(2016,2,2),500,0);
         ClientVO exampleClientVO3 = new ClientVO("000000003","老三",0, new DateUtil(2016,3,3),500,0);
@@ -111,7 +111,7 @@ public class MockClient extends Client {
      * @param creditVO
      * @return
      */
-    public ResultMessage addCreditByClientID(String clientID, CreditVO creditVO){
+    public ResultMessage addCreditByID(String clientID, CreditVO creditVO){
         if(clientID.equals("000000007")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -124,7 +124,7 @@ public class MockClient extends Client {
      * @param clientID
      * @return
      */
-    public ArrayList<CreditVO> searchCreditByClientID(String clientID){
+    public ArrayList<CreditVO> searchCreditByID(String clientID){
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);

@@ -32,7 +32,7 @@ public class MockSalesman extends Salesman {
      * @param salesmanVO
      * @return
      */
-    public ResultMessage addSalesman(SalesmanVO salesmanVO){
+    public ResultMessage add(SalesmanVO salesmanVO){
         if(!salesmanVO.salesmanID.equals("100001")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -46,7 +46,7 @@ public class MockSalesman extends Salesman {
      * @param SalesmanID
      * @return
      */
-    public SalesmanVO searchSalesmanByID(String SalesmanID){
+    public SalesmanVO searchByID(String SalesmanID){
         if(SalesmanID.equals("100001")) {
             return exampleSalesmanVO;
         }else{
@@ -59,7 +59,7 @@ public class MockSalesman extends Salesman {
      * @param salesmanVO
      * @return
      */
-    public ResultMessage updateSalesman(SalesmanVO salesmanVO){
+    public ResultMessage update(SalesmanVO salesmanVO){
         if(salesmanVO.salesmanID.equals("100001")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -72,7 +72,7 @@ public class MockSalesman extends Salesman {
      * @param salesmanID
      * @return
      */
-    public ResultMessage deleteSalesman(String salesmanID){
+    public ResultMessage delete(String salesmanID){
         if(salesmanID.equals("100001")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -85,7 +85,7 @@ public class MockSalesman extends Salesman {
      * @param keyword
      * @return
      */
-    public ArrayList<SalesmanVO> searchSalesman(String keyword){
+    public ArrayList<SalesmanVO> search(String keyword){
         SalesmanVO exampleSalesmanVO1 = new SalesmanVO("100011","老大");
         SalesmanVO exampleSalesmanVO2 = new SalesmanVO("100012","老二");
         SalesmanVO exampleSalesmanVO3 = new SalesmanVO("100013","老三");

@@ -1,9 +1,7 @@
 package dataservice.userdataservice;
 
-import po.ClientPO;
-import po.CreditPO;
-import po.SalesmanPO;
-import po.StaffPO;
+import bl.userbl.User;
+import po.*;
 import util.CreditAction;
 
 import util.DateUtil;
@@ -20,6 +18,8 @@ public class UserDataService_Driver {
         StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "admin", "password");
         SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "admin", "password");
         CreditPO exampleCreditPO = new CreditPO("", new DateUtil(2015,10,10), 0, 500, CreditAction.INIT_CREDIT, "000000007");
+
+        UserPO userPO;
 
         userDataService.addClient(exampleClientPO, exampleCreditPO);
 

@@ -5,7 +5,7 @@ import util.DateUtil;
 /**
  * Created by Kray on 2016/10/12.
  */
-public class ClientVO {
+public class ClientVO extends UserVO {
     /**
      * 客户ID
      */
