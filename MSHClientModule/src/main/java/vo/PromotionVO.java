@@ -84,4 +84,14 @@ public class PromotionVO {
         this.clientGrade = clientGrade;
         this.roomQuantity = roomQuantity;
     }
+
+    public boolean equals(PromotionVO pvo){
+        if(pvo.promotionID.equals(this.promotionID)&&pvo.promotionType==this.promotionType&&pvo.startDate.equals(this.startDate)
+                &&pvo.endDate.equals(this.endDate)&&pvo.promotionDiscount==this.promotionDiscount&&pvo.companyName.equals(this.companyName)
+                &&pvo.hotelID.equals(this.hotelID)&&pvo.place.equals(this.place)&&pvo.clientGrade==this.clientGrade&&pvo.roomQuantity==this.roomQuantity){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
