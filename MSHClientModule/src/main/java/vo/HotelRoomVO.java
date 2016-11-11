@@ -23,22 +23,40 @@ public class HotelRoomVO {
         this.roomStockVOs = roomStockVOs;
     }
 
-
+    /**
+     * 比较两个VO
+     * @param o
+     * @return 比较结果
+     */
     @Override
-    public boolean equals(Object o){
-        if(o instanceof HotelRoomVO){
-            HotelRoomVO rvo=(HotelRoomVO) o;
+    public boolean equals(Object o) {
+        if (o instanceof HotelRoomVO) {
+            HotelRoomVO rvo = (HotelRoomVO) o;
             return compareData(rvo);
         }
         return false;
     }
 
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
     @Override
-    public int hashCode(){
-        return (int)price;
+    public int hashCode() {
+        return (int) price;
     }
 
-    private boolean compareData(HotelRoomVO rvo){
-        return judgeEqual(roomType, rvo.roomType)&&judgeEqual(price,rvo.price)&&judgeEqual(totalQuantity,rvo.totalQuantity)&&judgeEqual(roomStockVOs,rvo.roomStockVOs);
+    /**
+     * 分别比较每个数据
+     *
+     * @param rvo
+     * @return 比较结果
+     */
+    private boolean compareData(HotelRoomVO rvo) {
+        return judgeEqual(roomType, rvo.roomType)
+                && judgeEqual(price, rvo.price)
+                && judgeEqual(totalQuantity, rvo.totalQuantity)
+                && judgeEqual(roomStockVOs, rvo.roomStockVOs);
     }
 }
