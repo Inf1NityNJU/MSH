@@ -1,6 +1,6 @@
 package dataservice.promotiondataservice;
 
-import po.PromotionPO;
+import po.PromotionHotelPO;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
@@ -10,7 +10,7 @@ import util.ResultMessage;
  */
 public class PromotionDataService_Stub implements PromotionDataService{
     @Override
-    public ResultMessage addPromotion(PromotionPO promotionpo) {
+    public ResultMessage addPromotion(PromotionHotelPO promotionpo) {
         if(promotionpo.getPromptionID().equals("201610120102")){
             return ResultMessage.SUCCESS;
         }else{
@@ -29,7 +29,7 @@ public class PromotionDataService_Stub implements PromotionDataService{
     }
 
     @Override
-    public ResultMessage updatePromotion(String promotionID, PromotionPO newpropo) {
+    public ResultMessage updatePromotion(String promotionID, PromotionHotelPO newpropo) {
         if(promotionID.equals("201610130102")){
             return ResultMessage.SUCCESS;
         }else{
@@ -38,7 +38,7 @@ public class PromotionDataService_Stub implements PromotionDataService{
     }
 
     @Override
-    public PromotionPO searchByPromotionID(String promotionID) {
-        return new PromotionPO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
+    public PromotionHotelPO searchByPromotionID(String promotionID) {
+        return new PromotionHotelPO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0);
     }
 }

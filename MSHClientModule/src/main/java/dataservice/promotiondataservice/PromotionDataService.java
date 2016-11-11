@@ -1,17 +1,17 @@
 package dataservice.promotiondataservice;
 
-import po.PromotionPO;
+import po.PromotionHotelPO;
 import util.ResultMessage;
 
 /**
  * Created by vivian on 16/10/13.
  */
 public interface PromotionDataService {
-    public ResultMessage addPromotion(PromotionPO promotionpo);
+    public ResultMessage addPromotion(PromotionHotelPO promotionpo);
 
     public ResultMessage deletePromotion(String promotionID);
 
-    public ResultMessage updatePromotion(String promotionID, PromotionPO newpropo);
+    public ResultMessage updatePromotion(String promotionID, PromotionHotelPO newpropo);
 
-    public PromotionPO searchByPromotionID(String promotionID);
+    public PromotionHotelPO searchByPromotionID(String promotionID);
 }
