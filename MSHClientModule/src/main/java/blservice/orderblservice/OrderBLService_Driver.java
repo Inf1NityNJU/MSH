@@ -20,7 +20,7 @@ public class OrderBLService_Driver {
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
 
-        ResultMessage rm = orderBLService.checkCredit("000000001");
+        ResultMessage rm = orderBLService.checkCredit();
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Credit enough");
         } else {
