@@ -83,18 +83,6 @@ public class OrderTest {
     }
 
     @Test
-    public void testSearchOrderRoomByOrderID() {
-        ArrayList<OrderRoomVO> orderRoomVOs = order.searchOrderRoomByOrderID("20161026010112340000");
-        assertFalse(orderRoomVOs.isEmpty());
-    }
-
-    @Test
-    public void testSearchAssessmentByOrderID() {
-        AssessmentVO assessmentVO = order.searchAssessmentByOrderID("20161026010112340000");
-        assertNotNull(assessmentVO);
-    }
-
-    @Test
     public void testSearchOrder() {
         ArrayList<OrderVO> orders = order.searchOrder(OrderState.Abnormal, null);
         assertFalse(orders.isEmpty());
