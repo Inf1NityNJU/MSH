@@ -41,8 +41,7 @@ public class SalesmanTest {
     @Test
     public void testSearchSalesmanByID() throws Exception {
         SalesmanVO svo = salesman.searchByID("100001");
-        assertEquals(new SalesmanVO("100001", "老王").salesmanID, svo.salesmanID);
-        assertEquals(new SalesmanVO("100001", "老王").salesmanName, svo.salesmanName);
+        assertEquals(new SalesmanVO("100001", "老王"), svo);
         svo = salesman.searchByID("100002");
         assertEquals(null, svo);
     }
@@ -71,8 +70,7 @@ public class SalesmanTest {
         ArrayList<SalesmanVO> tmpAsvoS = salesman.search("老二");
         for(int i = 0; i < asvo.size(); i++) {
             SalesmanVO tmpAsvo = asvo.get(i);
-            assertEquals(tmpAsvo.salesmanID, tmpAsvoS.get(i).salesmanID);
-            assertEquals(tmpAsvo.salesmanName, tmpAsvoS.get(i).salesmanName);
+            assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
 
         asvo.clear();
@@ -84,8 +82,7 @@ public class SalesmanTest {
         tmpAsvoS = salesman.search("1000");
         for(int i = 0; i < asvo.size(); i++) {
             SalesmanVO tmpAsvo = asvo.get(i);
-            assertEquals(tmpAsvo.salesmanID, tmpAsvoS.get(i).salesmanID);
-            assertEquals(tmpAsvo.salesmanName, tmpAsvoS.get(i).salesmanName);
+            assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
     }
 }

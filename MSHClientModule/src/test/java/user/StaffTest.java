@@ -42,9 +42,7 @@ public class StaffTest {
     @Test
     public void testSearchStaffByID() throws Exception {
         StaffVO svo = staff.searchByID("300001");
-        assertEquals(new StaffVO("300001", "隔壁老王", "25010001").hotelID, svo.hotelID);
-        assertEquals(new StaffVO("300001", "隔壁老王", "25010001").staffID, svo.staffID);
-        assertEquals(new StaffVO("300001", "隔壁老王", "25010001").staffName, svo.staffName);
+        assertEquals(new StaffVO("300001", "隔壁老王", "25010001"), svo);
         svo = staff.searchByID("300002");
         assertEquals(null, svo);
     }
@@ -73,21 +71,19 @@ public class StaffTest {
         ArrayList<StaffVO> tmpAsvoS = staff.search("老二");
         for(int i = 0; i < asvo.size(); i++) {
             StaffVO tmpAsvo = asvo.get(i);
-            assertEquals(tmpAsvo.staffID, tmpAsvoS.get(i).staffID);
-            assertEquals(tmpAsvo.staffName, tmpAsvoS.get(i).staffName);
+            assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
 
         asvo.clear();
         asvo.add(new StaffVO("300011","老大","25010001"));
         asvo.add(new StaffVO("300012","老二","25010002"));
-        asvo.add(new StaffVO("300013","老三","25010003"));
-        asvo.add(new StaffVO("300014","老四","25010004"));
+        asvo.add(new StaffVO("300013","老三","25010001"));
+        asvo.add(new StaffVO("300014","老四","25010003"));
 
         tmpAsvoS = staff.search("3000");
         for(int i = 0; i < asvo.size(); i++) {
             StaffVO tmpAsvo = asvo.get(i);
-            assertEquals(tmpAsvo.staffID, tmpAsvoS.get(i).staffID);
-            assertEquals(tmpAsvo.staffName, tmpAsvoS.get(i).staffName);
+            assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
     }
 }

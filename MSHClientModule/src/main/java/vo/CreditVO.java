@@ -3,6 +3,8 @@ package vo;
 import util.CreditAction;
 import util.DateUtil;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Kray on 2016/10/12.
  */
@@ -43,5 +45,44 @@ public class CreditVO {
         this.resultCredit = resultCredit;
         this.creditAction = creditAction;
         this.orderID = orderVO.orderID;
+    }
+
+    /**
+     * 比较两个VO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CreditVO) {
+            CreditVO creditVO = (CreditVO) o;
+            return compareData(creditVO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return resultCredit;
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param creditVO
+     * @return 比较结果
+     */
+    private boolean compareData(CreditVO creditVO) {
+        return judgeEqual(creditAction, creditVO.creditAction)
+                && judgeEqual(deltaCredit, creditVO.deltaCredit)
+                && judgeEqual(resultCredit, creditVO.resultCredit)
+                && judgeEqual(orderID, creditVO.orderID)
+                && judgeEqual(date, creditVO.date);
     }
 }

@@ -39,14 +39,7 @@ public class ClientTest {
     @Test
     public void testSearchByID() throws Exception {
         ClientVO cvo = client.searchByID("000000007");
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).birthday.day, cvo.birthday.day);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).birthday.month, cvo.birthday.month);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).birthday.year, cvo.birthday.year);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).clientID, cvo.clientID);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).clientName, cvo.clientName);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).credit, cvo.credit);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).type, cvo.type);
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0).level, cvo.level);
+        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0), cvo);
         cvo = client.searchByID("000000009");
         assertEquals(null, cvo);
     }
@@ -76,14 +69,7 @@ public class ClientTest {
         ArrayList<ClientVO> tmpAcvoS = client.search("老二");
         for (int i = 0; i < acvo.size(); i++) {
             ClientVO tmpAcvo = acvo.get(i);
-            assertEquals(tmpAcvo.level, tmpAcvoS.get(i).level);
-            assertEquals(tmpAcvo.type, tmpAcvoS.get(i).type);
-            assertEquals(tmpAcvo.credit, tmpAcvoS.get(i).credit);
-            assertEquals(tmpAcvo.clientName, tmpAcvoS.get(i).clientName);
-            assertEquals(tmpAcvo.clientID, tmpAcvoS.get(i).clientID);
-            assertEquals(tmpAcvo.birthday.year, tmpAcvoS.get(i).birthday.year);
-            assertEquals(tmpAcvo.birthday.month, tmpAcvoS.get(i).birthday.month);
-            assertEquals(tmpAcvo.birthday.day, tmpAcvoS.get(i).birthday.day);
+            assertEquals(tmpAcvo, tmpAcvoS.get(i));
         }
 
         acvo.clear();
@@ -95,14 +81,7 @@ public class ClientTest {
         tmpAcvoS = client.search("老");
         for (int i = 0; i < acvo.size(); i++) {
             ClientVO tmpAcvo = acvo.get(i);
-            assertEquals(tmpAcvo.level, tmpAcvoS.get(i).level);
-            assertEquals(tmpAcvo.type, tmpAcvoS.get(i).type);
-            assertEquals(tmpAcvo.credit, tmpAcvoS.get(i).credit);
-            assertEquals(tmpAcvo.clientName, tmpAcvoS.get(i).clientName);
-            assertEquals(tmpAcvo.clientID, tmpAcvoS.get(i).clientID);
-            assertEquals(tmpAcvo.birthday.year, tmpAcvoS.get(i).birthday.year);
-            assertEquals(tmpAcvo.birthday.month, tmpAcvoS.get(i).birthday.month);
-            assertEquals(tmpAcvo.birthday.day, tmpAcvoS.get(i).birthday.day);
+            assertEquals(tmpAcvo, tmpAcvoS.get(i));
         }
     }
 
@@ -134,13 +113,7 @@ public class ClientTest {
             CreditVO tmpAcvo = acvo.get(i);
             ArrayList<CreditVO> tmpAcvoS = client.searchCreditByID("000000001");
             for (int j = 0; j < tmpAcvoS.size(); j++) {
-                assertEquals(tmpAcvo.creditAction, tmpAcvoS.get(j).creditAction);
-                assertEquals(tmpAcvo.deltaCredit, tmpAcvoS.get(j).deltaCredit);
-                assertEquals(tmpAcvo.resultCredit, tmpAcvoS.get(j).resultCredit);
-                assertEquals(tmpAcvo.orderID, tmpAcvoS.get(j).orderID);
-                assertEquals(tmpAcvo.date.year, tmpAcvoS.get(j).date.year);
-                assertEquals(tmpAcvo.date.month, tmpAcvoS.get(j).date.month);
-                assertEquals(tmpAcvo.date.day, tmpAcvoS.get(j).date.day);
+                assertEquals(tmpAcvo, tmpAcvoS.get(j));
             }
         }
 
@@ -152,13 +125,7 @@ public class ClientTest {
             CreditVO tmpAcvo = acvo.get(i);
             ArrayList<CreditVO> tmpAcvoS = client.searchCreditByID("000000004");
             for (int j = 0; j < tmpAcvoS.size(); j++) {
-                assertEquals(tmpAcvo.creditAction, tmpAcvoS.get(j).creditAction);
-                assertEquals(tmpAcvo.deltaCredit, tmpAcvoS.get(j).deltaCredit);
-                assertEquals(tmpAcvo.resultCredit, tmpAcvoS.get(j).resultCredit);
-                assertEquals(tmpAcvo.orderID, tmpAcvoS.get(j).orderID);
-                assertEquals(tmpAcvo.date.year, tmpAcvoS.get(j).date.year);
-                assertEquals(tmpAcvo.date.month, tmpAcvoS.get(j).date.month);
-                assertEquals(tmpAcvo.date.day, tmpAcvoS.get(j).date.day);
+                assertEquals(tmpAcvo, tmpAcvoS.get(j));
             }
         }
     }
