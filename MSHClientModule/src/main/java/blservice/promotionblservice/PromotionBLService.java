@@ -1,11 +1,10 @@
 package blservice.promotionblservice;
 
 
-import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
-import vo.OrderRoomVO;
-import vo.PromotionVO;
+import vo.PromotionHotelVO;
+import vo.PromotionWebVO;
 
 import java.util.ArrayList;
 
@@ -18,7 +17,7 @@ public interface PromotionBLService {
      * @param pvo
      * @return
      */
-    public ResultMessage addPromotion(PromotionVO pvo);
+    public ResultMessage addPromotion(PromotionHotelVO pvo);
 
     /**
      * 删除制定营销策略
@@ -33,34 +32,34 @@ public interface PromotionBLService {
      * @param newPvo
      * @return
      */
-    public ResultMessage updatePromotion(String promotionID, PromotionVO newPvo);
+    public ResultMessage updatePromotion(String promotionID, PromotionHotelVO newPvo);
 
     /**
      * 查找某条酒店/网站促销策略
      * @param promotionID
      * @return
      */
-    public PromotionVO searchByPromotionID(String promotionID);
+    public PromotionHotelVO searchByPromotionID(String promotionID);
 
     /**
      * 搜索某个种类的所有促销策略
      * @param promotionType
      * @return
      */
-    public ArrayList<PromotionVO> searchPromotions(PromotionType promotionType);
+    public ArrayList<PromotionHotelVO> searchPromotions(PromotionType promotionType);
 
     /**
      * 查看某个酒店的所有促销策略
      * @param HotelID
      * @return
      */
-    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID);
+    public ArrayList<PromotionHotelVO> searchHotelPromotions(String HotelID);
 
     /**
      * 查看网站的所有促销策略
      * @return
      */
-    public ArrayList<PromotionVO> searchWebPromotions();
+    public ArrayList<PromotionWebVO> searchWebPromotions();
 
 
 }

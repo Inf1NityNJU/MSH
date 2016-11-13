@@ -3,15 +3,15 @@ package bl.orderbl;
 import util.DateUtil;
 import util.PromotionType;
 import vo.BillVO;
-import vo.PromotionVO;
+import vo.PromotionHotelVO;
 
 /**
  * Created by Sorumi on 16/11/1.
  */
 public class MockBill extends Bill {
 
-    private PromotionVO websitePromotion;
-    private PromotionVO hotelPromotion;
+    private PromotionHotelVO websitePromotion;
+    private PromotionHotelVO hotelPromotion;
     private double originPrice;
     private double totalPrice;
 
@@ -26,11 +26,11 @@ public class MockBill extends Bill {
      * @return BillVO
      */
     public BillVO refresh(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity) {
-        PromotionVO hotelPromotion = new PromotionVO("201610130101", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "01011234", null, null, 0, 0);
+        PromotionHotelVO hotelPromotion = new PromotionHotelVO("201610130101", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "01011234", null, 0);
         return new BillVO(null, hotelPromotion, 300, 240);
     }
 
-//    public MockBill(PromotionVO websitePromotion, PromotionVO hotelPromotion, double originPrice, double totalPrice) {
+//    public MockBill(PromotionHotelVO websitePromotion, PromotionHotelVO hotelPromotion, double originPrice, double totalPrice) {
 //        this.websitePromotion = websitePromotion;
 //        this.hotelPromotion = hotelPromotion;
 //        this.originPrice = originPrice;

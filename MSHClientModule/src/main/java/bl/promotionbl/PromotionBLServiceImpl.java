@@ -1,11 +1,10 @@
 package bl.promotionbl;
 
 import blservice.promotionblservice.PromotionBLService;
-import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
-import vo.OrderRoomVO;
-import vo.PromotionVO;
+import vo.PromotionHotelVO;
+import vo.PromotionWebVO;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class PromotionBLServiceImpl implements PromotionBLService{
 //        }
     }
     @Override
-    public ResultMessage addPromotion(PromotionVO pvo) {
+    public ResultMessage addPromotion(PromotionHotelVO pvo) {
         return promotion.add(pvo);
     }
 
@@ -37,27 +36,27 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     }
 
     @Override
-    public ResultMessage updatePromotion(String promotionID, PromotionVO newPvo) {
+    public ResultMessage updatePromotion(String promotionID, PromotionHotelVO newPvo) {
         return promotion.update(promotionID, newPvo);
     }
 
     @Override
-    public PromotionVO searchByPromotionID(String promotionID) {
+    public PromotionHotelVO searchByPromotionID(String promotionID) {
         return promotion.searchByID(promotionID);
     }
 
     @Override
-    public ArrayList<PromotionVO> searchPromotions(PromotionType promotionType) {
+    public ArrayList<PromotionHotelVO> searchPromotions(PromotionType promotionType) {
         return promotion.search(promotionType);
     }
 
     @Override
-    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID) {
+    public ArrayList<PromotionHotelVO> searchHotelPromotions(String HotelID) {
         return promotion.searchHotelPromotions(HotelID);
     }
 
     @Override
-    public ArrayList<PromotionVO> searchWebPromotions() {
+    public ArrayList<PromotionWebVO> searchWebPromotions() {
         return promotion.searchWebPromotions();
     }
 

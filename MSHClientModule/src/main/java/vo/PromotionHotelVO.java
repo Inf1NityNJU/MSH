@@ -4,10 +4,12 @@ import util.DateUtil;
 import util.Place;
 import util.PromotionType;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Kray on 2016/10/12.
  */
-public class PromotionVO {
+public class PromotionHotelVO {
 
     /**
      * 策略编号
@@ -45,16 +47,6 @@ public class PromotionVO {
     public String hotelID;
 
     /**
-     * 策略涉及的商圈
-     */
-    public Place place;
-
-    /**
-     * 执行策略所需的最低用户等级
-     */
-    public int clientGrade;
-
-    /**
      * 执行策略所需的最低房间数量
      */
     public int roomQuantity;
@@ -68,11 +60,9 @@ public class PromotionVO {
      * @param promotionDiscount
      * @param companyName
      * @param hotelID
-     * @param place
-     * @param clientGrade
      * @param roomQuantity
      */
-    public PromotionVO(String promotionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID, Place place, int clientGrade, int roomQuantity) {
+    public PromotionHotelVO(String promotionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID, int roomQuantity) {
         this.promotionID = promotionID;
         this.promotionType = promotionType;
         this.startDate = startDate;
@@ -80,18 +70,29 @@ public class PromotionVO {
         this.promotionDiscount = promotionDiscount;
         this.companyName = companyName;
         this.hotelID = hotelID;
-        this.place = place;
-        this.clientGrade = clientGrade;
         this.roomQuantity = roomQuantity;
     }
 
-    public boolean equals(PromotionVO pvo){
-        if(pvo.promotionID.equals(this.promotionID)&&pvo.promotionType==this.promotionType&&pvo.startDate.equals(this.startDate)
-                &&pvo.endDate.equals(this.endDate)&&pvo.promotionDiscount==this.promotionDiscount&&pvo.companyName.equals(this.companyName)
-                &&pvo.hotelID.equals(this.hotelID)&&pvo.place.equals(this.place)&&pvo.clientGrade==this.clientGrade&&pvo.roomQuantity==this.roomQuantity){
-            return true;
-        }else{
-            return false;
+    public boolean equals(Object o){
+        if (o instanceof PromotionHotelVO) {
+            PromotionHotelVO promotionHotelVO = (PromotionHotelVO) o;
+            return compareData(promotionHotelVO);
         }
+        return false;
+    }
+
+    public int hashCode() {
+        return promotionID.hashCode();
+    }
+
+    private boolean compareData(PromotionHotelVO pvo) {
+        return judgeEqual(pvo.promotionID, this.promotionID)
+                && judgeEqual(pvo.promotionType, this.promotionType)
+                && judgeEqual(pvo.startDate,this.startDate)
+                && judgeEqual(pvo.endDate,this.endDate)
+                && judgeEqual(pvo.promotionDiscount,this.promotionDiscount)
+                && judgeEqual(pvo.companyName, this.companyName)
+                && judgeEqual(pvo.hotelID,this.hotelID)
+                && judgeEqual(pvo.roomQuantity, this.roomQuantity);
     }
 }
