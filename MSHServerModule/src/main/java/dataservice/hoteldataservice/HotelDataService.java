@@ -15,13 +15,13 @@ public interface HotelDataService {
 
     public ArrayList<HotelRoomPO> getRoom(String hotelID);
 
-    public ResultMessage updateHotel(HotelPO hvo);
+    public ResultMessage updateHotel(HotelPO hotelPO);
 
-    public ResultMessage updateRoom(HotelRoomPO rvo);
+    public ResultMessage updateRoom(HotelRoomPO hotelRoomPO);
 
-    public ResultMessage addHotel(HotelPO hvo);
+    public ResultMessage addHotel(HotelPO hotelPO);
 
-    public ResultMessage addRoom(HotelRoomPO rvo);
+    public ResultMessage addRoom(HotelRoomPO hotelRoomPO);
 
     public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException;
 }

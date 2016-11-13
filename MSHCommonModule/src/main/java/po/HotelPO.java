@@ -68,12 +68,12 @@ public class HotelPO {
         this.place = place;
     }
 
-    public int getStars() {
+    public int getStar() {
         return star;
     }
 
-    public void setStars(int stars) {
-        this.star = stars;
+    public void setStar(int star) {
+        this.star = star;
     }
 
     public String getIntroduction() {
