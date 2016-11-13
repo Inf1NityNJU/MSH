@@ -1,6 +1,5 @@
 package dataservice.userdataservice;
 
-
 import po.ClientPO;
 import po.CreditPO;
 import po.SalesmanPO;

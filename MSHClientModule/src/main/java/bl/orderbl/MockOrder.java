@@ -35,7 +35,7 @@ public class MockOrder extends Order {
      * @return BillVO
      */
     public BillVO getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity){
-        PromotionVO hotelPromotion = new PromotionVO("201610130101", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "01011234", null, null, 0, 0);
+        PromotionHotelVO hotelPromotion = new PromotionHotelVO("201610130101", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "01011234", null, 0);
         return new BillVO(hotelPromotion, null, 300, 300);
     }
 

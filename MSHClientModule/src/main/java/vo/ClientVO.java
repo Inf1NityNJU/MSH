@@ -2,6 +2,8 @@ package vo;
 
 import util.DateUtil;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Kray on 2016/10/12.
  */
@@ -48,6 +50,46 @@ public class ClientVO extends UserVO {
         this.level = level;
         this.type = type;
         this.birthday = birthday;
+    }
+
+    /**
+     * 比较两个VO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ClientVO) {
+            ClientVO clientVO = (ClientVO) o;
+            return compareData(clientVO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return level;
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param clientVO
+     * @return 比较结果
+     */
+    private boolean compareData(ClientVO clientVO) {
+        return judgeEqual(clientID, clientVO.clientID)
+                && judgeEqual(clientName, clientVO.clientName)
+                && judgeEqual(credit, clientVO.credit)
+                && judgeEqual(level, clientVO.level)
+                && judgeEqual(birthday, clientVO.birthday)
+                && judgeEqual(type, clientVO.type);
     }
 }
 

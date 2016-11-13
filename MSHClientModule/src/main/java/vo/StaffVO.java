@@ -1,5 +1,9 @@
 package vo;
 
+import bl.userbl.Salesman;
+
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Kray on 2016/10/12.
  */
@@ -28,5 +32,42 @@ public class StaffVO extends UserVO {
         this.staffID = staffID;
         this.staffName = name;
         this.hotelID = hotelID;
+    }
+
+    /**
+     * 比较两个VO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof StaffVO) {
+            StaffVO staffVO = (StaffVO) o;
+            return compareData(staffVO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return staffID.hashCode();
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param staffVO
+     * @return 比较结果
+     */
+    private boolean compareData(StaffVO staffVO) {
+        return judgeEqual(staffID, staffVO.staffID)
+                && judgeEqual(staffName, staffVO.staffName)
+                && judgeEqual(hotelID, staffVO.hotelID);
     }
 }
