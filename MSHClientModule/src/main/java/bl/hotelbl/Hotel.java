@@ -40,7 +40,7 @@ public class Hotel {
      * @return 修改成功与否
      * @throws InfoInvalidException
      */
-    public ResultMessage updateHotelInfo(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
         return null;
     }
 

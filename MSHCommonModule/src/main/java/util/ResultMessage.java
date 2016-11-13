@@ -11,8 +11,10 @@ public enum ResultMessage {
     NOT_EXIST, // 不存在
     TOO_LONG, // 输入过长
     TOO_SHORT, // 输入过短
-    UNVALID, // 含有非法字符
-    NULL; // 输入为空
+    INVALID, // 含有非法字符
+    NULL, // 输入为空
+    INSUFFICIENT; //数量不足
+
 
     public String toString() {
         switch (this) {
@@ -30,10 +32,12 @@ public enum ResultMessage {
                 return "输入过长";
             case TOO_SHORT:
                 return "输入过短";
-            case UNVALID:
+            case INVALID:
                 return "含有非法字符";
             case NULL:
                 return "输入为空";
+            case INSUFFICIENT:
+                return "房间数量不足";
             default:
                 return null;
         }

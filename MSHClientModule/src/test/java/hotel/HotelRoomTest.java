@@ -58,7 +58,7 @@ public class HotelRoomTest {
     @Test
     public void testUpdateHotelRoomInfo() {
         try {
-            ResultMessage resultMessage = hotelRoom.updateHotelRoomInfo(testHotelRoomVO);
+            ResultMessage resultMessage = hotelRoom.updateHotelRoom(testHotelRoomVO);
             assertEquals(ResultMessage.SUCCESS, resultMessage);
         } catch (InfoInvalidException e) {
             e.printStackTrace();
