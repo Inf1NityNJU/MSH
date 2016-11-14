@@ -2,6 +2,8 @@ package datahelper;
 
 import util.ResultMessage;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,14 +18,13 @@ public interface DataHelper {
 
     public ResultMessage delete(String ID);
 
-    public Object exactlyQuery(String field, Object value);
+    public <T> T exactlyQuery(Class<T> classType, String field, Object value);
 
-    public List<Object> prefixMatchQuery(String field, String value);
+    public <T> ArrayList<T> prefixMatchQuery(Class<T> classType, String field, String value);
 
-    public List<Object> suffixMatchQuery(String field, String value);
+    public <T> ArrayList<T> suffixMatchQuery(Class<T> classType, String field, String value);
 
-    public List<Object> FuzzyQuery(String field, String value);
+    public <T> ArrayList<T> fuzzyQuery(Class<T> classType, String field, String value);
 
-    public List<Object> RangeQuery(String field, Object min, Object max);
-
+    public <T> ArrayList<T> rangeQuery(Class<T> classType, String field, Object min, Object max);
 }

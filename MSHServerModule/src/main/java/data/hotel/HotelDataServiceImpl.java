@@ -14,13 +14,25 @@ import java.util.ArrayList;
  * Created by SilverNarcissus on 16/11/12.
  */
 public class HotelDataServiceImpl implements HotelDataService {
-    private DataHelper dataHelper=new HibernateHelper("HotelPO.cfg.xml");
-    public HotelDataServiceImpl(){
+    private DataHelper dataHelper = new HibernateHelper("HotelPO.cfg.xml");
+    private Class<HotelPO> classType;
+
+    public HotelDataServiceImpl() {
         dataHelper.setClassName("po.HotelPO");
+        //
+        try {
+            classType=(Class<HotelPO>) Class.forName("po.HotelPO");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<HotelPO> searchHotel(String address){
+        return dataHelper.rangeQuery(classType,"star",4,5);
     }
 
     public HotelPO getHotel(String hotelID) throws HotelNotFoundException {
-        return null;
+        return dataHelper.exactlyQuery(classType,"id",hotelID);
     }
 
     public ArrayList<HotelRoomPO> getRoom(String hotelID) {
@@ -28,7 +40,7 @@ public class HotelDataServiceImpl implements HotelDataService {
     }
 
     public ResultMessage updateHotel(HotelPO hotelPO) {
-        return null;
+        return dataHelper.update(hotelPO);
     }
 
     public ResultMessage updateRoom(HotelRoomPO hotelRoomPO) {
@@ -44,6 +56,6 @@ public class HotelDataServiceImpl implements HotelDataService {
     }
 
     public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException {
-        return null;
+        return dataHelper.delete(hotelID);
     }
 }

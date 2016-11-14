@@ -1,12 +1,15 @@
 package datahelper;
 
-import org.hibernate.*;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.exception.ConstraintViolationException;
 import util.ResultMessage;
+
+import javax.persistence.OptimisticLockException;
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by SilverNarcissus on 16/11/12.
@@ -25,10 +28,11 @@ public class HibernateHelper implements DataHelper {
 
     /**
      * 设置PO类的全名
+     *
      * @param classFullName
      */
-    public void setClassName(String classFullName){
-        this.classFullName=classFullName;
+    public void setClassName(String classFullName) {
+        this.classFullName = classFullName;
     }
 
     /**
@@ -51,16 +55,15 @@ public class HibernateHelper implements DataHelper {
      * 将对象添加到数据库表中
      *
      * @param o
-     * @since 1.6
      * @return 保存操作的结果信息
+     * @since 1.6
      */
     public ResultMessage save(Object o) {
         try {
             setUpSession();
-            session.contains(o);
             session.save(o);
             commitAndClose();
-        } catch (ConstraintViolationException e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             return ResultMessage.EXIST;
         } catch (Exception e) {
@@ -72,6 +75,7 @@ public class HibernateHelper implements DataHelper {
 
     /**
      * 更新数据表中的对象
+     *
      * @param o
      * @return 更新操作的结果信息
      */
@@ -80,7 +84,7 @@ public class HibernateHelper implements DataHelper {
             setUpSession();
             session.update(o);
             commitAndClose();
-        } catch (StaleStateException e) {
+        } catch (OptimisticLockException e) {
             e.printStackTrace();
             return ResultMessage.NOT_EXIST;
         } catch (Exception e) {
@@ -98,11 +102,12 @@ public class HibernateHelper implements DataHelper {
      */
     public ResultMessage delete(String ID) {
         try {
-            setUpSession();
-            if (exactlyQuery("ID", ID) == null) {
+            Object o=exactlyQuery(Class.forName(classFullName), "ID", ID);
+            if (o == null) {
                 return ResultMessage.NOT_EXIST;
             }
-            session.delete(exactlyQuery("ID", ID));
+            setUpSession();
+            session.delete(o);
             commitAndClose();
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,19 +119,22 @@ public class HibernateHelper implements DataHelper {
     /**
      * 按照ID精确查找PO
      *
-     * @param field 属性名称
-     * @param value 属性值
+     * @param classType
+     * @param field
+     * @param value
+     * @param <T>
      * @return
-     * @throws ClassNotFoundException
-     * @throws HibernateException
      */
-    public Object exactlyQuery(String field, Object value) {
+    public <T> T exactlyQuery(Class<T> classType, String field, Object value) {
         try {
-            Criteria criteria = SetUpCriteria();
+            Criteria criteria = SetUpCriteria(classType);
             criteria.add(Restrictions.eq(field, value));
-            return (criteria.list().size() != 0) ? null : criteria.list().get(0);
+            T result = (criteria.list().size() == 0) ? null : (T) criteria.list().get(0);
+            session.close();
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
+            session.close();
             return null;
         }
     }
@@ -137,11 +145,10 @@ public class HibernateHelper implements DataHelper {
      * @param field 属性名称
      * @param value 属性值
      * @return PO列表
-     *
      */
-    public List<Object> prefixMatchQuery(String field, String value) {
+    public <T> ArrayList<T> prefixMatchQuery(Class<T> classType, String field, String value) {
         value = value + "%";
-        return likePatternQuery(field, value);
+        return likePatternQuery(classType, field, value);
     }
 
     /**
@@ -150,11 +157,10 @@ public class HibernateHelper implements DataHelper {
      * @param field 属性名称
      * @param value 属性值
      * @return PO列表
-     *
      */
-    public List<Object> suffixMatchQuery(String field, String value) {
+    public <T> ArrayList<T> suffixMatchQuery(Class<T> classType, String field, String value) {
         value = "%" + value;
-        return likePatternQuery(field, value);
+        return likePatternQuery(classType, field, value);
     }
 
     /**
@@ -163,11 +169,10 @@ public class HibernateHelper implements DataHelper {
      * @param field
      * @param value
      * @return PO列表
-     *
      */
-    public List<Object> FuzzyQuery(String field, String value) {
+    public <T> ArrayList<T> fuzzyQuery(Class<T> classType, String field, String value) {
         value = "%" + value + "%";
-        return likePatternQuery(field, value);
+        return likePatternQuery(classType, field, value);
     }
 
     /**
@@ -177,16 +182,18 @@ public class HibernateHelper implements DataHelper {
      * @param min
      * @param max
      * @return PO列表
-     *
      */
-    public List<Object> RangeQuery(String field, Object min, Object max) {
+    public <T> ArrayList<T> rangeQuery(Class<T> classType, String field, Object min, Object max) {
         try {
-            Criteria criteria = SetUpCriteria();
+            Criteria criteria = SetUpCriteria(classType);
             criteria.add(Restrictions.between(field, min, max));
-            return criteria.list();
+            ArrayList<T> arrayList = (ArrayList<T>) criteria.list();
+            session.close();
+            return arrayList;
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<Object>();
+            session.close();
+            return new ArrayList<T>();
         }
     }
 
@@ -196,8 +203,9 @@ public class HibernateHelper implements DataHelper {
      * @return
      * @throws ClassNotFoundException
      */
-    private Criteria SetUpCriteria() throws ClassNotFoundException {
-        return session.createCriteria(Class.forName(classFullName));
+    private Criteria SetUpCriteria(Class classType) throws ClassNotFoundException {
+        setUpSession();
+        return session.createCriteria(classType);
     }
 
     /**
@@ -207,14 +215,17 @@ public class HibernateHelper implements DataHelper {
      * @param value
      * @return PO列表
      */
-    private List<Object> likePatternQuery(String field, String value) {
+    private <T> ArrayList<T> likePatternQuery(Class<T> classType, String field, String value) {
         try {
-            Criteria criteria = SetUpCriteria();
+            Criteria criteria = SetUpCriteria(classType);
             criteria.add(Restrictions.like(field, value));
-            return criteria.list();
+            ArrayList<T> arrayList = (ArrayList<T>) criteria.list();
+            session.close();
+            return arrayList;
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<Object>();
+            session.close();
+            return new ArrayList<T>();
         }
     }
 }
