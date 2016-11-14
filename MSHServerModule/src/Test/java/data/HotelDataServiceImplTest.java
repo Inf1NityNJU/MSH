@@ -1,10 +1,15 @@
 package data;
 
+import data.hotel.HotelDataServiceFactory;
 import data.hotel.HotelDataServiceImpl;
+import dataservice.hoteldataservice.HotelDataService;
+import org.junit.Ignore;
 import org.junit.Test;
 import po.HotelPO;
+import po.HotelRoomPO;
 import util.Place;
 import util.ResultMessage;
+import util.RoomType;
 
 import java.util.ArrayList;
 
@@ -14,53 +19,58 @@ import static org.junit.Assert.*;
  * Created by SilverNarcissus on 16/11/13.
  */
 public class HotelDataServiceImplTest {
-    @Test
-    public void searchHotel(){
-        HotelDataServiceImpl hotelDataService=new HotelDataServiceImpl();
-        ArrayList<HotelPO> hotelPOs=hotelDataService.searchHotel("Un");
-        assertEquals(3,hotelPOs.size());
+    private HotelDataService hotelDataService;
+
+    public HotelDataServiceImplTest() {
+        hotelDataService = HotelDataServiceFactory.getHotelDataService();
     }
+
+    @Ignore
+    public void addHotel() throws Exception {
+        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("000005", "My Hotel", "Nanjing Medical University", Place.XIANLIN, 4, "The test hotel", "All"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Ignore
+    public void addRoom() throws Exception {
+        ResultMessage resultMessage = hotelDataService.addRoom(new HotelRoomPO("00000102", "000000", RoomType.DoubleRoom, 288.5, 8));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void searchHotel() {
+        ArrayList<HotelPO> hotelPOs = hotelDataService.prefixSearchHotel("address","Nanjing");
+        assertEquals(5,hotelPOs.size());
+    }
+
     @Test
     public void getHotel() throws Exception {
-        HotelDataServiceImpl hotelDataService=new HotelDataServiceImpl();
-        HotelPO hotelPO=hotelDataService.getHotel("000000");
-        assertEquals("000000",hotelPO.getID());
+        HotelPO hotelPO = hotelDataService.getHotel("000000");
+        assertEquals("000000", hotelPO.getID());
     }
 
     @Test
     public void getRoom() throws Exception {
-
+        ArrayList<HotelRoomPO> hotelRoomPOs = hotelDataService.getRoom("000000");
+        assertEquals(2,hotelRoomPOs.size());
     }
 
     @Test
     public void updateHotel() throws Exception {
-
+        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("000001", "Hotel", "Nanjing News University", Place.XIANLIN, 5, "The test hotel", "All"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void updateRoom() throws Exception {
-        HotelDataServiceImpl hotelDataService=new HotelDataServiceImpl();
-        ResultMessage resultMessage=hotelDataService.updateHotel(new HotelPO("000001","Hotel","Nanjing University", Place.XIANLIN,5,"The test hotel","All"));
-        assertEquals(ResultMessage.SUCCESS,resultMessage);
-    }
-
-    @Test
-    public void addHotel() throws Exception {
-        HotelDataServiceImpl hotelDataService=new HotelDataServiceImpl();
-        ResultMessage resultMessage=hotelDataService.addHotel(new HotelPO("000001","Hotel","Nanjing Medical University", Place.XIANLIN,5,"The test hotel","All"));
-        assertEquals(ResultMessage.SUCCESS,resultMessage);
-    }
-
-    @Test
-    public void addRoom() throws Exception {
-
+        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("00000102", "000000", RoomType.DoubleRoom, 288.5, 20));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void deleteHotel() throws Exception {
-        HotelDataServiceImpl hotelDataService=new HotelDataServiceImpl();
-        ResultMessage resultMessage=hotelDataService.deleteHotel("000001");
-        assertEquals(ResultMessage.SUCCESS,resultMessage);
+        ResultMessage resultMessage = hotelDataService.deleteHotel("000005");
+        assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
 }

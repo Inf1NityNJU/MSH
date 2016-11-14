@@ -7,6 +7,11 @@ import util.RoomType;
  */
 public class HotelRoomPO {
     /**
+     * 酒店房间编号
+     */
+    private String ID;
+
+    /**
      * 房间所属酒店编号
      */
     private String hotelID;
@@ -23,11 +28,20 @@ public class HotelRoomPO {
      */
     private int totalQuantity;
 
+    public HotelRoomPO() {
+
+    }
+
     public HotelRoomPO(String hotelID, RoomType roomType, double price, int totalQuantity) {
         this.hotelID = hotelID;
         this.roomType = roomType;
         this.price = price;
         this.totalQuantity = totalQuantity;
+    }
+
+    public HotelRoomPO(String ID, String hotelID, RoomType roomType, double price, int totalQuantity) {
+        this(hotelID, roomType, price, totalQuantity);
+        this.ID = ID;
     }
 
     public String getHotelID() {
@@ -60,5 +74,13 @@ public class HotelRoomPO {
 
     public void setTotalQuantity(int totalQuantity) {
         this.totalQuantity = totalQuantity;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

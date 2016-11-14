@@ -12,6 +12,26 @@ import java.util.ArrayList;
  */
 public class HotelDataService_Stub implements HotelDataService{
 
+    @Override
+    public ArrayList<HotelPO> prefixSearchHotel(String field, String value) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelPO> suffixSearchHotel(String field, String value) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelPO> fuzzySearchHotel(String field, String value) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelPO> rangeSearchHotel(String field, Object min, Object max) {
+        return null;
+    }
+
     public HotelPO getHotel(String hotelID) throws HotelNotFoundException {
         System.out.println("Get hotel Success!");
         return new HotelPO(null,null,null,null,0,null,null);

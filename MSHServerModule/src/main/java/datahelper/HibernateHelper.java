@@ -31,6 +31,7 @@ public class HibernateHelper implements DataHelper {
      *
      * @param classFullName
      */
+    @Override
     public void setClassName(String classFullName) {
         this.classFullName = classFullName;
     }
@@ -58,6 +59,7 @@ public class HibernateHelper implements DataHelper {
      * @return 保存操作的结果信息
      * @since 1.6
      */
+    @Override
     public ResultMessage save(Object o) {
         try {
             setUpSession();
@@ -79,6 +81,7 @@ public class HibernateHelper implements DataHelper {
      * @param o
      * @return 更新操作的结果信息
      */
+    @Override
     public ResultMessage update(Object o) {
         try {
             setUpSession();
@@ -100,9 +103,10 @@ public class HibernateHelper implements DataHelper {
      *
      * @param ID
      */
+    @Override
     public ResultMessage delete(String ID) {
         try {
-            Object o=exactlyQuery(Class.forName(classFullName), "ID", ID);
+            Object o = exactlyQuery(Class.forName(classFullName), "ID", ID);
             if (o == null) {
                 return ResultMessage.NOT_EXIST;
             }
@@ -125,6 +129,7 @@ public class HibernateHelper implements DataHelper {
      * @param <T>
      * @return
      */
+    @Override
     public <T> T exactlyQuery(Class<T> classType, String field, Object value) {
         try {
             Criteria criteria = SetUpCriteria(classType);
@@ -146,6 +151,7 @@ public class HibernateHelper implements DataHelper {
      * @param value 属性值
      * @return PO列表
      */
+    @Override
     public <T> ArrayList<T> prefixMatchQuery(Class<T> classType, String field, String value) {
         value = value + "%";
         return likePatternQuery(classType, field, value);
@@ -158,6 +164,7 @@ public class HibernateHelper implements DataHelper {
      * @param value 属性值
      * @return PO列表
      */
+    @Override
     public <T> ArrayList<T> suffixMatchQuery(Class<T> classType, String field, String value) {
         value = "%" + value;
         return likePatternQuery(classType, field, value);
@@ -170,6 +177,7 @@ public class HibernateHelper implements DataHelper {
      * @param value
      * @return PO列表
      */
+    @Override
     public <T> ArrayList<T> fuzzyQuery(Class<T> classType, String field, String value) {
         value = "%" + value + "%";
         return likePatternQuery(classType, field, value);
@@ -183,6 +191,7 @@ public class HibernateHelper implements DataHelper {
      * @param max
      * @return PO列表
      */
+    @Override
     public <T> ArrayList<T> rangeQuery(Class<T> classType, String field, Object min, Object max) {
         try {
             Criteria criteria = SetUpCriteria(classType);
