@@ -33,14 +33,14 @@ public class HotelDataServiceImplTest {
 
     @Ignore
     public void addRoom() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addRoom(new HotelRoomPO("00000102", "000000", RoomType.DoubleRoom, 288.5, 8));
+        ResultMessage resultMessage = hotelDataService.addRoom(new HotelRoomPO("00000102", "000001", RoomType.SingleRoom, 258.5, 8));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void searchHotel() {
-        ArrayList<HotelPO> hotelPOs = hotelDataService.prefixSearchHotel("address","Nanjing");
-        assertEquals(5,hotelPOs.size());
+        ArrayList<HotelPO> hotelPOs = hotelDataService.prefixSearchHotel("address", "Nanjing");
+        assertEquals(5, hotelPOs.size());
     }
 
     @Test
@@ -51,8 +51,8 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void getRoom() throws Exception {
-        ArrayList<HotelRoomPO> hotelRoomPOs = hotelDataService.getRoom("000000");
-        assertEquals(2,hotelRoomPOs.size());
+        ArrayList<HotelRoomPO> hotelRoomPOs = hotelDataService.getRoom("000001");
+        assertEquals(2, hotelRoomPOs.size());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void updateRoom() throws Exception {
-        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("00000102", "000000", RoomType.DoubleRoom, 288.5, 20));
+        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("00000102", "000001", RoomType.Suite, 888.5, 2));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
@@ -73,4 +73,9 @@ public class HotelDataServiceImplTest {
         assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
+    @Test
+    public void deleteRoom() throws Exception {
+        ResultMessage resultMessage = hotelDataService.deleteRoom("00000002");
+        assertEquals(ResultMessage.NOT_EXIST, resultMessage);
+    }
 }

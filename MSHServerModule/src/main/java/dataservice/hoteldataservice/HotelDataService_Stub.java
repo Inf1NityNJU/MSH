@@ -66,4 +66,9 @@ public class HotelDataService_Stub implements HotelDataService{
         System.out.println("Delete Success!");
         return ResultMessage.SUCCESS;
     }
+
+    @Override
+    public ResultMessage deleteRoom(String roomID) {
+        return null;
+    }
 }
