@@ -52,7 +52,7 @@ public class MockHotel extends Hotel {
      * @throws InfoInvalidException
      */
     @Override
-    public ResultMessage updateHotelInfo(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
         if (hvo.ID.equals("000000")){
             System.out.println("Update hotel Success!");
             return ResultMessage.SUCCESS;

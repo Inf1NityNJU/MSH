@@ -7,6 +7,7 @@ import util.RoomType;
 import vo.FilterFlagsVO;
 import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
+import vo.RoomChangeInfoVO;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class HotelBLService_Stub implements HotelBLService {
         return null;
     }
 
-    public ResultMessage updateHotelInfo(Hotel_DetailVO hvo) throws InfoInvalidException
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException
     {
         if (hvo.ID.equals("000000")){
             System.out.println("Update hotel Success!");
@@ -45,12 +46,17 @@ public class HotelBLService_Stub implements HotelBLService {
         return  ResultMessage.FAILED;
     }
 
-    public ResultMessage updateHotelRoomInfo(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException {
         if (rvo != null) {
             System.out.println("Update hotel room Success!");
             return ResultMessage.SUCCESS;
         }
         return ResultMessage.FAILED;
+    }
+
+    @Override
+    public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
+        return null;
     }
 
     public ResultMessage addHotel(Hotel_DetailVO hvo) throws InfoInvalidException {

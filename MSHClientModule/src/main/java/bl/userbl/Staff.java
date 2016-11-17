@@ -22,7 +22,6 @@ public class Staff extends User {
         if (true) {
             //去找
             super.setCurrentID("STRING FROM DB");
-
             return LoginState.LOGIN_SUCCESS_Salesman;
         } else {
             return LoginState.LOGIN_FAIL;

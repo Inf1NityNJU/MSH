@@ -5,6 +5,7 @@ import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
+import vo.RoomChangeInfoVO;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,17 @@ public class HotelRoom {
      * @return 修改成功与否
      * @throws InfoInvalidException
      */
-    public ResultMessage updateHotelRoomInfo(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException {
         return  null;
+    }
+
+    /**
+     * 更新房间数量
+     * @param roomChangeInfoVO
+     * @return 更新成功与否
+     */
+    public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO){
+        return null;
     }
 
     /**

@@ -1,5 +1,6 @@
 package bl.hotelbl;
 
+import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
 import util.HotelNotFoundException;
 import util.InfoInvalidException;
@@ -8,13 +9,14 @@ import util.RoomType;
 import vo.FilterFlagsVO;
 import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
+import vo.RoomChangeInfoVO;
 
 import java.util.ArrayList;
 
 /**
  * Created by SilverNarcissus on 16/11/5.
  */
-public class HotelBLServiceImpl implements HotelBLService {
+public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     private Hotel hotel;
     private HotelRoom hotelRoom;
 
@@ -39,13 +41,18 @@ public class HotelBLServiceImpl implements HotelBLService {
     }
 
     @Override
-    public ResultMessage updateHotelInfo(Hotel_DetailVO hvo) throws InfoInvalidException {
-        return hotel.updateHotelInfo(hvo);
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+        return hotel.updateHotel(hvo);
     }
 
     @Override
-    public ResultMessage updateHotelRoomInfo(HotelRoomVO rvo) throws InfoInvalidException {
-        return hotelRoom.updateHotelRoomInfo(rvo);
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException {
+        return hotelRoom.updateHotelRoom(rvo);
+    }
+
+    @Override
+    public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
+        return hotelRoom.updateHotelRoomQuantity(roomChangeInfoVO);
     }
 
     @Override

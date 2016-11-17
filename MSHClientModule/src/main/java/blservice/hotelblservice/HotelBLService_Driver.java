@@ -1,6 +1,5 @@
 package blservice.hotelblservice;
 
-import bl.hotelbl.HotelBLServiceImpl;
 import util.HotelNotFoundException;
 import util.ResultMessage;
 import util.RoomType;
@@ -54,7 +53,7 @@ public class HotelBLService_Driver {
 
         try {
 
-            ResultMessage testMessage = hotelBLService.updateHotelInfo(TEST_HOTEL_DETIAL_VO);
+            ResultMessage testMessage = hotelBLService.updateHotel(TEST_HOTEL_DETIAL_VO);
             if(testMessage == ResultMessage.SUCCESS){
                 System.out.println("Update hotel info Success!");
             }
@@ -62,7 +61,7 @@ public class HotelBLService_Driver {
                 System.out.println("Update hotel info Failed!");
             }
 
-            testMessage = hotelBLService.updateHotelRoomInfo(testHotelRoomVO);
+            testMessage = hotelBLService.updateHotelRoom(testHotelRoomVO);
             if(testMessage == ResultMessage.SUCCESS){
                 System.out.println("Update hotel room info Success!");
             }

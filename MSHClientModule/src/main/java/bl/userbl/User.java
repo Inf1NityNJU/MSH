@@ -46,46 +46,105 @@ public class User {
         return ResetState.RESET_SUCCESS;
     }
 
+    /**
+     * 增加用户
+     *
+     * @param userVO
+     * @return 是否增加成功
+     */
     public ResultMessage add(UserVO userVO) {
         return null;
     }
 
+    /**
+     * 根据ID查找用户
+     *
+     * @param userID
+     * @return 查到的用户
+     */
     public UserVO searchByID(String userID) {
         return null;
     }
 
+    /**
+     * 更新用户信息
+     *
+     * @param userVO
+     * @return 是否更新成功
+     */
     public ResultMessage update(UserVO userVO) {
         return null;
     }
 
+    /**
+     * 删除用户
+     *
+     * @param userVO
+     * @return 是否删除成功
+     */
     public ResultMessage delete(UserVO userVO) {
         return null;
     }
 
+    /**
+     * 搜索符合关键词的用户列表
+     *
+     * @param keyword
+     * @return 返回的用户列表
+     */
     public ArrayList search(String keyword) {
         return null;
     }
 
-    public ArrayList<CreditVO> searchCreditByID(String id) {
-        if (this instanceof Client) {
-            return this.searchCreditByID(id);
-        } else {
-            return null;
-        }
+    /**
+     * 给客户增加信用记录
+     *
+     * @param clientID
+     * @param creditVO
+     * @return 增加是否成功
+     */
+    public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
+        return null;
     }
 
-    public int getCreditOfID(String id) {
+    /**
+     * 根据客户ID查找信用记录
+     *
+     * @param id
+     * @return 该客户的信用记录列表
+     */
+    public ArrayList<CreditVO> searchCreditByID(String id) {
+        return null;
+    }
+
+    /**
+     * 得到某客户的总信用值
+     *
+     * @param clientID
+     * @return 客户总信用值
+     */
+    public int getCreditOfID(String clientID) {
         if (this instanceof Client) {
-            return this.getCreditOfID(id);
+            return this.getCreditOfID(clientID);
         } else {
             return -1;
         }
     }
 
+    /**
+     * 设置当前用户ID
+     *
+     * @param currentID
+     */
     public void setCurrentID(String currentID) {
         this.currentID = currentID;
     }
 
+    /**
+     * 返回当前用户ID
+     *
+     * @return 当前用户ID
+     */
     public String getCurrentID() {
         return this.currentID;
     }

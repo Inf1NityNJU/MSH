@@ -1,9 +1,12 @@
 package blservice.userblservice;
 
-import util.CreditAction;
-import util.LoginState;
-import util.ResetState;
-import util.ResultMessage;
+import util.*;
+import vo.BillVO;
+import vo.CreditVO;
+import vo.OrderRoomVO;
+import vo.OrderVO;
+
+import java.util.ArrayList;
 
 /**
  * Created by Kray on 2016/10/12.
@@ -38,7 +41,15 @@ public class UserBLService_Driver {
             System.out.println("RESET FAIL");
         }
 
-        ResultMessage resultMessage = userBLService.addCreditRecord(clientID, credit, creditAction);
+        ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
+        OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
+        rooms.add(room1);
+
+        OrderVO order1 = new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+                new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
+                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
+
+        ResultMessage resultMessage = userBLService.addCreditRecord(clientID, new CreditVO(200, 700, CreditAction.ADD_CREDIT, order1,  new DateUtil(2016, 10, 13)));
         if (resultMessage == ResultMessage.EXIST) {
             System.out.println("EXIST");
         } else if (resultMessage == ResultMessage.SUCCESS) {

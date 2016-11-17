@@ -36,7 +36,7 @@ public class MockHotelRoom extends HotelRoom {
      * @throws InfoInvalidException
      */
     @Override
-    public ResultMessage updateHotelRoomInfo(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException {
         if (rvo != null) {
             System.out.println("Update hotel room Success!");
             return ResultMessage.SUCCESS;

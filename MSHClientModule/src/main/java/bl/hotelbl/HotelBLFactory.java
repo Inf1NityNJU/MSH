@@ -8,7 +8,7 @@ import blservice.hotelblservice.HotelBLService;
 public class HotelBLFactory {
     private static HotelBLServiceImpl HotelBLServiceImpl;
 
-    public synchronized static HotelBLServiceImpl getHotelBLServiceImpl() {
+    public synchronized static HotelBLService getHotelBLService() {
         if (HotelBLServiceImpl == null) {
             HotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
         }
