@@ -1,5 +1,6 @@
 package data.hotel;
 
+import dataimpl.Hotel.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import org.junit.Test;
 import po.RoomStockPO;

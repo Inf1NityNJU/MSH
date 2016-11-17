@@ -24,10 +24,11 @@ public class HotelDataServiceImplTest {
         hotelDataService = HotelDataServiceFactory.getHotelDataService();
     }
 
-    @Ignore
+    @Test
     public void addHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("000005", "My Hotel", "Nanjing Medical University", Place.XIANLIN, 4, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("000013", "Test hotel", "Nanjing Medical University", Place.XIANLIN, 4, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+
     }
 
     @Ignore
