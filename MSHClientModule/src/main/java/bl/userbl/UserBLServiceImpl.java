@@ -18,7 +18,6 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
 
     private User user;
     private LoginState loginState;
-    private String currentID;
 
     protected UserBLServiceImpl(User user, LoginState loginState) {
         this.user = user;
@@ -116,14 +115,13 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 给客户增加信用记录
      *
      * @param clientID
-     * @param credit
-     * @param creditAction
+     * @param creditVO
      * @return 增加是否成功
      */
-    public ResultMessage addCreditRecord(String clientID, int credit, CreditAction creditAction) {
+    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO) {
         if (user instanceof Client) {
             Client client = (Client) user;
-            return null;
+            return client.addCreditByID(clientID, creditVO);
         } else {
             return null;
         }
@@ -160,7 +158,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * @return 当前登录状态下的客户ID
      */
     public String getCurrentID() {
-        return this.currentID;
+        return user.getCurrentID();
     }
 
 }

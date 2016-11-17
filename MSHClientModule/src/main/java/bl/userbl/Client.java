@@ -23,7 +23,6 @@ public class Client extends User {
         if (true) {
             //去找
             super.setCurrentID("STRING FROM DB");
-
             return LoginState.LOGIN_SUCCESS_Client;
         } else {
             return LoginState.LOGIN_FAIL;

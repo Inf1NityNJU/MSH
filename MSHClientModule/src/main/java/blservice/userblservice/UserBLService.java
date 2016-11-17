@@ -84,11 +84,10 @@ public interface UserBLService {
      * 给客户增加信用记录
      *
      * @param clientID
-     * @param credit
-     * @param creditAction
+     * @param creditVO
      * @return 增加是否成功
      */
-    public ResultMessage addCreditRecord(String clientID, int credit, CreditAction creditAction);
+    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO);
 
     /**
      * 根据客户ID查找信用记录
