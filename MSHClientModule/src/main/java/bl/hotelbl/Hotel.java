@@ -1,6 +1,6 @@
 package bl.hotelbl;
 
-import data.hotel.HotelDataServiceFactory;
+import dataimpl.Hotel.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
 import util.HotelNotFoundException;

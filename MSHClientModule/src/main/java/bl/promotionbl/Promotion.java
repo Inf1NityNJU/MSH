@@ -1,9 +1,14 @@
 package bl.promotionbl;
 
+import dataservice.promotiondataservice.PromotionDataService;
+import dataservice.promotiondataservice.PromotionDataService_Stub;
+import po.PromotionHotelPO;
 import util.PromotionType;
 import util.ResultMessage;
 import vo.PromotionHotelVO;
 import vo.PromotionWebVO;
+
+
 
 import java.util.ArrayList;
 
@@ -11,16 +16,14 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class Promotion {
-    private PromotionHotelVO pvo;
+    private PromotionDataService promotionDataService = new PromotionDataService_Stub();
 
     /**
      * 增加一个促销策略
      * @param promotionVO
      * @return 添加成功与否
      */
-    public ResultMessage add(PromotionHotelVO promotionVO){
-        return null;
-    }
+    public ResultMessage add(PromotionHotelVO promotionVO){return null;}
 
     /**
      * 删除一个促销策略
@@ -28,7 +31,7 @@ public class Promotion {
      * @return 删除成功与否
      */
     public ResultMessage delete(String promotionID){
-        return null;
+        return promotionDataService.deletePromotion(promotionID);
     }
 
     /**
@@ -38,6 +41,7 @@ public class Promotion {
      * @return 更新成功与否
      */
     public ResultMessage update(String promotionID , PromotionHotelVO promotionVO){
+
         return null;
     }
 

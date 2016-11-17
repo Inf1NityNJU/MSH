@@ -1,4 +1,4 @@
-package data.hotel;
+package dataimpl.Hotel;
 
 import datafactory.DataHelperFactory;
 import datahelper.DataHelper;

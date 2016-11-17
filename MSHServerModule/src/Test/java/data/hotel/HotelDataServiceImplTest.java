@@ -1,7 +1,6 @@
 package data.hotel;
 
-import data.hotel.HotelDataServiceFactory;
-import data.hotel.HotelDataServiceImpl;
+import dataimpl.Hotel.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import org.junit.Ignore;
 import org.junit.Test;
