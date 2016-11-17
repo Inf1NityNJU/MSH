@@ -107,14 +107,14 @@ public class UserBLService_Stub implements UserBLService {
         }
     }
 
-    public ResultMessage addCreditRecord(String clientID, int credit, CreditAction creditAction) {
-        if (clientID.equals("000000007") && credit == 20 && creditAction == CreditAction.ADD_CREDIT) {
+    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO) {
+        if (clientID.equals("000000007") && creditVO.deltaCredit == 200 && creditVO.creditAction == CreditAction.ADD_CREDIT) {
             System.out.println("Add successfully");
             return ResultMessage.SUCCESS;
-        } else if (clientID.equals("000000007") && credit == 20 && creditAction == CreditAction.DEDUCT_CREDIT) {
+        } else if (clientID.equals("000000007") && creditVO.deltaCredit == 200 && creditVO.creditAction == CreditAction.DEDUCT_CREDIT) {
             System.out.println("Deduct successfully");
             return ResultMessage.SUCCESS;
-        } else if (clientID.equals("000000007") && credit == 20 && creditAction == CreditAction.REVOKE_CREDIT) {
+        } else if (clientID.equals("000000007") && creditVO.deltaCredit == 200 && creditVO.creditAction == CreditAction.REVOKE_CREDIT) {
             System.out.println("Deduct successfully");
             return ResultMessage.SUCCESS;
         } else {

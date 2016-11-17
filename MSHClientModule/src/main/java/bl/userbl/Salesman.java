@@ -22,7 +22,6 @@ public class Salesman extends User {
         if (true) {
             //去DB找
             super.setCurrentID("STRING FROM DB");
-
             return LoginState.LOGIN_SUCCESS_Staff;
         } else {
             return LoginState.LOGIN_FAIL;

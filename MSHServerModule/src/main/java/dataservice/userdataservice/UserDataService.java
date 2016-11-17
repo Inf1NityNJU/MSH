@@ -4,6 +4,7 @@ import po.ClientPO;
 import po.CreditPO;
 import po.SalesmanPO;
 import po.StaffPO;
+import util.LoginState;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -13,9 +14,9 @@ import java.util.ArrayList;
  */
 public interface UserDataService {
 
-    public ResultMessage login(String account, String password);
+    public LoginState login(String account, String password);
 
-    public ResultMessage logout();
+    public LoginState logout();
 
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword);
 
@@ -49,7 +50,7 @@ public interface UserDataService {
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword);
 
-    public ResultMessage addCreditByID(String clientID, int credit);
+    public ResultMessage addCreditRecord(String clientID, CreditPO creditPO);
 
-    public int searchCreditByID(String clientID);
+    public ArrayList<CreditPO> searchCreditByID(String clientID);
 }

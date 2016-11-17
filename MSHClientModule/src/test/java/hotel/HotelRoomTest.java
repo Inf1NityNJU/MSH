@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class HotelRoomTest {
     private HotelRoom hotelRoom;
-    RoomType type=RoomType.DoubleDouble;
+    RoomType type = RoomType.DoubleDouble;
     RoomType type2;
     //Test constant
     private static final String testHotelID = "000000";
@@ -26,18 +26,10 @@ public class HotelRoomTest {
     private static final RoomType testType = RoomType.SingleRoom;
 
 
-    public HotelRoomTest(){
+    public HotelRoomTest() {
         hotelRoom = new MockHotelRoom();
     }
 
-    @Test
-    public void testEnum(){
-        HotelRoomVO rvo1=new HotelRoomVO(null,20,31,null);
-        HotelRoomVO rvo2=new HotelRoomVO(null,20,31,null);
-        RoomType r=RoomType.DoubleDouble;
-        RoomType r2=RoomType.DoubleDouble;
-        assertEquals("",r.getClass().getName());
-    }
     @Test
     public void testGetHotelRoom() {
         ArrayList<HotelRoomVO> hotelRoomVOs = hotelRoom.getRoom(testHotelID);
@@ -69,7 +61,7 @@ public class HotelRoomTest {
     @Test
     public void testDeleteHotelRoom() {
         try {
-            ResultMessage resultMessage = hotelRoom.deleteHotelRoom(testHotelID,testType);
+            ResultMessage resultMessage = hotelRoom.deleteHotelRoom(testHotelID, testType);
             assertEquals(ResultMessage.SUCCESS, resultMessage);
         } catch (HotelNotFoundException e) {
             e.printStackTrace();

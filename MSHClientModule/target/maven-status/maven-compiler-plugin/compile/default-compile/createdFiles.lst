@@ -26,7 +26,6 @@ bl/promotionbl/Promotion.class
 bl/hotelbl/MockHotelRoom.class
 blservice/userblservice/UserBLInfo.class
 vo/LevelVO.class
-vo/PromotionVO.class
 bl/userbl/MockClient.class
 vo/FilterFlagsVO.class
 blservice/orderblservice/OrderBLService_Stub.class
