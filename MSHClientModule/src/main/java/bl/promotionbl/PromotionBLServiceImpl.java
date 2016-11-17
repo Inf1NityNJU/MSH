@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PromotionBLServiceImpl implements PromotionBLService{
 
     private Promotion promotion;
-    private MinPromotion minPromotion;
+//    private MinPromotion minPromotion;
 
     protected PromotionBLServiceImpl(boolean isMock){
 //        if(isMock){
@@ -22,7 +22,7 @@ public class PromotionBLServiceImpl implements PromotionBLService{
 //            minPromotion = new MockMinPromotion();
 //        }else {
             promotion = new Promotion();
-            minPromotion = new MinPromotion();
+//            minPromotion = new MinPromotion();
 //        }
     }
     @Override

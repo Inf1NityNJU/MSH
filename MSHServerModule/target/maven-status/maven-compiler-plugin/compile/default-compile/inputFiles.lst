@@ -1,0 +1,17 @@
+/Users/vivian/MSH/MSHServerModule/src/main/java/datahelper/DataHelper.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/orderdataservice/OrderDataService.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/orderdataservice/OrderDataService_Stub.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/hoteldataservice/HotelDataService_Driver.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/promotiondataservice/PromotionDataService_Driver.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/datahelper/HibernateHelper.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/data/hotel/HotelDataServiceFactory.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/userdataservice/UserDataService_Driver.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/datafactory/DataHelperFactory.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/promotiondataservice/PromotionDataService_Stub.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/hoteldataservice/HotelDataService_Stub.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/userdataservice/UserDataService.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/hoteldataservice/HotelDataService.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/promotiondataservice/PromotionDataService.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/data/hotel/HotelDataServiceImpl.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/orderdataservice/OrderDataService_Driver.java
+/Users/vivian/MSH/MSHServerModule/src/main/java/dataservice/userdataservice/UserDataService_Stub.java
