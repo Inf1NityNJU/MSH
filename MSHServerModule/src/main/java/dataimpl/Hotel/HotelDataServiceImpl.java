@@ -1,9 +1,10 @@
-package data.hotel;
+package dataimpl.Hotel;
 
 import datahelper.DataHelper;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
+import po.RoomStockPO;
 import util.HotelNotFoundException;
 import util.ResultMessage;
 
@@ -15,10 +16,12 @@ import java.util.ArrayList;
 public class HotelDataServiceImpl implements HotelDataService {
     private DataHelper hotelDataHelper;
     private DataHelper hotelRoomDataHelper;
+    private DataHelper roomStockDataHelper;
 
-    protected HotelDataServiceImpl(DataHelper hotelDataHelper, DataHelper hotelRoomDataHelper) {
+    protected HotelDataServiceImpl(DataHelper hotelDataHelper, DataHelper hotelRoomDataHelper, DataHelper roomStockDataHelper) {
         this.hotelDataHelper = hotelDataHelper;
         this.hotelRoomDataHelper = hotelRoomDataHelper;
+        this.roomStockDataHelper = roomStockDataHelper;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ArrayList<HotelPO> fuzzySearchHotel(String field, String value) {
-        return hotelDataHelper.fuzzyQuery(HotelPO.class, field, value);
+        return hotelDataHelper.fuzzyMatchQuery(HotelPO.class, field, value);
     }
 
     @Override
@@ -79,5 +82,25 @@ public class HotelDataServiceImpl implements HotelDataService {
     @Override
     public ResultMessage deleteRoom(String roomID) {
         return hotelRoomDataHelper.delete(roomID);
+    }
+
+    @Override
+    public ResultMessage addRoomStock(RoomStockPO roomStockPO) {
+        return roomStockDataHelper.save(roomStockPO);
+    }
+
+    @Override
+    public ResultMessage updateRoomStock(RoomStockPO roomStockPO) {
+        return roomStockDataHelper.update(roomStockPO);
+    }
+
+    @Override
+    public ResultMessage deleteRoomStock(String roomStockID) {
+        return roomStockDataHelper.delete(roomStockID);
+    }
+
+    @Override
+    public RoomStockPO getRoomStock(String roomStockID) {
+        return roomStockDataHelper.exactlyQuery(RoomStockPO.class, "ID", roomStockID);
     }
 }

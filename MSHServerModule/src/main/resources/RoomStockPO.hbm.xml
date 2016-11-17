@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-http://www.hibernate.org/dtd/hibernate-mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-4-30 15:39:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="po.RoomStockPO">
+        <id name="ID"> </id>
+        <property name="hotelID"/>
+        <property name="availableQuantity"/>
+
+        <property name="roomType" not-null="true" length="20">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">util.RoomType</param>
+                <!--
+                12为java.sql.Types.VARCHAR常量值，即保存枚举的字面值到数据库。如果不指定type参数，保存枚举的索引值(从0开始)到数据库
+                -->
+                <param name="type">12</param>
+            </type>
+        </property>
+
+        <property name="date"/>
+
+    </class>
+</hibernate-mapping>

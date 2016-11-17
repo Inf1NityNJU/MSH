@@ -8,6 +8,12 @@ import util.RoomType;
  */
 public class RoomStockPO {
     /**
+     * 库存房间ID
+     */
+    private String ID;
+
+
+    /**
      * 房间所属酒店编号
      */
     private String hotelID;
@@ -22,7 +28,32 @@ public class RoomStockPO {
     /**
      * 记录日期
      */
-    private DateUtil date;
+    private String date;
+
+
+    public RoomStockPO(String hotelID, RoomType roomType, int availableQuantity, String date) {
+        this.hotelID = hotelID;
+        this.roomType = roomType;
+        this.availableQuantity = availableQuantity;
+        this.date = date;
+    }
+
+    public RoomStockPO(String ID, String hotelID, RoomType roomType, int availableQuantity, String date) {
+        this(hotelID, roomType, availableQuantity, date);
+        this.ID = ID;
+    }
+
+    public RoomStockPO() {
+
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getHotelID() {
         return hotelID;
@@ -48,18 +79,11 @@ public class RoomStockPO {
         this.availableQuantity = availableQuantity;
     }
 
-    public DateUtil getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(DateUtil date) {
-        this.date = date;
-    }
-
-    public RoomStockPO(String hotelID, RoomType roomType, int availableQuantity, DateUtil date) {
-        this.hotelID = hotelID;
-        this.roomType = roomType;
-        this.availableQuantity = availableQuantity;
+    public void setDate(String date) {
         this.date = date;
     }
 }

@@ -6,10 +6,7 @@ import util.HotelNotFoundException;
 import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
-import vo.FilterFlagsVO;
-import vo.HotelRoomVO;
-import vo.Hotel_DetailVO;
-import vo.RoomChangeInfoVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -33,6 +30,11 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     @Override
     public Hotel_DetailVO getHotel(String hotelID) throws HotelNotFoundException {
         return hotel.getHotel(hotelID);
+    }
+
+    @Override
+    public ResultMessage addAssessment(AssessmentVO assessmentVO) {
+        return null;
     }
 
     @Override

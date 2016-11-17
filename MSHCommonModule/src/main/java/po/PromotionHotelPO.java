@@ -50,6 +50,17 @@ public class PromotionHotelPO {
     private int roomQuantity;
 
 
+    /**
+     *
+     * @param promptionID
+     * @param promotionType
+     * @param startDate
+     * @param endDate
+     * @param promotionDiscount
+     * @param companyName
+     * @param hotelID
+     * @param roomQuantity
+     */
     public PromotionHotelPO(String promptionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID,  int roomQuantity) {
         this.promotionID = promptionID;
         this.promotionType = promotionType;

@@ -9,7 +9,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by Kray on 2016/10/12.
  */
-public class PromotionHotelVO {
+public class PromotionHotelVO extends PromotionVO{
 
     /**
      * 策略编号
