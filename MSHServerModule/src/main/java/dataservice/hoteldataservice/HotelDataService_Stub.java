@@ -2,6 +2,7 @@ package dataservice.hoteldataservice;
 
 import po.HotelPO;
 import po.HotelRoomPO;
+import po.RoomStockPO;
 import util.HotelNotFoundException;
 import util.ResultMessage;
 
@@ -69,6 +70,26 @@ public class HotelDataService_Stub implements HotelDataService{
 
     @Override
     public ResultMessage deleteRoom(String roomID) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage addRoomStock(RoomStockPO roomStockPO) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage updateRoomStock(RoomStockPO roomStockPO) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage deleteRoomStock(String roomStockID) {
+        return null;
+    }
+
+    @Override
+    public RoomStockPO getRoomStock(String roomStockID) {
         return null;
     }
 }

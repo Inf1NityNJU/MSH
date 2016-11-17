@@ -178,7 +178,7 @@ public class HibernateHelper implements DataHelper {
      * @return PO列表
      */
     @Override
-    public <T> ArrayList<T> fuzzyQuery(Class<T> classType, String field, String value) {
+    public <T> ArrayList<T> fuzzyMatchQuery(Class<T> classType, String field, String value) {
         value = "%" + value + "%";
         return likePatternQuery(classType, field, value);
     }

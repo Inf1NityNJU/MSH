@@ -18,9 +18,12 @@ public class HotelDataServiceFactory {
         if(hotelDataService==null){
             DataHelper hotelDataHelper= DataHelperFactory.getHibernateDataHelper("HotelPO.cfg.xml");
             DataHelper hotelRoomDataHelper=DataHelperFactory.getHibernateDataHelper("HotelRoomPO.cfg.xml");
+            DataHelper roomStockPOHelper= DataHelperFactory.getHibernateDataHelper("RoomStockPO.cfg.xml");
+
             hotelDataHelper.setClassName("po.HotelPO");
             hotelRoomDataHelper.setClassName("po.HotelRoomPO");
-            hotelDataService=new HotelDataServiceImpl(hotelDataHelper,hotelRoomDataHelper);
+            roomStockPOHelper.setClassName("po.RoomStockPO");
+            hotelDataService=new HotelDataServiceImpl(hotelDataHelper,hotelRoomDataHelper,roomStockPOHelper);
         }
         return hotelDataService;
     }

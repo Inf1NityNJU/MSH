@@ -2,6 +2,7 @@ package dataservice.hoteldataservice;
 
 import po.HotelPO;
 import po.HotelRoomPO;
+import po.RoomStockPO;
 import util.HotelNotFoundException;
 import util.ResultMessage;
 
@@ -38,4 +39,13 @@ public interface HotelDataService {
     public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException;
 
     public ResultMessage deleteRoom(String roomID);
+
+    public ResultMessage addRoomStock(RoomStockPO roomStockPO);
+
+    public ResultMessage updateRoomStock(RoomStockPO roomStockPO);
+
+    public ResultMessage deleteRoomStock(String roomStockID);
+
+    public RoomStockPO getRoomStock(String roomStockID);
+
 }

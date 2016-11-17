@@ -1,4 +1,4 @@
-package data;
+package data.hotel;
 
 import data.hotel.HotelDataServiceFactory;
 import data.hotel.HotelDataServiceImpl;
@@ -78,4 +78,6 @@ public class HotelDataServiceImplTest {
         ResultMessage resultMessage = hotelDataService.deleteRoom("00000002");
         assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
+
+
 }
