@@ -47,7 +47,8 @@ public class MainUIController {
             ScrollPane list = listLoader.load();
 
             OrderListController controller = listLoader.getController();
-            controller.init();
+//            controller.init();
+//            controller.addOrder(3);
 
             rootPane.setCenter(list);
 
