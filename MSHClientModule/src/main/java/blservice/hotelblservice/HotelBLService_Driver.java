@@ -1,6 +1,5 @@
 package blservice.hotelblservice;
 
-import util.HotelNotFoundException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.FilterFlagsVO;
@@ -17,7 +16,7 @@ public class HotelBLService_Driver {
     private static final String testHotelID = "000000";
     private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null,null,null,0,0,null,null,0,0,0,0,null);
     private static final Hotel_DetailVO TEST_HOTEL_DETIAL_VO = new Hotel_DetailVO(null,null,null,null,0,null,null,null);
-    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null,0,0,null);
+    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000",null,0,0,null);
     private static final RoomType testType=RoomType.SingleRoom;
     //
     //dirver
@@ -31,16 +30,12 @@ public class HotelBLService_Driver {
             System.out.println("Search hotel Failed!");
         }
 
-        try {
-            Hotel_DetailVO hotelDetialVO = hotelBLService.getHotel(testHotelID);
-            if (hotelDetialVO != null){
-                System.out.println("Get hotel Success!");
-            }
-            else {
-                System.out.println("Get hotel Failed!");
-            }
-        } catch (HotelNotFoundException e) {
-            e.printStackTrace();
+        Hotel_DetailVO hotelDetialVO = hotelBLService.getHotel(testHotelID);
+        if (hotelDetialVO != null){
+            System.out.println("Get hotel Success!");
+        }
+        else {
+            System.out.println("Get hotel Failed!");
         }
 
         ArrayList<HotelRoomVO> hotelRoomVOArrayList = hotelBLService.getRoom(testHotelID);

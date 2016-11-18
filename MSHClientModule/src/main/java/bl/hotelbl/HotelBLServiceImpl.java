@@ -2,8 +2,6 @@ package bl.hotelbl;
 
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
-import util.HotelNotFoundException;
-import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.*;
@@ -28,7 +26,7 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     }
 
     @Override
-    public Hotel_DetailVO getHotel(String hotelID) throws HotelNotFoundException {
+    public Hotel_DetailVO getHotel(String hotelID) {
         return hotel.getHotel(hotelID);
     }
 
@@ -43,12 +41,12 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     }
 
     @Override
-    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) {
         return hotel.updateHotel(hvo);
     }
 
     @Override
-    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
         return hotelRoom.updateHotelRoom(rvo);
     }
 
@@ -58,22 +56,32 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     }
 
     @Override
-    public ResultMessage addHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage addHotel(Hotel_DetailVO hvo) {
         return hotel.addHotel(hvo);
     }
 
     @Override
-    public ResultMessage addRoom(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage addRoom(HotelRoomVO rvo) {
         return hotelRoom.addRoom(rvo);
     }
 
     @Override
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotel(String hotelID) {
         return hotel.deleteHotel(hotelID);
     }
 
     @Override
-    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException {
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
         return hotelRoom.deleteHotelRoom(hotelID,type);
+    }
+
+    @Override
+    public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
+        return hotelRoom.setRoomWillBeCancel(hotelID,type);
+    }
+
+    @Override
+    public ResultMessage isOrdered(String hotelID, RoomType type) {
+        return hotelRoom.isOrdered(hotelID,type);
     }
 }

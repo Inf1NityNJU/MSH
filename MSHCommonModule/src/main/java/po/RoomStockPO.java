@@ -11,8 +11,6 @@ public class RoomStockPO {
      * 库存房间ID
      */
     private String ID;
-
-
     /**
      * 房间所属酒店编号
      */

@@ -2,7 +2,6 @@ package dataservice.hoteldataservice;
 
 import po.HotelPO;
 import po.HotelRoomPO;
-import util.HotelNotFoundException;
 import util.ResultMessage;
 import util.RoomType;
 
@@ -23,16 +22,12 @@ public class HotelDataService_Driver {
     //driver
     public void drive(HotelDataService hotelDataService){
 
-        try {
-            HotelPO hotelPO = hotelDataService.getHotel(testHotelID);
-            if(hotelPO != null){
-                System.out.println("Get hotel Success!");
-            }
-            else {
-                System.out.println("Get hotel Failed!");
-            }
-        } catch (HotelNotFoundException e) {
-            e.printStackTrace();
+        HotelPO hotelPO = hotelDataService.getHotel(testHotelID);
+        if(hotelPO != null){
+            System.out.println("Get hotel Success!");
+        }
+        else {
+            System.out.println("Get hotel Failed!");
         }
 
         ArrayList<HotelRoomPO> hotelRoomPOArrayList = hotelDataService.getRoom(testHotelID);
@@ -75,16 +70,12 @@ public class HotelDataService_Driver {
             System.out.println("Add hotel room Failed!");
         }
 
-        try {
-            testMessage = hotelDataService.deleteHotel(testHotelID);
-            if(testMessage == ResultMessage.SUCCESS){
-                System.out.println("Delete hotel Success!");
-            }
-            else {
-                System.out.println("Delete hotel Failed!");
-            }
-        } catch (HotelNotFoundException e) {
-            e.printStackTrace();
+        testMessage = hotelDataService.deleteHotel(testHotelID);
+        if(testMessage == ResultMessage.SUCCESS){
+            System.out.println("Delete hotel Success!");
+        }
+        else {
+            System.out.println("Delete hotel Failed!");
         }
     }
 }

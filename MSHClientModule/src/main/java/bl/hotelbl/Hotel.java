@@ -32,6 +32,7 @@ public class Hotel {
      * @return 符合条件的酒店列表
      */
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
+        //TODO
         return null;
     }
 
@@ -40,15 +41,15 @@ public class Hotel {
      *
      * @param hotelID
      * @return 符合ID的酒店VO
-     * @throws HotelNotFoundException
      */
-    public Hotel_DetailVO getHotel(String hotelID) throws HotelNotFoundException {
+    public Hotel_DetailVO getHotel(String hotelID) {
         //先在cache中寻找
         Hotel_DetailVO hotelDetailVO=cache.get(hotelID);
         if(hotelDetailVO!=null){
             return hotelDetailVO;
         }
         //cache中未找到
+        //TODO
         return null;
     }
 
@@ -57,9 +58,8 @@ public class Hotel {
      *
      * @param hvo
      * @return 修改成功与否
-     * @throws InfoInvalidException
      */
-    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) {
         HotelPO hotelPO=voToPO(hvo);
         ResultMessage resultMessage=hotelDataService.updateHotel(hotelPO);
         if(resultMessage.equals(ResultMessage.SUCCESS)){
@@ -74,9 +74,9 @@ public class Hotel {
      *
      * @param hvo
      * @return 添加成功与否
-     * @throws InfoInvalidException
+     *
      */
-    public ResultMessage addHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage addHotel(Hotel_DetailVO hvo) {
         HotelPO hotelPO=voToPO(hvo);
         ResultMessage resultMessage=hotelDataService.addHotel(hotelPO);
         if(resultMessage.equals(ResultMessage.SUCCESS)){
@@ -90,9 +90,9 @@ public class Hotel {
      *
      * @param hotelID
      * @return 删除成功与否
-     * @throws HotelNotFoundException
+     *
      */
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotel(String hotelID) {
         ResultMessage resultMessage=hotelDataService.deleteHotel(hotelID);
         if(resultMessage.equals(ResultMessage.SUCCESS)){
             cache.remove(hotelID);

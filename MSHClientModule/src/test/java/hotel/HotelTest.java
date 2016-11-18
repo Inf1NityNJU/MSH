@@ -3,8 +3,7 @@ package hotel;
 import bl.hotelbl.Hotel;
 import bl.hotelbl.MockHotel;
 import org.junit.Test;
-import util.HotelNotFoundException;
-import util.InfoInvalidException;
+import util.DateUtil;
 import util.ResultMessage;
 import util.RoomType;
 import vo.FilterFlagsVO;
@@ -12,6 +11,7 @@ import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static org.junit.Assert.*;
 
@@ -23,8 +23,8 @@ public class HotelTest {
     //Test constant
     private static final String testHotelID = "000000";
     private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null, null, null, 0, 0, null, null, 0, 0, 0, 0, null);
-    private static final Hotel_DetailVO TEST_HOTEL_DETIAL_VO = new Hotel_DetailVO("000000", null, null, null, 0, null, null, null);
-    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null, 0, 0, null);
+    private static final Hotel_DetailVO TEST_HOTEL_DETAIL_VO = new Hotel_DetailVO("000000", null, null, null, 0, null, null, null);
+    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000",null, 0, 0, null);
     private static final RoomType testType = RoomType.SingleRoom;
 
 
@@ -39,45 +39,30 @@ public class HotelTest {
 
     @Test
     public void testGetHotel() {
-        try {
-            Hotel_DetailVO hotel_detailVO = hotel.getHotel(testHotelID);
-            assertNotNull(hotel_detailVO);
-        } catch (HotelNotFoundException e) {
-            e.printStackTrace();
-            fail();
-        }
+        Hotel_DetailVO hotel_detailVO = hotel.getHotel(testHotelID);
+        assertNotNull(hotel_detailVO);
     }
 
     @Test
     public void testAddHotel() {
-        try {
-            ResultMessage resultMessage = hotel.addHotel(TEST_HOTEL_DETIAL_VO);
-            assertEquals(ResultMessage.SUCCESS, resultMessage);
-        } catch (InfoInvalidException e) {
-            e.printStackTrace();
-            fail();
-        }
+        ResultMessage resultMessage = hotel.addHotel(TEST_HOTEL_DETAIL_VO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void testUpdateHotelRoomInfo() {
-        try {
-            ResultMessage resultMessage = hotel.updateHotel(TEST_HOTEL_DETIAL_VO);
-            assertEquals(ResultMessage.SUCCESS, resultMessage);
-        } catch (InfoInvalidException e) {
-            e.printStackTrace();
-            fail();
-        }
+        ResultMessage resultMessage = hotel.updateHotel(TEST_HOTEL_DETAIL_VO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void testDeleteHotelRoom() {
-        try {
-            ResultMessage resultMessage = hotel.deleteHotel(testHotelID);
-            assertEquals(ResultMessage.SUCCESS, resultMessage);
-        } catch (HotelNotFoundException e) {
-            e.printStackTrace();
-            fail();
-        }
+        ResultMessage resultMessage = hotel.deleteHotel(testHotelID);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+    @Test
+    public void testCalendar(){
+        Calendar c=Calendar.getInstance();
+        System.out.println(new DateUtil());
     }
 }
