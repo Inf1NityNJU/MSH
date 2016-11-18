@@ -15,6 +15,8 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.use_sql_comments">false</property>
         <!-- <property name="hibernate.format_sql">true</property>  -->
+        <mapping resource="HotelPO.hbm.xml"/>
         <mapping resource="HotelRoomPO.hbm.xml"/>
+        <mapping resource="RoomStockPO.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
