@@ -37,7 +37,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void addRoom() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addRoom(new HotelRoomPO("00000102", "000001", RoomType.SingleRoom, 258.5, 8,false));
+        ResultMessage resultMessage = hotelDataService.addRoom(new HotelRoomPO("0000000100", "000001", RoomType.SingleRoom, 258.5, 8,false));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
@@ -67,13 +67,13 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void updateRoom() throws Exception {
-        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("00000102", "000001", RoomType.Suite, 888.5, 2,false));
+        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("0000000100", "000001", RoomType.Suite, 888.5, 2,false));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void deleteHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.deleteHotel("00000102");
+        ResultMessage resultMessage = hotelDataService.deleteHotel("00000002");
         assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
