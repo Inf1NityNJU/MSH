@@ -19,22 +19,12 @@ public class HibernateHelper implements DataHelper {
 
     private SessionFactory sessionFactory;
     private Session session;
-    private String classFullName;
 
-    public HibernateHelper(String cfgLocation) {
+    public HibernateHelper() {
         Configuration configuration = new Configuration();
-        sessionFactory = configuration.configure(cfgLocation).buildSessionFactory();
+        sessionFactory = configuration.configure().buildSessionFactory();
     }
 
-    /**
-     * 设置PO类的全名
-     *
-     * @param classFullName
-     */
-    @Override
-    public void setClassName(String classFullName) {
-        this.classFullName = classFullName;
-    }
 
     /**
      * 初始化Session
@@ -60,7 +50,7 @@ public class HibernateHelper implements DataHelper {
      * @since 1.6
      */
     @Override
-    public ResultMessage save(Object o) {
+    public <T> ResultMessage save(Class<T> classType, Object o) {
         try {
             setUpSession();
             session.save(o);
@@ -82,7 +72,7 @@ public class HibernateHelper implements DataHelper {
      * @return 更新操作的结果信息
      */
     @Override
-    public ResultMessage update(Object o) {
+    public <T> ResultMessage update(Class<T> classType, Object o) {
         try {
             setUpSession();
             session.update(o);
@@ -104,9 +94,9 @@ public class HibernateHelper implements DataHelper {
      * @param ID
      */
     @Override
-    public ResultMessage delete(String ID) {
+    public <T> ResultMessage delete(Class<T> classType, String ID, String key) {
         try {
-            Object o = exactlyQuery(Class.forName(classFullName), "ID", ID);
+            Object o = exactlyQuery(classType, key, ID);
             if (o == null) {
                 return ResultMessage.NOT_EXIST;
             }

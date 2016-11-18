@@ -1,6 +1,6 @@
 package dataimpl.Hotel;
 
-import datafactory.DataHelperFactory;
+import datahelper.DataHelperFactory;
 import datahelper.DataHelper;
 import dataservice.hoteldataservice.HotelDataService;
 
@@ -16,14 +16,7 @@ public class HotelDataServiceFactory {
      */
     public static synchronized HotelDataService getHotelDataService(){
         if(hotelDataService==null){
-            DataHelper hotelDataHelper= DataHelperFactory.getHibernateDataHelper("hibernate.cfg.xml");
-            DataHelper hotelRoomDataHelper=DataHelperFactory.getHibernateDataHelper("hibernate.cfg.xml");
-            DataHelper roomStockPOHelper= DataHelperFactory.getHibernateDataHelper("hibernate.cfg.xml");
-
-            hotelDataHelper.setClassName("po.HotelPO");
-            hotelRoomDataHelper.setClassName("po.HotelRoomPO");
-            roomStockPOHelper.setClassName("po.RoomStockPO");
-            hotelDataService=new HotelDataServiceImpl(hotelDataHelper,hotelRoomDataHelper,roomStockPOHelper);
+            hotelDataService=new HotelDataServiceImpl(DataHelperFactory.getHibernateDataHelper());
         }
         return hotelDataService;
     }

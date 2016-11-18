@@ -54,7 +54,7 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage addStaff(StaffPO staffPO) {
-        return staffDataHelper.save(staffPO);
+        return staffDataHelper.save(StaffPO.class,staffPO);
     }
 
     public StaffPO searchStaffByID(String staffID) {
@@ -62,11 +62,11 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage updateStaff(String staffID, StaffPO staffPO) {
-        return staffDataHelper.update(staffPO);
+        return staffDataHelper.update(StaffPO.class,staffPO);
     }
 
     public ResultMessage deleteStaff(String staffID) {
-        return staffDataHelper.delete(staffID);
+        return staffDataHelper.delete(StaffPO.class,staffID,"StaffID");
     }
 
     public ArrayList<StaffPO> searchStaff(String keyword) {

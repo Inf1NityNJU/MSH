@@ -18,5 +18,10 @@
         <mapping resource="HotelPO.hbm.xml"/>
         <mapping resource="HotelRoomPO.hbm.xml"/>
         <mapping resource="RoomStockPO.hbm.xml"/>
+        <mapping resource="ClientPO.hbm.xml"/>
+        <mapping resource="CreditPO.hbm.xml"/>
+        <mapping resource="LevelPO.hbm.xml"/>
+        <mapping resource="SalesmanPO.hbm.xml"/>
+        <mapping resource="StaffPO.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

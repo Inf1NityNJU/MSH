@@ -10,13 +10,12 @@ import java.util.List;
  * Created by SilverNarcissus on 16/11/12.
  */
 public interface DataHelper {
-    public void setClassName(String classFullName);
 
-    public ResultMessage save(Object o);
+    public <T> ResultMessage save(Class<T> classType,Object o);
 
-    public ResultMessage update(Object o);
+    public <T> ResultMessage update(Class<T> classType,Object o);
 
-    public ResultMessage delete(String ID);
+    public <T> ResultMessage delete(Class<T> classType,String ID,String key);
 
     public <T> T exactlyQuery(Class<T> classType, String field, Object value);
 
