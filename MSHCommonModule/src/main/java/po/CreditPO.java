@@ -16,7 +16,7 @@ public class CreditPO {
     /**
      * 信用记录日期
      */
-    private DateUtil date;
+    private String date;
     /**
      * 信用记录变化数值
      */
@@ -34,10 +34,6 @@ public class CreditPO {
      */
     private String clientID;
 
-    /**
-     *
-     * @return
-     */
     public String getOrderID() {
         return orderID;
     }
@@ -46,12 +42,12 @@ public class CreditPO {
         this.orderID = orderID;
     }
 
-    public DateUtil getDate() {
+    public String getDate() {
         return date;
     }
 
     public void setDate(DateUtil date) {
-        this.date = date;
+        this.date = date.toString();
     }
 
     public int getDeltaCredit() {
@@ -86,9 +82,13 @@ public class CreditPO {
         this.clientID = clientID;
     }
 
+    public CreditPO() {
+
+    }
+
     public CreditPO(String orderID, DateUtil date, int deltaCredit, int resultCredit, CreditAction creditAction, String clientID) {
         this.orderID = orderID;
-        this.date = date;
+        this.date = date.toString();
         this.deltaCredit = deltaCredit;
         this.resultCredit = resultCredit;
         this.creditAction = creditAction;
@@ -97,7 +97,7 @@ public class CreditPO {
 
     public CreditPO(CreditAction creditAction, String clientID) {
         this.orderID = "-1";
-        this.date = new DateUtil(2015,10,10);
+        this.date = "2015-10-10";
         this.deltaCredit = 0;
         this.resultCredit = 500;
         this.creditAction = CreditAction.INIT_CREDIT;

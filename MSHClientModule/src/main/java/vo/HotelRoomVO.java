@@ -11,12 +11,14 @@ import static util.EqualJudgeHelper.judgeEqual;
  * Created by Kray on 2016/10/12.
  */
 public class HotelRoomVO {
+    public String hotelID;
     public RoomType roomType;
     public double price;
     public int totalQuantity;
     public ArrayList<RoomStockVO> roomStockVOs;
 
-    public HotelRoomVO(RoomType roomType, double price, int totalQuantity, ArrayList<RoomStockVO> roomStockVOs) {
+    public HotelRoomVO(String hotelID,RoomType roomType, double price, int totalQuantity, ArrayList<RoomStockVO> roomStockVOs) {
+        this.hotelID=hotelID;
         this.roomType = roomType;
         this.price = price;
         this.totalQuantity = totalQuantity;

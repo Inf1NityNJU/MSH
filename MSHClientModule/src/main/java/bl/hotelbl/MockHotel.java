@@ -35,14 +35,12 @@ public class MockHotel extends Hotel {
      * @throws HotelNotFoundException
      */
     @Override
-    public Hotel_DetailVO getHotel(String hotelID) throws HotelNotFoundException {
+    public Hotel_DetailVO getHotel(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Get hotel Success!");
             return new Hotel_DetailVO("000000", "汉庭", "南京", Place.XINJIEKOU, 5, "特别好", "设施齐全按",new AssessmentVO(5,5,5,5,"GOOD!!!"));
         }
-        else {
-            throw new HotelNotFoundException();
-        }
+        return null;
     }
 
     /**
@@ -52,7 +50,7 @@ public class MockHotel extends Hotel {
      * @throws InfoInvalidException
      */
     @Override
-    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage updateHotel(Hotel_DetailVO hvo) {
         if (hvo.ID.equals("000000")){
             System.out.println("Update hotel Success!");
             return ResultMessage.SUCCESS;
@@ -67,7 +65,7 @@ public class MockHotel extends Hotel {
      * @throws InfoInvalidException
      */
     @Override
-    public ResultMessage addHotel(Hotel_DetailVO hvo) throws InfoInvalidException {
+    public ResultMessage addHotel(Hotel_DetailVO hvo) {
         if (hvo.ID.equals("000000")) {
             System.out.println("Add hotel Success!");
             return ResultMessage.SUCCESS;
@@ -82,7 +80,7 @@ public class MockHotel extends Hotel {
      * @throws HotelNotFoundException
      */
     @Override
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotel(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Delete Success!");
             return ResultMessage.SUCCESS;

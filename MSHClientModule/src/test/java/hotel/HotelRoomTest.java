@@ -3,8 +3,6 @@ package hotel;
 import bl.hotelbl.HotelRoom;
 import bl.hotelbl.MockHotelRoom;
 import org.junit.Test;
-import util.HotelNotFoundException;
-import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
@@ -22,7 +20,7 @@ public class HotelRoomTest {
     RoomType type2;
     //Test constant
     private static final String testHotelID = "000000";
-    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO(null, 0, 0, null);
+    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000",null, 0, 0, null);
     private static final RoomType testType = RoomType.SingleRoom;
 
 
@@ -38,34 +36,19 @@ public class HotelRoomTest {
 
     @Test
     public void testAddHotelRoom() {
-        try {
-            ResultMessage resultMessage = hotelRoom.addRoom(testHotelRoomVO);
-            assertEquals(ResultMessage.SUCCESS, resultMessage);
-        } catch (InfoInvalidException e) {
-            e.printStackTrace();
-            fail();
-        }
+        ResultMessage resultMessage = hotelRoom.addRoom(testHotelRoomVO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void testUpdateHotelRoomInfo() {
-        try {
-            ResultMessage resultMessage = hotelRoom.updateHotelRoom(testHotelRoomVO);
-            assertEquals(ResultMessage.SUCCESS, resultMessage);
-        } catch (InfoInvalidException e) {
-            e.printStackTrace();
-            fail();
-        }
+        ResultMessage resultMessage = hotelRoom.updateHotelRoom(testHotelRoomVO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void testDeleteHotelRoom() {
-        try {
-            ResultMessage resultMessage = hotelRoom.deleteHotelRoom(testHotelID, testType);
-            assertEquals(ResultMessage.SUCCESS, resultMessage);
-        } catch (HotelNotFoundException e) {
-            e.printStackTrace();
-            fail();
-        }
+        ResultMessage resultMessage = hotelRoom.deleteHotelRoom(testHotelID, testType);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 }

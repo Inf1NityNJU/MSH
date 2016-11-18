@@ -21,7 +21,7 @@ public class MockHotelRoom extends HotelRoom {
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Get hotel room Success!");
-            HotelRoomVO v=new HotelRoomVO(RoomType.DoubleRoom,350.0,5,null);
+            HotelRoomVO v=new HotelRoomVO("00000000",RoomType.DoubleRoom,350.0,5,null);
             ArrayList<HotelRoomVO> hotelRoomVOArrayList=new ArrayList<HotelRoomVO>();
             hotelRoomVOArrayList.add(v);
             return hotelRoomVOArrayList;
@@ -36,7 +36,7 @@ public class MockHotelRoom extends HotelRoom {
      * @throws InfoInvalidException
      */
     @Override
-    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
         if (rvo != null) {
             System.out.println("Update hotel room Success!");
             return ResultMessage.SUCCESS;
@@ -51,7 +51,7 @@ public class MockHotelRoom extends HotelRoom {
      * @throws InfoInvalidException
      */
     @Override
-    public ResultMessage addRoom(HotelRoomVO rvo) throws InfoInvalidException {
+    public ResultMessage addRoom(HotelRoomVO rvo) {
         if (rvo != null) {
             System.out.println("Add hotel room Success!");
             return ResultMessage.SUCCESS;
@@ -66,7 +66,7 @@ public class MockHotelRoom extends HotelRoom {
      * @throws HotelNotFoundException
      */
     @Override
-    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException {
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
         if (hotelID.equals("000000")) {
             System.out.println("Delete Success!");
             return ResultMessage.SUCCESS;

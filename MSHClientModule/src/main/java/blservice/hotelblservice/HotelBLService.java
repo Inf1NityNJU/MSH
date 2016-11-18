@@ -25,9 +25,9 @@ public interface HotelBLService {
      *
      * @param hotelID
      * @return 符合ID的酒店VO
-     * @throws HotelNotFoundException
+     *
      */
-    public Hotel_DetailVO getHotel(String hotelID) throws HotelNotFoundException;
+    public Hotel_DetailVO getHotel(String hotelID);
 
     /**
      * 通过酒店ID查找酒店房间
@@ -42,18 +42,18 @@ public interface HotelBLService {
      *
      * @param hvo
      * @return 修改成功与否
-     * @throws InfoInvalidException
+     *
      */
-    public ResultMessage updateHotel(Hotel_DetailVO hvo) throws InfoInvalidException;
+    public ResultMessage updateHotel(Hotel_DetailVO hvo);
 
     /**
      * 修改指定酒店房间信息
      *
      * @param rvo
      * @return 修改成功与否
-     * @throws InfoInvalidException
+     *
      */
-    public ResultMessage updateHotelRoom(HotelRoomVO rvo) throws InfoInvalidException;
+    public ResultMessage updateHotelRoom(HotelRoomVO rvo);
 
     /**
      * 更新房间数量
@@ -67,34 +67,46 @@ public interface HotelBLService {
      *
      * @param hvo
      * @return 添加成功与否
-     * @throws InfoInvalidException
+     *
      */
-    public ResultMessage addHotel(Hotel_DetailVO hvo) throws InfoInvalidException;
+    public ResultMessage addHotel(Hotel_DetailVO hvo);
 
     /**
      * 添加酒店房间信息
      *
      * @param rvo
      * @return 添加成功与否
-     * @throws InfoInvalidException
      */
-    public ResultMessage addRoom(HotelRoomVO rvo) throws InfoInvalidException;
+    public ResultMessage addRoom(HotelRoomVO rvo);
 
     /**
      * 删除酒店信息
      *
      * @param hotelID
      * @return 删除成功与否
-     * @throws HotelNotFoundException
      */
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException;
+    public ResultMessage deleteHotel(String hotelID);
 
     /**
      * 删除酒店房间信息
      *
      * @param hotelID
      * @return 删除成功与否
-     * @throws HotelNotFoundException
      */
-    public ResultMessage deleteHotelRoom(String hotelID, RoomType type) throws HotelNotFoundException;
+    public ResultMessage deleteHotelRoom(String hotelID, RoomType type);
+
+    /**
+     * 设置酒店房间将要被删除
+     * @param hotelID
+     * @param type
+     * @return 设置成功与否
+     */
+    public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type);
+
+    /**
+     * 查看酒店房间是否被预订过
+     * @param hotelID
+     * @return 查询结果
+     */
+    public ResultMessage isOrdered(String hotelID,RoomType type);
 }

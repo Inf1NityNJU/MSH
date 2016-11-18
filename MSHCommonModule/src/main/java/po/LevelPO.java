@@ -5,10 +5,13 @@ package po;
  */
 public class LevelPO {
     /*
+     * ID
+     */
+    private String ID;
+    /*
      * 信用值
      */
     private int credit;
-    
     /*
      * 等级
      */
@@ -30,9 +33,26 @@ public class LevelPO {
         this.level = level;
     }
 
-    public LevelPO(int credit, int level) {
+    public String getID() {
+        return ID;
+    }
 
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public LevelPO(int credit, int level) {
         this.credit = credit;
         this.level = level;
+    }
+
+
+    public LevelPO(String ID, int credit, int level) {
+        this(credit, level);
+        this.ID = ID;
+    }
+
+    public LevelPO() {
+
     }
 }

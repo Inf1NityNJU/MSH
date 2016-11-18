@@ -3,7 +3,6 @@ package dataservice.hoteldataservice;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
-import util.HotelNotFoundException;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class HotelDataService_Stub implements HotelDataService{
         return null;
     }
 
-    public HotelPO getHotel(String hotelID) throws HotelNotFoundException {
+    public HotelPO getHotel(String hotelID) {
         System.out.println("Get hotel Success!");
         return new HotelPO(null,null,null,null,0,null,null);
     }
@@ -63,7 +62,7 @@ public class HotelDataService_Stub implements HotelDataService{
         return ResultMessage.SUCCESS;
     }
 
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotel(String hotelID) {
         System.out.println("Delete Success!");
         return ResultMessage.SUCCESS;
     }

@@ -3,7 +3,6 @@ package dataservice.hoteldataservice;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
-import util.HotelNotFoundException;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public interface HotelDataService {
 
     public ArrayList<HotelPO> rangeSearchHotel(String field, Object min, Object max);
 
-    public HotelPO getHotel(String hotelID) throws HotelNotFoundException;
+    public HotelPO getHotel(String hotelID);
 
     public ArrayList<HotelRoomPO> getRoom(String hotelID);
 
@@ -36,7 +35,7 @@ public interface HotelDataService {
 
     public ResultMessage addRoom(HotelRoomPO hotelRoomPO);
 
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException;
+    public ResultMessage deleteHotel(String hotelID);
 
     public ResultMessage deleteRoom(String roomID);
 

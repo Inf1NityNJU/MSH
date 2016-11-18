@@ -5,7 +5,6 @@ import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
-import util.HotelNotFoundException;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class HotelDataServiceImpl implements HotelDataService {
     }
 
     @Override
-    public HotelPO getHotel(String hotelID) throws HotelNotFoundException {
+    public HotelPO getHotel(String hotelID) {
         return hotelDataHelper.exactlyQuery(HotelPO.class, "id", hotelID);
     }
 
@@ -75,7 +74,7 @@ public class HotelDataServiceImpl implements HotelDataService {
     }
 
     @Override
-    public ResultMessage deleteHotel(String hotelID) throws HotelNotFoundException {
+    public ResultMessage deleteHotel(String hotelID) {
         return hotelDataHelper.delete(hotelID);
     }
 

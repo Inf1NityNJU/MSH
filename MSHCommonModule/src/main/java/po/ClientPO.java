@@ -27,7 +27,7 @@ public class ClientPO{
     /**
      * 客户生日
      */
-    private DateUtil birthday;
+    private String birthday;
     /**
      * 客户联系方式
      */
@@ -35,7 +35,7 @@ public class ClientPO{
     /**
      * 客户所属企业,若是普通用户则为空
      */
-    private String Enterprise;
+    private String enterprise;
     /**
      * 客户账号
      */
@@ -45,14 +45,18 @@ public class ClientPO{
      */
     private String password;
 
+    public ClientPO() {
+
+    }
+
     public ClientPO(String clientID, String clientName, int credit, int level, DateUtil birthday, String contactInfo, String enterprise, String account, String password) {
         this.clientID = clientID;
         this.clientName = clientName;
         this.credit = credit;
         this.level = level;
-        this.birthday = birthday;
+        this.birthday = birthday.toString();
         this.contactInfo = contactInfo;
-        Enterprise = enterprise;
+        this.enterprise = enterprise;
         this.account = account;
         this.password = password;
     }
@@ -89,12 +93,12 @@ public class ClientPO{
         this.level = level;
     }
 
-    public DateUtil getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
     public void setBirthday(DateUtil birthday) {
-        this.birthday = birthday;
+        this.birthday = birthday.toString();
     }
 
     public String getContactInfo() {
@@ -106,11 +110,11 @@ public class ClientPO{
     }
 
     public String getEnterprise() {
-        return Enterprise;
+        return enterprise;
     }
 
     public void setEnterprise(String enterprise) {
-        Enterprise = enterprise;
+        this.enterprise = enterprise;
     }
 
     public String getAccount() {
