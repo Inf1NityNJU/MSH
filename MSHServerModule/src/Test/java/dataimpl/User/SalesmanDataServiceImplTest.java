@@ -50,7 +50,7 @@ public class SalesmanDataServiceImplTest {
         SalesmanPO examplePO = new SalesmanPO("100001", "KrayC", "adminSalesman", "password");
         SalesmanPO salesmanPO = userDataService.searchSalesmanByID("100001");
         assertTrue(salesmanPO.equals(examplePO));
-        salesmanPO = userDataService.searchSalesmanByID("300002");
+        salesmanPO = userDataService.searchSalesmanByID("100002");
         assertFalse(salesmanPO.equals(examplePO));
     }
 
