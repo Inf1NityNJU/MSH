@@ -45,6 +45,6 @@ public interface HotelDataService {
 
     public ResultMessage deleteRoomStock(String roomStockID);
 
-    public RoomStockPO getRoomStock(String roomStockID);
+    public ArrayList<RoomStockPO> getRoomStock(String hotelRoomID);
 
 }

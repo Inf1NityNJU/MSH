@@ -88,7 +88,7 @@ public class HotelDataService_Stub implements HotelDataService{
     }
 
     @Override
-    public RoomStockPO getRoomStock(String roomStockID) {
+    public ArrayList<RoomStockPO> getRoomStock(String roomStockID) {
         return null;
     }
 }

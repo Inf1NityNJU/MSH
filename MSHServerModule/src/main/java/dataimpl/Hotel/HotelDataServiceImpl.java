@@ -47,7 +47,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ArrayList<HotelRoomPO> getRoom(String hotelID) {
-        return dataHelper.suffixMatchQuery(HotelRoomPO.class, "hotelID", hotelID);
+        return dataHelper.prefixMatchQuery(HotelRoomPO.class, "hotelID", hotelID);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class HotelDataServiceImpl implements HotelDataService {
     }
 
     @Override
-    public RoomStockPO getRoomStock(String roomStockID) {
-        return dataHelper.exactlyQuery(RoomStockPO.class, "ID", roomStockID);
+    public ArrayList<RoomStockPO> getRoomStock(String hotelRoomID) {
+        return dataHelper.prefixMatchQuery(RoomStockPO.class, "ID", hotelRoomID);
     }
 }

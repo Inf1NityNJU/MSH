@@ -1,0 +1,64 @@
+package hotel;
+
+import bl.hotelbl.Hotel;
+import bl.hotelbl.MockHotel;
+import org.junit.Test;
+import util.DateUtil;
+import util.ResultMessage;
+import util.RoomType;
+import vo.FilterFlagsVO;
+import vo.HotelRoomVO;
+import vo.Hotel_DetailVO;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import static org.junit.Assert.*;
+
+/**
+ * Created by SilverNarcissus on 16/11/5.
+ */
+public class HotelMockTest {
+    private Hotel hotel;
+    //Test constant
+    private static final String testHotelID = "000000";
+    private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null, null, null, 0, 0, null, null, 0, 0, 0, 0, null);
+    private static final Hotel_DetailVO TEST_HOTEL_DETAIL_VO = new Hotel_DetailVO("000000", null, null, null, 0, null, null, null);
+    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000",null, 0, 0, null);
+    private static final RoomType testType = RoomType.SingleRoom;
+
+
+    public HotelMockTest() {
+        hotel = new MockHotel();
+    }
+    @Test
+    public void testSearchHotel() {
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotel.searchHotel(TEST_FILTER_FLAGS_VO);
+        assertFalse(hotel_detailVOs.isEmpty());
+    }
+
+    @Test
+    public void testGetHotel() {
+        Hotel_DetailVO hotel_detailVO = hotel.getHotel(testHotelID);
+        assertNotNull(hotel_detailVO);
+    }
+
+    @Test
+    public void testAddHotel() {
+        ResultMessage resultMessage = hotel.addHotel(TEST_HOTEL_DETAIL_VO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void testUpdateHotelRoomInfo() {
+        ResultMessage resultMessage = hotel.updateHotel(TEST_HOTEL_DETAIL_VO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void testDeleteHotelRoom() {
+        ResultMessage resultMessage = hotel.deleteHotel(testHotelID);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+}

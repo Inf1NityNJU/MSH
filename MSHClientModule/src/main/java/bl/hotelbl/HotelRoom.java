@@ -35,8 +35,22 @@ public class HotelRoom {
      * @return 符合ID的酒店房间VO
      */
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
-        //TODO
-        return null;
+        ArrayList<HotelRoomVO> result=new ArrayList<HotelRoomVO>();
+        for(HotelRoomPO hotelRoomPO:hotelDataService.getRoom(hotelID)){
+            HotelRoomVO hotelRoomVO=roomPOToRoomVO(hotelRoomPO);
+            //添加roomStock
+            ArrayList<RoomStockVO> roomStockVOs=new ArrayList<RoomStockVO>();
+            //
+            for(RoomStockPO roomStockPO:hotelDataService.getRoomStock(hotelRoomPO.getHotelID())){
+                roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
+            }
+            hotelRoomVO.roomStockVOs=roomStockVOs;
+            //写入cache
+            cache.put(hotelRoomPO.getID(),hotelRoomVO);
+            //保存到result
+            result.add(hotelRoomVO);
+        }
+        return result;
     }
 
     /**
@@ -44,11 +58,15 @@ public class HotelRoom {
      *
      * @param rvo
      * @return 修改成功与否
-     * @throws InfoInvalidException
      */
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
-        //TODO
-        return null;
+        ResultMessage resultMessage=deleteHotelRoom(rvo.hotelID,rvo.roomType);
+        //
+        if(resultMessage==ResultMessage.SUCCESS){
+            addRoom(rvo);
+        }
+        //
+        return resultMessage;
     }
 
     /**
@@ -106,8 +124,17 @@ public class HotelRoom {
      * @return 删除成功与否
      */
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
-        //TODO
-        return null;
+        String hotelRoomID=generateID(hotelID,type.ordinal());
+        ResultMessage resultMessage=hotelDataService.deleteRoom(hotelRoomID);
+        if(resultMessage==ResultMessage.SUCCESS){
+            //
+            cache.remove(hotelRoomID);
+            //删除房间的roomStock
+            for(RoomStockPO roomStockPO:hotelDataService.getRoomStock(hotelRoomID)){
+                hotelDataService.deleteRoomStock(roomStockPO.getID());
+            }
+        }
+        return resultMessage;
     }
 
     /**

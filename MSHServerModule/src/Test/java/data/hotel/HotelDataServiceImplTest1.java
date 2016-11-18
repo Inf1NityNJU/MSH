@@ -38,9 +38,7 @@ public class HotelDataServiceImplTest1 {
 
     @Test
     public void getRoomStockPO() throws Exception {
-        HotelDataService hotelDataService = HotelDataServiceFactory.getHotelDataService();
-        RoomStockPO roomStockPO = hotelDataService.getRoomStock("0000010101");
-        assertEquals("0000010101", roomStockPO.getID());
+
     }
 
 }
