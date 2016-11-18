@@ -1,5 +1,6 @@
 package dataimpl.User;
 
+import com.sun.org.apache.regexp.internal.RE;
 import dataservice.userdataservice.UserDataService;
 import org.junit.Test;
 import po.StaffPO;
@@ -26,17 +27,18 @@ public class StaffDataServiceImplTest {
 
     @Test
     public void searchStaffByID() throws Exception {
-
     }
 
     @Test
     public void updateStaff() throws Exception {
-
+        ResultMessage resultMessage = userDataService.updateStaff("100001", new StaffPO("100001", "KrayC2", "25010002", "songkuixi", "123456"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void deleteStaff() throws Exception {
-
+        ResultMessage resultMessage = userDataService.deleteStaff("100001");
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test

@@ -62,11 +62,11 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage updateStaff(String staffID, StaffPO staffPO) {
-        return null;
+        return staffDataHelper.update(staffPO);
     }
 
     public ResultMessage deleteStaff(String staffID) {
-        return null;
+        return staffDataHelper.delete(staffID);
     }
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
