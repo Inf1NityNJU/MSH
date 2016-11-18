@@ -20,19 +20,23 @@ public class MainUIController {
         this.rootPane = rootPane;
     }
 
-    public void showHeaderAndNavbar() {
+    public void showMainView() {
         try {
             FXMLLoader navLoader = new FXMLLoader();
-            navLoader.setLocation(Main.class.getResource("../view/common/Navbar.fxml"));
+            navLoader.setLocation(Main.class.getResource("../component/common/Navbar.fxml"));
             Pane navbar = navLoader.load();
 
             FXMLLoader headerLoader = new FXMLLoader();
-            headerLoader.setLocation(Main.class.getResource("../view/common/Header.fxml"));
+            headerLoader.setLocation(Main.class.getResource("../component/common/Header.fxml"));
             HBox header = headerLoader.load();
+
+            FXMLLoader sectionLoader = new FXMLLoader();
+            sectionLoader.setLocation(Main.class.getResource("../component/common/Section.fxml"));
+            ScrollPane section = sectionLoader.load();
 
             rootPane.setTop(header);
             rootPane.setLeft(navbar);
-
+            rootPane.setCenter(section);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,10 +49,6 @@ public class MainUIController {
             FXMLLoader listLoader = new FXMLLoader();
             listLoader.setLocation(Main.class.getResource("../view/order/OrderList.fxml"));
             ScrollPane list = listLoader.load();
-
-            OrderListController controller = listLoader.getController();
-//            controller.init();
-//            controller.addOrder(3);
 
             rootPane.setCenter(list);
 

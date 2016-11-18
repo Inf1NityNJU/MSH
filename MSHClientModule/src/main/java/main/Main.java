@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader rootLoader = new FXMLLoader();
-        rootLoader.setLocation(Main.class.getResource("../view/main.fxml"));
+        rootLoader.setLocation(Main.class.getResource("../view/common/Main.fxml"));
         BorderPane root = rootLoader.load();
 
         primaryStage.setTitle("Hello World");
@@ -28,7 +28,7 @@ public class Main extends Application {
 
         MainUIController controller = rootLoader.getController();
         controller.setRootPane(root);
-        controller.showHeaderAndNavbar();
+        controller.showMainView();
         controller.showOrderList();
 
     }
