@@ -1,5 +1,7 @@
 package po;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
@@ -75,5 +77,44 @@ public class StaffPO {
 
     public StaffPO() {
 
+    }
+
+    /**
+     * 比较两个PO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof StaffPO) {
+            StaffPO staffPO = (StaffPO) o;
+            return compareData(staffPO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return staffID.hashCode();
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param staffPO
+     * @return 比较结果
+     */
+    private boolean compareData(StaffPO staffPO) {
+        return judgeEqual(staffID, staffPO.staffID)
+                && judgeEqual(staffName, staffPO.staffName)
+                && judgeEqual(hotelID, staffPO.hotelID)
+                && judgeEqual(account, staffPO.account)
+                && judgeEqual(password, staffPO.password);
     }
 }

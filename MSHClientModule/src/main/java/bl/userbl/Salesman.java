@@ -3,6 +3,7 @@ package bl.userbl;
 import util.LoginState;
 import util.ResultMessage;
 import vo.SalesmanVO;
+import vo.UserVO;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public class Salesman extends User {
         if (true) {
             //去DB找
             super.setCurrentID("STRING FROM DB");
-            return LoginState.LOGIN_SUCCESS_Staff;
+            return LoginState.LOGIN_SUCCESS_Salesman;
         } else {
             return LoginState.LOGIN_FAIL;
         }
@@ -31,10 +32,11 @@ public class Salesman extends User {
     /**
      * 增加网站营销人员
      *
-     * @param salesmanVO
+     * @param userVO
      * @return 是否增加成功
      */
-    public ResultMessage add(SalesmanVO salesmanVO) {
+    public ResultMessage add(UserVO userVO) {
+        SalesmanVO salesmanVO = (SalesmanVO)userVO;
         return null;
     }
 
@@ -51,10 +53,11 @@ public class Salesman extends User {
     /**
      * 更新网站营销人员
      *
-     * @param salesmanVO
+     * @param userVO
      * @return 是否更新成功
      */
-    public ResultMessage update(SalesmanVO salesmanVO) {
+    public ResultMessage update(UserVO userVO) {
+        SalesmanVO salesmanVO = (SalesmanVO)userVO;
         return null;
     }
 

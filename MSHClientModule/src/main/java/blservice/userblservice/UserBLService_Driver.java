@@ -19,7 +19,6 @@ public class UserBLService_Driver {
         String oldPassword = "123456";
         String newPassword = "1234567890";
         String clientID = "000000007";
-        int credit = 20;
 
         CreditAction creditAction = CreditAction.ADD_CREDIT;
 
