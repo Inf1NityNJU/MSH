@@ -35,7 +35,6 @@ public class SalesmanPO {
 
     public void setAccount(String account) {
         this.account = account;
-
     }
 
     public String getSalesmanName() {
@@ -52,6 +51,10 @@ public class SalesmanPO {
 
     public void setSalesmanID(String salesmanID) {
         this.salesmanID = salesmanID;
+    }
+
+    public SalesmanPO() {
+
     }
 
     public SalesmanPO(String salesmanID, String salesmanName, String account, String password) {

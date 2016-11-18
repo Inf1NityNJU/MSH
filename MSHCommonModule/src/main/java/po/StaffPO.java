@@ -39,7 +39,6 @@ public class StaffPO {
 
     public void setAccount(String account) {
         this.account = account;
-
     }
 
     public String getStaffID() {
@@ -72,5 +71,9 @@ public class StaffPO {
         this.hotelID = hotelID;
         this.account = account;
         this.password = password;
+    }
+
+    public StaffPO() {
+
     }
 }
