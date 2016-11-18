@@ -11,6 +11,7 @@ import util.RoomType;
 import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
 import vo.RoomChangeInfoVO;
+import vo.RoomStockVO;
 
 import java.util.*;
 
@@ -71,19 +72,30 @@ public class HotelRoom {
     public ResultMessage addRoom(HotelRoomVO rvo) {
         HotelRoomPO hotelRoomPO = roomVOToRoomPO(rvo);
         Calendar c = Calendar.getInstance();
-        ResultMessage resultMessage=hotelDataService.addRoom(hotelRoomPO);
+        ResultMessage resultMessage = hotelDataService.addRoom(hotelRoomPO);
+        //保存放在HotelRoomVO里面的roomStockVO
+        ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
         //
-        if(resultMessage==ResultMessage.SUCCESS) {
+        if (resultMessage == ResultMessage.SUCCESS) {
             for (int i = 0; i < MAX_AVAILABLE_DAYS; i++) {
-                hotelDataService.addRoomStock(new RoomStockPO(generateID(hotelRoomPO.getID(), i)
+                //
+                RoomStockPO roomStockPO = new RoomStockPO(generateID(hotelRoomPO.getID(), i)
                         , hotelRoomPO.getHotelID()
                         , hotelRoomPO.getRoomType()
                         , hotelRoomPO.getTotalQuantity()
                         , new DateUtil().toString()
-                ));
+                );
+                //将roomStockPO写入数据库
+                hotelDataService.addRoomStock(roomStockPO);
+                //
+                roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
+            //保存放在HotelRoomVO里面的roomStockVO
+            rvo.roomStockVOs = roomStockVOs;
+            //
+            cache.put(hotelRoomPO.getID(),rvo);
         }
-        //TODO cache missing
+
         return resultMessage;
     }
 
@@ -110,7 +122,32 @@ public class HotelRoom {
                 , hotelRoomVO.roomType
                 , hotelRoomVO.price
                 , hotelRoomVO.totalQuantity
-                ,false);
+                , false);
+    }
+
+    /**
+     * 将hotelRoomPO转换为hotelRoomVO
+     *
+     * @param hotelRoomPO
+     * @return hotelRoomVO
+     */
+    private HotelRoomVO roomPOToRoomVO(HotelRoomPO hotelRoomPO) {
+        return hotelRoomPO == null ? null : new HotelRoomVO(hotelRoomPO.getHotelID()
+                , hotelRoomPO.getRoomType()
+                , hotelRoomPO.getPrice()
+                , hotelRoomPO.getTotalQuantity()
+                , null);
+    }
+
+    /**
+     * 将roomStockPO转换为roomStockVO
+     *
+     * @param roomStockPO
+     * @return roomStockVO
+     */
+    private RoomStockVO roomStockPOToRoomStockVO(RoomStockPO roomStockPO) {
+        return roomStockPO == null ? null : new RoomStockVO(roomStockPO.getAvailableQuantity()
+                , new DateUtil(roomStockPO.getDate()));
     }
 
     /**

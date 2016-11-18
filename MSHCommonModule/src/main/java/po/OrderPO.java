@@ -257,7 +257,6 @@ public class OrderPO {
         this.totalPrice = totalPrice;
     }
 
-
     public OrderPO(String orderID, String hotelID, String clientID, DateUtil checkInDate, DateUtil checkOutDate,
                    TimeUtil checkInTime, TimeUtil checkOutTime, TimeUtil bookedTime, TimeUtil cancelledTime, TimeUtil latestExecuteTime,
                    int peopleQuantity, boolean hasChildren, OrderState state,

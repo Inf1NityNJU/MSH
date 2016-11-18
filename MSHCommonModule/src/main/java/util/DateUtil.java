@@ -26,6 +26,13 @@ public class DateUtil {
         this.day = c.get(Calendar.DAY_OF_MONTH);
     }
 
+    public DateUtil(String date) {
+        String[] param = date.split("-");
+        year = Integer.parseInt(param[0]);
+        month = Integer.parseInt(param[1]);
+        day = Integer.parseInt(param[2]);
+    }
+
     /**
      * 日期向前递增一天
      */
@@ -133,12 +140,12 @@ public class DateUtil {
     public String toString() {
         String month = String.valueOf(this.month);
         String day = String.valueOf(this.day);
-        if(month.length()==1){
-            month="0"+month;
+        if (month.length() == 1) {
+            month = "0" + month;
         }
-        if(day.length()==1){
-            day="0"+day;
+        if (day.length() == 1) {
+            day = "0" + day;
         }
-        return String.valueOf(year)+"-"+month+"-"+day;
+        return String.valueOf(year) + "-" + month + "-" + day;
     }
 }

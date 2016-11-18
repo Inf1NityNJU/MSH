@@ -1,4 +1,4 @@
-package dataimpl.User;
+package dataimpl.user;
 
 import datahelper.DataHelper;
 import dataservice.userdataservice.UserDataService;
@@ -15,18 +15,20 @@ import java.util.ArrayList;
  * Created by Kray on 2016/11/17.
  */
 public class UserDataServiceImpl implements UserDataService {
-    private DataHelper staffDataHelper;
 
-    protected UserDataServiceImpl(DataHelper staffDataHelper) {
-        this.staffDataHelper = staffDataHelper;
+    private DataHelper userDataHelper;
+
+    protected UserDataServiceImpl(DataHelper userDataHelper) {
+        this.userDataHelper = userDataHelper;
     }
 
     public LoginState login(String account, String password) {
+//        userDataHelper.
         return null;
     }
 
     public LoginState logout() {
-        return null;
+        return LoginState.LOGIN_FAIL;
     }
 
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
@@ -54,27 +56,31 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage addStaff(StaffPO staffPO) {
-        return staffDataHelper.save(StaffPO.class,staffPO);
+        return userDataHelper.save(StaffPO.class, staffPO);
     }
 
     public StaffPO searchStaffByID(String staffID) {
-        return null;
+        return userDataHelper.exactlyQuery(StaffPO.class, "staffID", staffID);
     }
 
     public ResultMessage updateStaff(String staffID, StaffPO staffPO) {
-        return staffDataHelper.update(StaffPO.class,staffPO);
+        return userDataHelper.update(StaffPO.class, staffPO);
     }
 
     public ResultMessage deleteStaff(String staffID) {
-        return staffDataHelper.delete(StaffPO.class,staffID,"StaffID");
+        return userDataHelper.delete(StaffPO.class, "staffID", staffID);
     }
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
-        return null;
+        ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
+        staffPOs.addAll(userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffID", keyword));
+        staffPOs.addAll(userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffName", keyword));
+        staffPOs.addAll(userDataHelper.fuzzyMatchQuery(StaffPO.class, "hotelID", keyword));
+        return staffPOs;
     }
 
     public ResultMessage addSalesman(SalesmanPO salesmanPO) {
-        return null;
+        return userDataHelper.save(SalesmanPO.class, salesmanPO);
     }
 
     public SalesmanPO searchSalesmanByID(String salesmanID) {
@@ -82,11 +88,11 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) {
-        return null;
+        return userDataHelper.update(SalesmanPO.class, salesmanPO);
     }
 
     public ResultMessage deleteSalesman(String salesmanID) {
-        return null;
+        return userDataHelper.delete(SalesmanPO.class, "salesmanID", salesmanID);
     }
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {

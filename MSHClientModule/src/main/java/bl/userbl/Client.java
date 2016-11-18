@@ -1,9 +1,14 @@
 package bl.userbl;
 
+import dataimpl.user.UserDataServiceFactory;
+import dataservice.userdataservice.UserDataService;
+import dataservice.userdataservice.UserDataService_Driver;
+import po.ClientPO;
 import util.LoginState;
 import util.ResultMessage;
 import vo.ClientVO;
 import vo.CreditVO;
+import vo.UserVO;
 
 import java.util.ArrayList;
 
@@ -32,10 +37,11 @@ public class Client extends User {
     /**
      * 添加客户
      *
-     * @param clientVO
+     * @param userVO
      * @return 是否添加成功
      */
-    public ResultMessage add(ClientVO clientVO) {
+    public ResultMessage add(UserVO userVO) {
+        ClientVO clientVO = (ClientVO) userVO;
         return null;
     }
 
@@ -52,10 +58,11 @@ public class Client extends User {
     /**
      * 更新用户信息
      *
-     * @param clientVO
+     * @param userVO
      * @return 是否更新成功
      */
-    public ResultMessage update(ClientVO clientVO) {
+    public ResultMessage update(UserVO userVO) {
+        ClientVO clientVO = (ClientVO) userVO;
         return null;
     }
 

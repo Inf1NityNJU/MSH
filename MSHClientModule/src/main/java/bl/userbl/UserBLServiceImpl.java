@@ -94,11 +94,11 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
     /**
      * 删除用户
      *
-     * @param userVO
+     * @param userID
      * @return 是否删除成功
      */
-    public ResultMessage delete(UserVO userVO) {
-        return user.delete(userVO);
+    public ResultMessage delete(String userID) {
+        return user.delete(userID);
     }
 
     /**
@@ -160,5 +160,4 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
     public String getCurrentID() {
         return user.getCurrentID();
     }
-
 }

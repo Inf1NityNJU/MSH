@@ -60,9 +60,5 @@ public class HotelTest {
         ResultMessage resultMessage = hotel.deleteHotel(testHotelID);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
-    @Test
-    public void testCalendar(){
-        Calendar c=Calendar.getInstance();
-        System.out.println(new DateUtil());
-    }
+
 }
