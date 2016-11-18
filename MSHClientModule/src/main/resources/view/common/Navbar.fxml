@@ -12,6 +12,7 @@
                 <Image url="@../../images/example.jpeg" />
             </image>
         </ImageView>
-      <NavButton fx:id="navButton" layoutY="300.0" onMouseClicked="#clickNavButton" />
+      <NavButton fx:id="navButton" layoutY="300.0" onMouseClicked="#clickNavButton" text="信息管理" />
+      <NavButton layoutY="350.0" />
     </children>
 </Pane>

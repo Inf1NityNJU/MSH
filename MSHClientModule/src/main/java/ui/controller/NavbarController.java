@@ -13,11 +13,6 @@ public class NavbarController {
 
     @FXML
     public void clickNavButton() {
-        if (navButton.getIsCurrentProperty()) {
-            navButton.setIsCurrentProperty(false);
-        } else {
-            navButton.setIsCurrentProperty(true);
-        }
-
+        navButton.setIsCurrentProperty(!navButton.getIsCurrentProperty());
     }
 }
