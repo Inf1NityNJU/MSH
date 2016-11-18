@@ -78,12 +78,11 @@ public class UserBLService_Stub implements UserBLService {
     /**
      * 删除用户
      *
-     * @param userVO
+     * @param userID
      * @return 是否删除成功
      */
-    public ResultMessage delete(UserVO userVO) {
-        ClientVO clientVO = (ClientVO) userVO;
-        if (clientVO.clientID.equals("000000007")) {
+    public ResultMessage delete(String userID) {
+        if (userID.equals("000000007")) {
             return ResultMessage.SUCCESS;
         } else {
             System.out.println("Client Exist");

@@ -79,10 +79,10 @@ public class User {
     /**
      * 删除用户
      *
-     * @param userVO
+     * @param userID
      * @return 是否删除成功
      */
-    public ResultMessage delete(UserVO userVO) {
+    public ResultMessage delete(String userID) {
         return null;
     }
 
