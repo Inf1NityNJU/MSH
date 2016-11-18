@@ -3,11 +3,12 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2014-4-30 15:39:33 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="po.StaffPO">
-        <id name="staffID"> </id>
-        <property name="staffName"/>
-        <property name="account"/>
-        <property name="password"/>
-        <property name="hotelID"/>
+    <class name="po.CreditPO">
+        <id name="orderID"> </id>
+        <property name="deltaCredit"/>
+        <property name="resultCredit"/>
+        <property name="date"/>
+        <property name="clientID"/>
+        <property name="creditAction"/>
     </class>
 </hibernate-mapping>

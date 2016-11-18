@@ -5,7 +5,6 @@
 <hibernate-mapping>
     <class name="po.StaffPO">
         <id name="staffID"> </id>
-        <property name="staffID"/>
         <property name="staffName"/>
         <property name="account"/>
         <property name="password"/>
