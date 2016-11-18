@@ -1,6 +1,6 @@
 package ui.componentcontroller.common;
 
-import component.NavButton;
+import component.navbutton.NavButton;
 import javafx.fxml.FXML;
 
 /**
