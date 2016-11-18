@@ -8,6 +8,8 @@ import util.LoginState;
 import util.ResultMessage;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Kray on 2016/11/18.
@@ -45,7 +47,11 @@ public class SalesmanDataServiceImplTest {
 
     @Test
     public void searchSalesmanByID() throws Exception {
-
+        SalesmanPO examplePO = new SalesmanPO("100001", "KrayC", "adminSalesman", "password");
+        SalesmanPO salesmanPO = userDataService.searchSalesmanByID("100001");
+        assertTrue(salesmanPO.equals(examplePO));
+        salesmanPO = userDataService.searchSalesmanByID("300002");
+        assertFalse(salesmanPO.equals(examplePO));
     }
 
     @Test

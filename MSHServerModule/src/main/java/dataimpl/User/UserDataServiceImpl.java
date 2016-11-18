@@ -10,6 +10,7 @@ import util.LoginState;
 import util.ResultMessage;
 
 import java.util.ArrayList;
+import java.util.jar.Pack200;
 
 /**
  * Created by Kray on 2016/11/17.
@@ -73,9 +74,21 @@ public class UserDataServiceImpl implements UserDataService {
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
         ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
-        staffPOs.addAll(userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffID", keyword));
-        staffPOs.addAll(userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffName", keyword));
-        staffPOs.addAll(userDataHelper.fuzzyMatchQuery(StaffPO.class, "hotelID", keyword));
+        for (StaffPO staffPO : userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffID", keyword)) {
+            if (!staffPOs.contains(staffPO)) {
+                staffPOs.add(staffPO);
+            }
+        }
+        for (StaffPO staffPO : userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffName", keyword)) {
+            if (!staffPOs.contains(staffPO)) {
+                staffPOs.add(staffPO);
+            }
+        }
+        for (StaffPO staffPO : userDataHelper.fuzzyMatchQuery(StaffPO.class, "hotelID", keyword)) {
+            if (!staffPOs.contains(staffPO)) {
+                staffPOs.add(staffPO);
+            }
+        }
         return staffPOs;
     }
 
@@ -84,7 +97,7 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public SalesmanPO searchSalesmanByID(String salesmanID) {
-        return null;
+        return userDataHelper.exactlyQuery(SalesmanPO.class, "salesmanID", salesmanID);
     }
 
     public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) {
@@ -96,7 +109,18 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {
-        return null;
+        ArrayList<SalesmanPO> salesmanPOs = new ArrayList<SalesmanPO>();
+        for (SalesmanPO salesmanPO : userDataHelper.fuzzyMatchQuery(SalesmanPO.class, "salesmanID", keyword)) {
+            if (!salesmanPOs.contains(salesmanPO)) {
+                salesmanPOs.add(salesmanPO);
+            }
+        }
+        for (SalesmanPO salesmanPO : userDataHelper.fuzzyMatchQuery(SalesmanPO.class, "salesmanName", keyword)) {
+            if (!salesmanPOs.contains(salesmanPO)) {
+                salesmanPOs.add(salesmanPO);
+            }
+        }
+        return salesmanPOs;
     }
 
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
