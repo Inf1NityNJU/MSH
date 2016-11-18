@@ -68,7 +68,7 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage deleteStaff(String staffID) {
-        return userDataHelper.delete(StaffPO.class, staffID, "staffID");
+        return userDataHelper.delete(StaffPO.class, "staffID", staffID);
     }
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
@@ -92,7 +92,7 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage deleteSalesman(String salesmanID) {
-        return userDataHelper.delete(SalesmanPO.class, salesmanID, "salesmanID");
+        return userDataHelper.delete(SalesmanPO.class, "salesmanID", salesmanID);
     }
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {
