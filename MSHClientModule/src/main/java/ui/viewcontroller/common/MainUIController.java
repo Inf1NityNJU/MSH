@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.viewcontroller.common;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;

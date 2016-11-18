@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.componentcontroller.order;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

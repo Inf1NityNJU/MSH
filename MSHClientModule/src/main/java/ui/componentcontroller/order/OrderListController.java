@@ -1,4 +1,4 @@
-package ui.controller;
+package ui.componentcontroller.order;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,14 +17,14 @@ public class OrderListController {
     private VBox contentVBox;
 
     /**
-     * Initializes the controller class. This method is automatically called
+     * Initializes the componentcontroller class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/order/OrderSearchPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/order/OrderSearchPane.fxml"));
             VBox pane = loader.load();
 
             contentVBox.getChildren().add(pane);
@@ -40,7 +40,7 @@ public class OrderListController {
         try {
             for (int i = 0; i < num; i++) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../view/order/OrderCell.fxml"));
+                loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
                 HBox pane = loader.load();
 
                 contentVBox.getChildren().add(pane);

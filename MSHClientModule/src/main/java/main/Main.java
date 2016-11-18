@@ -8,7 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ui.controller.MainUIController;
+import ui.viewcontroller.common.MainUIController;
 
 public class Main extends Application {
 
