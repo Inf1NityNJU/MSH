@@ -71,7 +71,7 @@ public class UserDataServiceImpl implements UserDataService {
 
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
         if(userDataHelper.save(ClientPO.class, clientPO) == ResultMessage.SUCCESS
-               && userDataHelper.save(CreditPO.class, creditPO) == ResultMessage.SUCCESS){
+                && userDataHelper.save(CreditPO.class, creditPO) == ResultMessage.SUCCESS){
             return ResultMessage.SUCCESS;
         }else{
             return ResultMessage.FAILED;
