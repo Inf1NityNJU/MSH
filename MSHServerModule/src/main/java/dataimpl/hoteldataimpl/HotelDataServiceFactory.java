@@ -1,7 +1,6 @@
-package dataimpl.Hotel;
+package dataimpl.hoteldataimpl;
 
 import datahelper.DataHelperFactory;
-import datahelper.DataHelper;
 import dataservice.hoteldataservice.HotelDataService;
 
 /**

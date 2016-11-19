@@ -1,6 +1,6 @@
 package bl.hotelbl;
 
-import dataimpl.Hotel.HotelDataServiceFactory;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -9,7 +9,6 @@ import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
-import vo.Hotel_DetailVO;
 import vo.RoomChangeInfoVO;
 import vo.RoomStockVO;
 

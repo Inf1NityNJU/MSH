@@ -1,10 +1,8 @@
 package bl.hotelbl;
 
-import dataimpl.Hotel.HotelDataServiceFactory;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
-import util.HotelNotFoundException;
-import util.InfoInvalidException;
 import util.ResultMessage;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;

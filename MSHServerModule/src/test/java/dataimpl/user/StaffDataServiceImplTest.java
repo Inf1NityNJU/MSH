@@ -1,5 +1,6 @@
 package dataimpl.user;
 
+import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import org.junit.Test;
 import po.StaffPO;
