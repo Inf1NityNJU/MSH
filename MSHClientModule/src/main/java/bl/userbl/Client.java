@@ -10,6 +10,7 @@ import util.LoginState;
 import util.ResultMessage;
 import vo.ClientVO;
 import vo.CreditVO;
+import vo.OrderVO;
 import vo.UserVO;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class Client extends User {
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("LOGIN Client");
             super.setCurrentID("STRING FROM DB");
+//            super.
             this.account = account;
             this.password = password;
         }
@@ -54,9 +56,10 @@ public class Client extends User {
      * @return 是否添加成功
      */
     public ResultMessage add(UserVO userVO) {
+        //TODO
         ClientVO clientVO = (ClientVO) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), "", "", account, password);
+                clientVO.birthday.toString(), "CONTACT INFO", "ENTERPRISE", account, password);
         return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
@@ -85,9 +88,11 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
-//        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName,  account, password);
-//        return userDataService.updateSalesman(SalesmanVO.salesmanID, SalesmanPO);
-        return null;
+        //一些不能改的,先读然后再设置
+        ClientPO searchedPO = userDataService.searchClientByID(clientVO.clientID);
+        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
+                clientVO.birthday.toString(), searchedPO.getContactInfo(), searchedPO.getEnterprise(), account, password);
+        return userDataService.updateClient(clientVO.clientID, clientPO);
     }
 
     /**
@@ -107,7 +112,13 @@ public class Client extends User {
      * @return 符合关键词的所有客户
      */
     public ArrayList<ClientVO> search(String keyword) {
-        return null;
+        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
+        ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
+        for (ClientPO clientPO : clientPOs) {
+            clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
+                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise() == "" ? 0 : 1));
+        }
+        return clientVOs;
     }
 
     /**
@@ -118,7 +129,8 @@ public class Client extends User {
      * @return 是否增加成功
      */
     public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
-        return null;
+        return userDataService.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
+                creditVO.deltaCredit, creditVO.resultCredit, creditVO.creditAction, clientID));
     }
 
     /**
@@ -128,12 +140,16 @@ public class Client extends User {
      * @return 该客户的所有信用记录
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
+        //TODO
         /*
+        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
-        for(CreditPO creditPO : userDataService.searchCreditByID(clientID)){
+        for(CreditPO creditPO : creditPOs){
+            OrderVO orderVO =
             creditVOs.add(new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(), creditPO.getCreditAction(),
-                    , new DateUtil(creditPO.getDate())));
+                    creditPO.getOrderID(), new DateUtil(creditPO.getClientID())));
         }
+        return creditVOs;
         */
         return null;
     }

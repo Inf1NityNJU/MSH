@@ -31,7 +31,7 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState logout() {
-        return null;
+        return LoginState.LOGOUT;
     }
 
     /**
