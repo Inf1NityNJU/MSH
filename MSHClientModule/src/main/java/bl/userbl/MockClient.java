@@ -137,16 +137,16 @@ public class MockClient extends Client {
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
-        CreditVO exampleCreditVO1 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        CreditVO exampleCreditVO1 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 10, 12));
-        CreditVO exampleCreditVO2 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340001", "01011234", "000000002", rooms,
+        CreditVO exampleCreditVO2 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340001", "01011234", "000000002", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), new TimeUtil(2016, 10, 12, 14, 0, 0), null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5, 5, 5, 5, "很好很舒适")), new DateUtil(2016, 10, 12));
-        CreditVO exampleCreditVO3 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340002", "01011234", "000000003", rooms,
+        CreditVO exampleCreditVO3 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340002", "01011234", "000000003", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Abnormal, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 10, 12));
-        CreditVO exampleCreditVO4 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340003", "01011234", "000000004", rooms,
+        CreditVO exampleCreditVO4 = new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340003", "01011234", "000000004", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 10, 12));
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();

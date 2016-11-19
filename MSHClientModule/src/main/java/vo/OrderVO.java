@@ -27,6 +27,16 @@ public class OrderVO {
     public String clientID;
 
     /**
+     * 酒店名称
+     */
+    public String hotelName;
+
+    /**
+     * 客户姓名
+     */
+    public String clientName;
+
+    /**
      * 房间
      */
     public ArrayList<OrderRoomVO> rooms;
@@ -91,13 +101,17 @@ public class OrderVO {
      */
     public AssessmentVO assessment;
 
-    public OrderVO(String orderID, String hotelID, String clientID, ArrayList<OrderRoomVO> rooms,
+    public OrderVO(String orderID, String hotelID, String clientID, String hotelName, String clientName,
+                   ArrayList<OrderRoomVO> rooms,
                    DateUtil checkInDate, DateUtil checkOutDate, TimeUtil checkInTime, TimeUtil checkOutTime,
                    TimeUtil bookedTime, TimeUtil cancelledTime, TimeUtil latestExecuteTime, int peopleQuantity, boolean hasChildren,
                    OrderState state, BillVO bill, AssessmentVO assessment) {
         this.orderID = orderID;
         this.hotelID = hotelID;
         this.clientID = clientID;
+
+        this.hotelName = hotelName;
+        this.clientName = clientName;
 
         this.rooms = rooms;
 

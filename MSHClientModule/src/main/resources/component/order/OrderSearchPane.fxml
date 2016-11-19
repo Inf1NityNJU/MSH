@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import component.statusbutton.StatusButton?>
+<?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
@@ -18,11 +18,11 @@
       <TitleLabel text="我的订单" />
       <HBox spacing="10.0">
          <children>
-            <StatusButton colorProperty="F8E71C" text="全部" />
-            <StatusButton colorProperty="12B7F3" text="未执行" />
-            <StatusButton colorProperty="00CCCC" text="已执行" />
-            <StatusButton colorProperty="BC52FD" text="已撤销" />
-            <StatusButton colorProperty="FC537D" text="异常" />
+            <StateButton colorProperty="F8E71C" text="全部" />
+            <StateButton colorProperty="12B7F3" text="未执行" />
+            <StateButton colorProperty="00CCCC" text="已执行" />
+            <StateButton colorProperty="BC52FD" text="已撤销" />
+            <StateButton colorProperty="FC537D" text="异常" />
          </children>
       </HBox>
    </children>
