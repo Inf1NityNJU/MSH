@@ -1,14 +1,11 @@
 package po;
 
-import util.DateUtil;
-import util.Place;
 import util.PromotionType;
 
 /**
- * Created by SilverNarcissus on 16/10/11.
+ * Created by vivian on 16/11/11.
  */
-public class PromotionHotelPO {
-
+public class PromotionPO {
     /**
      * 策略编号
      */
@@ -20,19 +17,19 @@ public class PromotionHotelPO {
     private PromotionType promotionType;
 
     /**
+     * 策略折扣
+     */
+    private double promotionDiscount;
+
+    /**
      * 策略执行开始日期
      */
-    private DateUtil startDate;
+    private String startDate;
 
     /**
      * 策略执行结束日期
      */
-    private DateUtil endDate;
-
-    /**
-     * 策略折扣
-     */
-    private double promotionDiscount;
+    private String endDate;
 
     /**
      * 策略涉及的公司名称
@@ -49,35 +46,22 @@ public class PromotionHotelPO {
      */
     private int roomQuantity;
 
+    /**
+     * 策略涉及的商圈
+     */
+    private String place;
 
     /**
-     *
-     * @param promptionID
-     * @param promotionType
-     * @param startDate
-     * @param endDate
-     * @param promotionDiscount
-     * @param companyName
-     * @param hotelID
-     * @param roomQuantity
+     * 执行策略所需的最低用户等级
      */
-    public PromotionHotelPO(String promptionID, PromotionType promotionType, DateUtil startDate, DateUtil endDate, double promotionDiscount, String companyName, String hotelID,  int roomQuantity) {
-        this.promotionID = promptionID;
-        this.promotionType = promotionType;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.promotionDiscount = promotionDiscount;
-        this.companyName = companyName;
-        this.hotelID = hotelID;
-        this.roomQuantity = roomQuantity;
-    }
+    private int clientGrade;
 
-    public String getPromptionID() {
+    public String getPromotionID() {
         return promotionID;
     }
 
-    public void setPromptionID(String promptionID) {
-        this.promotionID = promptionID;
+    public void setPromotionID(String promotionID) {
+        this.promotionID = promotionID;
     }
 
     public PromotionType getPromotionType() {
@@ -88,19 +72,19 @@ public class PromotionHotelPO {
         this.promotionType = promotionType;
     }
 
-    public DateUtil getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(DateUtil startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public DateUtil getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(DateUtil endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -134,5 +118,35 @@ public class PromotionHotelPO {
 
     public void setRoomQuantity(int roomQuantity) {
         this.roomQuantity = roomQuantity;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public int getClientGrade() {
+        return clientGrade;
+    }
+
+    public void setClientGrade(int clientGrade) {
+        this.clientGrade = clientGrade;
+    }
+
+    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount,String startDate, String endDate,  String companyName, String hotelID, int roomQuantity, String place, int clientGrade) {
+
+        this.promotionID = promotionID;
+        this.promotionType = promotionType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.promotionDiscount = promotionDiscount;
+        this.companyName = companyName;
+        this.hotelID = hotelID;
+        this.roomQuantity = roomQuantity;
+        this.place = place;
+        this.clientGrade = clientGrade;
     }
 }

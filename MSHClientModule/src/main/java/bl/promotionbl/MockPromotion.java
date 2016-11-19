@@ -3,8 +3,8 @@ package bl.promotionbl;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
-import vo.PromotionHotelVO;
-import vo.PromotionWebVO;
+import vo.Promotion_HotelVO;
+import vo.Promotion_WebVO;
 
 import java.util.ArrayList;
 
@@ -12,14 +12,14 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class MockPromotion extends Promotion{
-    private PromotionHotelVO promotionHotelVO = new PromotionHotelVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, 0);
+    private Promotion_HotelVO promotionHotelVO = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday,  0.80);
 
     /**
      * 增加一个促销策略
      * @param promotionHotelVO
      * @return 添加成功与否
      */
-    public ResultMessage add(PromotionHotelVO promotionHotelVO){
+    public ResultMessage add(Promotion_HotelVO promotionHotelVO){
         return ResultMessage.SUCCESS;
     }
 
@@ -42,7 +42,7 @@ public class MockPromotion extends Promotion{
      * @param promotionHotelVO
      * @return 更新成功与否
      */
-    public ResultMessage update(String promotionID , PromotionHotelVO promotionHotelVO){
+    public ResultMessage update(String promotionID , Promotion_HotelVO promotionHotelVO){
         if(promotionID.equals("201610120102")){
             return ResultMessage.SUCCESS;
         }else{
@@ -55,7 +55,7 @@ public class MockPromotion extends Promotion{
      * @param promotionID
      * @return 符合条件的策略VO
      */
-    public PromotionHotelVO searchByID(String promotionID) {
+    public Promotion_HotelVO searchByID(String promotionID) {
         if (promotionID.equals("201610120102")) {
             return promotionHotelVO;
         }else{
@@ -69,8 +69,8 @@ public class MockPromotion extends Promotion{
      * @param promotionType
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<PromotionHotelVO> search(PromotionType promotionType){
-        ArrayList<PromotionHotelVO> pvos = new ArrayList<PromotionHotelVO>();
+    public ArrayList<Promotion_HotelVO> search(PromotionType promotionType){
+        ArrayList<Promotion_HotelVO> pvos = new ArrayList<Promotion_HotelVO>();
         pvos.add(promotionHotelVO);
         if(promotionType== PromotionType.Hotel_Birthday){
             return pvos;
@@ -85,8 +85,8 @@ public class MockPromotion extends Promotion{
      * @param HotelID
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<PromotionHotelVO> searchHotelPromotions(String HotelID){
-        ArrayList<PromotionHotelVO> pvos = new ArrayList<PromotionHotelVO>();
+    public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID){
+        ArrayList<Promotion_HotelVO> pvos = new ArrayList<Promotion_HotelVO>();
         pvos.add(promotionHotelVO);
         if(HotelID.equals("00000000")){
             return pvos;
@@ -100,9 +100,9 @@ public class MockPromotion extends Promotion{
      * 搜索所有的网站促销策略
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<PromotionWebVO> searchWebPromotions(){
-        ArrayList<PromotionWebVO> pvos = new ArrayList<PromotionWebVO>();
-        PromotionWebVO promotionWebVO = new PromotionWebVO("201610120103", PromotionType.Web_SpecilaDate, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, null, 0);
+    public ArrayList<Promotion_WebVO> searchWebPromotions(){
+        ArrayList<Promotion_WebVO> pvos = new ArrayList<Promotion_WebVO>();
+        Promotion_WebVO promotionWebVO = new Promotion_WebVO("201610120103", PromotionType.Web_SpecilaDate,  0.80,new DateUtil(2016,10,01), new DateUtil(2016,10,03));
         pvos.add(promotionWebVO);
             return pvos;
     }

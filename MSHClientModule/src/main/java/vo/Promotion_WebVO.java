@@ -1,14 +1,15 @@
 package vo;
 
 import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
- * Created by vivian on 16/10/24.
+ * Created by vivian on 16/11/13.
  */
-public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO{
+public class Promotion_WebVO extends PromotionVO{
 
     /**
      * 策略执行开始日期
@@ -28,29 +29,30 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO{
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
      */
-    public Promotion_HotelSpecialDateVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
+    public Promotion_WebVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
         super(promotionID, promotionType, promotionDiscount);
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
+
     public boolean equals(Object o){
-        if (o instanceof Promotion_HotelSpecialDateVO) {
-            Promotion_HotelSpecialDateVO promotion_HotelSpecialDateVO = (Promotion_HotelSpecialDateVO) o;
-            return compareData(promotion_HotelSpecialDateVO);
+        if (o instanceof Promotion_WebVO) {
+            Promotion_WebVO PromotionWebVO = (Promotion_WebVO) o;
+            return compareData(PromotionWebVO);
         }
         return false;
     }
 
-        public int hashCode() {
-            return promotionID.hashCode();
-        }
+    public int hashCode() {
+        return promotionID.hashCode();
+    }
 
-    private boolean compareData(Promotion_HotelSpecialDateVO pvo) {
+    private boolean compareData(Promotion_WebVO pvo) {
         return judgeEqual(pvo.promotionID, this.promotionID)
                 && judgeEqual(pvo.promotionType, this.promotionType)
+                && judgeEqual(pvo.promotionDiscount,this.promotionDiscount)
                 && judgeEqual(pvo.startDate,this.startDate)
-                && judgeEqual(pvo.endDate,this.endDate)
-                && judgeEqual(pvo.promotionDiscount,this.promotionDiscount);
+                && judgeEqual(pvo.endDate,this.endDate);
     }
 }

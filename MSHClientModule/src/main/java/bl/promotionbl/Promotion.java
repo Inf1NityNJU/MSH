@@ -2,12 +2,10 @@ package bl.promotionbl;
 
 import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.promotiondataservice.PromotionDataService_Stub;
-import po.PromotionHotelPO;
 import util.PromotionType;
 import util.ResultMessage;
-import vo.PromotionHotelVO;
-import vo.PromotionWebVO;
-
+import vo.Promotion_HotelVO;
+import vo.Promotion_WebVO;
 
 
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class Promotion {
      * @param promotionVO
      * @return 添加成功与否
      */
-    public ResultMessage add(PromotionHotelVO promotionVO){return null;}
+    public ResultMessage add(Promotion_HotelVO promotionVO){return null;}
 
     /**
      * 删除一个促销策略
@@ -40,7 +38,7 @@ public class Promotion {
      * @param promotionVO
      * @return 更新成功与否
      */
-    public ResultMessage update(String promotionID , PromotionHotelVO promotionVO){
+    public ResultMessage update(String promotionID , Promotion_HotelVO promotionVO){
 
         return null;
     }
@@ -50,7 +48,7 @@ public class Promotion {
      * @param promotionID
      * @return 符合条件的策略VO
      */
-    public PromotionHotelVO searchByID(String promotionID) {
+    public Promotion_HotelVO searchByID(String promotionID) {
         return null;
     }
 
@@ -59,7 +57,7 @@ public class Promotion {
      * @param promotionType
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<PromotionHotelVO> search(PromotionType promotionType){
+    public ArrayList<Promotion_HotelVO> search(PromotionType promotionType){
         return null;
     }
 
@@ -68,7 +66,7 @@ public class Promotion {
      * @param HotelID
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<PromotionHotelVO> searchHotelPromotions(String HotelID){
+    public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID){
         return null;
     }
 
@@ -76,7 +74,7 @@ public class Promotion {
      * 搜索所有的网站促销策略
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<PromotionWebVO> searchWebPromotions(){
+    public ArrayList<Promotion_WebVO> searchWebPromotions(){
         return null;
     }
 

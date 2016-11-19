@@ -1,6 +1,6 @@
 package dataservice.promotiondataservice;
 
-import po.PromotionHotelPO;
+import po.PromotionPO;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
@@ -11,7 +11,7 @@ import util.ResultMessage;
 public class PromotionDataService_Driver {
 
     public void drive(PromotionDataService promotionDataService){
-        ResultMessage result = promotionDataService.addPromotion(new PromotionHotelPO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, 0));
+        ResultMessage result = promotionDataService.addPromotion(new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80, "2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, "XINJIEKOU", 0));
         if(result== ResultMessage.SUCCESS){
             System.out.println("Add Success");
         }else{
@@ -25,14 +25,14 @@ public class PromotionDataService_Driver {
             System.out.println("Delete Failed");
         }
 
-        result = promotionDataService.updatePromotion("201610130102", new PromotionHotelPO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, 0));
+        result = promotionDataService.updatePromotion("201610130102", new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03", "VivianCompany" ,"00000000",1, "XINJIEKOU", 0));
         if(result== ResultMessage.SUCCESS){
             System.out.println("Update Success");
         }else{
             System.out.println("Update Failed");
         }
 
-        PromotionHotelPO ppo = promotionDataService.searchByPromotionID("201610130102");
+        PromotionPO ppo = promotionDataService.searchByPromotionID("201610130102");
         if(ppo!=null){
             System.out.println("Get Success");
         }else{
