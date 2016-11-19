@@ -19,7 +19,7 @@ public class UserPO {
     }
 
     public UserPO() {
-        
+
     }
 
     public String getAccount() {
