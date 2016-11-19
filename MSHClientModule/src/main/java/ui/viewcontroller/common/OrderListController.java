@@ -1,10 +1,11 @@
-package ui.componentcontroller.order;
+package ui.viewcontroller.common;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
+import ui.componentcontroller.order.OrderCellController;
 
 import java.io.IOException;
 
@@ -41,14 +42,19 @@ public class OrderListController {
             for (int i = 0; i < num; i++) {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
-                HBox pane = loader.load();
+                HBox ordercell = loader.load();
+                OrderCellController orderCellController = loader.getController();
+                orderCellController.setOrderListController(this);
 
-                contentVBox.getChildren().add(pane);
+                contentVBox.getChildren().add(ordercell);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void someMethodToTest() {
+        System.out.print("Just test");
     }
 
 }

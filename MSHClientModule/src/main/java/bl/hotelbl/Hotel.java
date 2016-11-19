@@ -1,10 +1,8 @@
 package bl.hotelbl;
 
-import dataimpl.Hotel.HotelDataServiceFactory;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
-import util.HotelNotFoundException;
-import util.InfoInvalidException;
 import util.ResultMessage;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;
@@ -49,8 +47,10 @@ public class Hotel {
             return hotelDetailVO;
         }
         //cache中未找到
-        //TODO
-        return null;
+        HotelPO hotelPO=hotelDataService.getHotel(hotelID);
+        Hotel_DetailVO hotel_detailVO=poToVO(hotelPO);
+        cache.put(hotelPO.getID(),hotel_detailVO);
+        return poToVO(hotelPO);
     }
 
     /**

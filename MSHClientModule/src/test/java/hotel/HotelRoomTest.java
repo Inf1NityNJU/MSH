@@ -1,7 +1,8 @@
 package hotel;
 
+import bl.hotelbl.HotelBLFactory;
 import bl.hotelbl.HotelRoom;
-import bl.hotelbl.MockHotelRoom;
+import blservice.hotelblservice.HotelBLService;
 import org.junit.Test;
 import util.ResultMessage;
 import util.RoomType;
@@ -12,43 +13,51 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- * Created by SilverNarcissus on 16/11/5.
+ * Created by SilverNarcissus on 2016/11/18.
  */
 public class HotelRoomTest {
-    private HotelRoom hotelRoom;
-    RoomType type = RoomType.DoubleDouble;
-    RoomType type2;
-    //Test constant
-    private static final String testHotelID = "000000";
-    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000",null, 0, 0, null);
-    private static final RoomType testType = RoomType.SingleRoom;
+    private HotelBLService hotelBLService=HotelBLFactory.getHotelBLService();
 
-
-    public HotelRoomTest() {
-        hotelRoom = new MockHotelRoom();
+    @Test
+    public void getRoom() throws Exception {
+        ArrayList<HotelRoomVO>hotelRoomVOs=hotelBLService.getRoom("00000001");
+        assertEquals(2,hotelRoomVOs.size());
+        assertEquals(10,hotelRoomVOs.get(0).roomStockVOs.get(0).availableQuantity);
     }
 
     @Test
-    public void testGetHotelRoom() {
-        ArrayList<HotelRoomVO> hotelRoomVOs = hotelRoom.getRoom(testHotelID);
-        assertFalse(hotelRoomVOs.isEmpty());
+    public void updateHotelRoom() throws Exception {
+        HotelRoomVO hotelRoomVO=new HotelRoomVO("00000001", RoomType.DoubleRoom,488.8,50,null);
+        ResultMessage resultMessage=hotelBLService.updateHotelRoom(hotelRoomVO);
+        assertEquals(ResultMessage.SUCCESS,resultMessage);
     }
 
     @Test
-    public void testAddHotelRoom() {
-        ResultMessage resultMessage = hotelRoom.addRoom(testHotelRoomVO);
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    public void updateHotelRoomQuantity() throws Exception {
+
     }
 
     @Test
-    public void testUpdateHotelRoomInfo() {
-        ResultMessage resultMessage = hotelRoom.updateHotelRoom(testHotelRoomVO);
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    public void addRoom() throws Exception {
+        HotelRoomVO hotelRoomVO=new HotelRoomVO("00000001", RoomType.SingleRoom,288.8,10,null);
+        ResultMessage resultMessage=hotelBLService.addRoom(hotelRoomVO);
+        assertEquals(ResultMessage.SUCCESS,resultMessage);
     }
 
     @Test
-    public void testDeleteHotelRoom() {
-        ResultMessage resultMessage = hotelRoom.deleteHotelRoom(testHotelID, testType);
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    public void deleteHotelRoom() throws Exception {
+        ResultMessage resultMessage=hotelBLService.deleteHotelRoom("00000001",RoomType.SingleRoom);
+        assertEquals(ResultMessage.SUCCESS,resultMessage);
     }
+
+    @Test
+    public void setRoomWillBeCancel() throws Exception {
+
+    }
+
+    @Test
+    public void isOrdered() throws Exception {
+
+    }
+
 }

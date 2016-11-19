@@ -1,9 +1,14 @@
-package dataimpl.User;
+package dataimpl.user;
 
+import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import org.junit.Test;
+import po.ClientPO;
+import util.DateUtil;
+import util.LoginState;
+import util.ResultMessage;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Kray on 2016/11/18.
@@ -24,7 +29,8 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void logout() throws Exception {
-
+        LoginState loginState = userDataService.logout();
+        assertEquals(LoginState.LOGOUT, loginState);
     }
 
     @Test
@@ -34,7 +40,9 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void addClient() throws Exception {
-
+//        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000007", "KrayC", 500, 1, new DateUtil(2015, 10, 10),
+//                "18795963603", "no_enterprise", "songkuixi", "123456"));
+//        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test

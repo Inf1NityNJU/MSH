@@ -1,4 +1,4 @@
-package dataimpl.Hotel;
+package dataimpl.hoteldataimpl;
 
 import datahelper.DataHelper;
 import dataservice.hoteldataservice.HotelDataService;
@@ -47,7 +47,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ArrayList<HotelRoomPO> getRoom(String hotelID) {
-        return dataHelper.suffixMatchQuery(HotelRoomPO.class, "hotelID", hotelID);
+        return dataHelper.prefixMatchQuery(HotelRoomPO.class, "hotelID", hotelID);
     }
 
     @Override
@@ -72,12 +72,12 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ResultMessage deleteHotel(String hotelID) {
-        return dataHelper.delete(HotelPO.class,hotelID,"ID");
+        return dataHelper.delete(HotelPO.class, "ID", hotelID);
     }
 
     @Override
     public ResultMessage deleteRoom(String roomID) {
-        return dataHelper.delete(HotelRoomPO.class,roomID,"ID");
+        return dataHelper.delete(HotelRoomPO.class, "ID", roomID);
     }
 
     @Override
@@ -92,11 +92,11 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ResultMessage deleteRoomStock(String roomStockID) {
-        return dataHelper.delete(RoomStockPO.class,roomStockID,"ID");
+        return dataHelper.delete(RoomStockPO.class, "ID", roomStockID);
     }
 
     @Override
-    public RoomStockPO getRoomStock(String roomStockID) {
-        return dataHelper.exactlyQuery(RoomStockPO.class, "ID", roomStockID);
+    public ArrayList<RoomStockPO> getRoomStock(String hotelRoomID) {
+        return dataHelper.prefixMatchQuery(RoomStockPO.class, "ID", hotelRoomID);
     }
 }

@@ -4,6 +4,8 @@ import util.DateUtil;
 
 import java.util.Date;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
@@ -131,5 +133,48 @@ public class ClientPO{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * 比较两个PO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ClientPO) {
+            ClientPO clientPO = (ClientPO) o;
+            return compareData(clientPO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return clientID.hashCode();
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param clientPO
+     * @return 比较结果
+     */
+    private boolean compareData(ClientPO clientPO) {
+        return judgeEqual(clientID, clientPO.clientID)
+                && judgeEqual(clientName, clientPO.clientName)
+                && judgeEqual(credit, clientPO.credit)
+                && judgeEqual(contactInfo, clientPO.contactInfo)
+                && judgeEqual(account, clientPO.account)
+                && judgeEqual(password, clientPO.password)
+                && judgeEqual(level, clientPO.level)
+                && judgeEqual(birthday, clientPO.birthday)
+                && judgeEqual(enterprise, clientPO.enterprise);
     }
 }

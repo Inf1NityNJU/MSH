@@ -1,6 +1,6 @@
 package bl.hotelbl;
 
-import dataimpl.Hotel.HotelDataServiceFactory;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -9,8 +9,8 @@ import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
-import vo.Hotel_DetailVO;
 import vo.RoomChangeInfoVO;
+import vo.RoomStockVO;
 
 import java.util.*;
 
@@ -34,8 +34,22 @@ public class HotelRoom {
      * @return 符合ID的酒店房间VO
      */
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
-        //TODO
-        return null;
+        ArrayList<HotelRoomVO> result=new ArrayList<HotelRoomVO>();
+        for(HotelRoomPO hotelRoomPO:hotelDataService.getRoom(hotelID)){
+            HotelRoomVO hotelRoomVO=roomPOToRoomVO(hotelRoomPO);
+            //添加roomStock
+            ArrayList<RoomStockVO> roomStockVOs=new ArrayList<RoomStockVO>();
+            //
+            for(RoomStockPO roomStockPO:hotelDataService.getRoomStock(hotelRoomPO.getHotelID())){
+                roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
+            }
+            hotelRoomVO.roomStockVOs=roomStockVOs;
+            //写入cache
+            cache.put(hotelRoomPO.getID(),hotelRoomVO);
+            //保存到result
+            result.add(hotelRoomVO);
+        }
+        return result;
     }
 
     /**
@@ -43,11 +57,15 @@ public class HotelRoom {
      *
      * @param rvo
      * @return 修改成功与否
-     * @throws InfoInvalidException
      */
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
-        //TODO
-        return null;
+        ResultMessage resultMessage=deleteHotelRoom(rvo.hotelID,rvo.roomType);
+        //
+        if(resultMessage==ResultMessage.SUCCESS){
+            addRoom(rvo);
+        }
+        //
+        return resultMessage;
     }
 
     /**
@@ -71,19 +89,30 @@ public class HotelRoom {
     public ResultMessage addRoom(HotelRoomVO rvo) {
         HotelRoomPO hotelRoomPO = roomVOToRoomPO(rvo);
         Calendar c = Calendar.getInstance();
-        ResultMessage resultMessage=hotelDataService.addRoom(hotelRoomPO);
+        ResultMessage resultMessage = hotelDataService.addRoom(hotelRoomPO);
+        //保存放在HotelRoomVO里面的roomStockVO
+        ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
         //
-        if(resultMessage==ResultMessage.SUCCESS) {
+        if (resultMessage == ResultMessage.SUCCESS) {
             for (int i = 0; i < MAX_AVAILABLE_DAYS; i++) {
-                hotelDataService.addRoomStock(new RoomStockPO(generateID(hotelRoomPO.getID(), i)
+                //
+                RoomStockPO roomStockPO = new RoomStockPO(generateID(hotelRoomPO.getID(), i)
                         , hotelRoomPO.getHotelID()
                         , hotelRoomPO.getRoomType()
                         , hotelRoomPO.getTotalQuantity()
                         , new DateUtil().toString()
-                ));
+                );
+                //将roomStockPO写入数据库
+                hotelDataService.addRoomStock(roomStockPO);
+                //
+                roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
+            //保存放在HotelRoomVO里面的roomStockVO
+            rvo.roomStockVOs = roomStockVOs;
+            //
+            cache.put(hotelRoomPO.getID(),rvo);
         }
-        //TODO cache missing
+
         return resultMessage;
     }
 
@@ -94,8 +123,17 @@ public class HotelRoom {
      * @return 删除成功与否
      */
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
-        //TODO
-        return null;
+        String hotelRoomID=generateID(hotelID,type.ordinal());
+        ResultMessage resultMessage=hotelDataService.deleteRoom(hotelRoomID);
+        if(resultMessage==ResultMessage.SUCCESS){
+            //
+            cache.remove(hotelRoomID);
+            //删除房间的roomStock
+            for(RoomStockPO roomStockPO:hotelDataService.getRoomStock(hotelRoomID)){
+                hotelDataService.deleteRoomStock(roomStockPO.getID());
+            }
+        }
+        return resultMessage;
     }
 
     /**
@@ -110,7 +148,32 @@ public class HotelRoom {
                 , hotelRoomVO.roomType
                 , hotelRoomVO.price
                 , hotelRoomVO.totalQuantity
-                ,false);
+                , false);
+    }
+
+    /**
+     * 将hotelRoomPO转换为hotelRoomVO
+     *
+     * @param hotelRoomPO
+     * @return hotelRoomVO
+     */
+    private HotelRoomVO roomPOToRoomVO(HotelRoomPO hotelRoomPO) {
+        return hotelRoomPO == null ? null : new HotelRoomVO(hotelRoomPO.getHotelID()
+                , hotelRoomPO.getRoomType()
+                , hotelRoomPO.getPrice()
+                , hotelRoomPO.getTotalQuantity()
+                , null);
+    }
+
+    /**
+     * 将roomStockPO转换为roomStockVO
+     *
+     * @param roomStockPO
+     * @return roomStockVO
+     */
+    private RoomStockVO roomStockPOToRoomStockVO(RoomStockPO roomStockPO) {
+        return roomStockPO == null ? null : new RoomStockVO(roomStockPO.getAvailableQuantity()
+                , new DateUtil(roomStockPO.getDate()));
     }
 
     /**

@@ -1,4 +1,4 @@
-package dataimpl.User;
+package dataimpl.userdataimpl;
 
 import datahelper.DataHelperFactory;
 import datahelper.DataHelper;
@@ -9,6 +9,9 @@ import dataservice.userdataservice.UserDataService;
  */
 public class UserDataServiceFactory {
     private static UserDataServiceImpl userDataService;
+
+    //C,S,S DataHelper都继承UserDataHelper或者实现DataHelper接口
+    //然后每个工厂方法返回特定的那个Helper
 
     /**
      * 得到一个UserDataService实例

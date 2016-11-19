@@ -111,6 +111,7 @@ public class HotelPO {
         this.introduction = introduction;
         this.facilities = facilities;
     }
+
     public HotelPO(){
 
     }

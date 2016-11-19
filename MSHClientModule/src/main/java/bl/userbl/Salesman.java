@@ -1,8 +1,12 @@
 package bl.userbl;
 
+import dataimpl.userdataimpl.UserDataServiceFactory;
+import dataservice.userdataservice.UserDataService;
+import po.SalesmanPO;
 import util.LoginState;
 import util.ResultMessage;
 import vo.SalesmanVO;
+import vo.UserVO;
 
 import java.util.ArrayList;
 
@@ -11,6 +15,14 @@ import java.util.ArrayList;
  */
 public class Salesman extends User {
 
+    private UserDataService userDataService;
+    private String account;
+    private String password;
+
+
+    public Salesman() {
+        this.userDataService = UserDataServiceFactory.getSalesmanDataService();
+    }
     /**
      * 登录
      *
@@ -19,23 +31,26 @@ public class Salesman extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        if (true) {
-            //去DB找
+        LoginState loginState = userDataService.login(account, password);
+        if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
+            System.out.println("LOGIN Salesman");
             super.setCurrentID("STRING FROM DB");
-            return LoginState.LOGIN_SUCCESS_Staff;
-        } else {
-            return LoginState.LOGIN_FAIL;
+            this.account = account;
+            this.password = password;
         }
+        return loginState;
     }
 
     /**
      * 增加网站营销人员
      *
-     * @param salesmanVO
+     * @param userVO
      * @return 是否增加成功
      */
-    public ResultMessage add(SalesmanVO salesmanVO) {
-        return null;
+    public ResultMessage add(UserVO userVO) {
+        SalesmanVO SalesmanVO = (SalesmanVO)userVO;
+        SalesmanPO SalesmanPO = new SalesmanPO(SalesmanVO.salesmanID, SalesmanVO.salesmanName, account, password);
+        return userDataService.addSalesman(SalesmanPO);
     }
 
     /**
@@ -45,17 +60,25 @@ public class Salesman extends User {
      * @return 符合ID的SalesmanVO
      */
     public SalesmanVO searchByID(String SalesmanID) {
-        return null;
+        SalesmanPO SalesmanPO = userDataService.searchSalesmanByID(SalesmanID);
+        if(SalesmanPO == null){
+            return null;
+        }else {
+            SalesmanVO SalesmanVO = new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName());
+            return SalesmanVO;
+        }
     }
 
     /**
      * 更新网站营销人员
      *
-     * @param salesmanVO
+     * @param userVO
      * @return 是否更新成功
      */
-    public ResultMessage update(SalesmanVO salesmanVO) {
-        return null;
+    public ResultMessage update(UserVO userVO) {
+        SalesmanVO SalesmanVO = (SalesmanVO)userVO;
+        SalesmanPO SalesmanPO = new SalesmanPO(SalesmanVO.salesmanID, SalesmanVO.salesmanName, account, password);
+        return userDataService.updateSalesman(SalesmanVO.salesmanID, SalesmanPO);
     }
 
     /**
@@ -65,7 +88,7 @@ public class Salesman extends User {
      * @return 是否删除成功
      */
     public ResultMessage delete(String salesmanID) {
-        return null;
+        return userDataService.deleteSalesman(salesmanID);
     }
 
     /**
@@ -75,7 +98,12 @@ public class Salesman extends User {
      * @return 符合关键词的所有网站营销人员
      */
     public ArrayList<SalesmanVO> search(String keyword) {
-        return null;
+        ArrayList<SalesmanPO> SalesmanPOs = userDataService.searchSalesman(keyword);
+        ArrayList<SalesmanVO> SalesmanVOs = new ArrayList<SalesmanVO>();
+        for(SalesmanPO SalesmanPO : SalesmanPOs){
+            SalesmanVOs.add(new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName()));
+        }
+        return SalesmanVOs;
     }
 
 }

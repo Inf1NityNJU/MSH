@@ -94,7 +94,7 @@ public class HibernateHelper implements DataHelper {
      * @param ID
      */
     @Override
-    public <T> ResultMessage delete(Class<T> classType, String ID, String key) {
+    public <T> ResultMessage delete(Class<T> classType, String key, String ID) {
         try {
             Object o = exactlyQuery(classType, key, ID);
             if (o == null) {

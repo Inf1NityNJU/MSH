@@ -14,7 +14,7 @@
       <Rectangle fill="#5b6e79" height="80.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <BorderPane prefHeight="80.0" prefWidth="1080.0" style="-fx-background-color: #f9f9f9;">
          <effect>
-            <DropShadow blurType="GAUSSIAN" color="#b8b8b880" height="0.0" offsetY="1.0" radius="0.0" width="0.0" />
+            <DropShadow blurType="GAUSSIAN" color="#b8b8b880" height="0.0" offsetY="1.0" radius="1.0" width="0.0" />
          </effect>
          <left>
             <Label text="MSH" textFill="#00cccc" BorderPane.alignment="CENTER">

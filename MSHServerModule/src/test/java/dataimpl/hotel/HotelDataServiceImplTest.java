@@ -1,8 +1,7 @@
-package data.hotel;
+package dataimpl.hotel;
 
-import dataimpl.Hotel.HotelDataServiceFactory;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
-import org.junit.Ignore;
 import org.junit.Test;
 import po.HotelPO;
 import po.HotelRoomPO;
@@ -26,11 +25,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void addHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000000", "Test hotel 1", "Nanjing University", Place.XIANLIN, 5, "The test hotel", "All"));
-        ResultMessage resultMessage1 = hotelDataService.addHotel(new HotelPO("00000001", "Test hotel 2", "Nanjing Medical University", Place.XIANLIN, 4, "The test hotel", "All"));
-        ResultMessage resultMessage2 = hotelDataService.addHotel(new HotelPO("00000002", "Test hotel 3", "Nanjing University", Place.XIANLIN, 3, "The test hotel", "All"));
-        ResultMessage resultMessage3 = hotelDataService.addHotel(new HotelPO("00000003", "Test hotel 4", "Nanjing University", Place.XIANLIN, 5, "The test hotel", "All"));
-        ResultMessage resultMessage4 = hotelDataService.addHotel(new HotelPO("00000004", "Test hotel 5", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000005", "Test hotel 6", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
 
     }
@@ -61,7 +56,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void updateHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("00000001", "Hotel", "Nanjing News University", Place.XIANLIN, 5, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("00000001", "hoteldataimpl", "Nanjing News University", Place.XIANLIN, 5, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
