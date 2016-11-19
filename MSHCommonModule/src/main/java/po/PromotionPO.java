@@ -1,5 +1,6 @@
 package po;
 
+import util.DateUtil;
 import util.PromotionType;
 
 /**
@@ -55,6 +56,12 @@ public class PromotionPO {
      * 执行策略所需的最低用户等级
      */
     private int clientGrade;
+
+
+    /**
+     * 客户生日
+     */
+    private String birthday;
 
     public String getPromotionID() {
         return promotionID;
@@ -136,17 +143,32 @@ public class PromotionPO {
         this.clientGrade = clientGrade;
     }
 
-    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount,String startDate, String endDate,  String companyName, String hotelID, int roomQuantity, String place, int clientGrade) {
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, String place, int clientGrade) {
 
         this.promotionID = promotionID;
         this.promotionType = promotionType;
+        this.promotionDiscount = promotionDiscount;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.promotionDiscount = promotionDiscount;
         this.companyName = companyName;
         this.hotelID = hotelID;
         this.roomQuantity = roomQuantity;
         this.place = place;
         this.clientGrade = clientGrade;
     }
+
+    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, String place, int clientGrade, String birthday) {
+        this(promotionID, promotionType, promotionDiscount, startDate, endDate, companyName, hotelID, roomQuantity, place, clientGrade);
+        this.birthday = birthday;
+    }
+
+    public PromotionPO(){}
 }

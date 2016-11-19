@@ -52,4 +52,10 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
                 && judgeEqual(pvo.promotionDiscount,this.promotionDiscount)
                 && judgeEqual(pvo.place,this.place);
     }
+
+    public PromotionPO toPO(Promotion_SpecialPlaceVO pvo) {
+        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
+                pvo.startDate.toString(), pvo.endDate.toString(),
+                null, null, 0, pvo.place.toString(), 0);
+    }
 }

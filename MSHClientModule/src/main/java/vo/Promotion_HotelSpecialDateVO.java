@@ -1,5 +1,6 @@
 package vo;
 
+import po.PromotionPO;
 import util.DateUtil;
 import util.PromotionType;
 
@@ -52,5 +53,11 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO{
                 && judgeEqual(pvo.startDate,this.startDate)
                 && judgeEqual(pvo.endDate,this.endDate)
                 && judgeEqual(pvo.promotionDiscount,this.promotionDiscount);
+    }
+
+    public PromotionPO toPO(Promotion_HotelSpecialDateVO pvo) {
+        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
+                pvo.startDate.toString(), pvo.endDate.toString(),
+                null, null, 0, null, 0);
     }
 }

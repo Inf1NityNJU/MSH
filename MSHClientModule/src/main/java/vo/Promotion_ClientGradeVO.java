@@ -1,5 +1,6 @@
 package vo;
 
+import po.PromotionPO;
 import util.DateUtil;
 import util.PromotionType;
 
@@ -49,4 +50,11 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
                 && judgeEqual(pvo.promotionDiscount,this.promotionDiscount)
                 && judgeEqual(pvo.clientGrade,this.clientGrade);
     }
+
+    public PromotionPO toPO(Promotion_ClientGradeVO pvo) {
+        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
+                pvo.startDate.toString(), pvo.endDate.toString(),
+                null, null, 0, null, pvo.clientGrade);
+    }
+
 }
