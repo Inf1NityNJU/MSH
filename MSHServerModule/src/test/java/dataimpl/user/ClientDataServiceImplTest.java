@@ -42,13 +42,8 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void addClient() throws Exception {
-<<<<<<< HEAD
-        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000007", "KrayC", 500, 1, new DateUtil(2015, 10, 10),
-                "18795963603", "no_enterprise", "songkuixi", "123456"));
-=======
         ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000003", "songkuixi", 500, 0,
                 "2016-02-02", "18795963603", "NO", "adminClient", "12345678"), new CreditPO("000000003"));
->>>>>>> 9ce127d88bc54ad432688c8a90de443810c1e426
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 

@@ -10,7 +10,7 @@ public class PricePair {
     public double maxPrice;
 
     public PricePair(double min, double max) {
-        maxPrice = min;
+        minPrice = min;
         maxPrice = max;
     }
 }

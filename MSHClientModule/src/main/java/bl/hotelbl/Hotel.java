@@ -52,10 +52,6 @@ public class Hotel {
         HotelPO hotelPO = hotelDataService.getHotel(hotelID);
         Hotel_DetailVO hotel_detailVO = poToVO(hotelPO);
         //
-        if(hotel_detailVO==null){
-            System.out.println("！！！！！！！");
-        }
-        //
         cache.put(hotelPO.getID(), hotel_detailVO);
         //
         hotel_detailVO.maxPrice = pricePair.maxPrice;
@@ -152,8 +148,12 @@ public class Hotel {
         double min = Double.MAX_VALUE;
         double max = 0;
         for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
-            min = Double.min(min, hotelRoomPO.getPrice());
-            max = Double.max(max, hotelRoomPO.getPrice());
+            if(min>hotelRoomPO.getPrice()){
+                min=hotelRoomPO.getPrice();
+            }
+            if(max<hotelRoomPO.getPrice()){
+                max=hotelRoomPO.getPrice();
+            }
         }
         //
         if (min == Double.MAX_VALUE) {
@@ -192,7 +192,7 @@ public class Hotel {
      * @return 被排列的酒店列表
      */
     public Iterator<Hotel_DetailVO> starAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        Collections.sort(hotel_detailVOs, new ScoreAscendingComparator());
+        Collections.sort(hotel_detailVOs, new StarAscendingComparator());
         return hotel_detailVOs.iterator();
     }
 
@@ -203,7 +203,7 @@ public class Hotel {
      * @return 被排列的酒店列表
      */
     public Iterator<Hotel_DetailVO> starDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        Collections.sort(hotel_detailVOs, new ScoreDescendingComparator());
+        Collections.sort(hotel_detailVOs, new StarDescendingComparator());
         return hotel_detailVOs.iterator();
     }
 
