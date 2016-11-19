@@ -7,6 +7,7 @@ import util.RoomType;
 import vo.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by SilverNarcissus on 16/11/5.
@@ -83,5 +84,35 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     @Override
     public ResultMessage isOrdered(String hotelID, RoomType type) {
         return hotelRoom.isOrdered(hotelID,type);
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> priceAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return hotel.priceAscendingSort(hotel_detailVOs);
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> priceDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return hotel.priceDescendingSort(hotel_detailVOs);
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> starAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return hotel.starAscendingSort(hotel_detailVOs);
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> starDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return hotel.starDescendingSort(hotel_detailVOs);
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> scoreAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return hotel.scoreAscendingSort(hotel_detailVOs);
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return hotel.scoreDescendingSort(hotel_detailVOs);
     }
 }

@@ -39,7 +39,7 @@ public class HotelRoomTest {
 
     @Test
     public void addRoom() throws Exception {
-        HotelRoomVO hotelRoomVO=new HotelRoomVO("00000001", RoomType.SingleRoom,288.8,10,null);
+        HotelRoomVO hotelRoomVO=new HotelRoomVO("00000002", RoomType.SingleRoom,256.8,10,null);
         ResultMessage resultMessage=hotelBLService.addRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS,resultMessage);
     }

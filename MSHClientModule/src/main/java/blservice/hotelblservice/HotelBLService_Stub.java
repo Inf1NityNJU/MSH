@@ -8,6 +8,7 @@ import vo.Hotel_DetailVO;
 import vo.RoomChangeInfoVO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by SilverNarcissus on 16/10/12.
@@ -95,6 +96,36 @@ public class HotelBLService_Stub implements HotelBLService {
 
     @Override
     public ResultMessage isOrdered(String hotelID, RoomType type) {
+        return null;
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> priceAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return null;
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> priceDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return null;
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> starAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return null;
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> starDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return null;
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> scoreAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return null;
+    }
+
+    @Override
+    public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
         return null;
     }
 }

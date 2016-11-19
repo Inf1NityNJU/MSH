@@ -40,6 +40,14 @@ public class Hotel_DetailVO {
      * 酒店评分评价
      */
     public AssessmentVO assessmentVO;
+    /**
+     * 最小房间价格
+     */
+    public double minPrice;
+    /**
+     * 最大房间价格
+     */
+    public double maxPrice;
 
     public Hotel_DetailVO(String ID, String name, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO) {
         this.ID = ID;

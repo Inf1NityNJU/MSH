@@ -24,4 +24,5 @@ public interface DataHelper {
     public <T> ArrayList<T> fuzzyMatchQuery(Class<T> classType, String field, String value);
 
     public <T> ArrayList<T> rangeQuery(Class<T> classType, String field, Object min, Object max);
+
 }
