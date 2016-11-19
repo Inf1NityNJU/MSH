@@ -5,7 +5,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class SalesmanPO {
+public class SalesmanPO extends UserPO {
     /**
      * 网站营销人员ID
      */

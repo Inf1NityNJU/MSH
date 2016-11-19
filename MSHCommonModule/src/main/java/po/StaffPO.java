@@ -5,7 +5,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class StaffPO {
+public class StaffPO extends UserPO {
     /**
      * 酒店工作人员ID
      */

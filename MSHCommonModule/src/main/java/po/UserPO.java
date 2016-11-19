@@ -18,6 +18,10 @@ public class UserPO {
         this.password = password;
     }
 
+    public UserPO() {
+        
+    }
+
     public String getAccount() {
         return account;
     }
@@ -33,4 +37,5 @@ public class UserPO {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

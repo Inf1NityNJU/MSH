@@ -2,10 +2,7 @@ package dataimpl.userdataimpl;
 
 import datahelper.DataHelper;
 import dataservice.userdataservice.UserDataService;
-import po.ClientPO;
-import po.CreditPO;
-import po.SalesmanPO;
-import po.StaffPO;
+import po.*;
 import util.LoginState;
 import util.ResultMessage;
 
@@ -26,15 +23,25 @@ public class UserDataServiceImpl implements UserDataService {
     public LoginState login(String account, String password) {
         System.out.println(account);
         System.out.println(password);
-        if(userDataHelper.exactlyQuery(SalesmanPO.class, "account", account) != null
-                && userDataHelper.exactlyQuery(SalesmanPO.class, "password", password) != null){
-            return LoginState.LOGIN_SUCCESS_Salesman;
-        }else if(userDataHelper.exactlyQuery(StaffPO.class, "account", account) != null
-                && userDataHelper.exactlyQuery(StaffPO.class, "password", password) != null){
-            return LoginState.LOGIN_SUCCESS_Staff;
-        }else if(userDataHelper.exactlyQuery(ClientPO.class, "account", account) != null
-                && userDataHelper.exactlyQuery(ClientPO.class, "password", password) != null){
-            return LoginState.LOGIN_SUCCESS_Client;
+        UserPO userPO;
+        if((userPO = userDataHelper.exactlyQuery(ClientPO.class, "account", account)) != null){
+            if(userPO.getPassword().equals(userDataHelper.exactlyQuery(ClientPO.class, "password", password).getPassword())){
+                return LoginState.LOGIN_SUCCESS_Client;
+            }else{
+                return LoginState.LOGIN_FAIL;
+            }
+        }else if((userPO = userDataHelper.exactlyQuery(StaffPO.class, "account", account)) != null){
+            if(userPO.getPassword().equals(userDataHelper.exactlyQuery(StaffPO.class, "password", password).getPassword())){
+                return LoginState.LOGIN_SUCCESS_Staff;
+            }else{
+                return LoginState.LOGIN_FAIL;
+            }
+        }else if((userPO = userDataHelper.exactlyQuery(SalesmanPO.class, "account", account)) != null){
+            if(userPO.getPassword().equals(userDataHelper.exactlyQuery(SalesmanPO.class, "password", password).getPassword())){
+                return LoginState.LOGIN_SUCCESS_Salesman;
+            }else{
+                return LoginState.LOGIN_FAIL;
+            }
         }else{
             return LoginState.LOGIN_FAIL;
         }

@@ -9,7 +9,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class ClientPO{
+public class ClientPO extends UserPO{
     /**
      * 客户ID
      */
