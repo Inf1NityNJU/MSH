@@ -12,11 +12,12 @@ public class MockOrder extends Order {
 
     /**
      * 修改订单房间数量
+     *
      * @param type
      * @param quantity
      * @return 是否成功修改
      */
-    public ResultMessage modifyRoomQuantity(RoomType type, int quantity){
+    public ResultMessage modifyRoomQuantity(RoomType type, int quantity) {
         if (type == RoomType.SingleRoom) {
             return ResultMessage.FAILED;
         } else {
@@ -26,6 +27,7 @@ public class MockOrder extends Order {
 
     /**
      * 得到账单
+     *
      * @param date
      * @param start
      * @param end
@@ -34,13 +36,14 @@ public class MockOrder extends Order {
      * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity){
+    public BillVO getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity) {
         Promotion_HotelVO hotelPromotion = new Promotion_HotelVO("201610130101", PromotionType.Hotel_Birthday, 0.80);
         return new BillVO(hotelPromotion, null, 300, 300);
     }
 
     /**
      * 生成订单
+     *
      * @param latest
      * @param peopleQuantity
      * @param hasChildren
@@ -52,6 +55,7 @@ public class MockOrder extends Order {
 
     /**
      * 撤销订单
+     *
      * @param orderID
      * @return 是否成功撤销
      */
@@ -65,6 +69,7 @@ public class MockOrder extends Order {
 
     /**
      * 更新入住
+     *
      * @param orderID
      * @param time
      * @return 是否成功
@@ -79,6 +84,7 @@ public class MockOrder extends Order {
 
     /**
      * 更新退房
+     *
      * @param orderID
      * @param time
      * @return 是否成功
@@ -93,6 +99,7 @@ public class MockOrder extends Order {
 
     /**
      * 编辑评分评价
+     *
      * @param orderID
      * @param assessment
      * @return 是否成功
@@ -107,6 +114,7 @@ public class MockOrder extends Order {
 
     /**
      * 通过订单ID搜索订单
+     *
      * @param orderID
      * @return OrderVO
      */
@@ -116,7 +124,7 @@ public class MockOrder extends Order {
             OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
             rooms.add(room1);
 
-            return new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+            return new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                     new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                     null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
         } else {
@@ -126,6 +134,7 @@ public class MockOrder extends Order {
 
     /**
      * 通过订单ID搜索订单
+     *
      * @param orderID
      * @return OrderVO
      */
@@ -141,6 +150,7 @@ public class MockOrder extends Order {
 
     /**
      * 通过订单ID搜索评分评价
+     *
      * @param orderID
      * @return AssessmentVO
      */
@@ -154,6 +164,7 @@ public class MockOrder extends Order {
 
     /**
      * 通过订单状态、关键字搜索订单
+     *
      * @param os
      * @param keyword
      * @return OrderVO列表
@@ -165,46 +176,50 @@ public class MockOrder extends Order {
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
 
-        OrderVO order1 = new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        OrderVO order1 = new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
-                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
 
-        OrderVO order2 = new OrderVO("20161012010112340001", "01011234", "000000001", rooms,
+        OrderVO order2 = new OrderVO("20161012010112340001", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), new TimeUtil(2016, 10, 12, 14, 0, 0), null,
-                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5,5,5,5, "很好很舒适"));
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5, 5, 5, 5, "很好很舒适"));
 
-        OrderVO order3 = new OrderVO("20161012010112340002", "01011234", "000000001", rooms,
+        OrderVO order3 = new OrderVO("20161012010112340002", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
-                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Abnormal, new BillVO(null, null, 300, 280), null);
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Abnormal, new BillVO(null, null, 300, 280), null);
 
-        OrderVO order4 = new OrderVO("20161012010112340003", "01011234", "000000001", rooms,
+        OrderVO order4 = new OrderVO("20161012010112340003", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null);
 
-        switch (os) {
-            case Unexecuted:
-                orderVOs.add(order1);
-                break;
-            case Executed:
-                orderVOs.add(order2);
-                break;
-            case Abnormal:
-                orderVOs.add(order3);
-                break;
-            case Cancelled:
-                orderVOs.add(order4);
-                break;
-            default:
-                orderVOs.add(order1);
-                orderVOs.add(order2);
-                orderVOs.add(order3);
-                orderVOs.add(order4);
+        if (os != null) {
+            switch (os) {
+                case Unexecuted:
+                    orderVOs.add(order1);
+                    break;
+                case Executed:
+                    orderVOs.add(order2);
+                    break;
+                case Abnormal:
+                    orderVOs.add(order3);
+                    break;
+                case Cancelled:
+                    orderVOs.add(order4);
+                    break;
+            }
+        } else {
+            orderVOs.add(order1);
+            orderVOs.add(order2);
+            orderVOs.add(order3);
+            orderVOs.add(order4);
         }
+
         return orderVOs;
     }
 
     /**
      * 通过客户ID、订单状态、关键字搜索订单
+     *
      * @param clientID
      * @param os
      * @param keyword
@@ -220,6 +235,7 @@ public class MockOrder extends Order {
 
     /**
      * 通过酒店ID、订单状态、关键字搜索订单
+     *
      * @param hotelID
      * @param os
      * @param keyword

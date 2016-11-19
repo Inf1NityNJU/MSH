@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.rectbutton.RectButton?>
-<?import component.statusbutton.StatusButton?>
+<?import component.statebutton.StateButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -37,12 +37,12 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="bookDateLabel" text="2016-11-18" textFill="#cccccc" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="orderDateLabel" text="2016-11-18" textFill="#cccccc" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <StatusButton fx:id="statusLabel" alignment="CENTER" colorProperty="00cccc" isActiveProperty="true" text="已执行" AnchorPane.rightAnchor="0.0" />
+            <StateButton fx:id="stateLabel" alignment="CENTER" colorProperty="00cccc" isActiveProperty="true" text="已执行" AnchorPane.rightAnchor="0.0" />
             <Label fx:id="hotelNameLabel" text="喵喵喵酒店" textFill="#5b6e79" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="PingFang SC Regular" size="18.0" />
@@ -63,13 +63,18 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="PriceLabel" layoutX="20.0" layoutY="20.0" text="¥ 1200" textFill="#ff2c14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+            <Label fx:id="priceLabel" layoutX="20.0" layoutY="20.0" text="¥ 1200" textFill="#ff2c14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <font>
                   <Font name="PingFang SC Regular" size="20.0" />
                </font>
             </Label>
             <HBox alignment="TOP_RIGHT" layoutX="428.0" layoutY="41.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
+                  <Label fx:id="assessmentLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="已评价" textFill="#cccccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="14.0" />
+                     </font>
+                  </Label>
                   <RectButton fx:id="assessmentButton" isActiveProperty="false" sizeProperty="Small" text="评价" />
                   <RectButton fx:id="detailButton" sizeProperty="Small" text="查看详情" />
                </children>

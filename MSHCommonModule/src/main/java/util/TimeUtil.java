@@ -59,4 +59,21 @@ public class TimeUtil {
                 && judgeEqual(sec, timeUtil.sec);
     }
 
+    @Override
+    public String toString() {
+        String hour = String.valueOf(this.hour);
+        String min = String.valueOf(this.min);
+        String sec = String.valueOf(this.sec);
+        if (hour.length() == 1) {
+            hour = "0" + hour;
+        }
+        if (min.length() == 1) {
+            min = "0" + min;
+        }
+        if (sec.length() == 1 ) {
+            sec = "0" + sec;
+        }
+        return date.toString()+ " " + hour + ":" + min + ":" + sec;
+    }
+
 }

@@ -62,7 +62,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void updateRoom() throws Exception {
-        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("0000000100", "000001", RoomType.Suite, 888.5, 2,false));
+        ResultMessage resultMessage = hotelDataService.updateRoom(new HotelRoomPO("0000000100", "000001", RoomType.SuiteRoom, 888.5, 2,false));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 

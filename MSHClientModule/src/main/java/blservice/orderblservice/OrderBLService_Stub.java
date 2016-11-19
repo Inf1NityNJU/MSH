@@ -82,7 +82,7 @@ public class OrderBLService_Stub implements OrderBLService {
             ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
             OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
             rooms.add(room1);
-            return new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+            return new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                     new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                     null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
         } else {
@@ -97,41 +97,44 @@ public class OrderBLService_Stub implements OrderBLService {
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
 
-        OrderVO order1 = new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        OrderVO order1 = new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
-                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null);
 
-        OrderVO order2 = new OrderVO("20161012010112340001", "01011234", "000000001", rooms,
+        OrderVO order2 = new OrderVO("20161012010112340001", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), new TimeUtil(2016, 10, 12, 14, 0, 0), null,
-                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5,5,5,5, "很好很舒适"));
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5,5,5,5, "很好很舒适"));
 
-        OrderVO order3 = new OrderVO("20161012010112340002", "01011234", "000000001", rooms,
+        OrderVO order3 = new OrderVO("20161012010112340002", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
-                null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Abnormal, new BillVO(null, null, 300, 280), null);
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Abnormal, new BillVO(null, null, 300, 280), null);
 
-        OrderVO order4 = new OrderVO("20161012010112340003", "01011234", "000000001", rooms,
+        OrderVO order4 = new OrderVO("20161012010112340003", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null);
 
-        switch (os) {
-            case Unexecuted:
-                orderVOs.add(order1);
-                break;
-            case Executed:
-                orderVOs.add(order2);
-                break;
-            case Abnormal:
-                orderVOs.add(order3);
-                break;
-            case Cancelled:
-                orderVOs.add(order4);
-                break;
-            default:
-                orderVOs.add(order1);
-                orderVOs.add(order2);
-                orderVOs.add(order3);
-                orderVOs.add(order4);
+        if (os != null) {
+            switch (os) {
+                case Unexecuted:
+                    orderVOs.add(order1);
+                    break;
+                case Executed:
+                    orderVOs.add(order2);
+                    break;
+                case Abnormal:
+                    orderVOs.add(order3);
+                    break;
+                case Cancelled:
+                    orderVOs.add(order4);
+                    break;
+            }
+        } else {
+            orderVOs.add(order1);
+            orderVOs.add(order2);
+            orderVOs.add(order3);
+            orderVOs.add(order4);
         }
+
         return orderVOs;
     }
 

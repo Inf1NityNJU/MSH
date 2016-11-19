@@ -88,11 +88,11 @@ public class ClientTest {
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
-        ResultMessage rm = client.addCreditByID("000000007", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        ResultMessage rm = client.addCreditByID("000000007", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 11, 1)));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 11, 1)));
         assertEquals(ResultMessage.FAILED, rm);
@@ -104,7 +104,7 @@ public class ClientTest {
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
         rooms.add(room1);
         ArrayList<CreditVO> acvo = new ArrayList<CreditVO>();
-        acvo.add(new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", rooms,
+        acvo.add(new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340000", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 10, 12)));
         for (int i = 0; i < acvo.size(); i++) {
@@ -116,7 +116,7 @@ public class ClientTest {
         }
 
         acvo.clear();
-        acvo.add(new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340003", "01011234", "000000004", rooms,
+        acvo.add(new CreditVO(200, 700, CreditAction.ADD_CREDIT, new OrderVO("20161012010112340003", "01011234", "000000004", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null), new DateUtil(2016, 10, 12)));
         for (int i = 0; i < acvo.size(); i++) {
