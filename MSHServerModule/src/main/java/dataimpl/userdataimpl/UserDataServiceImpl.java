@@ -102,11 +102,6 @@ public class UserDataServiceImpl implements UserDataService {
                 clientPOs.add(clientPO);
             }
         }
-        for (ClientPO clientPO : userDataHelper.fuzzyMatchQuery(ClientPO.class, "clientID", keyword)) {
-            if (!clientPOs.contains(clientPO)) {
-                clientPOs.add(clientPO);
-            }
-        }
         return clientPOs;
     }
 

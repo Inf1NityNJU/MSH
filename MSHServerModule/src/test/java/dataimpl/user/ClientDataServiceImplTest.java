@@ -5,11 +5,11 @@ import dataservice.userdataservice.UserDataService;
 import org.junit.Test;
 import po.ClientPO;
 import po.CreditPO;
-import util.DateUtil;
 import util.LoginState;
 import util.ResultMessage;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Kray on 2016/11/18.
@@ -49,12 +49,17 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void searchClientByID() throws Exception {
-
+        ClientPO examplePO = new ClientPO("000000003", "songkuixi", 500, 0,
+                "2016-02-02", "18795963603", "NO", "adminClient", "12345678");
+        ClientPO clientPO = userDataService.searchClientByID("000000003");
+        assertTrue(clientPO.equals(examplePO));
     }
 
     @Test
     public void updateClient() throws Exception {
-
+        ResultMessage resultMessage = userDataService.updateClient("000000003", new ClientPO("000000003", "songkuixi 2", 500, 0,
+                "2016-02-02", "18795963603", "NO", "adminClient", "12345678"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test

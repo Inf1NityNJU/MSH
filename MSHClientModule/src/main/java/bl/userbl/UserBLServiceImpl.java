@@ -32,7 +32,9 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        return user.login(account, password);
+        LoginState loginState = user.login(account, password);
+        this.loginState = loginState;
+        return loginState;
     }
 
     /**

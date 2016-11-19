@@ -41,6 +41,7 @@ public class Client extends User {
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("LOGIN Client");
             super.setCurrentID("STRING FROM DB");
+//            super.
             this.account = account;
             this.password = password;
         }
@@ -56,7 +57,7 @@ public class Client extends User {
     public ResultMessage add(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), "", "", account, password);
+                clientVO.birthday.toString(), "CONTACT INFO", "ENTERPRISE", account, password);
         return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
@@ -85,9 +86,11 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
-//        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName,  account, password);
-//        return userDataService.updateSalesman(SalesmanVO.salesmanID, SalesmanPO);
-        return null;
+        //一些不能改的,先读然后再设置
+        ClientPO searchedPO = userDataService.searchClientByID(clientVO.clientID);
+        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
+                clientVO.birthday.toString(), searchedPO.getContactInfo(), searchedPO.getEnterprise(), account, password);
+        return userDataService.updateClient(clientVO.clientID, clientPO);
     }
 
     /**
@@ -107,7 +110,13 @@ public class Client extends User {
      * @return 符合关键词的所有客户
      */
     public ArrayList<ClientVO> search(String keyword) {
-        return null;
+        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
+        ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
+        for (ClientPO clientPO : clientPOs) {
+            clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
+                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise() == "" ? 0 : 1));
+        }
+        return clientVOs;
     }
 
     /**
