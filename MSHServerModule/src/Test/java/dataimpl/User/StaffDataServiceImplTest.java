@@ -40,7 +40,7 @@ public class StaffDataServiceImplTest {
     public void addStaff() throws Exception {
         ResultMessage resultMessage = userDataService.addStaff(new StaffPO("300001", "KrayC", "25010001", "adminStaff", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.addStaff(new StaffPO("100002", "KrayC2", "25010001", "adminStaff", "password"));
+        resultMessage = userDataService.addStaff(new StaffPO("300002", "KrayC2", "25010001", "adminStaff", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
@@ -55,7 +55,7 @@ public class StaffDataServiceImplTest {
 
     @Test
     public void updateStaff() throws Exception {
-        ResultMessage resultMessage = userDataService.updateStaff("300001", new StaffPO("100001", "KrayC2", "25010002", "adminStaff", "password"));
+        ResultMessage resultMessage = userDataService.updateStaff("300001", new StaffPO("300001", "KrayC2", "25010002", "adminStaff", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
