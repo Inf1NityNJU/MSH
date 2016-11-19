@@ -29,7 +29,7 @@ public class StaffDataServiceImplTest {
     @Test
     public void logout() throws Exception {
         LoginState loginState = userDataService.logout();
-        assertEquals(LoginState.LOGIN_FAIL, loginState);
+        assertEquals(LoginState.LOGOUT, loginState);
     }
 
     @Test

@@ -31,16 +31,14 @@ public class Staff extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        if (true) {
+        LoginState loginState = userDataService.login(account, password);
+        if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
             System.out.println("LOGIN Staff");
-            //去找
             super.setCurrentID("STRING FROM DB");
             this.account = account;
             this.password = password;
-            return LoginState.LOGIN_SUCCESS_Staff;
-        } else {
-            return LoginState.LOGIN_FAIL;
         }
+        return loginState;
     }
 
     /**
@@ -50,7 +48,7 @@ public class Staff extends User {
      * @return 是否增加成功
      */
     public ResultMessage add(UserVO userVO) {
-        StaffVO staffVO = (StaffVO)userVO;
+        StaffVO staffVO = (StaffVO) userVO;
         System.out.println("ADD STAFF");
         StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, account, password);
         return userDataService.addStaff(staffPO);
@@ -64,9 +62,9 @@ public class Staff extends User {
      */
     public StaffVO searchByID(String staffID) {
         StaffPO staffPO = userDataService.searchStaffByID(staffID);
-        if(staffPO == null){
+        if (staffPO == null) {
             return null;
-        }else {
+        } else {
             StaffVO staffVO = new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID());
             return staffVO;
         }
@@ -79,7 +77,7 @@ public class Staff extends User {
      * @return 是否更新成功
      */
     public ResultMessage update(UserVO userVO) {
-        StaffVO staffVO = (StaffVO)userVO;
+        StaffVO staffVO = (StaffVO) userVO;
         StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, account, password);
         return userDataService.updateStaff(staffVO.staffID, staffPO);
     }
@@ -103,7 +101,7 @@ public class Staff extends User {
     public ArrayList<StaffVO> search(String keyword) {
         ArrayList<StaffPO> staffPOs = userDataService.searchStaff(keyword);
         ArrayList<StaffVO> staffVOs = new ArrayList<StaffVO>();
-        for(StaffPO staffPO : staffPOs){
+        for (StaffPO staffPO : staffPOs) {
             staffVOs.add(new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID()));
         }
         return staffVOs;

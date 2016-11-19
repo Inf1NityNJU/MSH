@@ -4,6 +4,8 @@ import util.CreditAction;
 
 import util.DateUtil;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
@@ -102,5 +104,46 @@ public class CreditPO {
         this.resultCredit = 500;
         this.creditAction = CreditAction.INIT_CREDIT;
         this.clientID = clientID;
+    }
+
+
+    /**
+     * 比较两个PO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CreditPO) {
+            CreditPO creditPO = (CreditPO) o;
+            return compareData(creditPO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return orderID.hashCode();
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param creditPO
+     * @return 比较结果
+     */
+    private boolean compareData(CreditPO creditPO) {
+        return judgeEqual(clientID, creditPO.clientID)
+                && judgeEqual(orderID, creditPO.orderID)
+                && judgeEqual(deltaCredit, creditPO.deltaCredit)
+                && judgeEqual(resultCredit, creditPO.resultCredit)
+                && judgeEqual(creditAction, creditPO.creditAction)
+                && judgeEqual(date, creditPO.date);
     }
 }

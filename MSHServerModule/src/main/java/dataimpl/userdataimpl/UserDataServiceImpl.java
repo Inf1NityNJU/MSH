@@ -22,13 +22,26 @@ public class UserDataServiceImpl implements UserDataService {
         this.userDataHelper = userDataHelper;
     }
 
+    //TODO 要改
     public LoginState login(String account, String password) {
-//        userDataHelper.
-        return null;
+        System.out.println(account);
+        System.out.println(password);
+        if(userDataHelper.exactlyQuery(SalesmanPO.class, "account", account) != null
+                && userDataHelper.exactlyQuery(SalesmanPO.class, "password", password) != null){
+            return LoginState.LOGIN_SUCCESS_Salesman;
+        }else if(userDataHelper.exactlyQuery(StaffPO.class, "account", account) != null
+                && userDataHelper.exactlyQuery(StaffPO.class, "password", password) != null){
+            return LoginState.LOGIN_SUCCESS_Staff;
+        }else if(userDataHelper.exactlyQuery(ClientPO.class, "account", account) != null
+                && userDataHelper.exactlyQuery(ClientPO.class, "password", password) != null){
+            return LoginState.LOGIN_SUCCESS_Client;
+        }else{
+            return LoginState.LOGIN_FAIL;
+        }
     }
 
     public LoginState logout() {
-        return LoginState.LOGIN_FAIL;
+        return LoginState.LOGOUT;
     }
 
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
@@ -40,19 +53,35 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ClientPO searchClientByID(String clientID) {
-        return null;
+        return userDataHelper.exactlyQuery(ClientPO.class, "clientID", clientID);
     }
 
     public ResultMessage updateClient(String clientID, ClientPO clientPO) {
-        return null;
+        return userDataHelper.update(StaffPO.class, clientPO);
     }
 
     public ResultMessage deleteClient(String clientID) {
-        return null;
+        return userDataHelper.delete(ClientPO.class, "clientID", clientID);
     }
 
     public ArrayList<ClientPO> searchClient(String keyword) {
-        return null;
+        ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
+        for (ClientPO clientPO : userDataHelper.fuzzyMatchQuery(ClientPO.class, "clientID", keyword)) {
+            if (!clientPOs.contains(clientPO)) {
+                clientPOs.add(clientPO);
+            }
+        }
+        for (ClientPO clientPO : userDataHelper.fuzzyMatchQuery(ClientPO.class, "clientName", keyword)) {
+            if (!clientPOs.contains(clientPO)) {
+                clientPOs.add(clientPO);
+            }
+        }
+        for (ClientPO clientPO : userDataHelper.fuzzyMatchQuery(ClientPO.class, "clientID", keyword)) {
+            if (!clientPOs.contains(clientPO)) {
+                clientPOs.add(clientPO);
+            }
+        }
+        return clientPOs;
     }
 
     public ResultMessage addStaff(StaffPO staffPO) {

@@ -1,5 +1,9 @@
 package bl.userbl;
 
+import dataimpl.userdataimpl.UserDataServiceFactory;
+import dataservice.userdataservice.UserDataService;
+import po.ClientPO;
+import util.DateUtil;
 import util.LoginState;
 import util.ResultMessage;
 import vo.ClientVO;
@@ -13,6 +17,13 @@ import java.util.ArrayList;
  */
 public class Client extends User {
 
+    private UserDataService userDataService;
+    private String account;
+    private String password;
+
+    public Client() {
+        this.userDataService = UserDataServiceFactory.getClientDataService();
+    }
     /**
      * 登录方法
      *
@@ -21,13 +32,14 @@ public class Client extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        if (true) {
-            //去找
+        LoginState loginState = userDataService.login(account, password);
+        if (loginState == LoginState.LOGIN_SUCCESS_Client) {
+            System.out.println("LOGIN Client");
             super.setCurrentID("STRING FROM DB");
-            return LoginState.LOGIN_SUCCESS_Client;
-        } else {
-            return LoginState.LOGIN_FAIL;
+            this.account = account;
+            this.password = password;
         }
+        return loginState;
     }
 
     /**
@@ -37,7 +49,12 @@ public class Client extends User {
      * @return 是否添加成功
      */
     public ResultMessage add(UserVO userVO) {
+        /*
         ClientVO clientVO = (ClientVO) userVO;
+        String clientBirthday = clientVO.birthday.toString();
+        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
+                clientVO.birthday.toString(), clientVO.type);
+                */
         return null;
     }
 
@@ -48,6 +65,17 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
+        /*
+        ClientPO clientPO = userDataService.searchClientByID(clientID);
+        if(clientPO == null){
+            return null;
+        }else {
+            String [] strs = clientPO.getBirthday().split("-");
+            ClientVO clientVO = new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
+                    new DateUtil(strs[0], strs[1], strs[2]), clientPO.getCredit(), clientPO.);
+            return clientVO;
+        }
+        */
         return null;
     }
 
@@ -69,7 +97,7 @@ public class Client extends User {
      * @return 是否删除成功
      */
     public ResultMessage delete(String clientID) {
-        return null;
+        return userDataService.deleteClient(clientID);
     }
 
     /**

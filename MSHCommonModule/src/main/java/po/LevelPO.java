@@ -1,5 +1,7 @@
 package po;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by Kray on 2016/11/11.
  */
@@ -46,7 +48,6 @@ public class LevelPO {
         this.level = level;
     }
 
-
     public LevelPO(String ID, int credit, int level) {
         this(credit, level);
         this.ID = ID;
@@ -54,5 +55,41 @@ public class LevelPO {
 
     public LevelPO() {
 
+    }
+
+    /**
+     * 比较两个PO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LevelPO) {
+            LevelPO levelPO = (LevelPO) o;
+            return compareData(levelPO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return ID.hashCode();
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param levelPO
+     * @return 比较结果
+     */
+    private boolean compareData(LevelPO levelPO) {
+        return judgeEqual(credit, levelPO.credit)
+                && judgeEqual(level, levelPO.level);
     }
 }

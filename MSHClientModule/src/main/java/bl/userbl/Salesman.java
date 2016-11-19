@@ -31,15 +31,14 @@ public class Salesman extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        if (true) {
-            //去DB找
+        LoginState loginState = userDataService.login(account, password);
+        if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
+            System.out.println("LOGIN Salesman");
             super.setCurrentID("STRING FROM DB");
             this.account = account;
             this.password = password;
-            return LoginState.LOGIN_SUCCESS_Salesman;
-        } else {
-            return LoginState.LOGIN_FAIL;
         }
+        return loginState;
     }
 
     /**
