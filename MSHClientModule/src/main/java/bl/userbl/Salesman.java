@@ -23,6 +23,7 @@ public class Salesman extends User {
     public Salesman() {
         this.userDataService = UserDataServiceFactory.getSalesmanDataService();
     }
+
     /**
      * 登录
      *
@@ -48,7 +49,7 @@ public class Salesman extends User {
      * @return 是否增加成功
      */
     public ResultMessage add(UserVO userVO) {
-        SalesmanVO SalesmanVO = (SalesmanVO)userVO;
+        SalesmanVO SalesmanVO = (SalesmanVO) userVO;
         SalesmanPO SalesmanPO = new SalesmanPO(SalesmanVO.salesmanID, SalesmanVO.salesmanName, account, password);
         return userDataService.addSalesman(SalesmanPO);
     }
@@ -61,9 +62,9 @@ public class Salesman extends User {
      */
     public SalesmanVO searchByID(String SalesmanID) {
         SalesmanPO SalesmanPO = userDataService.searchSalesmanByID(SalesmanID);
-        if(SalesmanPO == null){
+        if (SalesmanPO == null) {
             return null;
-        }else {
+        } else {
             SalesmanVO SalesmanVO = new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName());
             return SalesmanVO;
         }
@@ -76,7 +77,7 @@ public class Salesman extends User {
      * @return 是否更新成功
      */
     public ResultMessage update(UserVO userVO) {
-        SalesmanVO SalesmanVO = (SalesmanVO)userVO;
+        SalesmanVO SalesmanVO = (SalesmanVO) userVO;
         SalesmanPO SalesmanPO = new SalesmanPO(SalesmanVO.salesmanID, SalesmanVO.salesmanName, account, password);
         return userDataService.updateSalesman(SalesmanVO.salesmanID, SalesmanPO);
     }
@@ -100,7 +101,7 @@ public class Salesman extends User {
     public ArrayList<SalesmanVO> search(String keyword) {
         ArrayList<SalesmanPO> SalesmanPOs = userDataService.searchSalesman(keyword);
         ArrayList<SalesmanVO> SalesmanVOs = new ArrayList<SalesmanVO>();
-        for(SalesmanPO SalesmanPO : SalesmanPOs){
+        for (SalesmanPO SalesmanPO : SalesmanPOs) {
             SalesmanVOs.add(new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName()));
         }
         return SalesmanVOs;

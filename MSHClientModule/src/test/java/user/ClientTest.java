@@ -30,10 +30,8 @@ public class ClientTest {
 
     @Test
     public void testAdd() throws Exception {
-        ResultMessage rm = client.add(new ClientVO("000000008", "老宋头", 0, new DateUtil(2016, 1, 1), 500, 0));
+        ResultMessage rm = client.add(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.add(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0));
-        assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
@@ -46,9 +44,9 @@ public class ClientTest {
 
     @Test
     public void testUpdate() throws Exception {
-        ResultMessage rm = client.update(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 1500, 0));
+        ResultMessage rm = client.update(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 1500, 0));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.update(new ClientVO("000000009", "老宋头", 0, new DateUtil(2016, 1, 1), 500, 0));
+        rm = client.update(new ClientVO("000000007", "songkuixi2", 0, new DateUtil(2016, 1, 1), 500, 0));
         assertEquals(ResultMessage.FAILED, rm);
     }
 

@@ -1,6 +1,9 @@
-package bl.userbl;
+package user;
 
+import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
+import org.junit.Test;
+import util.LoginState;
 import vo.SalesmanVO;
 import vo.StaffVO;
 
@@ -10,6 +13,7 @@ import java.util.ArrayList;
  * Created by Kray on 2016/11/18.
  */
 public class UserBLTest {
+    @Test
     public static void main(String[] args) {
 /*
         System.out.println("--STAFF--");
@@ -39,22 +43,25 @@ public class UserBLTest {
         System.out.println("--SALESMAN--");
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         System.out.println("--LOGIN--");
-        userBLService.login("adminSalesman", "password");
-        System.out.println("--ADD--");
-        userBLService.add(new SalesmanVO("100006", "SONG KUI XI"));
-        System.out.println("--UPDATE--");
-        userBLService.update(new SalesmanVO("100006", "SONG KUI XI 2"));
-        System.out.println("--SEARCH ID--");
-        SalesmanVO salesmanVO = (SalesmanVO) userBLService.searchByID("100006");
-        System.out.println("ID   :" + salesmanVO.salesmanID);
-        System.out.println("NAME :" + salesmanVO.salesmanName);
-        System.out.println("--SEARCH--");
-        ArrayList<SalesmanVO> salesmanVOs = (ArrayList<SalesmanVO>) userBLService.search("000");
-        for (SalesmanVO salesmanVO1 : salesmanVOs) {
-            System.out.println("ID   :" + salesmanVO1.salesmanID);
-            System.out.println("NAME :" + salesmanVO1.salesmanName);
+        if (userBLService.login("adminSalesman", "password4") == LoginState.LOGIN_SUCCESS_Salesman) {
+            System.out.println("--ADD--");
+            userBLService.add(new SalesmanVO("100006", "SONG KUI XI"));
+            System.out.println("--UPDATE--");
+            userBLService.update(new SalesmanVO("100006", "SONG KUI XI 2"));
+            System.out.println("--SEARCH ID--");
+            SalesmanVO salesmanVO = (SalesmanVO) userBLService.searchByID("100006");
+            System.out.println("ID   :" + salesmanVO.salesmanID);
+            System.out.println("NAME :" + salesmanVO.salesmanName);
+            System.out.println("--SEARCH--");
+            ArrayList<SalesmanVO> salesmanVOs = (ArrayList<SalesmanVO>) userBLService.search("000");
+            for (SalesmanVO salesmanVO1 : salesmanVOs) {
+                System.out.println("ID   :" + salesmanVO1.salesmanID);
+                System.out.println("NAME :" + salesmanVO1.salesmanName);
+            }
+            System.out.println("--DELETE--");
+            userBLService.delete("100006");
+        } else {
+            System.out.println("LOGIN FAILED");
         }
-        System.out.println("--DELETE--");
-        userBLService.delete("100006");
     }
 }

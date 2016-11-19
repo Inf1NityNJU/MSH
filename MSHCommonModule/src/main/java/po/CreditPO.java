@@ -4,6 +4,8 @@ import util.CreditAction;
 
 import util.DateUtil;
 
+import java.util.Date;
+
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
@@ -88,6 +90,16 @@ public class CreditPO {
 
     }
 
+    /**
+     * 信用记录构造方法
+     *
+     * @param orderID
+     * @param date
+     * @param deltaCredit
+     * @param resultCredit
+     * @param creditAction
+     * @param clientID
+     */
     public CreditPO(String orderID, DateUtil date, int deltaCredit, int resultCredit, CreditAction creditAction, String clientID) {
         this.orderID = orderID;
         this.date = date.toString();
@@ -97,15 +109,20 @@ public class CreditPO {
         this.clientID = clientID;
     }
 
-    public CreditPO(CreditAction creditAction, String clientID) {
+    /**
+     * 初始的信用记录构造方法
+     *
+     * @param clientID
+     */
+    public CreditPO(String clientID) {
         this.orderID = "-1";
-        this.date = "2015-10-10";
+        Date date = new Date();
+        this.date = date.getYear() + "" + date.getMonth() + "" + date.getDay();
         this.deltaCredit = 0;
         this.resultCredit = 500;
         this.creditAction = CreditAction.INIT_CREDIT;
         this.clientID = clientID;
     }
-
 
     /**
      * 比较两个PO

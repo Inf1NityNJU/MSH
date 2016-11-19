@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class UserDataService_Stub implements UserDataService {
 
-    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10),
+    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10).toString(),
             "18795963603", "no_enterprise", "songkuixi", "123456");
     StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "adminStaff", "password");
     SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "adminSalesman", "password");

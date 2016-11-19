@@ -19,26 +19,40 @@ public class UserDataServiceImpl implements UserDataService {
         this.userDataHelper = userDataHelper;
     }
 
-    //TODO 要改
     public LoginState login(String account, String password) {
         System.out.println(account);
         System.out.println(password);
         UserPO userPO;
         if((userPO = userDataHelper.exactlyQuery(ClientPO.class, "account", account)) != null){
-            if(userPO.getPassword().equals(userDataHelper.exactlyQuery(ClientPO.class, "password", password).getPassword())){
-                return LoginState.LOGIN_SUCCESS_Client;
+            UserPO tmpUserPO;
+            if((tmpUserPO = userDataHelper.exactlyQuery(ClientPO.class, "password", password)) != null){
+                if(userPO.getPassword().equals(tmpUserPO.getPassword())){
+                    return LoginState.LOGIN_SUCCESS_Client;
+                }else{
+                    return LoginState.LOGIN_FAIL;
+                }
             }else{
                 return LoginState.LOGIN_FAIL;
             }
         }else if((userPO = userDataHelper.exactlyQuery(StaffPO.class, "account", account)) != null){
-            if(userPO.getPassword().equals(userDataHelper.exactlyQuery(StaffPO.class, "password", password).getPassword())){
-                return LoginState.LOGIN_SUCCESS_Staff;
+            UserPO tmpUserPO;
+            if((tmpUserPO = userDataHelper.exactlyQuery(StaffPO.class, "password", password)) != null){
+                if(userPO.getPassword().equals(tmpUserPO.getPassword())){
+                    return LoginState.LOGIN_SUCCESS_Staff;
+                }else{
+                    return LoginState.LOGIN_FAIL;
+                }
             }else{
                 return LoginState.LOGIN_FAIL;
             }
         }else if((userPO = userDataHelper.exactlyQuery(SalesmanPO.class, "account", account)) != null){
-            if(userPO.getPassword().equals(userDataHelper.exactlyQuery(SalesmanPO.class, "password", password).getPassword())){
-                return LoginState.LOGIN_SUCCESS_Salesman;
+            UserPO tmpUserPO;
+            if((tmpUserPO = userDataHelper.exactlyQuery(SalesmanPO.class, "password", password)) != null){
+                if(userPO.getPassword().equals(tmpUserPO.getPassword())){
+                    return LoginState.LOGIN_SUCCESS_Salesman;
+                }else{
+                    return LoginState.LOGIN_FAIL;
+                }
             }else{
                 return LoginState.LOGIN_FAIL;
             }
@@ -56,7 +70,12 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
-        return null;
+        if(userDataHelper.save(ClientPO.class, clientPO) == ResultMessage.SUCCESS
+               /* && userDataHelper.save(CreditPO.class, creditPO) == ResultMessage.SUCCESS */){
+            return ResultMessage.SUCCESS;
+        }else{
+            return ResultMessage.FAILED;
+        }
     }
 
     public ClientPO searchClientByID(String clientID) {

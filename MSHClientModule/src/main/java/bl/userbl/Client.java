@@ -3,6 +3,8 @@ package bl.userbl;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.ClientPO;
+import po.CreditPO;
+import util.CreditAction;
 import util.DateUtil;
 import util.LoginState;
 import util.ResultMessage;
@@ -24,6 +26,7 @@ public class Client extends User {
     public Client() {
         this.userDataService = UserDataServiceFactory.getClientDataService();
     }
+
     /**
      * 登录方法
      *
@@ -49,13 +52,10 @@ public class Client extends User {
      * @return 是否添加成功
      */
     public ResultMessage add(UserVO userVO) {
-        /*
         ClientVO clientVO = (ClientVO) userVO;
-        String clientBirthday = clientVO.birthday.toString();
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), clientVO.type);
-                */
-        return null;
+                clientVO.birthday.toString(), "", "", account, password);
+        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
     /**

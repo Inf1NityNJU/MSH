@@ -51,12 +51,12 @@ public class ClientPO extends UserPO{
 
     }
 
-    public ClientPO(String clientID, String clientName, int credit, int level, DateUtil birthday, String contactInfo, String enterprise, String account, String password) {
+    public ClientPO(String clientID, String clientName, int credit, int level, String birthday, String contactInfo, String enterprise, String account, String password) {
         this.clientID = clientID;
         this.clientName = clientName;
         this.credit = credit;
         this.level = level;
-        this.birthday = birthday.toString();
+        this.birthday = birthday;
         this.contactInfo = contactInfo;
         this.enterprise = enterprise;
         this.account = account;
