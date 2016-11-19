@@ -1,4 +1,4 @@
-package dataimpl.Hotel;
+package dataimpl.hoteldataimpl;
 
 import datahelper.DataHelper;
 import dataservice.hoteldataservice.HotelDataService;

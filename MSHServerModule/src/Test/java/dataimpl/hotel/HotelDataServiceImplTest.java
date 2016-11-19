@@ -1,8 +1,7 @@
-package data.hotel;
+package dataimpl.hotel;
 
-import dataimpl.Hotel.HotelDataServiceFactory;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
-import org.junit.Ignore;
 import org.junit.Test;
 import po.HotelPO;
 import po.HotelRoomPO;
@@ -57,7 +56,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void updateHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("00000001", "Hotel", "Nanjing News University", Place.XIANLIN, 5, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("00000001", "hoteldataimpl", "Nanjing News University", Place.XIANLIN, 5, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 

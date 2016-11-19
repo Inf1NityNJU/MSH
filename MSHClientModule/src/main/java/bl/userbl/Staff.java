@@ -1,6 +1,6 @@
 package bl.userbl;
 
-import dataimpl.user.UserDataServiceFactory;
+import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.StaffPO;
 import util.LoginState;

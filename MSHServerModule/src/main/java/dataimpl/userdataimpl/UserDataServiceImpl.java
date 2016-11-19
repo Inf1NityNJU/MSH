@@ -1,4 +1,4 @@
-package dataimpl.user;
+package dataimpl.userdataimpl;
 
 import datahelper.DataHelper;
 import dataservice.userdataservice.UserDataService;
