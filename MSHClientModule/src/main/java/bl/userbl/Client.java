@@ -10,6 +10,7 @@ import util.LoginState;
 import util.ResultMessage;
 import vo.ClientVO;
 import vo.CreditVO;
+import vo.OrderVO;
 import vo.UserVO;
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class Client extends User {
      * @return 是否添加成功
      */
     public ResultMessage add(UserVO userVO) {
+        //TODO
         ClientVO clientVO = (ClientVO) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), "CONTACT INFO", "ENTERPRISE", account, password);
@@ -127,7 +129,8 @@ public class Client extends User {
      * @return 是否增加成功
      */
     public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
-        return null;
+        return userDataService.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
+                creditVO.deltaCredit, creditVO.resultCredit, creditVO.creditAction, clientID));
     }
 
     /**
@@ -137,12 +140,16 @@ public class Client extends User {
      * @return 该客户的所有信用记录
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
+        //TODO
         /*
+        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
-        for(CreditPO creditPO : userDataService.searchCreditByID(clientID)){
+        for(CreditPO creditPO : creditPOs){
+            OrderVO orderVO =
             creditVOs.add(new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(), creditPO.getCreditAction(),
-                    , new DateUtil(creditPO.getDate())));
+                    creditPO.getOrderID(), new DateUtil(creditPO.getClientID())));
         }
+        return creditVOs;
         */
         return null;
     }

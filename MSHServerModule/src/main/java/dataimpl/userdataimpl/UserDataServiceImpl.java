@@ -173,10 +173,17 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
-        return null;
+        //这个 clientID 好像没用?
+        return userDataHelper.save(CreditPO.class, creditPO);
     }
 
     public ArrayList<CreditPO> searchCreditByID(String clientID) {
-        return null;
+        ArrayList<CreditPO> creditPOs = new ArrayList<CreditPO>();
+        for(CreditPO creditPO : userDataHelper.prefixMatchQuery(CreditPO.class,"clientID",clientID)){
+            if(!creditPOs.contains(creditPO)){
+                creditPOs.add(creditPO);
+            }
+        }
+        return creditPOs;
     }
 }
