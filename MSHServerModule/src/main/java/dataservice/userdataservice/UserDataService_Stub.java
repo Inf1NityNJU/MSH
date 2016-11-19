@@ -17,11 +17,11 @@ import java.util.Date;
  */
 public class UserDataService_Stub implements UserDataService {
 
-    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10),
+    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10).toString(),
             "18795963603", "no_enterprise", "songkuixi", "123456");
     StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "adminStaff", "password");
     SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "adminSalesman", "password");
-    CreditPO exampleCreditPO = new CreditPO("20161012010112340000", new DateUtil(2015, 10, 10), 20, 500, CreditAction.ADD_CREDIT, "000000007");
+    CreditPO exampleCreditPO = new CreditPO("20161012010112340000", "2016-01-01", 20, 500, CreditAction.ADD_CREDIT, "000000007");
 
     public LoginState login(String account, String password) {
         if(account.equals("songkuixi") && password.equals("123456")) {
@@ -191,7 +191,7 @@ public class UserDataService_Stub implements UserDataService {
     public ArrayList<CreditPO> searchCreditByID(String clientID) {
         ArrayList<CreditPO> creditPOs = new ArrayList<CreditPO>();
         if(clientID.equals("000000007")){
-            CreditPO creditPO = new CreditPO("20161012010112340000", new DateUtil(2016,11,11), 200, 700, CreditAction.ADD_CREDIT, clientID);
+            CreditPO creditPO = new CreditPO("20161012010112340000", "2016-01-01", 200, 700, CreditAction.ADD_CREDIT, clientID);
             creditPOs.add(creditPO);
             return creditPOs;
         }else{

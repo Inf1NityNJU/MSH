@@ -12,11 +12,11 @@ public class UserDataService_Driver {
 
     public void drive(UserDataService userDataService) {
 
-        ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10),
+        ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10).toString(),
                 "18795963603", "no_enterprise", "songkuixi", "123456");
         StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "adminStaff", "password");
         SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "adminSalesman", "password");
-        CreditPO exampleCreditPO = new CreditPO("20161012010112340000", new DateUtil(2016,11,11), 200, 700, CreditAction.ADD_CREDIT, "000000007");
+        CreditPO exampleCreditPO = new CreditPO("20161012010112340000", "2016-01-01", 200, 700, CreditAction.ADD_CREDIT, "000000007");
 
         userDataService.login("songkuixi", "123456");
         userDataService.login("adminStaff", "password");

@@ -7,6 +7,7 @@ import vo.Hotel_DetailVO;
 import vo.RoomChangeInfoVO;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by SilverNarcissus on 16/10/12.
@@ -109,4 +110,42 @@ public interface HotelBLService {
      * @return 查询结果
      */
     public ResultMessage isOrdered(String hotelID,RoomType type);
+
+    /**
+     * 按照价格升序排列酒店
+     * @param hotel_detailVOs 需要被排列的酒店列表
+     * @return 被排列的酒店列表
+     */
+    public Iterator<Hotel_DetailVO> priceAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+    /**
+     * 按照价格降序排列酒店
+     * @param hotel_detailVOs 需要被排列的酒店列表
+     * @return 被排列的酒店列表
+     */
+    public Iterator<Hotel_DetailVO> priceDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+    /**
+     * 按照星级升序排列酒店
+     * @param hotel_detailVOs 需要被排列的酒店列表
+     * @return 被排列的酒店列表
+     */
+    public Iterator<Hotel_DetailVO> starAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+    /**
+     * 按照星级降序排列酒店
+     * @param hotel_detailVOs 需要被排列的酒店列表
+     * @return 被排列的酒店列表
+     */
+    public Iterator<Hotel_DetailVO> starDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+    /**
+     * 按照评分升序排列酒店
+     * @param hotel_detailVOs 需要被排列的酒店列表
+     * @return 被排列的酒店列表
+     */
+    public Iterator<Hotel_DetailVO> scoreAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+    /**
+     * 按照评分降序排列酒店
+     * @param hotel_detailVOs 需要被排列的酒店列表
+     * @return 被排列的酒店列表
+     */
+    public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+
 }

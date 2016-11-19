@@ -44,8 +44,8 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void getHotel() throws Exception {
-        HotelPO hotelPO = hotelDataService.getHotel("00000001");
-        assertEquals("00000001", hotelPO.getID());
+        HotelPO hotelPO = hotelDataService.getHotel("00000000");
+        assertEquals("00000000", hotelPO.getID());
     }
 
     @Test

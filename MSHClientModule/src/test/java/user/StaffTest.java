@@ -19,24 +19,24 @@ public class StaffTest {
 
     private Staff staff;
 
-    public StaffTest(){
+    public StaffTest() {
         staff = new MockStaff();
     }
 
     @Test
     public void testLogin() throws Exception {
-        LoginState ls = staff.login("adminStaff","12345678");
-        assertEquals(LoginState.LOGIN_SUCCESS_Staff,ls);
-        ls = staff.login("adminStaff","00000000");
-        assertEquals(LoginState.LOGIN_FAIL,ls);
+        LoginState ls = staff.login("adminStaff", "password");
+        assertEquals(LoginState.LOGIN_SUCCESS_Staff, ls);
+        ls = staff.login("adminStaff", "00000000");
+        assertEquals(LoginState.LOGIN_FAIL, ls);
     }
 
     @Test
     public void testAddStaff() throws Exception {
         ResultMessage rm = staff.add(new StaffVO("300999", "隔壁老王", "25010001"));
-        assertEquals(ResultMessage.SUCCESS,rm);
+        assertEquals(ResultMessage.SUCCESS, rm);
         rm = staff.add(new StaffVO("300001", "隔壁老王二", "25010004"));
-        assertEquals(ResultMessage.FAILED,rm);
+        assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
@@ -50,38 +50,38 @@ public class StaffTest {
     @Test
     public void testUpdateStaff() throws Exception {
         ResultMessage rm = staff.update(new StaffVO("300001", "隔壁老王", "25010001"));
-        assertEquals(ResultMessage.SUCCESS,rm);
+        assertEquals(ResultMessage.SUCCESS, rm);
         rm = staff.update(new StaffVO("300002", "隔壁老王", "25010001"));
-        assertEquals(ResultMessage.FAILED,rm);
+        assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
     public void testDeleteStaff() throws Exception {
         ResultMessage rm = staff.delete("300001");
-        assertEquals(ResultMessage.SUCCESS,rm);
+        assertEquals(ResultMessage.SUCCESS, rm);
         rm = staff.delete("300002");
-        assertEquals(ResultMessage.FAILED,rm);
+        assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
     public void testSearchStaff() throws Exception {
         ArrayList<StaffVO> asvo = new ArrayList<StaffVO>();
-        asvo.add(new StaffVO("300012","老二","25010002"));
+        asvo.add(new StaffVO("300012", "老二", "25010002"));
 
         ArrayList<StaffVO> tmpAsvoS = staff.search("老二");
-        for(int i = 0; i < asvo.size(); i++) {
+        for (int i = 0; i < asvo.size(); i++) {
             StaffVO tmpAsvo = asvo.get(i);
             assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
 
         asvo.clear();
-        asvo.add(new StaffVO("300011","老大","25010001"));
-        asvo.add(new StaffVO("300012","老二","25010002"));
-        asvo.add(new StaffVO("300013","老三","25010001"));
-        asvo.add(new StaffVO("300014","老四","25010003"));
+        asvo.add(new StaffVO("300011", "老大", "25010001"));
+        asvo.add(new StaffVO("300012", "老二", "25010002"));
+        asvo.add(new StaffVO("300013", "老三", "25010001"));
+        asvo.add(new StaffVO("300014", "老四", "25010003"));
 
         tmpAsvoS = staff.search("3000");
-        for(int i = 0; i < asvo.size(); i++) {
+        for (int i = 0; i < asvo.size(); i++) {
             StaffVO tmpAsvo = asvo.get(i);
             assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
