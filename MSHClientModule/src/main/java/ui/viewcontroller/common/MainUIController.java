@@ -44,17 +44,38 @@ public class MainUIController {
 
     }
 
+    /**
+     * 订单列表
+     */
     public void showOrderList() {
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/order/OrderList.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/order/OrderListView.fxml"));
             ScrollPane list = listLoader.load();
+
+            OrderListViewController orderListViewController = listLoader.getController();
+            orderListViewController.setMainUIController(this);
 
             rootPane.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * 订单详情
+     */
+    public void showOrderDetail() {
+        try {
+            FXMLLoader orderLoader = new FXMLLoader();
+            orderLoader.setLocation(Main.class.getResource("../view/order/OrderDetailView.fxml"));
+            ScrollPane view = orderLoader.load();
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

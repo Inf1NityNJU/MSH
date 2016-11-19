@@ -76,7 +76,7 @@
                      </font>
                   </Label>
                   <RectButton fx:id="assessmentButton" isActiveProperty="false" sizeProperty="Small" text="评价" />
-                  <RectButton fx:id="detailButton" sizeProperty="Small" text="查看详情" />
+                  <RectButton fx:id="detailButton" sizeProperty="Small" text="查看详情" onMouseClicked="#clickDetailButton"/>
                </children>
             </HBox>
          </children>

@@ -30,6 +30,7 @@ public class Main extends Application {
         controller.setRootPane(root);
         controller.showMainView();
         controller.showOrderList();
+//        controller.showOrderDetail();
 
     }
 }
