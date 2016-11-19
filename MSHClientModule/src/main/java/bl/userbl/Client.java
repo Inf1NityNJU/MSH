@@ -19,6 +19,8 @@ import java.util.ArrayList;
  */
 public class Client extends User {
 
+    //这里进行Dateutil和String的转换
+
     private UserDataService userDataService;
     private String account;
     private String password;
@@ -65,18 +67,14 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
-        /*
         ClientPO clientPO = userDataService.searchClientByID(clientID);
-        if(clientPO == null){
+        if (clientPO == null) {
             return null;
-        }else {
-            String [] strs = clientPO.getBirthday().split("-");
+        } else {
             ClientVO clientVO = new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
-                    new DateUtil(strs[0], strs[1], strs[2]), clientPO.getCredit(), clientPO.);
+                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1);
             return clientVO;
         }
-        */
-        return null;
     }
 
     /**
@@ -87,6 +85,8 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
+//        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName,  account, password);
+//        return userDataService.updateSalesman(SalesmanVO.salesmanID, SalesmanPO);
         return null;
     }
 
@@ -128,6 +128,13 @@ public class Client extends User {
      * @return 该客户的所有信用记录
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
+        /*
+        ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
+        for(CreditPO creditPO : userDataService.searchCreditByID(clientID)){
+            creditVOs.add(new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(), creditPO.getCreditAction(),
+                    , new DateUtil(creditPO.getDate())));
+        }
+        */
         return null;
     }
 

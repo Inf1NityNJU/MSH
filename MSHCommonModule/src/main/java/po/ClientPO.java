@@ -99,8 +99,8 @@ public class ClientPO extends UserPO{
         return birthday;
     }
 
-    public void setBirthday(DateUtil birthday) {
-        this.birthday = birthday.toString();
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getContactInfo() {

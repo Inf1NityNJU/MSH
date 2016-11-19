@@ -50,8 +50,8 @@ public class CreditPO {
         return date;
     }
 
-    public void setDate(DateUtil date) {
-        this.date = date.toString();
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getDeltaCredit() {
@@ -100,9 +100,9 @@ public class CreditPO {
      * @param creditAction
      * @param clientID
      */
-    public CreditPO(String orderID, DateUtil date, int deltaCredit, int resultCredit, CreditAction creditAction, String clientID) {
+    public CreditPO(String orderID, String date, int deltaCredit, int resultCredit, CreditAction creditAction, String clientID) {
         this.orderID = orderID;
-        this.date = date.toString();
+        this.date = date;
         this.deltaCredit = deltaCredit;
         this.resultCredit = resultCredit;
         this.creditAction = creditAction;
@@ -116,8 +116,8 @@ public class CreditPO {
      */
     public CreditPO(String clientID) {
         this.orderID = "-1";
-        Date date = new Date();
-        this.date = date.getYear() + "" + date.getMonth() + "" + date.getDay();
+        DateUtil dateUtil = new DateUtil();
+        this.date = dateUtil.toString();
         this.deltaCredit = 0;
         this.resultCredit = 500;
         this.creditAction = CreditAction.INIT_CREDIT;
