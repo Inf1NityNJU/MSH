@@ -17,7 +17,9 @@ import java.util.ArrayList;
 /**
  * Created by Sorumi on 16/11/17.
  */
-public class OrderListController {
+public class OrderListViewController {
+
+    private MainUIController mainUIController;
 
     @FXML
     private VBox contentVBox;
@@ -25,7 +27,7 @@ public class OrderListController {
     private OrderBLService orderBLService;
 
     /**
-     * Initializes the OrderListController class. This method is automatically called
+     * Initializes the OrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
@@ -45,6 +47,10 @@ public class OrderListController {
         }
     }
 
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
+
     public void showOrders(OrderState orderState) {
 
         ArrayList<OrderVO> orders = orderBLService.searchOrder(orderState, null);
@@ -55,7 +61,7 @@ public class OrderListController {
                 HBox ordercell = loader.load();
 
                 OrderCellController orderCellController = loader.getController();
-                orderCellController.setOrderListController(this);
+                orderCellController.setOrderListViewController(this);
                 orderCellController.setOrder(order);
 
                 contentVBox.getChildren().add(ordercell);
@@ -65,8 +71,8 @@ public class OrderListController {
         }
     }
 
-    public void someMethodToTest() {
-        System.out.print("Just test");
+    public void showOrderDetail() {
+        mainUIController.showOrderDetail();
     }
 
 }

@@ -8,6 +8,8 @@ import po.SalesmanPO;
 import util.LoginState;
 import util.ResultMessage;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -42,7 +44,13 @@ public class SalesmanDataServiceImplTest {
 
     @Test
     public void addSalesman() throws Exception {
-        ResultMessage resultMessage = userDataService.addSalesman(new SalesmanPO("100001", "KrayC", "adminSalesman", "password"));
+        ResultMessage resultMessage = userDataService.addSalesman(new SalesmanPO("100001", "songkuixi", "adminSalesman", "password"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.addSalesman(new SalesmanPO("100002", "songkuixi", "adminSalesman", "password"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.addSalesman(new SalesmanPO("100003", "songkuixi", "adminSalesman", "password"));
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.addSalesman(new SalesmanPO("100004", "songkuixi", "adminSalesman", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
@@ -51,8 +59,6 @@ public class SalesmanDataServiceImplTest {
         SalesmanPO examplePO = new SalesmanPO("100001", "KrayC", "adminSalesman", "password");
         SalesmanPO salesmanPO = userDataService.searchSalesmanByID("100001");
         assertTrue(salesmanPO.equals(examplePO));
-//        salesmanPO = userDataService.searchSalesmanByID("100002");
-//        assertFalse(salesmanPO.equals(examplePO));
     }
 
     @Test
@@ -69,7 +75,13 @@ public class SalesmanDataServiceImplTest {
 
     @Test
     public void searchSalesman() throws Exception {
-
+        ArrayList<SalesmanPO> salesmanPOs = userDataService.searchSalesman("1000");
+        ArrayList<SalesmanPO> exampleSalesmanPOs = new ArrayList<SalesmanPO>();
+        exampleSalesmanPOs.add(new SalesmanPO("100001", "songkuixi", "adminSalesman", "password"));
+        exampleSalesmanPOs.add(new SalesmanPO("100002", "songkuixi", "adminSalesman", "password"));
+        exampleSalesmanPOs.add(new SalesmanPO("100003", "songkuixi", "adminSalesman", "password"));
+        exampleSalesmanPOs.add(new SalesmanPO("100004", "songkuixi", "adminSalesman", "password"));
+        assertEquals(exampleSalesmanPOs, salesmanPOs);
     }
 
 }

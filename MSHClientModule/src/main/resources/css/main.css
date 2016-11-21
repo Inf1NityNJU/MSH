@@ -3,7 +3,7 @@
 }
 
 .scroll-pane {
-    -fx-background: transparent;
+    /*-fx-background: transparent;*/
     -fx-background-insets: 0;
     /*-fx-padding: 0;*/
 }

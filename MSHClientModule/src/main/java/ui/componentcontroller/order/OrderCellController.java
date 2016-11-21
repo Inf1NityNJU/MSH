@@ -1,11 +1,12 @@
 package ui.componentcontroller.order;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import ui.viewcontroller.common.OrderListController;
+
+import ui.viewcontroller.common.OrderListViewController;
 import vo.BillVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
@@ -15,7 +16,8 @@ import vo.OrderVO;
  */
 public class OrderCellController {
 
-    private OrderListController orderListController;
+    private OrderListViewController orderListViewController;
+    private OrderVO order;
 
     @FXML
     private Label orderIDLabel;
@@ -47,17 +49,18 @@ public class OrderCellController {
     @FXML
     private RectButton detailButton;
 
-    public void setOrderListController(OrderListController orderListController) {
-        this.orderListController = orderListController;
+    public void setOrderListViewController(OrderListViewController orderListViewController) {
+        this.orderListViewController = orderListViewController;
     }
 
     @FXML
     public void clickDetailButton() {
-        orderListController.someMethodToTest();
-//        System.out.print("!!!!");
+        orderListViewController.showOrderDetail();
     }
 
     public void setOrder(OrderVO order) {
+        this.order = order;
+
         orderIDLabel.setText(order.orderID != null ? order.orderID : "") ;
         orderDateLabel.setText(order.bookedTime.toString());
         stateLabel.setText(order.state.toString());
@@ -73,6 +76,12 @@ public class OrderCellController {
 
         BillVO bill = order.bill;
         priceLabel.setText("¥ " + String.format("%.2f", bill.totalPrice));
+
+        if (order.assessment == null) {
+            assessmentLabel.setManaged(false);
+        } else {
+            assessmentButton.setManaged(false);
+        }
     }
 
 
