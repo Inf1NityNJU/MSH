@@ -23,5 +23,6 @@
         <mapping resource="LevelPO.hbm.xml"/>
         <mapping resource="SalesmanPO.hbm.xml"/>
         <mapping resource="StaffPO.hbm.xml"/>
+        <mapping resource="PromotionPO.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

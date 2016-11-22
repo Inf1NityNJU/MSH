@@ -3,6 +3,7 @@ package bl.promotionbl;
 import blservice.promotionblservice.PromotionBLService;
 import util.PromotionType;
 import util.ResultMessage;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -41,7 +42,7 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     }
 
     @Override
-    public Promotion_HotelVO searchByPromotionID(String promotionID) {
+    public PromotionVO searchByPromotionID(String promotionID) {
         return promotion.searchByID(promotionID);
     }
 

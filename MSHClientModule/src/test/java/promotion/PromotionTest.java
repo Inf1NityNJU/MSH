@@ -6,6 +6,7 @@ import org.junit.Test;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -49,7 +50,7 @@ public class PromotionTest {
 
     @Test
     public void testSearchByID() {
-        Promotion_HotelVO pvo = promotion.searchByID("201610120102");
+        PromotionVO pvo = promotion.searchByID("201610120102");
 //        assertFalse(!pvo.equals(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0)));
         assertEquals(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80), pvo);
 //        assertNotNull(pvo);

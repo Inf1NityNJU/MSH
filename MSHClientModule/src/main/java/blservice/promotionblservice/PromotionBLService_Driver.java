@@ -5,6 +5,7 @@ import util.PromotionType;
 import util.ResultMessage;
 import util.RoomType;
 import vo.OrderRoomVO;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -43,7 +44,7 @@ public class PromotionBLService_Driver {
             System.out.println("Update Failed");
         }
 
-        Promotion_HotelVO promotionVO = promotionBLService.searchByPromotionID("201610120201");
+        PromotionVO promotionVO = promotionBLService.searchByPromotionID("201610120201");
         if (promotionVO != null) {
             System.out.println("Get Success");
         } else {

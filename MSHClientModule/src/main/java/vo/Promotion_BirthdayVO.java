@@ -45,9 +45,9 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
                 && judgeEqual(pvo.bithday, this.bithday);
     }
 
-    public PromotionPO toPO(Promotion_BirthdayVO pvo) {
-        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
+    public PromotionPO toPO() {
+        return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 null, null,
-                null, null, 0, null, 0, pvo.bithday.toString());
+                null, null, 0, null, 0, this.bithday.toString());
     }
 }

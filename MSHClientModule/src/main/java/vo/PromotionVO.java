@@ -34,7 +34,7 @@ public class PromotionVO {
         this.promotionDiscount = promotionDiscount;
     }
 
-    public PromotionPO toPO(PromotionVO promotionVO){
+    public PromotionPO toPO(){
         return null;
     };
 

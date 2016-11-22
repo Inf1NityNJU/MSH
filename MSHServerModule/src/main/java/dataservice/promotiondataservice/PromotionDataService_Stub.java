@@ -2,6 +2,7 @@ package dataservice.promotiondataservice;
 
 import po.PromotionPO;
 import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 import util.ResultMessage;
 
@@ -39,6 +40,6 @@ public class PromotionDataService_Stub implements PromotionDataService{
 
     @Override
     public PromotionPO searchByPromotionID(String promotionID) {
-        return new PromotionPO("201610120102",  PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, "XINJIEKOU", 0);
+        return new PromotionPO("201610120102",  PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, Place.XINJIEKOU, 0);
     }
 }

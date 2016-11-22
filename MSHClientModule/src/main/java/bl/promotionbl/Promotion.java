@@ -2,8 +2,10 @@ package bl.promotionbl;
 
 import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.promotiondataservice.PromotionDataService_Stub;
+import po.PromotionPO;
 import util.PromotionType;
 import util.ResultMessage;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -21,7 +23,10 @@ public class Promotion {
      * @param promotionVO
      * @return 添加成功与否
      */
-    public ResultMessage add(Promotion_HotelVO promotionVO){return null;}
+    public ResultMessage add(PromotionVO promotionVO){
+        PromotionPO promotionPO = promotionVO.toPO();
+        return promotionDataService.addPromotion(promotionPO);
+    }
 
     /**
      * 删除一个促销策略
@@ -38,9 +43,9 @@ public class Promotion {
      * @param promotionVO
      * @return 更新成功与否
      */
-    public ResultMessage update(String promotionID , Promotion_HotelVO promotionVO){
-
-        return null;
+    public ResultMessage update(String promotionID , PromotionVO promotionVO){
+        PromotionPO promotionPO = promotionVO.toPO();
+        return promotionDataService.updatePromotion(promotionID, promotionPO);
     }
 
     /**
@@ -48,7 +53,7 @@ public class Promotion {
      * @param promotionID
      * @return 符合条件的策略VO
      */
-    public Promotion_HotelVO searchByID(String promotionID) {
+    public PromotionVO searchByID(String promotionID) {
         return null;
     }
 

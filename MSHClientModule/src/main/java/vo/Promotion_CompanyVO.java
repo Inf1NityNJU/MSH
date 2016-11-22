@@ -64,9 +64,9 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
                 && judgeEqual(pvo.companyName,this.companyName);
     }
 
-    public PromotionPO toPO(Promotion_CompanyVO pvo) {
-        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
-                pvo.startDate.toString(), pvo.endDate.toString(),
-                pvo.companyName, null, 0, null, 0);
+    public PromotionPO toPO() {
+        return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+                this.startDate.toString(), this.endDate.toString(),
+                this.companyName, null, 0, null, 0);
     }
 }
