@@ -18,12 +18,14 @@ import static org.junit.Assert.assertEquals;
  * Created by SilverNarcissus on 16/11/12.
  */
 public class HotelDataServiceImpl implements HotelDataService {
-    private DataHelper<HotelPO> hotelDataHelper = new HibernateHelper<HotelPO>();
-    private DataHelper<HotelRoomPO> hotelRoomDataHelper = new HibernateHelper<HotelRoomPO>();
-    private DataHelper<RoomStockPO> roomStockDataHelper = new HibernateHelper<RoomStockPO>();
+    private DataHelper<HotelPO> hotelDataHelper;
+    private DataHelper<HotelRoomPO> hotelRoomDataHelper;
+    private DataHelper<RoomStockPO> roomStockDataHelper;
 
-    protected HotelDataServiceImpl(DataHelper<HotelPO> hotelDataHelper) {
+    protected HotelDataServiceImpl(DataHelper<HotelPO> hotelDataHelper, DataHelper<HotelRoomPO> hotelRoomDataHelper, DataHelper<RoomStockPO> roomStockDataHelper) {
         this.hotelDataHelper = hotelDataHelper;
+        this.hotelRoomDataHelper = hotelRoomDataHelper;
+        this.roomStockDataHelper = roomStockDataHelper;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ResultMessage updateRoom(HotelRoomPO hotelRoomPO) {
-        return hotelDataHelper.update(hotelRoomPO);
+        return hotelRoomDataHelper.update(hotelRoomPO);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ResultMessage addRoom(HotelRoomPO hotelRoomPO) {
-        return hotelDataHelper.save(hotelRoomPO);
+        return hotelRoomDataHelper.save(hotelRoomPO);
     }
 
     @Override
@@ -83,22 +85,22 @@ public class HotelDataServiceImpl implements HotelDataService {
 
     @Override
     public ResultMessage deleteRoom(String roomID) {
-        return hotelDataHelper.delete("ID", roomID);
+        return hotelRoomDataHelper.delete("ID", roomID);
     }
 
     @Override
     public ResultMessage addRoomStock(RoomStockPO roomStockPO) {
-        return hotelDataHelper.save(roomStockPO);
+        return roomStockDataHelper.save(roomStockPO);
     }
 
     @Override
     public ResultMessage updateRoomStock(RoomStockPO roomStockPO) {
-        return hotelDataHelper.update(roomStockPO);
+        return roomStockDataHelper.update(roomStockPO);
     }
 
     @Override
     public ResultMessage deleteRoomStock(String roomStockID) {
-        return hotelDataHelper.delete("ID", roomStockID);
+        return roomStockDataHelper.delete("ID", roomStockID);
     }
 
     @Override

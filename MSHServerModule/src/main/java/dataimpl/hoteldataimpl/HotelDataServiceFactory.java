@@ -5,6 +5,8 @@ import datahelper.DataHelperFactory;
 import datahelper.HibernateHelper;
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
+import po.HotelRoomPO;
+import po.RoomStockPO;
 
 /**
  * Created by SilverNarcissus on 16/11/14.
@@ -18,7 +20,7 @@ public class HotelDataServiceFactory {
      */
     public static synchronized HotelDataService getHotelDataService(){
         if(hotelDataService==null){
-            hotelDataService=new HotelDataServiceImpl(new HibernateHelper<HotelPO>());
+            hotelDataService=new HotelDataServiceImpl(new HibernateHelper<HotelPO>(),new HibernateHelper<HotelRoomPO>(),new HibernateHelper<RoomStockPO>());
         }
         return hotelDataService;
     }

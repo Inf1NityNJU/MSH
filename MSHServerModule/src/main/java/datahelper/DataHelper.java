@@ -9,20 +9,20 @@ import java.util.ArrayList;
  */
 public interface DataHelper<T> {
 
-    public  ResultMessage save(Object o);
+    public ResultMessage save(Object o);
 
-    public  ResultMessage update(Object o);
+    public ResultMessage update(Object o);
 
-    public  ResultMessage delete(String key, String ID);
+    public ResultMessage delete(String key, String ID);
 
-    public  T exactlyQuery(String field, Object value);
+    public T exactlyQuery(String field, Object value);
 
-    public  ArrayList<T> prefixMatchQuery(String field, String value);
+    public ArrayList<T> prefixMatchQuery(String field, String value);
 
-    public  ArrayList<T> suffixMatchQuery(String field, String value);
+    public ArrayList<T> suffixMatchQuery(String field, String value);
 
-    public  ArrayList<T> fuzzyMatchQuery(String field, String value);
+    public ArrayList<T> fuzzyMatchQuery(String field, String value);
 
-    public  ArrayList<T> rangeQuery(String field, Object min, Object max);
+    public ArrayList<T> rangeQuery(String field, Object min, Object max);
 
 }
