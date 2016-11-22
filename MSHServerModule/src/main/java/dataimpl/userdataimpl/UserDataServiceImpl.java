@@ -1,6 +1,7 @@
 package dataimpl.userdataimpl;
 
 import datahelper.DataHelper;
+import datahelper.HibernateHelper;
 import dataservice.userdataservice.UserDataService;
 import po.*;
 import util.LoginState;
@@ -13,10 +14,14 @@ import java.util.ArrayList;
  */
 public class UserDataServiceImpl implements UserDataService {
 
-    private DataHelper userDataHelper;
+    private DataHelper<UserPO> userDataHelper=new HibernateHelper<UserPO>();
+    private DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>();
+    private DataHelper<StaffPO> staffDataHelper = new HibernateHelper<StaffPO>();
+    private DataHelper<CreditPO> creditDataHelper = new HibernateHelper<CreditPO>();
+    private DataHelper<SalesmanPO> salesmanDataHelper=new HibernateHelper<SalesmanPO>();
 
-    protected UserDataServiceImpl(DataHelper userDataHelper) {
-        this.userDataHelper = userDataHelper;
+    protected UserDataServiceImpl(DataHelper<UserPO> userDataHelper) {
+        //this.userDataHelper = userDataHelper;
     }
 
     /**
@@ -30,9 +35,9 @@ public class UserDataServiceImpl implements UserDataService {
         System.out.println(account);
         System.out.println(password);
         UserPO userPO;
-        if ((userPO = userDataHelper.exactlyQuery(ClientPO.class, "account", account)) != null) {
+        if ((userPO = userDataHelper.exactlyQuery("account", account)) != null) {
             UserPO tmpUserPO;
-            if ((tmpUserPO = userDataHelper.exactlyQuery(ClientPO.class, "password", password)) != null) {
+            if ((tmpUserPO = userDataHelper.exactlyQuery("password", password)) != null) {
                 if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                     return LoginState.LOGIN_SUCCESS_Client;
                 } else {
@@ -41,9 +46,9 @@ public class UserDataServiceImpl implements UserDataService {
             } else {
                 return LoginState.LOGIN_FAIL;
             }
-        } else if ((userPO = userDataHelper.exactlyQuery(StaffPO.class, "account", account)) != null) {
+        } else if ((userPO = userDataHelper.exactlyQuery("account", account)) != null) {
             UserPO tmpUserPO;
-            if ((tmpUserPO = userDataHelper.exactlyQuery(StaffPO.class, "password", password)) != null) {
+            if ((tmpUserPO = userDataHelper.exactlyQuery("password", password)) != null) {
                 if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                     return LoginState.LOGIN_SUCCESS_Staff;
                 } else {
@@ -52,9 +57,9 @@ public class UserDataServiceImpl implements UserDataService {
             } else {
                 return LoginState.LOGIN_FAIL;
             }
-        } else if ((userPO = userDataHelper.exactlyQuery(SalesmanPO.class, "account", account)) != null) {
+        } else if ((userPO = userDataHelper.exactlyQuery("account", account)) != null) {
             UserPO tmpUserPO;
-            if ((tmpUserPO = userDataHelper.exactlyQuery(SalesmanPO.class, "password", password)) != null) {
+            if ((tmpUserPO = userDataHelper.exactlyQuery("password", password)) != null) {
                 if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                     return LoginState.LOGIN_SUCCESS_Salesman;
                 } else {
@@ -98,8 +103,8 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
-        if (userDataHelper.save(ClientPO.class, clientPO) == ResultMessage.SUCCESS
-                && userDataHelper.save(CreditPO.class, creditPO) == ResultMessage.SUCCESS) {
+        if (creditDataHelper.save(clientPO) == ResultMessage.SUCCESS
+                && creditDataHelper.save(creditPO) == ResultMessage.SUCCESS) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -113,7 +118,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ClientPO searchClientByID(String clientID) {
-        return userDataHelper.exactlyQuery(ClientPO.class, "clientID", clientID);
+        return clientDataHelper.exactlyQuery("clientID", clientID);
     }
 
     /**
@@ -124,7 +129,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage updateClient(String clientID, ClientPO clientPO) {
-        return userDataHelper.update(StaffPO.class, clientPO);
+        return userDataHelper.update(clientPO);
     }
 
     /**
@@ -136,7 +141,7 @@ public class UserDataServiceImpl implements UserDataService {
     public ResultMessage deleteClient(String clientID) {
         //也要删除信用记录
         if (deleteAllCredit(clientID)
-                && userDataHelper.delete(ClientPO.class, "clientID", clientID) == ResultMessage.SUCCESS) {
+                && clientDataHelper.delete("clientID", clientID) == ResultMessage.SUCCESS) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -151,12 +156,12 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<ClientPO> searchClient(String keyword) {
         ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
-        for (ClientPO clientPO : userDataHelper.fuzzyMatchQuery(ClientPO.class, "clientID", keyword)) {
+        for (ClientPO clientPO : clientDataHelper.fuzzyMatchQuery("clientID", keyword)) {
             if (!clientPOs.contains(clientPO)) {
                 clientPOs.add(clientPO);
             }
         }
-        for (ClientPO clientPO : userDataHelper.fuzzyMatchQuery(ClientPO.class, "clientName", keyword)) {
+        for (ClientPO clientPO : clientDataHelper.fuzzyMatchQuery("clientName", keyword)) {
             if (!clientPOs.contains(clientPO)) {
                 clientPOs.add(clientPO);
             }
@@ -171,7 +176,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addStaff(StaffPO staffPO) {
-        return userDataHelper.save(StaffPO.class, staffPO);
+        return userDataHelper.save(staffPO);
     }
 
     /**
@@ -181,7 +186,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public StaffPO searchStaffByID(String staffID) {
-        return userDataHelper.exactlyQuery(StaffPO.class, "staffID", staffID);
+        return staffDataHelper.exactlyQuery("staffID", staffID);
     }
 
     /**
@@ -192,7 +197,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage updateStaff(String staffID, StaffPO staffPO) {
-        return userDataHelper.update(StaffPO.class, staffPO);
+        return userDataHelper.update(staffPO);
     }
 
     /**
@@ -202,7 +207,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage deleteStaff(String staffID) {
-        return userDataHelper.delete(StaffPO.class, "staffID", staffID);
+        return userDataHelper.delete("staffID", staffID);
     }
 
     /**
@@ -213,17 +218,17 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<StaffPO> searchStaff(String keyword) {
         ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
-        for (StaffPO staffPO : userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffID", keyword)) {
+        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("staffID", keyword)) {
             if (!staffPOs.contains(staffPO)) {
                 staffPOs.add(staffPO);
             }
         }
-        for (StaffPO staffPO : userDataHelper.fuzzyMatchQuery(StaffPO.class, "staffName", keyword)) {
+        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("staffName", keyword)) {
             if (!staffPOs.contains(staffPO)) {
                 staffPOs.add(staffPO);
             }
         }
-        for (StaffPO staffPO : userDataHelper.fuzzyMatchQuery(StaffPO.class, "hotelID", keyword)) {
+        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("hotelID", keyword)) {
             if (!staffPOs.contains(staffPO)) {
                 staffPOs.add(staffPO);
             }
@@ -238,7 +243,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addSalesman(SalesmanPO salesmanPO) {
-        return userDataHelper.save(SalesmanPO.class, salesmanPO);
+        return userDataHelper.save(salesmanPO);
     }
 
     /**
@@ -248,7 +253,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public SalesmanPO searchSalesmanByID(String salesmanID) {
-        return userDataHelper.exactlyQuery(SalesmanPO.class, "salesmanID", salesmanID);
+        return salesmanDataHelper.exactlyQuery("salesmanID", salesmanID);
     }
 
     /**
@@ -259,7 +264,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) {
-        return userDataHelper.update(SalesmanPO.class, salesmanPO);
+        return userDataHelper.update(salesmanPO);
     }
 
     /**
@@ -269,7 +274,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage deleteSalesman(String salesmanID) {
-        return userDataHelper.delete(SalesmanPO.class, "salesmanID", salesmanID);
+        return userDataHelper.delete("salesmanID", salesmanID);
     }
 
     /**
@@ -280,12 +285,12 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {
         ArrayList<SalesmanPO> salesmanPOs = new ArrayList<SalesmanPO>();
-        for (SalesmanPO salesmanPO : userDataHelper.fuzzyMatchQuery(SalesmanPO.class, "salesmanID", keyword)) {
+        for (SalesmanPO salesmanPO : salesmanDataHelper.fuzzyMatchQuery("salesmanID", keyword)) {
             if (!salesmanPOs.contains(salesmanPO)) {
                 salesmanPOs.add(salesmanPO);
             }
         }
-        for (SalesmanPO salesmanPO : userDataHelper.fuzzyMatchQuery(SalesmanPO.class, "salesmanName", keyword)) {
+        for (SalesmanPO salesmanPO : salesmanDataHelper.fuzzyMatchQuery("salesmanName", keyword)) {
             if (!salesmanPOs.contains(salesmanPO)) {
                 salesmanPOs.add(salesmanPO);
             }
@@ -302,7 +307,7 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
         //这个 clientID 好像没用?
-        return userDataHelper.save(CreditPO.class, creditPO);
+        return userDataHelper.save(creditPO);
     }
 
     /**
@@ -313,7 +318,7 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<CreditPO> searchCreditByID(String clientID) {
         ArrayList<CreditPO> creditPOs = new ArrayList<CreditPO>();
-        for (CreditPO creditPO : userDataHelper.prefixMatchQuery(CreditPO.class, "clientID", clientID)) {
+        for (CreditPO creditPO : creditDataHelper.prefixMatchQuery("clientID", clientID)) {
             if (!creditPOs.contains(creditPO)) {
                 creditPOs.add(creditPO);
             }
@@ -330,7 +335,7 @@ public class UserDataServiceImpl implements UserDataService {
     private boolean deleteAllCredit(String clientID) {
         ArrayList<CreditPO> creditPOs = searchCreditByID(clientID);
         for (CreditPO creditPO : creditPOs) {
-            if(userDataHelper.delete(CreditPO.class, "orderID", creditPO.getOrderID()) == ResultMessage.FAILED){
+            if(creditDataHelper.delete("orderID", creditPO.getOrderID()) == ResultMessage.FAILED){
                 return false;
             };
         }

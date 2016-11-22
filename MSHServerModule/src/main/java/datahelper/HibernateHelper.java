@@ -9,13 +9,15 @@ import util.ResultMessage;
 
 import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
  * Created by SilverNarcissus on 16/11/12.
  * DataHelper which use hibernate frame
  */
-public class HibernateHelper implements DataHelper {
+public class HibernateHelper<T> implements DataHelper<T> {
 
     private SessionFactory sessionFactory;
     private Session session;
@@ -50,7 +52,7 @@ public class HibernateHelper implements DataHelper {
      * @since 1.6
      */
     @Override
-    public <T> ResultMessage save(Class<T> classType, Object o) {
+    public ResultMessage save(Object o) {
         try {
             setUpSession();
             session.save(o);
@@ -72,7 +74,7 @@ public class HibernateHelper implements DataHelper {
      * @return 更新操作的结果信息
      */
     @Override
-    public <T> ResultMessage update(Class<T> classType, Object o) {
+    public ResultMessage update( Object o) {
         try {
             setUpSession();
             session.update(o);
@@ -94,9 +96,9 @@ public class HibernateHelper implements DataHelper {
      * @param ID
      */
     @Override
-    public <T> ResultMessage delete(Class<T> classType, String key, String ID) {
+    public ResultMessage delete( String key, String ID) {
         try {
-            Object o = exactlyQuery(classType, key, ID);
+            Object o = exactlyQuery(key, ID);
             if (o == null) {
                 return ResultMessage.NOT_EXIST;
             }
@@ -113,16 +115,14 @@ public class HibernateHelper implements DataHelper {
     /**
      * 按照ID精确查找PO
      *
-     * @param classType
      * @param field
      * @param value
-     * @param <T>
      * @return
      */
     @Override
-    public <T> T exactlyQuery(Class<T> classType, String field, Object value) {
+    public T exactlyQuery(String field, Object value) {
         try {
-            Criteria criteria = SetUpCriteria(classType);
+            Criteria criteria = SetUpCriteria();
             criteria.add(Restrictions.eq(field, value));
             T result = (criteria.list().size() == 0) ? null : (T) criteria.list().get(0);
             session.close();
@@ -142,9 +142,9 @@ public class HibernateHelper implements DataHelper {
      * @return PO列表
      */
     @Override
-    public <T> ArrayList<T> prefixMatchQuery(Class<T> classType, String field, String value) {
+    public ArrayList<T> prefixMatchQuery(String field, String value) {
         value = value + "%";
-        return likePatternQuery(classType, field, value);
+        return likePatternQuery(field, value);
     }
 
     /**
@@ -155,9 +155,9 @@ public class HibernateHelper implements DataHelper {
      * @return PO列表
      */
     @Override
-    public <T> ArrayList<T> suffixMatchQuery(Class<T> classType, String field, String value) {
+    public ArrayList<T> suffixMatchQuery( String field, String value) {
         value = "%" + value;
-        return likePatternQuery(classType, field, value);
+        return likePatternQuery(field, value);
     }
 
     /**
@@ -168,9 +168,9 @@ public class HibernateHelper implements DataHelper {
      * @return PO列表
      */
     @Override
-    public <T> ArrayList<T> fuzzyMatchQuery(Class<T> classType, String field, String value) {
+    public ArrayList<T> fuzzyMatchQuery(String field, String value) {
         value = "%" + value + "%";
-        return likePatternQuery(classType, field, value);
+        return likePatternQuery(field, value);
     }
 
     /**
@@ -182,9 +182,9 @@ public class HibernateHelper implements DataHelper {
      * @return PO列表
      */
     @Override
-    public <T> ArrayList<T> rangeQuery(Class<T> classType, String field, Object min, Object max) {
+    public ArrayList<T> rangeQuery( String field, Object min, Object max) {
         try {
-            Criteria criteria = SetUpCriteria(classType);
+            Criteria criteria = SetUpCriteria();
             criteria.add(Restrictions.between(field, min, max));
             ArrayList<T> arrayList = (ArrayList<T>) criteria.list();
             session.close();
@@ -202,9 +202,9 @@ public class HibernateHelper implements DataHelper {
      * @return 新的匹配标准
      * @throws ClassNotFoundException
      */
-    private Criteria SetUpCriteria(Class classType) throws ClassNotFoundException {
+    private Criteria SetUpCriteria() throws ClassNotFoundException {
         setUpSession();
-        return session.createCriteria(classType);
+        return session.createCriteria(getSuperClassGenricType(getClass(),0));
     }
 
     /**
@@ -214,9 +214,9 @@ public class HibernateHelper implements DataHelper {
      * @param value
      * @return PO列表
      */
-    private <T> ArrayList<T> likePatternQuery(Class<T> classType, String field, String value) {
+    private  ArrayList<T> likePatternQuery(String field, String value) {
         try {
-            Criteria criteria = SetUpCriteria(classType);
+            Criteria criteria = SetUpCriteria();
             criteria.add(Restrictions.like(field, value));
             ArrayList<T> arrayList = (ArrayList<T>) criteria.list();
             session.close();
@@ -228,4 +228,35 @@ public class HibernateHelper implements DataHelper {
         }
     }
 
+    /**
+     * 通过反射, 获得定义Class时声明的父类的泛型参数的类型. 如无法找到, 返回Object.class.
+     *
+     *@param clazz
+     *            clazz The class to introspect
+     * @param index
+     *            the Index of the generic ddeclaration,start from 0.
+     * @return the index generic declaration, or Object.class if cannot be
+     *         determined
+     */
+    @SuppressWarnings("unchecked")
+    private Class<Object> getSuperClassGenricType(final Class clazz, final int index) {
+
+        //返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type。
+        Type genType = clazz.getGenericSuperclass();
+
+        if (!(genType instanceof ParameterizedType)) {
+            return Object.class;
+        }
+        //返回表示此类型实际类型参数的 Type 对象的数组。
+        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+
+        if (index >= params.length || index < 0) {
+            return Object.class;
+        }
+        if (!(params[index] instanceof Class)) {
+            return Object.class;
+        }
+
+        return (Class) params[index];
+    }
 }

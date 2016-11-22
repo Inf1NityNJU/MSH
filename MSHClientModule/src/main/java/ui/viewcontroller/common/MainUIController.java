@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import main.Main;
 import ui.viewcontroller.order.OrderDetailViewController;
 import ui.viewcontroller.order.OrderListViewController;
+import ui.viewcontroller.order.OrderViewController;
 import vo.OrderVO;
 
 import java.io.IOException;
@@ -21,10 +22,11 @@ public class MainUIController {
 
     private BorderPane rootPane;
 
-    private Stack<Node> stack = new Stack<Node>();
+    private OrderViewController orderViewController = new OrderViewController();
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
+        this.orderViewController.setRootPane(rootPane);
     }
 
     public void showMainView() {
@@ -48,54 +50,11 @@ public class MainUIController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    /**
-     * 订单列表
-     */
-    public void showOrderList() {
-        if (!stack.empty()) {
-            Node node = stack.pop();
-            rootPane.setCenter(node);
-            return;
-        }
-
-        try {
-            FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/order/OrderListView.fxml"));
-            ScrollPane list = listLoader.load();
-
-            OrderListViewController orderListViewController = listLoader.getController();
-            orderListViewController.setMainUIController(this);
-
-            rootPane.setCenter(list);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void showClientOrders() {
+        orderViewController.showOrderList();
     }
 
-    /**
-     * 订单详情
-     */
-    public void showOrderDetail(OrderVO order) {
-        try {
-            FXMLLoader orderLoader = new FXMLLoader();
-            orderLoader.setLocation(Main.class.getResource("../view/order/OrderDetailView.fxml"));
-            ScrollPane view = orderLoader.load();
 
-            OrderDetailViewController orderDetailViewController = orderLoader.getController();
-            orderDetailViewController.setMainUIController(this);
-            orderDetailViewController.showOrder(order);
-
-            Node node = rootPane.getCenter();
-            stack.push(node);
-
-            rootPane.setCenter(view);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
