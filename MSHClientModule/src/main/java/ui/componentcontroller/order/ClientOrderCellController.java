@@ -14,7 +14,7 @@ import vo.OrderVO;
 /**
  * Created by Sorumi on 16/11/18.
  */
-public class OrderCellController {
+public class ClientOrderCellController {
 
     private OrderListViewController orderListViewController;
     private OrderVO order;
@@ -55,7 +55,7 @@ public class OrderCellController {
 
     @FXML
     public void clickDetailButton() {
-        orderListViewController.showOrderDetail(order);
+        orderListViewController.showClientOrderDetail(order);
     }
 
     public void setOrder(OrderVO order) {

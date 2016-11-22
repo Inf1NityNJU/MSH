@@ -29,7 +29,7 @@ public class OrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
-        orderViewController.showOrderList();
+        orderViewController.back();
     }
 
 }

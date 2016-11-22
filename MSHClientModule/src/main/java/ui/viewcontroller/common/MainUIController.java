@@ -1,19 +1,14 @@
 package ui.viewcontroller.common;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import main.Main;
-import ui.viewcontroller.order.OrderDetailViewController;
-import ui.viewcontroller.order.OrderListViewController;
 import ui.viewcontroller.order.OrderViewController;
-import vo.OrderVO;
 
 import java.io.IOException;
-import java.util.Stack;
 
 /**
  * Created by Sorumi on 16/11/17.
@@ -53,7 +48,11 @@ public class MainUIController {
     }
 
     public void showClientOrders() {
-        orderViewController.showOrderList();
+        orderViewController.showClientOrderList();
+    }
+
+    public void showHotelOrders() {
+//        orderViewController.show
     }
 
 

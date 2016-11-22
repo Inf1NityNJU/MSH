@@ -7,8 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.OrderCellController;
-import ui.viewcontroller.common.MainUIController;
+import ui.componentcontroller.order.ClientOrderCellController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -60,9 +59,9 @@ public class OrderListViewController {
                 loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
                 HBox ordercell = loader.load();
 
-                OrderCellController orderCellController = loader.getController();
-                orderCellController.setOrderListViewController(this);
-                orderCellController.setOrder(order);
+                ClientOrderCellController clientOrderCellController = loader.getController();
+                clientOrderCellController.setOrderListViewController(this);
+                clientOrderCellController.setOrder(order);
 
                 contentVBox.getChildren().add(ordercell);
             }
@@ -71,8 +70,8 @@ public class OrderListViewController {
         }
     }
 
-    public void showOrderDetail(OrderVO order) {
-        orderViewController.showOrderDetail(order);
+    public void showClientOrderDetail(OrderVO order) {
+        orderViewController.showClientOrderDetail(order);
     }
 
 }

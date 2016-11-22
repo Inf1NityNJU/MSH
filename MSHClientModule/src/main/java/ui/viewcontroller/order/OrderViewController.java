@@ -19,22 +19,24 @@ public class OrderViewController {
 
     private Stack<Node> stack = new Stack<Node>();
 
-
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
     }
 
-
     /**
-     * 订单列表
+     *
      */
-    public void showOrderList() {
+    public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
             rootPane.setCenter(node);
-            return;
         }
+    }
 
+    /**
+     * 客户订单列表
+     */
+    public void showClientOrderList() {
         try {
             FXMLLoader listLoader = new FXMLLoader();
             listLoader.setLocation(Main.class.getResource("../view/order/OrderListView.fxml"));
@@ -51,9 +53,9 @@ public class OrderViewController {
     }
 
     /**
-     * 订单详情
+     * 客户订单详情
      */
-    public void showOrderDetail(OrderVO order) {
+    public void showClientOrderDetail(OrderVO order) {
         try {
             FXMLLoader orderLoader = new FXMLLoader();
             orderLoader.setLocation(Main.class.getResource("../view/order/OrderDetailView.fxml"));
