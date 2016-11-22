@@ -1,4 +1,4 @@
-package ui.viewcontroller.order;
+package ui.viewcontroller.client;
 
 import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
@@ -7,8 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.OrderCellController;
-import ui.viewcontroller.common.MainUIController;
+import ui.componentcontroller.order.ClientOrderCellController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -18,9 +17,9 @@ import java.util.ArrayList;
 /**
  * Created by Sorumi on 16/11/17.
  */
-public class OrderListViewController {
+public class ClientOrderListViewController {
 
-    private OrderViewController orderViewController;
+    private ClientViewController clientViewController;
 
     @FXML
     private VBox contentVBox;
@@ -28,7 +27,7 @@ public class OrderListViewController {
     private OrderBLService orderBLService;
 
     /**
-     * Initializes the OrderListViewController class. This method is automatically called
+     * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
@@ -48,8 +47,8 @@ public class OrderListViewController {
         }
     }
 
-    public void setOrderViewController(OrderViewController orderViewController) {
-        this.orderViewController = orderViewController;
+    public void setClientViewController(ClientViewController clientViewController) {
+        this.clientViewController = clientViewController;
     }
     private void showOrders(OrderState orderState) {
 
@@ -60,9 +59,9 @@ public class OrderListViewController {
                 loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
                 HBox ordercell = loader.load();
 
-                OrderCellController orderCellController = loader.getController();
-                orderCellController.setOrderListViewController(this);
-                orderCellController.setOrder(order);
+                ClientOrderCellController clientOrderCellController = loader.getController();
+                clientOrderCellController.setClientOrderListViewController(this);
+                clientOrderCellController.setOrder(order);
 
                 contentVBox.getChildren().add(ordercell);
             }
@@ -71,8 +70,8 @@ public class OrderListViewController {
         }
     }
 
-    public void showOrderDetail(OrderVO order) {
-        orderViewController.showOrderDetail(order);
+    public void showClientOrderDetail(OrderVO order) {
+        clientViewController.showClientOrderDetail(order);
     }
 
 }

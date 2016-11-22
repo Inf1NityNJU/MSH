@@ -1,16 +1,15 @@
-package ui.viewcontroller.order;
+package ui.viewcontroller.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import ui.viewcontroller.common.MainUIController;
 import vo.OrderVO;
 
 /**
  * Created by Sorumi on 16/11/22.
  */
-public class OrderDetailViewController {
+public class ClientOrderDetailViewController {
 
-    private OrderViewController orderViewController;
+    private ClientViewController clientViewController;
 
     @FXML
     private Label orderIDLabel;
@@ -18,8 +17,8 @@ public class OrderDetailViewController {
     @FXML
     private Label hotelNameLabel;
 
-    public void setOrderViewController(OrderViewController orderViewController) {
-        this.orderViewController = orderViewController;
+    public void setClientViewController(ClientViewController clientViewController) {
+        this.clientViewController = clientViewController;
     }
 
     public void showOrder(OrderVO order) {
@@ -29,7 +28,7 @@ public class OrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
-        orderViewController.showOrderList();
+        clientViewController.back();
     }
 
 }

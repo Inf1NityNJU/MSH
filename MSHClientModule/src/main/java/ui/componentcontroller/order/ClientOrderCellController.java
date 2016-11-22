@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 
-import ui.viewcontroller.order.OrderListViewController;
+import ui.viewcontroller.client.ClientOrderListViewController;
 import vo.BillVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
@@ -14,9 +14,9 @@ import vo.OrderVO;
 /**
  * Created by Sorumi on 16/11/18.
  */
-public class OrderCellController {
+public class ClientOrderCellController {
 
-    private OrderListViewController orderListViewController;
+    private ClientOrderListViewController clientOrderListViewController;
     private OrderVO order;
 
     @FXML
@@ -49,13 +49,13 @@ public class OrderCellController {
     @FXML
     private RectButton detailButton;
 
-    public void setOrderListViewController(OrderListViewController orderListViewController) {
-        this.orderListViewController = orderListViewController;
+    public void setClientOrderListViewController(ClientOrderListViewController clientOrderListViewController) {
+        this.clientOrderListViewController = clientOrderListViewController;
     }
 
     @FXML
     public void clickDetailButton() {
-        orderListViewController.showOrderDetail(order);
+        clientOrderListViewController.showClientOrderDetail(order);
     }
 
     public void setOrder(OrderVO order) {

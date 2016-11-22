@@ -33,8 +33,9 @@ public class Salesman extends User {
     public LoginState login(String account, String password) {
         LoginState loginState = userDataService.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
-            System.out.println("LOGIN Salesman");
-            super.setCurrentID("STRING FROM DB");
+            System.out.println("Login Salesman");
+            SalesmanPO salesmanPO = userDataService.searchSalesman(account).get(0);
+            super.setCurrentID(salesmanPO.getSalesmanID());
             this.account = account;
             this.password = password;
         }

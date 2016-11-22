@@ -33,8 +33,9 @@ public class Staff extends User {
     public LoginState login(String account, String password) {
         LoginState loginState = userDataService.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
-            System.out.println("LOGIN Staff");
-            super.setCurrentID("STRING FROM DB");
+            System.out.println("Login Staff");
+            StaffPO staffPO = userDataService.searchStaff(account).get(0);
+            super.setCurrentID(staffPO.getStaffID());
             this.account = account;
             this.password = password;
         }

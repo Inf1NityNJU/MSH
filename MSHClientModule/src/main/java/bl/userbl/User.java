@@ -12,6 +12,9 @@ import java.util.ArrayList;
  */
 public class User {
 
+    /**
+     * 当前用户ID
+     */
     private String currentID;
 
     /**
@@ -137,6 +140,7 @@ public class User {
      * @param currentID
      */
     public void setCurrentID(String currentID) {
+        System.out.println("Set ID: " + currentID);
         this.currentID = currentID;
     }
 
@@ -146,6 +150,7 @@ public class User {
      * @return 当前用户ID
      */
     public String getCurrentID() {
+        System.out.println("Get ID: " + currentID);
         return this.currentID;
     }
 }
