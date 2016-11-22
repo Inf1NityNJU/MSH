@@ -2,6 +2,7 @@ package hotel;
 
 import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
+import org.junit.Before;
 import org.junit.Test;
 import po.HotelPO;
 import util.Place;
@@ -18,7 +19,20 @@ import static org.junit.Assert.*;
  */
 public class HotelTest {
     private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
+    Hotel_DetailVO hotel_detailVO1;
+    Hotel_DetailVO hotel_detailVO2;
+    Hotel_DetailVO hotel_detailVO3;
+    Hotel_DetailVO hotel_detailVO4;
+    Hotel_DetailVO hotel_detailVO5;
 
+    @Before
+    public void setUp(){
+        hotel_detailVO1 = hotelBLService.getHotel("00000000");
+        hotel_detailVO2 = hotelBLService.getHotel("00000001");
+        hotel_detailVO3 = hotelBLService.getHotel("00000002");
+        hotel_detailVO4 = hotelBLService.getHotel("00000003");
+        hotel_detailVO5 = hotelBLService.getHotel("00000004");
+    }
     @Test
     public void searchHotel() throws Exception {
 
@@ -52,9 +66,6 @@ public class HotelTest {
 
     @Test
     public void priceAscendingSort() throws Exception {
-        Hotel_DetailVO hotel_detailVO1 = hotelBLService.getHotel("00000000");
-        Hotel_DetailVO hotel_detailVO2 = hotelBLService.getHotel("00000001");
-        Hotel_DetailVO hotel_detailVO3 = hotelBLService.getHotel("00000002");
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
         hotel_detailVOs.add(hotel_detailVO2);
@@ -67,9 +78,6 @@ public class HotelTest {
 
     @Test
     public void priceDescendingSort() throws Exception {
-        Hotel_DetailVO hotel_detailVO1 = hotelBLService.getHotel("00000000");
-        Hotel_DetailVO hotel_detailVO2 = hotelBLService.getHotel("00000001");
-        Hotel_DetailVO hotel_detailVO3 = hotelBLService.getHotel("00000002");
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
         hotel_detailVOs.add(hotel_detailVO2);
@@ -82,11 +90,6 @@ public class HotelTest {
 
     @Test
     public void starAscendingSort() throws Exception {
-        Hotel_DetailVO hotel_detailVO1 = hotelBLService.getHotel("00000000");
-        Hotel_DetailVO hotel_detailVO2 = hotelBLService.getHotel("00000001");
-        Hotel_DetailVO hotel_detailVO3 = hotelBLService.getHotel("00000002");
-        Hotel_DetailVO hotel_detailVO4 = hotelBLService.getHotel("00000003");
-        Hotel_DetailVO hotel_detailVO5 = hotelBLService.getHotel("00000004");
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
         hotel_detailVOs.add(hotel_detailVO2);
@@ -101,11 +104,6 @@ public class HotelTest {
 
     @Test
     public void starDescendingSort() throws Exception {
-        Hotel_DetailVO hotel_detailVO1 = hotelBLService.getHotel("00000000");
-        Hotel_DetailVO hotel_detailVO2 = hotelBLService.getHotel("00000001");
-        Hotel_DetailVO hotel_detailVO3 = hotelBLService.getHotel("00000002");
-        Hotel_DetailVO hotel_detailVO4 = hotelBLService.getHotel("00000003");
-        Hotel_DetailVO hotel_detailVO5 = hotelBLService.getHotel("00000004");
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
         hotel_detailVOs.add(hotel_detailVO2);
