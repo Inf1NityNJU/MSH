@@ -9,8 +9,6 @@ import util.ResultMessage;
 
 import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +19,14 @@ public class HibernateHelper<T> implements DataHelper<T> {
 
     private SessionFactory sessionFactory;
     private Session session;
+    private Class<T> type;
 
-    public HibernateHelper() {
+    public HibernateHelper(){
+
+    }
+
+    public HibernateHelper(Class<T> type) {
+        this.type=type;
         Configuration configuration = new Configuration();
         sessionFactory = configuration.configure().buildSessionFactory();
     }
@@ -55,7 +59,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
     public ResultMessage save(Object o) {
         try {
             setUpSession();
-            session.save(o);
+            session.save(type.getName(),o);
             commitAndClose();
         } catch (PersistenceException e) {
             e.printStackTrace();
@@ -77,7 +81,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
     public ResultMessage update( Object o) {
         try {
             setUpSession();
-            session.update(o);
+            session.update(type.getName(),o);
             commitAndClose();
         } catch (OptimisticLockException e) {
             e.printStackTrace();
@@ -103,7 +107,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
                 return ResultMessage.NOT_EXIST;
             }
             setUpSession();
-            session.delete(o);
+            session.delete(type.getName(),o);
             commitAndClose();
         } catch (Exception e) {
             e.printStackTrace();
@@ -204,7 +208,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
      */
     private Criteria SetUpCriteria() throws ClassNotFoundException {
         setUpSession();
-        return session.createCriteria(getSuperClassGenricType(getClass(),0));
+        return session.createCriteria(type);
     }
 
     /**
@@ -226,37 +230,5 @@ public class HibernateHelper<T> implements DataHelper<T> {
             session.close();
             return new ArrayList<T>();
         }
-    }
-
-    /**
-     * 通过反射, 获得定义Class时声明的父类的泛型参数的类型. 如无法找到, 返回Object.class.
-     *
-     *@param clazz
-     *            clazz The class to introspect
-     * @param index
-     *            the Index of the generic ddeclaration,start from 0.
-     * @return the index generic declaration, or Object.class if cannot be
-     *         determined
-     */
-    @SuppressWarnings("unchecked")
-    private Class<Object> getSuperClassGenricType(final Class clazz, final int index) {
-
-        //返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type。
-        Type genType = clazz.getGenericSuperclass();
-
-        if (!(genType instanceof ParameterizedType)) {
-            return Object.class;
-        }
-        //返回表示此类型实际类型参数的 Type 对象的数组。
-        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-
-        if (index >= params.length || index < 0) {
-            return Object.class;
-        }
-        if (!(params[index] instanceof Class)) {
-            return Object.class;
-        }
-
-        return (Class) params[index];
     }
 }
