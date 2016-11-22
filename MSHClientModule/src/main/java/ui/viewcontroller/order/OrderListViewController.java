@@ -1,4 +1,4 @@
-package ui.viewcontroller.common;
+package ui.viewcontroller.order;
 
 import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.OrderCellController;
+import ui.viewcontroller.common.MainUIController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -51,7 +52,7 @@ public class OrderListViewController {
         this.mainUIController = mainUIController;
     }
 
-    public void showOrders(OrderState orderState) {
+    private void showOrders(OrderState orderState) {
 
         ArrayList<OrderVO> orders = orderBLService.searchOrder(orderState, null);
         try {
@@ -71,8 +72,8 @@ public class OrderListViewController {
         }
     }
 
-    public void showOrderDetail() {
-        mainUIController.showOrderDetail();
+    public void showOrderDetail(OrderVO order) {
+        mainUIController.showOrderDetail(order);
     }
 
 }

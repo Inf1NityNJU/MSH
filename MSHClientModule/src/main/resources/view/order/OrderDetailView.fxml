@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.order.OrderDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -53,14 +53,14 @@
                               <Insets top="3.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="20161014010112340000" textFill="GREY" GridPane.columnIndex="1">
+                        <Label fx:id="orderIDLabel" text="20161014010112340000" textFill="GREY" GridPane.columnIndex="1">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label text="喵喵酒店" textFill="GREY">
+                              <Label fx:id="hotelNameLabel" text="!!酒店" textFill="GREY">
                                  <font>
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
@@ -141,7 +141,7 @@
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <StateButton colorProperty="00CCCC" isActiveProperty="true" text="未执行" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <StateButton colorProperty="00cccc" isActiveProperty="true" text="未执行" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label text="2016年11月26日 - 2016年11月27日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
@@ -217,7 +217,7 @@
                   </GridPane>
                   <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                      <buttons>
-                        <RectButton isActiveProperty="false" minHeight="40.0" text="返 回" />
+                        <RectButton isActiveProperty="false" minHeight="40.0" text="返 回" onMouseClicked="#clickBackButton"/>
                         <RectButton minHeight="40.0" text="撤销订单" />
                      </buttons>
                   </ButtonBar>
