@@ -2,7 +2,11 @@ package dataimpl.userdataimpl;
 
 import datahelper.DataHelperFactory;
 import datahelper.DataHelper;
+import datahelper.HibernateHelper;
 import dataservice.userdataservice.UserDataService;
+import po.ClientPO;
+import po.SalesmanPO;
+import po.StaffPO;
 
 /**
  * Created by Kray on 2016/11/17.
@@ -20,24 +24,27 @@ public class UserDataServiceFactory {
      */
     public static synchronized UserDataService getStaffDataService() {
         if (userDataService == null) {
-            DataHelper staffDataHelper = DataHelperFactory.getHibernateDataHelper();
-            userDataService = new UserDataServiceImpl(staffDataHelper);
+            DataHelper<StaffPO> staffDataHelper = new HibernateHelper<StaffPO>();
+            userDataService = new UserDataServiceImpl();
+            userDataService.setStaff(staffDataHelper);
         }
         return userDataService;
     }
 
     public static synchronized UserDataService getSalesmanDataService() {
         if (userDataService == null) {
-            DataHelper salesmanDataHelper = DataHelperFactory.getHibernateDataHelper();
-            userDataService = new UserDataServiceImpl(salesmanDataHelper);
+            DataHelper<SalesmanPO> salesmanDataHelper = new HibernateHelper<SalesmanPO>();
+            userDataService = new UserDataServiceImpl();
+            userDataService.setSalesman(salesmanDataHelper);
         }
         return userDataService;
     }
 
     public static synchronized UserDataService getClientDataService() {
         if (userDataService == null) {
-            DataHelper clientDataHelper = DataHelperFactory.getHibernateDataHelper();
-            userDataService = new UserDataServiceImpl(clientDataHelper);
+            DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>();
+            userDataService = new UserDataServiceImpl();
+            userDataService.setClient(clientDataHelper);
         }
         return userDataService;
     }

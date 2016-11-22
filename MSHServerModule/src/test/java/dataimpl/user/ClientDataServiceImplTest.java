@@ -19,7 +19,6 @@ import static org.junit.Assert.assertTrue;
  */
 public class ClientDataServiceImplTest {
 
-
     private UserDataService userDataService;
 
     public ClientDataServiceImplTest() {
@@ -46,14 +45,14 @@ public class ClientDataServiceImplTest {
     @Test
     public void addClient() throws Exception {
         ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000003", "songkuixi", 500, 0,
-                "2016-02-02", "18795963603", "NO", "adminClient", "12345678"), new CreditPO("000000003"));
+                "2016-02-02", "18795963603", "", "adminClient", "12345678"), new CreditPO("000000003"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void searchClientByID() throws Exception {
         ClientPO examplePO = new ClientPO("000000003", "songkuixi", 500, 0,
-                "2016-02-02", "18795963603", "NO", "adminClient", "12345678");
+                "2016-02-02", "18795963603", "", "adminClient", "12345678");
         ClientPO clientPO = userDataService.searchClientByID("000000003");
         assertTrue(clientPO.equals(examplePO));
     }
@@ -61,7 +60,7 @@ public class ClientDataServiceImplTest {
     @Test
     public void updateClient() throws Exception {
         ResultMessage resultMessage = userDataService.updateClient("000000003", new ClientPO("000000003", "songkuixi 2", 500, 0,
-                "2016-02-02", "18795963603", "NO", "adminClient", "12345678"));
+                "2016-02-02", "18795963603", "", "adminClient", "12345678"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
@@ -73,7 +72,10 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void searchClient() throws Exception {
-
+        ArrayList<ClientPO> clientPOs = userDataService.searchClient("003");
+        ArrayList<ClientPO> exampleClientPOs = new ArrayList<ClientPO>();
+        exampleClientPOs.add(new ClientPO("000000003", "songkuixi", 500, 0, "2016-02-02", "18795963603", "", "adminClient", "12345678"));
+        assertEquals(exampleClientPOs, clientPOs);
     }
 
     @Test

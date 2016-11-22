@@ -46,12 +46,12 @@ public class SalesmanDataServiceImplTest {
     public void addSalesman() throws Exception {
         ResultMessage resultMessage = userDataService.addSalesman(new SalesmanPO("100001", "songkuixi", "adminSalesman", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.addSalesman(new SalesmanPO("100002", "songkuixi", "adminSalesman", "password"));
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.addSalesman(new SalesmanPO("100003", "songkuixi", "adminSalesman", "password"));
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.addSalesman(new SalesmanPO("100004", "songkuixi", "adminSalesman", "password"));
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
+//        resultMessage = userDataService.addSalesman(new SalesmanPO("100002", "songkuixi", "adminSalesman", "password"));
+//        assertEquals(ResultMessage.SUCCESS, resultMessage);
+//        resultMessage = userDataService.addSalesman(new SalesmanPO("100003", "songkuixi", "adminSalesman", "password"));
+//        assertEquals(ResultMessage.SUCCESS, resultMessage);
+//        resultMessage = userDataService.addSalesman(new SalesmanPO("100004", "songkuixi", "adminSalesman", "password"));
+//        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test

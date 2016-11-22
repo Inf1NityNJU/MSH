@@ -30,23 +30,23 @@ public class ClientTest {
 
     @Test
     public void testAdd() throws Exception {
-        ResultMessage rm = client.add(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0));
+        ResultMessage rm = client.add(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""));
         assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test
     public void testSearchByID() throws Exception {
         ClientVO cvo = client.searchByID("000000007");
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0), cvo);
+        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""), cvo);
         cvo = client.searchByID("000000009");
         assertEquals(null, cvo);
     }
 
     @Test
     public void testUpdate() throws Exception {
-        ResultMessage rm = client.update(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 1500, 0));
+        ResultMessage rm = client.update(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 1500, 0, "18795963603", ""));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.update(new ClientVO("000000007", "songkuixi2", 0, new DateUtil(2016, 1, 1), 500, 0));
+        rm = client.update(new ClientVO("000000007", "songkuixi2", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""));
         assertEquals(ResultMessage.FAILED, rm);
     }
 
@@ -61,8 +61,7 @@ public class ClientTest {
     @Test
     public void testSearchClient() throws Exception {
         ArrayList<ClientVO> acvo = new ArrayList<ClientVO>();
-        acvo.add(new ClientVO("000000002", "老二", 0, new DateUtil(2016, 2, 2), 500, 0));
-
+        acvo.add(new ClientVO("000000002", "老二", 0, new DateUtil(2016, 2, 2), 500, 0, "18795963603", ""));
 
         ArrayList<ClientVO> tmpAcvoS = client.search("老二");
         for (int i = 0; i < acvo.size(); i++) {
@@ -71,10 +70,10 @@ public class ClientTest {
         }
 
         acvo.clear();
-        acvo.add(new ClientVO("000000001", "老大", 0, new DateUtil(2016, 1, 1), 500, 0));
-        acvo.add(new ClientVO("000000002", "老二", 0, new DateUtil(2016, 2, 2), 500, 0));
-        acvo.add(new ClientVO("000000003", "老三", 0, new DateUtil(2016, 3, 3), 500, 0));
-        acvo.add(new ClientVO("000000004", "老四", 0, new DateUtil(2016, 4, 4), 500, 0));
+        acvo.add(new ClientVO("000000001", "老大", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""));
+        acvo.add(new ClientVO("000000002", "老二", 0, new DateUtil(2016, 2, 2), 500, 0, "18795963603", ""));
+        acvo.add(new ClientVO("000000003", "老三", 0, new DateUtil(2016, 3, 3), 500, 0, "18795963603", ""));
+        acvo.add(new ClientVO("000000004", "老四", 0, new DateUtil(2016, 4, 4), 500, 0, "18795963603", ""));
 
         tmpAcvoS = client.search("老");
         for (int i = 0; i < acvo.size(); i++) {
@@ -85,9 +84,6 @@ public class ClientTest {
 
     @Test
     public void testAddCreditByID() throws Exception {
-        ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
-        OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
-        rooms.add(room1);
         ResultMessage rm = client.addCreditByID("000000007", new CreditVO(200, 500, CreditAction.ADD_CREDIT, "20161012010112340000", new DateUtil(2016, 11, 1)));
         assertEquals(ResultMessage.SUCCESS, rm);
         rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, "20161012010112340000", new DateUtil(2016, 11, 1)));
@@ -96,9 +92,6 @@ public class ClientTest {
 
     @Test
     public void testSearchCreditByID() throws Exception {
-        ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
-        OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
-        rooms.add(room1);
         ArrayList<CreditVO> acvo = new ArrayList<CreditVO>();
         acvo.add(new CreditVO(200, 700, CreditAction.ADD_CREDIT, "20161012010112340002", new DateUtil(2016, 10, 12)));
         for (int i = 0; i < acvo.size(); i++) {

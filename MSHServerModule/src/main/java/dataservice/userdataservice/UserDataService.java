@@ -50,7 +50,7 @@ public interface UserDataService {
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO);
 
     /**
-     * 根据ID 查找客户
+     * 根据ID查找客户
      *
      * @param clientID
      * @return
@@ -91,7 +91,7 @@ public interface UserDataService {
     public ResultMessage addStaff(StaffPO staffPO);
 
     /**
-     * 根据ID 查找酒店工作人员
+     * 根据ID查找酒店工作人员
      *
      * @param staffID
      * @return
@@ -132,7 +132,7 @@ public interface UserDataService {
     public ResultMessage addSalesman(SalesmanPO salesmanPO);
 
     /**
-     * 根据ID 查找酒店工作人员
+     * 根据ID查找酒店工作人员
      *
      * @param salesmanID
      * @return
@@ -174,7 +174,7 @@ public interface UserDataService {
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO);
 
     /**
-     * 根据ID 查找信用记录列表
+     * 根据ID查找信用记录列表
      *
      * @param clientID
      * @return

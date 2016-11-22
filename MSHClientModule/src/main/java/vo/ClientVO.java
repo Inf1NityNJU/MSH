@@ -35,11 +35,11 @@ public class ClientVO extends UserVO {
     /**
      * 客户联系方式
      */
-    private String contactInfo;
+    public String contactInfo;
     /**
      * 客户所属企业,若是普通用户则为空
      */
-    private String enterprise;
+    public String enterprise;
 
     /**
      * 客户构造方法,包括 id,姓名,等级,生日,信用值,类型
@@ -51,13 +51,15 @@ public class ClientVO extends UserVO {
      * @param credit
      * @param type
      */
-    public ClientVO(String id, String name, int level, DateUtil birthday, int credit, int type) {
+    public ClientVO(String id, String name, int level, DateUtil birthday, int credit, int type, String contactInfo, String enterprise) {
         this.clientID = id;
         this.clientName = name;
         this.credit = credit;
         this.level = level;
         this.type = type;
         this.birthday = birthday;
+        this.contactInfo = contactInfo;
+        this.enterprise = enterprise;
     }
 
     /**
@@ -97,7 +99,10 @@ public class ClientVO extends UserVO {
                 && judgeEqual(credit, clientVO.credit)
                 && judgeEqual(level, clientVO.level)
                 && judgeEqual(birthday, clientVO.birthday)
-                && judgeEqual(type, clientVO.type);
+                && judgeEqual(type, clientVO.type)
+                && judgeEqual(contactInfo, clientVO.contactInfo)
+                && judgeEqual(enterprise, clientVO.enterprise);
+
     }
 }
 
