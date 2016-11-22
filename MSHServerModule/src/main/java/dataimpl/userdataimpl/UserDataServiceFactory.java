@@ -1,6 +1,5 @@
 package dataimpl.userdataimpl;
 
-import datahelper.DataHelperFactory;
 import datahelper.DataHelper;
 import datahelper.HibernateHelper;
 import dataservice.userdataservice.UserDataService;
@@ -24,7 +23,7 @@ public class UserDataServiceFactory {
      */
     public static synchronized UserDataService getStaffDataService() {
         if (userDataService == null) {
-            DataHelper<StaffPO> staffDataHelper = new HibernateHelper<StaffPO>();
+            DataHelper<StaffPO> staffDataHelper = new HibernateHelper<StaffPO>(StaffPO.class);
             userDataService = new UserDataServiceImpl();
             userDataService.setStaff(staffDataHelper);
         }
@@ -33,7 +32,7 @@ public class UserDataServiceFactory {
 
     public static synchronized UserDataService getSalesmanDataService() {
         if (userDataService == null) {
-            DataHelper<SalesmanPO> salesmanDataHelper = new HibernateHelper<SalesmanPO>();
+            DataHelper<SalesmanPO> salesmanDataHelper = new HibernateHelper<SalesmanPO>(SalesmanPO.class);
             userDataService = new UserDataServiceImpl();
             userDataService.setSalesman(salesmanDataHelper);
         }
@@ -42,7 +41,7 @@ public class UserDataServiceFactory {
 
     public static synchronized UserDataService getClientDataService() {
         if (userDataService == null) {
-            DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>();
+            DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>(ClientPO.class);
             userDataService = new UserDataServiceImpl();
             userDataService.setClient(clientDataHelper);
         }
