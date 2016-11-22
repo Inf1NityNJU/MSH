@@ -1,4 +1,4 @@
-package ui.viewcontroller.order;
+package ui.viewcontroller.client;
 
 import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 /**
  * Created by Sorumi on 16/11/17.
  */
-public class OrderListViewController {
+public class ClientOrderListViewController {
 
-    private OrderViewController orderViewController;
+    private ClientViewController clientViewController;
 
     @FXML
     private VBox contentVBox;
@@ -27,7 +27,7 @@ public class OrderListViewController {
     private OrderBLService orderBLService;
 
     /**
-     * Initializes the OrderListViewController class. This method is automatically called
+     * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
      */
     @FXML
@@ -47,8 +47,8 @@ public class OrderListViewController {
         }
     }
 
-    public void setOrderViewController(OrderViewController orderViewController) {
-        this.orderViewController = orderViewController;
+    public void setClientViewController(ClientViewController clientViewController) {
+        this.clientViewController = clientViewController;
     }
     private void showOrders(OrderState orderState) {
 
@@ -60,7 +60,7 @@ public class OrderListViewController {
                 HBox ordercell = loader.load();
 
                 ClientOrderCellController clientOrderCellController = loader.getController();
-                clientOrderCellController.setOrderListViewController(this);
+                clientOrderCellController.setClientOrderListViewController(this);
                 clientOrderCellController.setOrder(order);
 
                 contentVBox.getChildren().add(ordercell);
@@ -71,7 +71,7 @@ public class OrderListViewController {
     }
 
     public void showClientOrderDetail(OrderVO order) {
-        orderViewController.showClientOrderDetail(order);
+        clientViewController.showClientOrderDetail(order);
     }
 
 }
