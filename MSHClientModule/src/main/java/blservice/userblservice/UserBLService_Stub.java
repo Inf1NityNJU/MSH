@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class UserBLService_Stub implements UserBLService {
 
-    private ClientVO exampleClientVO = new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0);
+    private ClientVO exampleClientVO = new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "");
 
     public LoginState login(String account, String password) {
         if (account.equals("admin") && password.equals("12345678")) {

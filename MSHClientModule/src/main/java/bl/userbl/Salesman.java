@@ -19,7 +19,6 @@ public class Salesman extends User {
     private String account;
     private String password;
 
-
     public Salesman() {
         this.userDataService = UserDataServiceFactory.getSalesmanDataService();
     }

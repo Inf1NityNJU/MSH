@@ -24,13 +24,13 @@ public class UserDataService_Stub implements UserDataService {
     CreditPO exampleCreditPO = new CreditPO("20161012010112340000", "2016-01-01", 20, 500, CreditAction.ADD_CREDIT, "000000007");
 
     public LoginState login(String account, String password) {
-        if(account.equals("songkuixi") && password.equals("123456")) {
+        if (account.equals("songkuixi") && password.equals("123456")) {
             return LoginState.LOGIN_SUCCESS_Client;
-        }else if(account.equals("adminStaff") && password.equals("password")){
+        } else if (account.equals("adminStaff") && password.equals("password")) {
             return LoginState.LOGIN_SUCCESS_Staff;
-        }else if(account.equals("adminSalesman") && password.equals("password")){
+        } else if (account.equals("adminSalesman") && password.equals("password")) {
             return LoginState.LOGIN_SUCCESS_Salesman;
-        }else{
+        } else {
             return LoginState.LOGIN_FAIL;
         }
     }
@@ -40,13 +40,13 @@ public class UserDataService_Stub implements UserDataService {
     }
 
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
-        if(account.equals("songkuixi") && oldPassword.equals("123456")){
+        if (account.equals("songkuixi") && oldPassword.equals("123456")) {
             return ResultMessage.SUCCESS;
-        }else if(account.equals("adminStaff") && oldPassword.equals("password")){
+        } else if (account.equals("adminStaff") && oldPassword.equals("password")) {
             return ResultMessage.SUCCESS;
-        }else if(account.equals("adminSalesman") && oldPassword.equals("password")){
+        } else if (account.equals("adminSalesman") && oldPassword.equals("password")) {
             return ResultMessage.SUCCESS;
-        }else{
+        } else {
             return ResultMessage.FAILED;
         }
     }
@@ -86,10 +86,10 @@ public class UserDataService_Stub implements UserDataService {
 
     public ArrayList<ClientPO> searchClient(String keyword) {
         ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
-        if(keyword.contains("000000007") || keyword.contains("老宋")){
+        if (keyword.contains("000000007") || keyword.contains("老宋")) {
             clientPOs.add(exampleClientPO);
             return clientPOs;
-        }else {
+        } else {
             return null;
         }
     }
@@ -129,10 +129,10 @@ public class UserDataService_Stub implements UserDataService {
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
         ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
-        if(keyword.contains("300001") || keyword.contains("隔壁老王")){
+        if (keyword.contains("300001") || keyword.contains("隔壁老王")) {
             staffPOs.add(exampleStaffPO);
             return staffPOs;
-        }else {
+        } else {
             return null;
         }
     }
@@ -172,29 +172,29 @@ public class UserDataService_Stub implements UserDataService {
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {
         ArrayList<SalesmanPO> salesmanPOs = new ArrayList<SalesmanPO>();
-        if(keyword.contains("100001") || keyword.contains("隔壁老李")){
+        if (keyword.contains("100001") || keyword.contains("隔壁老李")) {
             salesmanPOs.add(exampleSalesmanPO);
             return salesmanPOs;
-        }else {
+        } else {
             return null;
         }
     }
 
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
-        if(clientID.equals("000000007")){
+        if (clientID.equals("000000007")) {
             return ResultMessage.SUCCESS;
-        }else{
+        } else {
             return ResultMessage.FAILED;
         }
     }
 
     public ArrayList<CreditPO> searchCreditByID(String clientID) {
         ArrayList<CreditPO> creditPOs = new ArrayList<CreditPO>();
-        if(clientID.equals("000000007")){
+        if (clientID.equals("000000007")) {
             CreditPO creditPO = new CreditPO("20161012010112340000", "2016-01-01", 200, 700, CreditAction.ADD_CREDIT, clientID);
             creditPOs.add(creditPO);
             return creditPOs;
-        }else{
+        } else {
             return null;
         }
     }

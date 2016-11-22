@@ -42,7 +42,6 @@ public class Client extends User {
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("LOGIN Client");
             super.setCurrentID("STRING FROM DB");
-//            super.
             this.account = account;
             this.password = password;
         }
@@ -56,10 +55,9 @@ public class Client extends User {
      * @return 是否添加成功
      */
     public ResultMessage add(UserVO userVO) {
-        //TODO
         ClientVO clientVO = (ClientVO) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), "CONTACT INFO", "ENTERPRISE", account, password);
+                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, account, password);
         return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
@@ -75,7 +73,8 @@ public class Client extends User {
             return null;
         } else {
             ClientVO clientVO = new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
-                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1);
+                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
+                    clientPO.getContactInfo(), clientPO.getEnterprise());
             return clientVO;
         }
     }
@@ -88,10 +87,8 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
-        //一些不能改的,先读然后再设置
-        ClientPO searchedPO = userDataService.searchClientByID(clientVO.clientID);
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), searchedPO.getContactInfo(), searchedPO.getEnterprise(), account, password);
+                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, account, password);
         return userDataService.updateClient(clientVO.clientID, clientPO);
     }
 
@@ -116,7 +113,8 @@ public class Client extends User {
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
         for (ClientPO clientPO : clientPOs) {
             clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
-                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1));
+                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
+                    clientPO.getContactInfo(), clientPO.getEnterprise()));
         }
         return clientVOs;
     }
