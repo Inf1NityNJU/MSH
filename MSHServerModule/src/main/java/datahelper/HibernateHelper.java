@@ -199,7 +199,7 @@ public class HibernateHelper implements DataHelper {
     /**
      * 生成一个新的匹配标准
      *
-     * @return
+     * @return 新的匹配标准
      * @throws ClassNotFoundException
      */
     private Criteria SetUpCriteria(Class classType) throws ClassNotFoundException {
