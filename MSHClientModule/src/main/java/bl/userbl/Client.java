@@ -40,8 +40,9 @@ public class Client extends User {
     public LoginState login(String account, String password) {
         LoginState loginState = userDataService.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
-            System.out.println("LOGIN Client");
-            super.setCurrentID("STRING FROM DB");
+            System.out.println("Login Client");
+            ClientPO clientPO = userDataService.searchClient(account).get(0);
+            super.setCurrentID(clientPO.getClientID());
             this.account = account;
             this.password = password;
         }

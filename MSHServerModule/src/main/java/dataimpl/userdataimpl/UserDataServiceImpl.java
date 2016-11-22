@@ -23,16 +23,16 @@ public class UserDataServiceImpl implements UserDataService {
 
     }
 
-    protected void setClient(DataHelper<ClientPO> clientDataHelper){
+    protected void setClient(DataHelper<ClientPO> clientDataHelper) {
         this.clientDataHelper = clientDataHelper;
         this.creditDataHelper = new HibernateHelper<CreditPO>();
     }
 
-    protected void setStaff(DataHelper<StaffPO> staffDataHelper){
+    protected void setStaff(DataHelper<StaffPO> staffDataHelper) {
         this.staffDataHelper = staffDataHelper;
     }
 
-    protected void setSalesman(DataHelper<SalesmanPO> salesmanDataHelper){
+    protected void setSalesman(DataHelper<SalesmanPO> salesmanDataHelper) {
         this.salesmanDataHelper = salesmanDataHelper;
     }
 
@@ -95,6 +95,7 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     //TODO
+
     /**
      * 重置密码
      *
@@ -104,7 +105,62 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
-        return null;
+        System.out.println(account);
+        System.out.println(oldPassword);
+        System.out.println(newPassword);
+        if (newPassword.equals("")) {
+            System.out.println("Empty Password");
+            return ResultMessage.FAILED;
+        } else if (newPassword.equals(oldPassword)) {
+            System.out.println("Same as old password");
+            return ResultMessage.FAILED;
+        } else {
+            UserPO userPO;
+            if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
+                UserPO tmpUserPO;
+                if ((tmpUserPO = clientDataHelper.exactlyQuery("password", oldPassword)) != null) {
+                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                        ClientPO clientPO = (ClientPO) tmpUserPO;
+                        return updateClient(clientPO.getClientID(), new ClientPO(clientPO.getClientID(),
+                                clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
+                                clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
+                                clientPO.getAccount(), newPassword));
+                    } else {
+                        return ResultMessage.FAILED;
+                    }
+                } else {
+                    return ResultMessage.FAILED;
+                }
+            } else if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
+                UserPO tmpUserPO;
+                if ((tmpUserPO = staffDataHelper.exactlyQuery("password", oldPassword)) != null) {
+                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                        StaffPO staffPO = (StaffPO) tmpUserPO;
+                        return updateStaff(staffPO.getStaffID(), new StaffPO(staffPO.getStaffID(), staffPO.getStaffName(),
+                                staffPO.getHotelID(), staffPO.getAccount(), newPassword));
+                    } else {
+                        return ResultMessage.FAILED;
+                    }
+                } else {
+                    return ResultMessage.FAILED;
+                }
+            } else if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
+                UserPO tmpUserPO;
+                if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", oldPassword)) != null) {
+                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                        SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;
+                        return updateSalesman(salesmanPO.getSalesmanID(), new SalesmanPO(salesmanPO.getSalesmanID(),
+                                salesmanPO.getSalesmanName(), salesmanPO.getAccount(), newPassword));
+                    } else {
+                        return ResultMessage.FAILED;
+                    }
+                } else {
+                    return ResultMessage.FAILED;
+                }
+            } else {
+                return ResultMessage.FAILED;
+            }
+        }
     }
 
     /**
@@ -347,9 +403,10 @@ public class UserDataServiceImpl implements UserDataService {
     private boolean deleteAllCredit(String clientID) {
         ArrayList<CreditPO> creditPOs = searchCreditByID(clientID);
         for (CreditPO creditPO : creditPOs) {
-            if(creditDataHelper.delete("orderID", creditPO.getOrderID()) == ResultMessage.FAILED){
+            if (creditDataHelper.delete("orderID", creditPO.getOrderID()) == ResultMessage.FAILED) {
                 return false;
-            };
+            }
+            ;
         }
         return true;
     }
