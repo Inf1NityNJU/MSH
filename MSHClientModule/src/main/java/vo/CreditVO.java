@@ -9,7 +9,6 @@ import static util.EqualJudgeHelper.judgeEqual;
  * Created by Kray on 2016/10/12.
  */
 public class CreditVO {
-
     /**
      * 信用记录对应订单ID
      */
@@ -37,14 +36,14 @@ public class CreditVO {
      * @param deltaCredit
      * @param resultCredit
      * @param creditAction
-     * @param orderVO
+     * @param orderID
      */
-    public CreditVO(int deltaCredit, int resultCredit, CreditAction creditAction, OrderVO orderVO, DateUtil date) {
+    public CreditVO(int deltaCredit, int resultCredit, CreditAction creditAction, String orderID, DateUtil date) {
         this.date = date;
         this.deltaCredit = deltaCredit;
         this.resultCredit = resultCredit;
         this.creditAction = creditAction;
-        this.orderID = orderVO.orderID;
+        this.orderID = orderID;
     }
 
     /**

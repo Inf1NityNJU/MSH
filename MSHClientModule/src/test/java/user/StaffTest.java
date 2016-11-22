@@ -1,6 +1,6 @@
 package user;
 
-import bl.userbl.MockStaff;
+import bl.userbl.Mock.MockStaff;
 import bl.userbl.Staff;
 import org.junit.Test;
 import util.LoginState;

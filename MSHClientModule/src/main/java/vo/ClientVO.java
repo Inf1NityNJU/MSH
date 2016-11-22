@@ -32,6 +32,14 @@ public class ClientVO extends UserVO {
      * 客户类别
      */
     public int type;
+    /**
+     * 客户联系方式
+     */
+    private String contactInfo;
+    /**
+     * 客户所属企业,若是普通用户则为空
+     */
+    private String enterprise;
 
     /**
      * 客户构造方法,包括 id,姓名,等级,生日,信用值,类型
