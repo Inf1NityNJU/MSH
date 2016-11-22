@@ -22,15 +22,13 @@ public class Main extends Application {
         rootLoader.setLocation(Main.class.getResource("../view/common/Main.fxml"));
         BorderPane root = rootLoader.load();
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("MSH");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
         MainUIController controller = rootLoader.getController();
         controller.setRootPane(root);
         controller.showMainView();
-        controller.showOrderList();
-//        controller.showOrderDetail();
-
+        controller.showClientOrders();
     }
 }

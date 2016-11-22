@@ -22,10 +22,14 @@ public enum RoomType {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
+    public String getName() {
         return this.name;
     }
+
+//    @Override
+//    public String toString() {
+//        return this.name;
+//    }
 
 }
 

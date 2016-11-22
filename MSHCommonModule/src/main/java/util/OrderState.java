@@ -18,8 +18,7 @@ public enum OrderState {
         this.color = color;
     }
 
-    @Override
-    public String toString() {
+    public String getName() {
         return this.name;
     }
 
