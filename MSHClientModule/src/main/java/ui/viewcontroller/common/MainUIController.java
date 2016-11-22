@@ -6,6 +6,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.order.OrderDetailViewController;
+import ui.viewcontroller.order.OrderListViewController;
+import vo.OrderVO;
 
 import java.io.IOException;
 
@@ -66,11 +69,15 @@ public class MainUIController {
     /**
      * 订单详情
      */
-    public void showOrderDetail() {
+    public void showOrderDetail(OrderVO order) {
         try {
             FXMLLoader orderLoader = new FXMLLoader();
             orderLoader.setLocation(Main.class.getResource("../view/order/OrderDetailView.fxml"));
             ScrollPane view = orderLoader.load();
+
+            OrderDetailViewController orderDetailViewController = orderLoader.getController();
+            orderDetailViewController.setMainUIController(this);
+            orderDetailViewController.showOrder(order);
 
             rootPane.setCenter(view);
 
