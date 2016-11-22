@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class OrderListViewController {
 
-    private MainUIController mainUIController;
+    private OrderViewController orderViewController;
 
     @FXML
     private VBox contentVBox;
@@ -48,10 +48,9 @@ public class OrderListViewController {
         }
     }
 
-    public void setMainUIController(MainUIController mainUIController) {
-        this.mainUIController = mainUIController;
+    public void setOrderViewController(OrderViewController orderViewController) {
+        this.orderViewController = orderViewController;
     }
-
     private void showOrders(OrderState orderState) {
 
         ArrayList<OrderVO> orders = orderBLService.searchOrder(orderState, null);
@@ -73,7 +72,7 @@ public class OrderListViewController {
     }
 
     public void showOrderDetail(OrderVO order) {
-        mainUIController.showOrderDetail(order);
+        orderViewController.showOrderDetail(order);
     }
 
 }

@@ -10,7 +10,7 @@ import vo.OrderVO;
  */
 public class OrderDetailViewController {
 
-    private MainUIController mainUIController;
+    private OrderViewController orderViewController;
 
     @FXML
     private Label orderIDLabel;
@@ -18,19 +18,18 @@ public class OrderDetailViewController {
     @FXML
     private Label hotelNameLabel;
 
-    public void setMainUIController(MainUIController mainUIController) {
-        this.mainUIController = mainUIController;
+    public void setOrderViewController(OrderViewController orderViewController) {
+        this.orderViewController = orderViewController;
     }
 
     public void showOrder(OrderVO order) {
-//        System.out.print("@@@");
         orderIDLabel.setText(order.orderID);
         hotelNameLabel.setText(order.hotelName);
     }
 
     @FXML
     private void clickBackButton() {
-        mainUIController.showOrderList();
+        orderViewController.showOrderList();
     }
 
 }
