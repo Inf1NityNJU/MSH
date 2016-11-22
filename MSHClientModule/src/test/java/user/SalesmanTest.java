@@ -1,11 +1,10 @@
 package user;
 
-import bl.userbl.MockSalesman;
+import bl.userbl.Mock.MockSalesman;
 import bl.userbl.Salesman;
 import org.junit.Test;
 import util.LoginState;
 import util.ResultMessage;
-import vo.ClientVO;
 import vo.SalesmanVO;
 
 import java.util.ArrayList;

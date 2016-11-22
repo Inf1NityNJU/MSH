@@ -1,5 +1,6 @@
-package bl.userbl;
+package bl.userbl.Mock;
 
+import bl.userbl.User;
 import util.LoginState;
 import util.ResetState;
 

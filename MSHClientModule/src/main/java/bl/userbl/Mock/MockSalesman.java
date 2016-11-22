@@ -1,5 +1,6 @@
-package bl.userbl;
+package bl.userbl.Mock;
 
+import bl.userbl.Salesman;
 import util.LoginState;
 import util.ResultMessage;
 import vo.SalesmanVO;
