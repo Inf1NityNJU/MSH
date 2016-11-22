@@ -1,6 +1,7 @@
 package po;
 
 import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 
 /**
@@ -50,7 +51,7 @@ public class PromotionPO {
     /**
      * 策略涉及的商圈
      */
-    private String place;
+    private Place place;
 
     /**
      * 执行策略所需的最低用户等级
@@ -62,6 +63,8 @@ public class PromotionPO {
      * 客户生日
      */
     private String birthday;
+
+
 
     public String getPromotionID() {
         return promotionID;
@@ -127,11 +130,11 @@ public class PromotionPO {
         this.roomQuantity = roomQuantity;
     }
 
-    public String getPlace() {
+    public Place getPlace() {
         return place;
     }
 
-    public void setPlace(String place) {
+    public void setPlace(Place place) {
         this.place = place;
     }
 
@@ -151,7 +154,7 @@ public class PromotionPO {
         this.birthday = birthday;
     }
 
-    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, String place, int clientGrade) {
+    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {
 
         this.promotionID = promotionID;
         this.promotionType = promotionType;
@@ -165,7 +168,7 @@ public class PromotionPO {
         this.clientGrade = clientGrade;
     }
 
-    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, String place, int clientGrade, String birthday) {
+    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade, String birthday) {
         this(promotionID, promotionType, promotionDiscount, startDate, endDate, companyName, hotelID, roomQuantity, place, clientGrade);
         this.birthday = birthday;
     }

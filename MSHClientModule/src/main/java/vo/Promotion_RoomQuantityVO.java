@@ -66,9 +66,9 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
                 && judgeEqual(pvo.roomQuantity,this.roomQuantity);
     }
 
-    public PromotionPO toPO(Promotion_RoomQuantityVO pvo) {
-        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
-                pvo.startDate.toString(), pvo.endDate.toString(),
-                null, null, pvo.roomQuantity, null, 0);
+    public PromotionPO toPO() {
+        return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+                this.startDate.toString(), this.endDate.toString(),
+                null, null, this.roomQuantity, null, 0);
     }
 }

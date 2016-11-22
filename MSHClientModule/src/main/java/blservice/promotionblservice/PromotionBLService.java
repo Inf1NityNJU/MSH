@@ -3,6 +3,7 @@ package blservice.promotionblservice;
 
 import util.PromotionType;
 import util.ResultMessage;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -39,7 +40,7 @@ public interface PromotionBLService {
      * @param promotionID
      * @return
      */
-    public Promotion_HotelVO searchByPromotionID(String promotionID);
+    public PromotionVO searchByPromotionID(String promotionID);
 
     /**
      * 搜索某个种类的所有促销策略

@@ -51,10 +51,10 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
                 && judgeEqual(pvo.clientGrade,this.clientGrade);
     }
 
-    public PromotionPO toPO(Promotion_ClientGradeVO pvo) {
-        return new PromotionPO(pvo.promotionID, pvo.promotionType, pvo.promotionDiscount,
-                pvo.startDate.toString(), pvo.endDate.toString(),
-                null, null, 0, null, pvo.clientGrade);
+    public PromotionPO toPO() {
+        return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+                this.startDate.toString(), this.endDate.toString(),
+                null, null, 0, null, this.clientGrade);
     }
 
 }
