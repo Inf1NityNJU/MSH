@@ -1,6 +1,7 @@
 package ui.viewcontroller.common;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -11,6 +12,7 @@ import ui.viewcontroller.order.OrderListViewController;
 import vo.OrderVO;
 
 import java.io.IOException;
+import java.util.Stack;
 
 /**
  * Created by Sorumi on 16/11/17.
@@ -18,6 +20,8 @@ import java.io.IOException;
 public class MainUIController {
 
     private BorderPane rootPane;
+
+    private Stack<Node> stack = new Stack<Node>();
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -51,6 +55,12 @@ public class MainUIController {
      * 订单列表
      */
     public void showOrderList() {
+        if (!stack.empty()) {
+            Node node = stack.pop();
+            rootPane.setCenter(node);
+            return;
+        }
+
         try {
             FXMLLoader listLoader = new FXMLLoader();
             listLoader.setLocation(Main.class.getResource("../view/order/OrderListView.fxml"));
@@ -78,6 +88,9 @@ public class MainUIController {
             OrderDetailViewController orderDetailViewController = orderLoader.getController();
             orderDetailViewController.setMainUIController(this);
             orderDetailViewController.showOrder(order);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
 
             rootPane.setCenter(view);
 

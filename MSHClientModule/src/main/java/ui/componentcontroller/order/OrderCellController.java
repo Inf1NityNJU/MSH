@@ -63,14 +63,14 @@ public class OrderCellController {
 
         orderIDLabel.setText(order.orderID != null ? order.orderID : "") ;
         orderDateLabel.setText(order.bookedTime.toString());
-        stateLabel.setText(order.state.toString());
+        stateLabel.setText(order.state.getName());
         stateLabel.setColorProperty(order.state.getColor());
         hotelNameLabel.setText(order.hotelName);
         checkDateLabel.setText(order.checkInDate.toString() + " - " +order.checkOutDate.toString());
 
         String roomText = "";
         for (OrderRoomVO room : order.rooms) {
-            roomText = room.type.toString() + " × " + room.quantity;
+            roomText = room.type.getName() + " × " + room.quantity;
         }
         roomLabel.setText(roomText);
 
