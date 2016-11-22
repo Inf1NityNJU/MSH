@@ -14,14 +14,26 @@ import java.util.ArrayList;
  */
 public class UserDataServiceImpl implements UserDataService {
 
-    private DataHelper<UserPO> userDataHelper=new HibernateHelper<UserPO>();
-    private DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>();
-    private DataHelper<StaffPO> staffDataHelper = new HibernateHelper<StaffPO>();
-    private DataHelper<CreditPO> creditDataHelper = new HibernateHelper<CreditPO>();
-    private DataHelper<SalesmanPO> salesmanDataHelper=new HibernateHelper<SalesmanPO>();
+    private DataHelper<ClientPO> clientDataHelper;
+    private DataHelper<StaffPO> staffDataHelper;
+    private DataHelper<SalesmanPO> salesmanDataHelper;
+    private DataHelper<CreditPO> creditDataHelper;
 
-    protected UserDataServiceImpl(DataHelper<UserPO> userDataHelper) {
-        //this.userDataHelper = userDataHelper;
+    protected UserDataServiceImpl() {
+
+    }
+
+    protected void setClient(DataHelper<ClientPO> clientDataHelper){
+        this.clientDataHelper = clientDataHelper;
+        this.creditDataHelper = new HibernateHelper<CreditPO>();
+    }
+
+    protected void setStaff(DataHelper<StaffPO> staffDataHelper){
+        this.staffDataHelper = staffDataHelper;
+    }
+
+    protected void setSalesman(DataHelper<SalesmanPO> salesmanDataHelper){
+        this.salesmanDataHelper = salesmanDataHelper;
     }
 
     /**
@@ -35,9 +47,9 @@ public class UserDataServiceImpl implements UserDataService {
         System.out.println(account);
         System.out.println(password);
         UserPO userPO;
-        if ((userPO = userDataHelper.exactlyQuery("account", account)) != null) {
+        if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
             UserPO tmpUserPO;
-            if ((tmpUserPO = userDataHelper.exactlyQuery("password", password)) != null) {
+            if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
                 if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                     return LoginState.LOGIN_SUCCESS_Client;
                 } else {
@@ -46,9 +58,9 @@ public class UserDataServiceImpl implements UserDataService {
             } else {
                 return LoginState.LOGIN_FAIL;
             }
-        } else if ((userPO = userDataHelper.exactlyQuery("account", account)) != null) {
+        } else if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
             UserPO tmpUserPO;
-            if ((tmpUserPO = userDataHelper.exactlyQuery("password", password)) != null) {
+            if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
                 if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                     return LoginState.LOGIN_SUCCESS_Staff;
                 } else {
@@ -57,9 +69,9 @@ public class UserDataServiceImpl implements UserDataService {
             } else {
                 return LoginState.LOGIN_FAIL;
             }
-        } else if ((userPO = userDataHelper.exactlyQuery("account", account)) != null) {
+        } else if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
             UserPO tmpUserPO;
-            if ((tmpUserPO = userDataHelper.exactlyQuery("password", password)) != null) {
+            if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
                 if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                     return LoginState.LOGIN_SUCCESS_Salesman;
                 } else {
@@ -103,7 +115,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
-        if (creditDataHelper.save(clientPO) == ResultMessage.SUCCESS
+        if (clientDataHelper.save(clientPO) == ResultMessage.SUCCESS
                 && creditDataHelper.save(creditPO) == ResultMessage.SUCCESS) {
             return ResultMessage.SUCCESS;
         } else {
@@ -129,7 +141,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage updateClient(String clientID, ClientPO clientPO) {
-        return userDataHelper.update(clientPO);
+        return clientDataHelper.update(clientPO);
     }
 
     /**
@@ -176,7 +188,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addStaff(StaffPO staffPO) {
-        return userDataHelper.save(staffPO);
+        return staffDataHelper.save(staffPO);
     }
 
     /**
@@ -197,7 +209,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage updateStaff(String staffID, StaffPO staffPO) {
-        return userDataHelper.update(staffPO);
+        return staffDataHelper.update(staffPO);
     }
 
     /**
@@ -207,7 +219,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage deleteStaff(String staffID) {
-        return userDataHelper.delete("staffID", staffID);
+        return staffDataHelper.delete("staffID", staffID);
     }
 
     /**
@@ -243,7 +255,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addSalesman(SalesmanPO salesmanPO) {
-        return userDataHelper.save(salesmanPO);
+        return salesmanDataHelper.save(salesmanPO);
     }
 
     /**
@@ -264,7 +276,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) {
-        return userDataHelper.update(salesmanPO);
+        return salesmanDataHelper.update(salesmanPO);
     }
 
     /**
@@ -274,7 +286,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage deleteSalesman(String salesmanID) {
-        return userDataHelper.delete("salesmanID", salesmanID);
+        return salesmanDataHelper.delete("salesmanID", salesmanID);
     }
 
     /**
@@ -307,7 +319,7 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
         //这个 clientID 好像没用?
-        return userDataHelper.save(creditPO);
+        return creditDataHelper.save(creditPO);
     }
 
     /**
