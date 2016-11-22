@@ -1,102 +1,109 @@
 package dataimpl.hoteldataimpl;
 
 import datahelper.DataHelper;
+import datahelper.HibernateHelper;
 import dataservice.hoteldataservice.HotelDataService;
+import org.junit.Test;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.Place;
 import util.ResultMessage;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by SilverNarcissus on 16/11/12.
  */
 public class HotelDataServiceImpl implements HotelDataService {
-    private DataHelper dataHelper;
+    private DataHelper<HotelPO> hotelDataHelper = new HibernateHelper<HotelPO>();
+    private DataHelper<HotelRoomPO> hotelRoomDataHelper = new HibernateHelper<HotelRoomPO>();
+    private DataHelper<RoomStockPO> roomStockDataHelper = new HibernateHelper<RoomStockPO>();
 
-
-    protected HotelDataServiceImpl(DataHelper dataHelper) {
-        this.dataHelper = dataHelper;
+    protected HotelDataServiceImpl(DataHelper<HotelPO> hotelDataHelper) {
+        this.hotelDataHelper = hotelDataHelper;
     }
 
     @Override
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value) {
-        return dataHelper.prefixMatchQuery(HotelPO.class, field, value);
+        return hotelDataHelper.prefixMatchQuery(field, value);
     }
 
     @Override
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value) {
-        return dataHelper.suffixMatchQuery(HotelPO.class, field, value);
+        return hotelDataHelper.suffixMatchQuery(field, value);
     }
 
     @Override
     public ArrayList<HotelPO> fuzzySearchHotel(String field, String value) {
-        return dataHelper.fuzzyMatchQuery(HotelPO.class, field, value);
+        return hotelDataHelper.fuzzyMatchQuery(field, value);
     }
 
     @Override
     public ArrayList<HotelPO> rangeSearchHotel(String field, Object min, Object max) {
-        return dataHelper.rangeQuery(HotelPO.class, field, min, max);
+        return hotelDataHelper.rangeQuery(field, min, max);
     }
 
     @Override
     public HotelPO getHotel(String hotelID) {
-        return dataHelper.exactlyQuery(HotelPO.class, "id", hotelID);
+        return hotelDataHelper.exactlyQuery("id", hotelID);
     }
 
     @Override
     public ArrayList<HotelRoomPO> getRoom(String hotelID) {
-        return dataHelper.prefixMatchQuery(HotelRoomPO.class, "hotelID", hotelID);
+        return hotelRoomDataHelper.prefixMatchQuery("hotelID", hotelID);
     }
 
     @Override
     public ResultMessage updateHotel(HotelPO hotelPO) {
-        return dataHelper.update(HotelPO.class,hotelPO);
+        return hotelDataHelper.update(hotelPO);
     }
 
     @Override
     public ResultMessage updateRoom(HotelRoomPO hotelRoomPO) {
-        return dataHelper.update(HotelRoomPO.class,hotelRoomPO);
+        return hotelDataHelper.update(hotelRoomPO);
     }
 
     @Override
     public ResultMessage addHotel(HotelPO hotelPO) {
-        return dataHelper.save(HotelPO.class,hotelPO);
+        return hotelDataHelper.save(hotelPO);
     }
 
     @Override
     public ResultMessage addRoom(HotelRoomPO hotelRoomPO) {
-        return dataHelper.save(HotelRoomPO.class,hotelRoomPO);
+        return hotelDataHelper.save(hotelRoomPO);
     }
 
     @Override
     public ResultMessage deleteHotel(String hotelID) {
-        return dataHelper.delete(HotelPO.class, "ID", hotelID);
+        return hotelDataHelper.delete("ID", hotelID);
     }
 
     @Override
     public ResultMessage deleteRoom(String roomID) {
-        return dataHelper.delete(HotelRoomPO.class, "ID", roomID);
+        return hotelDataHelper.delete("ID", roomID);
     }
 
     @Override
     public ResultMessage addRoomStock(RoomStockPO roomStockPO) {
-        return dataHelper.save(RoomStockPO.class,roomStockPO);
+        return hotelDataHelper.save(roomStockPO);
     }
 
     @Override
     public ResultMessage updateRoomStock(RoomStockPO roomStockPO) {
-        return dataHelper.update(RoomStockPO.class,roomStockPO);
+        return hotelDataHelper.update(roomStockPO);
     }
 
     @Override
     public ResultMessage deleteRoomStock(String roomStockID) {
-        return dataHelper.delete(RoomStockPO.class, "ID", roomStockID);
+        return hotelDataHelper.delete("ID", roomStockID);
     }
 
     @Override
     public ArrayList<RoomStockPO> getRoomStock(String hotelRoomID) {
-        return dataHelper.prefixMatchQuery(RoomStockPO.class, "ID", hotelRoomID);
+        return roomStockDataHelper.prefixMatchQuery("ID", hotelRoomID);
     }
+
 }

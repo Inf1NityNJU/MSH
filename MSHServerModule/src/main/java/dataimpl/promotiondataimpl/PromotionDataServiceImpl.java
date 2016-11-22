@@ -18,7 +18,7 @@ public class PromotionDataServiceImpl implements PromotionDataService{
 
     @Override
     public ResultMessage addPromotion(PromotionPO promotionpo) {
-        return dataHelper.save(PromotionPO.class,promotionpo);
+        return dataHelper.save(promotionpo);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package dataimpl.hoteldataimpl;
 
+import datahelper.DataHelper;
 import datahelper.DataHelperFactory;
+import datahelper.HibernateHelper;
 import dataservice.hoteldataservice.HotelDataService;
+import po.HotelPO;
 
 /**
  * Created by SilverNarcissus on 16/11/14.
@@ -15,7 +18,7 @@ public class HotelDataServiceFactory {
      */
     public static synchronized HotelDataService getHotelDataService(){
         if(hotelDataService==null){
-            hotelDataService=new HotelDataServiceImpl(DataHelperFactory.getHibernateDataHelper());
+            hotelDataService=new HotelDataServiceImpl(new HibernateHelper<HotelPO>());
         }
         return hotelDataService;
     }
