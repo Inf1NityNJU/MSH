@@ -6,6 +6,7 @@ import po.StaffPO;
 import util.LoginState;
 import util.ResultMessage;
 import vo.StaffVO;
+import vo.StaffVO_Register;
 import vo.UserVO;
 
 import java.util.ArrayList;
@@ -49,8 +50,8 @@ public class Staff extends User {
      * @return 是否增加成功
      */
     public ResultMessage add(UserVO userVO) {
-        StaffVO staffVO = (StaffVO) userVO;
-        StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, account, password);
+        StaffVO_Register staffVO = (StaffVO_Register) userVO;
+        StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, staffVO.account, staffVO.password);
         return userDataService.addStaff(staffPO);
     }
 

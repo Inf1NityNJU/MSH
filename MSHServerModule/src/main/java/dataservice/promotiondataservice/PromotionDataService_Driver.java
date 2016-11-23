@@ -26,7 +26,7 @@ public class PromotionDataService_Driver {
             System.out.println("Delete Failed");
         }
 
-        result = promotionDataService.updatePromotion("201610130102", new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03", "VivianCompany" ,"00000000",1, Place.XINJIEKOU, 0));
+        result = promotionDataService.updatePromotion(new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03", "VivianCompany" ,"00000000",1, Place.XINJIEKOU, 0));
         if(result== ResultMessage.SUCCESS){
             System.out.println("Update Success");
         }else{

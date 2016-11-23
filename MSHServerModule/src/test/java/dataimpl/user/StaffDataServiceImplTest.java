@@ -36,7 +36,10 @@ public class StaffDataServiceImplTest {
 
     @Test
     public void resetPassword() throws Exception {
-
+        ResultMessage resultMessage = userDataService.resetPassword("adminStaff", "00000000", "12345678");
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.resetPassword("adminStaff", "12345678", "00000000");
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test

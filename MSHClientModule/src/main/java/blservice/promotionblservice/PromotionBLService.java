@@ -29,11 +29,10 @@ public interface PromotionBLService {
 
     /**
      * 更新某条酒店/网站促销策略的信息
-     * @param promotionID
      * @param newPvo
      * @return
      */
-    public ResultMessage updatePromotion(String promotionID, Promotion_HotelVO newPvo);
+    public ResultMessage updatePromotion(Promotion_HotelVO newPvo);
 
     /**
      * 查找某条酒店/网站促销策略

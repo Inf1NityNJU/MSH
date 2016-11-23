@@ -47,33 +47,45 @@ public class UserDataServiceImpl implements UserDataService {
         System.out.println(account);
         System.out.println(password);
         UserPO userPO;
-        if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
-            UserPO tmpUserPO;
-            if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
-                if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
-                    return LoginState.LOGIN_SUCCESS_Client;
+        if (clientDataHelper != null) {
+            if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
+                UserPO tmpUserPO;
+                if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
+                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                        return LoginState.LOGIN_SUCCESS_Client;
+                    } else {
+                        return LoginState.LOGIN_FAIL;
+                    }
                 } else {
                     return LoginState.LOGIN_FAIL;
                 }
             } else {
                 return LoginState.LOGIN_FAIL;
             }
-        } else if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
-            UserPO tmpUserPO;
-            if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
-                if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
-                    return LoginState.LOGIN_SUCCESS_Staff;
+        } else if (staffDataHelper != null) {
+            if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
+                UserPO tmpUserPO;
+                if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
+                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                        return LoginState.LOGIN_SUCCESS_Staff;
+                    } else {
+                        return LoginState.LOGIN_FAIL;
+                    }
                 } else {
                     return LoginState.LOGIN_FAIL;
                 }
             } else {
                 return LoginState.LOGIN_FAIL;
             }
-        } else if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
-            UserPO tmpUserPO;
-            if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
-                if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
-                    return LoginState.LOGIN_SUCCESS_Salesman;
+        } else if (salesmanDataHelper != null) {
+            if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
+                UserPO tmpUserPO;
+                if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
+                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                        return LoginState.LOGIN_SUCCESS_Salesman;
+                    } else {
+                        return LoginState.LOGIN_FAIL;
+                    }
                 } else {
                     return LoginState.LOGIN_FAIL;
                 }
@@ -91,10 +103,12 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public LoginState logout() {
+        clientDataHelper = null;
+        salesmanDataHelper = null;
+        staffDataHelper = null;
+        creditDataHelper = null;
         return LoginState.LOGOUT;
     }
-
-    //TODO
 
     /**
      * 重置密码
@@ -116,41 +130,53 @@ public class UserDataServiceImpl implements UserDataService {
             return ResultMessage.FAILED;
         } else {
             UserPO userPO;
-            if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
-                UserPO tmpUserPO;
-                if ((tmpUserPO = clientDataHelper.exactlyQuery("password", oldPassword)) != null) {
-                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
-                        ClientPO clientPO = (ClientPO) tmpUserPO;
-                        return updateClient(clientPO.getClientID(), new ClientPO(clientPO.getClientID(),
-                                clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
-                                clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
-                                clientPO.getAccount(), newPassword));
+            if (clientDataHelper != null) {
+                if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
+                    UserPO tmpUserPO;
+                    if ((tmpUserPO = clientDataHelper.exactlyQuery("password", oldPassword)) != null) {
+                        if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                            ClientPO clientPO = (ClientPO) tmpUserPO;
+                            return updateClient(clientPO.getClientID(), new ClientPO(clientPO.getClientID(),
+                                    clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
+                                    clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
+                                    clientPO.getAccount(), newPassword));
+                        } else {
+                            return ResultMessage.FAILED;
+                        }
                     } else {
                         return ResultMessage.FAILED;
                     }
                 } else {
                     return ResultMessage.FAILED;
                 }
-            } else if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
-                UserPO tmpUserPO;
-                if ((tmpUserPO = staffDataHelper.exactlyQuery("password", oldPassword)) != null) {
-                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
-                        StaffPO staffPO = (StaffPO) tmpUserPO;
-                        return updateStaff(staffPO.getStaffID(), new StaffPO(staffPO.getStaffID(), staffPO.getStaffName(),
-                                staffPO.getHotelID(), staffPO.getAccount(), newPassword));
+            } else if (staffDataHelper != null) {
+                if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
+                    UserPO tmpUserPO;
+                    if ((tmpUserPO = staffDataHelper.exactlyQuery("password", oldPassword)) != null) {
+                        if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                            StaffPO staffPO = (StaffPO) tmpUserPO;
+                            return updateStaff(staffPO.getStaffID(), new StaffPO(staffPO.getStaffID(), staffPO.getStaffName(),
+                                    staffPO.getHotelID(), staffPO.getAccount(), newPassword));
+                        } else {
+                            return ResultMessage.FAILED;
+                        }
                     } else {
                         return ResultMessage.FAILED;
                     }
                 } else {
                     return ResultMessage.FAILED;
                 }
-            } else if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
-                UserPO tmpUserPO;
-                if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", oldPassword)) != null) {
-                    if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
-                        SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;
-                        return updateSalesman(salesmanPO.getSalesmanID(), new SalesmanPO(salesmanPO.getSalesmanID(),
-                                salesmanPO.getSalesmanName(), salesmanPO.getAccount(), newPassword));
+            } else if (salesmanDataHelper != null) {
+                if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
+                    UserPO tmpUserPO;
+                    if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", oldPassword)) != null) {
+                        if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
+                            SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;
+                            return updateSalesman(salesmanPO.getSalesmanID(), new SalesmanPO(salesmanPO.getSalesmanID(),
+                                    salesmanPO.getSalesmanName(), salesmanPO.getAccount(), newPassword));
+                        } else {
+                            return ResultMessage.FAILED;
+                        }
                     } else {
                         return ResultMessage.FAILED;
                     }
@@ -406,7 +432,6 @@ public class UserDataServiceImpl implements UserDataService {
             if (creditDataHelper.delete("orderID", creditPO.getOrderID()) == ResultMessage.FAILED) {
                 return false;
             }
-            ;
         }
         return true;
     }

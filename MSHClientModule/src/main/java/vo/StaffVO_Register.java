@@ -1,13 +1,11 @@
 package vo;
 
-import bl.userbl.Salesman;
-
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
- * Created by Kray on 2016/10/12.
+ * Created by Kray on 2016/11/23.
  */
-public class StaffVO extends UserVO {
+public class StaffVO_Register extends StaffVO {
     /**
      * 酒店工作人员ID
      */
@@ -20,6 +18,14 @@ public class StaffVO extends UserVO {
      * 酒店工作人员对应酒店ID
      */
     public String hotelID;
+    /**
+     * 账号
+     */
+    public String account;
+    /**
+     * 密码
+     */
+    public String password;
 
     /**
      * 酒店工作人员构造方法,包括 id,姓名,酒店 id
@@ -28,14 +34,12 @@ public class StaffVO extends UserVO {
      * @param name
      * @param hotelID
      */
-    public StaffVO(String staffID, String name, String hotelID) {
+    public StaffVO_Register(String staffID, String name, String hotelID, String account, String password) {
         this.staffID = staffID;
         this.staffName = name;
         this.hotelID = hotelID;
-    }
-
-    public StaffVO() {
-
+        this.account = account;
+        this.password = password;
     }
 
     /**
@@ -46,8 +50,8 @@ public class StaffVO extends UserVO {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof StaffVO) {
-            StaffVO staffVO = (StaffVO) o;
+        if (o instanceof StaffVO_Register) {
+            StaffVO_Register staffVO = (StaffVO_Register) o;
             return compareData(staffVO);
         }
         return false;
@@ -69,9 +73,11 @@ public class StaffVO extends UserVO {
      * @param staffVO
      * @return 比较结果
      */
-    private boolean compareData(StaffVO staffVO) {
+    private boolean compareData(StaffVO_Register staffVO) {
         return judgeEqual(staffID, staffVO.staffID)
                 && judgeEqual(staffName, staffVO.staffName)
-                && judgeEqual(hotelID, staffVO.hotelID);
+                && judgeEqual(hotelID, staffVO.hotelID)
+                && judgeEqual(account, staffVO.account)
+                && judgeEqual(password, staffVO.password);
     }
 }

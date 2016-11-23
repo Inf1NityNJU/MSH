@@ -3,36 +3,45 @@ package dataimpl.promotiondataimpl;
 import datahelper.DataHelper;
 import dataservice.promotiondataservice.PromotionDataService;
 import po.PromotionPO;
+import util.PromotionType;
 import util.ResultMessage;
+
+import java.util.ArrayList;
 
 /**
  * Created by vivian on 16/11/22.
  */
 public class PromotionDataServiceImpl implements PromotionDataService{
-    private DataHelper dataHelper;
+    private DataHelper<PromotionPO> promotionDataHelper;
 
-    protected PromotionDataServiceImpl(DataHelper dataHelper){
-        this.dataHelper = dataHelper;
+    protected PromotionDataServiceImpl(DataHelper<PromotionPO> dataHelper){
+        this.promotionDataHelper = dataHelper;
     }
 
 
     @Override
     public ResultMessage addPromotion(PromotionPO promotionpo) {
-        return dataHelper.save(promotionpo);
+        return promotionDataHelper.save(promotionpo);
     }
 
     @Override
     public ResultMessage deletePromotion(String promotionID) {
-        return null;
+        return promotionDataHelper.delete("promotionID",promotionID);
     }
 
     @Override
-    public ResultMessage updatePromotion(String promotionID, PromotionPO newpropo) {
-        return null;
+    public ResultMessage updatePromotion(PromotionPO newPromotionPO) {
+        return promotionDataHelper.update(newPromotionPO);
     }
 
     @Override
     public PromotionPO searchByPromotionID(String promotionID) {
-        return null;
+        return promotionDataHelper.exactlyQuery("promotionID", promotionID);
+    }
+
+    @Override
+    public ArrayList<PromotionPO> searchPromotionsByType(PromotionType promotionType) {
+        ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionType", promotionType.toString());
+        return promotionPOs;
     }
 }

@@ -1,6 +1,5 @@
 package user;
 
-import bl.userbl.Mock.MockSalesman;
 import bl.userbl.Salesman;
 import org.junit.Test;
 import util.LoginState;
@@ -18,7 +17,7 @@ public class SalesmanTest {
     private Salesman salesman;
 
     public SalesmanTest() {
-        this.salesman = new MockSalesman();
+        this.salesman = new Salesman();
     }
 
     @Test

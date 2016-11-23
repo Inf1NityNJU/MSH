@@ -5,9 +5,10 @@ import util.DateUtil;
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
- * Created by Kray on 2016/10/12.
+ * Created by Kray on 2016/11/23.
  */
-public class ClientVO extends UserVO {
+public class ClientVO_Register extends ClientVO {
+
     /**
      * 客户ID
      */
@@ -40,9 +41,17 @@ public class ClientVO extends UserVO {
      * 客户所属企业,若是普通用户则为空
      */
     public String enterprise;
+    /**
+     * 账号
+     */
+    public String account;
+    /**
+     * 密码
+     */
+    public String password;
 
     /**
-     * 客户构造方法,包括 id,姓名,等级,生日,信用值,类型
+     * 注册时的客户构造方法
      *
      * @param id
      * @param name
@@ -50,8 +59,13 @@ public class ClientVO extends UserVO {
      * @param birthday
      * @param credit
      * @param type
+     * @param contactInfo
+     * @param enterprise
+     * @param account
+     * @param password
      */
-    public ClientVO(String id, String name, int level, DateUtil birthday, int credit, int type, String contactInfo, String enterprise) {
+    public ClientVO_Register(String id, String name, int level, DateUtil birthday, int credit, int type, String contactInfo,
+                             String enterprise, String account, String password) {
         this.clientID = id;
         this.clientName = name;
         this.credit = credit;
@@ -60,10 +74,8 @@ public class ClientVO extends UserVO {
         this.birthday = birthday;
         this.contactInfo = contactInfo;
         this.enterprise = enterprise;
-    }
-
-    public ClientVO(){
-
+        this.account = account;
+        this.password = password;
     }
 
     /**
@@ -74,8 +86,8 @@ public class ClientVO extends UserVO {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof ClientVO) {
-            ClientVO clientVO = (ClientVO) o;
+        if (o instanceof ClientVO_Register) {
+            ClientVO_Register clientVO = (ClientVO_Register) o;
             return compareData(clientVO);
         }
         return false;
@@ -97,7 +109,7 @@ public class ClientVO extends UserVO {
      * @param clientVO
      * @return 比较结果
      */
-    private boolean compareData(ClientVO clientVO) {
+    private boolean compareData(ClientVO_Register clientVO) {
         return judgeEqual(clientID, clientVO.clientID)
                 && judgeEqual(clientName, clientVO.clientName)
                 && judgeEqual(credit, clientVO.credit)
@@ -105,8 +117,9 @@ public class ClientVO extends UserVO {
                 && judgeEqual(birthday, clientVO.birthday)
                 && judgeEqual(type, clientVO.type)
                 && judgeEqual(contactInfo, clientVO.contactInfo)
-                && judgeEqual(enterprise, clientVO.enterprise);
+                && judgeEqual(enterprise, clientVO.enterprise)
+                && judgeEqual(account, clientVO.account)
+                && judgeEqual(password, clientVO.password);
 
     }
 }
-

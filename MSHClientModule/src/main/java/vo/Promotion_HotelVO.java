@@ -10,10 +10,11 @@ import static util.EqualJudgeHelper.judgeEqual;
  */
 public class Promotion_HotelVO extends PromotionVO{
 
+    public String hotelID;
 
-
-    public Promotion_HotelVO(String promotionID, PromotionType promotionType, double promotionDiscount) {
+    public Promotion_HotelVO(String promotionID, PromotionType promotionType, double promotionDiscount,String hotelID) {
         super(promotionID, promotionType, promotionDiscount);
+        this.hotelID = hotelID;
     }
 
     public boolean equals(Object o){

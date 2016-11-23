@@ -6,6 +6,8 @@ import util.Place;
 import util.PromotionType;
 import util.ResultMessage;
 
+import java.util.ArrayList;
+
 /**
  * Created by vivian on 16/10/13.
  */
@@ -30,8 +32,8 @@ public class PromotionDataService_Stub implements PromotionDataService{
     }
 
     @Override
-    public ResultMessage updatePromotion(String promotionID, PromotionPO newpropo) {
-        if(promotionID.equals("201610130102")){
+    public ResultMessage updatePromotion(PromotionPO newPromotionPO) {
+        if(newPromotionPO.getPromotionID().equals("201610130102")){
             return ResultMessage.SUCCESS;
         }else{
             return ResultMessage.FAILED;
@@ -41,5 +43,10 @@ public class PromotionDataService_Stub implements PromotionDataService{
     @Override
     public PromotionPO searchByPromotionID(String promotionID) {
         return new PromotionPO("201610120102",  PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, Place.XINJIEKOU, 0);
+    }
+
+    @Override
+    public ArrayList<PromotionPO> searchPromotionsByType(PromotionType promotionType) {
+        return null;
     }
 }

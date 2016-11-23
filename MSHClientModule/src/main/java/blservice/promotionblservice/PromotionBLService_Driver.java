@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class PromotionBLService_Driver {
 
     public void drive(PromotionBLService promotionBLService) {
-        Promotion_HotelVO pvo = new Promotion_HotelVO("201610130101", PromotionType.Hotel_Birthday, 0.80);
+        Promotion_HotelVO pvo = new Promotion_HotelVO("201610130101", PromotionType.Hotel_Birthday, 0.80,"00000000");
 
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
         OrderRoomVO room1 = new OrderRoomVO(RoomType.DoubleRoom, 300, 1);
@@ -37,7 +37,7 @@ public class PromotionBLService_Driver {
             System.out.println("Delete Failed");
         }
 
-        result = promotionBLService.updatePromotion("201610120202", pvo);
+        result = promotionBLService.updatePromotion(pvo);
         if (result == ResultMessage.SUCCESS) {
             System.out.println("Update Success");
         } else {

@@ -1,13 +1,13 @@
 package bl.promotionbl;
 
+import blservice.promotionblservice.PromotionBLService;
 import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.promotiondataservice.PromotionDataService_Stub;
 import po.PromotionPO;
+import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
-import vo.PromotionVO;
-import vo.Promotion_HotelVO;
-import vo.Promotion_WebVO;
+import vo.*;
 
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by vivian on 16/11/2.
  */
-public class Promotion {
+public class Promotion{
     private PromotionDataService promotionDataService = new PromotionDataService_Stub();
 
     /**
@@ -39,13 +39,12 @@ public class Promotion {
 
     /**
      * 更新一个促销策略
-     * @param promotionID
      * @param promotionVO
      * @return 更新成功与否
      */
-    public ResultMessage update(String promotionID , PromotionVO promotionVO){
+    public ResultMessage update(PromotionVO promotionVO){
         PromotionPO promotionPO = promotionVO.toPO();
-        return promotionDataService.updatePromotion(promotionID, promotionPO);
+        return promotionDataService.updatePromotion(promotionPO);
     }
 
     /**
@@ -54,7 +53,8 @@ public class Promotion {
      * @return 符合条件的策略VO
      */
     public PromotionVO searchByID(String promotionID) {
-        return null;
+        PromotionPO promotionPO = promotionDataService.searchByPromotionID(promotionID);
+        return this.POToVO(promotionPO);
     }
 
     /**
@@ -83,4 +83,30 @@ public class Promotion {
         return null;
     }
 
+    private PromotionVO POToVO(PromotionPO promotionPO){
+        switch (promotionPO.getPromotionType()){
+            case Hotel_Birthday:
+                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID(),this.date(promotionPO.getBirthday()));
+            case Hotel_SpecilaDate:
+                return new Promotion_HotelSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID());
+            case Hotel_RoomQuantity:
+                return new Promotion_RoomQuantityVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID(),promotionPO.getRoomQuantity());
+            case Hotel_Company:
+                return new Promotion_CompanyVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
+            case Web_ClientGrade:
+                return new Promotion_ClientGradeVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getClientGrade());
+            case Web_SpecilPlace:
+                return new Promotion_SpecialPlaceVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getPlace());
+            case Web_SpecilaDate:
+                return new Promotion_WebSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()));
+            default:return null;
+        }
+    }
+
+    private DateUtil date(String s){
+        int first = Integer.valueOf(s.substring(0,4));
+        int second = Integer.valueOf(s.substring(5,7));
+        int third = Integer.valueOf(s.substring(8,10));
+        return new DateUtil(first,second,third);
+    }
 }

@@ -1,17 +1,14 @@
 package bl.userbl;
 
+import clienthelper.userclienthelper.UserClientHelper;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.ClientPO;
 import po.CreditPO;
-import util.CreditAction;
 import util.DateUtil;
 import util.LoginState;
 import util.ResultMessage;
-import vo.ClientVO;
-import vo.CreditVO;
-import vo.OrderVO;
-import vo.UserVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -23,11 +20,15 @@ public class Client extends User {
     //这里进行Dateutil和String的转换
 
     private UserDataService userDataService;
+
+    private UserClientHelper userClientHelper;
+
     private String account;
     private String password;
 
     public Client() {
         this.userDataService = UserDataServiceFactory.getClientDataService();
+        this.userClientHelper = new UserClientHelper();
     }
 
     /**
@@ -56,10 +57,11 @@ public class Client extends User {
      * @return 是否添加成功
      */
     public ResultMessage add(UserVO userVO) {
-        ClientVO clientVO = (ClientVO) userVO;
+        ClientVO_Register clientVO = (ClientVO_Register) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, account, password);
-        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
+                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
+//        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
+        return userClientHelper.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
     /**
@@ -69,7 +71,7 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
-        ClientPO clientPO = userDataService.searchClientByID(clientID);
+        ClientPO clientPO = userClientHelper.searchClientByID(clientID);
         if (clientPO == null) {
             return null;
         } else {

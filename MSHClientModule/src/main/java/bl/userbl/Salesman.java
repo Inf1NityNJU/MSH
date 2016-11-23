@@ -6,6 +6,7 @@ import po.SalesmanPO;
 import util.LoginState;
 import util.ResultMessage;
 import vo.SalesmanVO;
+import vo.SalesmanVO_Register;
 import vo.UserVO;
 
 import java.util.ArrayList;
@@ -49,9 +50,9 @@ public class Salesman extends User {
      * @return 是否增加成功
      */
     public ResultMessage add(UserVO userVO) {
-        SalesmanVO SalesmanVO = (SalesmanVO) userVO;
-        SalesmanPO SalesmanPO = new SalesmanPO(SalesmanVO.salesmanID, SalesmanVO.salesmanName, account, password);
-        return userDataService.addSalesman(SalesmanPO);
+        SalesmanVO_Register salesmanVO = (SalesmanVO_Register) userVO;
+        SalesmanPO salesmanPO = new SalesmanPO(salesmanVO.salesmanID, salesmanVO.salesmanName, salesmanVO.account, salesmanVO.password);
+        return userDataService.addSalesman(salesmanPO);
     }
 
     /**
