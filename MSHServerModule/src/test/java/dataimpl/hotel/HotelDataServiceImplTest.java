@@ -6,6 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import po.HotelPO;
 import po.HotelRoomPO;
+import po.RoomStockPO;
 import util.Place;
 import util.ResultMessage;
 import util.RoomType;
@@ -24,9 +25,9 @@ public class HotelDataServiceImplTest {
         hotelDataService = HotelDataServiceFactory.getHotelDataService();
     }
 
-    @Ignore
+    @Test
     public void addHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000008", "Test hotel 8", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000001", "Test hotel 1", "Nanjing University", Place.XINJIEKOU, 5, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
 
     }
@@ -38,9 +39,14 @@ public class HotelDataServiceImplTest {
     }
 
     @Test
-    public void searchHotel() {
+    public void searchHotel1() {
         ArrayList<HotelPO> hotelPOs = hotelDataService.prefixSearchHotel("address", "Nanjing");
         assertEquals(8, hotelPOs.size());
+    }
+    @Test
+    public void searchHotel2() {
+        ArrayList<HotelPO> hotelPOs = hotelDataService.exactlySearchHotel("place", Place.XIANLIN);
+        assertEquals(2, hotelPOs.size());
     }
 
     @Test
@@ -77,6 +83,33 @@ public class HotelDataServiceImplTest {
     public void deleteRoom() throws Exception {
         ResultMessage resultMessage = hotelDataService.deleteRoom("0000000205");
         assertEquals(ResultMessage.NOT_EXIST, resultMessage);
+    }
+    @Test
+    public void addRoomStock() throws Exception {
+        HotelDataService hotelDataService = HotelDataServiceFactory.getHotelDataService();
+        RoomStockPO roomStockPO = new RoomStockPO("0000010101", "000001", RoomType.SingleRoom, 5, "2016-11-17");
+        ResultMessage resultMessage = hotelDataService.addRoomStock(roomStockPO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void updateRoomStock() throws Exception {
+        HotelDataService hotelDataService = HotelDataServiceFactory.getHotelDataService();
+        RoomStockPO roomStockPO = new RoomStockPO("0000010101", "000001", RoomType.SingleRoom, 10, "2015-11-17");
+        ResultMessage resultMessage = hotelDataService.updateRoomStock(roomStockPO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void deleteRoomStock() throws Exception {
+        HotelDataService hotelDataService = HotelDataServiceFactory.getHotelDataService();
+        ResultMessage resultMessage = hotelDataService.deleteRoomStock("0000010101");
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void getRoomStockPO() throws Exception {
+
     }
 
 }

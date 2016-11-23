@@ -13,6 +13,11 @@ import java.util.ArrayList;
 public class HotelDataService_Stub implements HotelDataService{
 
     @Override
+    public ArrayList<HotelPO> exactlySearchHotel(String field, Object value) {
+        return null;
+    }
+
+    @Override
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value) {
         return null;
     }

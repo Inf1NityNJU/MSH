@@ -21,12 +21,12 @@ public class HibernateHelper<T> implements DataHelper<T> {
     private Session session;
     private Class<T> type;
 
-    public HibernateHelper(){
+    public HibernateHelper() {
 
     }
-    
+
     public HibernateHelper(Class<T> type) {
-        this.type=type;
+        this.type = type;
         Configuration configuration = new Configuration();
         sessionFactory = configuration.configure().buildSessionFactory();
     }
@@ -59,7 +59,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
     public ResultMessage save(Object o) {
         try {
             setUpSession();
-            session.save(type.getName(),o);
+            session.save(type.getName(), o);
             commitAndClose();
         } catch (PersistenceException e) {
             e.printStackTrace();
@@ -78,10 +78,10 @@ public class HibernateHelper<T> implements DataHelper<T> {
      * @return 更新操作的结果信息
      */
     @Override
-    public ResultMessage update( Object o) {
+    public ResultMessage update(Object o) {
         try {
             setUpSession();
-            session.update(type.getName(),o);
+            session.update(type.getName(), o);
             commitAndClose();
         } catch (OptimisticLockException e) {
             e.printStackTrace();
@@ -100,14 +100,14 @@ public class HibernateHelper<T> implements DataHelper<T> {
      * @param ID
      */
     @Override
-    public ResultMessage delete( String key, String ID) {
+    public ResultMessage delete(String key, String ID) {
         try {
             Object o = exactlyQuery(key, ID);
             if (o == null) {
                 return ResultMessage.NOT_EXIST;
             }
             setUpSession();
-            session.delete(type.getName(),o);
+            session.delete(type.getName(), o);
             commitAndClose();
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,16 +125,28 @@ public class HibernateHelper<T> implements DataHelper<T> {
      */
     @Override
     public T exactlyQuery(String field, Object value) {
+        ArrayList<T> array = fullMatchQuery(field, value);
+        return array.size() == 0 ? null : fullMatchQuery(field, value).get(0);
+    }
+    /**
+     * 完全匹配查询PO
+     *
+     * @param field
+     * @param value
+     * @return
+     */
+    @Override
+    public ArrayList<T> fullMatchQuery(String field, Object value) {
         try {
             Criteria criteria = SetUpCriteria();
             criteria.add(Restrictions.eq(field, value));
-            T result = (criteria.list().size() == 0) ? null : (T) criteria.list().get(0);
+            ArrayList<T> result = (ArrayList<T>) criteria.list();
             session.close();
             return result;
         } catch (Exception e) {
             e.printStackTrace();
             session.close();
-            return null;
+            return new ArrayList<T>();
         }
     }
 
@@ -159,7 +171,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
      * @return PO列表
      */
     @Override
-    public ArrayList<T> suffixMatchQuery( String field, String value) {
+    public ArrayList<T> suffixMatchQuery(String field, String value) {
         value = "%" + value;
         return likePatternQuery(field, value);
     }
@@ -186,7 +198,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
      * @return PO列表
      */
     @Override
-    public ArrayList<T> rangeQuery( String field, Object min, Object max) {
+    public ArrayList<T> rangeQuery(String field, Object min, Object max) {
         try {
             Criteria criteria = SetUpCriteria();
             criteria.add(Restrictions.between(field, min, max));
@@ -218,7 +230,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
      * @param value
      * @return PO列表
      */
-    private  ArrayList<T> likePatternQuery(String field, String value) {
+    private ArrayList<T> likePatternQuery(String field, String value) {
         try {
             Criteria criteria = SetUpCriteria();
             criteria.add(Restrictions.like(field, value));

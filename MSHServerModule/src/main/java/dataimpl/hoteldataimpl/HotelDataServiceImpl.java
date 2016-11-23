@@ -32,6 +32,10 @@ public class HotelDataServiceImpl implements HotelDataService {
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value) {
         return hotelDataHelper.prefixMatchQuery(field, value);
     }
+    @Override
+    public ArrayList<HotelPO> exactlySearchHotel(String field, Object value) {
+        return hotelDataHelper.fullMatchQuery(field, value);
+    }
 
     @Override
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value) {

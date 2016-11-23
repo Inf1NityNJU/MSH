@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public interface HotelDataService {
 
+    public ArrayList<HotelPO> exactlySearchHotel(String field, Object value);
+
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value);
 
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value);

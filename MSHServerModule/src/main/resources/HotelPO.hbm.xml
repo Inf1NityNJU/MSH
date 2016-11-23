@@ -21,6 +21,8 @@
         <property name="star"/>
         <property name="introduction"/>
         <property name="facilities"/>
+        <property name="score"/>
+        <property name="scoreAmount"/>
 
     </class>
 </hibernate-mapping>

@@ -34,7 +34,52 @@ public class HotelPO {
      * 酒店设施
      */
     private String facilities;
+    /**
+     * 酒店评分
+     */
+    private double score;
+    /**
+     * 评分数量
+     */
+    private int scoreAmount;
 
+    public HotelPO(String ID, String name, String address, Place place, int star, String introduction, String facilities, double score, int scoreAmount) {
+        this(ID,name,address,place,star,introduction,facilities);
+        this.score = score;
+        this.scoreAmount = scoreAmount;
+    }
+
+
+    public HotelPO(String ID, String name, String address, Place place, int star, String introduction, String facilities) {
+        this.ID = ID;
+        this.name = name;
+        this.address = address;
+        this.place = place;
+        this.star = star;
+        this.introduction = introduction;
+        this.facilities = facilities;
+    }
+
+    public HotelPO() {
+
+    }
+
+    public double getScore() {
+
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public int getScoreAmount() {
+        return scoreAmount;
+    }
+
+    public void setScoreAmount(int scoreAmount) {
+        this.scoreAmount = scoreAmount;
+    }
 
     public String getID() {
         return ID;
@@ -90,29 +135,5 @@ public class HotelPO {
 
     public void setFacilities(String facilities) {
         this.facilities = facilities;
-    }
-
-    /**
-     *
-     * @param ID
-     * @param name
-     * @param address
-     * @param place
-     * @param star
-     * @param introduction
-     * @param facilities
-     */
-    public HotelPO(String ID, String name, String address, Place place, int star, String introduction, String facilities) {
-        this.ID = ID;
-        this.name = name;
-        this.address = address;
-        this.place = place;
-        this.star = star;
-        this.introduction = introduction;
-        this.facilities = facilities;
-    }
-
-    public HotelPO(){
-
     }
 }

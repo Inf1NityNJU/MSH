@@ -17,6 +17,8 @@ public interface DataHelper<T> {
 
     public T exactlyQuery(String field, Object value);
 
+    public ArrayList<T> fullMatchQuery(String field, Object value);
+
     public ArrayList<T> prefixMatchQuery(String field, String value);
 
     public ArrayList<T> suffixMatchQuery(String field, String value);
