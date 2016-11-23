@@ -8,7 +8,7 @@
 
         <property name="promotionType" not-null="true" length="20">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">util.Place</param>
+                <param name="enumClass">util.PromotionType</param>
                 <!--
                 12为java.sql.Types.VARCHAR常量值，即保存枚举的字面值到数据库。如果不指定type参数，保存枚举的索引值(从0开始)到数据库
                 -->

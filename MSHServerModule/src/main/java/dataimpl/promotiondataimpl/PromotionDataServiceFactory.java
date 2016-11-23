@@ -1,7 +1,8 @@
 package dataimpl.promotiondataimpl;
 
-import datahelper.DataHelperFactory;
+import datahelper.HibernateHelper;
 import dataservice.promotiondataservice.PromotionDataService;
+import po.PromotionPO;
 
 /**
  * Created by vivian on 16/11/22.
@@ -11,7 +12,7 @@ public class PromotionDataServiceFactory {
 
     public static synchronized PromotionDataService getPromotionDataService() {
         if (promotionDataService == null) {
-            promotionDataService = new PromotionDataServiceImpl(DataHelperFactory.getHibernateDataHelper());
+            promotionDataService = new PromotionDataServiceImpl(new HibernateHelper<PromotionPO>(PromotionPO.class));
         }
         return promotionDataService;
     }

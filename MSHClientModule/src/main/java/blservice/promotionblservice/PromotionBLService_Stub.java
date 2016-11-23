@@ -34,8 +34,8 @@ public class PromotionBLService_Stub implements PromotionBLService {
     }
 
     @Override
-    public ResultMessage updatePromotion(String promotionID, Promotion_HotelVO newPvo) {
-        if (promotionID.equals("201610120202")) {
+    public ResultMessage updatePromotion(Promotion_HotelVO newPvo) {
+        if (newPvo.hotelID.equals("201610120202")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -44,14 +44,14 @@ public class PromotionBLService_Stub implements PromotionBLService {
 
     @Override
     public Promotion_HotelVO searchByPromotionID(String promotionID) {
-        return new Promotion_HotelVO(promotionID, PromotionType.Hotel_Birthday, 0.80);
+        return new Promotion_HotelVO(promotionID, PromotionType.Hotel_Birthday, 0.80,"00000000");
     }
 
     @Override
     public ArrayList<Promotion_HotelVO> searchPromotions(PromotionType promotionType) {
         ArrayList<Promotion_HotelVO> promotionVOs = new ArrayList<Promotion_HotelVO>();
-        Promotion_HotelVO promotionVO1 = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80);
-        Promotion_HotelVO promotionVO2 = new Promotion_HotelVO("201610120103", PromotionType.Hotel_Birthday, 0.80);
+        Promotion_HotelVO promotionVO1 = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80,"00000000");
+        Promotion_HotelVO promotionVO2 = new Promotion_HotelVO("201610120103", PromotionType.Hotel_Birthday, 0.80,"00000000");
         if (promotionType == PromotionType.Hotel_Birthday) {
             promotionVOs.add(promotionVO1);
             promotionVOs.add(promotionVO2);
@@ -63,8 +63,8 @@ public class PromotionBLService_Stub implements PromotionBLService {
     @Override
     public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID) {
         ArrayList<Promotion_HotelVO> promotionVOs = new ArrayList<Promotion_HotelVO>();
-        Promotion_HotelVO promotionVO1 = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80);
-        Promotion_HotelVO promotionVO2 = new Promotion_HotelVO("201610120103", PromotionType.Hotel_Amount, 0.80);
+        Promotion_HotelVO promotionVO1 = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80,"00000000");
+        Promotion_HotelVO promotionVO2 = new Promotion_HotelVO("201610120103", PromotionType.Hotel_RoomQuantity, 0.80,"00000000");
         if (HotelID.equals("00000000")) {
             promotionVOs.add(promotionVO1);
             promotionVOs.add(promotionVO2);

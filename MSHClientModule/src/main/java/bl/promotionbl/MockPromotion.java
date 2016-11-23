@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class MockPromotion extends Promotion{
-    private Promotion_HotelVO promotionHotelVO = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday,  0.80);
+    private Promotion_HotelVO promotionHotelVO = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday,  0.80,"00000000");
 
     /**
      * 增加一个促销策略

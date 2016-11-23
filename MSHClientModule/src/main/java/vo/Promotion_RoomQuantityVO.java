@@ -38,8 +38,8 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
      * @param endDate 策略截止日期
      * @param roomQuantity 最低房间数量
      */
-    public Promotion_RoomQuantityVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, int roomQuantity) {
-        super(promotionID, promotionType, promotionDiscount);
+    public Promotion_RoomQuantityVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String hotelID, int roomQuantity) {
+        super(promotionID, promotionType, promotionDiscount,hotelID);
         this.startDate = startDate;
         this.endDate = endDate;
         this.roomQuantity = roomQuantity;

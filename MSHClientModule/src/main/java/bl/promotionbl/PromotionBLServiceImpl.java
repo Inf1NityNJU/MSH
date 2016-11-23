@@ -37,8 +37,8 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     }
 
     @Override
-    public ResultMessage updatePromotion(String promotionID, Promotion_HotelVO newPvo) {
-        return promotion.update(promotionID, newPvo);
+    public ResultMessage updatePromotion(Promotion_HotelVO newPvo) {
+        return promotion.update(newPvo);
     }
 
     @Override

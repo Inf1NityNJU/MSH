@@ -29,8 +29,8 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO{
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
      */
-    public Promotion_HotelSpecialDateVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
-        super(promotionID, promotionType, promotionDiscount);
+    public Promotion_HotelSpecialDateVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String hotelID) {
+        super(promotionID, promotionType, promotionDiscount,hotelID);
         this.startDate = startDate;
         this.endDate = endDate;
     }

@@ -21,8 +21,8 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
      * @param promotionDiscount 策略折扣
      * @param bithday           客户生日
      */
-    public Promotion_BirthdayVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil bithday) {
-        super(promotionID, promotionType, promotionDiscount);
+    public Promotion_BirthdayVO(String promotionID, PromotionType promotionType, double promotionDiscount,String hotelID, DateUtil bithday) {
+        super(promotionID, promotionType, promotionDiscount, hotelID);
         this.bithday = bithday;
     }
 

@@ -36,8 +36,8 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
      * @param endDate 策略截止日期
      * @param companyName 策略涉及的公司名称
      */
-    public Promotion_CompanyVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String companyName) {
-        super(promotionID, promotionType, promotionDiscount);
+    public Promotion_CompanyVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String companyName, String hotelID) {
+        super(promotionID, promotionType, promotionDiscount, hotelID);
         this.startDate = startDate;
         this.endDate = endDate;
         this.companyName = companyName;
