@@ -4,6 +4,7 @@ import util.CreditAction;
 
 import util.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -11,7 +12,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class CreditPO {
+public class CreditPO implements Serializable {
 
     /**
      * 信用记录对应订单ID

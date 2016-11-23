@@ -14,12 +14,9 @@ public interface HotelDataService {
 
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value);
 
-
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value);
 
-
     public ArrayList<HotelPO> fuzzySearchHotel(String field, String value);
-
 
     public ArrayList<HotelPO> rangeSearchHotel(String field, Object min, Object max);
 

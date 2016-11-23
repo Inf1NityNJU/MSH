@@ -1,6 +1,5 @@
 package user;
 
-import bl.userbl.Mock.MockStaff;
 import bl.userbl.Staff;
 import org.junit.Test;
 import util.LoginState;
@@ -20,7 +19,7 @@ public class StaffTest {
     private Staff staff;
 
     public StaffTest() {
-        staff = new MockStaff();
+        staff = new Staff();
     }
 
     @Test

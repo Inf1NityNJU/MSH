@@ -1,13 +1,11 @@
 package vo;
 
-import bl.userbl.Salesman;
-
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
- * Created by Kray on 2016/10/12.
+ * Created by Kray on 2016/11/23.
  */
-public class SalesmanVO extends UserVO {
+public class SalesmanVO_Register extends SalesmanVO {
     /**
      * 网站营销人员ID
      */
@@ -16,6 +14,14 @@ public class SalesmanVO extends UserVO {
      * 网站营销人员姓名
      */
     public String salesmanName;
+    /**
+     * 账号
+     */
+    public String account;
+    /**
+     * 密码
+     */
+    public String password;
 
     /**
      * 网站营销人员的构造方法,包括人员ID和姓名
@@ -23,25 +29,23 @@ public class SalesmanVO extends UserVO {
      * @param id
      * @param name
      */
-    public SalesmanVO(String id, String name) {
+    public SalesmanVO_Register(String id, String name, String account, String password) {
         this.salesmanID = id;
         this.salesmanName = name;
-    }
-
-    public SalesmanVO() {
-
+        this.account = account;
+        this.password = password;
     }
 
     /**
      * 比较两个VO
      *
      * @param o
-     * @return 比较结果
+     * @return
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SalesmanVO) {
-            SalesmanVO salesmanVO = (SalesmanVO) o;
+        if (o instanceof SalesmanVO_Register) {
+            SalesmanVO_Register salesmanVO = (SalesmanVO_Register) o;
             return compareData(salesmanVO);
         }
         return false;
@@ -63,8 +67,10 @@ public class SalesmanVO extends UserVO {
      * @param salesmanVO
      * @return 比较结果
      */
-    private boolean compareData(SalesmanVO salesmanVO) {
+    private boolean compareData(SalesmanVO_Register salesmanVO) {
         return judgeEqual(salesmanID, salesmanVO.salesmanID)
-                && judgeEqual(salesmanName, salesmanVO.salesmanName);
+                && judgeEqual(salesmanName, salesmanVO.salesmanName)
+                && judgeEqual(account, salesmanVO.account)
+                && judgeEqual(password, salesmanVO.password);
     }
 }

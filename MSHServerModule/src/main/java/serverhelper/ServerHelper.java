@@ -1,7 +1,7 @@
 package serverhelper;
 
-import serverimpl.TestServerImpl;
-import serverservice.TestServerService;
+import serverimpl.userserverimpl.ClientServerImpl;
+import serverservice.userserverservice.ClientServerService;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -23,12 +23,14 @@ public class ServerHelper {
             LocateRegistry.createRegistry(1099);
             //创建远程对象的一个或多个实例，下面是hello对象
             //可以用不同名字注册不同的实例
-            TestServerService testServerService = new TestServerImpl("TEST");
-            //把testServerService注册到RMI注册服务器上，命名为testRMI
-            Naming.rebind("testRMI", testServerService);
+            System.out.println("RMI server is ready!");
+
+            //把clientServerService注册到RMI注册服务器上，命名为testRMI
+            ClientServerService clientServerService = new ClientServerImpl();
             //如果要把hello实例注册到另一台启动了RMI注册服务的机器上
             //Naming.rebind("//192.168.121.40:1099/Hello",hello);
-            System.out.println("RMI server is ready!");
+            Naming.rebind("addClient", clientServerService);
+            Naming.rebind("searchClientByID", clientServerService);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

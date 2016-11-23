@@ -1,4 +1,4 @@
-package bl.userbl.Mock;
+package bl.userbl.mock;
 
 import bl.userbl.Client;
 import util.*;

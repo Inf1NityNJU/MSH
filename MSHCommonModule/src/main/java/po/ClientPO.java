@@ -2,6 +2,7 @@ package po;
 
 import util.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -9,7 +10,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class ClientPO extends UserPO{
+public class ClientPO extends UserPO implements Serializable{
     /**
      * 客户ID
      */

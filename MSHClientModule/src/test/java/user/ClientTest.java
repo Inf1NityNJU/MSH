@@ -1,7 +1,6 @@
 package user;
 
 import bl.userbl.Client;
-import bl.userbl.Mock.MockClient;
 import org.junit.Test;
 import util.*;
 import vo.*;
@@ -17,7 +16,7 @@ public class ClientTest {
     private Client client;
 
     public ClientTest() {
-        client = new MockClient();
+        client = new Client();
     }
 
     @Test
@@ -30,14 +29,15 @@ public class ClientTest {
 
     @Test
     public void testAdd() throws Exception {
-        ResultMessage rm = client.add(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""));
+        ResultMessage rm = client.add(new ClientVO_Register("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0,
+                "18795963603", "", "adminClient", "12345678"));
         assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test
     public void testSearchByID() throws Exception {
         ClientVO cvo = client.searchByID("000000007");
-        assertEquals(new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""), cvo);
+        assertEquals(new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", ""), cvo);
         cvo = client.searchByID("000000009");
         assertEquals(null, cvo);
     }
