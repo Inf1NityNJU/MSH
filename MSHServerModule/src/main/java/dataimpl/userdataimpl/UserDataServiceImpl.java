@@ -432,7 +432,6 @@ public class UserDataServiceImpl implements UserDataService {
             if (creditDataHelper.delete("orderID", creditPO.getOrderID()) == ResultMessage.FAILED) {
                 return false;
             }
-            ;
         }
         return true;
     }
