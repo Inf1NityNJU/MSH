@@ -16,11 +16,12 @@ public class HotelDataServiceFactory {
 
     /**
      * 得到一个HotelDataService实例
+     *
      * @return HotelDataService实例
      */
-    public static synchronized HotelDataService getHotelDataService(){
-        if(hotelDataService==null){
-            hotelDataService=new HotelDataServiceImpl(new HibernateHelper<HotelPO>(),new HibernateHelper<HotelRoomPO>(),new HibernateHelper<RoomStockPO>());
+    public static synchronized HotelDataService getHotelDataService() {
+        if (hotelDataService == null) {
+            hotelDataService = new HotelDataServiceImpl(new HibernateHelper<HotelPO>(HotelPO.class), new HibernateHelper<HotelRoomPO>(HotelRoomPO.class), new HibernateHelper<RoomStockPO>(RoomStockPO.class));
         }
         return hotelDataService;
     }

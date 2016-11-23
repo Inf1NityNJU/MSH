@@ -24,7 +24,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
     public HibernateHelper(){
 
     }
-
+    
     public HibernateHelper(Class<T> type) {
         this.type=type;
         Configuration configuration = new Configuration();
