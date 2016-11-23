@@ -4,7 +4,6 @@ import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import org.junit.Before;
 import org.junit.Test;
-import po.HotelPO;
 import util.Place;
 import util.ResultMessage;
 import vo.Hotel_DetailVO;
@@ -46,14 +45,14 @@ public class HotelTest {
 
     @Test
     public void updateHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000006", "Test hotel 6 update", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All", null);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000006", "Test hotel 6 update", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All", null, 4.5);
         ResultMessage resultMessage = hotelBLService.updateHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void addHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000002", "Test hotel 2", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All", null);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000002", "Test hotel 2", "Nanjing Technical University", Place.XIANLIN, 4, "The test hotel", "All", null, 4.5);
         ResultMessage resultMessage = hotelBLService.addHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }

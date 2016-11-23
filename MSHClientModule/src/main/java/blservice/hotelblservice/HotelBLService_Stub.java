@@ -23,7 +23,7 @@ public class HotelBLService_Stub implements HotelBLService {
     public Hotel_DetailVO getHotel(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Get hotel Success!");
-            return new Hotel_DetailVO(null, null, null, null, 0, null, null,null);
+            return new Hotel_DetailVO(null, null, null, null, 0, null, null,null, 0);
         }
         return null;
     }

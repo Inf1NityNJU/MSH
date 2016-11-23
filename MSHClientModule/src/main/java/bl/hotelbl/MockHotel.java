@@ -22,7 +22,7 @@ public class MockHotel extends Hotel {
     @Override
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
         System.out.println("Search hotel Success!");
-        Hotel_DetailVO hvo=new Hotel_DetailVO("000000", "汉庭", "南京", Place.XINJIEKOU, 5,"特别好", "设施齐全按",new AssessmentVO(5,5,5,5,"GOOD!!!"));
+        Hotel_DetailVO hvo=new Hotel_DetailVO("000000", "汉庭", "南京", Place.XINJIEKOU, 5,"特别好", "设施齐全按",new AssessmentVO(5,5,5,5,"GOOD!!!"),5 );
         ArrayList<Hotel_DetailVO> hotel_detailVOs =new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hvo);
         return hotel_detailVOs;
@@ -38,7 +38,7 @@ public class MockHotel extends Hotel {
     public Hotel_DetailVO getHotel(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Get hotel Success!");
-            return new Hotel_DetailVO("000000", "汉庭", "南京", Place.XINJIEKOU, 5, "特别好", "设施齐全按",new AssessmentVO(5,5,5,5,"GOOD!!!"));
+            return new Hotel_DetailVO("000000", "汉庭", "南京", Place.XINJIEKOU, 5, "特别好", "设施齐全按",new AssessmentVO(5,5,5,5,"GOOD!!!"), 5);
         }
         return null;
     }

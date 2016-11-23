@@ -135,7 +135,7 @@ public class Hotel {
                 , hotelPO.getStar()
                 , hotelPO.getIntroduction()
                 , hotelPO.getFacilities()
-                , null);
+                , null,hotelPO.getScore() );
     }
 
     /**

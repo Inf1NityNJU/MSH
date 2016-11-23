@@ -12,7 +12,6 @@ public class ScoreAscendingComparator implements Comparator<Hotel_DetailVO> {
 
     @Override
     public int compare(Hotel_DetailVO o1, Hotel_DetailVO o2) {
-        // TODO: 2016/11/19
-        return 0;
+        return (int)(o1.score-o2.score);
     }
 }

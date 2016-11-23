@@ -48,8 +48,12 @@ public class Hotel_DetailVO {
      * 最大房间价格
      */
     public double maxPrice;
+    /**
+     * 酒店评分
+     */
+    public double score;
 
-    public Hotel_DetailVO(String ID, String name, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO) {
+    public Hotel_DetailVO(String ID, String name, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO, double score) {
         this.ID = ID;
         this.name = name;
         this.address = address;
@@ -58,6 +62,7 @@ public class Hotel_DetailVO {
         this.introduction = introduction;
         this.facilities = facilities;
         this.assessmentVO = assessmentVO;
+        this.score=score;
     }
 
     /**

@@ -3,7 +3,6 @@ package hotel;
 import bl.hotelbl.Hotel;
 import bl.hotelbl.MockHotel;
 import org.junit.Test;
-import util.DateUtil;
 import util.ResultMessage;
 import util.RoomType;
 import vo.FilterFlagsVO;
@@ -11,7 +10,6 @@ import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static org.junit.Assert.*;
 
@@ -23,8 +21,8 @@ public class HotelMockTest {
     //Test constant
     private static final String testHotelID = "000000";
     private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null, null, null, 0, 0, null, null, 0, 0, 0, 0, null);
-    private static final Hotel_DetailVO TEST_HOTEL_DETAIL_VO = new Hotel_DetailVO("000000", null, null, null, 0, null, null, null);
-    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000",null, 0, 0, null);
+    private static final Hotel_DetailVO TEST_HOTEL_DETAIL_VO = new Hotel_DetailVO("00000000", null, null, null, 0, null, null, null, 0);
+    private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("0000000000",null, 0, 0, null);
     private static final RoomType testType = RoomType.SingleRoom;
 
 
