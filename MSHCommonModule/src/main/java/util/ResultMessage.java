@@ -13,7 +13,10 @@ public enum ResultMessage {
     TOO_SHORT, // 输入过短
     INVALID, // 含有非法字符
     NULL, // 输入为空
-    INSUFFICIENT; //数量不足
+    INSUFFICIENT, //数量不足
+    SUFFICIENT,//数量充足
+    TRUE,//判断为真
+    FALSE;//判断为假
 
 
     public String toString() {

@@ -47,12 +47,14 @@ public class HotelPO {
      * 评分数量
      */
     private int scoreAmount;
+
     public HotelPO(String ID, String name, City city, Place place, String address, int star, String introduction, String facilities, double score, int scoreAmount) {
         this(ID, name, address, place, star, introduction, facilities);
         this.score = score;
         this.scoreAmount = scoreAmount;
         this.city = city;
     }
+
     public HotelPO(String ID, String name, String address, Place place, int star, String introduction, String facilities) {
         this.ID = ID;
         this.name = name;

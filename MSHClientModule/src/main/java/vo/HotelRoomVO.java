@@ -11,18 +11,43 @@ import static util.EqualJudgeHelper.judgeEqual;
  * Created by Kray on 2016/10/12.
  */
 public class HotelRoomVO {
+    /**
+     * 房间所属酒店编号
+     */
     public String hotelID;
+    /**
+     * 房间类型
+     */
     public RoomType roomType;
+    /**
+     * 房间单价
+     */
     public double price;
+    /**
+     * 房间总数
+     */
     public int totalQuantity;
+    /**
+     * 是否被取消
+     */
+    public boolean isCancelled;
+    /**
+     * 可被预订的房间存量
+     */
     public ArrayList<RoomStockVO> roomStockVOs;
 
-    public HotelRoomVO(String hotelID,RoomType roomType, double price, int totalQuantity, ArrayList<RoomStockVO> roomStockVOs) {
-        this.hotelID=hotelID;
+    public HotelRoomVO(String hotelID, RoomType roomType, double price, int totalQuantity, ArrayList<RoomStockVO> roomStockVOs,boolean isCancelled) {
+        this(hotelID,roomType,price,totalQuantity,roomStockVOs);
+        this.isCancelled=isCancelled;
+    }
+
+    public HotelRoomVO(String hotelID, RoomType roomType, double price, int totalQuantity, ArrayList<RoomStockVO> roomStockVOs) {
+        this.hotelID = hotelID;
         this.roomType = roomType;
         this.price = price;
         this.totalQuantity = totalQuantity;
         this.roomStockVOs = roomStockVOs;
+        this.isCancelled=false;
     }
 
     /**

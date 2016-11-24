@@ -34,18 +34,18 @@ public class HotelRoom {
      * @return 符合ID的酒店房间VO
      */
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
-        ArrayList<HotelRoomVO> result=new ArrayList<HotelRoomVO>();
-        for(HotelRoomPO hotelRoomPO:hotelDataService.getRoom(hotelID)){
-            HotelRoomVO hotelRoomVO=roomPOToRoomVO(hotelRoomPO);
+        ArrayList<HotelRoomVO> result = new ArrayList<HotelRoomVO>();
+        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
+            HotelRoomVO hotelRoomVO = roomPOToRoomVO(hotelRoomPO);
             //添加roomStock
-            ArrayList<RoomStockVO> roomStockVOs=new ArrayList<RoomStockVO>();
+            ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
             //
-            for(RoomStockPO roomStockPO:hotelDataService.getRoomStock(hotelRoomPO.getHotelID())){
+            for (RoomStockPO roomStockPO : hotelDataService.getRoomStock(hotelRoomPO.getHotelID())) {
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
-            hotelRoomVO.roomStockVOs=roomStockVOs;
+            hotelRoomVO.roomStockVOs = roomStockVOs;
             //写入cache
-            cache.put(hotelRoomPO.getID(),hotelRoomVO);
+            cache.put(hotelRoomPO.getID(), hotelRoomVO);
             //保存到result
             result.add(hotelRoomVO);
         }
@@ -59,9 +59,9 @@ public class HotelRoom {
      * @return 修改成功与否
      */
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
-        ResultMessage resultMessage=deleteHotelRoom(rvo.hotelID,rvo.roomType);
+        ResultMessage resultMessage = deleteHotelRoom(rvo.hotelID, rvo.roomType);
         //
-        if(resultMessage==ResultMessage.SUCCESS){
+        if (resultMessage == ResultMessage.SUCCESS) {
             addRoom(rvo);
         }
         //
@@ -88,7 +88,6 @@ public class HotelRoom {
      */
     public ResultMessage addRoom(HotelRoomVO rvo) {
         HotelRoomPO hotelRoomPO = roomVOToRoomPO(rvo);
-        Calendar c = Calendar.getInstance();
         ResultMessage resultMessage = hotelDataService.addRoom(hotelRoomPO);
         //保存放在HotelRoomVO里面的roomStockVO
         ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
@@ -110,7 +109,7 @@ public class HotelRoom {
             //保存放在HotelRoomVO里面的roomStockVO
             rvo.roomStockVOs = roomStockVOs;
             //
-            cache.put(hotelRoomPO.getID(),rvo);
+            cache.put(hotelRoomPO.getID(), rvo);
         }
 
         return resultMessage;
@@ -123,13 +122,13 @@ public class HotelRoom {
      * @return 删除成功与否
      */
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
-        String hotelRoomID=generateID(hotelID,type.ordinal());
-        ResultMessage resultMessage=hotelDataService.deleteRoom(hotelRoomID);
-        if(resultMessage==ResultMessage.SUCCESS){
+        String hotelRoomID = generateID(hotelID, type.ordinal());
+        ResultMessage resultMessage = hotelDataService.deleteRoom(hotelRoomID);
+        if (resultMessage == ResultMessage.SUCCESS) {
             //
             cache.remove(hotelRoomID);
             //删除房间的roomStock
-            for(RoomStockPO roomStockPO:hotelDataService.getRoomStock(hotelRoomID)){
+            for (RoomStockPO roomStockPO : hotelDataService.getRoomStock(hotelRoomID)) {
                 hotelDataService.deleteRoomStock(roomStockPO.getID());
             }
         }
@@ -148,7 +147,7 @@ public class HotelRoom {
                 , hotelRoomVO.roomType
                 , hotelRoomVO.price
                 , hotelRoomVO.totalQuantity
-                , false);
+                , hotelRoomVO.isCancelled);
     }
 
     /**
@@ -162,7 +161,7 @@ public class HotelRoom {
                 , hotelRoomPO.getRoomType()
                 , hotelRoomPO.getPrice()
                 , hotelRoomPO.getTotalQuantity()
-                , null);
+                , null, hotelRoomPO.getIsCancelled());
     }
 
     /**
@@ -190,13 +189,103 @@ public class HotelRoom {
         return ID + cache;
     }
 
+    /**
+     * 设置酒店房间将要被删除
+     *
+     * @param hotelID 酒店ID
+     * @param type    房间类型
+     * @return 设置成功与否
+     */
     public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
-        //TODO
-        return null;
+        /**
+         * 记录将要设置的房间
+         */
+        HotelRoomPO hotelRoom = null;
+        //
+        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
+            if (hotelRoomPO.getRoomType().equals(type)) {
+                hotelRoom = hotelRoomPO;
+                break;
+            }
+        }
+        //
+        if (hotelRoom == null) {
+            return ResultMessage.NOT_EXIST;
+        } else {
+            hotelRoom.setIsCancelled(true);
+            hotelDataService.updateRoom(hotelRoom);
+            //更新cache
+            cache.remove(hotelRoom.getID());
+            cache.put(hotelRoom.getID(), roomPOToRoomVO(hotelRoom));
+            //
+            return ResultMessage.SUCCESS;
+        }
+
     }
 
+    /**
+     * 判断该房间在可预订天数内是否被预订
+     * ——————————————不改变hotelRoom的数据——————————————
+     *
+     * @param hotelID 酒店ID
+     * @param type    房间类型
+     * @return 房间类型不存在——NOT_EXIST<br>
+     * 被预定——TRUE<br>
+     * 没有被预定——FALSE
+     */
     public ResultMessage isOrdered(String hotelID, RoomType type) {
-        //TODO
-        return null;
+        /**
+         * 记录将要判断的房间
+         */
+        HotelRoomVO hotelRoom;
+        //先检查cache
+        if ((hotelRoom = cache.get(generateID(hotelID, type.ordinal()))) == null) {
+            //cache中未找到
+            for (HotelRoomVO hotelRoomVO : getRoom(hotelID)) {
+                if (hotelRoomVO.roomType.equals(type)) {
+                    hotelRoom = hotelRoomVO;
+                    break;
+                }
+            }
+        }
+        if (hotelRoom == null) {
+            return ResultMessage.NOT_EXIST;
+        } else if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity)) {
+            return ResultMessage.TRUE;
+        } else {
+            return ResultMessage.FALSE;
+        }
+    }
+
+    /**
+     * 查看给定日期区间房间数量是否满足需求
+     *
+     * @param roomStockPOs 给定日期区间的房间列表
+     * @param quantity     需求数量
+     * @return 满足是否满足需求
+     */
+    private boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity) {
+        for (RoomStockPO stockPO : roomStockPOs) {
+            if (stockPO.getAvailableQuantity() - quantity < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 查看给定日期区间房间数量是否满足需求
+     *
+     * @param roomStockVOs 给定日期区间的房间列表
+     * @param quantity     需求数量
+     * @return 满足是否满足需求
+     */
+    private boolean checkChangeIsValidByVO(ArrayList<RoomStockVO> roomStockVOs, int quantity) {
+        for (RoomStockVO stockVO : roomStockVOs) {
+            if (stockVO.availableQuantity - quantity < 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

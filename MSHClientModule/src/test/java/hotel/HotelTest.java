@@ -4,6 +4,7 @@ import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import org.junit.Before;
 import org.junit.Test;
+import util.City;
 import util.Place;
 import util.ResultMessage;
 import vo.Hotel_DetailVO;
@@ -17,21 +18,22 @@ import static org.junit.Assert.*;
  * Created by SilverNarcissus on 2016/11/18.
  */
 public class HotelTest {
-    private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
     Hotel_DetailVO hotel_detailVO1;
     Hotel_DetailVO hotel_detailVO2;
     Hotel_DetailVO hotel_detailVO3;
     Hotel_DetailVO hotel_detailVO4;
     Hotel_DetailVO hotel_detailVO5;
+    private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
 
     @Before
-    public void setUp(){
-        hotel_detailVO1 = hotelBLService.getHotel("00000000");
-        hotel_detailVO2 = hotelBLService.getHotel("00000001");
-        hotel_detailVO3 = hotelBLService.getHotel("00000002");
-        hotel_detailVO4 = hotelBLService.getHotel("00000003");
-        hotel_detailVO5 = hotelBLService.getHotel("00000004");
+    public void setUp() {
+//        hotel_detailVO1 = hotelBLService.getHotel("00000000");
+//        hotel_detailVO2 = hotelBLService.getHotel("00000001");
+//        hotel_detailVO3 = hotelBLService.getHotel("00000002");
+//        hotel_detailVO4 = hotelBLService.getHotel("00000003");
+//        hotel_detailVO5 = hotelBLService.getHotel("00000004");
     }
+
     @Test
     public void searchHotel() throws Exception {
 
@@ -39,20 +41,20 @@ public class HotelTest {
 
     @Test
     public void getHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO= hotelBLService.getHotel("00000000");
+        Hotel_DetailVO hotel_detailVO = hotelBLService.getHotel("00000000");
         assertEquals("00000000", hotel_detailVO.ID);
     }
 
     @Test
     public void updateHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000006", "Test hotel 6 update", "Nanjing Technical University", Place.XianLin, 4, "The test hotel", "All", null, 4.5);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000006", "Test hotel 6 update", City.NanJing, "Nanjing Technical University", Place.XianLin, 4, "The test hotel", "All", null, 4.5, 4);
         ResultMessage resultMessage = hotelBLService.updateHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void addHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000002", "Test hotel 2", "Nanjing Technical University", Place.XianLin, 4, "The test hotel", "All", null, 4.5);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Test hotel 1", City.BeiJing, "Nanjing Technical University", Place.XinJieKou, 4, "The test hotel", "All", null, 4.5, 4);
         ResultMessage resultMessage = hotelBLService.addHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }

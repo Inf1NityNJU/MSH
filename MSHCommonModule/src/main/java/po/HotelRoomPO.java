@@ -27,11 +27,10 @@ public class HotelRoomPO {
      * 房间总数
      */
     private int totalQuantity;
-
     /**
      * 是否被取消
      */
-    private boolean isCancel;
+    private boolean isCancelled;
 
     public HotelRoomPO() {
 
@@ -44,18 +43,18 @@ public class HotelRoomPO {
         this.totalQuantity = totalQuantity;
     }
 
-    public HotelRoomPO(String ID, String hotelID, RoomType roomType, double price, int totalQuantity, boolean isCancel) {
+    public HotelRoomPO(String ID, String hotelID, RoomType roomType, double price, int totalQuantity, boolean isCancelled) {
         this(hotelID, roomType, price, totalQuantity);
         this.ID = ID;
-        this.isCancel = isCancel;
+        this.isCancelled = isCancelled;
     }
 
-    public boolean getIsCancel() {
-        return isCancel;
+    public boolean getIsCancelled() {
+        return isCancelled;
     }
 
-    public void setIsCancel(boolean cancel) {
-        isCancel = cancel;
+    public void setIsCancelled(boolean cancel) {
+        isCancelled = cancel;
     }
 
     public String getHotelID() {

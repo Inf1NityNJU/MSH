@@ -1,5 +1,6 @@
 package blservice.hotelblservice;
 
+import util.City;
 import util.ResultMessage;
 import util.RoomType;
 import vo.FilterFlagsVO;
@@ -14,7 +15,7 @@ import java.util.Iterator;
  * Created by SilverNarcissus on 16/10/12.
  */
 public class HotelBLService_Stub implements HotelBLService {
-    public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags){
+    public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
         System.out.println("Search Success!");
         return new ArrayList<Hotel_DetailVO>();
     }
@@ -23,12 +24,12 @@ public class HotelBLService_Stub implements HotelBLService {
     public Hotel_DetailVO getHotel(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Get hotel Success!");
-            return new Hotel_DetailVO(null, null, null, null, 0, null, null,null, 0);
+            return new Hotel_DetailVO(null, null, City.NanJing, null, null, 0, null, null, null, 0, 0);
         }
         return null;
     }
 
-    public ArrayList<HotelRoomVO> getRoom(String hotelID){
+    public ArrayList<HotelRoomVO> getRoom(String hotelID) {
         if (hotelID.equals("000000")) {
             System.out.println("Get hotel room Success!");
             return new ArrayList<HotelRoomVO>();
@@ -37,11 +38,11 @@ public class HotelBLService_Stub implements HotelBLService {
     }
 
     public ResultMessage updateHotel(Hotel_DetailVO hvo) {
-        if (hvo.ID.equals("000000")){
+        if (hvo.ID.equals("000000")) {
             System.out.println("Update hotel Success!");
             return ResultMessage.SUCCESS;
         }
-        return  ResultMessage.FAILED;
+        return ResultMessage.FAILED;
     }
 
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
@@ -62,7 +63,7 @@ public class HotelBLService_Stub implements HotelBLService {
             System.out.println("Add hotel Success!");
             return ResultMessage.SUCCESS;
         }
-        return  ResultMessage.NOT_EXIST;
+        return ResultMessage.NOT_EXIST;
     }
 
     public ResultMessage addRoom(HotelRoomVO rvo) {
@@ -70,7 +71,7 @@ public class HotelBLService_Stub implements HotelBLService {
             System.out.println("Add hotel room Success!");
             return ResultMessage.SUCCESS;
         }
-        return  ResultMessage.EXIST;
+        return ResultMessage.EXIST;
     }
 
     public ResultMessage deleteHotel(String hotelID) {
@@ -78,7 +79,7 @@ public class HotelBLService_Stub implements HotelBLService {
             System.out.println("Delete Success!");
             return ResultMessage.SUCCESS;
         }
-        return  ResultMessage.NOT_EXIST;
+        return ResultMessage.NOT_EXIST;
     }
 
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
@@ -86,7 +87,7 @@ public class HotelBLService_Stub implements HotelBLService {
             System.out.println("Delete Success!");
             return ResultMessage.SUCCESS;
         }
-        return  ResultMessage.NOT_EXIST;
+        return ResultMessage.NOT_EXIST;
     }
 
     @Override
