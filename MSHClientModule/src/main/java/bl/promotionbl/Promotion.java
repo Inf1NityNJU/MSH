@@ -63,6 +63,8 @@ public class Promotion{
      * @return 符合条件的策略VO的列表
      */
     public ArrayList<Promotion_HotelVO> search(PromotionType promotionType){
+        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchPromotionsByType(promotionType);
+
         return null;
     }
 
