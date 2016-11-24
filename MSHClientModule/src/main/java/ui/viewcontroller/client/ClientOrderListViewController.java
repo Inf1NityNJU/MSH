@@ -4,10 +4,12 @@ import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.ClientOrderCellController;
+import ui.componentcontroller.order.ClientOrderSearchPaneController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -19,10 +21,15 @@ import java.util.ArrayList;
  */
 public class ClientOrderListViewController {
 
-    private ClientViewController clientViewController;
+    private ClientOrderViewController clientOrderViewController;
 
     @FXML
     private VBox contentVBox;
+
+    // for time
+    private FXMLLoader[] cellLoaders = new FXMLLoader[4];
+    private Node[] cells = new Node[4];
+
 
     private OrderBLService orderBLService;
 
@@ -32,32 +39,56 @@ public class ClientOrderListViewController {
      */
     @FXML
     public void initialize() {
+        orderBLService = new OrderBLService_Stub();
+
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/order/OrderSearchPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/order/ClientOrderSearchPane.fxml"));
             VBox pane = loader.load();
+
+            ClientOrderSearchPaneController controller = loader.getController();
+            controller.setClientOrderListViewController(this);
 
             contentVBox.getChildren().add(pane);
 
-            orderBLService = new OrderBLService_Stub();
-            showOrders(null);
+            for (int i=0; i<4; i++) {
+                FXMLLoader cellLoader = new FXMLLoader();
+                cellLoader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
+                HBox ordercell = cellLoader.load();
+
+                cellLoaders[i] = cellLoader;
+                cells[i] = ordercell;
+            }
+
+            controller.showAllOrders();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    public void setClientViewController(ClientViewController clientViewController) {
-        this.clientViewController = clientViewController;
+    public void setClientViewController(ClientOrderViewController clientOrderViewController) {
+        this.clientOrderViewController = clientOrderViewController;
     }
-    private void showOrders(OrderState orderState) {
+
+    public void showOrders(OrderState orderState) {
+
+//        contentVBox.getChildren().remove(1, contentVBox.getChildren().size()-1);
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
 
         ArrayList<OrderVO> orders = orderBLService.searchOrder(orderState, null);
-        try {
-            for (OrderVO order : orders) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
-                HBox ordercell = loader.load();
+//        try {
+            for (int i=0; i<orders.size(); i++) {
+//                FXMLLoader loader = new FXMLLoader();
+//                loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
+//
+
+                OrderVO order = orders.get(i);
+                FXMLLoader loader = cellLoaders[i];
+                Node ordercell = cells[i];
 
                 ClientOrderCellController clientOrderCellController = loader.getController();
                 clientOrderCellController.setClientOrderListViewController(this);
@@ -65,13 +96,13 @@ public class ClientOrderListViewController {
 
                 contentVBox.getChildren().add(ordercell);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void showClientOrderDetail(OrderVO order) {
-        clientViewController.showClientOrderDetail(order);
+        clientOrderViewController.showClientOrderDetail(order);
     }
 
 }

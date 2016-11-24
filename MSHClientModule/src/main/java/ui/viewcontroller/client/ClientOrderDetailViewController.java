@@ -9,7 +9,7 @@ import vo.OrderVO;
  */
 public class ClientOrderDetailViewController {
 
-    private ClientViewController clientViewController;
+    private ClientOrderViewController clientOrderViewController;
 
     @FXML
     private Label orderIDLabel;
@@ -17,8 +17,8 @@ public class ClientOrderDetailViewController {
     @FXML
     private Label hotelNameLabel;
 
-    public void setClientViewController(ClientViewController clientViewController) {
-        this.clientViewController = clientViewController;
+    public void setClientViewController(ClientOrderViewController clientOrderViewController) {
+        this.clientOrderViewController = clientOrderViewController;
     }
 
     public void showOrder(OrderVO order) {
@@ -28,7 +28,7 @@ public class ClientOrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
-        clientViewController.back();
+        clientOrderViewController.back();
     }
 
 }
