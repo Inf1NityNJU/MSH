@@ -46,20 +46,20 @@ public interface PromotionBLService {
      * @param promotionType
      * @return
      */
-    public ArrayList<Promotion_HotelVO> searchPromotions(PromotionType promotionType);
+    public ArrayList<PromotionVO> searchPromotions(PromotionType promotionType);
 
     /**
      * 查看某个酒店的所有促销策略
      * @param HotelID
      * @return
      */
-    public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID);
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID);
 
     /**
      * 查看网站的所有促销策略
      * @return
      */
-    public ArrayList<Promotion_WebVO> searchWebPromotions();
+    public ArrayList<PromotionVO> searchWebPromotions();
 
 
 }

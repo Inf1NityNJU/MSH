@@ -51,7 +51,7 @@ public class PromotionBLService_Driver {
             System.out.println("Get Failed");
         }
 
-        ArrayList<Promotion_HotelVO> pvos = promotionBLService.searchPromotions(PromotionType.Hotel_Birthday);
+        ArrayList<PromotionVO> pvos = promotionBLService.searchPromotions(PromotionType.Hotel_Birthday);
         if (pvos != null) {
             System.out.println("Get Promotions Success");
         } else {
@@ -65,7 +65,7 @@ public class PromotionBLService_Driver {
             System.out.println("Get HotelPromotions Failed");
         }
 
-        ArrayList<Promotion_WebVO> pwvos = promotionBLService.searchWebPromotions();
+        ArrayList<PromotionVO> pwvos = promotionBLService.searchWebPromotions();
         if (pvos != null) {
             System.out.println("Get WebPromotions Success");
         } else {
