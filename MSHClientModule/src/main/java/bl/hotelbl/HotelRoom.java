@@ -59,6 +59,10 @@ public class HotelRoom {
      * @return 修改成功与否
      */
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
+        //房间已经被预订过
+        if(isOrdered(rvo.hotelID,rvo.roomType).equals(ResultMessage.TRUE)){
+            return ResultMessage.INVALID;
+        }
         ResultMessage resultMessage = deleteHotelRoom(rvo.hotelID, rvo.roomType);
         //
         if (resultMessage == ResultMessage.SUCCESS) {
@@ -84,7 +88,6 @@ public class HotelRoom {
      *
      * @param rvo
      * @return 添加成功与否
-     * @throws InfoInvalidException
      */
     public ResultMessage addRoom(HotelRoomVO rvo) {
         HotelRoomPO hotelRoomPO = roomVOToRoomPO(rvo);
@@ -122,6 +125,11 @@ public class HotelRoom {
      * @return 删除成功与否
      */
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
+        //房间已经被预订过
+        if(isOrdered(hotelID,type).equals(ResultMessage.TRUE)){
+            return ResultMessage.INVALID;
+        }
+        //
         String hotelRoomID = generateID(hotelID, type.ordinal());
         ResultMessage resultMessage = hotelDataService.deleteRoom(hotelRoomID);
         if (resultMessage == ResultMessage.SUCCESS) {
@@ -196,7 +204,7 @@ public class HotelRoom {
      * @param type    房间类型
      * @return 设置成功与否
      */
-    public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
+    public ResultMessage setRoomWillBeCancelled(String hotelID, RoomType type) {
         /**
          * 记录将要设置的房间
          */

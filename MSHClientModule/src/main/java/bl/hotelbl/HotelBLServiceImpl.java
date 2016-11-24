@@ -78,7 +78,7 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
 
     @Override
     public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
-        return hotelRoom.setRoomWillBeCancel(hotelID,type);
+        return hotelRoom.setRoomWillBeCancelled(hotelID,type);
     }
 
     @Override
