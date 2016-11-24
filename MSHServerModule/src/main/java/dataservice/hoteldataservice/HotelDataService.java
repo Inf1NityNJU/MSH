@@ -46,4 +46,5 @@ public interface HotelDataService {
 
     public ArrayList<RoomStockPO> getRoomStock(String hotelRoomID);
 
+    public HotelRoomPO getRoomByID(String hotelRoomID);
 }

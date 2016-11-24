@@ -58,6 +58,7 @@ public class DateUtil {
                 if (day > 30) {
                     monthIncrease();
                 }
+                break;
             case 2:
                 if (isLeapYear()) {
                     if (day > 29) {
@@ -121,6 +122,17 @@ public class DateUtil {
         } else {
             return year % 4 == 0;
         }
+    }
+
+    /**
+     * 判断该日期是否在指定区间内
+     * @param start 指定区间起始日期
+     * @param end 指定区间结束日期
+     * @return 判断结果
+     */
+    public boolean isInRange(DateUtil start,DateUtil end){
+        String thisDate=toString();
+        return (thisDate.compareTo(start.toString())>=0)&&(thisDate.compareTo(end.toString())<=0);
     }
 
     /**

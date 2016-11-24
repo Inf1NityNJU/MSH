@@ -8,6 +8,8 @@ import javafx.scene.layout.Pane;
 import main.Main;
 import ui.viewcontroller.client.ClientNavbarController;
 import ui.viewcontroller.client.ClientViewController;
+import ui.viewcontroller.manager.ClientManagementViewController;
+import ui.viewcontroller.manager.ManagerViewController;
 
 import java.io.IOException;
 
@@ -19,6 +21,8 @@ public class MainUIController {
     private BorderPane rootPane;
 
     private ClientViewController clientViewController;
+
+    private ManagerViewController managerViewController;
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -44,8 +48,11 @@ public class MainUIController {
     }
 
     public void showClientView() {
-
         clientViewController = new ClientViewController(rootPane);
+    }
+
+    public void showManagerView() {
+        managerViewController = new ManagerViewController(rootPane);
     }
 
 }

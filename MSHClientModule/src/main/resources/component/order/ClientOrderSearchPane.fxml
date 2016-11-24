@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.statebutton.StateButton?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.order.ClientOrderSearchPaneController">
+   <padding>
+      <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+   </padding>
+   <effect>
+      <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
+   </effect>
+   <children>
+      <TitleLabel text="我的订单" />
+      <HBox spacing="10.0">
+         <children>
+            <StateButton fx:id="allButton" colorProperty="F8E71C" text="全部" onMouseClicked="#showAllOrders"/>
+            <StateButton fx:id="unexecutedButton" colorProperty="12B7F3" text="未执行" onMouseClicked="#showUnexecutedOrders"/>
+            <StateButton fx:id="executedButton" colorProperty="00CCCC" text="已执行" onMouseClicked="#showExecutedOrders"/>
+            <StateButton fx:id="cancelledButton" colorProperty="BC52FD" text="已撤销" onMouseClicked="#showCancelledOrders" />
+            <StateButton fx:id="abnormalButton" colorProperty="FC537D" text="异常" onMouseClicked="#showAbnormalOrders"/>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -5,7 +5,6 @@ import dataservice.hoteldataservice.HotelDataService;
 import po.HotelRoomPO;
 import po.RoomStockPO;
 import util.DateUtil;
-import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
@@ -59,6 +58,10 @@ public class HotelRoom {
      * @return 修改成功与否
      */
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
+        //房间已经被预订过
+        if (isOrdered(rvo.hotelID, rvo.roomType).equals(ResultMessage.TRUE)) {
+            return ResultMessage.INVALID;
+        }
         ResultMessage resultMessage = deleteHotelRoom(rvo.hotelID, rvo.roomType);
         //
         if (resultMessage == ResultMessage.SUCCESS) {
@@ -71,12 +74,51 @@ public class HotelRoom {
     /**
      * 更新房间数量
      *
-     * @param roomChangeInfoVO
+     * @param roomChangeInfoVO 房间更新信息
      * @return 更新成功与否
      */
     public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
-        //TODO
-        return null;
+        //得到指定房间的可预订库存
+        ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
+        //如果没找到 返回不合法
+        if(roomStockPOs.size()==0){
+          return ResultMessage.FAILED;
+        }
+        //
+        //拷贝一份列表进行寻找需要修改库存的操作
+        ArrayList<RoomStockPO> roomStockPOsNeedToChange = new ArrayList<RoomStockPO>();
+        roomStockPOsNeedToChange.addAll(roomStockPOs);
+        //得到要修改的库存
+        for (int i = 0; i < roomStockPOsNeedToChange.size(); i++) {
+            DateUtil dateUtil = new DateUtil(roomStockPOsNeedToChange.get(i).getDate());
+            if (!dateUtil.isInRange(roomChangeInfoVO.start, roomChangeInfoVO.end)) {
+                roomStockPOsNeedToChange.remove(i);
+                i--;
+            }
+        }
+        //保存要修改的数量
+        int quantity = roomChangeInfoVO.quantity;
+        //为更新cache做准备
+        ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
+        //
+
+        if (checkChangeIsValidByPO(roomStockPOsNeedToChange, quantity)) {
+            for (RoomStockPO roomStockPO : roomStockPOsNeedToChange) {
+                roomStockPO.setAvailableQuantity(roomStockPO.getAvailableQuantity() - quantity);
+                hotelDataService.updateRoomStock(roomStockPO);
+                roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
+            }
+        } else {
+            return ResultMessage.INSUFFICIENT;
+        }
+        //更新cache
+        HotelRoomPO roomPO = hotelDataService.getRoomByID(generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
+        HotelRoomVO roomVO = roomPOToRoomVO(roomPO);
+        roomVO.roomStockVOs = roomStockVOs;
+        cache.remove(roomPO.getID());
+        cache.put(roomPO.getID(), roomVO);
+        //
+        return ResultMessage.SUCCESS;
     }
 
     /**
@@ -84,7 +126,6 @@ public class HotelRoom {
      *
      * @param rvo
      * @return 添加成功与否
-     * @throws InfoInvalidException
      */
     public ResultMessage addRoom(HotelRoomVO rvo) {
         HotelRoomPO hotelRoomPO = roomVOToRoomPO(rvo);
@@ -92,6 +133,7 @@ public class HotelRoom {
         //保存放在HotelRoomVO里面的roomStockVO
         ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
         //
+        DateUtil today = new DateUtil();
         if (resultMessage == ResultMessage.SUCCESS) {
             for (int i = 0; i < MAX_AVAILABLE_DAYS; i++) {
                 //
@@ -99,12 +141,13 @@ public class HotelRoom {
                         , hotelRoomPO.getHotelID()
                         , hotelRoomPO.getRoomType()
                         , hotelRoomPO.getTotalQuantity()
-                        , new DateUtil().toString()
+                        , today.toString()
                 );
                 //将roomStockPO写入数据库
                 hotelDataService.addRoomStock(roomStockPO);
                 //
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
+                today.increase();
             }
             //保存放在HotelRoomVO里面的roomStockVO
             rvo.roomStockVOs = roomStockVOs;
@@ -122,6 +165,11 @@ public class HotelRoom {
      * @return 删除成功与否
      */
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
+        //房间已经被预订过
+        if (isOrdered(hotelID, type).equals(ResultMessage.TRUE)) {
+            return ResultMessage.INVALID;
+        }
+        //
         String hotelRoomID = generateID(hotelID, type.ordinal());
         ResultMessage resultMessage = hotelDataService.deleteRoom(hotelRoomID);
         if (resultMessage == ResultMessage.SUCCESS) {
@@ -161,7 +209,8 @@ public class HotelRoom {
                 , hotelRoomPO.getRoomType()
                 , hotelRoomPO.getPrice()
                 , hotelRoomPO.getTotalQuantity()
-                , null, hotelRoomPO.getIsCancelled());
+                , null
+                , hotelRoomPO.getIsCancelled());
     }
 
     /**
@@ -196,7 +245,7 @@ public class HotelRoom {
      * @param type    房间类型
      * @return 设置成功与否
      */
-    public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
+    public ResultMessage setRoomWillBeCancelled(String hotelID, RoomType type) {
         /**
          * 记录将要设置的房间
          */
