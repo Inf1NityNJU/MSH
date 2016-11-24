@@ -6,7 +6,16 @@
     <class name="po.HotelPO">
         <id name="ID"> </id>
         <property name="name"/>
-        <property name="address"/>
+
+        <property name="city" not-null="true" length="20">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">util.City</param>
+                <!--
+                12为java.sql.Types.VARCHAR常量值，即保存枚举的字面值到数据库。如果不指定type参数，保存枚举的索引值(从0开始)到数据库
+                -->
+                <param name="type">12</param>
+            </type>
+        </property>
 
         <property name="place" not-null="true" length="20">
             <type name="org.hibernate.type.EnumType">
@@ -17,6 +26,8 @@
                 <param name="type">12</param>
             </type>
         </property>
+
+        <property name="address"/>
 
         <property name="star"/>
         <property name="introduction"/>

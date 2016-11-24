@@ -1,5 +1,6 @@
 package vo;
 
+import util.City;
 import util.Place;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -17,13 +18,13 @@ public class Hotel_DetailVO {
      */
     public String name;
     /**
-     * 酒店地址
-     */
-    public String address;
-    /**
      * 酒店所属商圈
      */
     public Place place;
+    /**
+     * 酒店地址
+     */
+    public String address;
     /**
      * 酒店星级
      */
@@ -52,17 +53,27 @@ public class Hotel_DetailVO {
      * 酒店评分
      */
     public double score;
+    /**
+     * 评分数量
+     */
+    public int scoreAmount;
+    /**
+     * 酒店所属城市
+     */
+    public City city;
 
-    public Hotel_DetailVO(String ID, String name, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO, double score) {
+    public Hotel_DetailVO(String ID, String name, City city, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO, double score,int scoreAmount) {
         this.ID = ID;
         this.name = name;
-        this.address = address;
+        this.city = city;
         this.place = place;
+        this.address = address;
         this.star = star;
         this.introduction = introduction;
         this.facilities = facilities;
         this.assessmentVO = assessmentVO;
-        this.score=score;
+        this.score = score;
+        this.scoreAmount=scoreAmount;
     }
 
     /**

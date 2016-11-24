@@ -19,7 +19,7 @@
 
         <property name="price"/>
         <property name="totalQuantity"/>
-        <property name="isCancel"/>
+        <property name="isCancelled"/>
 
     </class>
 </hibernate-mapping>
