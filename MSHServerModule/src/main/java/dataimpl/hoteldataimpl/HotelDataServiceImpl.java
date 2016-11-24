@@ -61,6 +61,10 @@ public class HotelDataServiceImpl implements HotelDataService {
     public ArrayList<HotelRoomPO> getRoom(String hotelID) {
         return hotelRoomDataHelper.prefixMatchQuery("hotelID", hotelID);
     }
+    @Override
+    public HotelRoomPO getRoomByID(String hotelRoomID) {
+        return hotelRoomDataHelper.exactlyQuery("ID", hotelRoomID);
+    }
 
     @Override
     public ResultMessage updateHotel(HotelPO hotelPO) {
