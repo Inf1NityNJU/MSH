@@ -1,5 +1,6 @@
 package po;
 
+import util.City;
 import util.Place;
 
 /**
@@ -15,13 +16,17 @@ public class HotelPO {
      */
     private String name;
     /**
-     * 酒店地址
+     * 酒店所属城市
      */
-    private String address;
+    private City city;
     /**
      * 酒店所属商圈
      */
     private Place place;
+    /**
+     * 酒店地址
+     */
+    private String address;
     /**
      * 酒店星级
      */
@@ -42,14 +47,12 @@ public class HotelPO {
      * 评分数量
      */
     private int scoreAmount;
-
-    public HotelPO(String ID, String name, String address, Place place, int star, String introduction, String facilities, double score, int scoreAmount) {
-        this(ID,name,address,place,star,introduction,facilities);
+    public HotelPO(String ID, String name, City city, Place place, String address, int star, String introduction, String facilities, double score, int scoreAmount) {
+        this(ID, name, address, place, star, introduction, facilities);
         this.score = score;
         this.scoreAmount = scoreAmount;
+        this.city = city;
     }
-
-
     public HotelPO(String ID, String name, String address, Place place, int star, String introduction, String facilities) {
         this.ID = ID;
         this.name = name;
@@ -58,10 +61,19 @@ public class HotelPO {
         this.star = star;
         this.introduction = introduction;
         this.facilities = facilities;
+        this.city = City.NanJing;
     }
 
     public HotelPO() {
 
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public double getScore() {

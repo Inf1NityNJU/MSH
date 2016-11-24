@@ -11,7 +11,6 @@ import util.Place;
 import util.ResultMessage;
 import util.RoomType;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -28,7 +27,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void addHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000001", "Test hotel 1", "Nanjing University", Place.XINJIEKOU, 5, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000001", "Test hotel 1", "Nanjing University", Place.XinJieKou, 5, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
 
     }
@@ -47,7 +46,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void searchHotel2() {
-        ArrayList<HotelPO> hotelPOs = hotelDataService.exactlySearchHotel("place", Place.XIANLIN);
+        ArrayList<HotelPO> hotelPOs = hotelDataService.exactlySearchHotel("place", Place.XianLin);
         assertEquals(2, hotelPOs.size());
     }
 
@@ -65,7 +64,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void updateHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("00000001", "hoteldataimpl", "Nanjing News University", Place.XIANLIN, 5, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.updateHotel(new HotelPO("00000001", "hoteldataimpl", "Nanjing News University", Place.XianLin, 5, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 

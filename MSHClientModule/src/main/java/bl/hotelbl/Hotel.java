@@ -8,6 +8,7 @@ import util.ResultMessage;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -29,7 +30,10 @@ public class Hotel {
      * @return 符合条件的酒店列表
      */
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
-        //TODO
+        Class<FilterFlagsVO> flagsVOClass = (Class<FilterFlagsVO>) flags.getClass();
+        ArrayList<Method> methods=new ArrayList<Method>();
+        methods.addAll(Arrays.asList(flagsVOClass.getMethods()));
+
         return null;
     }
 
@@ -135,7 +139,7 @@ public class Hotel {
                 , hotelPO.getStar()
                 , hotelPO.getIntroduction()
                 , hotelPO.getFacilities()
-                , null,hotelPO.getScore() );
+                , null, hotelPO.getScore());
     }
 
     /**
@@ -148,11 +152,11 @@ public class Hotel {
         double min = Double.MAX_VALUE;
         double max = 0;
         for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
-            if(min>hotelRoomPO.getPrice()){
-                min=hotelRoomPO.getPrice();
+            if (min > hotelRoomPO.getPrice()) {
+                min = hotelRoomPO.getPrice();
             }
-            if(max<hotelRoomPO.getPrice()){
-                max=hotelRoomPO.getPrice();
+            if (max < hotelRoomPO.getPrice()) {
+                max = hotelRoomPO.getPrice();
             }
         }
         //
