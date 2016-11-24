@@ -8,8 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.ClientOrderCellController;
-import ui.componentcontroller.order.ClientOrderSearchPaneController;
+import ui.componentcontroller.order.order.ClientOrderCellController;
+import ui.componentcontroller.order.order.ClientOrderSearchPaneController;
 import util.OrderState;
 import vo.OrderVO;
 

@@ -1,4 +1,4 @@
-package ui.componentcontroller.order;
+package ui.componentcontroller.order.order;
 
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;

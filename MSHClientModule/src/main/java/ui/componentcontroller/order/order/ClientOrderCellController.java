@@ -1,4 +1,4 @@
-package ui.componentcontroller.order;
+package ui.componentcontroller.order.order;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
