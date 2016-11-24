@@ -3,6 +3,7 @@ package bl.promotionbl;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -16,10 +17,10 @@ public class MockPromotion extends Promotion{
 
     /**
      * 增加一个促销策略
-     * @param promotionHotelVO
+     * @param promotionVO
      * @return 添加成功与否
      */
-    public ResultMessage add(Promotion_HotelVO promotionHotelVO){
+    public ResultMessage add(PromotionVO promotionVO){
         return ResultMessage.SUCCESS;
     }
 
@@ -38,12 +39,11 @@ public class MockPromotion extends Promotion{
 
     /**
      * 更新一个促销策略
-     * @param promotionID
-     * @param promotionHotelVO
+     * @param promotionVO
      * @return 更新成功与否
      */
-    public ResultMessage update(String promotionID , Promotion_HotelVO promotionHotelVO){
-        if(promotionID.equals("201610120102")){
+    public ResultMessage update(PromotionVO promotionVO){
+        if(promotionVO.promotionID.equals("201610120102")){
             return ResultMessage.SUCCESS;
         }else{
             return ResultMessage.FAILED;
