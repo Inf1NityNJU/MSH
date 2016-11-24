@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.navbutton.NavButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #313B42;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.ManagerNavbarController">
+    <children>
+        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
+            <image>
+                <Image url="@../../images/example.jpeg" />
+            </image>
+        </ImageView>
+        <VBox layoutY="360.0" prefWidth="200.0">
+            <children>
+                <NavButton fx:id="clientListButton" text="客户列表" isCurrentProperty="false" onMouseClicked="#clickClientButton"/>
+                <NavButton fx:id="staffListButton" text="酒店工作人员列表" isCurrentProperty="false" onMouseClicked="#clickStaffButton"/>
+                <NavButton fx:id="salesmanListButton" text="网站营销人员列表" isCurrentProperty="false" onMouseClicked="#clickSalesmanButton"/>
+            </children>
+        </VBox>
+    </children>
+</Pane>
