@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.mycheckbox.MyCheckBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -211,13 +212,26 @@
                                     </Label>
                                  </children>
                               </HBox>
+                              <MyCheckBox isActiveProperty="true" isAbledProperty="false" text="儿童" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
                   </GridPane>
                   <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                      <buttons>
-                        <RectButton isActiveProperty="false" minHeight="40.0" text="返 回" onMouseClicked="#clickBackButton"/>
+                        <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
                         <RectButton minHeight="40.0" text="撤销订单" />
                      </buttons>
                   </ButtonBar>

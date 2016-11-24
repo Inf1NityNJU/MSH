@@ -26,11 +26,9 @@ public class ClientNavbarController {
 
     @FXML
     public void clickSearchHotelButton() {
-        searchHotelButton.setIsCurrentProperty(!searchHotelButton.getIsCurrentProperty());
+        searchHotelButton.setIsCurrentProperty(true);
         orderButton.setIsCurrentProperty(false);
         infoButton.setIsCurrentProperty(false);
-
-
     }
 
     @FXML
