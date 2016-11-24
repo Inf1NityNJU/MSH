@@ -49,4 +49,9 @@ public class PromotionDataService_Stub implements PromotionDataService{
     public ArrayList<PromotionPO> searchPromotionsByType(PromotionType promotionType) {
         return null;
     }
+
+    @Override
+    public ArrayList<PromotionPO> searchHotelPromotions(String hotelID) {
+        return null;
+    }
 }

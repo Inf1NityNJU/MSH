@@ -44,4 +44,9 @@ public class PromotionDataServiceImpl implements PromotionDataService{
         ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionType", promotionType.toString());
         return promotionPOs;
     }
+
+    @Override
+    public ArrayList<PromotionPO> searchHotelPromotions(String hotelID) {
+        return null;
+    }
 }
