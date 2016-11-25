@@ -30,6 +30,7 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
         this.clientGrade = clientGrade;
     }
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_ClientGradeVO) {
             Promotion_ClientGradeVO promotion_ClientGradeVO = (Promotion_ClientGradeVO) o;
@@ -38,6 +39,7 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }
@@ -51,6 +53,7 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
                 && judgeEqual(pvo.clientGrade,this.clientGrade);
     }
 
+    @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),

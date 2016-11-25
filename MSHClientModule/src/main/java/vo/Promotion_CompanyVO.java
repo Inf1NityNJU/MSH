@@ -43,6 +43,7 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
         this.companyName = companyName;
     }
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_CompanyVO) {
             Promotion_CompanyVO promotion_CompanyVO = (Promotion_CompanyVO) o;
@@ -51,6 +52,7 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }
@@ -64,6 +66,7 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
                 && judgeEqual(pvo.companyName,this.companyName);
     }
 
+    @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),

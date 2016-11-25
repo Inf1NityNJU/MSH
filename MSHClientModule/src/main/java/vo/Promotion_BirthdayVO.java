@@ -26,6 +26,7 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
         this.bithday = bithday;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_BirthdayVO) {
             Promotion_BirthdayVO promotion_BirthdayVO = (Promotion_BirthdayVO) o;
@@ -34,6 +35,7 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }
@@ -45,6 +47,7 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
                 && judgeEqual(pvo.bithday, this.bithday);
     }
 
+    @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 null, null,
