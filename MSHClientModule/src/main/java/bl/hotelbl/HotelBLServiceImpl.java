@@ -12,13 +12,13 @@ import java.util.Iterator;
 /**
  * Created by SilverNarcissus on 16/11/5.
  */
-public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
+public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
     private Hotel hotel;
     private HotelRoom hotelRoom;
 
-    protected HotelBLServiceImpl(Hotel hotel,HotelRoom hotelRoom){
-        this.hotel=hotel;
-        this.hotelRoom=hotelRoom;
+    protected HotelBLServiceImpl(Hotel hotel, HotelRoom hotelRoom) {
+        this.hotel = hotel;
+        this.hotelRoom = hotelRoom;
     }
 
     @Override
@@ -29,11 +29,6 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     @Override
     public Hotel_DetailVO getHotel(String hotelID) {
         return hotel.getHotel(hotelID);
-    }
-
-    @Override
-    public ResultMessage addAssessment(AssessmentVO assessmentVO) {
-        return null;
     }
 
     @Override
@@ -73,17 +68,17 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
 
     @Override
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
-        return hotelRoom.deleteHotelRoom(hotelID,type);
+        return hotelRoom.deleteHotelRoom(hotelID, type);
     }
 
     @Override
     public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
-        return hotelRoom.setRoomWillBeCancelled(hotelID,type);
+        return hotelRoom.setRoomWillBeCancelled(hotelID, type);
     }
 
     @Override
     public ResultMessage isOrdered(String hotelID, RoomType type) {
-        return hotelRoom.isOrdered(hotelID,type);
+        return hotelRoom.isOrdered(hotelID, type);
     }
 
     @Override
@@ -114,5 +109,11 @@ public class HotelBLServiceImpl implements HotelBLService,HotelBLInfo {
     @Override
     public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
         return hotel.scoreDescendingSort(hotel_detailVOs);
+    }
+
+    @Override
+    public ResultMessage addScoreToHotelByHotelID(double score, String hotelID) {
+        //TODO
+        return null;
     }
 }

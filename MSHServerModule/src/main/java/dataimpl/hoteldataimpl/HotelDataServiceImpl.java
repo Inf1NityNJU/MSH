@@ -32,6 +32,7 @@ public class HotelDataServiceImpl implements HotelDataService {
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value) {
         return hotelDataHelper.prefixMatchQuery(field, value);
     }
+
     @Override
     public ArrayList<HotelPO> exactlySearchHotel(String field, Object value) {
         return hotelDataHelper.fullMatchQuery(field, value);
@@ -61,6 +62,7 @@ public class HotelDataServiceImpl implements HotelDataService {
     public ArrayList<HotelRoomPO> getRoom(String hotelID) {
         return hotelRoomDataHelper.prefixMatchQuery("hotelID", hotelID);
     }
+
     @Override
     public HotelRoomPO getRoomByID(String hotelRoomID) {
         return hotelRoomDataHelper.exactlyQuery("ID", hotelRoomID);
@@ -116,4 +118,13 @@ public class HotelDataServiceImpl implements HotelDataService {
         return roomStockDataHelper.prefixMatchQuery("ID", hotelRoomID);
     }
 
+    @Override
+    public ArrayList<HotelPO> fullSearchHotel(String field, Object value) {
+        return hotelDataHelper.fullMatchQuery(field, value);
+    }
+
+    @Override
+    public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) {
+        return hotelRoomDataHelper.fullMatchQuery(field, value);
+    }
 }

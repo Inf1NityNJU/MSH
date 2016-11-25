@@ -12,15 +12,6 @@ import java.util.ArrayList;
  * Created by SilverNarcissus on 16/11/12.
  */
 public interface HotelBLInfo {
-    public ResultMessage addAssessment(AssessmentVO assessmentVO);
-
-    /**
-     * 取得指定酒店的房间信息
-     *
-     * @param hotelID
-     * @return
-     */
-    public ArrayList<HotelRoomVO> getRoom(String hotelID);
 
     /**
      * 更新房间数量
@@ -29,4 +20,12 @@ public interface HotelBLInfo {
      * @return 更新成功与否
      */
     public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO);
+
+    /**
+     * 增加酒店评分
+     * @param score 本次评分的平均分
+     * @param hotelID 需要增加评分的酒店
+     * @return 增加结果
+     */
+    public ResultMessage addScoreToHotelByHotelID(double score,String hotelID);
 }

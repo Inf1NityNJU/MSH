@@ -30,13 +30,22 @@ public class AssessmentVO {
      */
     public String comment;
 
+    /**
+     * 作出评价的客户ID
+     */
+    public String clientID;
+
+    public AssessmentVO(int serviceScore, int facilityScore, int healthScore, int locationScore, String comment, String clientID) {
+        this(serviceScore, facilityScore, healthScore, locationScore, comment);
+        this.clientID = clientID;
+    }
+
     public AssessmentVO(int serviceScore, int facilityScore, int healthScore, int locationScore, String comment) {
         this.serviceScore = serviceScore;
         this.facilityScore = facilityScore;
         this.healthScore = healthScore;
         this.locationScore = locationScore;
-
         this.comment = comment;
+        this.clientID = null;
     }
-
 }

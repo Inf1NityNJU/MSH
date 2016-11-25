@@ -7,6 +7,7 @@ import org.junit.Test;
 import util.City;
 import util.Place;
 import util.ResultMessage;
+import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;
 
 import java.util.ArrayList;
@@ -36,7 +37,11 @@ public class HotelTest {
 
     @Test
     public void searchHotel() throws Exception {
-
+        FilterFlagsVO flags = new FilterFlagsVO(City.NanJing, null, null, null, 0, 0, null, null, 0, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
     }
 
     @Test

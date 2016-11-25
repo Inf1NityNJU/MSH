@@ -18,6 +18,10 @@ public class Hotel_DetailVO {
      */
     public String name;
     /**
+     * 酒店所属城市
+     */
+    public City city;
+    /**
      * 酒店所属商圈
      */
     public Place place;
@@ -57,12 +61,9 @@ public class Hotel_DetailVO {
      * 评分数量
      */
     public int scoreAmount;
-    /**
-     * 酒店所属城市
-     */
-    public City city;
 
-    public Hotel_DetailVO(String ID, String name, City city, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO, double score,int scoreAmount) {
+
+    public Hotel_DetailVO(String ID, String name, City city, String address, Place place, int star, String introduction, String facilities, AssessmentVO assessmentVO, double score, int scoreAmount) {
         this.ID = ID;
         this.name = name;
         this.city = city;
@@ -73,7 +74,7 @@ public class Hotel_DetailVO {
         this.facilities = facilities;
         this.assessmentVO = assessmentVO;
         this.score = score;
-        this.scoreAmount=scoreAmount;
+        this.scoreAmount = scoreAmount;
     }
 
     /**
@@ -116,6 +117,15 @@ public class Hotel_DetailVO {
                 && judgeEqual(introduction, h_dvo.introduction)
                 && judgeEqual(facilities, h_dvo.facilities)
                 && judgeEqual(assessmentVO, h_dvo.assessmentVO);
+    }
+
+    @Override
+    public String toString() {
+        String result = "ID: " + ID + " City: " + city + " Place: " + place + " Address: " + address +
+                " Name: " + name + " Star: " + star + " minPrice: " + minPrice +
+                " Facilities: "+facilities+" Introduction: "+introduction+
+                " maxPrice: " + maxPrice + " score: " + score + " scoreAmount: " + scoreAmount;
+        return result;
     }
 }
 

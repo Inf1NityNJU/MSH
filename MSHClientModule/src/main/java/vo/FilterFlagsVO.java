@@ -1,5 +1,6 @@
 package vo;
 
+import util.City;
 import util.DateUtil;
 import util.Place;
 import util.RoomType;
@@ -10,6 +11,10 @@ import static util.EqualJudgeHelper.judgeEqual;
  * Created by SilverNarcissus on 16/10/12.
  */
 public class FilterFlagsVO {
+    /**
+     * 酒店所属城市
+     */
+    public City city;
     /**
      * 酒店所属商圈
      */
@@ -41,7 +46,7 @@ public class FilterFlagsVO {
     /**
      * 房间数量
      */
-    public double quantity;
+    public int quantity;
     /**
      * 酒店星级
      */
@@ -59,7 +64,8 @@ public class FilterFlagsVO {
      */
     public String bookedClientID;
 
-    public FilterFlagsVO(Place place, String name, RoomType roomType, double minPrice, double maxPrice, DateUtil checkInDate, DateUtil checkOutDate, double quantity, int star, double minScore, double maxScore, String bookedClientID) {
+    public FilterFlagsVO(City city,Place place, String name, RoomType roomType, double minPrice, double maxPrice, DateUtil checkInDate, DateUtil checkOutDate, int quantity, int star, double minScore, double maxScore, String bookedClientID) {
+        this.city=city;
         this.place = place;
         this.name = name;
         this.roomType = roomType;

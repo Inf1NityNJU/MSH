@@ -313,7 +313,7 @@ public class HotelRoom {
      * @param quantity     需求数量
      * @return 满足是否满足需求
      */
-    private boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity) {
+    public static boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity) {
         for (RoomStockPO stockPO : roomStockPOs) {
             if (stockPO.getAvailableQuantity() - quantity < 0) {
                 return false;

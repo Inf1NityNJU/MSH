@@ -31,8 +31,24 @@ public class AssessmentPO {
      * 评价
      */
     private String comment;
+    /**
+     * 作出评价的客户ID
+     */
+    private String clientID;
+
+
+    public AssessmentPO(String orderID, int serviceScore, int facilityScore, int healthScore, int locationScore, String comment, String clientID) {
+        this.orderID = orderID;
+        this.serviceScore = serviceScore;
+        this.facilityScore = facilityScore;
+        this.healthScore = healthScore;
+        this.locationScore = locationScore;
+        this.comment = comment;
+        this.clientID = clientID;
+    }
 
     public String getOrderID() {
+
         return orderID;
     }
 
@@ -80,5 +96,11 @@ public class AssessmentPO {
         this.comment = comment;
     }
 
+    public String getClientID() {
+        return clientID;
+    }
 
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
+    }
 }

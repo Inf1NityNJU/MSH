@@ -23,6 +23,11 @@ public class HotelDataService_Stub implements HotelDataService{
     }
 
     @Override
+    public ArrayList<HotelPO> fullSearchHotel(String field, Object value) {
+        return null;
+    }
+
+    @Override
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value) {
         return null;
     }
@@ -99,6 +104,11 @@ public class HotelDataService_Stub implements HotelDataService{
 
     @Override
     public HotelRoomPO getRoomByID(String hotelRoomID) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) {
         return null;
     }
 }

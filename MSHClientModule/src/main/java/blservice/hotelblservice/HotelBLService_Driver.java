@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class HotelBLService_Driver {
     //Test constant
     private static final String testHotelID = "000000";
-    private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null, null, null, 0, 0, null, null, 0, 0, 0, 0, null);
+    private static final FilterFlagsVO TEST_FILTER_FLAGS_VO = new FilterFlagsVO(null, null, null, null, 0, 0, null, null, 0, 0, 0, 0, null);
     private static final Hotel_DetailVO TEST_HOTEL_DETIAL_VO = new Hotel_DetailVO(null, null, City.NanJing, null, null, 0, null, null, null, 0, 0);
     private static final HotelRoomVO testHotelRoomVO = new HotelRoomVO("00000000", null, 0, 0, null);
     private static final RoomType testType = RoomType.SingleRoom;

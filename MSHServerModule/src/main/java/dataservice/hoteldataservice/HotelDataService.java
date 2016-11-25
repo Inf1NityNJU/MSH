@@ -16,6 +16,8 @@ public interface HotelDataService {
 
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value);
 
+    public ArrayList<HotelPO> fullSearchHotel(String field, Object value);
+
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value);
 
     public ArrayList<HotelPO> fuzzySearchHotel(String field, String value);
@@ -47,4 +49,6 @@ public interface HotelDataService {
     public ArrayList<RoomStockPO> getRoomStock(String hotelRoomID);
 
     public HotelRoomPO getRoomByID(String hotelRoomID);
+
+    public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value);
 }

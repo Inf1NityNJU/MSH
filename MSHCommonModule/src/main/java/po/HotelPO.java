@@ -150,4 +150,18 @@ public class HotelPO {
     public void setFacilities(String facilities) {
         this.facilities = facilities;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof HotelPO) {
+            HotelPO hotelPO = (HotelPO) o;
+            return hotelPO.getID().equals(ID);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return ID.hashCode();
+    }
 }
