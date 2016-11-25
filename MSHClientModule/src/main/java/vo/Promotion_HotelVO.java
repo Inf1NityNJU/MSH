@@ -17,6 +17,7 @@ public class Promotion_HotelVO extends PromotionVO{
         this.hotelID = hotelID;
     }
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_HotelVO) {
             Promotion_HotelVO promotionHotelVO = (Promotion_HotelVO) o;
@@ -25,6 +26,7 @@ public class Promotion_HotelVO extends PromotionVO{
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }

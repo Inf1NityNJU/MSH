@@ -1,6 +1,5 @@
 package bl.promotionbl;
 
-import blservice.promotionblservice.PromotionBLService;
 import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.promotiondataservice.PromotionDataService_Stub;
 import po.PromotionPO;
@@ -62,8 +61,13 @@ public class Promotion{
      * @param promotionType
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<Promotion_HotelVO> search(PromotionType promotionType){
-        return null;
+    public ArrayList<PromotionVO> search(PromotionType promotionType){
+        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchPromotionsByType(promotionType);
+        ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
+        for(int i=0;i<promotionPOs.size();i++){
+            promotionVOs.add(POToVO(promotionPOs.get(i)));
+        }
+        return promotionVOs;
     }
 
     /**
@@ -71,28 +75,43 @@ public class Promotion{
      * @param HotelID
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID){
-        return null;
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID){
+        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchHotelPromotions(HotelID);
+        ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
+        for(int i=0;i<promotionPOs.size();i++){
+            promotionVOs.add(POToVO(promotionPOs.get(i)));
+        }
+        return promotionVOs;
     }
 
     /**
      * 搜索所有的网站促销策略
      * @return 符合条件的策略VO的列表
      */
-    public ArrayList<Promotion_WebVO> searchWebPromotions(){
-        return null;
+    public ArrayList<PromotionVO> searchWebPromotions(){
+        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchWebPromotions();
+        ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
+        for(int i=0;i<promotionPOs.size();i++){
+            promotionVOs.add(POToVO(promotionPOs.get(i)));
+        }
+        return promotionVOs;
     }
 
+    /**
+     * 将PO转换成易于显示的VO对象
+     * @param promotionPO
+     * @return
+     */
     private PromotionVO POToVO(PromotionPO promotionPO){
         switch (promotionPO.getPromotionType()){
             case Hotel_Birthday:
-                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID(),this.date(promotionPO.getBirthday()));
+                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID());
             case Hotel_SpecilaDate:
                 return new Promotion_HotelSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID());
             case Hotel_RoomQuantity:
                 return new Promotion_RoomQuantityVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID(),promotionPO.getRoomQuantity());
-            case Hotel_Company:
-                return new Promotion_CompanyVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
+            case Hotel_Enterprise:
+                return new Promotion_EnterpriseVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
             case Web_ClientGrade:
                 return new Promotion_ClientGradeVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getClientGrade());
             case Web_SpecilPlace:

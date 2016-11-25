@@ -21,6 +21,7 @@ public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
         super(promotionID, promotionType, promotionDiscount, startDate, endDate);
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_WebSpecialDateVO) {
             Promotion_WebSpecialDateVO promotion_WebSpecialDateVO = (Promotion_WebSpecialDateVO) o;
@@ -29,6 +30,7 @@ public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }
@@ -41,6 +43,7 @@ public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
                 && judgeEqual(pvo.promotionDiscount, this.promotionDiscount);
     }
 
+    @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),

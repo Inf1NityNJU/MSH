@@ -3,6 +3,7 @@ package blservice.promotionblservice;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
+import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
@@ -48,8 +49,8 @@ public class PromotionBLService_Stub implements PromotionBLService {
     }
 
     @Override
-    public ArrayList<Promotion_HotelVO> searchPromotions(PromotionType promotionType) {
-        ArrayList<Promotion_HotelVO> promotionVOs = new ArrayList<Promotion_HotelVO>();
+    public ArrayList<PromotionVO> searchPromotions(PromotionType promotionType) {
+        ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
         Promotion_HotelVO promotionVO1 = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80,"00000000");
         Promotion_HotelVO promotionVO2 = new Promotion_HotelVO("201610120103", PromotionType.Hotel_Birthday, 0.80,"00000000");
         if (promotionType == PromotionType.Hotel_Birthday) {
@@ -61,8 +62,8 @@ public class PromotionBLService_Stub implements PromotionBLService {
 
 
     @Override
-    public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID) {
-        ArrayList<Promotion_HotelVO> promotionVOs = new ArrayList<Promotion_HotelVO>();
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID) {
+        ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
         Promotion_HotelVO promotionVO1 = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80,"00000000");
         Promotion_HotelVO promotionVO2 = new Promotion_HotelVO("201610120103", PromotionType.Hotel_RoomQuantity, 0.80,"00000000");
         if (HotelID.equals("00000000")) {
@@ -74,10 +75,10 @@ public class PromotionBLService_Stub implements PromotionBLService {
 
 
     @Override
-    public ArrayList<Promotion_WebVO> searchWebPromotions() {
-        ArrayList<Promotion_WebVO> promotionWebVOs = new ArrayList<Promotion_WebVO>();
-        Promotion_WebVO promotionWebVO1 = new Promotion_WebVO("201610120202", PromotionType.Web_SpecilaDate, 0.80, new DateUtil(2016, 10, 01), new DateUtil(2016, 10, 03));
-        Promotion_WebVO promotionWebVO2 = new Promotion_WebVO("201610120203", PromotionType.Web_ClientGrade, 0.80, new DateUtil(2016, 10, 01), new DateUtil(2016, 10, 03));
+    public ArrayList<PromotionVO> searchWebPromotions() {
+        ArrayList<PromotionVO> promotionWebVOs = new ArrayList<PromotionVO>();
+        PromotionVO promotionWebVO1 = new Promotion_WebVO("201610120202", PromotionType.Web_SpecilaDate, 0.80, new DateUtil(2016, 10, 01), new DateUtil(2016, 10, 03));
+        PromotionVO promotionWebVO2 = new Promotion_WebVO("201610120203", PromotionType.Web_ClientGrade, 0.80, new DateUtil(2016, 10, 01), new DateUtil(2016, 10, 03));
         promotionWebVOs.add(promotionWebVO1);
         promotionWebVOs.add(promotionWebVO2);
         return promotionWebVOs;

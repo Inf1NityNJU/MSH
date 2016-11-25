@@ -6,8 +6,8 @@ package util;
 public enum OrderState {
     Unexecuted("未执行", "12B7F3"),
     Executed("已执行", "00CCCC"),
-    Abnormal("异常", "BC52FD"),
-    Cancelled("已撤销", "FC537D");
+    Abnormal("异常", "FC537D"),
+    Cancelled("已撤销", "BC52FD");
 
     private final String name;
     private final String color;

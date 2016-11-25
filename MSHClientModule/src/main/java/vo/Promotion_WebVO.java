@@ -36,6 +36,7 @@ public class Promotion_WebVO extends PromotionVO{
     }
 
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_WebVO) {
             Promotion_WebVO PromotionWebVO = (Promotion_WebVO) o;
@@ -44,6 +45,7 @@ public class Promotion_WebVO extends PromotionVO{
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }

@@ -47,17 +47,17 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     }
 
     @Override
-    public ArrayList<Promotion_HotelVO> searchPromotions(PromotionType promotionType) {
+    public ArrayList<PromotionVO> searchPromotions(PromotionType promotionType) {
         return promotion.search(promotionType);
     }
 
     @Override
-    public ArrayList<Promotion_HotelVO> searchHotelPromotions(String HotelID) {
+    public ArrayList<PromotionVO> searchHotelPromotions(String HotelID) {
         return promotion.searchHotelPromotions(HotelID);
     }
 
     @Override
-    public ArrayList<Promotion_WebVO> searchWebPromotions() {
+    public ArrayList<PromotionVO> searchWebPromotions() {
         return promotion.searchWebPromotions();
     }
 

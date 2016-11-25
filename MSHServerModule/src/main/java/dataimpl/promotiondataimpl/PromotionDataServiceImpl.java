@@ -41,12 +41,25 @@ public class PromotionDataServiceImpl implements PromotionDataService{
 
     @Override
     public ArrayList<PromotionPO> searchPromotionsByType(PromotionType promotionType) {
-        ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionType", promotionType.toString());
+        ArrayList<PromotionPO> promotionPOs = promotionDataHelper.fullMatchQuery("promotionType", promotionType);
         return promotionPOs;
     }
 
     @Override
     public ArrayList<PromotionPO> searchHotelPromotions(String hotelID) {
-        return null;
+        ArrayList<PromotionPO> promotionPOs = promotionDataHelper.fullMatchQuery("hotelID", hotelID);
+        return promotionPOs;
     }
+
+    @Override
+    public ArrayList<PromotionPO> searchWebPromotions() {
+        ArrayList<PromotionPO> promotionPOs1 = promotionDataHelper.fullMatchQuery("promotionType", PromotionType.Web_ClientGrade);
+        ArrayList<PromotionPO> promotionPOs2 = promotionDataHelper.fullMatchQuery("promotionType", PromotionType.Web_SpecilaDate);
+        ArrayList<PromotionPO> promotionPOs3 = promotionDataHelper.fullMatchQuery("promotionType", PromotionType.Web_SpecilPlace);
+        promotionPOs1.addAll(promotionPOs2);
+        promotionPOs1.addAll(promotionPOs3);
+        return promotionPOs1;
+    }
+
+
 }

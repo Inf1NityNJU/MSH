@@ -32,6 +32,7 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
         this.place = place;
     }
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_SpecialPlaceVO) {
             Promotion_SpecialPlaceVO promotion_SpecialPlaceVO = (Promotion_SpecialPlaceVO) o;
@@ -40,6 +41,7 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }
@@ -53,6 +55,7 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
                 && judgeEqual(pvo.place,this.place);
     }
 
+    @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),

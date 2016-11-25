@@ -45,6 +45,7 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
         this.roomQuantity = roomQuantity;
     }
 
+    @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_RoomQuantityVO) {
             Promotion_RoomQuantityVO promotion_RoomQuantityVO = (Promotion_RoomQuantityVO) o;
@@ -53,6 +54,7 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
         return false;
     }
 
+    @Override
     public int hashCode() {
         return promotionID.hashCode();
     }
@@ -66,6 +68,7 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
                 && judgeEqual(pvo.roomQuantity,this.roomQuantity);
     }
 
+    @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),

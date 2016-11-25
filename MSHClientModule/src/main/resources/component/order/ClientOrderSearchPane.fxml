@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.ClientOrderSearchPaneController">
+<VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.order.ClientOrderSearchPaneController">
    <padding>
       <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
    </padding>

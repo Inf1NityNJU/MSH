@@ -78,6 +78,8 @@ public class ClientOrderViewController {
             clientOrderDetailViewController.showOrder(order);
 
 //            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
 
             rootPane.setCenter(view);
 

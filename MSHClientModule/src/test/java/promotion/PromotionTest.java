@@ -60,8 +60,8 @@ public class PromotionTest {
 
     @Test
     public void testSearch() {
-        ArrayList<Promotion_HotelVO> pvos = promotion.search(PromotionType.Hotel_Birthday);
-        ArrayList<Promotion_HotelVO> tempPvos = new ArrayList<Promotion_HotelVO>();
+        ArrayList<PromotionVO> pvos = promotion.search(PromotionType.Hotel_Birthday);
+        ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
         tempPvos.add(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"));
         assertEquals(tempPvos, pvos);
         pvos = promotion.search(PromotionType.Hotel_RoomQuantity);
@@ -70,8 +70,8 @@ public class PromotionTest {
 
     @Test
     public void testSearchHotelPromotions() {
-        ArrayList<Promotion_HotelVO> pvos = promotion.searchHotelPromotions("00000000");
-        ArrayList<Promotion_HotelVO> tempPvos = new ArrayList<Promotion_HotelVO>();
+        ArrayList<PromotionVO> pvos = promotion.searchHotelPromotions("00000000");
+        ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
         tempPvos.add(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"));
         assertEquals(tempPvos, pvos);
         pvos = promotion.searchHotelPromotions("00000001");
@@ -80,8 +80,8 @@ public class PromotionTest {
 
     @Test
     public void testSearchWebPromotions() {
-        ArrayList<Promotion_WebVO> pvos = promotion.searchWebPromotions();
-        ArrayList<Promotion_WebVO> tempPvos = new ArrayList<Promotion_WebVO>();
+        ArrayList<PromotionVO> pvos = promotion.searchWebPromotions();
+        ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
         tempPvos.add(new Promotion_WebVO("201610120103", PromotionType.Web_SpecilaDate, 0.80, new DateUtil(2016, 10, 01), new DateUtil(2016, 10, 03)));
         assertEquals(tempPvos, pvos);
     }
