@@ -4,6 +4,8 @@ import util.DateUtil;
 import util.Place;
 import util.PromotionType;
 
+import static util.EqualJudgeHelper.judgeEqual;
+
 /**
  * Created by vivian on 16/11/11.
  */
@@ -63,7 +65,6 @@ public class PromotionPO {
      * 客户生日
      */
     private String birthday;
-
 
 
     public String getPromotionID() {
@@ -173,5 +174,51 @@ public class PromotionPO {
         this.birthday = birthday;
     }
 
-    public PromotionPO(){}
+    public PromotionPO() {
+    }
+
+    /**
+     * 比较两个PO
+     *
+     * @param o
+     * @return 比较结果
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof PromotionPO) {
+            PromotionPO promotionPO = (PromotionPO) o;
+            return compareData(promotionPO);
+        }
+        return false;
+    }
+
+    /**
+     * 生成对象的hashcode
+     *
+     * @return hashcode
+     */
+    @Override
+    public int hashCode() {
+        return promotionID.hashCode();
+    }
+
+    /**
+     * 分别比较每个数据
+     *
+     * @param promotionPO
+     * @return 比较结果
+     */
+    private boolean compareData(PromotionPO promotionPO) {
+        return judgeEqual(promotionID, promotionPO.promotionID)
+                && judgeEqual(promotionType, promotionPO.promotionType)
+                && judgeEqual(promotionDiscount, promotionPO.promotionDiscount)
+                && judgeEqual(startDate, promotionPO.startDate)
+                && judgeEqual(endDate, promotionPO.endDate)
+                && judgeEqual(companyName, promotionPO.companyName)
+                && judgeEqual(hotelID, promotionPO.hotelID)
+                && judgeEqual(roomQuantity, promotionPO.roomQuantity)
+                && judgeEqual(place, promotionPO.place)
+                && judgeEqual(clientGrade, promotionPO.clientGrade)
+                && judgeEqual(birthday, promotionPO.birthday);
+    }
 }

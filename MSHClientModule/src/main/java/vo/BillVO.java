@@ -9,12 +9,12 @@ public class BillVO {
     /**
      * 使用的网站促销策略
      */
-    public Promotion_HotelVO websitePromotion;
+    public PromotionVO websitePromotion;
 
     /**
      * 使用的酒店促销策略
      */
-    public Promotion_HotelVO hotelPromotion;
+    public PromotionVO hotelPromotion;
 
     /**
      * 原价
@@ -26,7 +26,7 @@ public class BillVO {
      */
     public double totalPrice;
 
-    public BillVO(Promotion_HotelVO websitePromotion, Promotion_HotelVO hotelPromotion, double originPrice, double totalPrice) {
+    public BillVO(PromotionVO websitePromotion, PromotionVO hotelPromotion, double originPrice, double totalPrice) {
 
         this.websitePromotion = websitePromotion;
         this.hotelPromotion = hotelPromotion;

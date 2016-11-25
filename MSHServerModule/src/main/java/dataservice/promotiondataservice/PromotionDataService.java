@@ -21,4 +21,6 @@ public interface PromotionDataService {
     public ArrayList<PromotionPO> searchPromotionsByType(PromotionType promotionType);
 
     public ArrayList<PromotionPO> searchHotelPromotions(String hotelID);
+
+    public ArrayList<PromotionPO> searchWebPromotions();
 }

@@ -46,11 +46,22 @@ public class PromotionDataService_Stub implements PromotionDataService{
 
     @Override
     public ArrayList<PromotionPO> searchPromotionsByType(PromotionType promotionType) {
-        return null;
+        ArrayList<PromotionPO> promotionPOs = new ArrayList<PromotionPO>();
+        promotionPOs.add(new PromotionPO("201610120102",  PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, Place.XinJieKou, 0));
+        return promotionPOs;
     }
 
     @Override
     public ArrayList<PromotionPO> searchHotelPromotions(String hotelID) {
-        return null;
+        ArrayList<PromotionPO> promotionPOs = new ArrayList<PromotionPO>();
+        promotionPOs.add(new PromotionPO("201610120102",  PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, Place.XinJieKou, 0));
+        return promotionPOs;
+    }
+
+    @Override
+    public ArrayList<PromotionPO> searchWebPromotions() {
+        ArrayList<PromotionPO> promotionPOs = new ArrayList<PromotionPO>();
+        promotionPOs.add(new PromotionPO("201610120102",  PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, Place.XinJieKou, 0));
+        return promotionPOs;
     }
 }

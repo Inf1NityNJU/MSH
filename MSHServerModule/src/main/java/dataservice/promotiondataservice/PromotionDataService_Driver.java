@@ -5,6 +5,8 @@ import util.Place;
 import util.PromotionType;
 import util.ResultMessage;
 
+import java.util.ArrayList;
+
 /**
  * Created by vivian on 16/10/13.
  */
@@ -34,6 +36,27 @@ public class PromotionDataService_Driver {
 
         PromotionPO ppo = promotionDataService.searchByPromotionID("201610130102");
         if(ppo!=null){
+            System.out.println("Get Success");
+        }else{
+            System.out.println("Get Failed");
+        }
+
+        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchPromotionsByType(PromotionType.Hotel_Birthday);
+        if(promotionPOs!=null){
+            System.out.println("Get Success");
+        }else{
+            System.out.println("Get Failed");
+        }
+
+        promotionPOs = promotionDataService.searchHotelPromotions("00000000");
+        if(promotionPOs!=null){
+            System.out.println("Get Success");
+        }else{
+            System.out.println("Get Failed");
+        }
+
+        promotionPOs = promotionDataService.searchWebPromotions();
+        if(promotionPOs!=null){
             System.out.println("Get Success");
         }else{
             System.out.println("Get Failed");
