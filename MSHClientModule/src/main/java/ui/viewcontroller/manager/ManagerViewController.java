@@ -15,6 +15,8 @@ public class ManagerViewController {
     private BorderPane rootPane;
 
     private ClientManagementViewController clientManagementViewController;
+    private StaffManagementListViewController staffManagementListViewController;
+    private SalesmanManagementListViewController salesmanManagementListViewController;
 
     public ManagerViewController(BorderPane rootPane) {
 
@@ -44,10 +46,13 @@ public class ManagerViewController {
     }
 
     public void showStaffList(){
+        System.out.println("Show Staff List");
+
 
     }
 
     public void showSalesmanList(){
+        System.out.println("Show Salesman List");
 
     }
 }

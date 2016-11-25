@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class MockClient extends Client {
 
-    private ClientVO exampleClientVO = new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "");
+    private ClientVO exampleClientVO = new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
 
     /**
      * 登录方法
@@ -93,10 +93,10 @@ public class MockClient extends Client {
      * @return
      */
     public ArrayList<ClientVO> search(String keyword) {
-        ClientVO exampleClientVO1 = new ClientVO("000000001", "老大", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "");
-        ClientVO exampleClientVO2 = new ClientVO("000000002", "老二", 0, new DateUtil(2016, 2, 2), 500, 0, "18795963603", "");
-        ClientVO exampleClientVO3 = new ClientVO("000000003", "老三", 0, new DateUtil(2016, 3, 3), 500, 0, "18795963603", "");
-        ClientVO exampleClientVO4 = new ClientVO("000000004", "老四", 0, new DateUtil(2016, 4, 4), 500, 0, "18795963603", "");
+        ClientVO exampleClientVO1 = new ClientVO("000000001", "老大", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
+        ClientVO exampleClientVO2 = new ClientVO("000000002", "老二", 0, new DateUtil(2016, 2, 2), 500, 0, "18795963603", "", "songkuixi");
+        ClientVO exampleClientVO3 = new ClientVO("000000003", "老三", 0, new DateUtil(2016, 3, 3), 500, 0, "18795963603", "", "songkuixi");
+        ClientVO exampleClientVO4 = new ClientVO("000000004", "老四", 0, new DateUtil(2016, 4, 4), 500, 0, "18795963603", "", "songkuixi");
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
         if (keyword.equals("老")) {
             clientVOs.add(exampleClientVO1);

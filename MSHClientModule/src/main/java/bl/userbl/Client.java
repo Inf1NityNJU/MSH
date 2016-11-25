@@ -77,7 +77,7 @@ public class Client extends User {
         } else {
             ClientVO clientVO = new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
                     new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
-                    clientPO.getContactInfo(), clientPO.getEnterprise());
+                    clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount());
             return clientVO;
         }
     }
@@ -117,7 +117,7 @@ public class Client extends User {
         for (ClientPO clientPO : clientPOs) {
             clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
                     new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
-                    clientPO.getContactInfo(), clientPO.getEnterprise()));
+                    clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount()));
         }
         return clientVOs;
     }
