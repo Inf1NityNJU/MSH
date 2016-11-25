@@ -21,9 +21,9 @@ public class MinPromotion {
 
     /**
      * 获得网站最小促销策略
-     * @param date
-     * @param clientGrade
-     * @param place
+     * @param date 下订单日期
+     * @param clientGrade 客户等级
+     * @param place 所在商圈
      * @return
      */
     public double getMinWebProm(DateUtil date, int clientGrade, Place place) {
@@ -43,7 +43,7 @@ public class MinPromotion {
                     concretePromotion = new Promotion_WebSpecialPlace(date);
                     currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), place);
             }
-            if(minWebProm>currentDiscount||currentDiscount==0){
+            if(minWebProm>currentDiscount||minWebProm==0){
                 minWebProm = currentDiscount;
             }
         }
@@ -53,15 +53,39 @@ public class MinPromotion {
 
     /**
      * 获得最小酒店促销策略
-     *
-     * @param date
-     * @param rvo
-     * @param clientID
-     * @param hotelID
-     * @return 符合条件的最小酒店促销策略
+     * @param hotelID 酒店编号
+     * @param date 下订单日期
+     * @param birthday 客户生日
+     * @param enterpriseName 客户所属企业名称
+     * @param roomQuantity 所定房间数量
+     * @return
      */
-    public double getMinHotelProm(DateUtil date, ArrayList<OrderRoomVO> rvo, String clientID, String hotelID) {
-        return 0.80;
+    public double getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity) {
+        double currentDiscount = 0;
+        ArrayList<PromotionVO> promotionVOs = promotion.searchHotelPromotions(hotelID);
+        for (int i = 0; i < promotionVOs.size(); i++) {
+            switch (promotionVOs.get(i).promotionType) {
+                case Hotel_Birthday:
+                    concretePromotion = new Promotion_HotelBirthday(date);
+                    currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), birthday);
+                    break;
+                case Hotel_Enterprise:
+                    concretePromotion = new Promotion_HotelEnterprise(date);
+                    currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), enterpriseName);
+                    break;
+                case Hotel_RoomQuantity:
+                    concretePromotion = new Promotion_HotelRoomQuantity(date);
+                    currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), roomQuantity);
+                    break;
+                default:
+                    concretePromotion = new Promotion_HotelSpecialDate(date);
+                    currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), date);
+            }
+            if(minHotelProm>currentDiscount||minHotelProm==0){
+                minHotelProm = currentDiscount;
+            }
+        }
+        return minHotelProm;
     }
 
 

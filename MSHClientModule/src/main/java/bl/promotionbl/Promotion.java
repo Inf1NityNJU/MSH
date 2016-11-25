@@ -1,7 +1,5 @@
 package bl.promotionbl;
 
-import blservice.promotionblservice.PromotionBLService;
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.promotiondataservice.PromotionDataService_Stub;
 import po.PromotionPO;
@@ -107,13 +105,13 @@ public class Promotion{
     private PromotionVO POToVO(PromotionPO promotionPO){
         switch (promotionPO.getPromotionType()){
             case Hotel_Birthday:
-                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID(),this.date(promotionPO.getBirthday()));
+                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID());
             case Hotel_SpecilaDate:
                 return new Promotion_HotelSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID());
             case Hotel_RoomQuantity:
                 return new Promotion_RoomQuantityVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID(),promotionPO.getRoomQuantity());
-            case Hotel_Company:
-                return new Promotion_CompanyVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
+            case Hotel_Enterprise:
+                return new Promotion_EnterpriseVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
             case Web_ClientGrade:
                 return new Promotion_ClientGradeVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getClientGrade());
             case Web_SpecilPlace:

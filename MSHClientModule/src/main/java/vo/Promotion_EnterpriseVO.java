@@ -9,7 +9,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by vivian on 16/10/24.
  */
-public class Promotion_CompanyVO extends Promotion_HotelVO{
+public class Promotion_EnterpriseVO extends Promotion_HotelVO{
 
     /**
      * 策略执行开始日期
@@ -24,7 +24,7 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
     /**
      * 策略涉及的公司名称
      */
-    public String companyName;
+    public String enterpriseName;
 
 
     /**
@@ -34,20 +34,20 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
      * @param promotionDiscount 策略折扣
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
-     * @param companyName 策略涉及的公司名称
+     * @param enterpriseName 策略涉及的公司名称
      */
-    public Promotion_CompanyVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String companyName, String hotelID) {
+    public Promotion_EnterpriseVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String enterpriseName, String hotelID) {
         super(promotionID, promotionType, promotionDiscount, hotelID);
         this.startDate = startDate;
         this.endDate = endDate;
-        this.companyName = companyName;
+        this.enterpriseName = enterpriseName;
     }
 
     @Override
     public boolean equals(Object o){
-        if (o instanceof Promotion_CompanyVO) {
-            Promotion_CompanyVO promotion_CompanyVO = (Promotion_CompanyVO) o;
-            return compareData(promotion_CompanyVO);
+        if (o instanceof Promotion_EnterpriseVO) {
+            Promotion_EnterpriseVO promotion_enterpriseVO = (Promotion_EnterpriseVO) o;
+            return compareData(promotion_enterpriseVO);
         }
         return false;
     }
@@ -57,19 +57,19 @@ public class Promotion_CompanyVO extends Promotion_HotelVO{
         return promotionID.hashCode();
     }
 
-    private boolean compareData(Promotion_CompanyVO pvo) {
+    private boolean compareData(Promotion_EnterpriseVO pvo) {
         return judgeEqual(pvo.promotionID, this.promotionID)
                 && judgeEqual(pvo.promotionType, this.promotionType)
                 && judgeEqual(pvo.startDate,this.startDate)
                 && judgeEqual(pvo.endDate,this.endDate)
                 && judgeEqual(pvo.promotionDiscount,this.promotionDiscount)
-                && judgeEqual(pvo.companyName,this.companyName);
+                && judgeEqual(pvo.enterpriseName,this.enterpriseName);
     }
 
     @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),
-                this.companyName, null, 0, null, 0);
+                this.enterpriseName, null, 0, null, 0);
     }
 }

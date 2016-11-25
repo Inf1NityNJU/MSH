@@ -4,6 +4,7 @@ import bl.promotionbl.MinPromotion;
 import bl.promotionbl.MockMinPromotion;
 import org.junit.Test;
 import util.DateUtil;
+import util.Place;
 import vo.OrderRoomVO;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MinPromotionTest {
 
     @Test
     public void testMinWebProm(){
-        double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), new ArrayList<OrderRoomVO>(), "000000007", "00000000");
+        double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), 2, Place.TangShan);
         assertEquals(0.80, discount, 0);
     }
 
@@ -30,7 +31,7 @@ public class MinPromotionTest {
 
     @Test
         public void testMinHotelProm(){
-        double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), new ArrayList<OrderRoomVO>(), "000000007", "00000000");
+        double discount = minPromotion.getMinHotelProm("00000000", new DateUtil(2016,11,06), new DateUtil(1997,06,14), "SIJIA", 2);
         assertEquals(0.80, discount, 0);
     }
 }
