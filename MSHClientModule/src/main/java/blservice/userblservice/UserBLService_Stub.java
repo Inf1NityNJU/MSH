@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class UserBLService_Stub implements UserBLService {
 
-    private ClientVO exampleClientVO = new ClientVO("000000007", "songkuixi", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "");
+    private ClientVO exampleClientVO = new ClientVO("000000007", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
 
     public LoginState login(String account, String password) {
         if (account.equals("admin") && password.equals("12345678")) {
@@ -98,10 +98,19 @@ public class UserBLService_Stub implements UserBLService {
      */
     public ArrayList search(String keyword) {
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
-        if(keyword.equals("000000007")){
+        if (keyword.equals("000000007")) {
             clientVOs.add(exampleClientVO);
             return clientVOs;
-        }else{
+        } else if (keyword.equals("000")) {
+            clientVOs.add(new ClientVO("000000001", "Sorumi", 0, new DateUtil(2016, 1, 1), 500, 0,
+                    "18795963603", "NJU", "tiejiayun"));
+            clientVOs.add(new ClientVO("000000002", "Silver Narcissus", 0, new DateUtil(2016, 1, 1), 500, 0,
+                    "18795963603", "", "xuekaifang"));
+            clientVOs.add(new ClientVO("000000003", "Vivian SJ", 0, new DateUtil(2016, 1, 1), 500, 0,
+                    "18795963603", "NJU", "yangsijia"));
+            clientVOs.add(exampleClientVO);
+            return clientVOs;
+        } else {
             return clientVOs;
         }
     }
