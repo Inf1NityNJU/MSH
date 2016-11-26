@@ -32,8 +32,7 @@ public class WorkerManagementListPaneController {
     public void showAllWorkers() {
         setButtonsInactive();
         allButton.setIsActiveProperty(true);
-        workerManagementListViewController.showStaff();
-        workerManagementListViewController.showSalesman();
+        workerManagementListViewController.showAllWorkers();
     }
 
     @FXML

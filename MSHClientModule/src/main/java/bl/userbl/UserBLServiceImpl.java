@@ -162,4 +162,8 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
     public String getCurrentID() {
         return user.getCurrentID();
     }
+
+    public User getUser() {
+        return user;
+    }
 }

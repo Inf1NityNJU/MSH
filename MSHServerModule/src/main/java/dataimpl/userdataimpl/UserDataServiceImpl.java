@@ -19,21 +19,33 @@ public class UserDataServiceImpl implements UserDataService {
     private DataHelper<SalesmanPO> salesmanDataHelper;
     private DataHelper<CreditPO> creditDataHelper;
 
-    protected UserDataServiceImpl() {
+    private UserDataState userDataState;
 
+    protected UserDataServiceImpl() {
+        this.userDataState = UserDataState.NONE;
     }
 
     protected void setClient(DataHelper<ClientPO> clientDataHelper) {
+        System.out.println("CLIENT");
         this.clientDataHelper = clientDataHelper;
         this.creditDataHelper = new HibernateHelper<CreditPO>(CreditPO.class);
+        this.userDataState = UserDataState.CLIENT;
     }
 
     protected void setStaff(DataHelper<StaffPO> staffDataHelper) {
+        System.out.println("STAFF");
         this.staffDataHelper = staffDataHelper;
+        this.userDataState = UserDataState.STAFF;
     }
 
     protected void setSalesman(DataHelper<SalesmanPO> salesmanDataHelper) {
+        System.out.println("SALESMAN");
         this.salesmanDataHelper = salesmanDataHelper;
+        this.userDataState = UserDataState.SALESMAN;
+    }
+
+    public UserDataState getUserDataState() {
+        return userDataState;
     }
 
     /**

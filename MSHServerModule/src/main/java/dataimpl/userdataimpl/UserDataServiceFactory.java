@@ -21,8 +21,17 @@ public class UserDataServiceFactory {
      *
      * @return UserDataService实例
      */
+    public static synchronized UserDataService getClientDataService() {
+        if (userDataService == null || userDataService.getUserDataState() != UserDataState.CLIENT) {
+            DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>(ClientPO.class);
+            userDataService = new UserDataServiceImpl();
+            userDataService.setClient(clientDataHelper);
+        }
+        return userDataService;
+    }
+
     public static synchronized UserDataService getStaffDataService() {
-        if (userDataService == null) {
+        if (userDataService == null || userDataService.getUserDataState() != UserDataState.STAFF) {
             DataHelper<StaffPO> staffDataHelper = new HibernateHelper<StaffPO>(StaffPO.class);
             userDataService = new UserDataServiceImpl();
             userDataService.setStaff(staffDataHelper);
@@ -31,19 +40,10 @@ public class UserDataServiceFactory {
     }
 
     public static synchronized UserDataService getSalesmanDataService() {
-        if (userDataService == null) {
+        if (userDataService == null || userDataService.getUserDataState() != UserDataState.SALESMAN) {
             DataHelper<SalesmanPO> salesmanDataHelper = new HibernateHelper<SalesmanPO>(SalesmanPO.class);
             userDataService = new UserDataServiceImpl();
             userDataService.setSalesman(salesmanDataHelper);
-        }
-        return userDataService;
-    }
-
-    public static synchronized UserDataService getClientDataService() {
-        if (userDataService == null) {
-            DataHelper<ClientPO> clientDataHelper = new HibernateHelper<ClientPO>(ClientPO.class);
-            userDataService = new UserDataServiceImpl();
-            userDataService.setClient(clientDataHelper);
         }
         return userDataService;
     }

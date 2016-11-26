@@ -2,6 +2,7 @@ package ui.viewcontroller.manager;
 
 import bl.userbl.Salesman;
 import bl.userbl.UserBLFactory;
+import bl.userbl.UserBLServiceImpl;
 import blservice.userblservice.UserBLService;
 import blservice.userblservice.UserBLService_Stub;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
+import ui.componentcontroller.order.manager.SalesmanManagementCellController;
+import ui.componentcontroller.order.manager.StaffManagementCellController;
 import ui.componentcontroller.order.manager.WorkerManagementListPaneController;
 import vo.SalesmanVO;
 import vo.StaffVO;
@@ -30,8 +33,8 @@ public class WorkerManagementListViewController {
     private ArrayList<SalesmanVO> salesmanVOs;
 
     // tmp
-    private FXMLLoader[] cellLoaders = new FXMLLoader[4];
-    private Node[] cells = new Node[4];
+    private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
+    private Node[] cells = new Node[]{};
 
     @FXML
     private VBox contentVBox;
@@ -45,12 +48,7 @@ public class WorkerManagementListViewController {
      */
     @FXML
     public void initialize() {
-//        System.out.println("Init ClientManagementViewController");
 
-        //From DB
-        userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-        //From Stub
-        userBLService = new UserBLService_Stub();
         staffVOs = new ArrayList<StaffVO>();
         salesmanVOs = new ArrayList<SalesmanVO>();
 
@@ -64,16 +62,8 @@ public class WorkerManagementListViewController {
 
             contentVBox.getChildren().add(pane);
 
-            for (int i = 0; i < 4; i++) {
-                FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/manager/StaffInfoCell.fxml"));
-                HBox clientCell = cellLoader.load();
-
-                cellLoaders[i] = cellLoader;
-                cells[i] = clientCell;
-            }
-
-//            controller.showAllWorkers();
+            //TODO
+            controller.showAllWorkers();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,23 +75,36 @@ public class WorkerManagementListViewController {
             contentVBox.getChildren().remove(cell);
         }
 
+        userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
         //TODO
-        staffVOs = userBLService.search("000");
+        staffVOs = userBLService.search("3");
 
         if (staffVOs.size() > 0) {
 
-            for (int i = 0; i < staffVOs.size(); i++) {
-                StaffVO staffVO = staffVOs.get(i);
-                FXMLLoader loader = cellLoaders[i];
-                Node clientCell = cells[i];
+            cellLoaders = new FXMLLoader[staffVOs.size()];
+            cells = new Node[staffVOs.size()];
 
-                /*
-                ClientManagementCellController clientManagementCellController = loader.getController();
-                clientManagementCellController.setClientManagementListViewController(this);
-                clientManagementCellController.setClientVO(staffVO);
-                */
+            try {
+                for (int i = 0; i < staffVOs.size(); i++) {
 
-                contentVBox.getChildren().add(clientCell);
+                    FXMLLoader cellLoader = new FXMLLoader();
+                    cellLoader.setLocation(Main.class.getResource("../component/manager/StaffInfoCell.fxml"));
+                    HBox clientCell = cellLoader.load();
+
+                    cellLoaders[i] = cellLoader;
+                    cells[i] = clientCell;
+
+                    StaffVO staffVO = staffVOs.get(i);
+                    FXMLLoader loader = cellLoaders[i];
+
+                    StaffManagementCellController staffManagementCellController = loader.getController();
+                    staffManagementCellController.setWorkerManagementListViewController(this);
+                    staffManagementCellController.setStaffVO(staffVO);
+
+                    contentVBox.getChildren().add(clientCell);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             System.out.println("no staff");
@@ -114,27 +117,109 @@ public class WorkerManagementListViewController {
             contentVBox.getChildren().remove(cell);
         }
 
+        userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         //TODO
-        salesmanVOs = userBLService.search("000");
+        salesmanVOs = userBLService.search("1");
 
         if (salesmanVOs.size() > 0) {
 
-            for (int i = 0; i < salesmanVOs.size(); i++) {
-                SalesmanVO salesmanVO = salesmanVOs.get(i);
-                FXMLLoader loader = cellLoaders[i];
-                Node clientCell = cells[i];
+            cellLoaders = new FXMLLoader[salesmanVOs.size()];
+            cells = new Node[salesmanVOs.size()];
 
-                /*
-                ClientManagementCellController clientManagementCellController = loader.getController();
-                clientManagementCellController.setClientManagementListViewController(this);
-                clientManagementCellController.setClientVO(staffVO);
-                */
+            try {
+                for (int i = 0; i < salesmanVOs.size(); i++) {
 
-//                contentVBox.getChildren().add(clientCell);
+                    FXMLLoader cellLoader = new FXMLLoader();
+                    cellLoader.setLocation(Main.class.getResource("../component/manager/SalesmanInfoCell.fxml"));
+                    HBox clientCell = cellLoader.load();
+
+                    cellLoaders[i] = cellLoader;
+                    cells[i] = clientCell;
+
+                    SalesmanVO salesmanVO = salesmanVOs.get(i);
+                    FXMLLoader loader = cellLoaders[i];
+
+                    SalesmanManagementCellController salesmanManagementCellController = loader.getController();
+                    salesmanManagementCellController.setWorkerManagementListViewController(this);
+                    salesmanManagementCellController.setSalesmanVO(salesmanVO);
+
+                    contentVBox.getChildren().add(clientCell);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             System.out.println("no salesman");
         }
 
     }
+
+    //TODO
+    public void showAllWorkers(){
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
+        //TODO
+        staffVOs = userBLService.search("3");
+
+        userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
+        //TODO
+        salesmanVOs = userBLService.search("1");
+
+        if (staffVOs.size() + salesmanVOs.size() > 0) {
+
+            cellLoaders = new FXMLLoader[staffVOs.size() + salesmanVOs.size()];
+            cells = new Node[staffVOs.size() + salesmanVOs.size()];
+
+            System.out.println(staffVOs.size());
+            System.out.println(salesmanVOs.size());
+
+            try {
+                for (int i = 0; i < staffVOs.size(); i++) {
+
+                    FXMLLoader cellLoader = new FXMLLoader();
+                    cellLoader.setLocation(Main.class.getResource("../component/manager/StaffInfoCell.fxml"));
+                    HBox clientCell = cellLoader.load();
+
+                    cellLoaders[i] = cellLoader;
+                    cells[i] = clientCell;
+
+                    StaffVO staffVO = staffVOs.get(i);
+                    FXMLLoader loader = cellLoaders[i];
+
+                    StaffManagementCellController staffManagementCellController = loader.getController();
+                    staffManagementCellController.setWorkerManagementListViewController(this);
+                    staffManagementCellController.setStaffVO(staffVO);
+
+                    contentVBox.getChildren().add(clientCell);
+                }
+                for (int i = staffVOs.size(); i < staffVOs.size() + salesmanVOs.size(); i++) {
+
+                    FXMLLoader cellLoader = new FXMLLoader();
+                    cellLoader.setLocation(Main.class.getResource("../component/manager/SalesmanInfoCell.fxml"));
+                    HBox clientCell = cellLoader.load();
+
+                    cellLoaders[i] = cellLoader;
+                    cells[i] = clientCell;
+
+                    SalesmanVO salesmanVO = salesmanVOs.get(i - staffVOs.size());
+                    FXMLLoader loader = cellLoaders[i];
+
+                    SalesmanManagementCellController salesmanManagementCellController = loader.getController();
+                    salesmanManagementCellController.setWorkerManagementListViewController(this);
+                    salesmanManagementCellController.setSalesmanVO(salesmanVO);
+
+                    contentVBox.getChildren().add(clientCell);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("no worker");
+        }
+
+    }
+
 }

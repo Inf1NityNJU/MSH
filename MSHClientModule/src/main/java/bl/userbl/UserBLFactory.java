@@ -10,21 +10,21 @@ public class UserBLFactory {
     private static UserBLServiceImpl userBLService;
 
     public synchronized static UserBLServiceImpl getUserBLServiceImpl_Client() {
-        if (userBLService == null) {
+        if (userBLService == null || !(userBLService.getUser() instanceof Client)) {
             userBLService = new UserBLServiceImpl(new Client(), LoginState.LOGOUT);
         }
         return userBLService;
     }
 
     public synchronized static UserBLServiceImpl getUserBLServiceImpl_Staff() {
-        if (userBLService == null) {
+        if (userBLService == null || !(userBLService.getUser() instanceof Staff)) {
             userBLService = new UserBLServiceImpl(new Staff(), LoginState.LOGOUT);
         }
         return userBLService;
     }
 
     public synchronized static UserBLServiceImpl getUserBLServiceImpl_Salesman() {
-        if (userBLService == null) {
+        if (userBLService == null || !(userBLService.getUser() instanceof Salesman)) {
             userBLService = new UserBLServiceImpl(new Salesman(), LoginState.LOGOUT);
         }
         return userBLService;

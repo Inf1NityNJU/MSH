@@ -1,5 +1,6 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import blservice.userblservice.UserBLService_Stub;
 import javafx.fxml.FXML;
@@ -47,9 +48,9 @@ public class ClientManagementListViewController {
 //        System.out.println("Init ClientManagementViewController");
 
         //From DB
-//        userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-        //From Stub
-        userBLService = new UserBLService_Stub();
+        userBLService = UserBLFactory.getUserBLServiceImpl_Client();
+//        From Stub
+//        userBLService = new UserBLService_Stub();
         clientVOs = new ArrayList<ClientVO>();
 
         try {
@@ -63,7 +64,6 @@ public class ClientManagementListViewController {
             contentVBox.getChildren().add(pane);
 
             controller.showAllClients();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
