@@ -72,7 +72,7 @@ public class ClientManagementViewController {
     public void showClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementListView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementDetailView.fxml"));
             ScrollPane view = loader.load();
 
             ClientManagementDetailViewController clientManagementDetailViewController = loader.getController();
@@ -89,6 +89,5 @@ public class ClientManagementViewController {
             e.printStackTrace();
         }
     }
-
 
 }

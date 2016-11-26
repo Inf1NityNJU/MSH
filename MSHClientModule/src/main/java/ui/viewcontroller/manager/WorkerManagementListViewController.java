@@ -70,6 +70,9 @@ public class WorkerManagementListViewController {
         }
     }
 
+    /**
+     * 展示酒店工作人员
+     */
     public void showStaff() {
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
@@ -112,6 +115,9 @@ public class WorkerManagementListViewController {
 
     }
 
+    /**
+     * 展示网站营销人员
+     */
     public void showSalesman() {
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
@@ -155,6 +161,10 @@ public class WorkerManagementListViewController {
     }
 
     //TODO
+
+    /**
+     * 展示所有工作人员
+     */
     public void showAllWorkers(){
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
@@ -222,4 +232,19 @@ public class WorkerManagementListViewController {
 
     }
 
+    /**
+     * 展示酒店工作人员详细信息
+     * @param staffVO
+     */
+    public void showStaffDetail(StaffVO staffVO){
+        workerManagementViewController.showStaffDetail(staffVO);
+    }
+
+    /**
+     * 展示网站营销人员详细信息
+     * @param salesmanVO
+     */
+    public void showSalesmanDetail(SalesmanVO salesmanVO){
+        workerManagementViewController.showSalesmanDetail(salesmanVO);
+    }
 }

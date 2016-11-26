@@ -32,7 +32,7 @@ public class StaffManagementCellController {
     public void clickDetailButton() {
         System.out.println("Staff Detail");
 
-//        workerManagementListViewController.s(staffVO);
+        workerManagementListViewController.showStaffDetail(staffVO);
     }
 
     public void setWorkerManagementListViewController(WorkerManagementListViewController workerManagementListViewController) {

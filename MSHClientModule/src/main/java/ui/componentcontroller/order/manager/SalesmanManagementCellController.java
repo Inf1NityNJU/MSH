@@ -28,7 +28,7 @@ public class SalesmanManagementCellController {
     public void clickDetailButton() {
         System.out.println("Salesman Detail");
 
-//        workerManagementListViewController.s(salesmanVO);
+        workerManagementListViewController.showSalesmanDetail(salesmanVO);
     }
 
     public void setWorkerManagementListViewController(WorkerManagementListViewController workerManagementListViewController) {
