@@ -4,11 +4,12 @@ import blservice.hotelblservice.HotelBLService;
 
 /**
  * Created by SilverNarcissus on 16/11/5.
+ * All Done on 16/11/26
  */
 public class HotelBLFactory {
     private static HotelBLServiceImpl HotelBLServiceImpl;
 
-    public synchronized static HotelBLService getHotelBLService() {
+    public synchronized static HotelBLServiceImpl getHotelBLService() {
         if (HotelBLServiceImpl == null) {
             HotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
         }

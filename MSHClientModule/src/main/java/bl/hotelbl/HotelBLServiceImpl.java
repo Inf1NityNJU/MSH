@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 /**
  * Created by SilverNarcissus on 16/11/5.
+ * All Done on 16/11/26
  */
 public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
     private Hotel hotel;
@@ -113,7 +114,6 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
 
     @Override
     public ResultMessage addScoreToHotelByHotelID(double score, String hotelID) {
-        //TODO
-        return null;
+        return hotel.addScore(score,hotelID);
     }
 }

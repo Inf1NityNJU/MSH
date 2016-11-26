@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Sorumi on 16/10/30.
+ * All Done on 16/11/26
  */
 public class MockHotel extends Hotel {
     /**

@@ -56,7 +56,7 @@ public class HotelRoomTest {
 
     @Test
     public void addRoom() throws Exception {
-        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000000", RoomType.DoubleDouble, 1000, 10, null);
+        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000001", RoomType.SingleRoom,320, 10, null);
         ResultMessage resultMessage = hotelBLService.addRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }

@@ -16,12 +16,22 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * Created by Sorumi on 16/10/30.
+ * Created by Silver Narcissus on 16/10/30.
+ * All Done on 16/11/26
  */
 public class Hotel {
     private final static String HOTEL_ID_NAME = "ID";
+    /**
+     * 用于访问data层的接口
+     */
     private HotelDataService hotelDataService;
+    /**
+     * 用于缓存HotelVO
+     */
     private Map<String, Hotel_DetailVO> cache;
+    /**
+     * 用于从Order模块拿到信息
+     */
     private OrderHotelInfo orderHotelInfo;
 
     protected Hotel() {
@@ -38,9 +48,6 @@ public class Hotel {
      */
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
         /*
-         * 酒店名称、房间（类型、原始价格区间、有空房期间（房间数量、入住日期，退房日期））、星级、评分区间等条件进行搜索
-         */
-        /**
          * 用于保存搜索结果
          */
         ArrayList<ArrayList<HotelPO>> result = new ArrayList<ArrayList<HotelPO>>();
@@ -94,17 +101,21 @@ public class Hotel {
             if (flags.checkInDate != null) {
                 for (int i = 0; i < hotelRoom.size(); i++) {
                     HotelRoomPO hotelRoomPO = hotelRoom.get(i);
-                    /**
+                    /*
                      * 保存要查询的房屋库存
                      */
                     ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(hotelRoomPO.getID());
                     //得到要查询的房屋库存
-                    for (int a = 0; i < roomStockPOs.size(); i++) {
+                    for (int a = 0; a < roomStockPOs.size(); a++) {
                         DateUtil dateUtil = new DateUtil(roomStockPOs.get(i).getDate());
                         if (!dateUtil.isInRange(flags.checkInDate, flags.checkOutDate)) {
-                            roomStockPOs.remove(i);
-                            i--;
+                            roomStockPOs.remove(a);
+                            a--;
                         }
+                    }
+                    //如果没有符合的预订区间，则返回
+                    if (roomStockPOs.size()==0){
+                        return null;
                     }
                     //如果不符合数量要求，则删除
                     if (!HotelRoom.checkChangeIsValidByPO(roomStockPOs, flags.quantity)) {
@@ -193,7 +204,7 @@ public class Hotel {
     /**
      * 通过酒店ID查找酒店
      *
-     * @param hotelID
+     * @param hotelID 需要查找的酒店ID
      * @return 符合ID的酒店VO
      */
     public Hotel_DetailVO getHotel(String hotelID) {
@@ -223,12 +234,13 @@ public class Hotel {
     /**
      * 修改指定酒店信息
      *
-     * @param hvo
+     * @param hvo 新的酒店信息
      * @return 修改成功与否
      */
     public ResultMessage updateHotel(Hotel_DetailVO hvo) {
         HotelPO hotelPO = voToPO(hvo);
         ResultMessage resultMessage = hotelDataService.updateHotel(hotelPO);
+        //更新cache
         if (resultMessage.equals(ResultMessage.SUCCESS)) {
             cache.remove(hotelPO.getID());
             cache.put(hvo.ID, hvo);
@@ -239,7 +251,7 @@ public class Hotel {
     /**
      * 添加酒店信息
      *
-     * @param hvo
+     * @param hvo 新的酒店信息
      * @return 添加成功与否
      */
     public ResultMessage addHotel(Hotel_DetailVO hvo) {
@@ -247,6 +259,7 @@ public class Hotel {
         generateHotelID(hotelPO);
         //
         ResultMessage resultMessage = hotelDataService.addHotel(hotelPO);
+        //更新cache
         if (resultMessage.equals(ResultMessage.SUCCESS)) {
             cache.put(hvo.ID, hvo);
         }
@@ -288,7 +301,7 @@ public class Hotel {
     /**
      * 删除酒店信息
      *
-     * @param hotelID
+     * @param hotelID 需要删除的酒店ID
      * @return 删除成功与否
      */
     public ResultMessage deleteHotel(String hotelID) {
@@ -302,7 +315,7 @@ public class Hotel {
     /**
      * 将hotelVO转换为hotelPO
      *
-     * @param hotel_detailVO
+     * @param hotel_detailVO 需要转换的HotelVO
      * @return hotelPO
      */
     private HotelPO voToPO(Hotel_DetailVO hotel_detailVO) {
@@ -322,7 +335,7 @@ public class Hotel {
     /**
      * 将hotelPO转换为hotelVO
      *
-     * @param hotelPO
+     * @param hotelPO 需要转换的HotelPO
      * @return hotel_DetailVO
      */
     private Hotel_DetailVO poToVO(HotelPO hotelPO) {
@@ -430,4 +443,27 @@ public class Hotel {
         return hotel_detailVOs.iterator();
     }
 
+    /**
+     * 增加酒店评分
+     *
+     * @param score   本次订单的评分
+     * @param hotelID 需要增加评分的目标酒店
+     * @return 如果添加成功，返回SUCCESS<br>
+     * 如果酒店不存在，返回NOT_EXIST
+     */
+    public ResultMessage addScore(double score, String hotelID) {
+        HotelPO hotelPO = hotelDataService.getHotel(hotelID);
+        //如果找不到酒店，返回不存在
+        if (hotelPO == null) {
+            return ResultMessage.NOT_EXIST;
+        }
+        //
+        hotelPO.setScoreAmount(hotelPO.getScoreAmount() + 1);
+        hotelPO.setScore((hotelPO.getScore() + score) / hotelPO.getScoreAmount());
+        hotelDataService.updateHotel(hotelPO);
+        //更新cache
+        cache.remove(hotelID);
+        cache.put(hotelID, poToVO(hotelPO));
+        return ResultMessage.SUCCESS;
+    }
 }

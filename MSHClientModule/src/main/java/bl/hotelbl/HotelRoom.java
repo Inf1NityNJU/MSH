@@ -15,10 +15,17 @@ import java.util.*;
 
 /**
  * Created by SilverNarcissus on 16/11/2.
+ * All Done on 16/11/26
  */
 public class HotelRoom {
     private static final int MAX_AVAILABLE_DAYS = 30;
+    /**
+     * 用于访问data层的接口
+     */
     private HotelDataService hotelDataService;
+    /**
+     * 用于缓存HotelRoomVO
+     */
     private Map<String, HotelRoomVO> cache;
 
     protected HotelRoom() {
@@ -27,9 +34,25 @@ public class HotelRoom {
     }
 
     /**
+     * 查看给定日期区间房间数量是否满足需求
+     *
+     * @param roomStockPOs 给定日期区间的房间列表
+     * @param quantity     需求数量
+     * @return 满足是否满足需求
+     */
+    public static boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity) {
+        for (RoomStockPO stockPO : roomStockPOs) {
+            if (stockPO.getAvailableQuantity() - quantity < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 通过酒店ID查找酒店房间
      *
-     * @param hotelID
+     * @param hotelID 需要查找房间的酒店ID
      * @return 符合ID的酒店房间VO
      */
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
@@ -54,7 +77,7 @@ public class HotelRoom {
     /**
      * 修改指定酒店房间信息
      *
-     * @param rvo
+     * @param rvo 新的房间信息
      * @return 修改成功与否
      */
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
@@ -81,8 +104,8 @@ public class HotelRoom {
         //得到指定房间的可预订库存
         ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
         //如果没找到 返回不合法
-        if(roomStockPOs.size()==0){
-          return ResultMessage.FAILED;
+        if (roomStockPOs.size() == 0) {
+            return ResultMessage.FAILED;
         }
         //
         //拷贝一份列表进行寻找需要修改库存的操作
@@ -124,7 +147,7 @@ public class HotelRoom {
     /**
      * 添加酒店房间信息
      *
-     * @param rvo
+     * @param rvo 新的房间信息
      * @return 添加成功与否
      */
     public ResultMessage addRoom(HotelRoomVO rvo) {
@@ -161,7 +184,8 @@ public class HotelRoom {
     /**
      * 删除酒店房间信息
      *
-     * @param hotelID
+     * @param hotelID 需要删除的房间所属酒店的ID
+     * @param type    需要删除的房间类型
      * @return 删除成功与否
      */
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {
@@ -186,7 +210,7 @@ public class HotelRoom {
     /**
      * 将hotelRoomVO转换为hotelRoomPO
      *
-     * @param hotelRoomVO
+     * @param hotelRoomVO 需要转换的RoomVO
      * @return hotelPO
      */
     private HotelRoomPO roomVOToRoomPO(HotelRoomVO hotelRoomVO) {
@@ -201,7 +225,7 @@ public class HotelRoom {
     /**
      * 将hotelRoomPO转换为hotelRoomVO
      *
-     * @param hotelRoomPO
+     * @param hotelRoomPO 需要转换的RoomPO
      * @return hotelRoomVO
      */
     private HotelRoomVO roomPOToRoomVO(HotelRoomPO hotelRoomPO) {
@@ -216,7 +240,7 @@ public class HotelRoom {
     /**
      * 将roomStockPO转换为roomStockVO
      *
-     * @param roomStockPO
+     * @param roomStockPO 需要转换的roomStockPO
      * @return roomStockVO
      */
     private RoomStockVO roomStockPOToRoomStockVO(RoomStockPO roomStockPO) {
@@ -227,8 +251,9 @@ public class HotelRoom {
     /**
      * 通过容器的ID生成组分的ID
      *
-     * @param ID
-     * @return
+     * @param ID     容器的ID
+     * @param number 组分的代号
+     * @return 生成的组分的ID
      */
     private String generateID(String ID, int number) {
         String cache = String.valueOf(number);
@@ -246,7 +271,7 @@ public class HotelRoom {
      * @return 设置成功与否
      */
     public ResultMessage setRoomWillBeCancelled(String hotelID, RoomType type) {
-        /**
+        /*
          * 记录将要设置的房间
          */
         HotelRoomPO hotelRoom = null;
@@ -283,7 +308,7 @@ public class HotelRoom {
      * 没有被预定——FALSE
      */
     public ResultMessage isOrdered(String hotelID, RoomType type) {
-        /**
+        /*
          * 记录将要判断的房间
          */
         HotelRoomVO hotelRoom;
@@ -304,22 +329,6 @@ public class HotelRoom {
         } else {
             return ResultMessage.FALSE;
         }
-    }
-
-    /**
-     * 查看给定日期区间房间数量是否满足需求
-     *
-     * @param roomStockPOs 给定日期区间的房间列表
-     * @param quantity     需求数量
-     * @return 满足是否满足需求
-     */
-    public static boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity) {
-        for (RoomStockPO stockPO : roomStockPOs) {
-            if (stockPO.getAvailableQuantity() - quantity < 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**

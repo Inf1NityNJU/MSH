@@ -1,12 +1,14 @@
 package hotel;
 
+import bl.hotelbl.Hotel;
 import bl.hotelbl.HotelBLFactory;
+import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import util.City;
-import util.Place;
-import util.ResultMessage;
+import po.HotelPO;
+import util.*;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;
 
@@ -25,6 +27,7 @@ public class HotelTest {
     Hotel_DetailVO hotel_detailVO4;
     Hotel_DetailVO hotel_detailVO5;
     private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
+    private HotelBLInfo hotelBLInfo = HotelBLFactory.getHotelBLService();
 
     @Before
     public void setUp() {
@@ -36,12 +39,109 @@ public class HotelTest {
     }
 
     @Test
-    public void searchHotel() throws Exception {
+    public void searchHotelByCity() throws Exception {
         FilterFlagsVO flags = new FilterFlagsVO(City.NanJing, null, null, null, 0, 0, null, null, 0, -1, 0, 0, null);
         ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
         for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
             System.out.println(hotel_detailVO);
         }
+    }
+
+    @Test
+    public void searchHotelByPlace() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, Place.XianLin, null, null, 0, 0, null, null, 0, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelByName() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, "te", null, 0, 0, null, null, 0, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelByRoom1() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, RoomType.SingleRoom, 0, 0, new DateUtil(2017, 1, 12), new DateUtil(2017, 1, 23), 0, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        assertEquals(null, hotel_detailVOs);
+    }
+
+    @Test
+    public void searchHotelByRoom2() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, RoomType.SingleRoom, 0, 0, new DateUtil(2016, 11, 29), new DateUtil(2016, 12, 3), 10, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelByRoom3() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, RoomType.SingleRoom, 150, 300, new DateUtil(2016, 11, 29), new DateUtil(2016, 12, 3), 10, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelByRoom4() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, RoomType.SingleRoom, 150, 300, new DateUtil(2016, 11, 29), new DateUtil(2016, 12, 3), 2, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelByStar() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, null, 0, 0, null, null, 0, 5, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelByScore() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, null, 0, 0, null, null, 0, -1, 3, 5, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Ignore
+    public void searchHotelByClientID() throws Exception {
+        //TODO
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, null, null, 0, 0, null, null, 0, -1, 3, 5, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void searchHotelInAll() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(City.NanJing, Place.XianLin, "te", RoomType.SingleRoom, 250, 400, new DateUtil(2016, 11, 30), new DateUtil(2016, 12, 5), 2, 4, 3, 5, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
+
+    @Test
+    public void addScore() {
+        ResultMessage resultMessage = hotelBLInfo.addScoreToHotelByHotelID(4,"01020000");
+        Hotel_DetailVO hotel_detailVO=hotelBLService.getHotel("01020000");
+        assertEquals(ResultMessage.SUCCESS,resultMessage);
+        System.out.println(hotel_detailVO.score);
     }
 
     @Test
@@ -59,7 +159,7 @@ public class HotelTest {
 
     @Test
     public void addHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Test hotel 1", City.BeiJing, "Nanjing Technical University", Place.XinJieKou, 4, "The test hotel", "All", null, 4.5, 4);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Han Ting", City.ShangHai, "my Park", Place.XianLin, 5, "The test hotel", "All", null, 4.5, 4);
         ResultMessage resultMessage = hotelBLService.addHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }

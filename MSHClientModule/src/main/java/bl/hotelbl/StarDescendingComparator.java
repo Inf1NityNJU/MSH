@@ -7,6 +7,7 @@ import java.util.Comparator;
 
 /**
  * Created by SilverNarcissus on 2016/11/19.
+ * All Done on 16/11/26
  */
 public class StarDescendingComparator implements Comparator<Hotel_DetailVO> {
 
