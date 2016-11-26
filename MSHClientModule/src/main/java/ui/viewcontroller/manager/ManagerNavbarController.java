@@ -11,44 +11,44 @@ public class ManagerNavbarController {
     private ManagerViewController managerViewController;
 
     @FXML
+    private NavButton hotelListButton;
+
+    @FXML
     private NavButton clientListButton;
 
     @FXML
-    private NavButton staffListButton;
-
-    @FXML
-    private NavButton salesmanListButton;
+    private NavButton workerListButton;
 
     public void setManagerViewController(ManagerViewController managerViewController) {
         this.managerViewController = managerViewController;
     }
 
     @FXML
-    public void clickClientButton(){
-//        System.out.println("Client List");
+    public void clickHotelButton() {
 
+        hotelListButton.setIsCurrentProperty(true);
+        clientListButton.setIsCurrentProperty(false);
+        workerListButton.setIsCurrentProperty(false);
+    }
+
+    @FXML
+    public void clickClientButton() {
+
+        hotelListButton.setIsCurrentProperty(false);
         clientListButton.setIsCurrentProperty(true);
-        staffListButton.setIsCurrentProperty(false);
-        salesmanListButton.setIsCurrentProperty(false);
+        workerListButton.setIsCurrentProperty(false);
 
         managerViewController.showClientList();
     }
 
     @FXML
-    public void clickStaffButton(){
-//        System.out.println("Staff List");
+    public void clickWorkerButton() {
 
+        hotelListButton.setIsCurrentProperty(false);
         clientListButton.setIsCurrentProperty(false);
-        staffListButton.setIsCurrentProperty(true);
-        salesmanListButton.setIsCurrentProperty(false);
+        workerListButton.setIsCurrentProperty(true);
+
+        managerViewController.showWorkerList();
     }
 
-    @FXML
-    public void clickSalesmanButton(){
-//        System.out.println("Salesman List");
-
-        clientListButton.setIsCurrentProperty(false);
-        staffListButton.setIsCurrentProperty(false);
-        salesmanListButton.setIsCurrentProperty(true);
-    }
 }

@@ -12,7 +12,7 @@ import vo.ClientVO;
  */
 public class ClientManagementCellController {
 
-    private ClientVO client;
+    private ClientVO clientVO;
 
     private ClientManagementListViewController clientManagementListViewController;
 
@@ -34,20 +34,22 @@ public class ClientManagementCellController {
     @FXML
     public void clickDetailButton() {
         System.out.println("Client Detail");
+
+        clientManagementListViewController.showClientDetail(clientVO);
     }
 
     public void setClientManagementListViewController(ClientManagementListViewController clientManagementListViewController) {
         this.clientManagementListViewController = clientManagementListViewController;
     }
 
-    public void setClient(ClientVO client) {
-        this.client = client;
+    public void setClientVO(ClientVO clientVO) {
+        this.clientVO = clientVO;
 
-        clientNameLabel.setText(client.clientName);
-        clientIDLabel.setText(client.clientID);
-        userNameLabel.setText(client.account);
+        clientNameLabel.setText(clientVO.clientName);
+        clientIDLabel.setText(clientVO.clientID);
+        userNameLabel.setText(clientVO.account);
 
-        if (client.enterprise.equals("")) {
+        if (clientVO.enterprise.equals("")) {
             typeLabel.setText("普通会员");
             typeLabel.setColorProperty("12B7F3");
         } else {

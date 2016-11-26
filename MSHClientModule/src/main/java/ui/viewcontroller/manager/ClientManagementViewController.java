@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.Main;
+import vo.ClientVO;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -21,10 +22,6 @@ public class ClientManagementViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
-    /**
-     * 整个的 manager 的 VC
-     * @param rootPane
-     */
     public ClientManagementViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
     }
@@ -40,7 +37,10 @@ public class ClientManagementViewController {
         }
     }
 
-    public void showClientList(){
+    /**
+     * 展示客户列表
+     */
+    public void showClientList() {
         if (initNode != null) {
             rootPane.setCenter(initNode);
             return;
@@ -63,5 +63,32 @@ public class ClientManagementViewController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 展示客户详情
+     *
+     * @param clientVO
+     */
+    public void showClientDetail(ClientVO clientVO) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementListView.fxml"));
+            ScrollPane view = loader.load();
+
+            ClientManagementDetailViewController clientManagementDetailViewController = loader.getController();
+            clientManagementDetailViewController.setClientManagementViewController(this);
+            clientManagementDetailViewController.showClient(clientVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

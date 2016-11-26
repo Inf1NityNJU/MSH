@@ -60,8 +60,8 @@ public class Client extends User {
         ClientVO_Register clientVO = (ClientVO_Register) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
-//        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
-        return userClientHelper.addClient(clientPO, new CreditPO(clientVO.clientID));
+        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
+//        return userClientHelper.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
     /**
@@ -71,7 +71,9 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
-        ClientPO clientPO = userClientHelper.searchClientByID(clientID);
+//        ClientPO clientPO = userClientHelper.searchClientByID(clientID);
+        ClientPO clientPO = userDataService.searchClientByID(clientID);
+
         if (clientPO == null) {
             return null;
         } else {

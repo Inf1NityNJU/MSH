@@ -14,9 +14,14 @@ public class ManagerViewController {
 
     private BorderPane rootPane;
 
+    /**
+     * 管理所有客户
+     */
     private ClientManagementViewController clientManagementViewController;
-    private StaffManagementListViewController staffManagementListViewController;
-    private SalesmanManagementListViewController salesmanManagementListViewController;
+    /**
+     * 管理酒店工作人员和网站营销人员
+     */
+    private WorkerManagementViewController workerManagementViewController;
 
     public ManagerViewController(BorderPane rootPane) {
 
@@ -36,23 +41,16 @@ public class ManagerViewController {
         }
 
         clientManagementViewController = new ClientManagementViewController(rootPane);
+        workerManagementViewController = new WorkerManagementViewController(rootPane);
 
     }
 
-    public void showClientList(){
-        System.out.println("Show Client List");
-
+    public void showClientList() {
         clientManagementViewController.showClientList();
     }
 
-    public void showStaffList(){
-        System.out.println("Show Staff List");
-
-
+    public void showWorkerList() {
+        workerManagementViewController.showWorkerList();
     }
 
-    public void showSalesmanList(){
-        System.out.println("Show Salesman List");
-
-    }
 }

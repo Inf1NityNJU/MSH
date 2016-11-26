@@ -15,9 +15,9 @@
         </ImageView>
         <VBox layoutY="360.0" prefWidth="200.0">
             <children>
-                <NavButton fx:id="clientListButton" text="客户列表" isCurrentProperty="false" onMouseClicked="#clickClientButton"/>
-                <NavButton fx:id="staffListButton" text="酒店工作人员列表" isCurrentProperty="false" onMouseClicked="#clickStaffButton"/>
-                <NavButton fx:id="salesmanListButton" text="网站营销人员列表" isCurrentProperty="false" onMouseClicked="#clickSalesmanButton"/>
+                <NavButton fx:id="hotelListButton" text="酒店管理" isCurrentProperty="false" onMouseClicked="#clickHotelButton"/>
+                <NavButton fx:id="clientListButton" text="客户管理" isCurrentProperty="false" onMouseClicked="#clickClientButton"/>
+                <NavButton fx:id="workerListButton" text="工作人员" isCurrentProperty="false" onMouseClicked="#clickWorkerButton"/>
             </children>
         </VBox>
     </children>

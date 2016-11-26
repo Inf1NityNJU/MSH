@@ -1,7 +1,5 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.UserBLFactory;
-import bl.userbl.UserBLServiceImpl;
 import blservice.userblservice.UserBLService;
 import blservice.userblservice.UserBLService_Stub;
 import javafx.fxml.FXML;
@@ -31,9 +29,8 @@ public class ClientManagementListViewController {
 
     private ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
 
-    // tmp
-    private FXMLLoader[] cellLoaders = new FXMLLoader[4];
-    private Node[] cells = new Node[4];
+    private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
+    private Node[] cells = new Node[]{};
 
     @FXML
     private VBox contentVBox;
@@ -47,7 +44,7 @@ public class ClientManagementListViewController {
      */
     @FXML
     public void initialize() {
-        System.out.println("Init ClientManagementViewController");
+//        System.out.println("Init ClientManagementViewController");
 
         //From DB
 //        userBLService = UserBLFactory.getUserBLServiceImpl_Client();
@@ -64,15 +61,6 @@ public class ClientManagementListViewController {
             controller.setClientManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);
-
-            for (int i = 0; i < 4; i++) {
-                FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/manager/ClientInfoCell.fxml"));
-                HBox clientCell = cellLoader.load();
-
-                cellLoaders[i] = cellLoader;
-                cells[i] = clientCell;
-            }
 
             controller.showAllClients();
 
@@ -94,7 +82,7 @@ public class ClientManagementListViewController {
         //TODO
         clientVOs = userBLService.search("000");
         ArrayList<ClientVO> tmpVO = new ArrayList<ClientVO>();
-        if(clientVOs.size() > 0) {
+        if (clientVOs.size() > 0) {
             if (type >= 0) {
                 for (ClientVO clientVO : clientVOs) {
                     if ((type == 0 && clientVO.enterprise.equals(""))) {
@@ -107,21 +95,42 @@ public class ClientManagementListViewController {
                 tmpVO = clientVOs;
             }
 
-            System.out.println(tmpVO.size());
+            cellLoaders = new FXMLLoader[tmpVO.size()];
+            cells = new Node[tmpVO.size()];
 
-            for (int i = 0; i < tmpVO.size(); i++) {
-                ClientVO clientVO = tmpVO.get(i);
-                FXMLLoader loader = cellLoaders[i];
-                Node clientCell = cells[i];
+            try {
+                for (int i = 0; i < tmpVO.size(); i++) {
+                    FXMLLoader cellLoader = new FXMLLoader();
+                    cellLoader.setLocation(Main.class.getResource("../component/manager/ClientInfoCell.fxml"));
+                    HBox clientCell = cellLoader.load();
 
-                ClientManagementCellController clientManagementCellController = loader.getController();
-                clientManagementCellController.setClientManagementListViewController(this);
-                clientManagementCellController.setClient(clientVO);
+                    cellLoaders[i] = cellLoader;
+                    cells[i] = clientCell;
 
-                contentVBox.getChildren().add(clientCell);
+                    ClientVO clientVO = tmpVO.get(i);
+                    FXMLLoader loader = cellLoaders[i];
+                    contentVBox.getChildren().add(clientCell);
+
+                    ClientManagementCellController clientManagementCellController = loader.getController();
+                    clientManagementCellController.setClientManagementListViewController(this);
+                    clientManagementCellController.setClientVO(clientVO);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }else{
+
+        } else {
             System.out.println("no client");
         }
     }
+
+    /**
+     * 展示一个客户的详细信息
+     *
+     * @param clientVO
+     */
+    public void showClientDetail(ClientVO clientVO) {
+        clientManagementViewController.showClientDetail(clientVO);
+    }
+
 }
