@@ -21,6 +21,15 @@ public class SalesmanManagementDetailViewController {
     @FXML
     private RectButton passwordButton;
 
+    @FXML
+    private RectButton backButton;
+
+    @FXML
+    private RectButton deleteButton;
+
+    @FXML
+    private RectButton editButton;
+
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
         this.workerManagementViewController = workerManagementViewController;
     }
@@ -37,6 +46,11 @@ public class SalesmanManagementDetailViewController {
     //TODO
     public void clickPasswordButton() {
         System.out.println("CHANGE PW");
+    }
+
+    //TODO
+    public void clickDeleteButton() {
+        System.out.println("DELETE BUTTON");
     }
 
     //TODO

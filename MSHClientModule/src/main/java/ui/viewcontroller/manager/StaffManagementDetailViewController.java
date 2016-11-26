@@ -25,6 +25,14 @@ public class StaffManagementDetailViewController {
     @FXML
     private Label hotelNameLabel;
 
+    @FXML
+    private RectButton backButton;
+
+    @FXML
+    private RectButton deleteButton;
+
+    @FXML
+    private RectButton editButton;
 
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
         this.workerManagementViewController = workerManagementViewController;
@@ -43,6 +51,11 @@ public class StaffManagementDetailViewController {
     //TODO
     public void clickPasswordButton() {
         System.out.println("CHANGE PW");
+    }
+
+    //TODO
+    public void clickDeleteButton() {
+        System.out.println("DELETE BUTTON");
     }
 
     //TODO

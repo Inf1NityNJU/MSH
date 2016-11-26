@@ -79,8 +79,9 @@
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                                <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
-                                <RectButton minHeight="40.0" onMouseClicked="#clickEditButton" text="编辑" />
+                                <RectButton fx:id="backButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
+                        <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickDeleteButton" text="删 除" />
+                                <RectButton fx:id="editButton" minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
                             </buttons>
                         </ButtonBar>
                     </children>
