@@ -1,4 +1,4 @@
-package serverservice.userserverservice;
+package network;
 
 import po.ClientPO;
 import po.CreditPO;

@@ -1,7 +1,4 @@
-package serverhelper;
-
-import serverimpl.userserverimpl.ClientServerImpl;
-import serverservice.userserverservice.ClientServerService;
+package network;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

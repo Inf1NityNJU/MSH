@@ -1,9 +1,8 @@
-package clienthelper.userclienthelper;
+package network;
 
 import blservice.userblservice.UserBLService;
 import po.ClientPO;
 import po.CreditPO;
-import serverservice.userserverservice.ClientServerService;
 import util.ResultMessage;
 
 import java.net.MalformedURLException;
