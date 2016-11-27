@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.statebutton.StateButton?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
+    <content>
+        <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </padding>
+            <children>
+                <VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;">
+                    <effect>
+                        <DropShadow color="#40404080" radius="1.0" />
+                    </effect>
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                    </padding>
+               <children>
+                  <TitleLabel text="网站促销策略" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <StateButton colorProperty="F8E81C" text="全部" />
+                        <StateButton colorProperty="12B7F3" text="会员等级折扣" />
+                        <StateButton colorProperty="BC52FD" text="会员商圈折扣" />
+                        <StateButton colorProperty="FC537D" text="特定期间折扣" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" prefWidth="200.0" text="名称" textFill="#cccccc">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label alignment="CENTER" prefWidth="200.0" text="类型" textFill="#cccccc">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label alignment="CENTER" prefWidth="200.0" text="折扣数量" textFill="#cccccc">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label alignment="CENTER" prefWidth="200.0" text="操作" textFill="#cccccc">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                        <Line endX="800.0" startX="-100.0" stroke="#eeeeee" />
+                     </children>
+                  </VBox>
+               </children>
+                </VBox>
+            </children></VBox>
+    </content>
+    <padding>
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+    </padding>
+</ScrollPane>
