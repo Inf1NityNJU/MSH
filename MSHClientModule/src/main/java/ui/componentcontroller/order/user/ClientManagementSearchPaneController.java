@@ -7,7 +7,7 @@ import ui.viewcontroller.manager.ClientManagementListViewController;
 /**
  * Created by Kray on 2016/11/24.
  */
-public class ClientManagementListPaneController {
+public class ClientManagementSearchPaneController {
 
     private ClientManagementListViewController clientManagementListViewController;
 

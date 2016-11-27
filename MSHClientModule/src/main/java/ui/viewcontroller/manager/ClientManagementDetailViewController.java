@@ -38,6 +38,15 @@ public class ClientManagementDetailViewController {
     @FXML
     private RectButton creditButton;
 
+    @FXML
+    private Label currentLevelLabel;
+
+    @FXML
+    private Label nextLevelLabel;
+
+    @FXML
+    private Label deltaCreditLabel;
+
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
     }
@@ -57,6 +66,10 @@ public class ClientManagementDetailViewController {
 
         birthdayLabel.setText(clientVO.birthday.toString());
         creditLabel.setText(clientVO.credit + "");
+
+        currentLevelLabel.setText("Lv." + clientVO.level);
+        nextLevelLabel.setText("Lv." + (clientVO.level+1));
+        deltaCreditLabel.setText("X");
 
     }
 

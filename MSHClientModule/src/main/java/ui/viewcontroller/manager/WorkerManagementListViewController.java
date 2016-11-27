@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.user.SalesmanManagementCellController;
 import ui.componentcontroller.order.user.StaffManagementCellController;
-import ui.componentcontroller.order.user.WorkerManagementListPaneController;
+import ui.componentcontroller.order.user.WorkerManagementSearchPaneController;
 import vo.SalesmanVO;
 import vo.StaffVO;
 
@@ -58,7 +58,7 @@ public class WorkerManagementListViewController {
             loader.setLocation(Main.class.getResource("../component/user/WorkerManagementListPane.fxml"));
             VBox pane = loader.load();
 
-            WorkerManagementListPaneController controller = loader.getController();
+            WorkerManagementSearchPaneController controller = loader.getController();
             controller.setWorkerManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);

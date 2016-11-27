@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.user.ClientManagementCellController;
-import ui.componentcontroller.order.user.ClientManagementListPaneController;
+import ui.componentcontroller.order.user.ClientManagementSearchPaneController;
 import vo.ClientVO;
 
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class ClientManagementListViewController {
             loader.setLocation(Main.class.getResource("../component/user/ClientManagementListPane.fxml"));
             VBox pane = loader.load();
 
-            ClientManagementListPaneController controller = loader.getController();
+            ClientManagementSearchPaneController controller = loader.getController();
             controller.setClientManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);

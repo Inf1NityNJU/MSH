@@ -38,6 +38,9 @@ public class ClientManagementDetailEditViewController {
     @FXML
     private RectButton creditButton;
 
+    @FXML
+    private Label levelLabel;
+
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
     }
@@ -55,6 +58,8 @@ public class ClientManagementDetailEditViewController {
             enterpriseButton.setIsActiveProperty(true);
             normalButton.setIsActiveProperty(false);
         }
+
+        levelLabel.setText("Lv." + clientVO.level);
 
     }
 

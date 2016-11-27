@@ -118,10 +118,15 @@
                            </font></TextField>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <StateButton fx:id="normalButton" colorProperty="12B7F3" text="普通会员" onMouseClicked="#clickNormalButton" />
-                              <StateButton fx:id="enterpriseButton" colorProperty="BC52FD" text="企业会员" onMouseClicked="#clickEnterpriseButton" />
+                              <StateButton fx:id="normalButton" colorProperty="12B7F3" onMouseClicked="#clickNormalButton" text="普通会员" />
+                              <StateButton fx:id="enterpriseButton" colorProperty="BC52FD" onMouseClicked="#clickEnterpriseButton" text="企业会员" />
                            </children>
                         </HBox>
+                        <Label fx:id="levelLabel" text="Lv." textFill="#00cccc" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Bangla MN" size="14.0" />
+                           </font>
+                        </Label>
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

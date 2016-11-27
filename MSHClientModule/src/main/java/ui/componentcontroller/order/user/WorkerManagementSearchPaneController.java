@@ -7,7 +7,7 @@ import ui.viewcontroller.manager.WorkerManagementListViewController;
 /**
  * Created by Kray on 2016/11/26.
  */
-public class WorkerManagementListPaneController {
+public class WorkerManagementSearchPaneController {
 
     private WorkerManagementListViewController workerManagementListViewController;
 
