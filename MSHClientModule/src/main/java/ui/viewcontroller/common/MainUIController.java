@@ -10,6 +10,7 @@ import ui.viewcontroller.client.ClientNavbarController;
 import ui.viewcontroller.client.ClientViewController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import ui.viewcontroller.manager.ManagerViewController;
+import ui.viewcontroller.staff.StaffViewController;
 
 import java.io.IOException;
 
@@ -23,6 +24,8 @@ public class MainUIController {
     private ClientViewController clientViewController;
 
     private ManagerViewController managerViewController;
+
+    private StaffViewController staffViewController;
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -53,6 +56,10 @@ public class MainUIController {
 
     public void showManagerView() {
         managerViewController = new ManagerViewController(rootPane);
+    }
+
+    public void showStaffView(){
+        staffViewController=new StaffViewController(rootPane);
     }
 
 }

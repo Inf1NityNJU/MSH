@@ -27,7 +27,7 @@ public class HotelDataServiceImplTest {
 
     @Test
     public void addHotel() throws Exception {
-        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000001", "Test hotel 1", "Nanjing University", Place.XinJieKou, 5, "The test hotel", "All"));
+        ResultMessage resultMessage = hotelDataService.addHotel(new HotelPO("00000009", "Test hotel 啊", "Nanjing University", Place.XinJieKou, 5, "The test hotel", "All"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
 
     }
