@@ -1,5 +1,8 @@
 package ui.viewcontroller.manager;
 
+import component.rectbutton.RectButton;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import vo.ClientVO;
 
 /**
@@ -7,13 +10,67 @@ import vo.ClientVO;
  */
 public class ClientManagementDetailViewController {
 
+    private ClientVO clientVO;
+
     private ClientManagementViewController clientManagementViewController;
+
+    @FXML
+    private Label clientIDLabel;
+
+    @FXML
+    private Label clientNameLabel;
+
+    @FXML
+    private Label userNameLabel;
+
+    @FXML
+    private RectButton passwordButton;
+
+    @FXML
+    private Label typeLabel;
+
+    @FXML
+    private Label birthdayLabel;
+
+    @FXML
+    private Label creditLabel;
+
+    @FXML
+    private RectButton creditButton;
 
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
     }
 
-    public void showClient(ClientVO clientVO){
+    public void showClient(ClientVO clientVO) {
+        this.clientVO = clientVO;
+
+        clientIDLabel.setText(clientVO.clientID);
+        clientNameLabel.setText(clientVO.clientName);
+        userNameLabel.setText(clientVO.account);
+
+        if (clientVO.enterprise.equals("")) {
+            typeLabel.setText("普通会员");
+        } else {
+            typeLabel.setText("企业会员 ( 所属企业: " + clientVO.enterprise + " )");
+        }
+
+        birthdayLabel.setText(clientVO.birthday.toString());
+        creditLabel.setText(clientVO.credit + "");
 
     }
+
+    public void clickBackButton() {
+        clientManagementViewController.back();
+    }
+
+    //TODO
+    public void clickPasswordButton() {
+        System.out.println("CHANGE PW");
+    }
+
+    public void clickEditButton() {
+        clientManagementViewController.editClientDetail(clientVO);
+    }
+
 }

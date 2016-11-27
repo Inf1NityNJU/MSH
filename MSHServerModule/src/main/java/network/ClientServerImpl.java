@@ -1,10 +1,9 @@
-package serverimpl.userserverimpl;
+package network;
 
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.ClientPO;
 import po.CreditPO;
-import serverservice.userserverservice.ClientServerService;
 import util.ResultMessage;
 
 import java.rmi.RemoteException;
@@ -15,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ClientServerImpl extends UnicastRemoteObject implements ClientServerService {
 
-    public ClientServerImpl() throws RemoteException{
+    public ClientServerImpl() throws RemoteException {
 
     }
 

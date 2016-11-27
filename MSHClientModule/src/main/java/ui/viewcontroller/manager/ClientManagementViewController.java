@@ -72,7 +72,7 @@ public class ClientManagementViewController {
     public void showClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementListView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementDetailView.fxml"));
             ScrollPane view = loader.load();
 
             ClientManagementDetailViewController clientManagementDetailViewController = loader.getController();
@@ -90,5 +90,29 @@ public class ClientManagementViewController {
         }
     }
 
+    /**
+     * 编辑客户详情
+     *
+     * @param clientVO
+     */
+    public void editClientDetail(ClientVO clientVO) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementDetailEditView.fxml"));
+            ScrollPane view = loader.load();
 
+            ClientManagementDetailEditViewController clientManagementDetailEditViewController = loader.getController();
+            clientManagementDetailEditViewController.setClientManagementViewController(this);
+            clientManagementDetailEditViewController.showClientEdit(clientVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
