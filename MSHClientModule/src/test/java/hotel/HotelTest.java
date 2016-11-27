@@ -170,7 +170,7 @@ public class HotelTest {
         assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
-    @Test
+    @Ignore
     public void priceAscendingSort() throws Exception {
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
@@ -182,7 +182,7 @@ public class HotelTest {
         }
     }
 
-    @Test
+    @Ignore
     public void priceDescendingSort() throws Exception {
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
@@ -194,7 +194,7 @@ public class HotelTest {
         }
     }
 
-    @Test
+    @Ignore
     public void starAscendingSort() throws Exception {
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
@@ -208,7 +208,7 @@ public class HotelTest {
         }
     }
 
-    @Test
+    @Ignore
     public void starDescendingSort() throws Exception {
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
         hotel_detailVOs.add(hotel_detailVO1);
@@ -222,12 +222,12 @@ public class HotelTest {
         }
     }
 
-    @Test
+    @Ignore
     public void scoreAscendingSort() throws Exception {
 
     }
 
-    @Test
+    @Ignore
     public void scoreDescendingSort() throws Exception {
 
     }
