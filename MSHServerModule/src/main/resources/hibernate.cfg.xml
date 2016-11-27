@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/MSH</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/MSH?useUnicode=true&amp;characterEncoding=utf-8</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">YES</property>
         <!-- dialect:方言，封装的底层API，类似于Runtime，将数据库转换为配置中的相应的语言 -->
@@ -14,7 +14,7 @@
         <!-- 设置数据显示对数据库的操作 -->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.use_sql_comments">false</property>
-        <!-- <property name="hibernate.format_sql">true</property>  -->
+         <!--<property name="hibernate.format_sql">true</property>  -->
         <mapping resource="HotelPO.hbm.xml"/>
         <mapping resource="HotelRoomPO.hbm.xml"/>
         <mapping resource="RoomStockPO.hbm.xml"/>

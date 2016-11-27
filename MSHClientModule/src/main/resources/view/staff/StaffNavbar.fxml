@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.navbutton.NavButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #313B42;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.StaffNavbarController">
+    <children>
+        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
+            <image>
+                <Image url="@../../images/example.jpeg" />
+            </image>
+        </ImageView>
+        <VBox layoutY="260.0" prefWidth="200.0">
+            <children>
+                <NavButton fx:id="hotelInfoButton" isCurrentProperty="false" onMouseClicked="#clickHotelInfoButton" text="酒店信息" />
+                <NavButton fx:id="roomInfoButton" isCurrentProperty="false" onMouseClicked="#clickRoomInfoButton" text="房间信息" />
+                <NavButton fx:id="hotelOrderButton" isCurrentProperty="false" onMouseClicked="#clickHotelOrderButton" text="酒店订单" />
+                <NavButton fx:id="promotionButton" isCurrentProperty="false" onMouseClicked="#clickPromotionButton" text="促销策略" />
+            </children>
+        </VBox>
+    </children>
+</Pane>
