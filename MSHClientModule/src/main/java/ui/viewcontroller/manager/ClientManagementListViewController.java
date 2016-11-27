@@ -2,15 +2,14 @@ package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
-import blservice.userblservice.UserBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.manager.ClientManagementCellController;
-import ui.componentcontroller.order.manager.ClientManagementListPaneController;
+import ui.componentcontroller.order.user.ClientManagementCellController;
+import ui.componentcontroller.order.user.ClientManagementListPaneController;
 import vo.ClientVO;
 
 import java.io.IOException;
@@ -33,6 +32,8 @@ public class ClientManagementListViewController {
     private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
     private Node[] cells = new Node[]{};
 
+    private int currentPage;
+
     @FXML
     private VBox contentVBox;
 
@@ -45,7 +46,7 @@ public class ClientManagementListViewController {
      */
     @FXML
     public void initialize() {
-//        System.out.println("Init ClientManagementViewController");
+        currentPage = 1;
 
         //From DB
         userBLService = UserBLFactory.getUserBLServiceImpl_Client();
@@ -55,7 +56,7 @@ public class ClientManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/manager/ClientManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/ClientManagementListPane.fxml"));
             VBox pane = loader.load();
 
             ClientManagementListPaneController controller = loader.getController();
@@ -101,7 +102,7 @@ public class ClientManagementListViewController {
             try {
                 for (int i = 0; i < tmpVO.size(); i++) {
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/ClientInfoCell.fxml"));
+                    cellLoader.setLocation(Main.class.getResource("../component/user/ClientInfoCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;

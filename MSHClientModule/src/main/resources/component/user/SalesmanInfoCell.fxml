@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.manager.StaffManagementCellController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.user.SalesmanManagementCellController">
     <effect>
         <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
     </effect>
@@ -22,8 +22,8 @@
             </image></ImageView>
         <AnchorPane prefHeight="200.0" prefWidth="700.0">
             <children>
-                <StateButton alignment="CENTER" colorProperty="12B7F3" isActiveProperty="true" text="酒店工作人员" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-                <Label fx:id="staffNameLabel" text="KrayC" textFill="#5b6e79" AnchorPane.topAnchor="10.0">
+                <StateButton alignment="CENTER" colorProperty="BC52FD" isActiveProperty="true" text="网站营销人员" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                <Label fx:id="salesmanNameLabel" text="KrayC" textFill="#5b6e79" AnchorPane.topAnchor="10.0">
                     <font>
                         <Font name="PingFang SC Regular" size="18.0" />
                     </font>
@@ -33,12 +33,7 @@
                         <Font name="PingFang SC Regular" size="14.0" />
                     </font>
                 </Label>
-                <Label layoutY="102.0" text="所属酒店:" textFill="#cccccc" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0">
-                    <font>
-                        <Font name="PingFang SC Regular" size="14.0" />
-                    </font>
-                </Label>
-                <Label fx:id="staffIDLabel" layoutX="10.0" layoutY="10.0" text="songkuixi" textFill="GREY" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="70.0">
+                <Label fx:id="salesmanIDLabel" layoutX="10.0" layoutY="10.0" text="songkuixi" textFill="GREY" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="70.0">
                     <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                     </font>
@@ -48,11 +43,6 @@
                         <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情" />
                     </children>
                 </HBox>
-                <Label fx:id="staffHotelLabel" layoutX="70.0" layoutY="98.0" text="000000007" textFill="GREY" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0">
-                    <font>
-                        <Font name="PingFang SC Regular" size="14.0" />
-                    </font>
-                </Label>
             </children>
             <HBox.margin>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

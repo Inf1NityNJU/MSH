@@ -2,9 +2,11 @@ package bl.userbl;
 
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
+import po.LevelPO;
 import po.SalesmanPO;
 import util.LoginState;
 import util.ResultMessage;
+import vo.LevelVO;
 import vo.SalesmanVO;
 import vo.SalesmanVO_Register;
 import vo.UserVO;
@@ -106,6 +108,35 @@ public class Salesman extends User {
             SalesmanVOs.add(new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName()));
         }
         return SalesmanVOs;
+    }
+
+    /**
+     * 增加一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage addLevel(LevelVO levelVO) {
+        LevelPO levelPO = new LevelPO(levelVO.level, Integer.parseInt(levelVO.level), Integer.parseInt(levelVO.credit));
+        return userDataService.addLevel(levelPO);
+    }
+
+    /**
+     * 更新一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage updateLevel(LevelVO levelVO) {
+        LevelPO levelPO = new LevelPO(levelVO.level, Integer.parseInt(levelVO.level), Integer.parseInt(levelVO.credit));
+        return userDataService.updateLevel(levelVO.level, levelPO);
+    }
+
+    /**
+     * 删除一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage deleteLevel(String ID) {
+        return userDataService.deleteLevel(ID);
     }
 
 }

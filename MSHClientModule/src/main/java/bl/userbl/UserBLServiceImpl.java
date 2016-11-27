@@ -1,5 +1,6 @@
 package bl.userbl;
 
+import blservice.userblservice.LevelService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import util.CreditAction;
@@ -7,6 +8,7 @@ import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
 import vo.CreditVO;
+import vo.LevelVO;
 import vo.UserVO;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/6.
  */
-public class UserBLServiceImpl implements UserBLService, UserBLInfo {
+public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelService {
 
     private User user;
     private LoginState loginState;
@@ -165,5 +167,48 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
 
     public User getUser() {
         return user;
+    }
+
+
+    /**
+     * 增加一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage addLevel(LevelVO levelVO) {
+        if (user instanceof Salesman) {
+            Salesman salesman = (Salesman) user;
+            return salesman.addLevel(levelVO);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 更新一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage updateLevel(LevelVO levelVO) {
+        if (user instanceof Salesman) {
+            Salesman salesman = (Salesman) user;
+            return salesman.updateLevel(levelVO);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 删除一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage deleteLevel(String ID) {
+        if (user instanceof Salesman) {
+            Salesman salesman = (Salesman) user;
+            return salesman.deleteLevel(ID);
+        } else {
+            return null;
+        }
     }
 }
