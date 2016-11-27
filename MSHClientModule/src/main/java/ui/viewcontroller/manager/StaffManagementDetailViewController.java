@@ -1,5 +1,7 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -56,9 +58,11 @@ public class StaffManagementDetailViewController {
         System.out.println("CHANGE PW");
     }
 
-    //TODO
     public void clickDeleteButton() {
-        System.out.println("DELETE BUTTON");
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
+        userBLService.delete(staffVO.staffID);
+
+        clickBackButton();
     }
 
     public void clickEditButton() {

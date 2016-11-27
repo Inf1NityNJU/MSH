@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.user.ClientManagementCellController;
 import ui.componentcontroller.order.user.ClientManagementSearchPaneController;
+import util.ResultMessage;
 import vo.ClientVO;
 
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class ClientManagementListViewController {
 
     private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
     private Node[] cells = new Node[]{};
+
+    private int type;
 
     private int currentPage;
 
@@ -80,6 +83,8 @@ public class ClientManagementListViewController {
             contentVBox.getChildren().remove(cell);
         }
 
+        this.type = type;
+
         //TODO
         clientVOs = userBLService.search("000");
         ArrayList<ClientVO> tmpVO = new ArrayList<ClientVO>();
@@ -125,6 +130,10 @@ public class ClientManagementListViewController {
         }
     }
 
+    public int getType() {
+        return type;
+    }
+
     /**
      * 展示一个客户的详细信息
      *
@@ -134,4 +143,12 @@ public class ClientManagementListViewController {
         clientManagementViewController.showClientDetail(clientVO);
     }
 
+    /**
+     * 更新客户信息
+     * @param clientVO
+     * @return
+     */
+    public ResultMessage updateClient(ClientVO clientVO){
+        return userBLService.update(clientVO);
+    }
 }

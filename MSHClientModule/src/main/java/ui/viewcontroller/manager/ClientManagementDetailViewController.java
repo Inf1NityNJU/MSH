@@ -86,4 +86,7 @@ public class ClientManagementDetailViewController {
         clientManagementViewController.editClientDetail(clientVO);
     }
 
+    public ClientVO getClientVO() {
+        return clientVO;
+    }
 }

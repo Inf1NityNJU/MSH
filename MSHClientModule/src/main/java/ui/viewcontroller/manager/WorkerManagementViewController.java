@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import main.Main;
 import vo.SalesmanVO;
 import vo.StaffVO;
+import vo.UserVO;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -167,4 +168,5 @@ public class WorkerManagementViewController {
             e.printStackTrace();
         }
     }
+
 }

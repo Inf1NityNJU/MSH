@@ -1,5 +1,7 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -37,7 +39,11 @@ public class SalesmanManagementDetailEditViewController {
 
     //TODO
     public void clickSaveButton() {
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
+        salesmanVO.salesmanName = salesmanNameText.getText();
+        userBLService.update(salesmanVO);
 
+        this.clickBackButton();
     }
 
     public void showSalesmanEdit(SalesmanVO salesmanVO) {
