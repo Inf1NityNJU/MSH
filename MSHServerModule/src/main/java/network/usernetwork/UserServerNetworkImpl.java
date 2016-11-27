@@ -1,10 +1,8 @@
-package network;
+package network.usernetwork;
 
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.*;
-import util.CreditAction;
-import util.LoginState;
 import util.ResultMessage;
 
 import java.rmi.RemoteException;
@@ -14,14 +12,13 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/27.
  */
-public class UserServerNetworkImpl extends UnicastRemoteObject implements UserDataService {
+public class UserServerNetworkImpl extends UnicastRemoteObject implements UserServerNetworkService {
 
     private UserDataService userDataService;
 
-    public UserServerNetworkImpl() throws RemoteException {
+    public UserServerNetworkImpl() throws RemoteException {}
 
-    }
-
+    /*
     public LoginState login(String account, String password) {
         return null;
     }
@@ -33,6 +30,7 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserDa
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
         return null;
     }
+    */
 
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
         userDataService = UserDataServiceFactory.getClientDataService();
@@ -45,6 +43,13 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserDa
     }
 
 
+    public ArrayList<ClientPO> searchClient(String keyword) {
+        System.out.println("SERVER SEARCH CLIENT");
+        userDataService = UserDataServiceFactory.getClientDataService();
+        return userDataService.searchClient(keyword);
+    }
+
+    /*
     public ResultMessage updateClient(String clientID, ClientPO clientPO) {
         userDataService = UserDataServiceFactory.getClientDataService();
         return userDataService.updateClient(clientID, clientPO);
@@ -53,11 +58,6 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserDa
     public ResultMessage deleteClient(String clientID) {
         userDataService = UserDataServiceFactory.getClientDataService();
         return userDataService.deleteClient(clientID);
-    }
-
-    public ArrayList<ClientPO> searchClient(String keyword) {
-        userDataService = UserDataServiceFactory.getClientDataService();
-        return userDataService.searchClient(keyword);
     }
 
     public ResultMessage addStaff(StaffPO staffPO) {
@@ -134,4 +134,5 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserDa
         userDataService = UserDataServiceFactory.getSalesmanDataService();
         return userDataService.deleteLevel(ID);
     }
+    */
 }

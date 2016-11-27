@@ -2,6 +2,7 @@ package bl.userbl;
 
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
+import network.UserClientNetworkImpl;
 import po.ClientPO;
 import po.CreditPO;
 import util.DateUtil;
@@ -20,14 +21,14 @@ public class Client extends User {
 
     private UserDataService userDataService;
 
-//    private UserClientHelper userClientHelper;
+    private UserClientNetworkImpl userClientNetwork;
 
     private String account;
     private String password;
 
     public Client() {
         this.userDataService = UserDataServiceFactory.getClientDataService();
-//        this.userClientHelper = new UserClientHelper();
+        this.userClientNetwork = new UserClientNetworkImpl();
     }
 
     /**
@@ -60,7 +61,7 @@ public class Client extends User {
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
         return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
-//        return userClientHelper.addClient(clientPO, new CreditPO(clientVO.clientID));
+//        return userClientNetwork.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
     /**
@@ -70,7 +71,7 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
-//        ClientPO clientPO = userClientHelper.searchClientByID(clientID);
+//        ClientPO clientPO = userClientNetwork.searchClientByID(clientID);
         ClientPO clientPO = userDataService.searchClientByID(clientID);
 
         if (clientPO == null) {
@@ -114,7 +115,9 @@ public class Client extends User {
      * @return 符合关键词的所有客户
      */
     public ArrayList<ClientVO> search(String keyword) {
-        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
+
+        ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
+//        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
         for (ClientPO clientPO : clientPOs) {
             clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
