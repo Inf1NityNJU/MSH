@@ -91,8 +91,9 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
+        ClientPO tmpPO = userDataService.searchClientByID(clientVO.clientID);
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, account, password);
+                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, tmpPO.getAccount(), tmpPO.getPassword());
         return userDataService.updateClient(clientVO.clientID, clientPO);
     }
 
