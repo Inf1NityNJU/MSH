@@ -152,14 +152,14 @@ public class HotelTest {
 
     @Test
     public void updateHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000006", "Test hotel 6 update", City.NanJing, "Nanjing Technical University", Place.XianLin, 4, "The test hotel", "All", null, 4.5, 4);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO("00000001", "Test hotel 1 update", City.NanJing, "Nanjing Technical University", Place.XianLin, 4, "The test hotel", "All", null, 4.5, 4);
         ResultMessage resultMessage = hotelBLService.updateHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void addHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Han Ting", City.ShangHai, "my Park", Place.XianLin, 5, "The test hotel", "All", null, 4.5, 4);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Han Ting", City.GuangZhou, "Center Park", Place.XianLin, 5, "The test hotel", "All", null, 4.5, 4);
         ResultMessage resultMessage = hotelBLService.addHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
@@ -167,7 +167,7 @@ public class HotelTest {
     @Test
     public void deleteHotel() throws Exception {
         ResultMessage resultMessage = hotelBLService.deleteHotel("00000006");
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
     @Test
