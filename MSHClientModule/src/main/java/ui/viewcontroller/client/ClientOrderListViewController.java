@@ -8,8 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.order.ClientOrderCellController;
-import ui.componentcontroller.order.order.ClientOrderSearchPaneController;
+import ui.componentcontroller.order.ClientOrderCellController;
+import ui.componentcontroller.order.ClientOrderSearchPaneController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -26,7 +26,6 @@ public class ClientOrderListViewController {
     @FXML
     private VBox contentVBox;
 
-    // for time
     private FXMLLoader[] cellLoaders = new FXMLLoader[4];
     private Node[] cells = new Node[4];
 
@@ -51,7 +50,7 @@ public class ClientOrderListViewController {
 
             contentVBox.getChildren().add(pane);
 
-            for (int i=0; i<4; i++) {
+            for (int i = 0; i < 4; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
                 cellLoader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
                 HBox ordercell = cellLoader.load();
@@ -74,31 +73,26 @@ public class ClientOrderListViewController {
 
     public void showOrders(OrderState orderState) {
 
-//        contentVBox.getChildren().remove(1, contentVBox.getChildren().size()-1);
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
 
         ArrayList<OrderVO> orders = orderBLService.searchOrder(orderState, null);
-//        try {
-            for (int i=0; i<orders.size(); i++) {
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
-//
 
-                OrderVO order = orders.get(i);
-                FXMLLoader loader = cellLoaders[i];
-                Node ordercell = cells[i];
+        //TODO is4
+        for (int i = 0; i < orders.size(); i++) {
 
-                ClientOrderCellController clientOrderCellController = loader.getController();
-                clientOrderCellController.setClientOrderListViewController(this);
-                clientOrderCellController.setOrder(order);
+            OrderVO order = orders.get(i);
+            FXMLLoader loader = cellLoaders[i];
+            Node ordercell = cells[i];
 
-                contentVBox.getChildren().add(ordercell);
-            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+            ClientOrderCellController clientOrderCellController = loader.getController();
+            clientOrderCellController.setClientOrderListViewController(this);
+            clientOrderCellController.setOrder(order);
+
+            contentVBox.getChildren().add(ordercell);
+        }
+
     }
 
     public void showClientOrderDetail(OrderVO order) {

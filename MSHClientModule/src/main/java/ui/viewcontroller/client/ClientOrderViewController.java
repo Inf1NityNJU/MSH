@@ -44,7 +44,6 @@ public class ClientOrderViewController {
             return;
         }
 
-        System.out.print("!!!");
         try {
             FXMLLoader listLoader = new FXMLLoader();
             listLoader.setLocation(Main.class.getResource("../view/client/ClientOrderListView.fxml"));
@@ -54,7 +53,6 @@ public class ClientOrderViewController {
             clientOrderListViewController.setClientViewController(this);
 
             initNode = list;
-//            stack.push(list);
 
             rootPane.setCenter(list);
 

@@ -2,20 +2,15 @@ package ui.viewcontroller.staff;
 
 import blservice.hotelblservice.HotelBLService;
 import blservice.hotelblservice.HotelBLService_Stub;
-import blservice.orderblservice.OrderBLService;
-import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.order.ClientOrderCellController;
-import ui.componentcontroller.order.order.ClientOrderSearchPaneController;
-import ui.viewcontroller.client.ClientOrderViewController;
-import util.OrderState;
+import ui.componentcontroller.order.ClientOrderCellController;
+import ui.componentcontroller.order.ClientOrderSearchPaneController;
 import vo.HotelRoomVO;
-import vo.OrderVO;
 
 import java.io.IOException;
 import java.util.ArrayList;

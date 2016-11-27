@@ -8,8 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.user.ClientManagementCellController;
-import ui.componentcontroller.order.user.ClientManagementSearchPaneController;
+import ui.componentcontroller.user.ClientManagementCellController;
+import ui.componentcontroller.user.ClientManagementSearchPaneController;
 import util.ResultMessage;
 import vo.ClientVO;
 
