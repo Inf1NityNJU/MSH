@@ -10,6 +10,8 @@ import vo.ClientVO;
  */
 public class ClientManagementDetailViewController {
 
+    private ClientVO clientVO;
+
     private ClientManagementViewController clientManagementViewController;
 
     @FXML
@@ -41,6 +43,8 @@ public class ClientManagementDetailViewController {
     }
 
     public void showClient(ClientVO clientVO) {
+        this.clientVO = clientVO;
+
         clientIDLabel.setText(clientVO.clientID);
         clientNameLabel.setText(clientVO.clientName);
         userNameLabel.setText(clientVO.account);
@@ -65,9 +69,8 @@ public class ClientManagementDetailViewController {
         System.out.println("CHANGE PW");
     }
 
-    //TODO
     public void clickEditButton() {
-        System.out.println("EDIT BUTTON");
+        clientManagementViewController.editClientDetail(clientVO);
     }
 
 }

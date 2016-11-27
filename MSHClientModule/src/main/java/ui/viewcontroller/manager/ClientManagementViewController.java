@@ -90,4 +90,29 @@ public class ClientManagementViewController {
         }
     }
 
+    /**
+     * 编辑客户详情
+     *
+     * @param clientVO
+     */
+    public void editClientDetail(ClientVO clientVO) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementDetailEditView.fxml"));
+            ScrollPane view = loader.load();
+
+            ClientManagementDetailEditViewController clientManagementDetailEditViewController = loader.getController();
+            clientManagementDetailEditViewController.setClientManagementViewController(this);
+            clientManagementDetailEditViewController.showClientEdit(clientVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
