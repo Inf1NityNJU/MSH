@@ -1,6 +1,5 @@
 package bl.userbl;
 
-import network.UserClientHelper;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.ClientPO;
@@ -21,14 +20,14 @@ public class Client extends User {
 
     private UserDataService userDataService;
 
-    private UserClientHelper userClientHelper;
+//    private UserClientHelper userClientHelper;
 
     private String account;
     private String password;
 
     public Client() {
         this.userDataService = UserDataServiceFactory.getClientDataService();
-        this.userClientHelper = new UserClientHelper();
+//        this.userClientHelper = new UserClientHelper();
     }
 
     /**
