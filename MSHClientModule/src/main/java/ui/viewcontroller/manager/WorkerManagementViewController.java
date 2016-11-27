@@ -1,5 +1,6 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.Salesman;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -36,6 +37,9 @@ public class WorkerManagementViewController {
         }
     }
 
+    /**
+     * 展示所有工作人员
+     */
     public void showWorkerList() {
         if (initNode != null) {
             rootPane.setCenter(initNode);
@@ -100,6 +104,58 @@ public class WorkerManagementViewController {
             SalesmanManagementDetailViewController staffManagementDetailViewController = loader.getController();
             staffManagementDetailViewController.setWorkerManagementViewController(this);
             staffManagementDetailViewController.showSalesman(salesmanVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 编辑酒店工作人员信息
+     *
+     * @param staffVO
+     */
+    public void editStaffDetail(StaffVO staffVO) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/manager/StaffManagementDetailEditView.fxml"));
+            ScrollPane view = loader.load();
+
+            StaffManagementDetailEditViewController staffManagementDetailEditViewController = loader.getController();
+            staffManagementDetailEditViewController.setWorkerManagementViewController(this);
+            staffManagementDetailEditViewController.showStaffEdit(staffVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 编辑网站营销人员信息
+     *
+     * @param salesmanVO
+     */
+    public void editSalesmanDetail(SalesmanVO salesmanVO) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/manager/SalesmanManagementDetailEditView.fxml"));
+            ScrollPane view = loader.load();
+
+            SalesmanManagementDetailEditViewController salesmanManagementDetailEditViewController = loader.getController();
+            salesmanManagementDetailEditViewController.setWorkerManagementViewController(this);
+            salesmanManagementDetailEditViewController.showSalesmanEdit(salesmanVO);
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

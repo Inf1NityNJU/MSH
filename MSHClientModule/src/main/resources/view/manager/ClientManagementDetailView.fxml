@@ -36,7 +36,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <Label text="客户编号" textFill="#cccccc" GridPane.valignment="TOP">
+                                <Label text="客户编号" textFill="#cccccc" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -44,7 +44,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="用户名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                <Label text="用户名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -52,17 +52,17 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label fx:id="clientIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1">
+                                <Label fx:id="clientIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                        <Label fx:id="userNameLabel" text="songkuixi" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="userNameLabel" text="songkuixi" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                                <Label text="密码" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                <Label text="密码" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -70,7 +70,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="昵称" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                <Label text="昵称" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -78,7 +78,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="会员类型" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                <Label text="会员类型" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -86,7 +86,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="生日" textFill="#cccccc" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                <Label text="生日" textFill="#cccccc" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -94,7 +94,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -102,7 +102,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -110,22 +110,22 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                        <Label fx:id="clientNameLabel" text="krayc" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="clientNameLabel" text="krayc" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                                <Label fx:id="typeLabel" text="普通会员" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                <Label fx:id="typeLabel" text="普通会员" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="birthdayLabel" text="生日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                <Label fx:id="birthdayLabel" text="生日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                            <children>
                               <Label fx:id="creditLabel" text="信用值" textFill="GREY">
                                  <font>
@@ -135,7 +135,7 @@
                               <RectButton fx:id="creditButton" text="信用记录" />
                            </children>
                         </HBox>
-                        <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

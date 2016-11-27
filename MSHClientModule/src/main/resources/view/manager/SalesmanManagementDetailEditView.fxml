@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.StaffManagementDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.SalesmanManagementDetailEditViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -28,8 +29,8 @@
                         <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                     </padding>
                     <children>
-                        <TitleLabel text="酒店工作人员信息" />
-                        <GridPane vgap="40.0">
+                        <TitleLabel text="网站营销人员信息" />
+                        <GridPane alignment="CENTER_LEFT" vgap="40.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,51 +52,25 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label fx:id="staffIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                <Label fx:id="salesmanIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="staffNameLabel" text="songkuixi" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="16.0" />
-                                    </font>
-                                </Label>
-                                <Label text="密码" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                <Label text="所属酒店" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                <Label fx:id="hotelNameLabel" text="酒店名" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="16.0" />
-                                    </font>
-                                </Label>
-                                <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                <TextField fx:id="salesmanNameText" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="PingFang SC Regular" size="16.0" />
+                           </font></TextField>
                             </children>
                             <rowConstraints>
-                                <RowConstraints />
-                                <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
                             </rowConstraints>
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                                <RectButton fx:id="backButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
-                        <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickDeleteButton" text="删 除" />
-                                <RectButton fx:id="editButton" minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
+                                <RectButton fx:id="cancelButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="取 消" />
+                                <RectButton fx:id="saveButton" minHeight="40.0" onMouseClicked="#clickSaveButton" text="保 存" />
                             </buttons>
                         </ButtonBar>
                     </children>

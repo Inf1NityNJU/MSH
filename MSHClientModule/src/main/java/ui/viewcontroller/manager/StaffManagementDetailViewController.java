@@ -11,6 +11,8 @@ import vo.StaffVO;
  */
 public class StaffManagementDetailViewController {
 
+    private StaffVO staffVO;
+
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
@@ -38,7 +40,8 @@ public class StaffManagementDetailViewController {
         this.workerManagementViewController = workerManagementViewController;
     }
 
-    public void showStaff(StaffVO staffVO){
+    public void showStaff(StaffVO staffVO) {
+        this.staffVO = staffVO;
         staffIDLabel.setText(staffVO.staffID);
         staffNameLabel.setText(staffVO.staffName);
         hotelNameLabel.setText(staffVO.hotelID);
@@ -58,8 +61,7 @@ public class StaffManagementDetailViewController {
         System.out.println("DELETE BUTTON");
     }
 
-    //TODO
     public void clickEditButton() {
-        System.out.println("EDIT BUTTON");
+        workerManagementViewController.editStaffDetail(staffVO);
     }
 }

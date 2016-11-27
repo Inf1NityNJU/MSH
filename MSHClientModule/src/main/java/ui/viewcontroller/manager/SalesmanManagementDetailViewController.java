@@ -10,6 +10,8 @@ import vo.SalesmanVO;
  */
 public class SalesmanManagementDetailViewController {
 
+    private SalesmanVO salesmanVO;
+
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
@@ -35,6 +37,8 @@ public class SalesmanManagementDetailViewController {
     }
 
     public void showSalesman(SalesmanVO salesmanVO){
+        this.salesmanVO = salesmanVO;
+
         salesmanIDLabel.setText(salesmanVO.salesmanID);
         salesmanNameLabel.setText(salesmanVO.salesmanName);
     }
@@ -53,9 +57,8 @@ public class SalesmanManagementDetailViewController {
         System.out.println("DELETE BUTTON");
     }
 
-    //TODO
     public void clickEditButton() {
-        System.out.println("EDIT BUTTON");
+        workerManagementViewController.editSalesmanDetail(salesmanVO);
     }
 
 }
