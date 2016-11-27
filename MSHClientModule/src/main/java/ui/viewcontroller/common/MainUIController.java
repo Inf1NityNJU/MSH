@@ -4,12 +4,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import main.Main;
-import ui.viewcontroller.client.ClientNavbarController;
 import ui.viewcontroller.client.ClientViewController;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import ui.viewcontroller.manager.ManagerViewController;
+import ui.viewcontroller.utility.LoginViewController;
+import ui.viewcontroller.utility.UtilityViewController;
 
 import java.io.IOException;
 
@@ -23,6 +22,8 @@ public class MainUIController {
     private ClientViewController clientViewController;
 
     private ManagerViewController managerViewController;
+
+    private UtilityViewController utilityViewController;
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -53,6 +54,10 @@ public class MainUIController {
 
     public void showManagerView() {
         managerViewController = new ManagerViewController(rootPane);
+    }
+
+    public void showUtilView(){
+        utilityViewController = new UtilityViewController(rootPane);
     }
 
 }
