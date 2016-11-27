@@ -80,9 +80,11 @@ public class Salesman extends User {
      * @return 是否更新成功
      */
     public ResultMessage update(UserVO userVO) {
-        SalesmanVO SalesmanVO = (SalesmanVO) userVO;
-        SalesmanPO SalesmanPO = new SalesmanPO(SalesmanVO.salesmanID, SalesmanVO.salesmanName, account, password);
-        return userDataService.updateSalesman(SalesmanVO.salesmanID, SalesmanPO);
+        SalesmanVO salesmanVO = (SalesmanVO) userVO;
+        SalesmanPO tmpPO = userDataService.searchSalesmanByID(salesmanVO.salesmanID);
+        SalesmanPO SalesmanPO = new SalesmanPO(salesmanVO.salesmanID, salesmanVO.salesmanName,
+                tmpPO.getAccount(), tmpPO.getPassword());
+        return userDataService.updateSalesman(salesmanVO.salesmanID, SalesmanPO);
     }
 
     /**

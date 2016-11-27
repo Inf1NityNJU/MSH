@@ -58,7 +58,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param password
      * @return
      */
-    public LoginState login(String account, String password) throws RemoteException {
+    public LoginState login(String account, String password) {
         System.out.println(account);
         System.out.println(password);
         UserPO userPO;
@@ -98,7 +98,7 @@ public class UserDataServiceImpl implements UserDataService {
      *
      * @return
      */
-    public LoginState logout() throws RemoteException {
+    public LoginState logout() {
         clientDataHelper = null;
         salesmanDataHelper = null;
         staffDataHelper = null;
@@ -114,7 +114,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param newPassword
      * @return
      */
-    public ResultMessage resetPassword(String account, String oldPassword, String newPassword) throws RemoteException {
+    public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
         System.out.println(account);
         System.out.println(oldPassword);
         System.out.println(newPassword);
@@ -173,7 +173,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param creditPO
      * @return
      */
-    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) throws RemoteException {
+    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
         if (clientDataHelper.save(clientPO) == ResultMessage.SUCCESS
                 && creditDataHelper.save(creditPO) == ResultMessage.SUCCESS) {
             return ResultMessage.SUCCESS;
@@ -188,7 +188,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param clientID
      * @return
      */
-    public ClientPO searchClientByID(String clientID) throws RemoteException {
+    public ClientPO searchClientByID(String clientID) {
         return clientDataHelper.exactlyQuery("clientID", clientID);
     }
 
@@ -199,7 +199,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param clientPO
      * @return
      */
-    public ResultMessage updateClient(String clientID, ClientPO clientPO) throws RemoteException {
+    public ResultMessage updateClient(String clientID, ClientPO clientPO) {
         return clientDataHelper.update(clientPO);
     }
 
@@ -209,7 +209,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param clientID
      * @return
      */
-    public ResultMessage deleteClient(String clientID) throws RemoteException {
+    public ResultMessage deleteClient(String clientID) {
         //也要删除信用记录
         if (deleteAllCredit(clientID)
                 && clientDataHelper.delete("clientID", clientID) == ResultMessage.SUCCESS) {
@@ -225,7 +225,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param keyword
      * @return
      */
-    public ArrayList<ClientPO> searchClient(String keyword) throws RemoteException {
+    public ArrayList<ClientPO> searchClient(String keyword) {
         ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
         for (ClientPO clientPO : clientDataHelper.fuzzyMatchQuery("clientID", keyword)) {
             if (!clientPOs.contains(clientPO)) {
@@ -246,7 +246,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param staffPO
      * @return
      */
-    public ResultMessage addStaff(StaffPO staffPO) throws RemoteException {
+    public ResultMessage addStaff(StaffPO staffPO) {
         return staffDataHelper.save(staffPO);
     }
 
@@ -256,7 +256,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param staffID
      * @return
      */
-    public StaffPO searchStaffByID(String staffID) throws RemoteException {
+    public StaffPO searchStaffByID(String staffID) {
         return staffDataHelper.exactlyQuery("staffID", staffID);
     }
 
@@ -267,7 +267,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param staffPO
      * @return
      */
-    public ResultMessage updateStaff(String staffID, StaffPO staffPO) throws RemoteException {
+    public ResultMessage updateStaff(String staffID, StaffPO staffPO) {
         return staffDataHelper.update(staffPO);
     }
 
@@ -277,7 +277,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param staffID
      * @return
      */
-    public ResultMessage deleteStaff(String staffID) throws RemoteException {
+    public ResultMessage deleteStaff(String staffID) {
         return staffDataHelper.delete("staffID", staffID);
     }
 
@@ -287,7 +287,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param keyword
      * @return
      */
-    public ArrayList<StaffPO> searchStaff(String keyword) throws RemoteException {
+    public ArrayList<StaffPO> searchStaff(String keyword) {
         ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
         for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("staffID", keyword)) {
             if (!staffPOs.contains(staffPO)) {
@@ -313,7 +313,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param salesmanPO
      * @return
      */
-    public ResultMessage addSalesman(SalesmanPO salesmanPO) throws RemoteException {
+    public ResultMessage addSalesman(SalesmanPO salesmanPO) {
         return salesmanDataHelper.save(salesmanPO);
     }
 
@@ -323,7 +323,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param salesmanID
      * @return
      */
-    public SalesmanPO searchSalesmanByID(String salesmanID) throws RemoteException {
+    public SalesmanPO searchSalesmanByID(String salesmanID) {
         return salesmanDataHelper.exactlyQuery("salesmanID", salesmanID);
     }
 
@@ -334,7 +334,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param salesmanPO
      * @return
      */
-    public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) throws RemoteException {
+    public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) {
         return salesmanDataHelper.update(salesmanPO);
     }
 
@@ -344,7 +344,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param salesmanID
      * @return
      */
-    public ResultMessage deleteSalesman(String salesmanID) throws RemoteException {
+    public ResultMessage deleteSalesman(String salesmanID) {
         return salesmanDataHelper.delete("salesmanID", salesmanID);
     }
 
@@ -354,7 +354,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param keyword
      * @return
      */
-    public ArrayList<SalesmanPO> searchSalesman(String keyword) throws RemoteException {
+    public ArrayList<SalesmanPO> searchSalesman(String keyword) {
         ArrayList<SalesmanPO> salesmanPOs = new ArrayList<SalesmanPO>();
         for (SalesmanPO salesmanPO : salesmanDataHelper.fuzzyMatchQuery("salesmanID", keyword)) {
             if (!salesmanPOs.contains(salesmanPO)) {
@@ -376,7 +376,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param creditPO
      * @return
      */
-    public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) throws RemoteException {
+    public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
         //这个 clientID 好像没用?
         return creditDataHelper.save(creditPO);
     }
@@ -387,7 +387,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param clientID
      * @return
      */
-    public ArrayList<CreditPO> searchCreditByID(String clientID) throws RemoteException {
+    public ArrayList<CreditPO> searchCreditByID(String clientID) {
         ArrayList<CreditPO> creditPOs = new ArrayList<CreditPO>();
         for (CreditPO creditPO : creditDataHelper.prefixMatchQuery("clientID", clientID)) {
             if (!creditPOs.contains(creditPO)) {
@@ -403,7 +403,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param levelPO
      * @return
      */
-    public ResultMessage addLevel(LevelPO levelPO) throws RemoteException {
+    public ResultMessage addLevel(LevelPO levelPO) {
         return levelDataHelper.save(levelPO);
     }
 
@@ -414,7 +414,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param levelPO
      * @return
      */
-    public ResultMessage updateLevel(String ID, LevelPO levelPO) throws RemoteException {
+    public ResultMessage updateLevel(String ID, LevelPO levelPO) {
         return levelDataHelper.update(levelPO);
     }
 
@@ -424,7 +424,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param ID
      * @return
      */
-    public ResultMessage deleteLevel(String ID) throws RemoteException {
+    public ResultMessage deleteLevel(String ID) {
         return levelDataHelper.delete("ID", ID);
     }
 
@@ -434,7 +434,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param clientID
      * @return 是否删除成功
      */
-    private boolean deleteAllCredit(String clientID) throws RemoteException {
+    private boolean deleteAllCredit(String clientID) {
         ArrayList<CreditPO> creditPOs = searchCreditByID(clientID);
         for (CreditPO creditPO : creditPOs) {
             if (creditDataHelper.delete("orderID", creditPO.getOrderID()) == ResultMessage.FAILED) {

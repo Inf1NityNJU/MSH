@@ -79,7 +79,8 @@ public class Staff extends User {
      */
     public ResultMessage update(UserVO userVO) {
         StaffVO staffVO = (StaffVO) userVO;
-        StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, account, password);
+        StaffPO tmpPO = userDataService.searchStaffByID(staffVO.staffID);
+        StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, tmpPO.getAccount(), tmpPO.getPassword());
         return userDataService.updateStaff(staffVO.staffID, staffPO);
     }
 
