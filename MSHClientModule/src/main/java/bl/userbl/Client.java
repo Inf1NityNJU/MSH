@@ -1,6 +1,6 @@
 package bl.userbl;
 
-import clienthelper.userclienthelper.UserClientHelper;
+import network.UserClientHelper;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.ClientPO;

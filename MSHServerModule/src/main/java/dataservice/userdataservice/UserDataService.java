@@ -1,13 +1,11 @@
 package dataservice.userdataservice;
 
-import po.ClientPO;
-import po.CreditPO;
-import po.SalesmanPO;
-import po.StaffPO;
+import po.*;
 import util.LoginState;
 import util.ResultMessage;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 /**
  * Created by Kray on 2016/10/13.
@@ -180,4 +178,29 @@ public interface UserDataService {
      * @return
      */
     public ArrayList<CreditPO> searchCreditByID(String clientID);
+
+    /**
+     * 增加一条等级信息
+     *
+     * @param levelPO
+     * @return
+     */
+    public ResultMessage addLevel(LevelPO levelPO);
+
+    /**
+     * 更新一条等级信息
+     *
+     * @param ID
+     * @param levelPO
+     * @return
+     */
+    public ResultMessage updateLevel(String ID, LevelPO levelPO);
+
+    /**
+     * 删除一条等级信息
+     *
+     * @param ID
+     * @return
+     */
+    public ResultMessage deleteLevel(String ID);
 }

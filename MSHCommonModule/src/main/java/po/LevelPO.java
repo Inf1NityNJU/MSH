@@ -7,7 +7,7 @@ import static util.EqualJudgeHelper.judgeEqual;
  */
 public class LevelPO {
     /*
-     * ID
+     * ID (level = id)
      */
     private String ID;
     /*
@@ -43,13 +43,13 @@ public class LevelPO {
         this.ID = ID;
     }
 
-    public LevelPO(int credit, int level) {
-        this.credit = credit;
+    public LevelPO(int level, int credit) {
         this.level = level;
+        this.credit = credit;
     }
 
-    public LevelPO(String ID, int credit, int level) {
-        this(credit, level);
+    public LevelPO(String ID, int level, int credit) {
+        this(level, credit);
         this.ID = ID;
     }
 

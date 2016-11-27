@@ -18,6 +18,7 @@ public class UserDataServiceImpl implements UserDataService {
     private DataHelper<StaffPO> staffDataHelper;
     private DataHelper<SalesmanPO> salesmanDataHelper;
     private DataHelper<CreditPO> creditDataHelper;
+    private DataHelper<LevelPO> levelDataHelper;
 
     private UserDataState userDataState;
 
@@ -41,6 +42,7 @@ public class UserDataServiceImpl implements UserDataService {
     protected void setSalesman(DataHelper<SalesmanPO> salesmanDataHelper) {
         System.out.println("SALESMAN");
         this.salesmanDataHelper = salesmanDataHelper;
+        this.levelDataHelper = new HibernateHelper<LevelPO>(LevelPO.class);
         this.userDataState = UserDataState.SALESMAN;
     }
 
@@ -65,14 +67,8 @@ public class UserDataServiceImpl implements UserDataService {
                 if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Client;
-                    } else {
-                        return LoginState.LOGIN_FAIL;
                     }
-                } else {
-                    return LoginState.LOGIN_FAIL;
                 }
-            } else {
-                return LoginState.LOGIN_FAIL;
             }
         } else if (staffDataHelper != null) {
             if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
@@ -80,14 +76,8 @@ public class UserDataServiceImpl implements UserDataService {
                 if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Staff;
-                    } else {
-                        return LoginState.LOGIN_FAIL;
                     }
-                } else {
-                    return LoginState.LOGIN_FAIL;
                 }
-            } else {
-                return LoginState.LOGIN_FAIL;
             }
         } else if (salesmanDataHelper != null) {
             if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
@@ -95,18 +85,11 @@ public class UserDataServiceImpl implements UserDataService {
                 if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Salesman;
-                    } else {
-                        return LoginState.LOGIN_FAIL;
                     }
-                } else {
-                    return LoginState.LOGIN_FAIL;
                 }
-            } else {
-                return LoginState.LOGIN_FAIL;
             }
-        } else {
-            return LoginState.LOGIN_FAIL;
         }
+        return LoginState.LOGIN_FAIL;
     }
 
     /**
@@ -433,6 +416,37 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     /**
+     * 增加一条等级信息
+     *
+     * @param levelPO
+     * @return
+     */
+    public ResultMessage addLevel(LevelPO levelPO){
+        return levelDataHelper.save(levelPO);
+    }
+
+    /**
+     * 更新一条等级信息
+     *
+     * @param ID
+     * @param levelPO
+     * @return
+     */
+    public ResultMessage updateLevel(String ID, LevelPO levelPO){
+        return levelDataHelper.update(levelPO);
+    }
+
+    /**
+     * 删除一条等级信息
+     *
+     * @param ID
+     * @return
+     */
+    public ResultMessage deleteLevel(String ID){
+        return levelDataHelper.delete("ID", ID);
+    }
+
+    /**
      * 删除客户对应所有信用记录
      *
      * @param clientID
@@ -447,4 +461,5 @@ public class UserDataServiceImpl implements UserDataService {
         }
         return true;
     }
+
 }

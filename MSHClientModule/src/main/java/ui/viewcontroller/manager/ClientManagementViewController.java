@@ -48,7 +48,7 @@ public class ClientManagementViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/manager/ClientManagementListView.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/user/ClientManagementListView.fxml"));
             ScrollPane list = listLoader.load();
 
             ClientManagementListViewController clientManagementListViewController = listLoader.getController();
@@ -72,7 +72,7 @@ public class ClientManagementViewController {
     public void showClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementDetailView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/user/ClientManagementDetailView.fxml"));
             ScrollPane view = loader.load();
 
             ClientManagementDetailViewController clientManagementDetailViewController = loader.getController();
@@ -98,7 +98,7 @@ public class ClientManagementViewController {
     public void editClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/ClientManagementDetailEditView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/user/ClientManagementDetailEditView.fxml"));
             ScrollPane view = loader.load();
 
             ClientManagementDetailEditViewController clientManagementDetailEditViewController = loader.getController();

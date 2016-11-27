@@ -5,21 +5,16 @@ package vo;
  */
 public class LevelVO {
     /*
-     * 当前信用值
+     * 到此等级需要信用值
      */
-    public int currentCredit;
+    public String credit;
     /*
-     * 距离下一等级还有的信用值
+     * 等级
      */
-    public int nextCredit;
-    /*
-     * 当前等级
-     */
-    public int currentLevel;
+    public String level;
 
-    public LevelVO(int currentCredit, int nextCredit, int currentLevel) {
-        this.currentCredit = currentCredit;
-        this.nextCredit = nextCredit;
-        this.currentLevel = currentLevel;
+    public LevelVO(String level, String credit) {
+        this.level = level;
+        this.credit = credit;
     }
 }
