@@ -11,10 +11,11 @@ import java.io.IOException;
 
 /**
  * Created by SilverNarcissus on 2016/11/27.
- *
  */
 public class StaffViewController {
     private BorderPane rootPane;
+
+    private RoomInfoViewController roomInfoViewController;
 
     public StaffViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -33,6 +34,11 @@ public class StaffViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        roomInfoViewController = new RoomInfoViewController(rootPane);
     }
 
+    public void showRoomInfoList() {
+        roomInfoViewController.showRoomInfoList();
+    }
 }
