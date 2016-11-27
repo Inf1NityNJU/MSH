@@ -64,6 +64,7 @@ public class MainUIController {
         utilityViewController = new UtilityViewController(rootPane);
     }
 
+
     public void showStaffView() {
         staffViewController = new StaffViewController(rootPane);
     }
