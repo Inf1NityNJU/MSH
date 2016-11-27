@@ -30,5 +30,6 @@ public class Main extends Application {
         controller.setRootPane(root);
         controller.showMainView();
         controller.showManagerView();
+//        controller.showUtilView();
     }
 }
