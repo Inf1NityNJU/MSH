@@ -100,27 +100,6 @@ public class User {
     }
 
     /**
-     * 给客户增加信用记录
-     *
-     * @param clientID
-     * @param creditVO
-     * @return 增加是否成功
-     */
-    public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
-        return null;
-    }
-
-    /**
-     * 根据客户ID查找信用记录
-     *
-     * @param id
-     * @return 该客户的信用记录列表
-     */
-    public ArrayList<CreditVO> searchCreditByID(String id) {
-        return null;
-    }
-
-    /**
      * 得到某客户的总信用值
      *
      * @param clientID

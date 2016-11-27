@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="po.LevelPO">
         <id name="ID"> </id>
-        <property name="credit"/>
         <property name="level"/>
+        <property name="credit"/>
     </class>
 </hibernate-mapping>

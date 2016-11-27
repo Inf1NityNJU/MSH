@@ -2,15 +2,15 @@ package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
-import blservice.userblservice.UserBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.manager.ClientManagementCellController;
-import ui.componentcontroller.order.manager.ClientManagementListPaneController;
+import ui.componentcontroller.order.user.ClientManagementCellController;
+import ui.componentcontroller.order.user.ClientManagementSearchPaneController;
+import util.ResultMessage;
 import vo.ClientVO;
 
 import java.io.IOException;
@@ -33,6 +33,10 @@ public class ClientManagementListViewController {
     private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
     private Node[] cells = new Node[]{};
 
+    private int type;
+
+    private int currentPage;
+
     @FXML
     private VBox contentVBox;
 
@@ -45,7 +49,7 @@ public class ClientManagementListViewController {
      */
     @FXML
     public void initialize() {
-//        System.out.println("Init ClientManagementViewController");
+        currentPage = 1;
 
         //From DB
         userBLService = UserBLFactory.getUserBLServiceImpl_Client();
@@ -55,10 +59,10 @@ public class ClientManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/manager/ClientManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/ClientManagementListPane.fxml"));
             VBox pane = loader.load();
 
-            ClientManagementListPaneController controller = loader.getController();
+            ClientManagementSearchPaneController controller = loader.getController();
             controller.setClientManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);
@@ -78,6 +82,8 @@ public class ClientManagementListViewController {
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
+
+        this.type = type;
 
         //TODO
         clientVOs = userBLService.search("000");
@@ -101,7 +107,7 @@ public class ClientManagementListViewController {
             try {
                 for (int i = 0; i < tmpVO.size(); i++) {
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/ClientInfoCell.fxml"));
+                    cellLoader.setLocation(Main.class.getResource("../component/user/ClientInfoCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;
@@ -124,6 +130,10 @@ public class ClientManagementListViewController {
         }
     }
 
+    public int getType() {
+        return type;
+    }
+
     /**
      * 展示一个客户的详细信息
      *
@@ -133,4 +143,12 @@ public class ClientManagementListViewController {
         clientManagementViewController.showClientDetail(clientVO);
     }
 
+    /**
+     * 更新客户信息
+     * @param clientVO
+     * @return
+     */
+    public ResultMessage updateClient(ClientVO clientVO){
+        return userBLService.update(clientVO);
+    }
 }

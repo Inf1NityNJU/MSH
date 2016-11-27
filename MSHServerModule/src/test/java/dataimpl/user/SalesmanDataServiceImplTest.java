@@ -87,4 +87,23 @@ public class SalesmanDataServiceImplTest {
         assertEquals(exampleSalesmanPOs, salesmanPOs);
     }
 
+    @Test
+    public void addLevel() throws Exception {
+        LevelPO levelPO = new LevelPO("1",1,500);
+        ResultMessage resultMessage = userDataService.addLevel(levelPO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void updateLevel() throws Exception {
+        LevelPO levelPO = new LevelPO("1",1,700);
+        ResultMessage resultMessage = userDataService.updateLevel(levelPO.getID(), levelPO);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
+    }
+
+    @Test
+    public void deleteLevel() throws Exception {
+        ResultMessage rm = userDataService.deleteLevel("1");
+        assertEquals(ResultMessage.SUCCESS, rm);
+    }
 }

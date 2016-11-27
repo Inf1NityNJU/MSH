@@ -1,19 +1,16 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.Salesman;
 import bl.userbl.UserBLFactory;
-import bl.userbl.UserBLServiceImpl;
 import blservice.userblservice.UserBLService;
-import blservice.userblservice.UserBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.manager.SalesmanManagementCellController;
-import ui.componentcontroller.order.manager.StaffManagementCellController;
-import ui.componentcontroller.order.manager.WorkerManagementListPaneController;
+import ui.componentcontroller.order.user.SalesmanManagementCellController;
+import ui.componentcontroller.order.user.StaffManagementCellController;
+import ui.componentcontroller.order.user.WorkerManagementSearchPaneController;
 import vo.SalesmanVO;
 import vo.StaffVO;
 
@@ -36,6 +33,8 @@ public class WorkerManagementListViewController {
     private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
     private Node[] cells = new Node[]{};
 
+    private int currentPage;
+
     @FXML
     private VBox contentVBox;
 
@@ -49,15 +48,17 @@ public class WorkerManagementListViewController {
     @FXML
     public void initialize() {
 
+        currentPage = 1;
+
         staffVOs = new ArrayList<StaffVO>();
         salesmanVOs = new ArrayList<SalesmanVO>();
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/manager/WorkerManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementListPane.fxml"));
             VBox pane = loader.load();
 
-            WorkerManagementListPaneController controller = loader.getController();
+            WorkerManagementSearchPaneController controller = loader.getController();
             controller.setWorkerManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);
@@ -91,7 +92,7 @@ public class WorkerManagementListViewController {
                 for (int i = 0; i < staffVOs.size(); i++) {
 
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/StaffInfoCell.fxml"));
+                    cellLoader.setLocation(Main.class.getResource("../component/user/StaffInfoCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;
@@ -136,7 +137,7 @@ public class WorkerManagementListViewController {
                 for (int i = 0; i < salesmanVOs.size(); i++) {
 
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/SalesmanInfoCell.fxml"));
+                    cellLoader.setLocation(Main.class.getResource("../component/user/SalesmanInfoCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;
@@ -190,7 +191,7 @@ public class WorkerManagementListViewController {
                 for (int i = 0; i < staffVOs.size(); i++) {
 
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/StaffInfoCell.fxml"));
+                    cellLoader.setLocation(Main.class.getResource("../component/user/StaffInfoCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;
@@ -208,7 +209,7 @@ public class WorkerManagementListViewController {
                 for (int i = staffVOs.size(); i < staffVOs.size() + salesmanVOs.size(); i++) {
 
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/SalesmanInfoCell.fxml"));
+                    cellLoader.setLocation(Main.class.getResource("../component/user/SalesmanInfoCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;

@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import main.Main;
 import vo.SalesmanVO;
 import vo.StaffVO;
+import vo.UserVO;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -48,7 +49,7 @@ public class WorkerManagementViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/manager/WorkerManagementListView.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/user/WorkerManagementListView.fxml"));
             ScrollPane list = listLoader.load();
 
             WorkerManagementListViewController workerManagementListViewController = listLoader.getController();
@@ -72,7 +73,7 @@ public class WorkerManagementViewController {
     public void showStaffDetail(StaffVO staffVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/StaffManagementDetailView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/user/StaffManagementDetailView.fxml"));
             ScrollPane view = loader.load();
 
             StaffManagementDetailViewController staffManagementDetailViewController = loader.getController();
@@ -98,7 +99,7 @@ public class WorkerManagementViewController {
     public void showSalesmanDetail(SalesmanVO salesmanVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/SalesmanManagementDetailView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/user/SalesmanManagementDetailView.fxml"));
             ScrollPane view = loader.load();
 
             SalesmanManagementDetailViewController staffManagementDetailViewController = loader.getController();
@@ -124,7 +125,7 @@ public class WorkerManagementViewController {
     public void editStaffDetail(StaffVO staffVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/StaffManagementDetailEditView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/user/StaffManagementDetailEditView.fxml"));
             ScrollPane view = loader.load();
 
             StaffManagementDetailEditViewController staffManagementDetailEditViewController = loader.getController();
@@ -150,7 +151,7 @@ public class WorkerManagementViewController {
     public void editSalesmanDetail(SalesmanVO salesmanVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/SalesmanManagementDetailEditView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/user/SalesmanManagementDetailEditView.fxml"));
             ScrollPane view = loader.load();
 
             SalesmanManagementDetailEditViewController salesmanManagementDetailEditViewController = loader.getController();
@@ -167,4 +168,5 @@ public class WorkerManagementViewController {
             e.printStackTrace();
         }
     }
+
 }

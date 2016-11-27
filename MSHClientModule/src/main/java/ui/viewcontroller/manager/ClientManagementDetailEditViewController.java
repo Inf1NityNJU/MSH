@@ -1,10 +1,13 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import util.DateUtil;
 import vo.ClientVO;
 
 /**
@@ -13,6 +16,9 @@ import vo.ClientVO;
 public class ClientManagementDetailEditViewController {
 
     private ClientManagementViewController clientManagementViewController;
+    private ClientManagementListViewController clientManagementListViewController;
+
+    private ClientVO clientVO;
 
     @FXML
     private Label clientIDLabel;
@@ -38,11 +44,16 @@ public class ClientManagementDetailEditViewController {
     @FXML
     private RectButton creditButton;
 
+    @FXML
+    private Label levelLabel;
+
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
     }
 
     public void showClientEdit(ClientVO clientVO) {
+        this.clientVO = clientVO;
+
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
         userNameText.setText(clientVO.account);
@@ -55,6 +66,8 @@ public class ClientManagementDetailEditViewController {
             enterpriseButton.setIsActiveProperty(true);
             normalButton.setIsActiveProperty(false);
         }
+
+        levelLabel.setText("Lv." + clientVO.level);
 
     }
 
@@ -75,7 +88,14 @@ public class ClientManagementDetailEditViewController {
     }
 
     public void clickSaveButton() {
+//        System.out.println("CLIENT SAVE");
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
+        clientVO.clientName = clientNameText.getText();
+        clientVO.birthday = new DateUtil(birthdayText.getText());
+        clientVO.account = userNameText.getText();
+        userBLService.update(clientVO);
 
+        this.clickBackButton();
     }
 
 }

@@ -1,4 +1,4 @@
-package ui.componentcontroller.order.manager;
+package ui.componentcontroller.order.user;
 
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;

@@ -1,49 +1,44 @@
-package ui.componentcontroller.order.manager;
+package ui.componentcontroller.order.user;
 
 import component.rectbutton.RectButton;
-import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.manager.WorkerManagementListViewController;
-import vo.StaffVO;
+import vo.SalesmanVO;
 
 /**
  * Created by Kray on 2016/11/26.
  */
-public class StaffManagementCellController {
+public class SalesmanManagementCellController {
 
-    private StaffVO staffVO;
+    private SalesmanVO salesmanVO;
 
     private WorkerManagementListViewController workerManagementListViewController;
 
     @FXML
-    private Label staffNameLabel;
+    private Label salesmanNameLabel;
 
     @FXML
-    private Label staffIDLabel;
-
-    @FXML
-    private Label staffHotelLabel;
+    private Label salesmanIDLabel;
 
     @FXML
     private RectButton detailButton;
 
     @FXML
     public void clickDetailButton() {
-        System.out.println("Staff Detail");
+        System.out.println("Salesman Detail");
 
-        workerManagementListViewController.showStaffDetail(staffVO);
+        workerManagementListViewController.showSalesmanDetail(salesmanVO);
     }
 
     public void setWorkerManagementListViewController(WorkerManagementListViewController workerManagementListViewController) {
         this.workerManagementListViewController = workerManagementListViewController;
     }
 
-    public void setStaffVO(StaffVO staffVO) {
-        this.staffVO = staffVO;
+    public void setSalesmanVO(SalesmanVO salesmanVO) {
+        this.salesmanVO = salesmanVO;
 
-        staffNameLabel.setText(staffVO.staffName);
-        staffIDLabel.setText(staffVO.staffID);
-        staffHotelLabel.setText(staffVO.hotelID);
+        salesmanNameLabel.setText(salesmanVO.salesmanName);
+        salesmanIDLabel.setText(salesmanVO.salesmanID);
     }
 }

@@ -1,9 +1,6 @@
 package dataservice.userdataservice;
 
-import po.ClientPO;
-import po.CreditPO;
-import po.SalesmanPO;
-import po.StaffPO;
+import po.*;
 import util.CreditAction;
 import util.DateUtil;
 import util.LoginState;
@@ -199,5 +196,19 @@ public class UserDataService_Stub implements UserDataService {
         }
     }
 
+    //TODO
+    public ResultMessage addLevel(LevelPO levelPO){
+        return ResultMessage.SUCCESS;
+    }
+
+    //TODO
+    public ResultMessage updateLevel(String ID, LevelPO levelPO){
+        return ResultMessage.SUCCESS;
+    }
+
+    //TODO
+    public ResultMessage deleteLevel(String ID){
+        return ResultMessage.SUCCESS;
+    }
 
 }

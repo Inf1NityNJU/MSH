@@ -4,6 +4,7 @@ import bl.userbl.Salesman;
 import org.junit.Test;
 import util.LoginState;
 import util.ResultMessage;
+import vo.LevelVO;
 import vo.SalesmanVO;
 
 import java.util.ArrayList;
@@ -82,5 +83,17 @@ public class SalesmanTest {
             SalesmanVO tmpAsvo = asvo.get(i);
             assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
+    }
+
+    @Test
+    public void testAddLevel() throws Exception {
+        ResultMessage rm = salesman.addLevel(new LevelVO("2","1000"));
+        assertEquals(ResultMessage.SUCCESS, rm);
+    }
+
+    @Test
+    public void testDeleteLevel() throws Exception {
+        ResultMessage rm = salesman.deleteLevel("2");
+        assertEquals(ResultMessage.SUCCESS, rm);
     }
 }
