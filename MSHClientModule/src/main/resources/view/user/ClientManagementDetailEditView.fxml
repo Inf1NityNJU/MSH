@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -104,22 +104,11 @@
                                           <Font name="PingFang SC Regular" size="16.0" />
                                       </font>
                                   </Label>
-                        <TextField fx:id="accountText" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font></TextField>
-                        <TextField fx:id="clientNameText" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font></TextField>
-                        <TextField fx:id="birthdayText" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font></TextField>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <StateButton fx:id="normalButton" colorProperty="12B7F3" onMouseClicked="#clickNormalButton" text="普通会员" />
                               <StateButton fx:id="enterpriseButton" colorProperty="BC52FD" onMouseClicked="#clickEnterpriseButton" text="企业会员" />
+                              <CommonTextField fx:id="enterpriseText" />
                            </children>
                         </HBox>
                         <Label fx:id="levelLabel" text="Lv." textFill="#00cccc" GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -127,6 +116,9 @@
                               <Font name="Bangla MN" size="14.0" />
                            </font>
                         </Label>
+                        <CommonTextField fx:id="accountText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CommonTextField fx:id="clientNameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CommonTextField fx:id="birthdayText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

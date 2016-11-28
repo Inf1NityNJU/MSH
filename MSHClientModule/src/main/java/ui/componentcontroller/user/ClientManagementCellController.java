@@ -1,5 +1,6 @@
 package ui.componentcontroller.user;
 
+import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -15,6 +16,9 @@ public class ClientManagementCellController {
     private ClientVO clientVO;
 
     private ClientManagementListViewController clientManagementListViewController;
+
+    @FXML
+    private CircleImage avatarImage;
 
     @FXML
     private Label clientNameLabel;

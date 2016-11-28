@@ -59,7 +59,7 @@ public class ClientManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/user/ClientManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/ClientManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
             ClientManagementSearchPaneController controller = loader.getController();

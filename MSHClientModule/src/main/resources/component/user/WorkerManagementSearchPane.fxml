@@ -22,11 +22,16 @@
                 <StateButton fx:id="allButton" colorProperty="F8E71C" onMouseClicked="#showAllWorkers" text="全部" />
                 <StateButton fx:id="staffButton" colorProperty="12B7F3" onMouseClicked="#showStaff" text="酒店工作人员" />
                 <StateButton fx:id="salesmanButton" colorProperty="BC52FD" onMouseClicked="#showSalesman" text="网站营销人员" />
-            <CircleButton fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#addWorker">
-               <HBox.margin>
-                  <Insets left="600.0" />
-               </HBox.margin>
-            </CircleButton>
+                <CircleButton fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" typeProperty="Search">
+                   <HBox.margin>
+                      <Insets left="550.0" />
+                   </HBox.margin>
+                </CircleButton>
+                <CircleButton fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#addWorker" typeProperty="Add">
+                   <HBox.margin>
+                      <Insets left="10.0" />
+                   </HBox.margin>
+                </CircleButton>
             </children>
         </HBox>
     </children>
