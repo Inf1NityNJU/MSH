@@ -29,8 +29,6 @@ public class StaffManagementCellController {
 
     @FXML
     public void clickDetailButton() {
-        System.out.println("Staff Detail");
-
         workerManagementListViewController.showStaffDetail(staffVO);
     }
 

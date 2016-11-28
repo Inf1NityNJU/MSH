@@ -57,7 +57,7 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                        <Label fx:id="userNameLabel" text="songkuixi" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Label fx:id="accountLabel" text="songkuixi" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>

@@ -27,7 +27,7 @@ public class ClientManagementDetailEditViewController {
     private TextField clientNameText;
 
     @FXML
-    private TextField userNameText;
+    private TextField accountText;
 
     @FXML
     private StateButton normalButton;
@@ -56,7 +56,7 @@ public class ClientManagementDetailEditViewController {
 
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
-        userNameText.setText(clientVO.account);
+        accountText.setText(clientVO.account);
         birthdayText.setText(clientVO.birthday.toString());
 
         if (clientVO.enterprise.equals("")) {
@@ -88,12 +88,14 @@ public class ClientManagementDetailEditViewController {
     }
 
     public void clickSaveButton() {
-//        System.out.println("CLIENT SAVE");
+        System.out.println("CLIENT SAVE");
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
         clientVO.birthday = new DateUtil(birthdayText.getText());
-        clientVO.account = userNameText.getText();
+        clientVO.account = accountText.getText();
         userBLService.update(clientVO);
+
+        System.out.println(clientVO.account);
 
         this.clickBackButton();
     }

@@ -49,6 +49,11 @@ public class WorkerManagementSearchPaneController {
         workerManagementListViewController.showSalesman();
     }
 
+    @FXML
+    public void addWorker() {
+         workerManagementListViewController.addWorker();
+    }
+
     private void setButtonsInactive() {
         for (StateButton button : buttons) {
             button.setIsActiveProperty(false);

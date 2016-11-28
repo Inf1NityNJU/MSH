@@ -59,7 +59,7 @@ public class SalesmanDataServiceImplTest {
 
     @Test
     public void searchSalesmanByID() throws Exception {
-        SalesmanPO examplePO = new SalesmanPO("100001", "KrayC", "adminSalesman", "password");
+        SalesmanPO examplePO = new SalesmanPO("100001", "songkuixi", "adminSalesman", "password");
         SalesmanPO salesmanPO = userDataService.searchSalesmanByID("100001");
         assertTrue(salesmanPO.equals(examplePO));
     }
