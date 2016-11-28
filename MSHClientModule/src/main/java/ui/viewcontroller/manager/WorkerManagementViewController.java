@@ -171,7 +171,6 @@ public class WorkerManagementViewController {
      * 增加工作人员
      */
     public void addWorker(){
-        System.out.println("ADD WORKER");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/user/WorkerManagementAddView.fxml"));

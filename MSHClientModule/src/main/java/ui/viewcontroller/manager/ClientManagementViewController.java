@@ -38,6 +38,7 @@ public class ClientManagementViewController {
         if (!stack.empty()) {
             Node node = stack.pop();
             rootPane.setCenter(node);
+
         }
     }
 
@@ -129,7 +130,6 @@ public class ClientManagementViewController {
             resetPasswordViewController = loader.getController();
             resetPasswordViewController.setClientManagementViewController(this);
             resetPasswordViewController.setAccountAndID(account, ID);
-
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

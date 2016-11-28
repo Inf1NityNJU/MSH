@@ -79,8 +79,7 @@ public class WorkerManagementListViewController {
         }
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-        //TODO
-        staffVOs = userBLService.search("3");
+        staffVOs = userBLService.search("");
 
         if (staffVOs.size() > 0) {
 
@@ -125,7 +124,7 @@ public class WorkerManagementListViewController {
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         //TODO
-        salesmanVOs = userBLService.search("1");
+        salesmanVOs = userBLService.search("");
 
         if (salesmanVOs.size() > 0) {
 
@@ -172,11 +171,11 @@ public class WorkerManagementListViewController {
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
         //TODO
-        staffVOs = userBLService.search("3");
+        staffVOs = userBLService.search("");
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         //TODO
-        salesmanVOs = userBLService.search("1");
+        salesmanVOs = userBLService.search("");
 
         if (staffVOs.size() + salesmanVOs.size() > 0) {
 
