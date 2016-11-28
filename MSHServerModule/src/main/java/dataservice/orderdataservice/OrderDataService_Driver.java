@@ -20,7 +20,7 @@ public class OrderDataService_Driver {
             System.out.print("Add Order Failed");
         }
 
-        rm = orderDataService.updateOrder("20161012010112340000", new OrderPO("20161012010112340000", "01011234", "000000001",
+        rm = orderDataService.updateOrder(new OrderPO("20161012010112340000", "01011234", "000000001",
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 null, null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Unexecuted, null, 1, null, 1, 300, 280));
         if (rm == ResultMessage.SUCCESS) {

@@ -8,6 +8,11 @@ import util.RoomType;
 public class OrderRoomPO {
 
     /**
+     * ID
+     */
+    private String ID;
+
+    /**
      * 订单ID
      */
     private String orderID;
@@ -26,6 +31,14 @@ public class OrderRoomPO {
      * 价格
      */
     private double price;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getOrderID() {
         return orderID;
@@ -59,10 +72,19 @@ public class OrderRoomPO {
         this.price = price;
     }
 
+    public OrderRoomPO() {
+
+    }
+
     public OrderRoomPO(String orderID, RoomType roomType, int quantity, double price) {
         this.orderID = orderID;
         this.roomType = roomType;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public OrderRoomPO(String ID, String orderID, RoomType roomType, int quantity, double price) {
+        this(orderID, roomType, quantity, price);
+        this.ID = ID;
     }
 }
