@@ -94,7 +94,7 @@ public class Client extends User {
         ClientVO clientVO = (ClientVO) userVO;
         ClientPO tmpPO = userDataService.searchClientByID(clientVO.clientID);
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, tmpPO.getAccount(), tmpPO.getPassword());
+                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, tmpPO.getPassword());
         return userDataService.updateClient(clientVO.clientID, clientPO);
     }
 
@@ -115,9 +115,8 @@ public class Client extends User {
      * @return 符合关键词的所有客户
      */
     public ArrayList<ClientVO> search(String keyword) {
-
-        ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
-//        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
+//        ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
+        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
         for (ClientPO clientPO : clientPOs) {
             clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),

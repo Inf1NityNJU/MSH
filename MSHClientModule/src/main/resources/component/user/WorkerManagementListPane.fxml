@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.circlebutton.CircleButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
@@ -18,9 +19,14 @@
         <TitleLabel text="工作人员列表" />
         <HBox spacing="10.0">
             <children>
-                <StateButton fx:id="allButton" colorProperty="F8E71C" text="全部" onMouseClicked="#showAllWorkers" />
-                <StateButton fx:id="staffButton" colorProperty="12B7F3" text="酒店工作人员" onMouseClicked="#showStaff" />
-                <StateButton fx:id="salesmanButton" colorProperty="BC52FD" text="网站营销人员" onMouseClicked="#showSalesman" />
+                <StateButton fx:id="allButton" colorProperty="F8E71C" onMouseClicked="#showAllWorkers" text="全部" />
+                <StateButton fx:id="staffButton" colorProperty="12B7F3" onMouseClicked="#showStaff" text="酒店工作人员" />
+                <StateButton fx:id="salesmanButton" colorProperty="BC52FD" onMouseClicked="#showSalesman" text="网站营销人员" />
+            <CircleButton fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#addWorker">
+               <HBox.margin>
+                  <Insets left="600.0" />
+               </HBox.margin>
+            </CircleButton>
             </children>
         </HBox>
     </children>

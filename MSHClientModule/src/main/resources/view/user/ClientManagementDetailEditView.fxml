@@ -104,7 +104,7 @@
                                           <Font name="PingFang SC Regular" size="16.0" />
                                       </font>
                                   </Label>
-                        <TextField fx:id="userNameText" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="accountText" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font></TextField>

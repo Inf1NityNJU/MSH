@@ -26,8 +26,6 @@ public class SalesmanManagementCellController {
 
     @FXML
     public void clickDetailButton() {
-        System.out.println("Salesman Detail");
-
         workerManagementListViewController.showSalesmanDetail(salesmanVO);
     }
 

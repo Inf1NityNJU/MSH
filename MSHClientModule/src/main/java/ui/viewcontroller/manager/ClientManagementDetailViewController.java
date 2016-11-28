@@ -21,7 +21,7 @@ public class ClientManagementDetailViewController {
     private Label clientNameLabel;
 
     @FXML
-    private Label userNameLabel;
+    private Label accountLabel;
 
     @FXML
     private RectButton passwordButton;
@@ -56,7 +56,7 @@ public class ClientManagementDetailViewController {
 
         clientIDLabel.setText(clientVO.clientID);
         clientNameLabel.setText(clientVO.clientName);
-        userNameLabel.setText(clientVO.account);
+        accountLabel.setText(clientVO.account);
 
         if (clientVO.enterprise.equals("")) {
             typeLabel.setText("普通会员");

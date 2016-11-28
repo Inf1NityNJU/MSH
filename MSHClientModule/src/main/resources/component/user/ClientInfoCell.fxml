@@ -38,7 +38,7 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-                <Label fx:id="userNameLabel" layoutX="10.0" layoutY="10.0" text="songkuixi" textFill="GREY" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="70.0">
+                <Label fx:id="accountLabel" layoutX="10.0" layoutY="10.0" text="songkuixi" textFill="GREY" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="70.0">
                     <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                     </font>
