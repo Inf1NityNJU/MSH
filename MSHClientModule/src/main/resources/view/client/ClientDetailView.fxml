@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import component.commontextfield.CommonTextField?>
 <?import component.rectbutton.RectButton?>
-<?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
@@ -16,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.ClientManagementDetailEditViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientDetailViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -59,66 +57,112 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label text="昵称" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                <Label text="会员类型" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                <Label text="生日" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                                  <Label fx:id="creditLabel" text="信用值" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                      <font>
-                                          <Font name="PingFang SC Regular" size="16.0" />
-                                      </font>
-                                  </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <StateButton fx:id="normalButton" colorProperty="12B7F3" onMouseClicked="#clickNormalButton" text="普通会员" />
-                              <StateButton fx:id="enterpriseButton" colorProperty="BC52FD" onMouseClicked="#clickEnterpriseButton" text="企业会员" />
-                              <CommonTextField fx:id="enterpriseText" />
-                           </children>
-                        </HBox>
-                        <Label fx:id="levelLabel" text="Lv." textFill="#00cccc" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="accountLabel" text="songkuixi" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
-                              <Font name="Bangla MN" size="14.0" />
+                              <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <CommonTextField fx:id="accountText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <CommonTextField fx:id="clientNameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <CommonTextField fx:id="birthdayText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="密码" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="昵称" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="会员类型" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="生日" textFill="#cccccc" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                        <Label fx:id="clientNameLabel" text="krayc" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="PingFang SC Regular" size="16.0" />
+                           </font>
+                        </Label>
+                                <Label fx:id="typeLabel" text="普通会员" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="birthdayLabel" text="生日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                           <children>
+                              <Label fx:id="creditLabel" text="信用值" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <RectButton fx:id="creditButton" sizeProperty="Small" text="信用记录" />
+                           </children>
+                        </HBox>
+                        <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" sizeProperty="Small" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <children>
+                              <Label fx:id="currentLevelLabel" text="Label" textFill="#00cccc">
+                                 <font>
+                                    <Font name="Bangla MN" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="还差">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="deltaCreditLabel" text="Label" textAlignment="CENTER" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label text="信用值升">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="nextLevelLabel" text="Label" textFill="#00cccc">
+                                 <font>
+                                    <Font name="Bangla MN" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
@@ -128,15 +172,16 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
+                                <RowConstraints />
                             </rowConstraints>
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                                <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="取 消" />
-                                <RectButton minHeight="40.0" onMouseClicked="#clickSaveButton" text="保 存" />
+                                <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
+                                <RectButton minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
                             </buttons>
                         </ButtonBar>
                     </children>

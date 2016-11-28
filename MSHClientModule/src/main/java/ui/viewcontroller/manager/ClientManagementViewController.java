@@ -1,13 +1,12 @@
 package ui.viewcontroller.manager;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import main.Main;
-import util.ResultMessage;
+import ui.viewcontroller.client.ClientDetailEditViewController;
+import ui.viewcontroller.client.ClientDetailViewController;
 import vo.ClientVO;
 
 import java.io.IOException;
@@ -21,8 +20,8 @@ public class ClientManagementViewController {
     private BorderPane rootPane;
 
     private ClientManagementListViewController clientManagementListViewController;
-    private ClientManagementDetailViewController clientManagementDetailViewController;
-    private ClientManagementDetailEditViewController clientManagementDetailEditViewController;
+    private ClientDetailViewController clientDetailViewController;
+    private ClientDetailEditViewController clientDetailEditViewController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -76,12 +75,12 @@ public class ClientManagementViewController {
     public void showClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/user/ClientManagementDetailView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/client/ClientDetailView.fxml"));
             ScrollPane view = loader.load();
 
-            clientManagementDetailViewController = loader.getController();
-            clientManagementDetailViewController.setClientManagementViewController(this);
-            clientManagementDetailViewController.showClient(clientVO);
+            clientDetailViewController = loader.getController();
+            clientDetailViewController.setClientManagementViewController(this);
+            clientDetailViewController.showClient(clientVO);
 
 //            stack.push(view);
             Node node = rootPane.getCenter();
@@ -102,12 +101,12 @@ public class ClientManagementViewController {
     public void editClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/user/ClientManagementDetailEditView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/client/ClientDetailEditView.fxml"));
             ScrollPane view = loader.load();
 
-            clientManagementDetailEditViewController = loader.getController();
-            clientManagementDetailEditViewController.setClientManagementViewController(this);
-            clientManagementDetailEditViewController.showClientEdit(clientVO);
+            clientDetailEditViewController = loader.getController();
+            clientDetailEditViewController.setClientManagementViewController(this);
+            clientDetailEditViewController.showClientEdit(clientVO);
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

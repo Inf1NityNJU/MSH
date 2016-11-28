@@ -1,4 +1,4 @@
-package ui.viewcontroller.manager;
+package ui.viewcontroller.client;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
@@ -8,13 +8,15 @@ import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import ui.viewcontroller.manager.ClientManagementListViewController;
+import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import vo.ClientVO;
 
 /**
  * Created by Kray on 2016/11/27.
  */
-public class ClientManagementDetailEditViewController {
+public class ClientDetailEditViewController {
 
     private ClientManagementViewController clientManagementViewController;
     private ClientManagementListViewController clientManagementListViewController;

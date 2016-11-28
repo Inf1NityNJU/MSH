@@ -61,8 +61,14 @@ public class WorkerManagementAddViewController {
     public void clickSaveButton() {
         if (staffButton.getIsActiveProperty()) {
             //存酒店工作人员
+            if(accountText.getText().equals("") || hotelChoiceBox.getValue() == null){
+                System.out.println("Not complete");
+            }
         } else {
             //存网站营销人员
+            if(accountText.getText().equals("")){
+                System.out.println("Not complete");
+            }
         }
     }
 
