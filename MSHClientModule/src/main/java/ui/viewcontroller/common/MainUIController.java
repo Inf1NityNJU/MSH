@@ -4,13 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import main.Main;
-import ui.viewcontroller.client.ClientNavbarController;
 import ui.viewcontroller.client.ClientViewController;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import ui.viewcontroller.manager.ManagerViewController;
 import ui.viewcontroller.salesman.SalesmanViewController;
+import ui.viewcontroller.utility.LoginViewController;
+import ui.viewcontroller.utility.UtilityViewController;
+import ui.viewcontroller.staff.StaffViewController;
+
 
 import java.io.IOException;
 
@@ -26,6 +27,11 @@ public class MainUIController {
     private ManagerViewController managerViewController;
 
     private SalesmanViewController salesmanViewController;
+
+    private UtilityViewController utilityViewController;
+
+    private StaffViewController staffViewController;
+
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -58,8 +64,19 @@ public class MainUIController {
         managerViewController = new ManagerViewController(rootPane);
     }
 
+
     public void showSalesmanView() {
         salesmanViewController = new SalesmanViewController(rootPane);
+    }
+
+    public void showUtilView() {
+        utilityViewController = new UtilityViewController(rootPane);
+    }
+
+
+    public void showStaffView() {
+        staffViewController = new StaffViewController(rootPane);
+
     }
 
 }

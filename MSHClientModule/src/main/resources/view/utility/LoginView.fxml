@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.rectbutton.RectButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #EEEEEE;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.utility.LoginViewController">
+   <center>
+      <VBox alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" spacing="100.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="用户名">
+                     <font>
+                        <Font name="PingFang SC Regular" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="accountText" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="488.0">
+                     <font>
+                        <Font name="PingFang SC Regular" size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="密码   ">
+                     <font>
+                        <Font name="PingFang SC Regular" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="passwordText" prefHeight="51.0" prefWidth="488.0">
+                     <font>
+                        <Font name="PingFang SC Regular" size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+               <children>
+                  <RectButton isActiveProperty="false" text="注 册">
+                     <font>
+                        <Font name="PingFang SC Regular" size="24.0" />
+                     </font>
+                  </RectButton>
+                  <RectButton isActiveProperty="true" text="登 录" onMouseClicked="#clickLoginButton">
+                     <font>
+                        <Font name="PingFang SC Regular" size="24.0" />
+                     </font>
+                  </RectButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

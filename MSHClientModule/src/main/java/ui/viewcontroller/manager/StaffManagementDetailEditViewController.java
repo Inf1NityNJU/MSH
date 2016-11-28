@@ -1,5 +1,8 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
+import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,7 +22,7 @@ public class StaffManagementDetailEditViewController {
     private Label staffIDLabel;
 
     @FXML
-    private TextField staffNameText;
+    private CommonTextField staffNameText;
 
     @FXML
     private Label hotelNameLabel;
@@ -40,7 +43,11 @@ public class StaffManagementDetailEditViewController {
 
     //TODO
     public void clickSaveButton() {
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
+        staffVO.staffName = staffNameText.getText();
+        userBLService.update(staffVO);
 
+        this.clickBackButton();
     }
 
     public void showStaffEdit(StaffVO staffVO) {

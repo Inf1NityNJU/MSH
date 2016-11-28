@@ -1,6 +1,5 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.Salesman;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -156,6 +155,54 @@ public class WorkerManagementViewController {
             SalesmanManagementDetailEditViewController salesmanManagementDetailEditViewController = loader.getController();
             salesmanManagementDetailEditViewController.setWorkerManagementViewController(this);
             salesmanManagementDetailEditViewController.showSalesmanEdit(salesmanVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 增加工作人员
+     */
+    public void addWorker(){
+        System.out.println("ADD WORKER");
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/user/WorkerManagementAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            WorkerManagementAddViewController workerManagementAddViewController = loader.getController();
+            workerManagementAddViewController.setWorkerManagementViewController(this);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改密码
+     * @param workerAccount
+     */
+    public void resetPassword(String workerAccount, String workerID){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
+            ScrollPane view = loader.load();
+
+            ResetPasswordViewController resetPasswordViewController = loader.getController();
+            resetPasswordViewController.setWorkerManagementViewController(this);
+            resetPasswordViewController.setAccountAndID(workerAccount, workerID);
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

@@ -1,12 +1,13 @@
 package bl.userbl;
 
-import network.UserClientHelper;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
+import network.UserClientNetworkImpl;
 import po.ClientPO;
 import po.CreditPO;
 import util.DateUtil;
 import util.LoginState;
+import util.ResetState;
 import util.ResultMessage;
 import vo.*;
 
@@ -21,14 +22,14 @@ public class Client extends User {
 
     private UserDataService userDataService;
 
-    private UserClientHelper userClientHelper;
+    private UserClientNetworkImpl userClientNetwork;
 
     private String account;
     private String password;
 
     public Client() {
         this.userDataService = UserDataServiceFactory.getClientDataService();
-        this.userClientHelper = new UserClientHelper();
+        this.userClientNetwork = new UserClientNetworkImpl();
     }
 
     /**
@@ -51,6 +52,22 @@ public class Client extends User {
     }
 
     /**
+     * 修改密码
+     *
+     * @param account
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public ResetState resetPassword(String account, String oldPassword, String newPassword) {
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResetState.RESET_SUCCESS;
+        } else {
+            return ResetState.RESET_FAIL;
+        }
+    }
+
+    /**
      * 添加客户
      *
      * @param userVO
@@ -61,7 +78,7 @@ public class Client extends User {
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
         return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
-//        return userClientHelper.addClient(clientPO, new CreditPO(clientVO.clientID));
+//        return userClientNetwork.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
     /**
@@ -71,7 +88,7 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
-//        ClientPO clientPO = userClientHelper.searchClientByID(clientID);
+//        ClientPO clientPO = userClientNetwork.searchClientByID(clientID);
         ClientPO clientPO = userDataService.searchClientByID(clientID);
 
         if (clientPO == null) {
@@ -92,8 +109,9 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
+        ClientPO tmpPO = userDataService.searchClientByID(clientVO.clientID);
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
-                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, account, password);
+                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, tmpPO.getPassword());
         return userDataService.updateClient(clientVO.clientID, clientPO);
     }
 
@@ -114,6 +132,7 @@ public class Client extends User {
      * @return 符合关键词的所有客户
      */
     public ArrayList<ClientVO> search(String keyword) {
+//        ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
         ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
         for (ClientPO clientPO : clientPOs) {

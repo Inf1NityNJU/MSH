@@ -50,7 +50,7 @@ public class HotelMockTest {
     }
 
     @Test
-    public void testUpdateHotelRoomInfo() {
+    public void testUpdateHotelInfo() {
         ResultMessage resultMessage = hotel.updateHotel(TEST_HOTEL_DETAIL_VO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }

@@ -45,9 +45,9 @@ public class UserBLTest {
         System.out.println("--LOGIN--");
         if (userBLService.login("adminSalesman", "password4") == LoginState.LOGIN_SUCCESS_Salesman) {
             System.out.println("--ADD--");
-            userBLService.add(new SalesmanVO("100006", "SONG KUI XI"));
+            userBLService.add(new SalesmanVO("100006", "SONG KUI XI", "adminSalesman1"));
             System.out.println("--UPDATE--");
-            userBLService.update(new SalesmanVO("100006", "SONG KUI XI 2"));
+            userBLService.update(new SalesmanVO("100006", "SONG KUI XI 2", "adminSalesman2"));
             System.out.println("--SEARCH ID--");
             SalesmanVO salesmanVO = (SalesmanVO) userBLService.searchByID("100006");
             System.out.println("ID   :" + salesmanVO.salesmanID);

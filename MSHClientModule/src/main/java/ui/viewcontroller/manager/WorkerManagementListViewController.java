@@ -8,9 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.user.SalesmanManagementCellController;
-import ui.componentcontroller.order.user.StaffManagementCellController;
-import ui.componentcontroller.order.user.WorkerManagementListPaneController;
+import ui.componentcontroller.user.SalesmanManagementCellController;
+import ui.componentcontroller.user.StaffManagementCellController;
+import ui.componentcontroller.user.WorkerManagementSearchPaneController;
 import vo.SalesmanVO;
 import vo.StaffVO;
 
@@ -47,7 +47,6 @@ public class WorkerManagementListViewController {
      */
     @FXML
     public void initialize() {
-
         currentPage = 1;
 
         staffVOs = new ArrayList<StaffVO>();
@@ -55,10 +54,10 @@ public class WorkerManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
-            WorkerManagementListPaneController controller = loader.getController();
+            WorkerManagementSearchPaneController controller = loader.getController();
             controller.setWorkerManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);
@@ -166,7 +165,7 @@ public class WorkerManagementListViewController {
     /**
      * 展示所有工作人员
      */
-    public void showAllWorkers(){
+    public void showAllWorkers() {
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
@@ -235,17 +234,26 @@ public class WorkerManagementListViewController {
 
     /**
      * 展示酒店工作人员详细信息
+     *
      * @param staffVO
      */
-    public void showStaffDetail(StaffVO staffVO){
+    public void showStaffDetail(StaffVO staffVO) {
         workerManagementViewController.showStaffDetail(staffVO);
     }
 
     /**
      * 展示网站营销人员详细信息
+     *
      * @param salesmanVO
      */
-    public void showSalesmanDetail(SalesmanVO salesmanVO){
+    public void showSalesmanDetail(SalesmanVO salesmanVO) {
         workerManagementViewController.showSalesmanDetail(salesmanVO);
+    }
+
+    /**
+     * 添加工作人员
+     */
+    public void addWorker() {
+        workerManagementViewController.addWorker();
     }
 }

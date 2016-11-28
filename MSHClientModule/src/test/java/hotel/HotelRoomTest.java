@@ -3,6 +3,7 @@ package hotel;
 import bl.hotelbl.HotelBLFactory;
 import bl.hotelbl.HotelRoom;
 import blservice.hotelblservice.HotelBLService;
+import org.junit.Ignore;
 import org.junit.Test;
 import util.DateUtil;
 import util.ResultMessage;
@@ -20,14 +21,14 @@ import static org.junit.Assert.*;
 public class HotelRoomTest {
     private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
 
-    @Test
+    @Ignore
     public void getRoom() throws Exception {
         ArrayList<HotelRoomVO> hotelRoomVOs = hotelBLService.getRoom("00000001");
         assertEquals(2, hotelRoomVOs.size());
         assertEquals(10, hotelRoomVOs.get(0).roomStockVOs.get(0).availableQuantity);
     }
 
-    @Test
+    @Ignore
     public void updateHotelRoom() throws Exception {
         HotelRoomVO hotelRoomVO = new HotelRoomVO("00000000", RoomType.DoubleDouble, 488.8, 50, null);
         ResultMessage resultMessage = hotelBLService.updateHotelRoom(hotelRoomVO);
@@ -54,14 +55,14 @@ public class HotelRoomTest {
         assertEquals(ResultMessage.INSUFFICIENT, resultMessage);
     }
 
-    @Test
+    @Ignore
     public void addRoom() throws Exception {
         HotelRoomVO hotelRoomVO = new HotelRoomVO("00000001", RoomType.SingleRoom,320, 10, null);
         ResultMessage resultMessage = hotelBLService.addRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
-    @Test
+    @Ignore
     public void deleteHotelRoom() throws Exception {
         ResultMessage resultMessage = hotelBLService.deleteHotelRoom("00000000", RoomType.DoubleDouble);
         assertEquals(ResultMessage.INVALID, resultMessage);

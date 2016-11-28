@@ -4,6 +4,7 @@ import po.*;
 import util.LoginState;
 import util.ResultMessage;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 

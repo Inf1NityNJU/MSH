@@ -7,6 +7,7 @@ import po.*;
 import util.LoginState;
 import util.ResultMessage;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -135,14 +136,8 @@ public class UserDataServiceImpl implements UserDataService {
                                     clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
                                     clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
                                     clientPO.getAccount(), newPassword));
-                        } else {
-                            return ResultMessage.FAILED;
                         }
-                    } else {
-                        return ResultMessage.FAILED;
                     }
-                } else {
-                    return ResultMessage.FAILED;
                 }
             } else if (staffDataHelper != null) {
                 if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
@@ -152,14 +147,8 @@ public class UserDataServiceImpl implements UserDataService {
                             StaffPO staffPO = (StaffPO) tmpUserPO;
                             return updateStaff(staffPO.getStaffID(), new StaffPO(staffPO.getStaffID(), staffPO.getStaffName(),
                                     staffPO.getHotelID(), staffPO.getAccount(), newPassword));
-                        } else {
-                            return ResultMessage.FAILED;
                         }
-                    } else {
-                        return ResultMessage.FAILED;
                     }
-                } else {
-                    return ResultMessage.FAILED;
                 }
             } else if (salesmanDataHelper != null) {
                 if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
@@ -169,18 +158,11 @@ public class UserDataServiceImpl implements UserDataService {
                             SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;
                             return updateSalesman(salesmanPO.getSalesmanID(), new SalesmanPO(salesmanPO.getSalesmanID(),
                                     salesmanPO.getSalesmanName(), salesmanPO.getAccount(), newPassword));
-                        } else {
-                            return ResultMessage.FAILED;
                         }
-                    } else {
-                        return ResultMessage.FAILED;
                     }
-                } else {
-                    return ResultMessage.FAILED;
                 }
-            } else {
-                return ResultMessage.FAILED;
             }
+            return ResultMessage.FAILED;
         }
     }
 
@@ -421,7 +403,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param levelPO
      * @return
      */
-    public ResultMessage addLevel(LevelPO levelPO){
+    public ResultMessage addLevel(LevelPO levelPO) {
         return levelDataHelper.save(levelPO);
     }
 
@@ -432,7 +414,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param levelPO
      * @return
      */
-    public ResultMessage updateLevel(String ID, LevelPO levelPO){
+    public ResultMessage updateLevel(String ID, LevelPO levelPO) {
         return levelDataHelper.update(levelPO);
     }
 
@@ -442,7 +424,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param ID
      * @return
      */
-    public ResultMessage deleteLevel(String ID){
+    public ResultMessage deleteLevel(String ID) {
         return levelDataHelper.delete("ID", ID);
     }
 

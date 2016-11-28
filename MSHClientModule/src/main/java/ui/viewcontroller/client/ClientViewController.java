@@ -1,15 +1,11 @@
 package ui.viewcontroller.client;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
-import vo.OrderVO;
 
 import java.io.IOException;
-import java.util.Stack;
 
 /**
  * Created by Sorumi on 16/11/22.
@@ -19,6 +15,7 @@ public class ClientViewController {
     private BorderPane rootPane;
 
     private ClientOrderViewController clientOrderViewController;
+    private ClientSearchHotelViewController clientSearchHotelViewController;
 
     public ClientViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -37,6 +34,7 @@ public class ClientViewController {
         }
 
         clientOrderViewController = new ClientOrderViewController(rootPane);
+        clientSearchHotelViewController = new ClientSearchHotelViewController(rootPane);
     }
 
     public void showClientOrder() {
@@ -44,5 +42,8 @@ public class ClientViewController {
         clientOrderViewController.showClientOrderList();
     }
 
+    public void showHotelSearch() {
+        clientSearchHotelViewController.showClientHotelList();
+    }
 
 }

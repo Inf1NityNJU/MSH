@@ -28,37 +28,37 @@ public class OrderPO {
     /**
      * 预计入住日期
      */
-    private DateUtil checkInDate;
+    private String  checkInDate;
 
     /**
      * 预计退房日期
      */
-    private DateUtil checkOutDate;
+    private String checkOutDate;
 
     /**
      * 实际入住时间
      */
-    private TimeUtil checkInTime;
+    private String checkInTime;
 
     /**
      * 实际退房时间
      */
-    private TimeUtil checkOutTime;
+    private String checkOutTime;
 
     /**
      * 预定时间
      */
-    private TimeUtil bookedTime;
+    private String bookedTime;
 
     /**
      * 撤销时间
      */
-    private TimeUtil cancelledTime;
+    private String cancelledTime;
 
     /**
      * 最晚执行时间
      */
-    private TimeUtil latestExecuteTime;
+    private String latestExecuteTime;
 
     /**
      * 人数
@@ -129,59 +129,59 @@ public class OrderPO {
         this.clientID = clientID;
     }
 
-    public DateUtil getCheckInDate() {
+    public String getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(DateUtil checkInDate) {
+    public void setCheckInDate(String checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public DateUtil getCheckOutDate() {
+    public String getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(DateUtil checkOutDate) {
+    public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
-    public TimeUtil getCheckInTime() {
+    public String getCheckInTime() {
         return checkInTime;
     }
 
-    public void setCheckInTime(TimeUtil checkInTime) {
+    public void setCheckInTime(String checkInTime) {
         this.checkInTime = checkInTime;
     }
 
-    public TimeUtil getCheckOutTime() {
+    public String getCheckOutTime() {
         return checkOutTime;
     }
 
-    public void setCheckOutTime(TimeUtil checkOutTime) {
+    public void setCheckOutTime(String checkOutTime) {
         this.checkOutTime = checkOutTime;
     }
 
-    public TimeUtil getBookedTime() {
+    public String getBookedTime() {
         return bookedTime;
     }
 
-    public void setBookedTime(TimeUtil bookedTime) {
+    public void setBookedTime(String bookedTime) {
         this.bookedTime = bookedTime;
     }
 
-    public TimeUtil getCancelledTime() {
+    public String getCancelledTime() {
         return cancelledTime;
     }
 
-    public void setCancelledTime(TimeUtil cancelledTime) {
+    public void setCancelledTime(String cancelledTime) {
         this.cancelledTime = cancelledTime;
     }
 
-    public TimeUtil getLatestExecuteTime() {
+    public String getLatestExecuteTime() {
         return latestExecuteTime;
     }
 
-    public void setLatestExecuteTime(TimeUtil latestExecuteTime) {
+    public void setLatestExecuteTime(String latestExecuteTime) {
         this.latestExecuteTime = latestExecuteTime;
     }
 
@@ -257,6 +257,10 @@ public class OrderPO {
         this.totalPrice = totalPrice;
     }
 
+    public OrderPO() {
+
+    }
+
     public OrderPO(String orderID, String hotelID, String clientID, DateUtil checkInDate, DateUtil checkOutDate,
                    TimeUtil checkInTime, TimeUtil checkOutTime, TimeUtil bookedTime, TimeUtil cancelledTime, TimeUtil latestExecuteTime,
                    int peopleQuantity, boolean hasChildren, OrderState state,
@@ -266,15 +270,15 @@ public class OrderPO {
         this.hotelID = hotelID;
         this.clientID = clientID;
 
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.checkInTime = checkInTime;
-        this.checkOutTime = checkOutTime;
+        this.checkInDate = checkInDate.toString();
+        this.checkOutDate = checkOutDate.toString();
+        this.checkInTime = checkInTime != null ? checkInTime.toString() : "";
+        this.checkOutTime = checkOutTime != null ? checkOutTime.toString() : "";
 
-        this.bookedTime = bookedTime;
-        this.cancelledTime = cancelledTime;
+        this.bookedTime = bookedTime.toString();
+        this.cancelledTime = cancelledTime != null ? cancelledTime.toString() : "";
 
-        this.latestExecuteTime = latestExecuteTime;
+        this.latestExecuteTime = latestExecuteTime.toString();
         this.peopleQuantity = peopleQuantity;
         this.hasChildren = hasChildren;
 
@@ -285,5 +289,19 @@ public class OrderPO {
         this.hotelPromotionDiscount = hotelPromotionDiscount;
         this.originPrice = originPrice;
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof OrderPO) {
+            OrderPO orderPO = (OrderPO) o;
+            return orderPO.getOrderID().equals(orderID);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return orderID.hashCode();
     }
 }

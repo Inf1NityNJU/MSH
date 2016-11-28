@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.rectbutton.RectButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -44,7 +44,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="用户名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Label text="姓名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -57,10 +57,7 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="salesmanNameText" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font></TextField>
+                        <CommonTextField fx:id="salesmanNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

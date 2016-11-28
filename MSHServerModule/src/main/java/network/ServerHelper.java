@@ -1,5 +1,8 @@
 package network;
 
+import network.usernetwork.UserServerNetworkService;
+import network.usernetwork.UserServerNetworkImpl;
+
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -23,11 +26,19 @@ public class ServerHelper {
             System.out.println("RMI server is ready!");
 
             //把clientServerService注册到RMI注册服务器上，命名为testRMI
-            ClientServerService clientServerService = new ClientServerImpl();
-            //如果要把hello实例注册到另一台启动了RMI注册服务的机器上
-            //Naming.rebind("//192.168.121.40:1099/Hello",hello);
-            Naming.rebind("addClient", clientServerService);
-            Naming.rebind("searchClientByID", clientServerService);
+            UserServerNetworkService userServerNetwork = new UserServerNetworkImpl();
+
+
+
+
+
+
+
+            Naming.rebind("addClient", userServerNetwork);
+            Naming.rebind("searchClientByID", userServerNetwork);
+//            Naming.rebind("updateClient", userServerNetwork);
+//            Naming.rebind("deleteClient", userServerNetwork);
+            Naming.rebind("searchClient", userServerNetwork);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

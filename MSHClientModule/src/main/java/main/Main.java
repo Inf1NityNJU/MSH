@@ -29,6 +29,9 @@ public class Main extends Application {
         MainUIController controller = rootLoader.getController();
         controller.setRootPane(root);
         controller.showMainView();
-        controller.showSalesmanView();
+
+        controller.showClientView();
+//        controller.showUtilView();
+
     }
 }

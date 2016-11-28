@@ -5,6 +5,9 @@ package po;
  */
 public class AssessmentPO {
 
+    /**
+     * 订单ID
+     */
     private String orderID;
 
     /**
@@ -31,10 +34,16 @@ public class AssessmentPO {
      * 评价
      */
     private String comment;
+
     /**
      * 作出评价的客户ID
      */
     private String clientID;
+
+
+    public AssessmentPO() {
+
+    }
 
 
     public AssessmentPO(String orderID, int serviceScore, int facilityScore, int healthScore, int locationScore, String comment, String clientID) {
@@ -102,5 +111,19 @@ public class AssessmentPO {
 
     public void setClientID(String clientID) {
         this.clientID = clientID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof AssessmentPO) {
+            AssessmentPO assessmentPO = (AssessmentPO) o;
+            return assessmentPO.getOrderID().equals(orderID);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return orderID.hashCode();
     }
 }

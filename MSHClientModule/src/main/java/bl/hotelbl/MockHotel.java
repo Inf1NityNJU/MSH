@@ -49,7 +49,7 @@ public class MockHotel extends Hotel {
      */
     @Override
     public ResultMessage updateHotel(Hotel_DetailVO hvo) {
-        if (hvo.ID.equals("000000")){
+        if (hvo.ID.equals("00000000")){
             System.out.println("Update hotel Success!");
             return ResultMessage.SUCCESS;
         }
@@ -64,7 +64,7 @@ public class MockHotel extends Hotel {
      */
     @Override
     public ResultMessage addHotel(Hotel_DetailVO hvo) {
-        if (hvo.ID.equals("000000")) {
+        if (hvo.ID.equals("00000000")) {
             System.out.println("Add hotel Success!");
             return ResultMessage.SUCCESS;
         }

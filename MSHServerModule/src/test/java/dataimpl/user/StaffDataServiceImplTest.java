@@ -59,8 +59,6 @@ public class StaffDataServiceImplTest {
         StaffPO examplePO = new StaffPO("300001", "songkuixi", "25010001", "adminStaff", "password");
         StaffPO staffPO = userDataService.searchStaffByID("300001");
         assertTrue(staffPO.equals(examplePO));
-        staffPO = userDataService.searchStaffByID("300002");
-        assertFalse(staffPO.equals(examplePO));
     }
 
     @Test
@@ -77,7 +75,7 @@ public class StaffDataServiceImplTest {
 
     @Test
     public void searchStaff() throws Exception {
-        ArrayList<StaffPO> staffPOs = userDataService.searchStaff("1000");
+        ArrayList<StaffPO> staffPOs = userDataService.searchStaff("3000");
         ArrayList<StaffPO> exampleStaffPOs = new ArrayList<StaffPO>();
         exampleStaffPOs.add(new StaffPO("300001", "songkuixi", "25010001", "adminStaff", "password"));
         exampleStaffPOs.add(new StaffPO("300002", "songkuixi", "25010001", "adminStaff", "password"));
