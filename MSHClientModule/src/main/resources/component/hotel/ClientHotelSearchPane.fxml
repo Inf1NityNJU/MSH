@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.circlebutton.CircleButton?>
 <?import component.commontextfield.CommonTextField?>
 <?import component.mycheckbox.MyCheckBox?>
 <?import component.mychoicebox.MyChoiceBox?>
@@ -145,28 +146,28 @@
             <CommonTextField fx:id="keywordTextField" layoutX="258.0" prefHeight="60.0" prefWidth="640.0" promptText="输入关键字" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="0.0" />
             <SelectPane fx:id="roomQuantitySelect" labelWidth="201.0" text="房间数量" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
                <labels>
-                  <Label text="1 间房间"/>
-                  <Label text="2 间房间"/>
-                  <Label text="3 间房间"/>
-                  <Label text="4 间房间"/>
-                  <Label text="5 间以上"/>
+                  <Label text="1 间房间" />
+                  <Label text="2 间房间" />
+                  <Label text="3 间房间" />
+                  <Label text="4 间房间" />
+                  <Label text="5 间以上" />
                </labels>
             </SelectPane>
             <SelectPane fx:id="citySelect" labelWidth="141.0" text="地址">
                <labels>
-                  <Label text="上海"/>
-                  <Label text="南京"/>
-                  <Label text="北京"/>
-                  <Label text="呼和浩特"/>
-                  <Label text="哈尔滨"/>
+                  <Label text="上海" />
+                  <Label text="南京" />
+                  <Label text="北京" />
+                  <Label text="呼和浩特" />
+                  <Label text="哈尔滨" />
                </labels>
             </SelectPane>
             <SelectPane fx:id="placeSelect" labelWidth="141.0" text="商圈" AnchorPane.leftAnchor="140.0">
                <labels>
-                  <Label text="仙林"/>
-                  <Label text="新街口"/>
-                  <Label text="汤山"/>
-                  <Label text="江宁"/>
+                  <Label text="仙林" />
+                  <Label text="新街口" />
+                  <Label text="汤山" />
+                  <Label text="江宁" />
                </labels>
             </SelectPane>
              <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" prefHeight="59.0" prefWidth="140.0" style="-fx-background-color: #00cccc; -fx-background-radius: 0; -fx-border-style: hidden;" text="搜 索" textFill="WHITE" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="80.0">
