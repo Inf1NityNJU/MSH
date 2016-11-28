@@ -53,9 +53,8 @@ public class StaffManagementDetailViewController {
         workerManagementViewController.back();
     }
 
-    //TODO
     public void clickPasswordButton() {
-        System.out.println("CHANGE PW");
+        workerManagementViewController.resetPassword(staffVO.staffID);
     }
 
     public void clickDeleteButton() {

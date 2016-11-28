@@ -54,7 +54,7 @@ public class WorkerManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
             WorkerManagementSearchPaneController controller = loader.getController();

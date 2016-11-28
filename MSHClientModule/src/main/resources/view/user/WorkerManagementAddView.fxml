@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.mychoicebox.MyChoiceBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
@@ -97,11 +98,18 @@
                               <StateButton fx:id="salesmanButton" colorProperty="BC52FD" onMouseClicked="#clickSalesmanButton" text="网站营销人员" />
                            </children>
                         </HBox>
+                        <Label fx:id="hotelLabel" text="所属酒店" textFill="#cccccc" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="PingFang SC Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <MyChoiceBox fx:id="hotelChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
+                        <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
                             </rowConstraints>

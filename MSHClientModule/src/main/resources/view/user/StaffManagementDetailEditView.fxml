@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.rectbutton.RectButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -70,10 +70,7 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                        <TextField fx:id="staffNameText" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font></TextField>
+                        <CommonTextField fx:id="staffNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

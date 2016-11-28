@@ -3,6 +3,8 @@ package ui.viewcontroller.manager;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import po.StaffPO;
 
@@ -32,6 +34,12 @@ public class WorkerManagementAddViewController {
     private StateButton salesmanButton;
 
     @FXML
+    private Label hotelLabel;
+
+    @FXML
+    private ChoiceBox hotelChoiceBox;
+
+    @FXML
     private RectButton cancelButton;
 
     @FXML
@@ -39,6 +47,9 @@ public class WorkerManagementAddViewController {
 
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
         this.workerManagementViewController = workerManagementViewController;
+
+        hotelLabel.setVisible(false);
+        hotelChoiceBox.setVisible(false);
     }
 
     @FXML
@@ -50,8 +61,14 @@ public class WorkerManagementAddViewController {
     public void clickSaveButton() {
         if (staffButton.getIsActiveProperty()) {
             //存酒店工作人员
+            if(accountText.getText().equals("") || hotelChoiceBox.getValue() == null){
+                System.out.println("Not complete");
+            }
         } else {
             //存网站营销人员
+            if(accountText.getText().equals("")){
+                System.out.println("Not complete");
+            }
         }
     }
 
@@ -59,11 +76,17 @@ public class WorkerManagementAddViewController {
     public void clickStaffButton(){
         staffButton.setIsActiveProperty(true);
         salesmanButton.setIsActiveProperty(false);
+
+        hotelLabel.setVisible(true);
+        hotelChoiceBox.setVisible(true);
     }
 
     @FXML
     public void clickSalesmanButton(){
         staffButton.setIsActiveProperty(false);
         salesmanButton.setIsActiveProperty(true);
+
+        hotelLabel.setVisible(false);
+        hotelChoiceBox.setVisible(false);
     }
 }

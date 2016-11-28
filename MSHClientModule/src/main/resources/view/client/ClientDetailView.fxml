@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.ClientManagementDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientDetailViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -132,10 +132,10 @@
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <RectButton fx:id="creditButton" text="信用记录" />
+                              <RectButton fx:id="creditButton" sizeProperty="Small" text="信用记录" />
                            </children>
                         </HBox>
-                        <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" sizeProperty="Small" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
                               <Label fx:id="currentLevelLabel" text="Label" textFill="#00cccc">
