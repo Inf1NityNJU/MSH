@@ -7,10 +7,6 @@ import static util.EqualJudgeHelper.judgeEqual;
  */
 public class StaffVO_Register extends StaffVO {
     /**
-     * 酒店工作人员ID
-     */
-    public String staffID;
-    /**
      * 酒店工作人员姓名
      */
     public String staffName;
@@ -30,12 +26,10 @@ public class StaffVO_Register extends StaffVO {
     /**
      * 酒店工作人员构造方法,包括 id,姓名,酒店 id
      *
-     * @param staffID
      * @param name
      * @param hotelID
      */
-    public StaffVO_Register(String staffID, String name, String hotelID, String account, String password) {
-        this.staffID = staffID;
+    public StaffVO_Register(String name, String hotelID, String account, String password) {
         this.staffName = name;
         this.hotelID = hotelID;
         this.account = account;
@@ -74,8 +68,7 @@ public class StaffVO_Register extends StaffVO {
      * @return 比较结果
      */
     private boolean compareData(StaffVO_Register staffVO) {
-        return judgeEqual(staffID, staffVO.staffID)
-                && judgeEqual(staffName, staffVO.staffName)
+        return judgeEqual(staffName, staffVO.staffName)
                 && judgeEqual(hotelID, staffVO.hotelID)
                 && judgeEqual(account, staffVO.account)
                 && judgeEqual(password, staffVO.password);

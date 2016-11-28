@@ -36,7 +36,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <Label text="编号" textFill="#cccccc" GridPane.valignment="CENTER">
+                                <Label text="编号" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -44,7 +44,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="姓名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Label text="姓名" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -52,14 +52,25 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label fx:id="salesmanIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                <Label fx:id="salesmanIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                        <CommonTextField fx:id="salesmanNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="账号" textFill="#cccccc">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="accountLabel" text="账号" textFill="GREY" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                        <CommonTextField fx:id="salesmanNameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                             <rowConstraints>
+                        <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
                             </rowConstraints>
