@@ -1,19 +1,22 @@
-package ui.viewcontroller.manager;
+package ui.viewcontroller.client;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
+import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import ui.viewcontroller.manager.ClientManagementListViewController;
+import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import vo.ClientVO;
 
 /**
  * Created by Kray on 2016/11/27.
  */
-public class ClientManagementDetailEditViewController {
+public class ClientDetailEditViewController {
 
     private ClientManagementViewController clientManagementViewController;
     private ClientManagementListViewController clientManagementListViewController;
@@ -24,10 +27,10 @@ public class ClientManagementDetailEditViewController {
     private Label clientIDLabel;
 
     @FXML
-    private TextField clientNameText;
+    private CommonTextField clientNameText;
 
     @FXML
-    private TextField userNameText;
+    private CommonTextField accountText;
 
     @FXML
     private StateButton normalButton;
@@ -36,7 +39,10 @@ public class ClientManagementDetailEditViewController {
     private StateButton enterpriseButton;
 
     @FXML
-    private TextField birthdayText;
+    private CommonTextField enterpriseText;
+
+    @FXML
+    private CommonTextField birthdayText;
 
     @FXML
     private Label creditLabel;
@@ -56,31 +62,40 @@ public class ClientManagementDetailEditViewController {
 
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
-        userNameText.setText(clientVO.account);
+        accountText.setText(clientVO.account);
         birthdayText.setText(clientVO.birthday.toString());
 
         if (clientVO.enterprise.equals("")) {
             enterpriseButton.setIsActiveProperty(false);
             normalButton.setIsActiveProperty(true);
+
+            enterpriseText.setVisible(false);
         } else {
             enterpriseButton.setIsActiveProperty(true);
             normalButton.setIsActiveProperty(false);
+
+            enterpriseText.setVisible(true);
+            enterpriseText.setText(clientVO.enterprise);
         }
 
         levelLabel.setText("Lv." + clientVO.level);
-
+        creditLabel.setText(clientVO.credit + "");
     }
 
     //TODO
-    public void clickNormalButton(){
+    public void clickNormalButton() {
         normalButton.setIsActiveProperty(true);
         enterpriseButton.setIsActiveProperty(false);
+
+        enterpriseText.setVisible(false);
     }
 
     //TODO
-    public void clickEnterpriseButton(){
+    public void clickEnterpriseButton() {
         normalButton.setIsActiveProperty(false);
         enterpriseButton.setIsActiveProperty(true);
+
+        enterpriseText.setVisible(true);
     }
 
     public void clickBackButton() {
@@ -88,11 +103,18 @@ public class ClientManagementDetailEditViewController {
     }
 
     public void clickSaveButton() {
-//        System.out.println("CLIENT SAVE");
+        System.out.println("CLIENT SAVE");
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
         clientVO.birthday = new DateUtil(birthdayText.getText());
-        clientVO.account = userNameText.getText();
+        clientVO.account = accountText.getText();
+
+        if (normalButton.getIsActiveProperty()) {
+            clientVO.enterprise = "";
+        } else {
+            clientVO.enterprise = enterpriseText.getText();
+        }
+
         userBLService.update(clientVO);
 
         this.clickBackButton();

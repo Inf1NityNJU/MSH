@@ -1,5 +1,6 @@
 package ui.componentcontroller.user;
 
+import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,6 +17,9 @@ public class StaffManagementCellController {
     private WorkerManagementListViewController workerManagementListViewController;
 
     @FXML
+    private CircleImage avatarImage;
+
+    @FXML
     private Label staffNameLabel;
 
     @FXML
@@ -29,8 +33,6 @@ public class StaffManagementCellController {
 
     @FXML
     public void clickDetailButton() {
-        System.out.println("Staff Detail");
-
         workerManagementListViewController.showStaffDetail(staffVO);
     }
 

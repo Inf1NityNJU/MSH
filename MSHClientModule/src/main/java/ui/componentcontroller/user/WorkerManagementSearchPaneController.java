@@ -1,5 +1,6 @@
 package ui.componentcontroller.user;
 
+import component.circlebutton.CircleButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import ui.viewcontroller.manager.WorkerManagementListViewController;
@@ -19,6 +20,12 @@ public class WorkerManagementSearchPaneController {
 
     @FXML
     private StateButton salesmanButton;
+
+    @FXML
+    private CircleButton addButton;
+
+    @FXML
+    private CircleButton searchButton;
 
     private StateButton[] buttons;
 
@@ -47,6 +54,11 @@ public class WorkerManagementSearchPaneController {
         setButtonsInactive();
         salesmanButton.setIsActiveProperty(true);
         workerManagementListViewController.showSalesman();
+    }
+
+    @FXML
+    public void addWorker() {
+         workerManagementListViewController.addWorker();
     }
 
     private void setButtonsInactive() {

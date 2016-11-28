@@ -1,14 +1,15 @@
-package ui.viewcontroller.manager;
+package ui.viewcontroller.client;
 
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import ui.viewcontroller.manager.ClientManagementViewController;
 import vo.ClientVO;
 
 /**
  * Created by Kray on 2016/11/26.
  */
-public class ClientManagementDetailViewController {
+public class ClientDetailViewController {
 
     private ClientVO clientVO;
 
@@ -21,7 +22,7 @@ public class ClientManagementDetailViewController {
     private Label clientNameLabel;
 
     @FXML
-    private Label userNameLabel;
+    private Label accountLabel;
 
     @FXML
     private RectButton passwordButton;
@@ -56,7 +57,7 @@ public class ClientManagementDetailViewController {
 
         clientIDLabel.setText(clientVO.clientID);
         clientNameLabel.setText(clientVO.clientName);
-        userNameLabel.setText(clientVO.account);
+        accountLabel.setText(clientVO.account);
 
         if (clientVO.enterprise.equals("")) {
             typeLabel.setText("普通会员");
@@ -79,7 +80,7 @@ public class ClientManagementDetailViewController {
 
     //TODO
     public void clickPasswordButton() {
-        System.out.println("CHANGE PW");
+        clientManagementViewController.resetPassword(clientVO.clientID);
     }
 
     public void clickEditButton() {

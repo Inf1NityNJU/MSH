@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.circlebutton.CircleButton?>
+<?import component.statebutton.StateButton?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.user.WorkerManagementSearchPaneController">
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+    </padding>
+    <effect>
+        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
+    </effect>
+    <children>
+        <TitleLabel text="工作人员列表" />
+        <HBox spacing="10.0">
+            <children>
+                <StateButton fx:id="allButton" colorProperty="F8E71C" onMouseClicked="#showAllWorkers" text="全部" />
+                <StateButton fx:id="staffButton" colorProperty="12B7F3" onMouseClicked="#showStaff" text="酒店工作人员" />
+                <StateButton fx:id="salesmanButton" colorProperty="BC52FD" onMouseClicked="#showSalesman" text="网站营销人员" />
+                <CircleButton fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" typeProperty="Search">
+                   <HBox.margin>
+                      <Insets left="550.0" />
+                   </HBox.margin>
+                </CircleButton>
+                <CircleButton fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#addWorker" typeProperty="Add">
+                   <HBox.margin>
+                      <Insets left="10.0" />
+                   </HBox.margin>
+                </CircleButton>
+            </children>
+        </HBox>
+    </children>
+</VBox>

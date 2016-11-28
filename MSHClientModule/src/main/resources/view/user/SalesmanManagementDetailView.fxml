@@ -43,7 +43,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="用户名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Label text="姓名" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -69,7 +69,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" sizeProperty="Small" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

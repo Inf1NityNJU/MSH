@@ -49,9 +49,8 @@ public class SalesmanManagementDetailViewController {
         workerManagementViewController.back();
     }
 
-    //TODO
     public void clickPasswordButton() {
-        System.out.println("CHANGE PW");
+        workerManagementViewController.resetPassword(salesmanVO.salesmanID);
     }
 
     public void clickDeleteButton() {

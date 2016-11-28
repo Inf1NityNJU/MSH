@@ -47,7 +47,6 @@ public class WorkerManagementListViewController {
      */
     @FXML
     public void initialize() {
-
         currentPage = 1;
 
         staffVOs = new ArrayList<StaffVO>();
@@ -55,7 +54,7 @@ public class WorkerManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementListPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
             WorkerManagementSearchPaneController controller = loader.getController();
@@ -247,5 +246,12 @@ public class WorkerManagementListViewController {
      */
     public void showSalesmanDetail(SalesmanVO salesmanVO){
         workerManagementViewController.showSalesmanDetail(salesmanVO);
+    }
+
+    /**
+     * 添加工作人员
+     */
+    public void addWorker(){
+         workerManagementViewController.addWorker();
     }
 }

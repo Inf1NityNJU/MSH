@@ -1,5 +1,6 @@
 package ui.componentcontroller.user;
 
+import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -17,13 +18,16 @@ public class ClientManagementCellController {
     private ClientManagementListViewController clientManagementListViewController;
 
     @FXML
+    private CircleImage avatarImage;
+
+    @FXML
     private Label clientNameLabel;
 
     @FXML
     private Label clientIDLabel;
 
     @FXML
-    private Label userNameLabel;
+    private Label accountLabel;
 
     @FXML
     private RectButton detailButton;
@@ -33,8 +37,6 @@ public class ClientManagementCellController {
 
     @FXML
     public void clickDetailButton() {
-        System.out.println("Client Detail");
-
         clientManagementListViewController.showClientDetail(clientVO);
     }
 
@@ -47,7 +49,7 @@ public class ClientManagementCellController {
 
         clientNameLabel.setText(clientVO.clientName);
         clientIDLabel.setText(clientVO.clientID);
-        userNameLabel.setText(clientVO.account);
+        accountLabel.setText(clientVO.account);
 
         if (clientVO.enterprise.equals("")) {
             typeLabel.setText("普通会员");
