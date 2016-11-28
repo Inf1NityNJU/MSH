@@ -192,4 +192,28 @@ public class WorkerManagementViewController {
         }
     }
 
+    /**
+     * 修改密码
+     * @param workerID
+     */
+    public void resetPassword(String workerID){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
+            ScrollPane view = loader.load();
+
+            ResetPasswordViewController resetPasswordViewController = loader.getController();
+            resetPasswordViewController.setWorkerManagementViewController(this);
+            resetPasswordViewController.setID(workerID);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

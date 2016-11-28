@@ -22,6 +22,7 @@ public class ClientManagementViewController {
     private ClientManagementListViewController clientManagementListViewController;
     private ClientDetailViewController clientDetailViewController;
     private ClientDetailEditViewController clientDetailEditViewController;
+    private ResetPasswordViewController resetPasswordViewController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -107,6 +108,28 @@ public class ClientManagementViewController {
             clientDetailEditViewController = loader.getController();
             clientDetailEditViewController.setClientManagementViewController(this);
             clientDetailEditViewController.showClientEdit(clientVO);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void resetPassword(String clientID){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
+            ScrollPane view = loader.load();
+
+            resetPasswordViewController = loader.getController();
+            resetPasswordViewController.setClientManagementViewController(this);
+            resetPasswordViewController.setID(clientID);
+
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

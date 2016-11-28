@@ -80,7 +80,7 @@ public class ClientDetailViewController {
 
     //TODO
     public void clickPasswordButton() {
-        System.out.println("CHANGE PW");
+        clientManagementViewController.resetPassword(clientVO.clientID);
     }
 
     public void clickEditButton() {
