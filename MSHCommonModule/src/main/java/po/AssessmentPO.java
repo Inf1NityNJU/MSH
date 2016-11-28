@@ -5,6 +5,9 @@ package po;
  */
 public class AssessmentPO {
 
+    /**
+     * 订单ID
+     */
     private String orderID;
 
     /**
@@ -30,20 +33,26 @@ public class AssessmentPO {
     /**
      * 评价
      */
-    private String comment;
+    private String comments;
+
     /**
      * 作出评价的客户ID
      */
     private String clientID;
 
 
-    public AssessmentPO(String orderID, int serviceScore, int facilityScore, int healthScore, int locationScore, String comment, String clientID) {
+    public AssessmentPO() {
+
+    }
+
+
+    public AssessmentPO(String orderID, int serviceScore, int facilityScore, int healthScore, int locationScore, String comments, String clientID) {
         this.orderID = orderID;
         this.serviceScore = serviceScore;
         this.facilityScore = facilityScore;
         this.healthScore = healthScore;
         this.locationScore = locationScore;
-        this.comment = comment;
+        this.comments = comments;
         this.clientID = clientID;
     }
 
@@ -88,12 +97,12 @@ public class AssessmentPO {
         this.locationScore = locationScore;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComments(String comment) {
+        this.comments = comment;
     }
 
     public String getClientID() {
@@ -102,5 +111,19 @@ public class AssessmentPO {
 
     public void setClientID(String clientID) {
         this.clientID = clientID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof AssessmentPO) {
+            AssessmentPO assessmentPO = (AssessmentPO) o;
+            return assessmentPO.getOrderID().equals(orderID);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return orderID.hashCode();
     }
 }

@@ -1,5 +1,7 @@
 package ui.viewcontroller.manager;
 
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
@@ -14,10 +16,11 @@ public class ResetPasswordViewController {
 
     private WorkerManagementViewController workerManagementViewController;
 
+    private String account;
     private String ID;
 
     @FXML
-    private Label IDLabel;
+    private Label accountLabel;
 
     @FXML
     private CommonTextField oldPWText;
@@ -34,10 +37,11 @@ public class ResetPasswordViewController {
     @FXML
     private RectButton saveButton;
 
-    public void setID(String ID) {
+    public void setAccountAndID(String account, String ID) {
+        this.account = account;
         this.ID = ID;
 
-        IDLabel.setText(ID);
+        accountLabel.setText(account);
     }
 
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
@@ -59,7 +63,31 @@ public class ResetPasswordViewController {
     }
 
     public void clickSaveButton() {
+        if (oldPWText.getText().equals(newPWText.getText())) {
+            System.out.println("Old same as new");
+            return;
+        }
+        if (!newPWText.getText().equals(checkPWText.getText())) {
+            System.out.println("Not same password");
+            return;
+        }
+        UserBLService userBLService;
+        if (ID.charAt(0) == '3') {
+            userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
+            userBLService.reset(account, oldPWText.getText(), newPWText.getText());
 
+            clickBackButton();
+        } else if (ID.charAt(0) == '1') {
+            userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
+            userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
+        } else {
+            userBLService = UserBLFactory.getUserBLServiceImpl_Client();
+            userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
+        }
     }
 
 }

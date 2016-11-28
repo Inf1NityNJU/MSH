@@ -17,6 +17,9 @@ public class SalesmanManagementDetailViewController {
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
+    private Label accountLabel;
+
+    @FXML
     private Label salesmanIDLabel;
 
     @FXML
@@ -41,6 +44,7 @@ public class SalesmanManagementDetailViewController {
     public void showSalesman(SalesmanVO salesmanVO){
         this.salesmanVO = salesmanVO;
 
+        accountLabel.setText(salesmanVO.account);
         salesmanIDLabel.setText(salesmanVO.salesmanID);
         salesmanNameLabel.setText(salesmanVO.salesmanName);
     }
@@ -50,12 +54,12 @@ public class SalesmanManagementDetailViewController {
     }
 
     public void clickPasswordButton() {
-        workerManagementViewController.resetPassword(salesmanVO.salesmanID);
+        workerManagementViewController.resetPassword(salesmanVO.account, salesmanVO.salesmanID);
     }
 
     public void clickDeleteButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-        userBLService.delete(salesmanVO.salesmanID);
+        userBLService.delete(salesmanVO.account);
 
         clickBackButton();
     }

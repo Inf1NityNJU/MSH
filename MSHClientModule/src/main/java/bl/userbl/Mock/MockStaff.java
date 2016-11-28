@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class MockStaff extends Staff {
 
-    private StaffVO exampleStaffVO = new StaffVO("300001", "隔壁老王", "25010001");
+    private StaffVO exampleStaffVO = new StaffVO("300001", "隔壁老王", "25010001", "adminStaff");
 
     /**
      * 登录
@@ -94,10 +94,10 @@ public class MockStaff extends Staff {
      * @return
      */
     public ArrayList<StaffVO> search(String keyword) {
-        StaffVO exampleStaffVO1 = new StaffVO("300011", "老大", "25010001");
-        StaffVO exampleStaffVO2 = new StaffVO("300012", "老二", "25010002");
-        StaffVO exampleStaffVO3 = new StaffVO("300013", "老三", "25010001");
-        StaffVO exampleStaffVO4 = new StaffVO("300014", "老四", "25010003");
+        StaffVO exampleStaffVO1 = new StaffVO("300011", "老大", "25010001", "adminStaff1");
+        StaffVO exampleStaffVO2 = new StaffVO("300012", "老二", "25010002", "adminStaff2");
+        StaffVO exampleStaffVO3 = new StaffVO("300013", "老三", "25010001", "adminStaff3");
+        StaffVO exampleStaffVO4 = new StaffVO("300014", "老四", "25010003", "adminStaff4");
         ArrayList<StaffVO> StaffVOs = new ArrayList<StaffVO>();
         if (keyword.equals("3000")) {
             StaffVOs.add(exampleStaffVO1);

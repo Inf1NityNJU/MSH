@@ -1,6 +1,5 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.Salesman;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -8,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import main.Main;
 import vo.SalesmanVO;
 import vo.StaffVO;
-import vo.UserVO;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -173,7 +171,6 @@ public class WorkerManagementViewController {
      * 增加工作人员
      */
     public void addWorker(){
-        System.out.println("ADD WORKER");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/user/WorkerManagementAddView.fxml"));
@@ -194,9 +191,9 @@ public class WorkerManagementViewController {
 
     /**
      * 修改密码
-     * @param workerID
+     * @param workerAccount
      */
-    public void resetPassword(String workerID){
+    public void resetPassword(String workerAccount, String workerID){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
@@ -204,7 +201,7 @@ public class WorkerManagementViewController {
 
             ResetPasswordViewController resetPasswordViewController = loader.getController();
             resetPasswordViewController.setWorkerManagementViewController(this);
-            resetPasswordViewController.setID(workerID);
+            resetPasswordViewController.setAccountAndID(workerAccount, workerID);
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

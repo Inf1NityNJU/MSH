@@ -20,6 +20,10 @@ public class StaffVO extends UserVO {
      * 酒店工作人员对应酒店ID
      */
     public String hotelID;
+    /**
+     * 账号
+     */
+    public String account;
 
     /**
      * 酒店工作人员构造方法,包括 id,姓名,酒店 id
@@ -28,10 +32,11 @@ public class StaffVO extends UserVO {
      * @param name
      * @param hotelID
      */
-    public StaffVO(String staffID, String name, String hotelID) {
+    public StaffVO(String staffID, String name, String hotelID, String account) {
         this.staffID = staffID;
         this.staffName = name;
         this.hotelID = hotelID;
+        this.account = account;
     }
 
     public StaffVO() {
@@ -72,6 +77,7 @@ public class StaffVO extends UserVO {
     private boolean compareData(StaffVO staffVO) {
         return judgeEqual(staffID, staffVO.staffID)
                 && judgeEqual(staffName, staffVO.staffName)
-                && judgeEqual(hotelID, staffVO.hotelID);
+                && judgeEqual(hotelID, staffVO.hotelID)
+                && judgeEqual(account, staffVO.account);
     }
 }

@@ -38,6 +38,7 @@ public class ClientManagementViewController {
         if (!stack.empty()) {
             Node node = stack.pop();
             rootPane.setCenter(node);
+
         }
     }
 
@@ -120,7 +121,7 @@ public class ClientManagementViewController {
         }
     }
 
-    public void resetPassword(String clientID){
+    public void resetPassword(String account, String ID){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
@@ -128,8 +129,7 @@ public class ClientManagementViewController {
 
             resetPasswordViewController = loader.getController();
             resetPasswordViewController.setClientManagementViewController(this);
-            resetPasswordViewController.setID(clientID);
-
+            resetPasswordViewController.setAccountAndID(account, ID);
 
 //            stack.push(view);
             Node node = rootPane.getCenter();

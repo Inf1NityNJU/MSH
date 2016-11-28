@@ -7,6 +7,7 @@ import po.ClientPO;
 import po.CreditPO;
 import util.DateUtil;
 import util.LoginState;
+import util.ResetState;
 import util.ResultMessage;
 import vo.*;
 
@@ -48,6 +49,22 @@ public class Client extends User {
             this.password = password;
         }
         return loginState;
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param account
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public ResetState resetPassword(String account, String oldPassword, String newPassword) {
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResetState.RESET_SUCCESS;
+        } else {
+            return ResetState.RESET_FAIL;
+        }
     }
 
     /**

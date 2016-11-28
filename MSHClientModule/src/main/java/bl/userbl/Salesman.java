@@ -5,6 +5,7 @@ import dataservice.userdataservice.UserDataService;
 import po.LevelPO;
 import po.SalesmanPO;
 import util.LoginState;
+import util.ResetState;
 import util.ResultMessage;
 import vo.LevelVO;
 import vo.SalesmanVO;
@@ -46,6 +47,22 @@ public class Salesman extends User {
     }
 
     /**
+     * 修改密码
+     *
+     * @param account
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public ResetState resetPassword(String account, String oldPassword, String newPassword) {
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResetState.RESET_SUCCESS;
+        } else {
+            return ResetState.RESET_FAIL;
+        }
+    }
+
+    /**
      * 增加网站营销人员
      *
      * @param userVO
@@ -53,7 +70,7 @@ public class Salesman extends User {
      */
     public ResultMessage add(UserVO userVO) {
         SalesmanVO_Register salesmanVO = (SalesmanVO_Register) userVO;
-        SalesmanPO salesmanPO = new SalesmanPO(salesmanVO.salesmanID, salesmanVO.salesmanName, salesmanVO.account, salesmanVO.password);
+        SalesmanPO salesmanPO = new SalesmanPO(null, salesmanVO.salesmanName, salesmanVO.account, salesmanVO.password);
         return userDataService.addSalesman(salesmanPO);
     }
 
@@ -68,7 +85,7 @@ public class Salesman extends User {
         if (SalesmanPO == null) {
             return null;
         } else {
-            SalesmanVO SalesmanVO = new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName());
+            SalesmanVO SalesmanVO = new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName(), SalesmanPO.getAccount());
             return SalesmanVO;
         }
     }
@@ -104,12 +121,12 @@ public class Salesman extends User {
      * @return 符合关键词的所有网站营销人员
      */
     public ArrayList<SalesmanVO> search(String keyword) {
-        ArrayList<SalesmanPO> SalesmanPOs = userDataService.searchSalesman(keyword);
-        ArrayList<SalesmanVO> SalesmanVOs = new ArrayList<SalesmanVO>();
-        for (SalesmanPO SalesmanPO : SalesmanPOs) {
-            SalesmanVOs.add(new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName()));
+        ArrayList<SalesmanPO> salesmanPOs = userDataService.searchSalesman(keyword);
+        ArrayList<SalesmanVO> salesmanVOs = new ArrayList<SalesmanVO>();
+        for (SalesmanPO salesmanPO : salesmanPOs) {
+            salesmanVOs.add(new SalesmanVO(salesmanPO.getSalesmanID(), salesmanPO.getSalesmanName(), salesmanPO.getAccount()));
         }
-        return SalesmanVOs;
+        return salesmanVOs;
     }
 
     /**

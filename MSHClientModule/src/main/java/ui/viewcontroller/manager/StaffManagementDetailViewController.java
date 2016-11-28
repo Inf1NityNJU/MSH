@@ -18,6 +18,9 @@ public class StaffManagementDetailViewController {
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
+    private Label accountLabel;
+
+    @FXML
     private Label staffIDLabel;
 
     @FXML
@@ -44,6 +47,8 @@ public class StaffManagementDetailViewController {
 
     public void showStaff(StaffVO staffVO) {
         this.staffVO = staffVO;
+
+        accountLabel.setText(staffVO.account);
         staffIDLabel.setText(staffVO.staffID);
         staffNameLabel.setText(staffVO.staffName);
         hotelNameLabel.setText(staffVO.hotelID);
@@ -54,7 +59,7 @@ public class StaffManagementDetailViewController {
     }
 
     public void clickPasswordButton() {
-        workerManagementViewController.resetPassword(staffVO.staffID);
+        workerManagementViewController.resetPassword(staffVO.account, staffVO.staffID);
     }
 
     public void clickDeleteButton() {

@@ -31,25 +31,25 @@ public class SalesmanTest {
 
     @Test
     public void testAddSalesman() throws Exception {
-        ResultMessage rm = salesman.add(new SalesmanVO("100789", "老王儿"));
+        ResultMessage rm = salesman.add(new SalesmanVO("100789", "老王儿", "adminSalesman1"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = salesman.add(new SalesmanVO("100001", "老王二"));
+        rm = salesman.add(new SalesmanVO("100001", "老王二", "adminSalesman1"));
         assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
     public void testSearchSalesmanByID() throws Exception {
         SalesmanVO svo = salesman.searchByID("100001");
-        assertEquals(new SalesmanVO("100001", "老王"), svo);
+        assertEquals(new SalesmanVO("100001", "老王", "adminSalesman1"), svo);
         svo = salesman.searchByID("100002");
         assertEquals(null, svo);
     }
 
     @Test
     public void testUpdateSalesman() throws Exception {
-        ResultMessage rm = salesman.update(new SalesmanVO("100001", "小王"));
+        ResultMessage rm = salesman.update(new SalesmanVO("100001", "小王", "adminSalesman1"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = salesman.update(new SalesmanVO("100002", "老王"));
+        rm = salesman.update(new SalesmanVO("100002", "老王", "adminSalesman1"));
         assertEquals(ResultMessage.FAILED, rm);
     }
 
@@ -64,7 +64,7 @@ public class SalesmanTest {
     @Test
     public void testSearchSalesman() throws Exception {
         ArrayList<SalesmanVO> asvo = new ArrayList<SalesmanVO>();
-        asvo.add(new SalesmanVO("100012", "老二"));
+        asvo.add(new SalesmanVO("100012", "老二", "adminSalesman2"));
 
         ArrayList<SalesmanVO> tmpAsvoS = salesman.search("老二");
         for (int i = 0; i < asvo.size(); i++) {
@@ -73,10 +73,10 @@ public class SalesmanTest {
         }
 
         asvo.clear();
-        asvo.add(new SalesmanVO("100011", "老大"));
-        asvo.add(new SalesmanVO("100012", "老二"));
-        asvo.add(new SalesmanVO("100013", "老三"));
-        asvo.add(new SalesmanVO("100014", "老四"));
+        asvo.add(new SalesmanVO("100011", "老大", "adminSalesman1"));
+        asvo.add(new SalesmanVO("100012", "老二", "adminSalesman2"));
+        asvo.add(new SalesmanVO("100013", "老三", "adminSalesman3"));
+        asvo.add(new SalesmanVO("100014", "老四", "adminSalesman4"));
 
         tmpAsvoS = salesman.search("1000");
         for (int i = 0; i < asvo.size(); i++) {

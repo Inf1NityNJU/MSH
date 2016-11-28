@@ -79,8 +79,7 @@ public class WorkerManagementListViewController {
         }
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-        //TODO
-        staffVOs = userBLService.search("3");
+        staffVOs = userBLService.search("");
 
         if (staffVOs.size() > 0) {
 
@@ -125,7 +124,7 @@ public class WorkerManagementListViewController {
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         //TODO
-        salesmanVOs = userBLService.search("1");
+        salesmanVOs = userBLService.search("");
 
         if (salesmanVOs.size() > 0) {
 
@@ -165,18 +164,18 @@ public class WorkerManagementListViewController {
     /**
      * 展示所有工作人员
      */
-    public void showAllWorkers(){
+    public void showAllWorkers() {
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
         //TODO
-        staffVOs = userBLService.search("3");
+        staffVOs = userBLService.search("");
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         //TODO
-        salesmanVOs = userBLService.search("1");
+        salesmanVOs = userBLService.search("");
 
         if (staffVOs.size() + salesmanVOs.size() > 0) {
 
@@ -234,24 +233,26 @@ public class WorkerManagementListViewController {
 
     /**
      * 展示酒店工作人员详细信息
+     *
      * @param staffVO
      */
-    public void showStaffDetail(StaffVO staffVO){
+    public void showStaffDetail(StaffVO staffVO) {
         workerManagementViewController.showStaffDetail(staffVO);
     }
 
     /**
      * 展示网站营销人员详细信息
+     *
      * @param salesmanVO
      */
-    public void showSalesmanDetail(SalesmanVO salesmanVO){
+    public void showSalesmanDetail(SalesmanVO salesmanVO) {
         workerManagementViewController.showSalesmanDetail(salesmanVO);
     }
 
     /**
      * 添加工作人员
      */
-    public void addWorker(){
-         workerManagementViewController.addWorker();
+    public void addWorker() {
+        workerManagementViewController.addWorker();
     }
 }

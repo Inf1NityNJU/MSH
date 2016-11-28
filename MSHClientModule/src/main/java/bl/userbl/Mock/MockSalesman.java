@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class MockSalesman extends Salesman {
 
-    private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "老王");
+    private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "老王", "adminSalesman1");
 
     /**
      * 登录
@@ -94,10 +94,10 @@ public class MockSalesman extends Salesman {
      * @return
      */
     public ArrayList<SalesmanVO> search(String keyword) {
-        SalesmanVO exampleSalesmanVO1 = new SalesmanVO("100011", "老大");
-        SalesmanVO exampleSalesmanVO2 = new SalesmanVO("100012", "老二");
-        SalesmanVO exampleSalesmanVO3 = new SalesmanVO("100013", "老三");
-        SalesmanVO exampleSalesmanVO4 = new SalesmanVO("100014", "老四");
+        SalesmanVO exampleSalesmanVO1 = new SalesmanVO("100011", "老大", "adminSalesman1");
+        SalesmanVO exampleSalesmanVO2 = new SalesmanVO("100012", "老二", "adminSalesman2");
+        SalesmanVO exampleSalesmanVO3 = new SalesmanVO("100013", "老三", "adminSalesman3");
+        SalesmanVO exampleSalesmanVO4 = new SalesmanVO("100014", "老四", "adminSalesman4");
         ArrayList<SalesmanVO> salesmanVOs = new ArrayList<SalesmanVO>();
         if (keyword.equals("1000")) {
             salesmanVOs.add(exampleSalesmanVO1);

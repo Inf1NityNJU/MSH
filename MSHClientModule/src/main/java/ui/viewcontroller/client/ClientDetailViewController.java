@@ -78,9 +78,8 @@ public class ClientDetailViewController {
         clientManagementViewController.back();
     }
 
-    //TODO
     public void clickPasswordButton() {
-        clientManagementViewController.resetPassword(clientVO.clientID);
+        clientManagementViewController.resetPassword(clientVO.account, clientVO.clientID);
     }
 
     public void clickEditButton() {

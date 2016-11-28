@@ -1,5 +1,6 @@
 package dataservice.orderdataservice;
 
+import po.AssessmentPO;
 import po.OrderPO;
 import po.OrderRoomPO;
 import util.*;
@@ -26,14 +27,15 @@ public class OrderDataService_Stub implements OrderDataService {
         orderPOs.add(order);
     }
 
-
+    @Override
     public ResultMessage addOrder(OrderPO opo) {
         System.out.println("Insert Succeed!");
 		return ResultMessage.SUCCESS;
     }
 
-    public ResultMessage updateOrder(String orderID, OrderPO opo) {
-        if (orderID.equals("20161012010112340000")) {
+    @Override
+    public ResultMessage updateOrder(OrderPO opo) {
+        if (opo.getOrderID().equals("20161012010112340000")) {
             System.out.println("Update Succeed!");
         } else {
             System.out.println("Update Failed!");
@@ -41,6 +43,7 @@ public class OrderDataService_Stub implements OrderDataService {
 		return ResultMessage.SUCCESS;
     }
 
+    @Override
     public ResultMessage addOrderRoom(OrderRoomPO orpo) {
         if (orpo.getOrderID().equals("20161012010112340000")) {
             System.out.println("Add Succeed!");
@@ -50,17 +53,29 @@ public class OrderDataService_Stub implements OrderDataService {
         return ResultMessage.SUCCESS;
     }
 
-    public ArrayList<OrderPO> searchOrderByOrderID(String orderID) {
+    @Override
+    public OrderPO searchOrderByOrderID(String orderID) {
         if (orderID.equals("20161012010112340000")) {
             System.out.println("SearchByOrderID Succeed!");
-            return orderPOs;
+            return orderPOs.get(0);
         } else {
             System.out.println("SearchByOrderID Failed!");
-            return new ArrayList<OrderPO>();
+            return null;
         }
 
     }
 
+    @Override
+    public ArrayList<OrderPO> searchOrder(String field, String value) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<OrderPO> searchOrderByState(OrderState state) {
+        return null;
+    }
+
+    @Override
     public ArrayList<OrderPO> searchOrderByClientID(String clientID) {
         if (clientID.equals("000000001")) {
             System.out.println("SearchByClientID Succeed!");
@@ -72,6 +87,7 @@ public class OrderDataService_Stub implements OrderDataService {
 
     }
 
+    @Override
     public ArrayList<OrderPO> searchOrderByHotelID(String hotelID) {
         if (hotelID.equals("01011234")) {
             System.out.println("SearchByHotelID Succeed!");
@@ -82,6 +98,7 @@ public class OrderDataService_Stub implements OrderDataService {
         }
     }
 
+    @Override
     public ArrayList<OrderRoomPO> searchOrderRoomByOrderID(String orderID) {
         if (orderID.equals("20161012010112340000")) {
             System.out.println("SearchRoomByHotelID Succeed!");
@@ -90,5 +107,20 @@ public class OrderDataService_Stub implements OrderDataService {
             System.out.println("SearchByHotelID Failed!");
             return new ArrayList<OrderRoomPO>();
         }
+    }
+
+    @Override
+    public ResultMessage addAssessment(AssessmentPO assessment) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage updateAssessment(AssessmentPO assessment) {
+        return null;
+    }
+
+    @Override
+    public AssessmentPO searchAssessmentByOrderID(String orderID) {
+        return null;
     }
 }
