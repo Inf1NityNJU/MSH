@@ -10,10 +10,6 @@ import static util.EqualJudgeHelper.judgeEqual;
 public class ClientVO_Register extends ClientVO {
 
     /**
-     * 客户ID
-     */
-    public String clientID;
-    /**
      * 客户姓名
      */
     public String clientName;
@@ -53,7 +49,6 @@ public class ClientVO_Register extends ClientVO {
     /**
      * 注册时的客户构造方法
      *
-     * @param id
      * @param name
      * @param level
      * @param birthday
@@ -64,9 +59,8 @@ public class ClientVO_Register extends ClientVO {
      * @param account
      * @param password
      */
-    public ClientVO_Register(String id, String name, int level, DateUtil birthday, int credit, int type, String contactInfo,
+    public ClientVO_Register(String name, int level, DateUtil birthday, int credit, int type, String contactInfo,
                              String enterprise, String account, String password) {
-        this.clientID = id;
         this.clientName = name;
         this.credit = credit;
         this.level = level;
@@ -110,8 +104,7 @@ public class ClientVO_Register extends ClientVO {
      * @return 比较结果
      */
     private boolean compareData(ClientVO_Register clientVO) {
-        return judgeEqual(clientID, clientVO.clientID)
-                && judgeEqual(clientName, clientVO.clientName)
+        return judgeEqual(clientName, clientVO.clientName)
                 && judgeEqual(credit, clientVO.credit)
                 && judgeEqual(level, clientVO.level)
                 && judgeEqual(birthday, clientVO.birthday)

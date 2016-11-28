@@ -75,12 +75,18 @@ public class ResetPasswordViewController {
         if (ID.charAt(0) == '3') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
             userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
         } else if (ID.charAt(0) == '1') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
             userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
         } else {
             userBLService = UserBLFactory.getUserBLServiceImpl_Client();
             userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
         }
     }
 

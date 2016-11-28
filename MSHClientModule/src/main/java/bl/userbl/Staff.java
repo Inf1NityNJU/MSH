@@ -68,7 +68,7 @@ public class Staff extends User {
      */
     public ResultMessage add(UserVO userVO) {
         StaffVO_Register staffVO = (StaffVO_Register) userVO;
-        StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, staffVO.account, staffVO.password);
+        StaffPO staffPO = new StaffPO("333333", staffVO.staffName, staffVO.hotelID, staffVO.account, staffVO.password);
         return userDataService.addStaff(staffPO);
     }
 

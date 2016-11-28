@@ -19,6 +19,9 @@ public class SalesmanManagementDetailEditViewController {
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
+    private Label accountLabel;
+
+    @FXML
     private Label salesmanIDLabel;
 
     @FXML
@@ -38,7 +41,6 @@ public class SalesmanManagementDetailEditViewController {
         workerManagementViewController.back();
     }
 
-    //TODO
     public void clickSaveButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         salesmanVO.salesmanName = salesmanNameText.getText();
@@ -50,6 +52,7 @@ public class SalesmanManagementDetailEditViewController {
     public void showSalesmanEdit(SalesmanVO salesmanVO) {
         this.salesmanVO = salesmanVO;
 
+        accountLabel.setText(salesmanVO.account);
         salesmanIDLabel.setText(salesmanVO.salesmanID);
         salesmanNameText.setText(salesmanVO.salesmanName);
     }
