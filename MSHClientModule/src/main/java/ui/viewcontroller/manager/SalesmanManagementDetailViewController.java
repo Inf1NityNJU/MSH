@@ -50,12 +50,12 @@ public class SalesmanManagementDetailViewController {
     }
 
     public void clickPasswordButton() {
-        workerManagementViewController.resetPassword(salesmanVO.salesmanID);
+        workerManagementViewController.resetPassword(salesmanVO.account, salesmanVO.salesmanID);
     }
 
     public void clickDeleteButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-        userBLService.delete(salesmanVO.salesmanID);
+        userBLService.delete(salesmanVO.account);
 
         clickBackButton();
     }

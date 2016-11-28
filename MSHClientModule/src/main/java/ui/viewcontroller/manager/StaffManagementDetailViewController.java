@@ -54,7 +54,7 @@ public class StaffManagementDetailViewController {
     }
 
     public void clickPasswordButton() {
-        workerManagementViewController.resetPassword(staffVO.staffID);
+        workerManagementViewController.resetPassword(staffVO.account, staffVO.staffID);
     }
 
     public void clickDeleteButton() {
