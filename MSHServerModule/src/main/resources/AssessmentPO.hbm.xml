@@ -10,7 +10,7 @@
         <property name="facilityScore"/>
         <property name="healthScore"/>
         <property name="locationScore"/>
-        <property name="comment"/>
+        <property name="comments"/>
         <property name="clientID"/>
 
     </class>
