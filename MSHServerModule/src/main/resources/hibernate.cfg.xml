@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/MSH</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/msh_promotion</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">YES</property>
         <!-- dialect:方言，封装的底层API，类似于Runtime，将数据库转换为配置中的相应的语言 -->
