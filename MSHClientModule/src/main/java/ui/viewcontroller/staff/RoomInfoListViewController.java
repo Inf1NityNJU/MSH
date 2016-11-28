@@ -1,5 +1,6 @@
 package ui.viewcontroller.staff;
 
+import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.hotelblservice.HotelBLService_Stub;
 import javafx.fxml.FXML;
@@ -8,8 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.ClientOrderCellController;
-import ui.componentcontroller.order.ClientOrderSearchPaneController;
+import ui.componentcontroller.hotel.RoomInfoCellController;
 import vo.HotelRoomVO;
 
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class RoomInfoListViewController {
      */
     @FXML
     public void initialize() {
-        hotelBLService = new HotelBLService_Stub();
+        hotelBLService = HotelBLFactory.getHotelBLService();
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -47,9 +47,9 @@ public class RoomInfoListViewController {
 
             contentVBox.getChildren().add(pane);
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 3; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
+                cellLoader.setLocation(Main.class.getResource("../component/hotel/HotelRoomInfoCell.fxml"));
                 HBox roomCell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;
@@ -67,7 +67,7 @@ public class RoomInfoListViewController {
     }
 
     public void showRooms() {
-
+//TODO 酒店ID从哪里获得？
 //        contentVBox.getChildren().remove(1, contentVBox.getChildren().size()-1);
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
