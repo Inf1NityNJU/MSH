@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.selectpane.SelectPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
@@ -14,10 +15,13 @@
         <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
     </effect>
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="200.0">
          <children>
-            <SelectPane text="地址" />
-            <SelectPane layoutX="119.0" text="商圈" />
+            <SelectPane labelWidth="141.0" text="地址" />
+            <SelectPane labelWidth="141.0" layoutX="119.0" text="商圈" AnchorPane.leftAnchor="140.0" />
+            <CommonTextField layoutX="258.0" layoutY="11.0" prefHeight="60.0" prefWidth="640.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="0.0" />
+            <SelectPane labelWidth="201.0" layoutX="33.0" layoutY="87.0" text="1 间房间" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0" />
+            <CommonTextField layoutX="225.0" layoutY="79.0" prefHeight="60.0" prefWidth="640.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="80.0" />
          </children>
       </AnchorPane>
    </children>
