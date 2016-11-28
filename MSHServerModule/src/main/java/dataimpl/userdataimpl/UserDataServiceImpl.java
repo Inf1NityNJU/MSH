@@ -28,20 +28,17 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     protected void setClient(DataHelper<ClientPO> clientDataHelper) {
-        System.out.println("CLIENT");
         this.clientDataHelper = clientDataHelper;
         this.creditDataHelper = new HibernateHelper<CreditPO>(CreditPO.class);
         this.userDataState = UserDataState.CLIENT;
     }
 
     protected void setStaff(DataHelper<StaffPO> staffDataHelper) {
-        System.out.println("STAFF");
         this.staffDataHelper = staffDataHelper;
         this.userDataState = UserDataState.STAFF;
     }
 
     protected void setSalesman(DataHelper<SalesmanPO> salesmanDataHelper) {
-        System.out.println("SALESMAN");
         this.salesmanDataHelper = salesmanDataHelper;
         this.levelDataHelper = new HibernateHelper<LevelPO>(LevelPO.class);
         this.userDataState = UserDataState.SALESMAN;
@@ -174,8 +171,11 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
-        if (clientDataHelper.save(clientPO) == ResultMessage.SUCCESS
-                && creditDataHelper.save(creditPO) == ResultMessage.SUCCESS) {
+        String clientID = getMaxClientID();
+        ClientPO tmpPO = new ClientPO(clientID, clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
+                clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount(), clientPO.getPassword());
+        if (clientDataHelper.save(tmpPO) == ResultMessage.SUCCESS
+                && creditDataHelper.save(tmpPO) == ResultMessage.SUCCESS) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -247,7 +247,9 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addStaff(StaffPO staffPO) {
-        return staffDataHelper.save(staffPO);
+        String staffID = getMaxStaffID();
+        StaffPO tmpPO = new StaffPO(staffID, staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount(), staffPO.getPassword());
+        return staffDataHelper.save(tmpPO);
     }
 
     /**
@@ -314,7 +316,9 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addSalesman(SalesmanPO salesmanPO) {
-        return salesmanDataHelper.save(salesmanPO);
+        String salesmanID = getMaxSalesmanID();
+        SalesmanPO tmpPO = new SalesmanPO(salesmanID, salesmanPO.getSalesmanName(), salesmanPO.getAccount(), salesmanPO.getPassword());
+        return salesmanDataHelper.save(tmpPO);
     }
 
     /**
@@ -442,6 +446,45 @@ public class UserDataServiceImpl implements UserDataService {
             }
         }
         return true;
+    }
+
+    private String getMaxStaffID() {
+        ArrayList<StaffPO> staffPOs = staffDataHelper.prefixMatchQuery("staffID", "");
+        if (staffPOs.size() == 0) {
+            return "300001";
+        } else {
+            StaffPO staffPO = staffPOs.get(staffPOs.size() - 1);
+            String str = staffPO.getStaffID();
+            int i = Integer.parseInt(str);
+            i = i + 1;
+            return i + "";
+        }
+    }
+
+    private String getMaxSalesmanID() {
+        ArrayList<SalesmanPO> salesmanPOs = salesmanDataHelper.prefixMatchQuery("salesmanID", "");
+        if (salesmanPOs.size() == 0) {
+            return "100001";
+        } else {
+            SalesmanPO salesmanPO = salesmanPOs.get(salesmanPOs.size() - 1);
+            String str = salesmanPO.getSalesmanID();
+            int i = Integer.parseInt(str);
+            i = i + 1;
+            return i + "";
+        }
+    }
+
+    private String getMaxClientID() {
+        ArrayList<ClientPO> clientPOs = clientDataHelper.prefixMatchQuery("clientID", "");
+        if (clientPOs.size() == 0) {
+            return "000000001";
+        } else {
+            ClientPO clientPO = clientPOs.get(clientPOs.size() - 1);
+            String str = clientPO.getClientID();
+            int i = Integer.parseInt(str);
+            i = i + 1;
+            return i + "";
+        }
     }
 
 }

@@ -70,7 +70,7 @@ public class Salesman extends User {
      */
     public ResultMessage add(UserVO userVO) {
         SalesmanVO_Register salesmanVO = (SalesmanVO_Register) userVO;
-        SalesmanPO salesmanPO = new SalesmanPO("111111", salesmanVO.salesmanName, salesmanVO.account, salesmanVO.password);
+        SalesmanPO salesmanPO = new SalesmanPO(null, salesmanVO.salesmanName, salesmanVO.account, salesmanVO.password);
         return userDataService.addSalesman(salesmanPO);
     }
 

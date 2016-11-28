@@ -67,7 +67,9 @@ public class WorkerManagementAddViewController {
     public void clickSaveButton() {
         if (staffButton.getIsActiveProperty()) {
             //存酒店工作人员
-            if (accountText.getText().equals("") || hotelChoiceBox.getValue() == null) {
+            if (accountText.getText().equals("") || nameText.getText().equals("")
+                    || passwordText.getText().equals("") || checkPasswordText.getText().equals("")
+                    || hotelChoiceBox.getValue() == null) {
                 System.out.println("Not complete");
             } else {
                 UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
@@ -76,9 +78,10 @@ public class WorkerManagementAddViewController {
 
                 clickBackButton();
             }
-        } else {
+        } else if (salesmanButton.getIsActiveProperty()) {
             //存网站营销人员
-            if (accountText.getText().equals("")) {
+            if (accountText.getText().equals("") || nameText.getText().equals("")
+                    || passwordText.getText().equals("") || checkPasswordText.getText().equals("")) {
                 System.out.println("Not complete");
             } else {
                 UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
@@ -86,6 +89,8 @@ public class WorkerManagementAddViewController {
 
                 clickBackButton();
             }
+        } else {
+            System.out.println("Not complete");
         }
     }
 
