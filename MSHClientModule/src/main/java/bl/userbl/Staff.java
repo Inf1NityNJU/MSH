@@ -4,6 +4,7 @@ import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.StaffPO;
 import util.LoginState;
+import util.ResetState;
 import util.ResultMessage;
 import vo.StaffVO;
 import vo.StaffVO_Register;
@@ -44,6 +45,22 @@ public class Staff extends User {
     }
 
     /**
+     * 修改密码
+     *
+     * @param account
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public ResetState resetPassword(String account, String oldPassword, String newPassword) {
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResetState.RESET_SUCCESS;
+        } else {
+            return ResetState.RESET_FAIL;
+        }
+    }
+
+    /**
      * 增加酒店工作人员
      *
      * @param userVO
@@ -66,7 +83,7 @@ public class Staff extends User {
         if (staffPO == null) {
             return null;
         } else {
-            StaffVO staffVO = new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID());
+            StaffVO staffVO = new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID() ,staffPO.getAccount());
             return staffVO;
         }
     }
@@ -104,7 +121,7 @@ public class Staff extends User {
         ArrayList<StaffPO> staffPOs = userDataService.searchStaff(keyword);
         ArrayList<StaffVO> staffVOs = new ArrayList<StaffVO>();
         for (StaffPO staffPO : staffPOs) {
-            staffVOs.add(new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID()));
+            staffVOs.add(new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount()));
         }
         return staffVOs;
     }

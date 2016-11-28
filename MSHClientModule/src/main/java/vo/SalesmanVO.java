@@ -16,6 +16,10 @@ public class SalesmanVO extends UserVO {
      * 网站营销人员姓名
      */
     public String salesmanName;
+    /**
+     * 账号
+     */
+    public String account;
 
     /**
      * 网站营销人员的构造方法,包括人员ID和姓名
@@ -23,9 +27,10 @@ public class SalesmanVO extends UserVO {
      * @param id
      * @param name
      */
-    public SalesmanVO(String id, String name) {
+    public SalesmanVO(String id, String name, String account) {
         this.salesmanID = id;
         this.salesmanName = name;
+        this.account = account;
     }
 
     public SalesmanVO() {
@@ -65,6 +70,7 @@ public class SalesmanVO extends UserVO {
      */
     private boolean compareData(SalesmanVO salesmanVO) {
         return judgeEqual(salesmanID, salesmanVO.salesmanID)
-                && judgeEqual(salesmanName, salesmanVO.salesmanName);
+                && judgeEqual(salesmanName, salesmanVO.salesmanName)
+                && judgeEqual(account, salesmanVO.account);
     }
 }

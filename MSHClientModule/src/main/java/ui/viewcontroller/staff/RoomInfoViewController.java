@@ -46,7 +46,7 @@ public class RoomInfoViewController {
         System.out.print("!!!");
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/client/ClientOrderListView.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/staff/RoomInfoListView.fxml"));
             ScrollPane list = listLoader.load();
 
             RoomInfoListViewController roomInfoListViewController = listLoader.getController();

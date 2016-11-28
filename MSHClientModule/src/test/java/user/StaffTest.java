@@ -32,25 +32,25 @@ public class StaffTest {
 
     @Test
     public void testAddStaff() throws Exception {
-        ResultMessage rm = staff.add(new StaffVO("300999", "隔壁老王", "25010001"));
+        ResultMessage rm = staff.add(new StaffVO("300999", "隔壁老王", "25010001", "adminStaff1"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = staff.add(new StaffVO("300001", "隔壁老王二", "25010004"));
+        rm = staff.add(new StaffVO("300001", "隔壁老王二", "25010004", "adminStaff1"));
         assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
     public void testSearchStaffByID() throws Exception {
         StaffVO svo = staff.searchByID("300001");
-        assertEquals(new StaffVO("300001", "隔壁老王", "25010001"), svo);
+        assertEquals(new StaffVO("300001", "隔壁老王", "25010001", "adminStaff1"), svo);
         svo = staff.searchByID("300002");
         assertEquals(null, svo);
     }
 
     @Test
     public void testUpdateStaff() throws Exception {
-        ResultMessage rm = staff.update(new StaffVO("300001", "隔壁老王", "25010001"));
+        ResultMessage rm = staff.update(new StaffVO("300001", "隔壁老王", "25010001", "adminStaff1"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = staff.update(new StaffVO("300002", "隔壁老王", "25010001"));
+        rm = staff.update(new StaffVO("300002", "隔壁老王", "25010001", "adminStaff1"));
         assertEquals(ResultMessage.FAILED, rm);
     }
 
@@ -65,7 +65,7 @@ public class StaffTest {
     @Test
     public void testSearchStaff() throws Exception {
         ArrayList<StaffVO> asvo = new ArrayList<StaffVO>();
-        asvo.add(new StaffVO("300012", "老二", "25010002"));
+        asvo.add(new StaffVO("300012", "老二", "25010002", "adminStaff2"));
 
         ArrayList<StaffVO> tmpAsvoS = staff.search("老二");
         for (int i = 0; i < asvo.size(); i++) {
@@ -74,10 +74,10 @@ public class StaffTest {
         }
 
         asvo.clear();
-        asvo.add(new StaffVO("300011", "老大", "25010001"));
-        asvo.add(new StaffVO("300012", "老二", "25010002"));
-        asvo.add(new StaffVO("300013", "老三", "25010001"));
-        asvo.add(new StaffVO("300014", "老四", "25010003"));
+        asvo.add(new StaffVO("300011", "老大", "25010001", "adminStaff1"));
+        asvo.add(new StaffVO("300012", "老二", "25010002", "adminStaff2"));
+        asvo.add(new StaffVO("300013", "老三", "25010001", "adminStaff3"));
+        asvo.add(new StaffVO("300014", "老四", "25010003", "adminStaff4"));
 
         tmpAsvoS = staff.search("3000");
         for (int i = 0; i < asvo.size(); i++) {

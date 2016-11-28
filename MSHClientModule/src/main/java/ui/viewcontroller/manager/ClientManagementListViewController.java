@@ -21,6 +21,8 @@ import java.util.ArrayList;
  */
 public class ClientManagementListViewController {
 
+    private static final int ROW_IN_PANE = 4;
+
     /**
      * 客户列表VC
      */
@@ -30,8 +32,8 @@ public class ClientManagementListViewController {
 
     private ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
 
-    private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
-    private Node[] cells = new Node[]{};
+    private FXMLLoader[] cellLoaders = new FXMLLoader[ROW_IN_PANE];
+    private Node[] cells = new Node[ROW_IN_PANE];
 
     private int type;
 
@@ -67,7 +69,23 @@ public class ClientManagementListViewController {
 
             contentVBox.getChildren().add(pane);
 
+            for (int i = 0; i < ROW_IN_PANE; i++) {
+
+                FXMLLoader cellLoader = new FXMLLoader();
+                cellLoader.setLocation(Main.class.getResource("../component/user/ClientInfoCell.fxml"));
+                HBox clientCell = cellLoader.load();
+
+                cellLoaders[i] = cellLoader;
+                cells[i] = clientCell;
+                contentVBox.getChildren().add(clientCell);
+
+                ClientManagementCellController clientManagementCellController = cellLoaders[i].getController();
+                clientManagementCellController.setClientManagementListViewController(this);
+
+            }
+
             controller.showAllClients();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -79,13 +97,9 @@ public class ClientManagementListViewController {
      * @param type -1:所有; 0:普通; 1:企业
      */
     public void showClients(int type) {
-        for (Node cell : cells) {
-            contentVBox.getChildren().remove(cell);
-        }
 
         this.type = type;
 
-        //TODO
         clientVOs = userBLService.search("000");
         ArrayList<ClientVO> tmpVO = new ArrayList<ClientVO>();
         if (clientVOs.size() > 0) {
@@ -101,25 +115,18 @@ public class ClientManagementListViewController {
                 tmpVO = clientVOs;
             }
 
-            cellLoaders = new FXMLLoader[tmpVO.size()];
-            cells = new Node[tmpVO.size()];
-
             try {
-                for (int i = 0; i < tmpVO.size(); i++) {
-                    FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/user/ClientInfoCell.fxml"));
-                    HBox clientCell = cellLoader.load();
+                for (int i = (currentPage - 1) * ROW_IN_PANE; i < currentPage * ROW_IN_PANE; i++) {
 
-                    cellLoaders[i] = cellLoader;
-                    cells[i] = clientCell;
+                    if (i < tmpVO.size()) {
+                        contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(true);
+                        FXMLLoader tmpLoader = cellLoaders[i];
+                        ClientManagementCellController clientManagementCellController = tmpLoader.getController();
+                        clientManagementCellController.setClientVO(tmpVO.get(i));
+                    } else {
+                        contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(false);
+                    }
 
-                    ClientVO clientVO = tmpVO.get(i);
-                    FXMLLoader loader = cellLoaders[i];
-                    contentVBox.getChildren().add(clientCell);
-
-                    ClientManagementCellController clientManagementCellController = loader.getController();
-                    clientManagementCellController.setClientManagementListViewController(this);
-                    clientManagementCellController.setClientVO(clientVO);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -145,10 +152,11 @@ public class ClientManagementListViewController {
 
     /**
      * 更新客户信息
+     *
      * @param clientVO
      * @return
      */
-    public ResultMessage updateClient(ClientVO clientVO){
+    public ResultMessage updateClient(ClientVO clientVO) {
         return userBLService.update(clientVO);
     }
 }

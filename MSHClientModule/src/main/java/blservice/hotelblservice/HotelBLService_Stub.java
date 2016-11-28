@@ -22,7 +22,7 @@ public class HotelBLService_Stub implements HotelBLService {
 
 
     public Hotel_DetailVO getHotel(String hotelID) {
-        if (hotelID.equals("000000")) {
+        if (hotelID.equals("00000000")) {
             System.out.println("Get hotel Success!");
             return new Hotel_DetailVO(null, null, City.NanJing, null, null, 0, null, null, null, 0, 0);
         }
@@ -30,9 +30,12 @@ public class HotelBLService_Stub implements HotelBLService {
     }
 
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
-        if (hotelID.equals("000000")) {
+        if (hotelID.equals("00000000")) {
             System.out.println("Get hotel room Success!");
-            return new ArrayList<HotelRoomVO>();
+            HotelRoomVO hotelRoomVO = new HotelRoomVO("00000000", RoomType.SingleRoom, 288.8, 20, null);
+            ArrayList<HotelRoomVO> hotelRoomVOs = new ArrayList<HotelRoomVO>();
+            hotelRoomVOs.add(hotelRoomVO);
+            return hotelRoomVOs;
         }
         return null;
     }
