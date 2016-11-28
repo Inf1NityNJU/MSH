@@ -85,4 +85,28 @@ public class ClientOrderViewController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 评分评价
+     */
+    public void showAssessmentEditView(OrderVO order) {
+
+        try {
+            FXMLLoader orderLoader = new FXMLLoader();
+            orderLoader.setLocation(Main.class.getResource("../view/client/ClientAssessmentEditView.fxml"));
+            ScrollPane view = orderLoader.load();
+
+//            ClientOrderDetailViewController clientOrderDetailViewController = orderLoader.getController();
+//            clientOrderDetailViewController.setClientViewController(this);
+//            clientOrderDetailViewController.showOrder(order);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
