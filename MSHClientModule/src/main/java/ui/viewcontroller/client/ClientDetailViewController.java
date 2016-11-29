@@ -86,6 +86,10 @@ public class ClientDetailViewController {
         clientManagementViewController.editClientDetail(clientVO);
     }
 
+    public void clickCreditButton(){
+        clientManagementViewController.showCreditOfClient(clientVO.clientID);
+    }
+
     public ClientVO getClientVO() {
         return clientVO;
     }

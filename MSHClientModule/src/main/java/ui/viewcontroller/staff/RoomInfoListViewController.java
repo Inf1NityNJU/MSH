@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.hotel.RoomInfoCellController;
+import ui.componentcontroller.hotel.RoomInfoShowHeaderPaneController;
 import vo.HotelRoomVO;
 
 import java.io.IOException;
@@ -42,8 +43,11 @@ public class RoomInfoListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/order/ClientOrderSearchPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/hotel/RoomInfoViewHeaderPane.fxml"));
             VBox pane = loader.load();
+
+            RoomInfoShowHeaderPaneController roomInfoShowHeaderPaneController=loader.getController();
+            roomInfoShowHeaderPaneController.setRoomInfoListViewController(this);
 
             contentVBox.getChildren().add(pane);
 

@@ -59,7 +59,7 @@ public class SalesmanManagementDetailViewController {
 
     public void clickDeleteButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-        userBLService.delete(salesmanVO.account);
+        userBLService.delete(salesmanVO.salesmanID);
 
         clickBackButton();
     }
