@@ -6,113 +6,123 @@
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" spacing="45.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets left="40.0" top="40.0" />
-   </padding>
-   <children>
-      <TitleLabel text="新增房间" />
-      <HBox prefHeight="80.0" prefWidth="800.0">
+<ScrollPane prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.AddHotelRoomPaneController">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" spacing="45.0">
+         <padding>
+            <Insets left="40.0" top="40.0" />
+         </padding>
          <children>
-            <CircleImage fitHeight="80.0" fitWidth="80.0" />
-            <RectButton minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="100.0" text="上传照片">
-               <HBox.margin>
-                  <Insets left="80.0" top="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="PingFang SC Regular" size="13.0" />
-               </font>
-            </RectButton>
+            <TitleLabel text="新增房间" />
+            <HBox prefHeight="80.0" prefWidth="800.0">
+               <children>
+                  <CircleImage fitHeight="80.0" fitWidth="80.0" />
+                  <RectButton minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="100.0" text="上传照片">
+                     <HBox.margin>
+                        <Insets left="80.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                     </font>
+                  </RectButton>
+               </children>
+            </HBox>
+            <HBox prefHeight="30.0" prefWidth="960.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="56.0" text="房间类型">
+                     <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <MyCheckBox fx:id="singleRoomCheckBox" text="单人间">
+                     <HBox.margin>
+                        <Insets left="84.0" />
+                     </HBox.margin>
+                  </MyCheckBox>
+                  <MyCheckBox fx:id="doubleRoomCheckBox" text="双人间">
+                     <HBox.margin>
+                        <Insets left="51.0" />
+                     </HBox.margin>
+                  </MyCheckBox>
+                  <MyCheckBox fx:id="doubleDoubleCheckBox" text="大床房">
+                     <HBox.margin>
+                        <Insets left="51.0" />
+                     </HBox.margin>
+                  </MyCheckBox>
+                  <MyCheckBox fx:id="familyRoomCheckBox" text="家庭房">
+                     <HBox.margin>
+                        <Insets left="51.0" />
+                     </HBox.margin>
+                  </MyCheckBox>
+                  <MyCheckBox fx:id="economicRoomCheckBox" text="经济房">
+                     <HBox.margin>
+                        <Insets left="51.0" />
+                     </HBox.margin>
+                  </MyCheckBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="28.0" prefWidth="960.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="56.0" text="房间单价">
+                     <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="28.0" prefWidth="15.0" text="¥">
+                     <HBox.margin>
+                        <Insets left="84.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="priceField" prefWidth="51.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="28.0" prefWidth="960.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="56.0" text="全部数量">
+                     <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="quantityField" prefHeight="27.0" prefWidth="40.0">
+                     <HBox.margin>
+                        <Insets left="84.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="28.0" prefWidth="42.0" text="间">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="59.0" prefWidth="960.0" spacing="20.0">
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+               <children>
+                  <RectButton fx:id="cancelButton1" onMouseClicked="#cancel" text="取消">
+                     <HBox.margin>
+                        <Insets left="700.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                     </font>
+                  </RectButton>
+                  <RectButton fx:id="saveButton1" onMouseClicked="#save" text="保存">
+                     <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                     </font>
+                  </RectButton>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" />
          </children>
-      </HBox>
-      <HBox prefHeight="30.0" prefWidth="960.0">
-         <children>
-            <Label prefHeight="28.0" prefWidth="56.0" text="房间类型">
-               <font>
-                  <Font name="PingFang SC Regular" size="13.0" />
-               </font></Label>
-            <MyCheckBox fx:id="singelRoomCheckBox" text="单人间">
-               <HBox.margin>
-                  <Insets left="84.0" />
-               </HBox.margin>
-            </MyCheckBox>
-            <MyCheckBox fx:id="doubleRoomCheckBox" text="双人间">
-               <HBox.margin>
-                  <Insets left="51.0" />
-               </HBox.margin>
-            </MyCheckBox>
-            <MyCheckBox fx:id="doubleDoubleCheckBox" text="大床房">
-               <HBox.margin>
-                  <Insets left="51.0" />
-               </HBox.margin>
-            </MyCheckBox>
-            <MyCheckBox fx:id="familyRoomCheckBox" text="家庭房">
-               <HBox.margin>
-                  <Insets left="51.0" />
-               </HBox.margin>
-            </MyCheckBox>
-            <MyCheckBox fx:id="economicRoomCheckBox" text="经济房">
-               <HBox.margin>
-                  <Insets left="51.0" />
-               </HBox.margin>
-            </MyCheckBox>
-         </children>
-      </HBox>
-      <HBox prefHeight="28.0" prefWidth="960.0">
-         <children>
-            <Label prefHeight="28.0" prefWidth="56.0" text="房间单价">
-               <font>
-                  <Font name="PingFang SC Regular" size="13.0" />
-               </font></Label>
-            <Label prefHeight="28.0" prefWidth="15.0" text="¥">
-               <HBox.margin>
-                  <Insets left="84.0" />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="priceField" prefWidth="51.0" />
-         </children>
-      </HBox>
-      <HBox prefHeight="28.0" prefWidth="960.0">
-         <children>
-            <Label prefHeight="28.0" prefWidth="56.0" text="全部数量">
-               <font>
-                  <Font name="PingFang SC Regular" size="13.0" />
-               </font></Label>
-            <TextField fx:id="quantityField" prefHeight="27.0" prefWidth="40.0">
-               <HBox.margin>
-                  <Insets left="84.0" />
-               </HBox.margin>
-            </TextField>
-            <Label prefHeight="28.0" prefWidth="42.0" text="间">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-      <HBox prefHeight="59.0" prefWidth="960.0" spacing="20.0">
-         <VBox.margin>
-            <Insets top="100.0" />
-         </VBox.margin>
-         <children>
-            <RectButton fx:id="cancelButton" text="取消">
-               <HBox.margin>
-                  <Insets left="700.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="PingFang SC Regular" size="13.0" />
-               </font>
-            </RectButton>
-            <RectButton fx:id="saveButton" text="保存">
-               <font>
-                  <Font name="PingFang SC Regular" size="13.0" />
-               </font></RectButton>
-         </children>
-      </HBox>
-   </children>
-</VBox>
+      </VBox>
+   </content>
+</ScrollPane>

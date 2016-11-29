@@ -17,9 +17,9 @@
         <VBox layoutY="360.0" prefWidth="200.0">
             <children>
                 <NavButton fx:id="orderManageButton" isCurrentProperty="false" onMouseClicked="#clickOrderManageButton" text="订单管理" />
-                <NavButton fx:id="clientRechargeButton" isCurrentProperty="false" onMouseClicked="#clickclientRechargeButton" text="客户充值" />
-                <NavButton fx:id="promotionButton" isCurrentProperty="false" onMouseClicked="#clickpromotionButton" text="促销策略" />
-            <NavButton fx:id="clientGradeButton" isCurrentProperty="false" onMouseClicked="#clickclientGradeButton" text="会员等级" />
+                <NavButton fx:id="clientRechargeButton" isCurrentProperty="false" onMouseClicked="#clickClientRechargeButton" text="客户充值" />
+                <NavButton fx:id="promotionButton" isCurrentProperty="false" onMouseClicked="#clickPromotionButton" text="促销策略" />
+            <NavButton fx:id="clientGradeButton" isCurrentProperty="false" onMouseClicked="#clickClientGradeButton" text="会员等级" />
             </children>
         </VBox>
     </children>
