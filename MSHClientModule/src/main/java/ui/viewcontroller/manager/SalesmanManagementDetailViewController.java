@@ -51,6 +51,7 @@ public class SalesmanManagementDetailViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
+        workerManagementViewController.getWorkerManagementListViewController().showSalesman();
     }
 
     public void clickPasswordButton() {
@@ -59,7 +60,7 @@ public class SalesmanManagementDetailViewController {
 
     public void clickDeleteButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-        userBLService.delete(salesmanVO.account);
+        userBLService.delete(salesmanVO.salesmanID);
 
         clickBackButton();
     }

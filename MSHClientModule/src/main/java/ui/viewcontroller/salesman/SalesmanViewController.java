@@ -14,6 +14,7 @@ import java.io.IOException;
 public class SalesmanViewController {
     private BorderPane rootPane;
 
+    private WebPromotionViewController webPromotionViewController;
     public SalesmanViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
 
@@ -30,6 +31,11 @@ public class SalesmanViewController {
             e.printStackTrace();
         }
 
-//        clientOrderViewController = new ClientOrderViewController(rootPane);
+        webPromotionViewController = new WebPromotionViewController(rootPane);
+    }
+
+    public void showWebPromotionList() {
+        webPromotionViewController.showWebPromotionList();
+//        System.out.print("shoeWebPromotionList!");
     }
 }

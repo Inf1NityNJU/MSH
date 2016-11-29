@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.statebutton.StateButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="920.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.user.ClientCreditCellController">
+    <effect>
+        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
+    </effect>
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="1200.0">
+            <children>
+                <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="14.0" />
+                     </font></Label>
+                  <Label fx:id="orderIDLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="14.0" />
+                     </font></Label>
+                  <StateButton fx:id="actionButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="100.0" minWidth="70.0" prefWidth="80.0" textAlignment="CENTER" />
+                  <Label fx:id="deltaLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="14.0" />
+                     </font></Label>
+                  <Label fx:id="resultLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Label" textAlignment="CENTER" textFill="#00cccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="14.0" />
+                     </font></Label>
+               </children></HBox>
+            </children>
+            <HBox.margin>
+                <Insets bottom="20.0" top="20.0" />
+            </HBox.margin>
+        </AnchorPane>
+    </children>
+</HBox>

@@ -6,19 +6,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import component.circleimage.CircleImage?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #313B42;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.SalesmanNavbarController">
     <children>
-        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
+        <CircleImage radius="50" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
             <image>
                 <Image url="@../../images/example.jpeg" />
             </image>
-        </ImageView>
+        </CircleImage>
         <VBox layoutY="360.0" prefWidth="200.0">
             <children>
                 <NavButton fx:id="orderManageButton" isCurrentProperty="false" onMouseClicked="#clickOrderManageButton" text="订单管理" />
-                <NavButton fx:id="clientRechargeButton" isCurrentProperty="false" onMouseClicked="#clickclientRechargeButton" text="客户充值" />
-                <NavButton fx:id="promotionButton" isCurrentProperty="false" onMouseClicked="#clickpromotionButton" text="促销策略" />
-            <NavButton fx:id="clientGradeButton" isCurrentProperty="false" onMouseClicked="#clickclientGradeButton" text="会员等级" />
+                <NavButton fx:id="clientRechargeButton" isCurrentProperty="false" onMouseClicked="#clickClientRechargeButton" text="客户充值" />
+                <NavButton fx:id="promotionButton" isCurrentProperty="false" onMouseClicked="#clickPromotionButton" text="促销策略" />
+            <NavButton fx:id="clientGradeButton" isCurrentProperty="false" onMouseClicked="#clickClientGradeButton" text="会员等级" />
             </children>
         </VBox>
     </children>

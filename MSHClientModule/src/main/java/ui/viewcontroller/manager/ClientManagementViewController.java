@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.client.ClientCreditListViewController;
 import ui.viewcontroller.client.ClientDetailEditViewController;
 import ui.viewcontroller.client.ClientDetailViewController;
 import vo.ClientVO;
@@ -121,7 +122,13 @@ public class ClientManagementViewController {
         }
     }
 
-    public void resetPassword(String account, String ID){
+    /**
+     * 修改密码
+     *
+     * @param account
+     * @param ID
+     */
+    public void resetPassword(String account, String ID) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
@@ -142,4 +149,33 @@ public class ClientManagementViewController {
         }
     }
 
+    /**
+     * 展示信用记录
+     *
+     * @param clientID
+     */
+    public void showCreditOfClient(String clientID) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/user/ClientCreditListView.fxml"));
+            ScrollPane view = loader.load();
+
+            ClientCreditListViewController clientCreditViewController = loader.getController();
+            clientCreditViewController.setClientID(clientID);
+            clientCreditViewController.setClientManagementViewController(this);
+
+//            stack.push(view);
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ClientManagementListViewController getClientManagementListViewController() {
+        return clientManagementListViewController;
+    }
 }

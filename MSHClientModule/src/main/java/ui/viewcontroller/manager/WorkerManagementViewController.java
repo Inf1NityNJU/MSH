@@ -21,6 +21,8 @@ public class WorkerManagementViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
+    private WorkerManagementListViewController workerManagementListViewController;
+
     public WorkerManagementViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
     }
@@ -50,7 +52,7 @@ public class WorkerManagementViewController {
             listLoader.setLocation(Main.class.getResource("../view/user/WorkerManagementListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            WorkerManagementListViewController workerManagementListViewController = listLoader.getController();
+            workerManagementListViewController = listLoader.getController();
             workerManagementListViewController.setWorkerManagementViewController(this);
 
             initNode = list;
@@ -212,5 +214,9 @@ public class WorkerManagementViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public WorkerManagementListViewController getWorkerManagementListViewController() {
+        return workerManagementListViewController;
     }
 }

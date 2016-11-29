@@ -100,10 +100,11 @@ public class ClientDetailEditViewController {
 
     public void clickBackButton() {
         clientManagementViewController.back();
+        clientManagementViewController.back();
+        clientManagementViewController.showClientDetail(clientVO);
     }
 
     public void clickSaveButton() {
-        System.out.println("CLIENT SAVE");
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
         clientVO.birthday = new DateUtil(birthdayText.getText());

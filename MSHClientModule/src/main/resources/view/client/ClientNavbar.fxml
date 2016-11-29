@@ -6,13 +6,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import component.circleimage.CircleImage?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #313B42;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientNavbarController">
     <children>
-        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
+        <CircleImage radius="50" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
             <image>
                 <Image url="@../../images/example.jpeg" />
             </image>
-        </ImageView>
+        </CircleImage>
       <VBox layoutY="360.0" prefWidth="200.0">
          <children>
             <NavButton fx:id="searchHotelButton" text="搜索酒店" isCurrentProperty="false" onMouseClicked="#clickSearchHotelButton" />

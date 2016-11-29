@@ -39,6 +39,8 @@ public class SalesmanManagementDetailEditViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
+        workerManagementViewController.back();
+        workerManagementViewController.showSalesmanDetail(salesmanVO);
     }
 
     public void clickSaveButton() {
