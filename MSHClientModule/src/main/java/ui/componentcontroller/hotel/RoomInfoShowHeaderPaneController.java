@@ -19,6 +19,7 @@ public class RoomInfoShowHeaderPaneController {
     @FXML
     private CircleButton addRoomButton;
 
+    //上层组件
     private RoomInfoListViewController roomInfoListViewController;
 
     public void setRoomInfoListViewController(RoomInfoListViewController roomInfoListViewController) {
@@ -30,4 +31,19 @@ public class RoomInfoShowHeaderPaneController {
 
     }
 
+    /**
+     * 显示可用房间列表
+     */
+    @FXML
+    public void checkAvailableRoomInfo() {
+        roomInfoListViewController.showEditRoomView();
+    }
+
+    /**
+     * 显示添加房间面板
+     */
+    @FXML
+    public void showAddRoomPane(){
+        roomInfoListViewController.showAddRoomPane();
+    }
 }
