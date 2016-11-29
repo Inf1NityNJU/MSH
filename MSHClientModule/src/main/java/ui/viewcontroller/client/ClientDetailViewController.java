@@ -76,6 +76,7 @@ public class ClientDetailViewController {
 
     public void clickBackButton() {
         clientManagementViewController.back();
+        clientManagementViewController.getClientManagementListViewController().showClients(clientManagementViewController.getClientManagementListViewController().getType());
     }
 
     public void clickPasswordButton() {

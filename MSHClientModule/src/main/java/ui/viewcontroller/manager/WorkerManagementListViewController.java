@@ -33,6 +33,8 @@ public class WorkerManagementListViewController {
     private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
     private Node[] cells = new Node[]{};
 
+    private int type;
+
     private int currentPage;
 
     @FXML

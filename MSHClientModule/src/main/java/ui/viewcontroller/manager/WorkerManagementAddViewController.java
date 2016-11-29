@@ -61,6 +61,7 @@ public class WorkerManagementAddViewController {
     @FXML
     public void clickBackButton() {
         workerManagementViewController.back();
+        workerManagementViewController.getWorkerManagementListViewController().showAllWorkers();
     }
 
     @FXML

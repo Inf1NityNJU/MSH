@@ -42,9 +42,10 @@ public class StaffManagementDetailEditViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
+        workerManagementViewController.back();
+        workerManagementViewController.showStaffDetail(staffVO);
     }
 
-    //TODO
     public void clickSaveButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
         staffVO.staffName = staffNameText.getText();
