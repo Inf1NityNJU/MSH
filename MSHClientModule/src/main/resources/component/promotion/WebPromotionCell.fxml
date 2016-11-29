@@ -6,26 +6,18 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
-    <content>
-    </content>
+
+<HBox prefHeight="25.0" prefWidth="728.0" spacing="80.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
+    <children>
+        <Label text="名称1" textFill="GREY" />
+        <StateButton colorProperty="12B7F3" text="类型" />
+        <Label text="折扣" textFill="GREY" />
+        <StateButton text="查看" textFill="WHITE" />
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
     <padding>
-        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+        <Insets left="100.0" />
     </padding>
-   <content>
-      <HBox prefHeight="25.0" prefWidth="728.0" spacing="80.0">
-         <children>
-            <Label text="名称1" textFill="GREY" />
-            <StateButton colorProperty="12B7F3" text="类型" />
-            <Label text="折扣" textFill="GREY" />
-            <StateButton text="查看" textFill="WHITE" />
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="100.0" />
-         </padding>
-      </HBox>
-   </content>
-</ScrollPane>
+</HBox>
