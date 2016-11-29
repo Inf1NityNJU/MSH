@@ -88,7 +88,7 @@ public class ClientCreditListViewController {
                     ClientCreditCellController clientCreditCellController = loader.getController();
                     clientCreditCellController.setCreditVO(creditVO);
 
-                    contentVBox.getChildren().add(1, clientCell);
+                    contentVBox.getChildren().add(2, clientCell);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

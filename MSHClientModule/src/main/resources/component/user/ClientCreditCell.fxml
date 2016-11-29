@@ -15,29 +15,29 @@
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="1200.0">
             <children>
-                <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="dateLabel" text="Label" textFill="#cccccc">
+                  <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font></Label>
-                  <Label fx:id="orderIDLabel" text="Label" textFill="#cccccc">
+                  <Label fx:id="orderIDLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font></Label>
-                  <StateButton fx:id="actionButton" />
-                  <Label fx:id="deltaLabel" text="Label" textFill="#cccccc">
+                  <StateButton fx:id="actionButton" alignment="CENTER" contentDisplay="CENTER" maxWidth="100.0" minWidth="70.0" prefWidth="80.0" textAlignment="CENTER" />
+                  <Label fx:id="deltaLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font></Label>
-                  <Label fx:id="resultLabel" text="Label" textFill="#00cccc">
+                  <Label fx:id="resultLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Label" textAlignment="CENTER" textFill="#00cccc">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font></Label>
                </children></HBox>
             </children>
             <HBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="20.0" top="20.0" />
             </HBox.margin>
         </AnchorPane>
     </children>
