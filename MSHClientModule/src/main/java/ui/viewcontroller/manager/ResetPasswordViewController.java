@@ -37,11 +37,20 @@ public class ResetPasswordViewController {
     @FXML
     private RectButton saveButton;
 
+    @FXML
+    private Label newAlertLabel;
+
+    @FXML
+    private Label checkAlertLabel;
+
     public void setAccountAndID(String account, String ID) {
         this.account = account;
         this.ID = ID;
 
         accountLabel.setText(account);
+
+        newAlertLabel.setVisible(false);
+        checkAlertLabel.setVisible(false);
     }
 
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
@@ -63,24 +72,51 @@ public class ResetPasswordViewController {
     }
 
     public void clickSaveButton() {
-        if (oldPWText.getText().equals(newPWText.getText())) {
-            System.out.println("Old same as new");
-            return;
-        }
-        if (!newPWText.getText().equals(checkPWText.getText())) {
-            System.out.println("Not same password");
-            return;
-        }
         UserBLService userBLService;
         if (ID.charAt(0) == '3') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
             userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
         } else if (ID.charAt(0) == '1') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
             userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
         } else {
             userBLService = UserBLFactory.getUserBLServiceImpl_Client();
             userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+
+            clickBackButton();
+        }
+    }
+
+    public void checkOldText() {
+        if (newPWText.getText().equals(oldPWText.getText())) {
+            newAlertLabel.setVisible(true);
+        } else {
+            newAlertLabel.setVisible(false);
+        }
+    }
+
+    public void checkNewText() {
+        if (newPWText.getText().equals(oldPWText.getText())) {
+            newAlertLabel.setVisible(true);
+        } else {
+            newAlertLabel.setVisible(false);
+        }
+        if (!checkPWText.getText().equals(newPWText.getText())) {
+            checkAlertLabel.setVisible(true);
+        } else {
+            checkAlertLabel.setVisible(false);
+        }
+    }
+
+    public void checkCheckText() {
+        if (!checkPWText.getText().equals(newPWText.getText())) {
+            checkAlertLabel.setVisible(true);
+        } else {
+            checkAlertLabel.setVisible(false);
         }
     }
 

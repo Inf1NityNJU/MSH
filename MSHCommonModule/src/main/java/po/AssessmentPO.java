@@ -33,7 +33,7 @@ public class AssessmentPO {
     /**
      * 评价
      */
-    private String comment;
+    private String comments;
 
     /**
      * 作出评价的客户ID
@@ -46,13 +46,13 @@ public class AssessmentPO {
     }
 
 
-    public AssessmentPO(String orderID, int serviceScore, int facilityScore, int healthScore, int locationScore, String comment, String clientID) {
+    public AssessmentPO(String orderID, int serviceScore, int facilityScore, int healthScore, int locationScore, String comments, String clientID) {
         this.orderID = orderID;
         this.serviceScore = serviceScore;
         this.facilityScore = facilityScore;
         this.healthScore = healthScore;
         this.locationScore = locationScore;
-        this.comment = comment;
+        this.comments = comments;
         this.clientID = clientID;
     }
 
@@ -97,12 +97,12 @@ public class AssessmentPO {
         this.locationScore = locationScore;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComments(String comment) {
+        this.comments = comment;
     }
 
     public String getClientID() {

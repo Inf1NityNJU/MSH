@@ -19,6 +19,9 @@ public class StaffManagementDetailEditViewController {
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
+    private Label accountLabel;
+
+    @FXML
     private Label staffIDLabel;
 
     @FXML
@@ -39,9 +42,10 @@ public class StaffManagementDetailEditViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
+        workerManagementViewController.back();
+        workerManagementViewController.showStaffDetail(staffVO);
     }
 
-    //TODO
     public void clickSaveButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
         staffVO.staffName = staffNameText.getText();
@@ -53,6 +57,7 @@ public class StaffManagementDetailEditViewController {
     public void showStaffEdit(StaffVO staffVO) {
         this.staffVO = staffVO;
 
+        accountLabel.setText(staffVO.account);
         staffIDLabel.setText(staffVO.staffID);
         staffNameText.setText(staffVO.staffName);
         hotelNameLabel.setText(staffVO.hotelID);

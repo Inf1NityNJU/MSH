@@ -84,7 +84,7 @@
                         <Insets top="2.0" />
                      </GridPane.margin>
                   </Label>
-                  <MyRangeSlider fx:id="roomPriceSlider" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <MyRangeSlider fx:id="roomPriceSlider" GridPane.columnIndex="1" GridPane.rowIndex="1" prefix="￥"/>
                   <TilePane hgap="70.0" GridPane.columnIndex="1">
                      <children>
                         <MyCheckBox text="单人房" />
@@ -128,6 +128,7 @@
                               </FXCollections>
                            </items>
                         </MyChoiceBox>
+                        <CircleButton typeProperty="Search" />
                      </children>
                   </HBox>
                   <TilePane hgap="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">

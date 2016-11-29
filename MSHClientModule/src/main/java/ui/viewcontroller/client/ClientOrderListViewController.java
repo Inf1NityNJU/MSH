@@ -99,4 +99,7 @@ public class ClientOrderListViewController {
         clientOrderViewController.showClientOrderDetail(order);
     }
 
+    public void showAssessmentEditView(OrderVO order) {
+        clientOrderViewController.showAssessmentEditView(order);
+    }
 }

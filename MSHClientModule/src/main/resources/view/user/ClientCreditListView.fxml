@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.rectbutton.RectButton?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: EEEEEE;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientCreditListViewController">
+    <content>
+        <VBox prefHeight="100.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: transparent;">
+         <children>
+            <VBox fx:id="contentVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: ffffff;">
+               <children>
+                  <TitleLabel text=" 信用记录" />
+                   <AnchorPane prefHeight="200.0" prefWidth="1200.0">
+                       <children>
+                           <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                               <children>
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" prefWidth="0.0" text="日 期" textAlignment="CENTER" textFill="#cccccc">
+                                       <font>
+                                           <Font name="PingFang SC Regular" size="14.0" />
+                                       </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" prefWidth="0.0" text="订单编号" textAlignment="CENTER" textFill="#cccccc">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="80.0" text="动 作" textAlignment="CENTER" textFill="#cccccc">
+                                       <font>
+                                           <Font name="PingFang SC Regular" size="14.0" />
+                                       </font></Label>
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="0.0" text="变化信用值" textAlignment="CENTER" textFill="#cccccc">
+                                       <font>
+                                           <Font name="PingFang SC Regular" size="14.0" />
+                                       </font></Label>
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="0.0" text="结果信用值" textAlignment="CENTER" textFill="#cccccc">
+                                       <font>
+                                           <Font name="PingFang SC Regular" size="14.0" />
+                                       </font></Label>
+                               </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding></HBox>
+                       </children>
+                       <HBox.margin>
+                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                       </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                   </AnchorPane>
+                  <ButtonBar>
+                    <buttons>
+                        <RectButton fx:id="backButton" onMouseClicked="#clickBackButton" text="返 回" />
+                    </buttons>
+                  </ButtonBar>
+               </children>
+               <padding>
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+        </VBox>
+    </content>
+    <padding>
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+    </padding>
+</ScrollPane>

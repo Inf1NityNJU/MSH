@@ -53,11 +53,6 @@ public class ClientOrderCellController {
         this.clientOrderListViewController = clientOrderListViewController;
     }
 
-    @FXML
-    public void clickDetailButton() {
-        clientOrderListViewController.showClientOrderDetail(order);
-    }
-
     public void setOrder(OrderVO order) {
         this.order = order;
 
@@ -84,6 +79,16 @@ public class ClientOrderCellController {
         }
     }
 
+    @FXML
+    private void clickDetailButton() {
+        clientOrderListViewController.showClientOrderDetail(order);
+    }
+
+
+    @FXML
+    private void clickAssessmentButton() {
+        clientOrderListViewController.showAssessmentEditView(order);
+    }
 
 
 }

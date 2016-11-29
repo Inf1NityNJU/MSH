@@ -7,10 +7,6 @@ import static util.EqualJudgeHelper.judgeEqual;
  */
 public class SalesmanVO_Register extends SalesmanVO {
     /**
-     * 网站营销人员ID
-     */
-    public String salesmanID;
-    /**
      * 网站营销人员姓名
      */
     public String salesmanName;
@@ -24,13 +20,13 @@ public class SalesmanVO_Register extends SalesmanVO {
     public String password;
 
     /**
-     * 网站营销人员的构造方法,包括人员ID和姓名
+     * 注册网站营销人员构造方法
      *
-     * @param id
      * @param name
+     * @param account
+     * @param password
      */
-    public SalesmanVO_Register(String id, String name, String account, String password) {
-        this.salesmanID = id;
+    public SalesmanVO_Register(String name, String account, String password) {
         this.salesmanName = name;
         this.account = account;
         this.password = password;
@@ -68,8 +64,7 @@ public class SalesmanVO_Register extends SalesmanVO {
      * @return 比较结果
      */
     private boolean compareData(SalesmanVO_Register salesmanVO) {
-        return judgeEqual(salesmanID, salesmanVO.salesmanID)
-                && judgeEqual(salesmanName, salesmanVO.salesmanName)
+        return judgeEqual(salesmanName, salesmanVO.salesmanName)
                 && judgeEqual(account, salesmanVO.account)
                 && judgeEqual(password, salesmanVO.password);
     }

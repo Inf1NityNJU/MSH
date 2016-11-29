@@ -38,7 +38,7 @@ public class ClientManagementListViewController {
     private int type;
 
     private int currentPage;
-
+    
     @FXML
     private VBox contentVBox;
 
@@ -100,7 +100,7 @@ public class ClientManagementListViewController {
 
         this.type = type;
 
-        clientVOs = userBLService.search("000");
+        clientVOs = userBLService.search("");
         ArrayList<ClientVO> tmpVO = new ArrayList<ClientVO>();
         if (clientVOs.size() > 0) {
             if (type >= 0) {

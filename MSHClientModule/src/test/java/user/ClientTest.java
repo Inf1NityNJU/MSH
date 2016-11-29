@@ -29,16 +29,16 @@ public class ClientTest {
 
     @Test
     public void testAdd() throws Exception {
-        ResultMessage rm = client.add(new ClientVO_Register("000000007", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0,
+        ResultMessage rm = client.add(new ClientVO_Register("KrayC", 0, new DateUtil(2016, 1, 1), 500, 0,
                 "18795963603", "", "adminClient", "12345678"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.add(new ClientVO_Register("000000001", "Sorumi", 0, new DateUtil(2016, 1, 1), 500, 0,
+        rm = client.add(new ClientVO_Register("Sorumi", 0, new DateUtil(2016, 1, 1), 500, 0,
                 "18795963603", "NJU", "tiejiayun", "12345678"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.add(new ClientVO_Register("000000002", "Silver Narcissus", 0, new DateUtil(2016, 1, 1), 500, 0,
+        rm = client.add(new ClientVO_Register("Silver Narcissus", 0, new DateUtil(2016, 1, 1), 500, 0,
                 "18795963603", "", "xuekaifang", "12345678"));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.add(new ClientVO_Register("000000003", "Vivian SJ", 0, new DateUtil(2016, 1, 1), 500, 0,
+        rm = client.add(new ClientVO_Register("Vivian SJ", 0, new DateUtil(2016, 1, 1), 500, 0,
                 "18795963603", "NJU", "yangsijia", "12345678"));
         assertEquals(ResultMessage.SUCCESS, rm);
     }

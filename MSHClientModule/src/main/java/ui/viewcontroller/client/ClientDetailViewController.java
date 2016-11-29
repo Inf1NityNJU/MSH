@@ -76,6 +76,7 @@ public class ClientDetailViewController {
 
     public void clickBackButton() {
         clientManagementViewController.back();
+        clientManagementViewController.getClientManagementListViewController().showClients(clientManagementViewController.getClientManagementListViewController().getType());
     }
 
     public void clickPasswordButton() {
@@ -84,6 +85,10 @@ public class ClientDetailViewController {
 
     public void clickEditButton() {
         clientManagementViewController.editClientDetail(clientVO);
+    }
+
+    public void clickCreditButton(){
+        clientManagementViewController.showCreditOfClient(clientVO.clientID);
     }
 
     public ClientVO getClientVO() {

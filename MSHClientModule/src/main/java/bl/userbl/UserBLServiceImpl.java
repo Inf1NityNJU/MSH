@@ -138,8 +138,12 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
      * @return 该客户的信用记录列表
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
-        Client client = (Client) user;
-        return client.searchCreditByID(clientID);
+        if (user instanceof Client) {
+            Client client = (Client) user;
+            return client.searchCreditByID(clientID);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -211,4 +215,5 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
             return null;
         }
     }
+
 }
