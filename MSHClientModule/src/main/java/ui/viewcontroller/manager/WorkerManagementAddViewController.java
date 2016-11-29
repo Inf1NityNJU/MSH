@@ -4,6 +4,10 @@ import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -51,11 +55,22 @@ public class WorkerManagementAddViewController {
     @FXML
     private RectButton saveButton;
 
+    private ObservableList observableList;
+
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
         this.workerManagementViewController = workerManagementViewController;
 
         hotelLabel.setVisible(false);
         hotelChoiceBox.setVisible(false);
+
+        observableList = FXCollections.observableArrayList();
+
+        //TODO
+        observableList.add("HOTEL1");
+        observableList.add("HOTEL2");
+        observableList.add("HOTEL3");
+
+        hotelChoiceBox.setItems(observableList);
     }
 
     @FXML

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.statebutton.StateButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.EditRoomInfoCellController">
+    <effect>
+        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
+    </effect>
+    <children>
+        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="40.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/example.jpeg" />
+            </image>
+            <HBox.margin>
+                <Insets top="13.0" />
+            </HBox.margin>
+            <viewport>
+                <Rectangle2D height="80.0" width="80.0" />
+            </viewport>
+        </ImageView>
+        <AnchorPane prefHeight="108.0" prefWidth="879.0">
+            <children>
+                <Label fx:id="roomTypeLabel" layoutX="80.0" layoutY="39.0" prefHeight="18.0" prefWidth="48.0" text="Label">
+                    <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                    </font></Label>
+                <Label fx:id="priceLabel" layoutX="260.0" layoutY="39.0" prefHeight="18.0" prefWidth="51.0" text="Label">
+                    <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                    </font></Label>
+                <Label fx:id="quantityLabel" layoutX="435.0" layoutY="39.0" text="Label">
+                    <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                    </font></Label>
+                <StateButton fx:id="saveButton" layoutX="750.0" layoutY="35.0" prefHeight="20.0" prefWidth="50.0" text="保存" onMouseClicked="#save">
+                    <font>
+                        <Font name="PingFang SC Regular" size="13.0" />
+                    </font></StateButton>
+            <Circle fill="#ff5c1f" layoutX="583.0" layoutY="49.0" radius="7.5" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#a2ff21" layoutX="646.0" layoutY="49.0" radius="7.5" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="minusLabel" layoutX="579.0" layoutY="38.0" prefHeight="20.0" prefWidth="15.0" text="-" onMouseClicked="#minusRoomNumber">
+               <font>
+                  <Font name="PingFang SC Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="addLabel" layoutX="642.0" layoutY="38.0" prefHeight="15.0" prefWidth="15.0" text="+" onMouseClicked="#addRoomNumber">
+               <font>
+                  <Font name="PingFang SC Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="availableQuantityLabel" layoutX="606.0" layoutY="38.0" prefHeight="20.0" prefWidth="33.0" text="6">
+               <font>
+                  <Font name="PingFang SC Regular" size="13.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+    </children>
+   <padding>
+      <Insets left="40.0" />
+   </padding>
+</HBox>

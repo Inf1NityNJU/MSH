@@ -70,7 +70,7 @@ public class ClientDetailViewController {
 
         currentLevelLabel.setText("Lv." + clientVO.level);
         nextLevelLabel.setText("Lv." + (clientVO.level+1));
-        deltaCreditLabel.setText("X");
+//        deltaCreditLabel.setText(clientVO.level);
 
     }
 

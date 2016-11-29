@@ -19,7 +19,8 @@ public class UtilityViewController {
         loginViewController = new LoginViewController(rootPane);
         signupViewController = new SignupViewController(rootPane);
 
-        showLogin();
+//        showLogin();
+        loginViewController.showLogin();
     }
 
     public void showLogin(){

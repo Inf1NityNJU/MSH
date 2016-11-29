@@ -433,6 +433,16 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     /**
+     * 得到一条等级信息
+     *
+     * @param level
+     * @return
+     */
+    public LevelPO getLevel(String level) {
+        return levelDataHelper.exactlyQuery("ID", level);
+    }
+
+    /**
      * 删除客户对应所有信用记录
      *
      * @param clientID

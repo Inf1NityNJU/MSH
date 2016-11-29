@@ -324,7 +324,7 @@ public class HotelRoom {
         }
         if (hotelRoom == null) {
             return ResultMessage.NOT_EXIST;
-        } else if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity)) {
+        } else if (checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity)) {
             return ResultMessage.TRUE;
         } else {
             return ResultMessage.FALSE;

@@ -4,7 +4,9 @@ import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
@@ -45,11 +47,9 @@ public class LoginViewController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("../view/utility/LoginView.fxml"));
-            BorderPane list = fxmlLoader.load();
+            AnchorPane list = fxmlLoader.load();
 
             initNode = list;
-//            stack.push(list);
-
             rootPane.setCenter(list);
 
         } catch (IOException e) {
@@ -61,5 +61,10 @@ public class LoginViewController {
     @FXML
     public void clickLoginButton(){
         System.out.println("LOGIN");
+    }
+
+    @FXML
+    public void clickSignupButton(){
+
     }
 }

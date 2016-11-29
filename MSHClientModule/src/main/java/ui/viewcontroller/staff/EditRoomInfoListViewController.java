@@ -2,24 +2,26 @@ package ui.viewcontroller.staff;
 
 import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
-import blservice.hotelblservice.HotelBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
+import ui.componentcontroller.hotel.EditRoomInfoCellController;
+import ui.componentcontroller.hotel.EditRoomInfoPaneController;
 import ui.componentcontroller.hotel.RoomInfoCellController;
 import ui.componentcontroller.hotel.RoomInfoShowHeaderPaneController;
+import util.DateUtil;
 import vo.HotelRoomVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by SilverNarcissus on 2016/11/27.
+ * Created by SilverNarcissus on 2016/11/29.
  */
-public class RoomInfoListViewController {
+public class EditRoomInfoListViewController {
     //上层组件
     private RoomInfoViewController roomInfoViewController;
 
@@ -34,6 +36,11 @@ public class RoomInfoListViewController {
     private HotelBLService hotelBLService;
 
     /**
+     * 编辑房间信息上部面板
+     */
+    private EditRoomInfoPaneController editRoomInfoPaneController;
+
+    /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
      */
@@ -43,17 +50,17 @@ public class RoomInfoListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/hotel/RoomInfoViewHeaderPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/hotel/EditRoomInfoPane.fxml"));
             VBox pane = loader.load();
 
-            RoomInfoShowHeaderPaneController roomInfoShowHeaderPaneController = loader.getController();
-            roomInfoShowHeaderPaneController.setRoomInfoListViewController(this);
+            editRoomInfoPaneController = loader.getController();
+            editRoomInfoPaneController.setRoomInfoListViewController(this);
 
             contentVBox.getChildren().add(pane);
 
             for (int i = 0; i < 3; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/hotel/HotelRoomInfoCell.fxml"));
+                cellLoader.setLocation(Main.class.getResource("../component/hotel/HotelRoomInfoEditCell.fxml"));
                 HBox roomCell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;
@@ -71,13 +78,13 @@ public class RoomInfoListViewController {
     }
 
     /**
-     * 显示编辑房间列表
+     * 退回显示全部房间列表
      */
-    public void showEditRoomView() {
-        roomInfoViewController.showEditRoomView();
+    public void backToAllRoomList() {
+        roomInfoViewController.back();
     }
 
-    public void showAllRoomList() {
+    public void showEditRoomList() {
 //TODO 酒店ID从哪里获得？
 //        contentVBox.getChildren().remove(1, contentVBox.getChildren().size()-1);
         for (Node cell : cells) {
@@ -94,9 +101,9 @@ public class RoomInfoListViewController {
             FXMLLoader loader = cellLoaders[i];
             Node roomCell = cells[i];
 
-            RoomInfoCellController roomInfoCellController = loader.getController();
-            roomInfoCellController.setRoomInfoListViewController(this);
-            roomInfoCellController.setRoom(hotelRoomVO);
+            EditRoomInfoCellController editRoomInfoCellController = loader.getController();
+            editRoomInfoCellController.setRoomInfoListViewController(this);
+            editRoomInfoCellController.setRoom(hotelRoomVO, editRoomInfoPaneController.getDate());
 
             contentVBox.getChildren().add(roomCell);
         }
@@ -106,9 +113,11 @@ public class RoomInfoListViewController {
     }
 
     /**
-     * 显示添加房间面板
+     * 从上边的面板得到date
+     * @return 得到的date
      */
-    public void showAddRoomPane() {
-        roomInfoViewController.showAddRoomView();
+    public DateUtil getDate() {
+        return editRoomInfoPaneController.getDate();
     }
+
 }
