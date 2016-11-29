@@ -51,6 +51,7 @@ public class SalesmanManagementDetailViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
+        workerManagementViewController.getWorkerManagementListViewController().showSalesman();
     }
 
     public void clickPasswordButton() {

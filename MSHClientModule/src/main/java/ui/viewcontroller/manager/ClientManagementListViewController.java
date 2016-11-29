@@ -38,7 +38,7 @@ public class ClientManagementListViewController {
     private int type;
 
     private int currentPage;
-
+    
     @FXML
     private VBox contentVBox;
 

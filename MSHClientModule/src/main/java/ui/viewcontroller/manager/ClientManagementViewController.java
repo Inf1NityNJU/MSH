@@ -174,4 +174,8 @@ public class ClientManagementViewController {
             e.printStackTrace();
         }
     }
+
+    public ClientManagementListViewController getClientManagementListViewController() {
+        return clientManagementListViewController;
+    }
 }
