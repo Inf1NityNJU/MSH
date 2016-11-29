@@ -162,18 +162,14 @@ public class Client extends User {
      * @return 该客户的所有信用记录
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
-        //TODO
-        /*
         ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
         for(CreditPO creditPO : creditPOs){
-            OrderVO orderVO =
-            creditVOs.add(new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(), creditPO.getCreditAction(),
-                    creditPO.getOrderID(), new DateUtil(creditPO.getClientID())));
+            CreditVO creditVO = new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(),
+                    creditPO.getCreditAction(), creditPO.getOrderID(), new DateUtil(creditPO.getDate()));
+            creditVOs.add(creditVO);
         }
         return creditVOs;
-        */
-        return null;
     }
 
 }
