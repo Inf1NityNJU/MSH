@@ -22,6 +22,7 @@ public class ClientOrderDetailViewController {
     }
 
     public void showOrder(OrderVO order) {
+        //TODO
         orderIDLabel.setText(order.orderID);
         hotelNameLabel.setText(order.hotelName);
     }

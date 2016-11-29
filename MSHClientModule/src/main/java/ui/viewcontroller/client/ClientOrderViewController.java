@@ -96,9 +96,8 @@ public class ClientOrderViewController {
             orderLoader.setLocation(Main.class.getResource("../view/client/ClientAssessmentEditView.fxml"));
             ScrollPane view = orderLoader.load();
 
-//            ClientOrderDetailViewController clientOrderDetailViewController = orderLoader.getController();
-//            clientOrderDetailViewController.setClientViewController(this);
-//            clientOrderDetailViewController.showOrder(order);
+            ClientAssessmentEditView clientAssessmentEditView = orderLoader.getController();
+            clientAssessmentEditView.setClientViewController(this);
 
             Node node = rootPane.getCenter();
             stack.push(node);
