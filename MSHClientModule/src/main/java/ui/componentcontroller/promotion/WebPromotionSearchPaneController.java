@@ -26,14 +26,24 @@ public class WebPromotionSearchPaneController {
     @FXML
     private StateButton specialDateButton;
 
+    private StateButton[] buttons;
+
     public void setWebPromotionListViewController(WebPromotionListViewController webPromotionListViewController) {
         this.webPromotionListViewController = webPromotionListViewController;
 
-//        buttons = new StateButton[]{allButton, normalClientButton, enterpriseClientButton};
+        buttons = new StateButton[]{allButton, clientGradeButton, placeButton, specialDateButton};
     }
 
     @FXML
     public void showAllPromotions(){
+        setButtonsInactive();
+        allButton.setIsActiveProperty(true);
+        webPromotionListViewController.showAllWebPromotions();
+    }
 
+    private void setButtonsInactive() {
+        for (StateButton button : buttons) {
+            button.setIsActiveProperty(false);
+        }
     }
 }

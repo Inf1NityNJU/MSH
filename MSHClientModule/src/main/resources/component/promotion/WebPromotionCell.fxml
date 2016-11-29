@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<HBox prefHeight="25.0" prefWidth="728.0" spacing="80.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
+<HBox spacing="140.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.WebPromotionCellController">
     <children>
-        <Label text="名称1" textFill="GREY" />
+        <Label prefWidth="80.0" text="名称1" textFill="GREY">
+         <padding>
+            <Insets top="5.0" />
+         </padding></Label>
         <StateButton colorProperty="12B7F3" text="类型" />
-        <Label text="折扣" textFill="GREY" />
-        <StateButton text="查看" textFill="WHITE" />
+        <Label text="折扣" textFill="GREY">
+         <padding>
+            <Insets top="5.0" />
+         </padding></Label>
+      <RectButton sizeProperty="Small" text="查看" />
     </children>
     <opaqueInsets>
         <Insets />
     </opaqueInsets>
     <padding>
-        <Insets left="100.0" />
+        <Insets left="130.0" />
     </padding>
 </HBox>
