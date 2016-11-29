@@ -5,6 +5,8 @@
 .scroll-pane {
     /*-fx-background: transparent;*/
     -fx-background-insets: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
     /*-fx-padding: 0;*/
 }
 
