@@ -204,4 +204,12 @@ public interface UserDataService {
      * @return
      */
     public ResultMessage deleteLevel(String ID);
+
+    /**
+     * 得到一条等级信息
+     *
+     * @param level
+     * @return
+     */
+    public LevelPO getLevel(String level);
 }

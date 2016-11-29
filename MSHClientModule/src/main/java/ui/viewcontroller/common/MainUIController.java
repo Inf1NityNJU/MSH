@@ -64,7 +64,6 @@ public class MainUIController {
         managerViewController = new ManagerViewController(rootPane);
     }
 
-
     public void showSalesmanView() {
         salesmanViewController = new SalesmanViewController(rootPane);
     }
@@ -72,7 +71,6 @@ public class MainUIController {
     public void showUtilView() {
         utilityViewController = new UtilityViewController(rootPane);
     }
-
 
     public void showStaffView() {
         staffViewController = new StaffViewController(rootPane);

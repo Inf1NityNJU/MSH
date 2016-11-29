@@ -38,7 +38,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <Label text="客户编号" textFill="#cccccc" GridPane.valignment="CENTER">
+                                <Label text="客户编号" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -46,7 +46,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="账号" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Label text="账号" textFill="#cccccc" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -54,7 +54,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label fx:id="clientIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                <Label fx:id="clientIDLabel" text="000000007" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
@@ -116,7 +116,7 @@
                               <Font name="Bangla MN" size="14.0" />
                            </font>
                         </Label>
-                        <CommonTextField fx:id="accountText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CommonTextField fx:id="accountText" GridPane.columnIndex="1" />
                         <CommonTextField fx:id="clientNameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <CommonTextField fx:id="birthdayText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                             </children>

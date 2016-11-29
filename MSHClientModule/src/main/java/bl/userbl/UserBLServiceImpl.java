@@ -216,4 +216,19 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
         }
     }
 
+    /**
+     * 得到一条等级信息
+     *
+     * @param level
+     * @return
+     */
+    public LevelVO getLevel(String level) {
+        if (user instanceof Client) {
+            Client client = (Client) user;
+            return client.getLevelCredit(level);
+        } else {
+            return null;
+        }
+    }
+
 }
