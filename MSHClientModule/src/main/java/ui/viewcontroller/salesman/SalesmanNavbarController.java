@@ -28,27 +28,22 @@ public class SalesmanNavbarController {
 
     @FXML
     public void clickOrderManageButton() {
-//        searchHotelButton.setIsCurrentProperty(true);
-//        orderButton.setIsCurrentProperty(false);
-//        infoButton.setIsCurrentProperty(false);
     }
 
     @FXML
-    public void clickclientRechargeButton() {
-//        searchHotelButton.setIsCurrentProperty(false);
-//        orderButton.setIsCurrentProperty(true);
-//        infoButton.setIsCurrentProperty(false);
-//
-//        clientViewController.showClientOrder();
+    public void clickClientRechargeButton() {
     }
 
     @FXML
-    public void clickpromotionButton() {
-//        searchHotelButton.setIsCurrentProperty(false);
-//        orderButton.setIsCurrentProperty(false);
-//        infoButton.setIsCurrentProperty(true);
+    public void clickPromotionButton() {
+        orderManageButton.setIsCurrentProperty(false);
+        clientRechargeButton.setIsCurrentProperty(false);
+        promotionButton.setIsCurrentProperty(true);
+        clientGradeButton.setIsCurrentProperty(false);
+
+        salesmanViewController.showWebPromotionList();
     }
 
     @FXML
-    public void clickclientGradeButton(){};
+    public void clickClientGradeButton(){};
 }
