@@ -45,7 +45,7 @@
                 </Label>
                 <HBox alignment="TOP_RIGHT" layoutX="428.0" layoutY="41.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情" />
+                        <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情"/>
                     </children>
                 </HBox>
             <Label fx:id="clientIDLabel" layoutX="70.0" layoutY="98.0" text="000000007" textFill="GREY" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0">

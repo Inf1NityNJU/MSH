@@ -61,7 +61,6 @@ public class ClientManagementViewController {
             clientManagementListViewController.setClientManagementViewController(this);
 
             initNode = list;
-//            stack.push(list);
 
             rootPane.setCenter(list);
 
@@ -85,7 +84,6 @@ public class ClientManagementViewController {
             clientDetailViewController.setClientManagementViewController(this);
             clientDetailViewController.showClient(clientVO);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
@@ -111,7 +109,6 @@ public class ClientManagementViewController {
             clientDetailEditViewController.setClientManagementViewController(this);
             clientDetailEditViewController.showClientEdit(clientVO);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
@@ -138,7 +135,6 @@ public class ClientManagementViewController {
             resetPasswordViewController.setClientManagementViewController(this);
             resetPasswordViewController.setAccountAndID(account, ID);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
@@ -164,7 +160,6 @@ public class ClientManagementViewController {
             clientCreditViewController.setClientID(clientID);
             clientCreditViewController.setClientManagementViewController(this);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 

@@ -20,7 +20,7 @@
                   <TitleLabel text="信用记录" />
                    <AnchorPane prefHeight="200.0" prefWidth="1200.0">
                        <children>
-                           <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                <children>
                                    <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" prefWidth="0.0" text="日 期" textAlignment="CENTER" textFill="#cccccc">
                                        <font>

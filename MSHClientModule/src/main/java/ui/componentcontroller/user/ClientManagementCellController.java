@@ -37,6 +37,7 @@ public class ClientManagementCellController {
 
     @FXML
     public void clickDetailButton() {
+        System.out.println("DETAIL");
         clientManagementListViewController.showClientDetail(clientVO);
     }
 
