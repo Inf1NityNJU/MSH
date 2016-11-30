@@ -39,4 +39,9 @@ public class WebPromotionCellController {
         promotionType.setText(promotionVO.promotionType.toString());
         promotionDiscountLabel.setText(Double.toString(promotionVO.promotionDiscount));
     }
+
+    @FXML
+    public void clickDetailButton(){
+        webPromotionListViewController.showPromotionDetail(promotionVO);
+    }
 }

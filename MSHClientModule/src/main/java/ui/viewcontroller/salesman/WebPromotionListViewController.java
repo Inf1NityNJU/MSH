@@ -130,4 +130,11 @@ public class WebPromotionListViewController {
     public void addPromotion(){
 
     }
+
+    /**
+     * 展示策略详细信息
+     */
+    public void showPromotionDetail(PromotionVO promotionVO){
+        webPromotionViewController.showPromotionDetail(promotionVO);
+    }
 }

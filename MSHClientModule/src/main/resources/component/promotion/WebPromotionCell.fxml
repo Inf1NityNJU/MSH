@@ -20,7 +20,7 @@
          <HBox.margin>
             <Insets left="-15.0" />
          </HBox.margin></Label>
-      <RectButton fx:id="detailButton" sizeProperty="Small" text="查看">
+      <RectButton fx:id="detailButton" sizeProperty="Small" text="查看" onMouseClicked="#clickDetailButton">
          <HBox.margin>
             <Insets left="-10.0" />
          </HBox.margin></RectButton>

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.WebPromotionDetailViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -92,7 +92,7 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                        <Label fx:id="levelLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="clientGradeLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
@@ -110,8 +110,9 @@
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="删 除" />
-                                <RectButton fx:id="EditButton" minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
+                        <RectButton fx:id="backButton" text="返 回" onMouseClicked="#clickBackButton"/>
+                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" text="删 除" onMouseClicked="#clickDeleteButton"/>
+                                <RectButton fx:id="editButton" minHeight="40.0" text="编 辑" />
                             </buttons>
                         </ButtonBar>
                     </children>
