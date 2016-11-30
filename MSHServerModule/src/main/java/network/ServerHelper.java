@@ -1,10 +1,14 @@
 package network;
 
+import network.hotelnetwork.HotelServerNetworkImpl;
+import network.hotelnetwork.HotelServerNetworkService;
 import network.usernetwork.UserServerNetworkService;
 import network.usernetwork.UserServerNetworkImpl;
 
 import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
@@ -12,6 +16,10 @@ import java.rmi.registry.LocateRegistry;
  * Created by Kray on 2016/11/23.
  */
 public class ServerHelper {
+
+    public ServerHelper() {
+
+    }
 
     public static void main(String[] args) {
 
@@ -27,12 +35,10 @@ public class ServerHelper {
 
             //把clientServerService注册到RMI注册服务器上，命名为testRMI
             UserServerNetworkService userServerNetwork = new UserServerNetworkImpl();
+            HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
 
 
-
-
-
-
+            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
 
             Naming.rebind("addClient", userServerNetwork);
             Naming.rebind("searchClientByID", userServerNetwork);
@@ -44,11 +50,6 @@ public class ServerHelper {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public ServerHelper() {
-
     }
 
 }

@@ -3,10 +3,12 @@ package po;
 import util.City;
 import util.Place;
 
+import java.io.Serializable;
+
 /**
  * Created by Sorumi on 16/10/11.
  */
-public class HotelPO {
+public class HotelPO implements Serializable{
     /**
      * 酒店编号
      */

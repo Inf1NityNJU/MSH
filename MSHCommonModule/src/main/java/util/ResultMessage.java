@@ -39,8 +39,14 @@ public enum ResultMessage {
                 return "含有非法字符";
             case NULL:
                 return "输入为空";
+            case SUFFICIENT:
+                return "房间数量充足";
             case INSUFFICIENT:
                 return "房间数量不足";
+            case TRUE:
+                return "真";
+            case FALSE:
+                return "假";
             default:
                 return null;
         }

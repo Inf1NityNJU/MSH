@@ -39,10 +39,10 @@ public class HotelRoomTest {
     public void updateHotelRoomQuantity1() throws Exception {
         DateUtil start = new DateUtil(2016, 11, 28);
         DateUtil end = new DateUtil(2016, 12, 5);
-        int quantity = 2;
+        int quantity = 20;
         RoomChangeInfoVO roomChangeInfoVO = new RoomChangeInfoVO(start, end, "00000000", RoomType.DoubleDouble, quantity);
         ResultMessage resultMessage = hotelBLService.updateHotelRoomQuantity(roomChangeInfoVO);
-        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        assertEquals(ResultMessage.INSUFFICIENT, resultMessage);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class HotelRoomTest {
 
     @Ignore
     public void addRoom() throws Exception {
-        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000001", RoomType.SingleRoom,320, 10, null);
+        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000000", RoomType.DoubleDouble,320, 10, null);
         ResultMessage resultMessage = hotelBLService.addRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
@@ -76,7 +76,6 @@ public class HotelRoomTest {
     @Test
     public void isOrdered() throws Exception {
         ResultMessage resultMessage = hotelBLService.isOrdered("00000000", RoomType.DoubleDouble);
-        assertEquals(ResultMessage.TRUE,resultMessage);
+        assertEquals(ResultMessage.FALSE,resultMessage);
     }
-
 }

@@ -2,7 +2,8 @@ package bl.hotelbl;
 
 import blservice.orderblservice.OrderHotelInfo;
 import dataimpl.hoteldataimpl.HotelDataServiceFactory;
-import dataservice.hoteldataservice.HotelDataService;
+import network.HotelClientNetworkImpl;
+import network.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -35,7 +36,7 @@ public class Hotel {
     private OrderHotelInfo orderHotelInfo;
 
     protected Hotel() {
-        hotelDataService = HotelDataServiceFactory.getHotelDataService();
+        hotelDataService = new HotelClientNetworkImpl();
         cache = new HashMap<String, Hotel_DetailVO>();
     }
 
