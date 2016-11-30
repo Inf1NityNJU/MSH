@@ -5,6 +5,7 @@ import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
 import vo.CreditVO;
+import vo.LevelVO;
 import vo.UserVO;
 
 import java.util.ArrayList;
@@ -96,5 +97,13 @@ public interface UserBLService {
      * @return 该客户的信用记录列表
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID);
+
+    //TODO
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
+    public ArrayList<LevelVO> getAllLevel();
 
 }

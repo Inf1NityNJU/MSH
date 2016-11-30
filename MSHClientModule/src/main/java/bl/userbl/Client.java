@@ -5,6 +5,7 @@ import dataservice.userdataservice.UserDataService;
 import network.UserClientNetworkImpl;
 import po.ClientPO;
 import po.CreditPO;
+import po.LevelPO;
 import util.DateUtil;
 import util.LoginState;
 import util.ResetState;
@@ -170,6 +171,11 @@ public class Client extends User {
             creditVOs.add(creditVO);
         }
         return creditVOs;
+    }
+
+    public LevelVO getLevelCredit(String level){
+        LevelPO levelPO = userDataService.getLevel(level);
+        return new LevelVO(levelPO.getLevel()+"", levelPO.getCredit()+"");
     }
 
 }

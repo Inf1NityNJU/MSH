@@ -3,6 +3,8 @@ package blservice.userblservice;
 import util.ResultMessage;
 import vo.LevelVO;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kray on 2016/11/27.
  */
@@ -28,4 +30,12 @@ public interface LevelService {
      * @return
      */
     public ResultMessage deleteLevel(String ID);
+
+    /**
+     * 等到一条等级信息
+     *
+     * @param ID
+     * @return
+     */
+    public LevelVO getLevel(String ID);
 }

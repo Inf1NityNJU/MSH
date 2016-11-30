@@ -173,7 +173,6 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
         return user;
     }
 
-
     /**
      * 增加一条等级信息
      *
@@ -227,6 +226,15 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
             Client client = (Client) user;
             return client.getLevelCredit(level);
         } else {
+            return null;
+        }
+    }
+
+    public ArrayList<LevelVO> getAllLevel(){
+        if(user instanceof Salesman){
+            Salesman salesman = (Salesman) user;
+            return salesman.getAllLevel();
+        }else{
             return null;
         }
     }

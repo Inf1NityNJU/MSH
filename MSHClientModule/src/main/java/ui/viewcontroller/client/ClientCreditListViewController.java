@@ -49,14 +49,6 @@ public class ClientCreditListViewController {
         clientManagementViewController.back();
     }
 
-    /**
-     * 自动被调用
-     */
-    @FXML
-    public void initialize() {
-
-    }
-
     private void showCredit(){
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);

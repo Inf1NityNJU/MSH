@@ -158,4 +158,23 @@ public class Salesman extends User {
         return userDataService.deleteLevel(ID);
     }
 
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
+    public ArrayList<LevelVO> getAllLevel() {
+        ArrayList<LevelPO> levelPOs = userDataService.getAllLevel();
+        ArrayList<LevelVO> levelVOs = new ArrayList<LevelVO>();
+        if (levelPOs.size() > 0) {
+            for (LevelPO levelPO : levelPOs) {
+                System.out.println(levelPO.getLevel() +","+ levelPO.getCredit());
+                levelVOs.add(new LevelVO(levelPO.getLevel() + "", levelPO.getCredit() + ""));
+            }
+            return levelVOs;
+        } else {
+            return null;
+        }
+    }
+
 }
