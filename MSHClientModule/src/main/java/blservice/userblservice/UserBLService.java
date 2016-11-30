@@ -98,16 +98,41 @@ public interface UserBLService {
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID);
 
-    //TODO
+
+    /**
+     * 增加一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage addLevel(LevelVO levelVO);
+
+    /**
+     * 更新一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage updateLevel(LevelVO levelVO);
+
+    /**
+     * 删除一条等级信息
+     *
+     * @return
+     */
+    public ResultMessage deleteLevel(String ID);
+
+    /**
+     * 得到一条等级信息
+     *
+     * @param ID
+     * @return
+     */
+    public LevelVO getLevel(String ID);
+
     /**
      * 得到所有等级信息
      *
      * @return
      */
     public ArrayList<LevelVO> getAllLevel();
-
-    public ResultMessage updateLevel(LevelVO levelVO);
-
-    public ResultMessage addLevel(LevelVO levelVO);
 
 }

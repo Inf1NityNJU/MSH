@@ -1,6 +1,6 @@
 package bl.userbl;
 
-import blservice.userblservice.LevelService;
+//import blservice.userblservice.LevelService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import util.CreditAction;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/6.
  */
-public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelService {
+public class UserBLServiceImpl implements UserBLService, UserBLInfo{
 
     private User user;
     private LoginState loginState;

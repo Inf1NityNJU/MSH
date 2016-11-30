@@ -172,4 +172,14 @@ public class UserBLService_Stub implements UserBLService {
     public ResultMessage addLevel(LevelVO levelVO){
         return null;
     }
+
+    //TODO
+    public ResultMessage deleteLevel(String ID){
+        return null;
+    }
+
+    //TODO
+    public LevelVO getLevel(String ID){
+        return null;
+    }
 }
