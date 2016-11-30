@@ -36,6 +36,5 @@ public class SalesmanViewController {
 
     public void showWebPromotionList() {
         webPromotionViewController.showWebPromotionList();
-//        System.out.print("shoeWebPromotionList!");
     }
 }

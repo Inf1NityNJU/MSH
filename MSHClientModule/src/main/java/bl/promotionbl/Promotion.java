@@ -1,5 +1,6 @@
 package bl.promotionbl;
 
+import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
 import dataservice.promotiondataservice.PromotionDataService;
 import dataservice.promotiondataservice.PromotionDataService_Stub;
 import po.PromotionPO;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class Promotion{
-    private PromotionDataService promotionDataService = new PromotionDataService_Stub();
+    private PromotionDataService promotionDataService = PromotionDataServiceFactory.getPromotionDataService();
 
     /**
      * 增加一个促销策略
