@@ -1,7 +1,6 @@
 package ui.viewcontroller.salesman;
 
 import bl.userbl.UserBLFactory;
-import blservice.userblservice.LevelService;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,13 +35,38 @@ public class LevelListViewController {
 
     @FXML
     public void initialize() {
+        showLevelList();
+    }
+
+    @FXML
+    public void clickAddButton() {
+        System.out.println("Add Level");
+
+        try {
+            FXMLLoader cellLoader = new FXMLLoader();
+            cellLoader.setLocation(Main.class.getResource("../component/user/LevelCell.fxml"));
+            HBox clientCell = cellLoader.load();
+
+            LevelCellController levelCellController = cellLoader.getController();
+            levelCellController.setLevelVO(new LevelVO((levelVOs.size()+1)+"", ""));
+            levelCellController.setLevelListViewController(this);
+
+            contentVBox.getChildren().add(levelVOs.size(), clientCell);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showLevelList(){
+
+        contentVBox.getChildren().clear();
+
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         levelVOs = userBLService.getAllLevel();
         if (levelVOs == null) {
             System.out.println("NO LEVEL INFO");
         } else {
             System.out.println(levelVOs.size());
-
             try {
 
                 cellLoaders = new FXMLLoader[levelVOs.size()];
@@ -62,13 +86,14 @@ public class LevelListViewController {
 
                     LevelCellController levelCellController = loader.getController();
                     levelCellController.setLevelVO(levelVO);
+                    levelCellController.setLevelListViewController(this);
 
                     contentVBox.getChildren().add(0, clientCell);
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
     }

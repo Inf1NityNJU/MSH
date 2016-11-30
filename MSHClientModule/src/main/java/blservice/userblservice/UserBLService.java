@@ -106,4 +106,8 @@ public interface UserBLService {
      */
     public ArrayList<LevelVO> getAllLevel();
 
+    public ResultMessage updateLevel(LevelVO levelVO);
+
+    public ResultMessage addLevel(LevelVO levelVO);
+
 }

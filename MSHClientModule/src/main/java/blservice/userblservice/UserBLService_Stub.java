@@ -162,4 +162,14 @@ public class UserBLService_Stub implements UserBLService {
     public ArrayList<LevelVO> getAllLevel(){
         return null;
     }
+
+    //TODO
+    public ResultMessage updateLevel(LevelVO levelVO){
+        return null;
+    }
+
+    //TODO
+    public ResultMessage addLevel(LevelVO levelVO){
+        return null;
+    }
 }

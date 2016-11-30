@@ -19,7 +19,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                               <TitleLabel text="等级管理" />
-                        <CircleButton typeProperty="Add">
+                        <CircleButton typeProperty="Add" onMouseClicked="#clickAddButton">
                            <HBox.margin>
                               <Insets left="800.0" />
                            </HBox.margin>
