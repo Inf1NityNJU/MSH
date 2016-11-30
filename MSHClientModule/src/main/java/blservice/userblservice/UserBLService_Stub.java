@@ -1,5 +1,6 @@
 package blservice.userblservice;
 
+import po.LevelPO;
 import util.*;
 import vo.*;
 
@@ -155,5 +156,30 @@ public class UserBLService_Stub implements UserBLService {
         }
         return creditVOs;
 
+    }
+
+    //TODO
+    public ArrayList<LevelVO> getAllLevel(){
+        return null;
+    }
+
+    //TODO
+    public ResultMessage updateLevel(LevelVO levelVO){
+        return null;
+    }
+
+    //TODO
+    public ResultMessage addLevel(LevelVO levelVO){
+        return null;
+    }
+
+    //TODO
+    public ResultMessage deleteLevel(String ID){
+        return null;
+    }
+
+    //TODO
+    public LevelVO getLevel(String ID){
+        return null;
     }
 }

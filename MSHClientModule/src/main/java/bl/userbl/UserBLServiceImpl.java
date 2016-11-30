@@ -1,6 +1,6 @@
 package bl.userbl;
 
-import blservice.userblservice.LevelService;
+//import blservice.userblservice.LevelService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import util.CreditAction;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/6.
  */
-public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelService {
+public class UserBLServiceImpl implements UserBLService, UserBLInfo{
 
     private User user;
     private LoginState loginState;
@@ -173,7 +173,6 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
         return user;
     }
 
-
     /**
      * 增加一条等级信息
      *
@@ -227,6 +226,15 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo, LevelServic
             Client client = (Client) user;
             return client.getLevelCredit(level);
         } else {
+            return null;
+        }
+    }
+
+    public ArrayList<LevelVO> getAllLevel(){
+        if(user instanceof Salesman){
+            Salesman salesman = (Salesman) user;
+            return salesman.getAllLevel();
+        }else{
             return null;
         }
     }

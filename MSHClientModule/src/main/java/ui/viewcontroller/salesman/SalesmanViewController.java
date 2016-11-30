@@ -2,6 +2,8 @@ package ui.viewcontroller.salesman;
 
 import bl.userbl.Salesman;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
@@ -15,6 +17,9 @@ public class SalesmanViewController {
     private BorderPane rootPane;
 
     private WebPromotionViewController webPromotionViewController;
+
+    private LevelManagementViewController levelManagementViewController;
+
     public SalesmanViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
 
@@ -32,9 +37,14 @@ public class SalesmanViewController {
         }
 
         webPromotionViewController = new WebPromotionViewController(rootPane);
+        levelManagementViewController = new LevelManagementViewController(rootPane);
     }
 
     public void showWebPromotionList() {
         webPromotionViewController.showWebPromotionList();
+    }
+
+    public void showLevelList(){
+        levelManagementViewController.showLevelList();
     }
 }

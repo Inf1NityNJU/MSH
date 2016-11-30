@@ -157,7 +157,7 @@ public class ClientManagementViewController {
     public void showCreditOfClient(String clientID) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/user/ClientCreditListView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/client/ClientCreditListView.fxml"));
             ScrollPane view = loader.load();
 
             ClientCreditListViewController clientCreditViewController = loader.getController();

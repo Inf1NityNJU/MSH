@@ -212,4 +212,11 @@ public interface UserDataService {
      * @return
      */
     public LevelPO getLevel(String level);
+
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
+    public ArrayList<LevelPO> getAllLevel();
 }

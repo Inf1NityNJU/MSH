@@ -211,4 +211,14 @@ public class UserDataService_Stub implements UserDataService {
         return ResultMessage.SUCCESS;
     }
 
+    //TODO
+    public LevelPO getLevel(String ID){
+        return null;
+    }
+
+    //TODO
+    public ArrayList<LevelPO> getAllLevel(){
+        return null;
+    }
+
 }

@@ -45,5 +45,12 @@ public class SalesmanNavbarController {
     }
 
     @FXML
-    public void clickClientGradeButton(){};
+    public void clickClientGradeButton(){
+        orderManageButton.setIsCurrentProperty(false);
+        clientRechargeButton.setIsCurrentProperty(false);
+        promotionButton.setIsCurrentProperty(false);
+        clientGradeButton.setIsCurrentProperty(true);
+
+        salesmanViewController.showLevelList();
+    };
 }

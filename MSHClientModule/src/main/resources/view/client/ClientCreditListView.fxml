@@ -17,7 +17,7 @@
          <children>
             <VBox fx:id="contentVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: ffffff;">
                <children>
-                  <TitleLabel text=" 信用记录" />
+                  <TitleLabel text="信用记录" />
                    <AnchorPane prefHeight="200.0" prefWidth="1200.0">
                        <children>
                            <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

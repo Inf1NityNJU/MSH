@@ -442,6 +442,10 @@ public class UserDataServiceImpl implements UserDataService {
         return levelDataHelper.exactlyQuery("ID", level);
     }
 
+    public ArrayList<LevelPO> getAllLevel(){
+        return levelDataHelper.prefixMatchQuery("ID", "");
+    }
+
     /**
      * 删除客户对应所有信用记录
      *
