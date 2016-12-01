@@ -6,57 +6,68 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.user.ClientManagementCellController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="160.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;"
+      xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ui.componentcontroller.user.ClientManagementCellController">
     <effect>
-        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
+        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0"/>
     </effect>
     <children>
-      <CircleImage fx:id="avatarImage">
-         <HBox.margin>
-            <Insets left="40.0" right="20.0" />
-         </HBox.margin>
-      </CircleImage>
-        <AnchorPane prefHeight="200.0" prefWidth="800.0">
+        <CircleImage fx:id="avatarImage" radius="40.0">
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
+            <image>
+                <Image url="@../../images/example.jpeg"/>
+            </image>
+        </CircleImage>
+        <AnchorPane prefWidth="800.0">
             <children>
-                <StateButton fx:id="typeLabel" alignment="CENTER" colorProperty="12B7F3" isActiveProperty="true" text="普通会员" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-                <Label fx:id="clientNameLabel" text="KrayC" textFill="#5b6e79" AnchorPane.topAnchor="10.0">
+                <StateButton fx:id="typeLabel" alignment="CENTER" colorProperty="12B7F3" isActiveProperty="true"
+                             text="普通会员" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                <Label fx:id="clientNameLabel" text="KrayC" textFill="#5b6e79" AnchorPane.topAnchor="0.0">
                     <font>
-                        <Font name="PingFang SC Regular" size="18.0" />
+                        <Font name="PingFang SC Regular" size="18.0"/>
                     </font>
                 </Label>
-                <Label text="用户名:" textFill="#cccccc" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0">
+                <Label text="用户名:" textFill="#cccccc" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0">
                     <font>
-                        <Font name="PingFang SC Regular" size="14.0" />
+                        <Font name="PingFang SC Regular" size="14.0"/>
                     </font>
                 </Label>
-            <Label layoutY="102.0" text="编号:" textFill="#cccccc" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0">
-               <font>
-                  <Font name="PingFang SC Regular" size="14.0" />
-               </font>
-            </Label>
-                <Label fx:id="accountLabel" layoutX="10.0" layoutY="10.0" text="songkuixi" textFill="GREY" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="70.0">
+                <Label layoutY="102.0" text="编号:" textFill="#cccccc" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0">
                     <font>
-                        <Font name="PingFang SC Regular" size="14.0" />
+                        <Font name="PingFang SC Regular" size="14.0"/>
                     </font>
                 </Label>
-                <HBox alignment="TOP_RIGHT" layoutX="428.0" layoutY="41.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="0.0">
-                    <children>
-                        <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情"/>
-                    </children>
-                </HBox>
-            <Label fx:id="clientIDLabel" layoutX="70.0" layoutY="98.0" text="000000007" textFill="GREY" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0">
-               <font>
-                  <Font name="PingFang SC Regular" size="14.0" />
-               </font>
-            </Label>
+                <Label fx:id="accountLabel" layoutX="10.0" layoutY="10.0" text="songkuixi" textFill="GREY"
+                       AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="70.0">
+                    <font>
+                        <Font name="PingFang SC Regular" size="14.0"/>
+                    </font>
+                </Label>
+                <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情"
+                            AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+                <Label fx:id="clientIDLabel" layoutX="70.0" layoutY="98.0" text="000000007" textFill="GREY"
+                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0">
+                    <font>
+                        <Font name="PingFang SC Regular" size="14.0"/>
+                    </font>
+                </Label>
             </children>
             <HBox.margin>
-                <Insets bottom="20.0" right="20.0" top="20.0" />
+                <Insets/>
             </HBox.margin>
         </AnchorPane>
     </children>
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+    </padding>
 </HBox>

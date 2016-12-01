@@ -1,11 +1,13 @@
 package po;
 
+import java.io.Serializable;
+
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
  * Created by Kray on 2016/11/11.
  */
-public class LevelPO {
+public class LevelPO implements Serializable {
     /*
      * ID (level = id)
      */

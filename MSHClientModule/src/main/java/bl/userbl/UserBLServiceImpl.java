@@ -3,7 +3,6 @@ package bl.userbl;
 //import blservice.userblservice.LevelService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
-import util.CreditAction;
 import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
@@ -224,7 +223,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo{
     public LevelVO getLevel(String level) {
         if (user instanceof Client) {
             Client client = (Client) user;
-            return client.getLevelCredit(level);
+            return client.getLevel(level);
         } else {
             return null;
         }

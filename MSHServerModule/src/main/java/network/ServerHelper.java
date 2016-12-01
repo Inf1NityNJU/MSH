@@ -2,6 +2,8 @@ package network;
 
 import network.hotelnetwork.HotelServerNetworkImpl;
 import network.hotelnetwork.HotelServerNetworkService;
+import network.promotionnetwork.PromotionServerNetworkImpl;
+import network.promotionnetwork.PromotionServerNetworkService;
 import network.usernetwork.UserServerNetworkService;
 import network.usernetwork.UserServerNetworkImpl;
 
@@ -36,15 +38,13 @@ public class ServerHelper {
             //把clientServerService注册到RMI注册服务器上，命名为testRMI
             UserServerNetworkService userServerNetwork = new UserServerNetworkImpl();
             HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
+            PromotionServerNetworkService promotionServerNetworkService = new PromotionServerNetworkImpl();
 
+//            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
 
-            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
+            Naming.rebind("UserServerNetworkService", userServerNetwork);
+            Naming.rebind("PromotionServerNetWorkService", promotionServerNetworkService);
 
-            Naming.rebind("addClient", userServerNetwork);
-            Naming.rebind("searchClientByID", userServerNetwork);
-//            Naming.rebind("updateClient", userServerNetwork);
-//            Naming.rebind("deleteClient", userServerNetwork);
-            Naming.rebind("searchClient", userServerNetwork);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {

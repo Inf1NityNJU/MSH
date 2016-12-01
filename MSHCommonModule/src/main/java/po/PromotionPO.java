@@ -4,12 +4,14 @@ import util.DateUtil;
 import util.Place;
 import util.PromotionType;
 
+import java.io.Serializable;
+
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
  * Created by vivian on 16/11/11.
  */
-public class PromotionPO {
+public class PromotionPO implements Serializable {
     /**
      * 策略编号
      */

@@ -10,7 +10,7 @@ import static util.EqualJudgeHelper.judgeEqual;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class ClientPO extends UserPO implements Serializable{
+public class ClientPO extends UserPO implements Serializable {
     /**
      * 客户ID
      */

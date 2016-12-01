@@ -92,4 +92,27 @@ public class WebPromotionViewController {
     public void refreshWebPromotionList(){
         webPromotionListViewController.showAllWebPromotions();
     }
+
+    /**
+     * 编辑策略
+     */
+    public void showPromotionDetailEditView(String type){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionDetailEditView.fxml"));
+            ScrollPane view = loader.load();
+
+            WebPromotionDetailEditViewController webPromotionDetailEditViewController = loader.getController();
+            webPromotionDetailEditViewController.setWebPromotionViewController(this);
+            webPromotionDetailEditViewController.show(type);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,8 +1,9 @@
 package bl.promotionbl;
 
-import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
-import dataservice.promotiondataservice.PromotionDataService;
-import dataservice.promotiondataservice.PromotionDataService_Stub;
+//import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
+//import dataservice.promotiondataservice.PromotionDataService;
+import network.PromotionClientNetworkImpl;
+import network.PromotionDataService;
 import po.PromotionPO;
 import util.DateUtil;
 import util.PromotionType;
@@ -16,8 +17,13 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class Promotion{
-    private PromotionDataService promotionDataService = PromotionDataServiceFactory.getPromotionDataService();
+//    private PromotionDataService promotionDataService = PromotionDataServiceFactory.getPromotionDataService();
 
+    private PromotionDataService promotionDataService;
+
+    public Promotion(){
+        promotionDataService = new PromotionClientNetworkImpl();
+    }
     /**
      * 增加一个促销策略
      * @param promotionVO
@@ -129,4 +135,5 @@ public class Promotion{
         int third = Integer.valueOf(s.substring(8,10));
         return new DateUtil(first,second,third);
     }
+
 }
