@@ -170,7 +170,7 @@ public class Client extends User {
 //        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID(clientID);
         ArrayList<CreditPO> creditPOs = userClientNetwork.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
-        for(CreditPO creditPO : creditPOs){
+        for (CreditPO creditPO : creditPOs) {
             CreditVO creditVO = new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(),
                     creditPO.getCreditAction(), creditPO.getOrderID(), new DateUtil(creditPO.getDate()));
             creditVOs.add(creditVO);
@@ -178,10 +178,10 @@ public class Client extends User {
         return creditVOs;
     }
 
-    public LevelVO getLevelCredit(String level){
+    public LevelVO getLevel(String level) {
 //        LevelPO levelPO = userDataService.getLevel(level);
         LevelPO levelPO = userClientNetwork.getLevel(level);
-        return new LevelVO(levelPO.getLevel()+"", levelPO.getCredit()+"");
+        return new LevelVO(levelPO.getLevel() + "", levelPO.getCredit() + "");
     }
 
 }

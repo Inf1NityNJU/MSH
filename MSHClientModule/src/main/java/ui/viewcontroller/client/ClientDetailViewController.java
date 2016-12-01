@@ -1,5 +1,7 @@
 package ui.viewcontroller.client;
 
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -70,7 +72,10 @@ public class ClientDetailViewController {
 
         currentLevelLabel.setText("Lv." + clientVO.level);
         nextLevelLabel.setText("Lv." + (clientVO.level+1));
-//        deltaCreditLabel.setText(clientVO.level);
+
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
+        int nextCredit = Integer.parseInt(userBLService.getLevel((clientVO.level+1)+"").credit);
+        deltaCreditLabel.setText((nextCredit - clientVO.credit) + "");
 
     }
 
@@ -89,9 +94,5 @@ public class ClientDetailViewController {
 
     public void clickCreditButton(){
         clientManagementViewController.showCreditOfClient(clientVO.clientID);
-    }
-
-    public ClientVO getClientVO() {
-        return clientVO;
     }
 }
