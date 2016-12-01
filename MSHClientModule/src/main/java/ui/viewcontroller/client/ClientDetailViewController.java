@@ -3,6 +3,7 @@ package ui.viewcontroller.client;
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
+import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.manager.ClientManagementViewController;
@@ -27,7 +28,7 @@ public class ClientDetailViewController {
     private Label accountLabel;
 
     @FXML
-    private RectButton passwordButton;
+    private TinyButton passwordButton;
 
     @FXML
     private Label typeLabel;
@@ -39,7 +40,7 @@ public class ClientDetailViewController {
     private Label creditLabel;
 
     @FXML
-    private RectButton creditButton;
+    private TinyButton creditButton;
 
     @FXML
     private Label currentLevelLabel;

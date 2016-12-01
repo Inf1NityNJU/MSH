@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -15,53 +15,53 @@
     <content>
         <VBox prefHeight="100.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: transparent;">
          <children>
-            <VBox fx:id="contentVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: ffffff;">
+            <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: ffffff;">
                <children>
                   <TitleLabel text="信用记录" />
-                   <AnchorPane prefHeight="200.0" prefWidth="1200.0">
-                       <children>
-                           <HBox alignment="CENTER" layoutX="428.0" layoutY="41.0" spacing="125.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="contentVBox" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                           <HBox alignment="CENTER">
                                <children>
-                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" prefWidth="0.0" text="日 期" textAlignment="CENTER" textFill="#cccccc">
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" text="日 期" textAlignment="CENTER" textFill="#cccccc">
                                        <font>
                                            <Font name="PingFang SC Regular" size="14.0" />
-                                       </font></Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" minWidth="70.0" prefWidth="0.0" text="订单编号" textAlignment="CENTER" textFill="#cccccc">
+                                       </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" text="订单编号" textAlignment="CENTER" textFill="#cccccc">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="80.0" text="动 作" textAlignment="CENTER" textFill="#cccccc">
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="动 作" textAlignment="CENTER" textFill="#cccccc">
                                        <font>
                                            <Font name="PingFang SC Regular" size="14.0" />
-                                       </font></Label>
-                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="0.0" text="变化信用值" textAlignment="CENTER" textFill="#cccccc">
+                                       </font>
+                              </Label>
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" text="变化信用值" textAlignment="CENTER" textFill="#cccccc">
                                        <font>
                                            <Font name="PingFang SC Regular" size="14.0" />
-                                       </font></Label>
-                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="70.0" minWidth="70.0" prefWidth="0.0" text="结果信用值" textAlignment="CENTER" textFill="#cccccc">
+                                       </font>
+                              </Label>
+                                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="结果信用值" textAlignment="CENTER" textFill="#cccccc">
                                        <font>
                                            <Font name="PingFang SC Regular" size="14.0" />
-                                       </font></Label>
+                                       </font>
+                              </Label>
                                </children>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding></HBox>
-                       </children>
-                       <HBox.margin>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                       </HBox.margin>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                   </AnchorPane>
-                  <ButtonBar>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <ButtonBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0">
                     <buttons>
                         <RectButton fx:id="backButton" onMouseClicked="#clickBackButton" text="返 回" />
                     </buttons>
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
                   </ButtonBar>
                </children>
                <padding>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.rectbutton.RectButton?>
+<?import component.tinybutton.TinyButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
@@ -132,10 +133,9 @@
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <RectButton fx:id="creditButton" onMouseClicked="#clickCreditButton" sizeProperty="Small" text="信用记录" />
+                              <TinyButton fx:id="creditButton" onMouseClicked="#clickCreditButton" text="信用记录" />
                            </children>
                         </HBox>
-                        <RectButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" sizeProperty="Small" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
                               <Label fx:id="currentLevelLabel" text="Label" textFill="#00cccc">
@@ -163,6 +163,7 @@
                               </Label>
                            </children>
                         </HBox>
+                        <TinyButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
