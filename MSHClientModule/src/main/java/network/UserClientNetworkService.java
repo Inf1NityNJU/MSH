@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/12/1.
  */
-public interface UserNetworkService extends Remote {
+public interface UserClientNetworkService extends Remote {
 
 
 

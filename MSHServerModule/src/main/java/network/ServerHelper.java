@@ -35,10 +35,10 @@ public class ServerHelper {
 
             //把clientServerService注册到RMI注册服务器上，命名为testRMI
             UserServerNetworkService userServerNetwork = new UserServerNetworkImpl();
-            HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
+//            HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
 
 
-            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
+//            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
 
             Naming.rebind("UserServerNetworkService", userServerNetwork);
         } catch (RemoteException e) {

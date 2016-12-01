@@ -1,6 +1,5 @@
 package network;
 
-import dataservice.userdataservice.UserDataService;
 import network.usernetwork.UserServerNetworkService;
 import po.*;
 import util.ResultMessage;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/23.
  */
-public class UserClientNetworkImpl implements UserNetworkService{
+public class UserClientNetworkImpl implements UserClientNetworkService {
     private UserServerNetworkService userServerNetworkService;
 
     public UserClientNetworkImpl() {

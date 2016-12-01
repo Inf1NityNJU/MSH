@@ -3,7 +3,7 @@ package bl.userbl;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import network.UserClientNetworkImpl;
-import network.UserNetworkService;
+import network.UserClientNetworkService;
 import po.ClientPO;
 import po.CreditPO;
 import po.LevelPO;
@@ -23,8 +23,7 @@ public class Client extends User {
     //这里进行Dateutil和String的转换
 
     private UserDataService userDataService;
-
-    private UserNetworkService userClientNetwork;
+    private UserClientNetworkService userClientNetwork;
 
     private String account;
     private String password;
