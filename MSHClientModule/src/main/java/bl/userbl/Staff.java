@@ -3,6 +3,7 @@ package bl.userbl;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import network.UserClientNetworkImpl;
+import network.UserNetworkService;
 import po.StaffPO;
 import util.LoginState;
 import util.ResetState;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class Staff extends User {
 
     private UserDataService userDataService;
-    private UserClientNetworkImpl userClientNetwork;
+    private UserNetworkService userClientNetwork;
 
     private String account;
     private String password;

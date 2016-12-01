@@ -3,6 +3,7 @@ package bl.userbl;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import network.UserClientNetworkImpl;
+import network.UserNetworkService;
 import po.ClientPO;
 import po.CreditPO;
 import po.LevelPO;
@@ -23,7 +24,7 @@ public class Client extends User {
 
     private UserDataService userDataService;
 
-    private UserClientNetworkImpl userClientNetwork;
+    private UserNetworkService userClientNetwork;
 
     private String account;
     private String password;
