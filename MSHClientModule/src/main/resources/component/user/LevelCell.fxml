@@ -20,14 +20,14 @@
                     <children>
                         <Label fx:id="levelLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="50.0" minWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
                             <font>
-                                <Font name="PingFang SC Regular" size="14.0" />
+                                <Font name="PingFang SC Regular" size="16.0" />
                             </font></Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <CommonTextField fx:id="creditText" alignment="CENTER" maxHeight="3.0" maxWidth="50.0" minHeight="30.0" minWidth="70.0" />
                               <Label fx:id="creditLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="50.0" minWidth="70.0" text="Label" textAlignment="CENTER" textFill="#cccccc">
                                   <font>
-                                      <Font name="PingFang SC Regular" size="14.0" />
+                                      <Font name="PingFang SC Regular" size="16.0" />
                                   </font>
                         </Label>
                      </children>

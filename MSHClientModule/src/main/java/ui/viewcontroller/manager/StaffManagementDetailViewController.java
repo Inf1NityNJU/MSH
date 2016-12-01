@@ -56,7 +56,7 @@ public class StaffManagementDetailViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
-        workerManagementViewController.getWorkerManagementListViewController().showStaff();
+        workerManagementViewController.getWorkerManagementListViewController().showAllWorkers();
     }
 
     public void clickPasswordButton() {

@@ -2,7 +2,8 @@ package bl.hotelbl;
 
 import blservice.orderblservice.OrderHotelInfo;
 import dataimpl.hoteldataimpl.HotelDataServiceFactory;
-import dataservice.hoteldataservice.HotelDataService;
+import network.HotelClientNetworkImpl;
+import network.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -35,7 +36,7 @@ public class Hotel {
     private OrderHotelInfo orderHotelInfo;
 
     protected Hotel() {
-        hotelDataService = HotelDataServiceFactory.getHotelDataService();
+        hotelDataService = new HotelClientNetworkImpl();
         cache = new HashMap<String, Hotel_DetailVO>();
     }
 
@@ -114,7 +115,7 @@ public class Hotel {
                         }
                     }
                     //如果没有符合的预订区间，则返回
-                    if (roomStockPOs.size()==0){
+                    if (roomStockPOs.size() == 0) {
                         return null;
                     }
                     //如果不符合数量要求，则删除
@@ -181,7 +182,7 @@ public class Hotel {
         for (ArrayList<HotelPO> array : result) {
             hotelPOs.retainAll(array);
         }
-        System.out.println(hotelPOs.size());
+        //System.out.println(hotelPOs.size());
         //判断是否有查询结果
         if (hotelPOs.size() == 0) {
             return null;
@@ -197,7 +198,7 @@ public class Hotel {
             //加入列表
             hotel_detailVOs.add(hotel_detailVO);
         }
-        System.out.println(hotel_detailVOs.size());
+        //System.out.println(hotel_detailVOs.size());
         return hotel_detailVOs;
     }
 
@@ -459,7 +460,9 @@ public class Hotel {
         }
         //
         hotelPO.setScoreAmount(hotelPO.getScoreAmount() + 1);
-        hotelPO.setScore((hotelPO.getScore() + score) / hotelPO.getScoreAmount());
+        hotelPO.setScore(((hotelPO.getScore() * ((double) hotelPO.getScoreAmount() - 1) + score) / (double) hotelPO.getScoreAmount()));
+        System.out.println(hotelPO.getScore());
+        System.out.println(hotelPO.getScoreAmount());
         hotelDataService.updateHotel(hotelPO);
         //更新cache
         cache.remove(hotelID);

@@ -2,6 +2,7 @@ package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
+import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.collections.FXCollections;
@@ -11,7 +12,6 @@ import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import po.StaffPO;
 import vo.SalesmanVO;
 import vo.SalesmanVO_Register;
@@ -26,16 +26,16 @@ public class WorkerManagementAddViewController {
     private WorkerManagementViewController workerManagementViewController;
 
     @FXML
-    private TextField accountText;
+    private CommonTextField accountText;
 
     @FXML
-    private TextField passwordText;
+    private CommonTextField passwordText;
 
     @FXML
-    private TextField checkPasswordText;
+    private CommonTextField checkPasswordText;
 
     @FXML
-    private TextField nameText;
+    private CommonTextField nameText;
 
     @FXML
     private StateButton staffButton;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.mychoicebox.MyChoiceBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -73,25 +73,6 @@
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="accountText" GridPane.columnIndex="1">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font>
-                        </TextField>
-                                <TextField fx:id="passwordText" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="16.0" />
-                                    </font></TextField>
-                        <TextField fx:id="checkPasswordText" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="nameText" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font>
-                        </TextField>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <StateButton fx:id="staffButton" colorProperty="12B7F3" onMouseClicked="#clickStaffButton" text="酒店工作人员" />
@@ -104,6 +85,10 @@
                            </font>
                         </Label>
                         <MyChoiceBox fx:id="hotelChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <CommonTextField fx:id="accountText" GridPane.columnIndex="1" />
+                        <CommonTextField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CommonTextField fx:id="checkPasswordText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CommonTextField fx:id="nameText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

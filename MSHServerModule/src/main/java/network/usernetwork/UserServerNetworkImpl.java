@@ -3,6 +3,7 @@ package network.usernetwork;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import po.*;
+import util.LoginState;
 import util.ResultMessage;
 
 import java.rmi.RemoteException;
@@ -16,7 +17,8 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
 
     private UserDataService userDataService;
 
-    public UserServerNetworkImpl() throws RemoteException {}
+    public UserServerNetworkImpl() throws RemoteException {
+    }
 
     /*
     public LoginState login(String account, String password) {
@@ -44,12 +46,11 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
 
 
     public ArrayList<ClientPO> searchClient(String keyword) {
-        System.out.println("SERVER SEARCH CLIENT");
         userDataService = UserDataServiceFactory.getClientDataService();
         return userDataService.searchClient(keyword);
     }
 
-    /*
+
     public ResultMessage updateClient(String clientID, ClientPO clientPO) {
         userDataService = UserDataServiceFactory.getClientDataService();
         return userDataService.updateClient(clientID, clientPO);
@@ -120,19 +121,28 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
         return userDataService.searchCreditByID(clientID);
     }
 
-    public ResultMessage addLevel(LevelPO levelPO){
+    public ResultMessage addLevel(LevelPO levelPO) {
         userDataService = UserDataServiceFactory.getSalesmanDataService();
         return userDataService.addLevel(levelPO);
     }
 
-    public ResultMessage updateLevel(String ID, LevelPO levelPO){
+    public ResultMessage updateLevel(String ID, LevelPO levelPO) {
         userDataService = UserDataServiceFactory.getSalesmanDataService();
         return userDataService.updateLevel(ID, levelPO);
     }
 
-    public ResultMessage deleteLevel(String ID){
+    public ResultMessage deleteLevel(String ID) {
         userDataService = UserDataServiceFactory.getSalesmanDataService();
         return userDataService.deleteLevel(ID);
     }
-    */
+
+    public LevelPO getLevel(String level) {
+        userDataService = UserDataServiceFactory.getClientDataService();
+        return userDataService.getLevel(level);
+    }
+
+    public ArrayList<LevelPO> getAllLevel() {
+        userDataService = UserDataServiceFactory.getSalesmanDataService();
+        return userDataService.getAllLevel();
+    }
 }

@@ -1,8 +1,7 @@
 package network.usernetwork;
 
 import dataservice.userdataservice.UserDataService;
-import po.ClientPO;
-import po.CreditPO;
+import po.*;
 import util.ResultMessage;
 
 import java.rmi.Remote;
@@ -19,4 +18,42 @@ public interface UserServerNetworkService extends Remote {
     public ClientPO searchClientByID(String clientID) throws RemoteException;
 
     public ArrayList<ClientPO> searchClient(String keyword) throws RemoteException;
+
+    public ResultMessage updateClient(String clientID, ClientPO clientPO) throws RemoteException;
+
+    public ResultMessage deleteClient(String clientID) throws RemoteException;
+
+    public ResultMessage addStaff(StaffPO staffPO) throws RemoteException;
+
+    public StaffPO searchStaffByID(String staffID) throws RemoteException;
+
+    public ResultMessage updateStaff(String staffID, StaffPO staffPO) throws RemoteException;
+
+    public ResultMessage deleteStaff(String staffID) throws RemoteException;
+
+    public ArrayList<StaffPO> searchStaff(String keyword) throws RemoteException;
+
+    public ResultMessage addSalesman(SalesmanPO salesmanPO) throws RemoteException;
+
+    public SalesmanPO searchSalesmanByID(String salesmanID) throws RemoteException;
+
+    public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) throws RemoteException;
+
+    public ResultMessage deleteSalesman(String salesmanID) throws RemoteException;
+
+    public ArrayList<SalesmanPO> searchSalesman(String keyword) throws RemoteException;
+
+    public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) throws RemoteException;
+
+    public ArrayList<CreditPO> searchCreditByID(String clientID) throws RemoteException;
+
+    public ResultMessage addLevel(LevelPO levelPO) throws RemoteException;
+
+    public ResultMessage updateLevel(String ID, LevelPO levelPO) throws RemoteException;
+
+    public ResultMessage deleteLevel(String ID) throws RemoteException;
+
+    public LevelPO getLevel(String level) throws RemoteException;
+
+    public ArrayList<LevelPO> getAllLevel() throws RemoteException;
 }

@@ -1,11 +1,13 @@
 package po;
 
+import java.io.Serializable;
+
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class SalesmanPO extends UserPO {
+public class SalesmanPO extends UserPO implements Serializable {
     /**
      * 网站营销人员ID
      */

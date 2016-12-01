@@ -3,10 +3,12 @@ package po;
 import util.DateUtil;
 import util.RoomType;
 
+import java.io.Serializable;
+
 /**
  * Created by SilverNarcissus on 16/10/14.
  */
-public class RoomStockPO {
+public class RoomStockPO  implements Serializable {
     /**
      * 库存房间ID
      */
