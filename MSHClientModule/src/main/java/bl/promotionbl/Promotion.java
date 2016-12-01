@@ -2,7 +2,6 @@ package bl.promotionbl;
 
 import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
 import dataservice.promotiondataservice.PromotionDataService;
-import dataservice.promotiondataservice.PromotionDataService_Stub;
 import po.PromotionPO;
 import util.DateUtil;
 import util.PromotionType;
@@ -129,4 +128,5 @@ public class Promotion{
         int third = Integer.valueOf(s.substring(8,10));
         return new DateUtil(first,second,third);
     }
+
 }

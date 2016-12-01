@@ -36,7 +36,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                        <StateButton fx:id="typeButton" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <StateButton fx:id="typeButton" textFill="#f9f9f9" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -110,9 +110,9 @@
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                        <RectButton fx:id="backButton" text="返 回" onMouseClicked="#clickBackButton"/>
-                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" text="删 除" onMouseClicked="#clickDeleteButton"/>
-                                <RectButton fx:id="editButton" minHeight="40.0" text="编 辑" />
+                        <RectButton fx:id="backButton" onMouseClicked="#clickBackButton" text="返 回" />
+                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickDeleteButton" text="删 除" />
+                                <RectButton fx:id="editButton" minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
                             </buttons>
                         </ButtonBar>
                     </children>

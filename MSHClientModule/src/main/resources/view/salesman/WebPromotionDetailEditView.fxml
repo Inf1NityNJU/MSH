@@ -4,6 +4,8 @@
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -38,7 +40,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <StateButton fx:id="typeButton" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <StateButton fx:id="typeButton" text="Web_ClientGrade" textFill="#f9f9f9" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -55,7 +57,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label fx:id="nameLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                <Label fx:id="nameLabel" text="201612010102" textFill="#cccccc" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
@@ -75,7 +77,18 @@
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <MyChoiceBox fx:id="levelChoiceBox" />
+                              <MyChoiceBox fx:id="levelChoiceBox">
+                               <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="0" />
+                                       <String fx:value="1" />
+                                       <String fx:value="2" />
+                                       <String fx:value="3" />
+                                       <String fx:value="4" />
+                                       <String fx:value="5" />
+                                   </FXCollections>
+                               </items>
+                           </MyChoiceBox>
                            </children>
                         </HBox>
                                 <Label text="优惠商圈" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -94,18 +107,39 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <Label text="StartTime" textFill="GREY" />
-                              <Label fx:id="startTimeLabel" />
+                              <Label fx:id="startTimeLabel" text="2016-12-01" textFill="#cccccc" />
                               <Label text="EndTime" textFill="GREY" />
-                              <Label fx:id="endTimeLabel" />
+                              <Label fx:id="endTimeLabel" text="2016-12-31" textFill="#cccccc" />
                            </children>
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <MyChoiceBox fx:id="cityChoiceBox" />
-                              <MyChoiceBox fx:id="placeChoiceBox" />
+                              <MyChoiceBox fx:id="cityChoiceBox">
+                               <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="NanJing" />
+                                       <String fx:value="BeiJing" />
+                                       <String fx:value="GuangZhou" />
+                                       <String fx:value="LanZhou" />
+                                       <String fx:value="ShangHai" />
+                                       <String fx:value="GuiYang" />
+                                   </FXCollections>
+                               </items>
+                           </MyChoiceBox>
+                              <MyChoiceBox fx:id="placeChoiceBox">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+                                          <String fx:value="XianLin" />
+                                          <String fx:value="TangShan" />
+                                          <String fx:value="XinJieKou" />
+                                          <String fx:value="WanDa" />
+                                          <String fx:value="Unnecessary" />
+                                      </FXCollections>
+                                  </items>
+                              </MyChoiceBox>
                            </children>
                         </HBox>
                             </children>
@@ -125,8 +159,8 @@
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                                <RectButton fx:id="cancelButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickDeleteButton" text="取 消" />
-                                <RectButton fx:id="saveButton" minHeight="40.0" text="保 存" />
+                                <RectButton fx:id="cancelButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickCancelButton" text="取 消" />
+                                <RectButton fx:id="saveButton" minHeight="40.0" onMouseClicked="#clickSaveButton" text="保 存" />
                             </buttons>
                         </ButtonBar>
                     </children>

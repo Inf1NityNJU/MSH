@@ -85,4 +85,9 @@ public class WebPromotionDetailViewController {
         webPromotionViewController.refreshWebPromotionList();
         webPromotionViewController.back();
     }
+
+    @FXML
+    public void clickEditButton(){
+        webPromotionViewController.showPromotionDetailEditView(typeButton.getText());
+    }
 }
