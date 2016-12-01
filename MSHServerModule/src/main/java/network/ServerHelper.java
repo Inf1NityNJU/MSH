@@ -40,12 +40,10 @@ public class ServerHelper {
             HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
             PromotionServerNetworkService promotionServerNetworkService = new PromotionServerNetworkImpl();
 
-            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
+//            Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
 
             Naming.rebind("UserServerNetworkService", userServerNetwork);
-
             Naming.rebind("PromotionServerNetWorkService", promotionServerNetworkService);
-            //Naming.unbind("PromotionServerNetWorkService");
 
         } catch (RemoteException e) {
             e.printStackTrace();

@@ -13,9 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/23.
  */
-public class UserClientNetworkImpl
-//        implements UserBLService, UserBLInfo, LevelService
-{
+public class UserClientNetworkImpl implements UserClientNetworkService {
     private UserServerNetworkService userServerNetworkService;
 
     public UserClientNetworkImpl() {

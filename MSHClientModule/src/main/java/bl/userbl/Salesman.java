@@ -3,6 +3,7 @@ package bl.userbl;
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
 import network.UserClientNetworkImpl;
+import network.UserClientNetworkService;
 import po.LevelPO;
 import po.SalesmanPO;
 import util.LoginState;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class Salesman extends User {
 
     private UserDataService userDataService;
-    private UserClientNetworkImpl userClientNetwork;
+    private UserClientNetworkService userClientNetwork;
 
     private String account;
     private String password;
