@@ -4,6 +4,7 @@ import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.rmi.Remote;
@@ -54,4 +55,11 @@ public interface HotelServerNetworkService extends Remote{
     public HotelRoomPO getRoomByID(String hotelRoomID) throws RemoteException;
 
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) throws RemoteException;
+
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses) throws RemoteException;
+
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses) throws RemoteException;
+
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses) throws RemoteException;
+
 }
