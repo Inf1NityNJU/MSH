@@ -24,7 +24,7 @@
                 <StateButton fx:id="salesmanButton" colorProperty="BC52FD" onMouseClicked="#showSalesman" text="网站营销人员" />
                 <CircleButton fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" typeProperty="Search">
                    <HBox.margin>
-                      <Insets left="550.0" />
+                      <Insets left="555.0" />
                    </HBox.margin>
                 </CircleButton>
                 <CircleButton fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#addWorker" typeProperty="Add">

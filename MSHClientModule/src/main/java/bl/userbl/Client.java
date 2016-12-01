@@ -78,8 +78,8 @@ public class Client extends User {
         ClientVO_Register clientVO = (ClientVO_Register) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
-        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
-//        return userClientNetwork.addClient(clientPO, new CreditPO(clientVO.clientID));
+//        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
+        return userClientNetwork.addClient(clientPO, new CreditPO(clientVO.clientID));
     }
 
     /**
@@ -89,8 +89,8 @@ public class Client extends User {
      * @return 查询到的ClientVO
      */
     public ClientVO searchByID(String clientID) {
-//        ClientPO clientPO = userClientNetwork.searchClientByID(clientID);
-        ClientPO clientPO = userDataService.searchClientByID(clientID);
+        ClientPO clientPO = userClientNetwork.searchClientByID(clientID);
+//        ClientPO clientPO = userDataService.searchClientByID(clientID);
 
         if (clientPO == null) {
             return null;
@@ -113,7 +113,8 @@ public class Client extends User {
         ClientPO tmpPO = userDataService.searchClientByID(clientVO.clientID);
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, tmpPO.getPassword());
-        return userDataService.updateClient(clientVO.clientID, clientPO);
+//        return userDataService.updateClient(clientVO.clientID, clientPO);
+        return userClientNetwork.updateClient(clientVO.clientID, clientPO);
     }
 
     /**
@@ -123,7 +124,8 @@ public class Client extends User {
      * @return 是否删除成功
      */
     public ResultMessage delete(String clientID) {
-        return userDataService.deleteClient(clientID);
+//        return userDataService.deleteClient(clientID);
+        return userClientNetwork.deleteClient(clientID);
     }
 
     /**
@@ -133,8 +135,8 @@ public class Client extends User {
      * @return 符合关键词的所有客户
      */
     public ArrayList<ClientVO> search(String keyword) {
-//        ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
-        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
+        ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
+//        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
         for (ClientPO clientPO : clientPOs) {
             clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
@@ -152,7 +154,9 @@ public class Client extends User {
      * @return 是否增加成功
      */
     public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
-        return userDataService.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
+//        return userDataService.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
+//                creditVO.deltaCredit, creditVO.resultCredit, creditVO.creditAction, clientID));
+        return userClientNetwork.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
                 creditVO.deltaCredit, creditVO.resultCredit, creditVO.creditAction, clientID));
     }
 
@@ -163,7 +167,8 @@ public class Client extends User {
      * @return 该客户的所有信用记录
      */
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
-        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID(clientID);
+//        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID(clientID);
+        ArrayList<CreditPO> creditPOs = userClientNetwork.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
         for(CreditPO creditPO : creditPOs){
             CreditVO creditVO = new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(),
@@ -174,7 +179,8 @@ public class Client extends User {
     }
 
     public LevelVO getLevelCredit(String level){
-        LevelPO levelPO = userDataService.getLevel(level);
+//        LevelPO levelPO = userDataService.getLevel(level);
+        LevelPO levelPO = userClientNetwork.getLevel(level);
         return new LevelVO(levelPO.getLevel()+"", levelPO.getCredit()+"");
     }
 

@@ -40,11 +40,7 @@ public class ServerHelper {
 
             Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
 
-            Naming.rebind("addClient", userServerNetwork);
-            Naming.rebind("searchClientByID", userServerNetwork);
-//            Naming.rebind("updateClient", userServerNetwork);
-//            Naming.rebind("deleteClient", userServerNetwork);
-            Naming.rebind("searchClient", userServerNetwork);
+            Naming.rebind("UserServerNetworkService", userServerNetwork);
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
