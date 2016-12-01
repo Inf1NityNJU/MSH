@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import util.CriteriaClause;
+import util.QueryMethod;
 import util.ResultMessage;
 
 import javax.persistence.OptimisticLockException;
@@ -128,6 +130,7 @@ public class HibernateHelper<T> implements DataHelper<T> {
         ArrayList<T> array = fullMatchQuery(field, value);
         return array.size() == 0 ? null : fullMatchQuery(field, value).get(0);
     }
+
     /**
      * 完全匹配查询PO
      *
@@ -242,5 +245,37 @@ public class HibernateHelper<T> implements DataHelper<T> {
             session.close();
             return new ArrayList<T>();
         }
+    }
+
+    @Override
+    public ArrayList<T> multiCriteriaQuery(ArrayList<CriteriaClause> criteriaClauses) {
+        //建立查询标准
+        Criteria criteria = null;
+        try {
+            criteria = SetUpCriteria();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        for (CriteriaClause criteriaClause : criteriaClauses) {
+            //完全匹配查询
+            if (criteriaClause.getQueryMethod().equals(QueryMethod.Full)) {
+                criteria.add(Restrictions.eq(criteriaClause.getField(), criteriaClause.getValue()));
+                continue;
+            }
+            //范围查询
+            if (criteriaClause.getQueryMethod().equals(QueryMethod.Range)) {
+                criteria.add(Restrictions.between(criteriaClause.getField(), criteriaClause.getValue(), criteriaClause.getAnotherValue()));
+            }
+            //like样查询
+            else {
+                criteria.add(Restrictions.like(criteriaClause.getField(), criteriaClause.getKeyWord()));
+            }
+        }
+        //进行查询,返回结果
+        ArrayList<T> arrayList = (ArrayList<T>) criteria.list();
+        session.close();
+        return arrayList;
     }
 }

@@ -1,5 +1,6 @@
 package datahelper;
 
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -26,5 +27,7 @@ public interface DataHelper<T> {
     public ArrayList<T> fuzzyMatchQuery(String field, String value);
 
     public ArrayList<T> rangeQuery(String field, Object min, Object max);
+
+    public ArrayList<T> multiCriteriaQuery(ArrayList<CriteriaClause> criteriaClauses);
 
 }

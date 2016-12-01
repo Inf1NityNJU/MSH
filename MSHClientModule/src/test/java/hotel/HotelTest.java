@@ -90,6 +90,7 @@ public class HotelTest {
         }
     }
 
+
     @Test
     public void searchHotelByRoom4() throws Exception {
         FilterFlagsVO flags = new FilterFlagsVO(null, null, null, RoomType.SingleRoom, 150, 300, new DateUtil(2016, 11, 29), new DateUtil(2016, 12, 3), 2, -1, 0, 0, null);
@@ -99,6 +100,14 @@ public class HotelTest {
         }
     }
 
+    @Test
+    public void searchHotelByRoom5() throws Exception {
+        FilterFlagsVO flags = new FilterFlagsVO(City.NanJing, Place.XianLin, null, null, 0, 0, new DateUtil(2016, 12, 3), new DateUtil(2016, 12, 12), 3, -1, 0, 0, null);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            System.out.println(hotel_detailVO);
+        }
+    }
     @Test
     public void searchHotelByStar() throws Exception {
         FilterFlagsVO flags = new FilterFlagsVO(null, null, null, null, 0, 0, null, null, 0, 5, 0, 0, null);
@@ -136,7 +145,7 @@ public class HotelTest {
         }
     }
 
-    @Test
+    @Ignore
     public void addScore() {
         ResultMessage resultMessage = hotelBLInfo.addScoreToHotelByHotelID(4,"01020000");
         Hotel_DetailVO hotel_detailVO=hotelBLService.getHotel("01020000");
@@ -159,7 +168,7 @@ public class HotelTest {
 
     @Test
     public void addHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Han Ting", City.GuangZhou, "Center Park", Place.XianLin, 5, "The test hotel", "All", null, 4.5, 4);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Han Ting", City.NanJing, "Center Park", Place.XianLin, 5, "The test hotel", "All", null, 4.5, 4);
         ResultMessage resultMessage = hotelBLService.addHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
