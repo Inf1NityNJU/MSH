@@ -44,7 +44,7 @@ public class CriteriaClauseImpl implements CriteriaClause {
         this.queryMethod = queryMethod;
 
         //检查查询方式是否匹配
-        if (!queryMethod.equals(QueryMethod.Full) && !(value instanceof String)) {
+        if (queryMethod.valueShouldBeString()&&!(value instanceof String)) {
             throw new IllegalArgumentException("Value for " + queryMethod + " query isn't a string");
         }
         //按照查询方式改变String

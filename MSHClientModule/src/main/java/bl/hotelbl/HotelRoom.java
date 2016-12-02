@@ -103,7 +103,7 @@ public class HotelRoom {
      */
     public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
         //得到指定房间的可预订库存
-        ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
+        ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
         //如果没找到 返回不合法
         if (roomStockPOs.size() == 0) {
             return ResultMessage.FAILED;
@@ -136,7 +136,7 @@ public class HotelRoom {
             return ResultMessage.INSUFFICIENT;
         }
         //更新cache
-        HotelRoomPO roomPO = hotelDataService.getRoomByID(generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
+        HotelRoomPO roomPO = hotelDataService.getRoomByID(ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
         HotelRoomVO roomVO = roomPOToRoomVO(roomPO);
         roomVO.roomStockVOs = roomStockVOs;
         cache.remove(roomPO.getID());
@@ -161,7 +161,7 @@ public class HotelRoom {
         if (resultMessage == ResultMessage.SUCCESS) {
             for (int i = 0; i < MAX_AVAILABLE_DAYS; i++) {
                 //
-                RoomStockPO roomStockPO = new RoomStockPO(generateID(hotelRoomPO.getID(), i)
+                RoomStockPO roomStockPO = new RoomStockPO(ToolKit.generateID(hotelRoomPO.getID(), i)
                         , hotelRoomPO.getHotelID()
                         , hotelRoomPO.getRoomType()
                         , hotelRoomPO.getTotalQuantity()
@@ -195,7 +195,7 @@ public class HotelRoom {
             return ResultMessage.INVALID;
         }
         //
-        String hotelRoomID = generateID(hotelID, type.ordinal());
+        String hotelRoomID = ToolKit.generateID(hotelID, type.ordinal());
         ResultMessage resultMessage = hotelDataService.deleteRoom(hotelRoomID);
         if (resultMessage == ResultMessage.SUCCESS) {
             //
@@ -215,7 +215,7 @@ public class HotelRoom {
      * @return hotelPO
      */
     private HotelRoomPO roomVOToRoomPO(HotelRoomVO hotelRoomVO) {
-        return hotelRoomVO == null ? null : new HotelRoomPO(generateID(hotelRoomVO.hotelID, hotelRoomVO.roomType.ordinal())
+        return hotelRoomVO == null ? null : new HotelRoomPO(ToolKit.generateID(hotelRoomVO.hotelID, hotelRoomVO.roomType.ordinal())
                 , hotelRoomVO.hotelID
                 , hotelRoomVO.roomType
                 , hotelRoomVO.price
@@ -249,20 +249,6 @@ public class HotelRoom {
                 , new DateUtil(roomStockPO.getDate()));
     }
 
-    /**
-     * 通过容器的ID生成组分的ID
-     *
-     * @param ID     容器的ID
-     * @param number 组分的代号
-     * @return 生成的组分的ID
-     */
-    private String generateID(String ID, int number) {
-        String cache = String.valueOf(number);
-        if (cache.length() == 1) {
-            cache = "0" + cache;
-        }
-        return ID + cache;
-    }
 
     /**
      * 设置酒店房间将要被删除
@@ -314,7 +300,7 @@ public class HotelRoom {
          */
         HotelRoomVO hotelRoom;
         //先检查cache
-        if ((hotelRoom = cache.get(generateID(hotelID, type.ordinal()))) == null) {
+        if ((hotelRoom = cache.get(ToolKit.generateID(hotelID, type.ordinal()))) == null) {
             //cache中未找到
             for (HotelRoomVO hotelRoomVO : getRoom(hotelID)) {
                 if (hotelRoomVO.roomType.equals(type)) {
@@ -325,7 +311,7 @@ public class HotelRoom {
         }
         if (hotelRoom == null) {
             return ResultMessage.NOT_EXIST;
-        } else if (checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity)) {
+        } else if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity)) {
             return ResultMessage.TRUE;
         } else {
             return ResultMessage.FALSE;

@@ -30,7 +30,7 @@ public class HotelRoomTest {
 
     @Ignore
     public void updateHotelRoom() throws Exception {
-        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000000", RoomType.DoubleDouble, 488.8, 50, null);
+        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000002", RoomType.DoubleDouble, 488.8, 3, null);
         ResultMessage resultMessage = hotelBLService.updateHotelRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
@@ -55,9 +55,9 @@ public class HotelRoomTest {
         assertEquals(ResultMessage.INSUFFICIENT, resultMessage);
     }
 
-    @Test
+    @Ignore
     public void addRoom() throws Exception {
-        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000010", RoomType.DoubleDouble,320, 10, null);
+        HotelRoomVO hotelRoomVO = new HotelRoomVO("03030002", RoomType.DoubleDouble,560, 10, null);
         ResultMessage resultMessage = hotelBLService.addRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
