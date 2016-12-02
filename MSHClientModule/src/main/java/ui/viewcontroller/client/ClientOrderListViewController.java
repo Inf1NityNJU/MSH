@@ -52,7 +52,7 @@ public class ClientOrderListViewController {
 
             for (int i = 0; i < 4; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/order/OrderCell.fxml"));
+                cellLoader.setLocation(Main.class.getResource("../component/order/ClientOrderCell.fxml"));
                 HBox ordercell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

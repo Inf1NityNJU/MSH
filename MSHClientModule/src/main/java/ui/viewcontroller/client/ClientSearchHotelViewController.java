@@ -61,4 +61,27 @@ public class ClientSearchHotelViewController {
         }
     }
 
+    /**
+     * 酒店详情
+     */
+    public void showHotelDetail(String hotelID) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/client/ClientHotelDetailView.fxml"));
+            ScrollPane pane = loader.load();
+
+            ClientHotelDetailViewController clientHotelDetailViewController = loader.getController();
+            clientHotelDetailViewController.setClientSearchHotelViewController(this);
+            clientHotelDetailViewController.setHotel(hotelID);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -64,3 +64,11 @@
     -fx-background-radius: 2em;
 
 }
+
+/* Separator */
+
+.separator:horizontal .line {
+    -fx-border-color: #dddddd transparent transparent transparent,
+    -fx-shadow-highlight-color transparent transparent transparent;
+    -fx-border-insets: 0, 1 0 0 0;
+}

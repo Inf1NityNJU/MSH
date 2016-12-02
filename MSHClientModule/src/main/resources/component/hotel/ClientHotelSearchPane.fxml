@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import component.circlebutton.CircleButton?>
 <?import component.commontextfield.CommonTextField?>
 <?import component.mycheckbox.MyCheckBox?>
 <?import component.mychoicebox.MyChoiceBox?>
+<?import component.mydatepicker.MyDatePicker?>
 <?import component.myrangeslider.MyRangeSlider?>
 <?import component.selectpane.SelectPane?>
 <?import java.lang.Integer?>
@@ -84,8 +84,8 @@
                         <Insets top="2.0" />
                      </GridPane.margin>
                   </Label>
-                  <MyRangeSlider fx:id="roomPriceSlider" GridPane.columnIndex="1" GridPane.rowIndex="1" prefix="￥"/>
-                  <TilePane hgap="70.0" GridPane.columnIndex="1">
+                  <MyRangeSlider fx:id="roomPriceSlider" prefix="￥" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TilePane hgap="70.0" tileAlignment="TOP_LEFT" GridPane.columnIndex="1">
                      <children>
                         <MyCheckBox text="单人房" />
                         <MyCheckBox text="大床房" />
@@ -128,7 +128,6 @@
                               </FXCollections>
                            </items>
                         </MyChoiceBox>
-                        <CircleButton typeProperty="Search" />
                      </children>
                   </HBox>
                   <TilePane hgap="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -143,7 +142,6 @@
                   <MyCheckBox text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <CommonTextField layoutX="225.0" prefHeight="60.0" prefWidth="581.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="80.0" />
             <CommonTextField fx:id="keywordTextField" layoutX="258.0" prefHeight="60.0" prefWidth="640.0" promptText="输入关键字" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="0.0" />
             <SelectPane fx:id="roomQuantitySelect" labelWidth="201.0" text="房间数量" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
                <labels>
@@ -154,6 +152,13 @@
                   <Label text="5 间以上" />
                </labels>
             </SelectPane>
+             <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" prefHeight="59.0" prefWidth="140.0" style="-fx-background-color: #00cccc; -fx-background-radius: 0; -fx-border-style: hidden;" text="搜 索" textFill="WHITE" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="80.0">
+               <font>
+                  <Font name="PingFang SC Regular" size="20.0" />
+               </font>
+            </Button>
+            <MyDatePicker fx:id="checkInDatePicker" editable="false" layoutX="201.0" layoutY="80.0" prefHeight="60.0" prefWidth="291.0" AnchorPane.leftAnchor="200.0" />
+            <MyDatePicker fx:id="checkOutDatePicker" editable="false" layoutX="490.0" layoutY="80.0" prefHeight="60.0" prefWidth="291.0" AnchorPane.leftAnchor="490.0" />
             <SelectPane fx:id="citySelect" labelWidth="141.0" text="地址">
                <labels>
                   <Label text="上海" />
@@ -171,11 +176,6 @@
                   <Label text="江宁" />
                </labels>
             </SelectPane>
-             <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" prefHeight="59.0" prefWidth="140.0" style="-fx-background-color: #00cccc; -fx-background-radius: 0; -fx-border-style: hidden;" text="搜 索" textFill="WHITE" AnchorPane.leftAnchor="780.0" AnchorPane.topAnchor="80.0">
-               <font>
-                  <Font name="PingFang SC Regular" size="20.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>
