@@ -77,7 +77,7 @@
                         <id>install-external-javafx</id>
                         <phase>clean</phase>
                         <configuration>
-                            <file>${java.home}/lib/ext/jfxrt.jar</file>
+                            <file>${basedir}/src/main/resources/lib/jfxrt.jar</file>
                             <repositoryLayout>default</repositoryLayout>
                             <groupId>com.oracle</groupId>
                             <artifactId>javaFX</artifactId>
@@ -116,7 +116,7 @@
             <artifactId>javaFX</artifactId>
             <version>1.8</version>
             <!--<scope>system</scope>-->
-            <!--<systemPath>${java.home}/lib/ext/jfxrt.jar</systemPath>-->
+            <!--<systemPath>${basedir}/src/main/resources/lib/jfxrt.jar</systemPath>-->
         </dependency>
         <dependency>
             <groupId>junit</groupId>
