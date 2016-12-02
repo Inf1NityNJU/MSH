@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.circleimage.CircleImage?>
+<?import component.rectbutton.RectButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.ClientHotelRoomCellController">
+   <children>
+      <CircleImage radius="40.0">
+         <image>
+            <Image url="@../../images/example.jpeg" />
+         </image>
+      </CircleImage>
+      <Label alignment="CENTER" prefWidth="190.0" text="大床房" textFill="GREY">
+         <font>
+            <Font name="PingFang SC Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" prefWidth="200.0" text="¥ 500" textFill="#ff2c14">
+         <font>
+            <Font name="PingFang SC Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" prefWidth="200.0" text="剩余 6 间" textFill="GREY">
+         <font>
+            <Font name="PingFang SC Regular" size="16.0" />
+         </font>
+      </Label>
+      <RectButton isActiveProperty="false" text="加 入" />
+   </children>
+</HBox>

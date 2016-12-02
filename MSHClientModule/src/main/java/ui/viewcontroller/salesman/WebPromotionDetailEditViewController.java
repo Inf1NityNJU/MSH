@@ -1,6 +1,7 @@
 package ui.viewcontroller.salesman;
 
 import blservice.promotionblservice.PromotionBLService;
+import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class WebPromotionDetailEditViewController {
     private PromotionBLService promotionBLService;
 
     @FXML
-    private Label nameLabel;
+    private CommonTextField nameTextField;
 
     @FXML
     private StateButton typeButton;
@@ -37,10 +38,10 @@ public class WebPromotionDetailEditViewController {
     private ChoiceBox placeChoiceBox;
 
     @FXML
-    private Label startTimeLabel;
+    private CommonTextField startTimeTextField;
 
     @FXML
-    private Label endTimeLabel;
+    private CommonTextField endTimeTextField;
 
     @FXML
     private RectButton cancelButton;

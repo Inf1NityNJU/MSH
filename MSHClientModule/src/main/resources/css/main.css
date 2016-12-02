@@ -1,3 +1,10 @@
+.label {
+    /*-fx-font-weight: 300;*/
+    /*-fx-font-family: "PingFang SC";*/
+    /*-fx-focus-color: transparent;*/
+    /*-fx-faint-focus-color: transparent;*/
+}
+
 .scroll-pane > .viewport  {
     -fx-background-color: transparent;
 }
@@ -63,4 +70,12 @@
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 
+}
+
+/* Separator */
+
+.separator:horizontal .line {
+    -fx-border-color: #dddddd transparent transparent transparent,
+    -fx-shadow-highlight-color transparent transparent transparent;
+    -fx-border-insets: 0, 1 0 0 0;
 }

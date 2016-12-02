@@ -40,6 +40,7 @@ public class ClientOrderViewController {
      */
     public void showClientOrderList() {
         if (initNode != null) {
+            stack.empty();
             rootPane.setCenter(initNode);
             return;
         }

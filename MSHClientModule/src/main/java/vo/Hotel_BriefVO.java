@@ -25,14 +25,14 @@ public class Hotel_BriefVO {
     /**
      * 酒店评分评价
      */
-    public AssessmentVO assessmentVO;
+    public double score;
 
-    public Hotel_BriefVO(String ID, String name, String address, AssessmentVO assessmentVO) {
+    public Hotel_BriefVO(String ID, String name, String address, int star, double score) {
         this.ID = ID;
         this.name = name;
         this.address = address;
         this.star = star;
-        this.assessmentVO = assessmentVO;
+        this.score = score;
     }
 
     /**
@@ -68,6 +68,6 @@ public class Hotel_BriefVO {
                 && judgeEqual(name, h_bvo.name)
                 && judgeEqual(address, h_bvo.address)
                 && judgeEqual(star, h_bvo.star)
-                && judgeEqual(assessmentVO, h_bvo.assessmentVO);
+                && judgeEqual(score, h_bvo.score);
     }
 }
