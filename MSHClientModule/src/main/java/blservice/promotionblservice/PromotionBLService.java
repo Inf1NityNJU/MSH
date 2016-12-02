@@ -18,7 +18,7 @@ public interface PromotionBLService {
      * @param pvo
      * @return
      */
-    public ResultMessage addPromotion(Promotion_HotelVO pvo);
+    public ResultMessage addPromotion(PromotionVO pvo);
 
     /**
      * 删除制定营销策略
@@ -32,7 +32,7 @@ public interface PromotionBLService {
      * @param newPvo
      * @return
      */
-    public ResultMessage updatePromotion(Promotion_HotelVO newPvo);
+    public ResultMessage updatePromotion(PromotionVO newPvo);
 
     /**
      * 查找某条酒店/网站促销策略
