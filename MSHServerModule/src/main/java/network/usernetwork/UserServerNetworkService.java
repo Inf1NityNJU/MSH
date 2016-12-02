@@ -20,7 +20,7 @@ public interface UserServerNetworkService extends Remote {
 
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) throws RemoteException;
 
-    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) throws RemoteException;
+    public ResultMessage addClient(ClientPO clientPO) throws RemoteException;
 
     public ClientPO searchClientByID(String clientID) throws RemoteException;
 

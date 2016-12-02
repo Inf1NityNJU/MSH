@@ -116,7 +116,7 @@ public class CreditPO implements Serializable {
      * @param clientID
      */
     public CreditPO(String clientID) {
-        this.orderID = "-"+clientID;
+        this.orderID = "-" + clientID;
         DateUtil dateUtil = new DateUtil();
         this.date = dateUtil.toString();
         this.deltaCredit = 0;

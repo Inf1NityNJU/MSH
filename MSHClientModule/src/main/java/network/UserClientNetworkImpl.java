@@ -19,18 +19,32 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
     private UserServerNetworkService userServerNetworkService;
 
     public UserClientNetworkImpl() {
-        try {
-            userServerNetworkService = (UserServerNetworkService) Naming.lookup("UserServerNetworkService");
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        while (userServerNetworkService == null) {
+            try {
+                userServerNetworkService = (UserServerNetworkService) Naming.lookup("UserServerNetworkService");
+            } catch (NotBoundException e) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                System.err.println("Client.network.userServerNetworkService: Not bound, trying to connect");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                break;
+            } catch (RemoteException e) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                System.err.println("Client.network.userServerNetworkService: No service, trying to connect");
+            }
         }
+
     }
 
-    public LoginState login(String account, String password){
+    public LoginState login(String account, String password) {
         try {
             return userServerNetworkService.login(account, password);
         } catch (Exception e) {
@@ -39,7 +53,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public LoginState logout(){
+    public LoginState logout() {
         try {
             return userServerNetworkService.logout();
         } catch (Exception e) {
@@ -48,7 +62,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage resetPassword(String account, String oldPassword, String newPassword){
+    public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
         try {
             return userServerNetworkService.resetPassword(account, oldPassword, newPassword);
         } catch (Exception e) {
@@ -57,9 +71,9 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
+    public ResultMessage addClient(ClientPO clientPO) {
         try {
-            return userServerNetworkService.addClient(clientPO, creditPO);
+            return userServerNetworkService.addClient(clientPO);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultMessage.FAILED;
@@ -129,7 +143,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage deleteStaff(String staffID){
+    public ResultMessage deleteStaff(String staffID) {
         try {
             return userServerNetworkService.deleteStaff(staffID);
         } catch (Exception e) {
@@ -138,7 +152,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ArrayList<StaffPO> searchStaff(String keyword){
+    public ArrayList<StaffPO> searchStaff(String keyword) {
         try {
             System.out.println("++++");
             return userServerNetworkService.searchStaff(keyword);
@@ -148,7 +162,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage addSalesman(SalesmanPO salesmanPO){
+    public ResultMessage addSalesman(SalesmanPO salesmanPO) {
         try {
             return userServerNetworkService.addSalesman(salesmanPO);
         } catch (Exception e) {
@@ -157,7 +171,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public SalesmanPO searchSalesmanByID(String salesmanID){
+    public SalesmanPO searchSalesmanByID(String salesmanID) {
         try {
             return userServerNetworkService.searchSalesmanByID(salesmanID);
         } catch (Exception e) {
@@ -166,7 +180,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO){
+    public ResultMessage updateSalesman(String salesmanID, SalesmanPO salesmanPO) {
         try {
             return userServerNetworkService.updateSalesman(salesmanID, salesmanPO);
         } catch (Exception e) {
@@ -175,7 +189,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage deleteSalesman(String salesmanID){
+    public ResultMessage deleteSalesman(String salesmanID) {
         try {
             return userServerNetworkService.deleteSalesman(salesmanID);
         } catch (Exception e) {
@@ -184,7 +198,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ArrayList<SalesmanPO> searchSalesman(String keyword){
+    public ArrayList<SalesmanPO> searchSalesman(String keyword) {
         try {
             return userServerNetworkService.searchSalesman(keyword);
         } catch (Exception e) {
@@ -193,7 +207,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage addCreditRecord(String clientID, CreditPO creditPO){
+    public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
         try {
             return userServerNetworkService.addCreditRecord(clientID, creditPO);
         } catch (Exception e) {
@@ -202,7 +216,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ArrayList<CreditPO> searchCreditByID(String clientID){
+    public ArrayList<CreditPO> searchCreditByID(String clientID) {
         try {
             return userServerNetworkService.searchCreditByID(clientID);
         } catch (Exception e) {
@@ -211,7 +225,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage addLevel(LevelPO levelPO){
+    public ResultMessage addLevel(LevelPO levelPO) {
         try {
             return userServerNetworkService.addLevel(levelPO);
         } catch (Exception e) {
@@ -220,7 +234,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage updateLevel(String ID, LevelPO levelPO){
+    public ResultMessage updateLevel(String ID, LevelPO levelPO) {
         try {
             return userServerNetworkService.updateLevel(ID, levelPO);
         } catch (Exception e) {
@@ -229,7 +243,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ResultMessage deleteLevel(String ID){
+    public ResultMessage deleteLevel(String ID) {
         try {
             return userServerNetworkService.deleteLevel(ID);
         } catch (Exception e) {
@@ -238,7 +252,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public LevelPO getLevel(String level){
+    public LevelPO getLevel(String level) {
         try {
             return userServerNetworkService.getLevel(level);
         } catch (Exception e) {
@@ -247,7 +261,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public ArrayList<LevelPO> getAllLevel(){
+    public ArrayList<LevelPO> getAllLevel() {
         try {
             return userServerNetworkService.getAllLevel();
         } catch (Exception e) {

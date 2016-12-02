@@ -41,9 +41,9 @@ public class Client extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        LoginState loginState = userDataService.login(account, password);
+        LoginState loginState = userClientNetwork.login(account, password);
+//        LoginState loginState = userDataService.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
-            System.out.println("Login Client");
             ClientPO clientPO = userDataService.searchClient(account).get(0);
             super.setCurrentID(clientPO.getClientID());
             this.account = account;
@@ -61,7 +61,7 @@ public class Client extends User {
      * @return
      */
     public ResetState resetPassword(String account, String oldPassword, String newPassword) {
-        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+        if (userClientNetwork.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
             return ResetState.RESET_SUCCESS;
         } else {
             return ResetState.RESET_FAIL;
@@ -78,8 +78,8 @@ public class Client extends User {
         ClientVO_Register clientVO = (ClientVO_Register) userVO;
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
-//        return userDataService.addClient(clientPO, new CreditPO(clientVO.clientID));
-        return userClientNetwork.addClient(clientPO, new CreditPO(clientVO.clientID));
+//        return userDataService.addClient(clientPO);
+        return userClientNetwork.addClient(clientPO);
     }
 
     /**

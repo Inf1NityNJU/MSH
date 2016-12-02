@@ -18,24 +18,49 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
     private UserDataService userDataService;
 
     public UserServerNetworkImpl() throws RemoteException {
+
+    }
+
+    public LoginState login(String account, String password) {
+        userDataService = UserDataServiceFactory.getClientDataService();
+        if (userDataService.login(account, password) == LoginState.LOGIN_SUCCESS_Client) {
+            return LoginState.LOGIN_SUCCESS_Client;
+        }
+        userDataService = UserDataServiceFactory.getStaffDataService();
+        if (userDataService.login(account, password) == LoginState.LOGIN_SUCCESS_Staff) {
+            return LoginState.LOGIN_SUCCESS_Staff;
+        }
+        userDataService = UserDataServiceFactory.getSalesmanDataService();
+        if (userDataService.login(account, password) == LoginState.LOGIN_SUCCESS_Salesman) {
+            return LoginState.LOGIN_SUCCESS_Salesman;
+        }
+        return LoginState.LOGIN_FAIL;
     }
 
     //TODO
-    public LoginState login(String account, String password) {
-        return null;
-    }
-
     public LoginState logout() {
         return LoginState.LOGOUT;
     }
 
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
-        return null;
+        userDataService = UserDataServiceFactory.getClientDataService();
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResultMessage.SUCCESS;
+        }
+        userDataService = UserDataServiceFactory.getStaffDataService();
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResultMessage.SUCCESS;
+        }
+        userDataService = UserDataServiceFactory.getSalesmanDataService();
+        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+            return ResultMessage.SUCCESS;
+        }
+        return ResultMessage.FAILED;
     }
 
-    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
+    public ResultMessage addClient(ClientPO clientPO) {
         userDataService = UserDataServiceFactory.getClientDataService();
-        return userDataService.addClient(clientPO, creditPO);
+        return userDataService.addClient(clientPO);
     }
 
     public ClientPO searchClientByID(String clientID) {
@@ -43,12 +68,10 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
         return userDataService.searchClientByID(clientID);
     }
 
-
     public ArrayList<ClientPO> searchClient(String keyword) {
         userDataService = UserDataServiceFactory.getClientDataService();
         return userDataService.searchClient(keyword);
     }
-
 
     public ResultMessage updateClient(String clientID, ClientPO clientPO) {
         userDataService = UserDataServiceFactory.getClientDataService();

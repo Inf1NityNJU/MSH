@@ -42,10 +42,9 @@ public interface UserClientNetworkService extends Remote {
      * 增加客户
      *
      * @param clientPO
-     * @param creditPO
      * @return
      */
-    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO);
+    public ResultMessage addClient(ClientPO clientPO);
 
     /**
      * 根据ID查找客户
