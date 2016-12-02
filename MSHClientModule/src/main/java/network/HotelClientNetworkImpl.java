@@ -7,6 +7,7 @@ import network.usernetwork.UserServerNetworkService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.net.MalformedURLException;
@@ -235,6 +236,36 @@ public class HotelClientNetworkImpl implements HotelDataService {
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) {
         try {
             return hotelServerNetworkService.fullSearchHotelRoom(field, value);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses) {
+        try {
+            return hotelServerNetworkService.multiSearchHotel(criteriaClauses);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses) {
+        try {
+            return hotelServerNetworkService.multiSearchHotelRoom(criteriaClauses);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses) {
+        try {
+            return hotelServerNetworkService.multiSearchRoomStockPO(criteriaClauses);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

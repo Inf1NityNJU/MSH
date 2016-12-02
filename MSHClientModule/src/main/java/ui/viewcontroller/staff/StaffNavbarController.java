@@ -9,6 +9,7 @@ import ui.viewcontroller.client.ClientViewController;
  *
  */
 public class StaffNavbarController {
+    //下层组件
     private StaffViewController staffViewController;
 
     @FXML

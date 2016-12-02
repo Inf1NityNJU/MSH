@@ -131,7 +131,6 @@ public class RoomInfoViewController {
 
             rootPane.setCenter(list);
 
-            editRoomInfoListViewController.showEditRoomList();
         } catch (IOException e) {
             e.printStackTrace();
         }

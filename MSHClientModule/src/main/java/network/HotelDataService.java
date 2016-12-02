@@ -3,6 +3,7 @@ package network;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.rmi.Remote;
@@ -10,9 +11,8 @@ import java.util.ArrayList;
 
 /**
  * Created by SilverNarcissus on 16/10/12.
- *
  */
-public interface HotelDataService extends Remote{
+public interface HotelDataService extends Remote {
 
     public ArrayList<HotelPO> exactlySearchHotel(String field, Object value);
 
@@ -53,4 +53,11 @@ public interface HotelDataService extends Remote{
     public HotelRoomPO getRoomByID(String hotelRoomID);
 
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value);
+
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses);
+
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses);
+
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses);
+
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.Place;
 import util.ResultMessage;
 
@@ -126,5 +127,20 @@ public class HotelDataServiceImpl implements HotelDataService {
     @Override
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) {
         return hotelRoomDataHelper.fullMatchQuery(field, value);
+    }
+
+    @Override
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses) {
+        return hotelDataHelper.multiCriteriaQuery(criteriaClauses);
+    }
+
+    @Override
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses) {
+        return hotelRoomDataHelper.multiCriteriaQuery(criteriaClauses);
+    }
+
+    @Override
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses) {
+        return roomStockDataHelper.multiCriteriaQuery(criteriaClauses);
     }
 }
