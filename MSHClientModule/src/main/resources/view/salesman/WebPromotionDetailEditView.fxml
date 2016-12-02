@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.mychoicebox.MyChoiceBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
@@ -57,11 +58,6 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label fx:id="nameLabel" text="201612010102" textFill="#cccccc" GridPane.columnIndex="1" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="16.0" />
-                                    </font>
-                                </Label>
                                 <Label text="优惠会员等级" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -110,9 +106,9 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <Label text="StartTime" textFill="GREY" />
-                              <Label fx:id="startTimeLabel" text="2016-12-01" textFill="#cccccc" />
+                              <CommonTextField fx:id="startTimeTextField" />
                               <Label text="EndTime" textFill="GREY" />
-                              <Label fx:id="endTimeLabel" text="2016-12-31" textFill="#cccccc" />
+                              <CommonTextField fx:id="endTimeTextField" />
                            </children>
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -142,6 +138,7 @@
                               </MyChoiceBox>
                            </children>
                         </HBox>
+                        <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
