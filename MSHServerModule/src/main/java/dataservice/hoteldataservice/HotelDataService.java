@@ -3,6 +3,7 @@ package dataservice.hoteldataservice;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -51,4 +52,11 @@ public interface HotelDataService {
     public HotelRoomPO getRoomByID(String hotelRoomID);
 
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value);
+
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses);
+
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses);
+
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses);
+
 }

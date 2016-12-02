@@ -6,6 +6,7 @@ import network.hotelnetwork.HotelServerNetworkService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.rmi.RemoteException;
@@ -124,5 +125,20 @@ public class HotelServerNetworkImpl extends UnicastRemoteObject implements Hotel
     @Override
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) throws RemoteException {
         return hotelDataService.fullSearchHotelRoom(field, value);
+    }
+
+    @Override
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses) throws RemoteException {
+        return hotelDataService.multiSearchHotel(criteriaClauses);
+    }
+
+    @Override
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses) throws RemoteException {
+        return hotelDataService.multiSearchHotelRoom(criteriaClauses);
+    }
+
+    @Override
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses) throws RemoteException {
+        return hotelDataService.multiSearchRoomStockPO(criteriaClauses);
     }
 }

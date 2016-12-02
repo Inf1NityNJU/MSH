@@ -3,6 +3,7 @@ package dataservice.hoteldataservice;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
+import util.CriteriaClause;
 import util.ResultMessage;
 
 import java.util.ArrayList;
@@ -109,6 +110,21 @@ public class HotelDataService_Stub implements HotelDataService{
 
     @Override
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses) {
         return null;
     }
 }

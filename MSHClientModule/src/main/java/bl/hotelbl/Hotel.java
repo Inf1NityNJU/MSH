@@ -1,7 +1,6 @@
 package bl.hotelbl;
 
 import blservice.orderblservice.OrderHotelInfo;
-import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import network.HotelClientNetworkImpl;
 import network.HotelDataService;
 import po.HotelPO;
@@ -10,10 +9,8 @@ import po.RoomStockPO;
 import util.DateUtil;
 import util.ResultMessage;
 import vo.FilterFlagsVO;
-import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -106,14 +103,8 @@ public class Hotel {
                      * 保存要查询的房屋库存
                      */
                     ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(hotelRoomPO.getID());
-                    //得到要查询的房屋库存
-                    for (int a = 0; a < roomStockPOs.size(); a++) {
-                        DateUtil dateUtil = new DateUtil(roomStockPOs.get(i).getDate());
-                        if (!dateUtil.isInRange(flags.checkInDate, flags.checkOutDate)) {
-                            roomStockPOs.remove(a);
-                            a--;
-                        }
-                    }
+                    //getRoomStockPOsInRange
+                    getRoomStockPOsInRange(flags, roomStockPOs);
                     //如果没有符合的预订区间，则返回
                     if (roomStockPOs.size() == 0) {
                         return null;
@@ -134,6 +125,43 @@ public class Hotel {
                 return null;
             }
             result.add(roomResult);
+        }
+        //如果客户没有填写酒店房间类型，直接使用房间数量和日期查询
+        if (flags.roomType == null || flags.quantity != 0) {
+            //按城市和商圈缩小范围
+            ArrayList<HotelPO> dateResult = hotelDataService.fullSearchHotel("city", flags.city);
+            dateResult.retainAll(hotelDataService.fullSearchHotel("place", flags.place));
+            //
+            for (int i = 0; i < dateResult.size(); i++) {
+                boolean valid = false;
+                //得到酒店的全部房屋
+                for (HotelRoomPO hotelRoomPO : hotelDataService.fullSearchHotelRoom("hotelID", dateResult.get(i).getID())) {
+                    ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(hotelRoomPO.getID());
+                    //getRoomStockPOsInRange
+                    getRoomStockPOsInRange(flags, roomStockPOs);
+                    //如果没有符合的预订区间，则返回
+                    if (roomStockPOs.size() == 0) {
+                        return null;
+                    }
+                    //
+                    if (HotelRoom.checkChangeIsValidByPO(roomStockPOs, flags.quantity)) {
+                        valid = true;
+                        break;
+                    }
+                }
+                //检查是否有符合要求的房间
+                if (!valid) {
+                    dateResult.remove(i);
+                    i--;
+                }
+                //
+            }
+            //现在得到了所有满足条件的酒店
+            //判断是否找不到酒店
+            if (dateResult.size() == 0) {
+                return null;
+            }
+            result.add(dateResult);
         }
         //按照酒店星级查询酒店
         if (flags.star != -1) {
@@ -200,6 +228,16 @@ public class Hotel {
         }
         //System.out.println(hotel_detailVOs.size());
         return hotel_detailVOs;
+    }
+
+    private void getRoomStockPOsInRange(FilterFlagsVO flags, ArrayList<RoomStockPO> roomStockPOs) {
+        for (int a = 0; a < roomStockPOs.size(); a++) {
+            DateUtil dateUtil = new DateUtil(roomStockPOs.get(a).getDate());
+            if (!dateUtil.isInRange(flags.checkInDate, flags.checkOutDate)) {
+                roomStockPOs.remove(a);
+                a--;
+            }
+        }
     }
 
     /**
