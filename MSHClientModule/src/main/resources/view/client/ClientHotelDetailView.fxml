@@ -125,8 +125,8 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <MyDatePicker />
-                                          <MyDatePicker>
+                                          <MyDatePicker fx:id="checkInDatePicker"/>
+                                          <MyDatePicker fx:id="checkOutDatePicker">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
@@ -139,7 +139,7 @@
                                                 <Font name="PingFang SC Regular" size="14.0" />
                                              </font>
                                           </Label>
-                                          <RectButton maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" text="预 定" textAlignment="CENTER" HBox.hgrow="NEVER" />
+                                          <RectButton maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" text="预 定" textAlignment="CENTER" HBox.hgrow="NEVER" onMouseClicked="#clickBookButton"/>
                                        </children>
                                     </HBox>
                                     <HBox>

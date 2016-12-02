@@ -5,8 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import vo.OrderVO;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Stack;
 
 /**
@@ -40,6 +42,7 @@ public class ClientSearchHotelViewController {
      */
     public void showClientHotelList() {
         if (initNode != null) {
+            stack.empty();
             rootPane.setCenter(initNode);
             return;
         }
@@ -73,6 +76,31 @@ public class ClientSearchHotelViewController {
             ClientHotelDetailViewController clientHotelDetailViewController = loader.getController();
             clientHotelDetailViewController.setClientSearchHotelViewController(this);
             clientHotelDetailViewController.setHotel(hotelID);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 预定订单
+     */
+    public void showBookOrder(OrderVO order) {
+
+        System.out.print("!!!");
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/client/ClientBookOrderView.fxml"));
+            ScrollPane pane = loader.load();
+
+            ClientBookOrderViewController clientBookOrderViewController = loader.getController();
+            clientBookOrderViewController.setClientSearchHotelViewController(this);
+            clientBookOrderViewController.setOrder(order);
 
             Node node = rootPane.getCenter();
             stack.push(node);
