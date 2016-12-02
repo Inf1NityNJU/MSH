@@ -23,7 +23,7 @@ public class PromotionBLServiceImpl implements PromotionBLService{
 
 
     @Override
-    public ResultMessage addPromotion(Promotion_HotelVO pvo) {
+    public ResultMessage addPromotion(PromotionVO pvo) {
         return promotion.add(pvo);
     }
 
@@ -33,7 +33,7 @@ public class PromotionBLServiceImpl implements PromotionBLService{
     }
 
     @Override
-    public ResultMessage updatePromotion(Promotion_HotelVO newPvo) {
+    public ResultMessage updatePromotion(PromotionVO newPvo) {
         return promotion.update(newPvo);
     }
 

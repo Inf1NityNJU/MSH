@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PromotionBLService_Stub implements PromotionBLService {
 
     @Override
-    public ResultMessage addPromotion(Promotion_HotelVO pvo) {
+    public ResultMessage addPromotion(PromotionVO pvo) {
         if (pvo.promotionID.equals("201610130101")) {
             return ResultMessage.SUCCESS;
         } else {
@@ -35,8 +35,9 @@ public class PromotionBLService_Stub implements PromotionBLService {
     }
 
     @Override
-    public ResultMessage updatePromotion(Promotion_HotelVO newPvo) {
-        if (newPvo.hotelID.equals("201610120202")) {
+    public ResultMessage updatePromotion(PromotionVO newPvo) {
+        Promotion_HotelVO promotion_hotelVO = (Promotion_HotelVO)newPvo;
+        if (promotion_hotelVO.hotelID.equals("201610120202")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
