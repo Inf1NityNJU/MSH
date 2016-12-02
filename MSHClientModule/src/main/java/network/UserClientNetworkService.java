@@ -12,35 +12,31 @@ import java.util.ArrayList;
  */
 public interface UserClientNetworkService extends Remote {
 
+    /**
+     * 登录
+     *
+     * @param account
+     * @param password
+     * @return
+     */
+    public LoginState login(String account, String password);
 
+    /**
+     * 登出
+     *
+     * @return
+     */
+    public LoginState logout();
 
-//    /**
-//     * 登录
-//     *
-//     * @param account
-//     * @param password
-//     * @return
-//     */
-//    public LoginState login(String account, String password);
-//
-//    /**
-//     * 登出
-//     *
-//     * @return
-//     */
-//    public LoginState logout();
-//
-//    /**
-//     * 重置密码
-//     *
-//     * @param account
-//     * @param oldPassword
-//     * @param newPassword
-//     * @return
-//     */
-//    public ResultMessage resetPassword(String account, String oldPassword, String newPassword);
-
-
+    /**
+     * 重置密码
+     *
+     * @param account
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public ResultMessage resetPassword(String account, String oldPassword, String newPassword);
 
     /**
      * 增加客户

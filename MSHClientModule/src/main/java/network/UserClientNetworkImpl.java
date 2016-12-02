@@ -2,6 +2,7 @@ package network;
 
 import network.usernetwork.UserServerNetworkService;
 import po.*;
+import util.LoginState;
 import util.ResultMessage;
 
 import java.net.MalformedURLException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
  * Created by Kray on 2016/11/23.
  */
 public class UserClientNetworkImpl implements UserClientNetworkService {
+
     private UserServerNetworkService userServerNetworkService;
 
     public UserClientNetworkImpl() {
@@ -25,6 +27,33 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
             e.printStackTrace();
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    public LoginState login(String account, String password){
+        try {
+            return userServerNetworkService.login(account, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return LoginState.LOGIN_FAIL;
+        }
+    }
+
+    public LoginState logout(){
+        try {
+            return userServerNetworkService.logout();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return LoginState.LOGIN_FAIL;
+        }
+    }
+
+    public ResultMessage resetPassword(String account, String oldPassword, String newPassword){
+        try {
+            return userServerNetworkService.resetPassword(account, oldPassword, newPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultMessage.FAILED;
         }
     }
 

@@ -20,7 +20,7 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
     public UserServerNetworkImpl() throws RemoteException {
     }
 
-    /*
+    //TODO
     public LoginState login(String account, String password) {
         return null;
     }
@@ -32,7 +32,6 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
         return null;
     }
-    */
 
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
         userDataService = UserDataServiceFactory.getClientDataService();

@@ -2,6 +2,7 @@ package network.usernetwork;
 
 import dataservice.userdataservice.UserDataService;
 import po.*;
+import util.LoginState;
 import util.ResultMessage;
 
 import java.rmi.Remote;
@@ -12,6 +13,12 @@ import java.util.ArrayList;
  * Created by Kray on 2016/11/27.
  */
 public interface UserServerNetworkService extends Remote {
+
+    public LoginState login(String account, String password) throws RemoteException;
+
+    public LoginState logout() throws RemoteException;
+
+    public ResultMessage resetPassword(String account, String oldPassword, String newPassword) throws RemoteException;
 
     public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) throws RemoteException;
 
