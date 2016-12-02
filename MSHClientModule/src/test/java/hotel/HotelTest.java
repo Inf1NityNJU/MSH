@@ -21,21 +21,18 @@ import static org.junit.Assert.*;
  * Created by SilverNarcissus on 2016/11/18.
  */
 public class HotelTest {
-    Hotel_DetailVO hotel_detailVO1;
-    Hotel_DetailVO hotel_detailVO2;
-    Hotel_DetailVO hotel_detailVO3;
-    Hotel_DetailVO hotel_detailVO4;
-    Hotel_DetailVO hotel_detailVO5;
+    ArrayList<Hotel_DetailVO> hotel_detailVOs;
     private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
     private HotelBLInfo hotelBLInfo = HotelBLFactory.getHotelBLService();
 
     @Before
     public void setUp() {
-//        hotel_detailVO1 = hotelBLService.getHotel("00000000");
-//        hotel_detailVO2 = hotelBLService.getHotel("00000001");
-//        hotel_detailVO3 = hotelBLService.getHotel("00000002");
-//        hotel_detailVO4 = hotelBLService.getHotel("00000003");
-//        hotel_detailVO5 = hotelBLService.getHotel("00000004");
+        hotel_detailVOs=new ArrayList<Hotel_DetailVO>();
+        hotel_detailVOs.add(hotelBLService.getHotel("00000000"));
+        hotel_detailVOs.add(hotelBLService.getHotel("00000001"));
+        hotel_detailVOs.add(hotelBLService.getHotel("00000002"));
+        hotel_detailVOs.add(hotelBLService.getHotel("00000003"));
+        hotel_detailVOs.add(hotelBLService.getHotel("00000004"));
     }
 
     @Test
@@ -166,9 +163,9 @@ public class HotelTest {
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
-    @Ignore
+    @Test
     public void addHotel() throws Exception {
-        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Test 10", City.NanJing, "Center Park", Place.XinJieKou, 4, "The test hotel", "All", null, 3.9, 2);
+        Hotel_DetailVO hotel_detailVO = new Hotel_DetailVO(null, "Test Sort", City.NanJing, "Center Park", Place.XianLin, 3, "The test hotel", "All", null, 4.5, 2);
         ResultMessage resultMessage = hotelBLService.addHotel(hotel_detailVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
@@ -176,68 +173,66 @@ public class HotelTest {
     @Test
     public void deleteHotel() throws Exception {
         ResultMessage resultMessage = hotelBLService.deleteHotel("00000006");
-        assertEquals(ResultMessage.NOT_EXIST, resultMessage);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
-    @Ignore
+    @Test
     public void priceAscendingSort() throws Exception {
-        ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
-        hotel_detailVOs.add(hotel_detailVO1);
-        hotel_detailVOs.add(hotel_detailVO2);
-        hotel_detailVOs.add(hotel_detailVO3);
         Iterator<Hotel_DetailVO> hotel_detailVOIterator = hotelBLService.priceAscendingSort(hotel_detailVOs);
+        System.out.println("------------price ascending!------------");
         while (hotel_detailVOIterator.hasNext()) {
             System.out.println(hotel_detailVOIterator.next().minPrice);
         }
+        System.out.println("----------------------------------------");
     }
 
-    @Ignore
+    @Test
     public void priceDescendingSort() throws Exception {
-        ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
-        hotel_detailVOs.add(hotel_detailVO1);
-        hotel_detailVOs.add(hotel_detailVO2);
-        hotel_detailVOs.add(hotel_detailVO3);
         Iterator<Hotel_DetailVO> hotel_detailVOIterator = hotelBLService.priceDescendingSort(hotel_detailVOs);
+        System.out.println("------------price descending!------------");
         while (hotel_detailVOIterator.hasNext()) {
             System.out.println(hotel_detailVOIterator.next().maxPrice);
         }
+        System.out.println("----------------------------------------");
     }
 
-    @Ignore
+    @Test
     public void starAscendingSort() throws Exception {
-        ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
-        hotel_detailVOs.add(hotel_detailVO1);
-        hotel_detailVOs.add(hotel_detailVO2);
-        hotel_detailVOs.add(hotel_detailVO3);
-        hotel_detailVOs.add(hotel_detailVO4);
-        hotel_detailVOs.add(hotel_detailVO5);
         Iterator<Hotel_DetailVO> hotel_detailVOIterator = hotelBLService.starAscendingSort(hotel_detailVOs);
+        System.out.println("------------star ascending!------------");
         while (hotel_detailVOIterator.hasNext()) {
             System.out.println(hotel_detailVOIterator.next().star);
         }
+        System.out.println("----------------------------------------");
     }
 
-    @Ignore
+    @Test
     public void starDescendingSort() throws Exception {
-        ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
-        hotel_detailVOs.add(hotel_detailVO1);
-        hotel_detailVOs.add(hotel_detailVO2);
-        hotel_detailVOs.add(hotel_detailVO3);
-        hotel_detailVOs.add(hotel_detailVO4);
-        hotel_detailVOs.add(hotel_detailVO5);
         Iterator<Hotel_DetailVO> hotel_detailVOIterator = hotelBLService.starDescendingSort(hotel_detailVOs);
+        System.out.println("------------star descending!------------");
         while (hotel_detailVOIterator.hasNext()) {
             System.out.println(hotel_detailVOIterator.next().star);
         }
+        System.out.println("----------------------------------------");
     }
 
-    @Ignore
+    @Test
     public void scoreAscendingSort() throws Exception {
-
+        Iterator<Hotel_DetailVO> hotel_detailVOIterator = hotelBLService.scoreAscendingSort(hotel_detailVOs);
+        System.out.println("------------score ascending!------------");
+        while (hotel_detailVOIterator.hasNext()) {
+            System.out.println(hotel_detailVOIterator.next().score);
+        }
+        System.out.println("----------------------------------------");
     }
 
-    @Ignore
+    @Test
     public void scoreDescendingSort() throws Exception {
-
+        Iterator<Hotel_DetailVO> hotel_detailVOIterator = hotelBLService.scoreDescendingSort(hotel_detailVOs);
+        System.out.println("------------score descending!------------");
+        while (hotel_detailVOIterator.hasNext()) {
+            System.out.println(hotel_detailVOIterator.next().score);
+        }
+        System.out.println("----------------------------------------");
     }
 }

@@ -5,9 +5,7 @@ import network.HotelClientNetworkImpl;
 import network.HotelDataService;
 import po.HotelRoomPO;
 import po.RoomStockPO;
-import util.DateUtil;
-import util.ResultMessage;
-import util.RoomType;
+import util.*;
 import vo.HotelRoomVO;
 import vo.RoomChangeInfoVO;
 import vo.RoomStockVO;
@@ -41,9 +39,25 @@ public class HotelRoom {
      * @param quantity     需求数量
      * @return 满足是否满足需求
      */
-    public static boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity) {
+    private boolean checkChangeIsValidByPO(ArrayList<RoomStockPO> roomStockPOs, int quantity, int max) {
         for (RoomStockPO stockPO : roomStockPOs) {
-            if (stockPO.getAvailableQuantity() - quantity < 0) {
+            if (stockPO.getAvailableQuantity() - quantity < 0 || stockPO.getAvailableQuantity() - quantity > max) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 查看给定日期区间房间数量是否满足需求
+     *
+     * @param roomStockVOs 给定日期区间的房间列表
+     * @param quantity     需求数量
+     * @return 满足是否满足需求
+     */
+    private boolean checkChangeIsValidByVO(ArrayList<RoomStockVO> roomStockVOs, int quantity, int max) {
+        for (RoomStockVO stockVO : roomStockVOs) {
+            if (stockVO.availableQuantity - quantity < 0 || stockVO.availableQuantity - quantity > max) {
                 return false;
             }
         }
@@ -102,38 +116,34 @@ public class HotelRoom {
      * @return 更新成功与否
      */
     public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
-        //得到指定房间的可预订库存
-        ArrayList<RoomStockPO> roomStockPOs = hotelDataService.getRoomStock(ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
-        //如果没找到 返回不合法
-        if (roomStockPOs.size() == 0) {
-            return ResultMessage.FAILED;
-        }
-        //
-        //拷贝一份列表进行寻找需要修改库存的操作
-        ArrayList<RoomStockPO> roomStockPOsNeedToChange = new ArrayList<RoomStockPO>();
-        roomStockPOsNeedToChange.addAll(roomStockPOs);
-        //得到要修改的库存
-        for (int i = 0; i < roomStockPOsNeedToChange.size(); i++) {
-            DateUtil dateUtil = new DateUtil(roomStockPOsNeedToChange.get(i).getDate());
-            if (!dateUtil.isInRange(roomChangeInfoVO.start, roomChangeInfoVO.end)) {
-                roomStockPOsNeedToChange.remove(i);
-                i--;
-            }
-        }
+        //多条件查询房间库存
+        ArrayList<CriteriaClause> criteriaClauses = new ArrayList<CriteriaClause>();
+        //酒店ID
+        criteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("hotelID", roomChangeInfoVO.hotelID, QueryMethod.Full));
+        //房间类型
+        criteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("roomType", roomChangeInfoVO.type, QueryMethod.Full));
+        //起止日期
+        criteriaClauses.add(CriteriaClauseImpl.createRangeValueQuery("date", roomChangeInfoVO.start.toString(), roomChangeInfoVO.end.toString(), QueryMethod.Range));
+        //得到指定房间的需要被预订的库存
+        ArrayList<RoomStockPO> roomStockPOs = hotelDataService.multiSearchRoomStockPO(criteriaClauses);
         //保存要修改的数量
         int quantity = roomChangeInfoVO.quantity;
         //为更新cache做准备
         ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
         //
+        if (checkChangeIsValidByPO(roomStockPOs
+                , quantity
+                , hotelDataService.getRoomByID(
+                        ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()))
+                        .getTotalQuantity())) {
 
-        if (checkChangeIsValidByPO(roomStockPOsNeedToChange, quantity)) {
-            for (RoomStockPO roomStockPO : roomStockPOsNeedToChange) {
+            for (RoomStockPO roomStockPO : roomStockPOs) {
                 roomStockPO.setAvailableQuantity(roomStockPO.getAvailableQuantity() - quantity);
                 hotelDataService.updateRoomStock(roomStockPO);
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
         } else {
-            return ResultMessage.INSUFFICIENT;
+            return ResultMessage.INVALID;
         }
         //更新cache
         HotelRoomPO roomPO = hotelDataService.getRoomByID(ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
@@ -302,35 +312,30 @@ public class HotelRoom {
         //先检查cache
         if ((hotelRoom = cache.get(ToolKit.generateID(hotelID, type.ordinal()))) == null) {
             //cache中未找到
-            for (HotelRoomVO hotelRoomVO : getRoom(hotelID)) {
-                if (hotelRoomVO.roomType.equals(type)) {
-                    hotelRoom = hotelRoomVO;
-                    break;
-                }
+            ArrayList<CriteriaClause> roomStockCriteriaClauses = new ArrayList<CriteriaClause>();
+            roomStockCriteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("hotelID", hotelID, QueryMethod.Full));
+            roomStockCriteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("roomType", type, QueryMethod.Full));
+            ArrayList<RoomStockPO> roomStockPOs = hotelDataService.multiSearchRoomStockPO(roomStockCriteriaClauses);
+            //如果找不到对应的房间，返回失败
+            if (roomStockPOs.isEmpty()) {
+                return ResultMessage.NOT_EXIST;
+            }
+            //
+            HotelRoomPO hotelRoomPO=hotelDataService.getRoomByID(ToolKit.generateID(hotelID, type.ordinal()));
+            if (!checkChangeIsValidByPO(roomStockPOs, hotelRoomPO.getTotalQuantity(),hotelRoomPO.getTotalQuantity())) {
+                return ResultMessage.TRUE;
+            } else {
+                return ResultMessage.FALSE;
             }
         }
-        if (hotelRoom == null) {
-            return ResultMessage.NOT_EXIST;
-        } else if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity)) {
-            return ResultMessage.TRUE;
-        } else {
-            return ResultMessage.FALSE;
+        //cache中找到
+        else {
+            if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity,hotelRoom.totalQuantity)) {
+                return ResultMessage.TRUE;
+            } else {
+                return ResultMessage.FALSE;
+            }
         }
     }
 
-    /**
-     * 查看给定日期区间房间数量是否满足需求
-     *
-     * @param roomStockVOs 给定日期区间的房间列表
-     * @param quantity     需求数量
-     * @return 满足是否满足需求
-     */
-    private boolean checkChangeIsValidByVO(ArrayList<RoomStockVO> roomStockVOs, int quantity) {
-        for (RoomStockVO stockVO : roomStockVOs) {
-            if (stockVO.availableQuantity - quantity < 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

@@ -1,5 +1,9 @@
 package bl.hotelbl;
 
+import vo.RoomStockVO;
+
+import java.util.ArrayList;
+
 /**
  * Created by SilverNarcissus on 2016/12/2.
  *

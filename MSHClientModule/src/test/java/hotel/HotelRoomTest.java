@@ -37,35 +37,46 @@ public class HotelRoomTest {
 
     @Test
     public void updateHotelRoomQuantity1() throws Exception {
-        DateUtil start = new DateUtil(2016, 11, 28);
-        DateUtil end = new DateUtil(2016, 12, 5);
-        int quantity = 20;
+        DateUtil start = new DateUtil(2016, 12, 4);
+        DateUtil end = new DateUtil(2016, 12, 20);
+        int quantity = 3;
         RoomChangeInfoVO roomChangeInfoVO = new RoomChangeInfoVO(start, end, "00000000", RoomType.DoubleDouble, quantity);
         ResultMessage resultMessage = hotelBLService.updateHotelRoomQuantity(roomChangeInfoVO);
-        assertEquals(ResultMessage.INSUFFICIENT, resultMessage);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
     @Test
     public void updateHotelRoomQuantity2() throws Exception {
-        DateUtil start = new DateUtil(2016, 11, 28);
-        DateUtil end = new DateUtil(2016, 12, 1);
-        int quantity = 20;
+        DateUtil start = new DateUtil(2016, 12, 4);
+        DateUtil end = new DateUtil(2016, 12, 20);
+        int quantity = -3;
         RoomChangeInfoVO roomChangeInfoVO = new RoomChangeInfoVO(start, end, "00000000", RoomType.DoubleDouble, quantity);
         ResultMessage resultMessage = hotelBLService.updateHotelRoomQuantity(roomChangeInfoVO);
-        assertEquals(ResultMessage.INSUFFICIENT, resultMessage);
+        assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
+
+    @Test
+    public void updateHotelRoomQuantity3() throws Exception {
+        DateUtil start = new DateUtil(2016, 12, 4);
+        DateUtil end = new DateUtil(2016, 12, 20);
+        int quantity = -10;
+        RoomChangeInfoVO roomChangeInfoVO = new RoomChangeInfoVO(start, end, "00000000", RoomType.DoubleDouble, quantity);
+        ResultMessage resultMessage = hotelBLService.updateHotelRoomQuantity(roomChangeInfoVO);
+        assertEquals(ResultMessage.INVALID, resultMessage);
+    }
+
 
     @Ignore
     public void addRoom() throws Exception {
-        HotelRoomVO hotelRoomVO = new HotelRoomVO("03030002", RoomType.DoubleDouble,560, 10, null);
+        HotelRoomVO hotelRoomVO = new HotelRoomVO("00000005", RoomType.SingleRoom,99, 5, null);
         ResultMessage resultMessage = hotelBLService.addRoom(hotelRoomVO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 
-    @Ignore
+    @Test
     public void deleteHotelRoom() throws Exception {
-        ResultMessage resultMessage = hotelBLService.deleteHotelRoom("00000000", RoomType.DoubleDouble);
-        assertEquals(ResultMessage.INVALID, resultMessage);
+        ResultMessage resultMessage = hotelBLService.deleteHotelRoom("00000000", RoomType.BusinessRoom);
+        assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
     @Test

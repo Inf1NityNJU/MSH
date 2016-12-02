@@ -175,7 +175,6 @@ public class HotelClientNetworkImpl implements HotelDataService {
 
     @Override
     public ResultMessage deleteHotel(String hotelID) {
-
         try {
             return hotelServerNetworkService.deleteHotel(hotelID);
         } catch (RemoteException e) {
