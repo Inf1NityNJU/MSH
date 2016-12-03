@@ -29,8 +29,8 @@ public class ClientManagementListViewController {
      * 客户列表VC
      */
     private ClientManagementViewController clientManagementViewController;
-
     private ClientManagementPaneController clientManagementPaneController;
+    private ClientManagementSearchPaneController clientManagementSearchPaneController;
 
     private UserBLService userBLService;
 
@@ -70,8 +70,8 @@ public class ClientManagementListViewController {
             loader.setLocation(Main.class.getResource("../component/user/ClientManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
-            ClientManagementSearchPaneController controller = loader.getController();
-            controller.setClientManagementListViewController(this);
+            clientManagementSearchPaneController = loader.getController();
+            clientManagementSearchPaneController.setClientManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);
 
@@ -90,21 +90,15 @@ public class ClientManagementListViewController {
 
                 cellLoaders[i] = cellLoader;
                 cells[i] = clientCell;
-
-                /*
-                contentVBox.getChildren().add(clientCell);
-
-                ClientManagementCellController clientManagementCellController = cellLoaders[i].getController();
-                clientManagementCellController.setClientManagementListViewController(this);
-                */
-
             }
-
-            controller.showAllClients();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void launchSearchPane(){
+        clientManagementSearchPaneController.showAllClients();
     }
 
     /**
@@ -113,6 +107,8 @@ public class ClientManagementListViewController {
      * @param type -1:所有; 0:普通; 1:企业
      */
     public void showClients(int type) {
+
+        tmpVOs.clear();
 
         this.type = type;
 
@@ -137,7 +133,7 @@ public class ClientManagementListViewController {
                 this.tmpVOs = clientVOs;
             }
         } else {
-            System.out.println("no client");
+            System.out.println("No Client");
         }
 
         int size = this.tmpVOs.size();
@@ -155,7 +151,7 @@ public class ClientManagementListViewController {
 
     public void turnPage(int page) {
         int fromIndex = (page - 1) * ROW_IN_PANE;
-        int toIndex = Math.min(page * ROW_IN_PANE, clientVOs.size());
+        int toIndex = Math.min(page * ROW_IN_PANE, this.tmpVOs.size());
         List<ClientVO> tmpClientVOs = this.tmpVOs.subList(fromIndex, toIndex);
         setCells(tmpClientVOs);
     }
@@ -174,8 +170,6 @@ public class ClientManagementListViewController {
         contentVBox.getChildren().remove(pagePane);
 
         for (int i = 0; i < clientVOs.size(); i++) {
-//            contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(true);
-
             ClientVO clientVO = clientVOs.get(i);
             FXMLLoader loader = cellLoaders[i];
             Node ordercell = cells[i];
@@ -186,6 +180,7 @@ public class ClientManagementListViewController {
 
             contentVBox.getChildren().add(ordercell);
         }
+
         contentVBox.getChildren().add(pagePane);
     }
 

@@ -64,11 +64,13 @@ public class ClientManagementViewController {
 
             clientManagementListViewController = listLoader.getController();
             clientManagementListViewController.setClientManagementViewController(this);
-            clientManagementListViewController.setUserBLService(userBLService);
+            clientManagementListViewController.setUserBLService(this.userBLService);
 
             initNode = list;
 
             rootPane.setCenter(list);
+
+            clientManagementListViewController.launchSearchPane();
 
         } catch (IOException e) {
             e.printStackTrace();
