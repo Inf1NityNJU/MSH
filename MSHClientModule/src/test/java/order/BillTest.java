@@ -21,8 +21,8 @@ public class BillTest {
 
     @Test
     public void TestRefresh() {
-        BillVO billVO = bill.refresh(new DateUtil(2016, 10, 26), new DateUtil(2016, 10, 29), new DateUtil(2016, 10, 30),
-                new DateUtil(1996, 6, 11), "01011234", 3);
+        BillVO billVO = bill.refresh("01011234", new DateUtil(2016, 10, 26),
+                new DateUtil(1996, 6, 11), "企业名称", 3);
         assertNotNull(billVO);
     }
 

@@ -33,7 +33,7 @@ public class OrderBLService_Stub implements OrderBLService {
         }
     }
 
-    public BillVO getBill(String hotelID, DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, int quantity) {
+    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity) {
         return new BillVO(null, null, 300, 300);
     }
 

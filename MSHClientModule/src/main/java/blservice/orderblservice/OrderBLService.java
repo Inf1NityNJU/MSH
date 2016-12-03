@@ -41,11 +41,11 @@ public interface OrderBLService {
      * @param date
      * @param start
      * @param end
-     * @param birthday
+     * @param clientID
      * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(String hotelID, DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, int quantity);
+    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity);
 
     /**
      * 生成订单

@@ -2,6 +2,7 @@
 
 <?import component.mydatepicker.MyDatePicker?>
 <?import component.rectbutton.RectButton?>
+<?import component.starlabel.StarLabel?>
 <?import component.statebutton.StateButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -10,7 +11,6 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -39,24 +39,23 @@
                         <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                      <children>
-                        <AnchorPane>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
-                              <Label layoutX="122.0" layoutY="20.0" text="酒店名称" textFill="#5b6e79" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="酒店名称" textFill="#5b6e79">
                                  <font>
                                     <Font name="PingFang SC Regular" size="24.0" />
                                  </font>
                               </Label>
+                              <StarLabel />
+                              <Pane HBox.hgrow="ALWAYS" />
                               <!--<RectButton layoutX="866.0" layoutY="15.0" text="预 定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
-                              <Label layoutX="132.0" layoutY="30.0" text="曾经预定过该酒店" textFill="#cccccc" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="10.0">
+                              <Label text="曾经预定过该酒店" textFill="#cccccc">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
                            </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </AnchorPane>
+                        </HBox>
                         <Pane>
                            <children>
                               <Label layoutY="2.0" text="酒店地址" textFill="#cccccc">
@@ -125,7 +124,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <MyDatePicker fx:id="checkInDatePicker"/>
+                                          <MyDatePicker fx:id="checkInDatePicker" />
                                           <MyDatePicker fx:id="checkOutDatePicker">
                                              <opaqueInsets>
                                                 <Insets />
@@ -139,7 +138,7 @@
                                                 <Font name="PingFang SC Regular" size="14.0" />
                                              </font>
                                           </Label>
-                                          <RectButton maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" text="预 定" textAlignment="CENTER" HBox.hgrow="NEVER" onMouseClicked="#clickBookButton"/>
+                                          <RectButton maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#clickBookButton" prefHeight="40.0" text="预 定" textAlignment="CENTER" HBox.hgrow="NEVER" />
                                        </children>
                                     </HBox>
                                     <HBox>

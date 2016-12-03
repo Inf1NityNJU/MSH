@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.ratestarpane.RateStarPane?>
+<?import component.starlabel.StarLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -24,11 +26,16 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <Label layoutX="179.0" layoutY="82.0" text="酒店名称" textFill="#5b6e79" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" onMouseClicked="#showHotelDetail">
-               <font>
-                  <Font name="PingFang SC Regular" size="20.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label onMouseClicked="#showHotelDetail" text="酒店名称" textFill="#5b6e79">
+                     <font>
+                        <Font name="PingFang SC Regular" size="20.0" />
+                     </font>
+                  </Label>
+                  <StarLabel />
+               </children>
+            </HBox>
             <Label layoutX="189.0" layoutY="92.0" text="地址：" textFill="#b3b3b3" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />

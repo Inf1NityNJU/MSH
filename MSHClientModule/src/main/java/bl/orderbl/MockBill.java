@@ -25,7 +25,7 @@ public class MockBill extends Bill {
      * @param quantity
      * @return BillVO
      */
-    public BillVO refresh(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity) {
+    public BillVO refresh(String hotelID, DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, int quantity) {
         Promotion_HotelVO hotelPromotion = new Promotion_HotelVO("201610130101", PromotionType.Hotel_Birthday, 0.80,"00000000");
         return new BillVO(null, hotelPromotion, 300, 240);
     }

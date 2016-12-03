@@ -2,6 +2,7 @@ package ui.viewcontroller.staff;
 
 import component.mycheckbox.MyCheckBox;
 import component.statebutton.StateButton;
+import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,6 +12,7 @@ import main.Main;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.viewcontroller.client.ClientOrderViewController;
+import util.OrderState;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -42,6 +44,12 @@ public class HotelOrderDetailViewController {
 
     @FXML
     private Label checkInTimeLabel;
+
+    @FXML
+    private TinyButton updateCheckInButton;
+
+    @FXML
+    private TinyButton updateCheckOutButton;
 
     @FXML
     private Label checkOutTimeLabel;
@@ -81,8 +89,8 @@ public class HotelOrderDetailViewController {
         stateLabel.setText(order.state.getName());
         stateLabel.setColorProperty(order.state.getColor());
         checkDateLabel.setText(order.checkInDate.toString() + " - " + order.checkOutDate.toString());
-        checkInTimeLabel.setText((order.checkInTime != null) ? order.checkInTime.toString() : "未入住");
-        checkOutTimeLabel.setText((order.checkOutTime != null) ? order.checkOutTime.toString() : "未退房");
+//        checkInTimeLabel.setText((order.checkInTime != null) ? order.checkInTime.toString() : "未入住");
+//        checkOutTimeLabel.setText((order.checkOutTime != null) ? order.checkOutTime.toString() : "未退房");
         latestExecuteDateLabel.setText(order.latestExecuteTime.date.toString());
         latestExecuteTimeLabel.setText(order.latestExecuteTime.toString());
         peopleQuantityLabel.setText(order.peopleQuantity + "");
@@ -90,6 +98,33 @@ public class HotelOrderDetailViewController {
         hasChildrenCheckBox.setIsActiveProperty(order.hasChildren);
         originPriceLabel.setText(order.bill.originPrice + "");
         totalPriceLabel.setText(order.bill.totalPrice + "");
+
+        if (order.checkInTime == null && order.checkOutDate == null) {
+            checkInTimeLabel.setText("未入住");
+            checkOutTimeLabel.setText("未入住");
+            updateCheckInButton.setVisible(true);
+            updateCheckOutButton.setVisible(false);
+
+        } else if (order.checkInTime != null && order.checkOutDate == null){
+            checkInTimeLabel.setText(order.checkInTime.toString());
+            checkOutTimeLabel.setText("未退房");
+            updateCheckInButton.setVisible(false);
+            updateCheckOutButton.setVisible(true);
+        } else {
+            checkInTimeLabel.setText(order.checkInTime.toString());
+            checkOutTimeLabel.setText(order.checkOutTime.toString());
+            updateCheckInButton.setVisible(false);
+            updateCheckOutButton.setVisible(false);
+        }
+
+        if (order.state == OrderState.Cancelled) {
+            updateCheckInButton.setVisible(false);
+            updateCheckOutButton.setVisible(false);
+        } else if (order.state == OrderState.Abnormal) {
+            updateCheckInButton.setText("延迟入住");
+            updateCheckInButton.setVisible(true);
+            updateCheckOutButton.setVisible(false);
+        }
 
         addRooms(order.rooms);
 

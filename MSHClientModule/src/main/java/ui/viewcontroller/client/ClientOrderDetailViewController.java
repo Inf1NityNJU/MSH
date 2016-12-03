@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
+import util.OrderState;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -35,6 +36,12 @@ public class ClientOrderDetailViewController {
 
     @FXML
     private StateButton stateLabel;
+
+    @FXML
+    private Label cancelledLabel;
+
+    @FXML
+    private Label cancelledTimeLabel;
 
     @FXML
     private Label checkDateLabel;
@@ -89,6 +96,15 @@ public class ClientOrderDetailViewController {
         hasChildrenCheckBox.setIsActiveProperty(order.hasChildren);
         originPriceLabel.setText(order.bill.originPrice + "");
         totalPriceLabel.setText(order.bill.totalPrice + "");
+
+        if (order.state == OrderState.Cancelled) {
+            cancelledLabel.setVisible(true);
+            cancelledTimeLabel.setVisible(true);
+            cancelledTimeLabel.setText(order.cancelledTime.toString());
+        } else {
+            cancelledLabel.setVisible(false);
+            cancelledTimeLabel.setVisible(false);
+        }
 
         addRooms(order.rooms);
 

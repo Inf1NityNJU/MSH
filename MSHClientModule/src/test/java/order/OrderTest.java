@@ -33,8 +33,7 @@ public class OrderTest {
 
     @Test
     public void testGetBill() {
-        BillVO bill = order.getBill(new DateUtil(2016, 10, 27), new DateUtil(2016, 10, 29), new DateUtil(2016, 10, 30), new DateUtil(1996, 6, 11),
-                "01011234", 3);
+        BillVO bill = order.getBill("01011234", "000000001", new DateUtil(2016, 10, 27), new DateUtil(2016, 10, 29), new DateUtil(2016, 10, 30), 3);
         assertNotNull(bill);
     }
 
