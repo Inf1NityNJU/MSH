@@ -22,6 +22,10 @@ import java.util.ArrayList;
  */
 public class HotelClientNetworkImpl implements HotelDataService {
     /**
+     * 再次尝试连接的时间间隔
+     */
+    public static final int SLEEP_TIME = 2000;
+    /**
      * 传递过来的数据持久化接口
      */
     private HotelServerNetworkService hotelServerNetworkService;
@@ -31,23 +35,26 @@ public class HotelClientNetworkImpl implements HotelDataService {
             try {
                 hotelServerNetworkService = (HotelServerNetworkService) Naming.lookup("HotelServerNetworkService");
             } catch (NotBoundException e) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
+                sleep();
                 System.err.println("Client.network.hotelServerNetworkService: Not bound, trying to connect");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 break;
             } catch (RemoteException e) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
+                sleep();
                 System.err.println("Client.network.hotelServerNetworkService: No service, trying to connect");
             }
+        }
+    }
+
+    /**
+     * 线程睡眠一段时间
+     */
+    private void sleep() {
+        try {
+            Thread.sleep(SLEEP_TIME);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
         }
     }
 

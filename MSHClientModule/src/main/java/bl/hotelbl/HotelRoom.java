@@ -351,6 +351,14 @@ public class HotelRoom {
         }
     }
 
+    /**
+     * 得到指定日期的房间库存和房间价格
+     * @param start 开始日期
+     * @param end 结束日期
+     * @param hotelID 酒店ID
+     * @param roomType 房间类型
+     * @return 房间库存和价格列表
+     */
     public ArrayList<RoomStockWithPriceVO> getRoomStocksWithPriceVO(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
         //先得到符合日期区间的roomStockPO
         ArrayList<RoomStockPO> roomStockPOs = getRoomStockPOs(new RoomChangeInfoVO(start, end, hotelID, roomType, 0));
