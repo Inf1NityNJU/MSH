@@ -35,8 +35,13 @@ public class Hotel_BriefVO {
         this.score = score;
     }
 
+    public Hotel_BriefVO(Hotel_DetailVO hotel_detailVO) {
+        this(hotel_detailVO.ID, hotel_detailVO.name, hotel_detailVO.address, hotel_detailVO.star, hotel_detailVO.score);
+    }
+
     /**
      * 比较两个VO
+     *
      * @param o
      * @return 比较结果
      */
@@ -51,6 +56,7 @@ public class Hotel_BriefVO {
 
     /**
      * 生成对象的hashcode
+     *
      * @return hashcode
      */
     @Override
@@ -60,6 +66,7 @@ public class Hotel_BriefVO {
 
     /**
      * 分别比较每个数据
+     *
      * @param h_bvo
      * @return 比较结果
      */

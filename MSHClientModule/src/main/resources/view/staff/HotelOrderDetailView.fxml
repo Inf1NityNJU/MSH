@@ -3,6 +3,7 @@
 <?import component.mycheckbox.MyCheckBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
+<?import component.tinybutton.TinyButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
@@ -19,11 +20,11 @@
 <?import javafx.scene.text.Font?>
 
 <ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelOrderDetailViewController">
-    <content>
-        <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
-            <padding>
-                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-            </padding>
+   <content>
+      <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
          <children>
             <VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;">
                <effect>
@@ -35,10 +36,10 @@
                <children>
                   <TitleLabel text="订单详情" />
                   <GridPane vgap="40.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
                      <children>
                         <Label text="订单编号" textFill="#cccccc" GridPane.valignment="TOP">
                            <font>
@@ -48,7 +49,7 @@
                               <Insets top="3.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="酒店信息" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label text="客户信息" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
@@ -63,7 +64,7 @@
                         </Label>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="hotelNameLabel" text="!!酒店" textFill="GREY">
+                              <Label fx:id="hotelNameLabel" text="客户姓名" textFill="GREY">
                                  <font>
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
@@ -139,32 +140,21 @@
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <StateButton fx:id="stateLabel" colorProperty="00cccc" isActiveProperty="true" text="未执行" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="checkDateLabel" text="2016年11月26日 - 2016年11月27日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="checkInTimeLabel" text="尚未入住" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="checkOutTimeLabel" text="尚未入住" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <font>
-                              <Font name="PingFang SC Regular" size="16.0" />
-                           </font>
-                        </Label>
                         <GridPane vgap="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="180.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints vgrow="SOMETIMES" />
-                            <RowConstraints vgrow="SOMETIMES" />
-                            <RowConstraints vgrow="SOMETIMES" />
-                          </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="180.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
@@ -270,6 +260,50 @@
                               </Label>
                            </children>
                         </Pane>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <StateButton fx:id="stateLabel" colorProperty="00cccc" isActiveProperty="true" text="未执行" />
+                              <Label fx:id="cancelledLabel" prefWidth="150.0" text="撤销时间" textFill="#cccccc">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="200.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="cancelledTimeLabel" text="2016年11月19日 21:46" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <Label fx:id="checkInTimeLabel" text="尚未入住" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TinyButton fx:id="updateCheckInButton" text="更新入住" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <children>
+                              <Label fx:id="checkOutTimeLabel" text="尚未入住" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TinyButton fx:id="updateCheckOutButton" text="更新退房" />
+                           </children>
+                        </HBox>
                      </children>
                      <rowConstraints>
                         <RowConstraints />
@@ -289,14 +323,13 @@
                   <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                      <buttons>
                         <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
-                        <RectButton minHeight="40.0" text="撤销订单" />
                      </buttons>
                   </ButtonBar>
                </children>
             </VBox>
          </children></VBox>
-    </content>
-    <padding>
-        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
-    </padding>
+   </content>
+   <padding>
+      <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+   </padding>
 </ScrollPane>

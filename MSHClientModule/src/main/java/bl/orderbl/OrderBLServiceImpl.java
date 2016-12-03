@@ -1,5 +1,7 @@
 package bl.orderbl;
 
+import bl.hotelbl.Hotel;
+import bl.hotelbl.HotelRoom;
 import blservice.orderblservice.OrderBLService;
 import util.*;
 import vo.AssessmentVO;
@@ -12,6 +14,13 @@ import java.util.ArrayList;
  * Created by Sorumi on 16/11/10.
  */
 public class OrderBLServiceImpl implements OrderBLService {
+
+    private Order order;
+//    private HotelRoom hotelRoom;
+
+    protected OrderBLServiceImpl(Order order) {
+        this.order = order;
+    }
 
     /**
      * 检查客户信用值
@@ -47,12 +56,12 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @param date
      * @param start
      * @param end
-     * @param birthday
+     * @param clientID
      * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(String hotelID, DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, int quantity) {
-        return null;
+    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity) {
+        return order.getBill(hotelID, clientID, date, start, end, quantity);
     }
 
     /**

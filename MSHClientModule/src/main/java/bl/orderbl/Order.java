@@ -13,6 +13,11 @@ import java.util.ArrayList;
  */
 public class Order {
 
+    private OrderVO order;
+
+    private ArrayList<OrderRoom> rooms;
+    private Bill bill;
+
     /**
      * 修改订单房间数量
      * @param type
@@ -20,6 +25,20 @@ public class Order {
      * @return 是否成功修改
      */
     public ResultMessage modifyRoomQuantity(RoomType type, int quantity){
+
+        OrderRoom room = null;
+
+        for (OrderRoom roomItr : rooms) {
+            if (roomItr.getType() == type) {
+                room = roomItr;
+                break;
+            }
+        }
+
+        if (room == null) {
+//            room = new OrderRoom(type, quantity);
+        }
+//        OrderRoom room = new OrderRoom();
         return ResultMessage.SUCCESS;
     }
 
@@ -28,12 +47,12 @@ public class Order {
      * @param date
      * @param start
      * @param end
-     * @param birthday
+     * @param clientID
      * @param hotelID
      * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, String hotelID, int quantity){
+    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity){
         return null;
     }
 

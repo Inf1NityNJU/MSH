@@ -113,7 +113,18 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
     }
 
     @Override
+    public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags) {
+        ArrayList<Hotel_BriefVO> hotel_briefVOs = new ArrayList<Hotel_BriefVO>();
+        ArrayList<Hotel_DetailVO> hotel_detailVOs=searchHotel(flags);
+        for (Hotel_DetailVO hotel_DetailVO : hotel_detailVOs) {
+            hotel_briefVOs.add(new Hotel_BriefVO(hotel_DetailVO));
+        }
+        
+        return hotel_briefVOs;
+    }
+
+    @Override
     public ResultMessage addScoreToHotelByHotelID(double score, String hotelID) {
-        return hotel.addScore(score,hotelID);
+        return hotel.addScore(score, hotelID);
     }
 }
