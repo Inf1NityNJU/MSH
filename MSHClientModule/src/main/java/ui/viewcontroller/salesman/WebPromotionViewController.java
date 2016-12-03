@@ -115,4 +115,27 @@ public class WebPromotionViewController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 增加策略
+     */
+    public void addWebPromotion(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            WebPromotionAddViewController webPromotionAddViewController = loader.getController();
+            webPromotionAddViewController.setWebPromotionViewController(this);
+//            webPromotionDetailEditViewController.show(type);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

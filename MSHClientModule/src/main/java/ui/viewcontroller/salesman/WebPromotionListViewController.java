@@ -128,7 +128,7 @@ public class WebPromotionListViewController {
      * 增加新的策略
      */
     public void addPromotion(){
-
+        webPromotionViewController.addWebPromotion();
     }
 
     /**

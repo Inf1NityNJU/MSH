@@ -26,7 +26,7 @@
                 <StateButton fx:id="clientGradeButton" colorProperty="12B7F3" onMouseClicked="#showClientGradePromotions" text="会员等级折扣" />
                 <StateButton fx:id="placeButton" colorProperty="BC52FD" onMouseClicked="#showPlacePromotions" text="会员商圈折扣" />
                 <StateButton fx:id="specialDateButton" colorProperty="FC537D" onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣" />
-            <CircleButton fx:id="addButton" typeProperty="Add">
+            <CircleButton fx:id="addButton" typeProperty="Add" onMouseClicked="#clickAddButton">
                <HBox.margin>
                   <Insets left="450.0" />
                </HBox.margin>
