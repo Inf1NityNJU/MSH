@@ -1,6 +1,5 @@
 package ui.viewcontroller.salesman;
 
-import bl.promotionbl.PromotionBLServiceImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
@@ -41,8 +40,9 @@ public class WebPromotionDetailViewController {
     @FXML
     private RectButton editButton;
 
-    public WebPromotionDetailViewController(){
-        promotionBLService = new PromotionBLServiceImpl();
+
+    public void setPromotionBLService(PromotionBLService promotionBLService){
+        this.promotionBLService = promotionBLService;
     }
 
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController){

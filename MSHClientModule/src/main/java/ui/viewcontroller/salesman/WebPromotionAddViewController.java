@@ -1,5 +1,6 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.promotionbl.PromotionBLServiceImpl;
 import bl.promotionbl.Promotion_WebClientGrade;
 import blservice.promotionblservice.PromotionBLService;
@@ -53,6 +54,10 @@ public class WebPromotionAddViewController {
         this.webPromotionViewController = webPromotionViewController;
     }
 
+    public void setPromotionBLService(PromotionBLService promotionBLService){
+        this.promotionBLService = promotionBLService;
+    }
+
     public void clickCancelButton(){
         webPromotionViewController.refreshWebPromotionList();
         webPromotionViewController.back();
@@ -78,7 +83,7 @@ public class WebPromotionAddViewController {
                 PromotionType.Web_ClientGrade, 0.8,
                 new DateUtil(startYear,startMonth,startDay), new DateUtil(endYear,endMonth,endDay),
                 clientGrade);
-        promotionBLService = new PromotionBLServiceImpl();
+//        promotionBLService = new BLFactoryImpl().getPromotionBLService();
         promotionBLService.addPromotion(promotionVO);
 
     }

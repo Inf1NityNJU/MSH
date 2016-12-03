@@ -59,6 +59,6 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),
-                null, null, 0, this.place, 0);
+                "", "", 0, this.place, 0);
     }
 }

@@ -1,5 +1,7 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.promotionbl.PromotionBLFactory;
 import bl.promotionbl.PromotionBLServiceImpl;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.promotionblservice.PromotionBLService_Stub;
@@ -43,7 +45,7 @@ public class WebPromotionListViewController {
      */
     @FXML
     public void initialize() {
-        promotionBLService = new PromotionBLServiceImpl();
+        promotionBLService = new BLFactoryImpl().getPromotionBLService();
         currentPage = 1;
 
         try {
@@ -78,6 +80,10 @@ public class WebPromotionListViewController {
 
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
         this.webPromotionViewController = webPromotionViewController;
+    }
+
+    public void setPromotionBLService(PromotionBLService promotionBLService){
+        this.promotionBLService = promotionBLService;
     }
 
     /**

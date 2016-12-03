@@ -1,5 +1,7 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.promotionblservice.PromotionBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -21,10 +23,12 @@ public class WebPromotionViewController {
 
     private WebPromotionListViewController webPromotionListViewController;
 
+    private PromotionBLService promotionBLService;
+
     public WebPromotionViewController(BorderPane rootPane) {
+        this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
         this.rootPane = rootPane;
     }
-
     /**
      * 返回上一界面
      */
@@ -52,6 +56,7 @@ public class WebPromotionViewController {
 
             webPromotionListViewController = listLoader.getController();
             webPromotionListViewController.setWebPromotionViewController(this);
+//            webPromotionListViewController.setPromotionBLService(promotionBLService);
 
             initNode = list;
 
@@ -74,6 +79,7 @@ public class WebPromotionViewController {
 
                 WebPromotionDetailViewController webPromotionDetailViewController = loader.getController();
                 webPromotionDetailViewController.setWebPromotionViewController(this);
+                webPromotionDetailViewController.setPromotionBLService(promotionBLService);
                 webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
 
                 Node node = rootPane.getCenter();
@@ -127,7 +133,7 @@ public class WebPromotionViewController {
 
             WebPromotionAddViewController webPromotionAddViewController = loader.getController();
             webPromotionAddViewController.setWebPromotionViewController(this);
-//            webPromotionDetailEditViewController.show(type);
+            webPromotionAddViewController.setPromotionBLService(promotionBLService);
 
             Node node = rootPane.getCenter();
             stack.push(node);
