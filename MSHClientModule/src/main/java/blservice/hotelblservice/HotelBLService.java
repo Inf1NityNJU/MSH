@@ -1,10 +1,7 @@
 package blservice.hotelblservice;
 
 import util.*;
-import vo.FilterFlagsVO;
-import vo.HotelRoomVO;
-import vo.Hotel_DetailVO;
-import vo.RoomChangeInfoVO;
+import vo.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -147,5 +144,12 @@ public interface HotelBLService {
      * @return 被排列的酒店列表
      */
     public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs);
+
+    /**
+     * 按条件搜索酒店
+     * @param flags 搜索条件
+     * @return 简明格式的酒店VO
+     */
+    public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags);
 
 }

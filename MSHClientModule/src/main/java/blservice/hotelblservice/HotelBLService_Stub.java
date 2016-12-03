@@ -3,10 +3,7 @@ package blservice.hotelblservice;
 import util.City;
 import util.ResultMessage;
 import util.RoomType;
-import vo.FilterFlagsVO;
-import vo.HotelRoomVO;
-import vo.Hotel_DetailVO;
-import vo.RoomChangeInfoVO;
+import vo.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -130,6 +127,11 @@ public class HotelBLService_Stub implements HotelBLService {
 
     @Override
     public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags) {
         return null;
     }
 }
