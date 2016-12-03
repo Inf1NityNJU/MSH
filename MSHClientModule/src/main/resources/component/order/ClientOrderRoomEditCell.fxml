@@ -26,7 +26,7 @@
         </Label>
       <HBox alignment="CENTER" prefWidth="140.0">
          <children>
-            <CircleButton typeProperty="Add" />
+            <CircleButton typeProperty="Minus" />
             <Label alignment="CENTER" prefWidth="50.0" text="1" textFill="GREY">
                <font>
                   <Font name="PingFang SC Regular" size="16.0" />

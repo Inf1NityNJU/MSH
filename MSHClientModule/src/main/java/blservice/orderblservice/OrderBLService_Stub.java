@@ -113,6 +113,10 @@ public class OrderBLService_Stub implements OrderBLService {
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
                 new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null);
 
+        OrderVO order5 = new OrderVO("20161012010112340003", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
+                new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
+                new TimeUtil(2016, 10, 10, 14, 0, 0), new TimeUtil(2016, 10, 11, 14, 0, 0), null, 2, false, OrderState.Cancelled, new BillVO(null, null, 300, 280), null);
+
         if (os != null) {
             switch (os) {
                 case Unexecuted:
@@ -133,6 +137,7 @@ public class OrderBLService_Stub implements OrderBLService {
             orderVOs.add(order2);
             orderVOs.add(order3);
             orderVOs.add(order4);
+            orderVOs.add(order5);
         }
 
         return orderVOs;
