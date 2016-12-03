@@ -91,7 +91,7 @@ public class Staff extends User {
         if (staffPO == null) {
             return null;
         } else {
-            StaffVO staffVO = new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID() ,staffPO.getAccount());
+            StaffVO staffVO = new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount());
             return staffVO;
         }
     }
@@ -136,5 +136,15 @@ public class Staff extends User {
             staffVOs.add(new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount()));
         }
         return staffVOs;
+    }
+
+    /**
+     * 得到酒店工作人员对应的酒店ID
+     *
+     * @param ID
+     * @return
+     */
+    public String getHotelIDByStaffID(String ID) {
+        return userClientNetwork.searchStaffByID(ID).getHotelID();
     }
 }

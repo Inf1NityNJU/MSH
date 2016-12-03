@@ -2,6 +2,7 @@ package vo;
 
 import po.PromotionPO;
 import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -39,7 +40,7 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
     @Override
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
-                null, null,
-                null, null, 0, null, 0);
+                "", "",
+                "", "", 0, Place.Unnecessary, 0);
     }
 }

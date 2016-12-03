@@ -1,5 +1,7 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.promotionbl.PromotionBLFactory;
 import bl.promotionbl.PromotionBLServiceImpl;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.promotionblservice.PromotionBLService_Stub;
@@ -10,12 +12,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.promotion.WebPromotionCellController;
+import ui.componentcontroller.promotion.WebPromotionPagePaneController;
 import ui.componentcontroller.promotion.WebPromotionSearchPaneController;
 import util.PromotionType;
 import vo.PromotionVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by vivian on 16/11/29.
@@ -23,17 +27,18 @@ import java.util.ArrayList;
 public class WebPromotionListViewController {
     private WebPromotionViewController webPromotionViewController;
 
-    private static final int ROW_IN_PANE = 6;
-
-    private int currentPage;
+    private static final int NUM_OF_CELL = 6;
 
     private ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
 
     @FXML
     private VBox contentVBox;
 
-    private FXMLLoader[] cellLoaders = new FXMLLoader[ROW_IN_PANE];
-    private Node[] cells = new Node[ROW_IN_PANE];
+    private FXMLLoader[] cellLoaders = new FXMLLoader[NUM_OF_CELL];
+    private Node[] cells = new Node[NUM_OF_CELL];
+
+    private Node pagePane;
+    private WebPromotionPagePaneController webPromotionPagePaneController;
 
     private PromotionBLService promotionBLService;
 
@@ -43,8 +48,7 @@ public class WebPromotionListViewController {
      */
     @FXML
     public void initialize() {
-        promotionBLService = new PromotionBLServiceImpl();
-        currentPage = 1;
+        promotionBLService = new BLFactoryImpl().getPromotionBLService();
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -56,17 +60,20 @@ public class WebPromotionListViewController {
 
             contentVBox.getChildren().add(pane);
 
-            for (int i = 0; i < ROW_IN_PANE; i++) {
+            FXMLLoader pageLoader = new FXMLLoader();
+            pageLoader.setLocation(Main.class.getResource("../component/promotion/WebPromotionPagePane.fxml"));
+            pagePane = pageLoader.load();
+
+            webPromotionPagePaneController = pageLoader.getController();
+            webPromotionPagePaneController.setWebPromotionListViewController(this);
+
+            for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
                 cellLoader.setLocation(Main.class.getResource("../component/promotion/WebPromotionCell.fxml"));
                 HBox webpromotioncell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;
                 cells[i] = webpromotioncell;
-                contentVBox.getChildren().add(webpromotioncell);
-
-                WebPromotionCellController webPromotionCellController = cellLoaders[i].getController();
-                webPromotionCellController.setWebPromotionListViewController(this);
             }
 
             controller.showAllPromotions();
@@ -85,21 +92,7 @@ public class WebPromotionListViewController {
      */
     public void showAllWebPromotions(){
         promotionVOs = promotionBLService.searchWebPromotions();
-        try {
-            for (int i = (currentPage - 1) * ROW_IN_PANE; i < currentPage * ROW_IN_PANE; i++) {
-                if (i < promotionVOs.size()) {
-                    contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(true);
-                    FXMLLoader tmpLoader = cellLoaders[i];
-                    WebPromotionCellController webPromotionCellController = tmpLoader.getController();
-                    webPromotionCellController.setPromotionVO(promotionVOs.get(i));
-                } else {
-                    contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(false);
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        showWebPromotions();
     }
 
     /**
@@ -107,21 +100,53 @@ public class WebPromotionListViewController {
      */
     public void showWebPromotionsByType(PromotionType promotionType){
         promotionVOs = promotionBLService.searchPromotions(promotionType);
-        try {
-            for (int i = (currentPage - 1) * ROW_IN_PANE; i < currentPage * ROW_IN_PANE; i++) {
-                if (i < promotionVOs.size()) {
-                    contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(true);
-                    FXMLLoader tmpLoader = cellLoaders[i];
-                    WebPromotionCellController webPromotionCellController = tmpLoader.getController();
-                    webPromotionCellController.setPromotionVO(promotionVOs.get(i));
-                } else {
-                    contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(false);
-                }
+        showWebPromotions();
+    }
 
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void showWebPromotions(){
+        int size = promotionVOs.size();
+        webPromotionPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
+        if (size > 0) {
+            turnPage(1);
+        } else {
+            System.out.println("No Order");
         }
+    }
+
+    public void turnPage(int page) {
+        int fromIndex = (page-1)*NUM_OF_CELL;
+        int toIndex = Math.min(page*NUM_OF_CELL, promotionVOs.size());
+        List<PromotionVO> tmpPromotions = promotionVOs.subList(fromIndex, toIndex);
+        setCells(tmpPromotions);
+    }
+
+    private void setCells(List<PromotionVO> tmpPromotions) {
+
+        if (tmpPromotions.size() > NUM_OF_CELL) {
+            System.out.println("ERROR");
+            return;
+        }
+
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
+
+        for (int i = 0; i < tmpPromotions.size(); i++) {
+
+            PromotionVO promotionVO = tmpPromotions.get(i);
+            FXMLLoader loader = cellLoaders[i];
+            Node promotionCell = cells[i];
+
+            WebPromotionCellController webPromotionCellController = loader.getController();
+            webPromotionCellController.setWebPromotionListViewController(this);
+            webPromotionCellController.setPromotionVO(promotionVO);
+
+            contentVBox.getChildren().add(promotionCell);
+        }
+
+        contentVBox.getChildren().add(pagePane);
     }
 
     /**
