@@ -1,5 +1,8 @@
 package ui.viewcontroller.manager;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -27,9 +30,11 @@ public class ClientManagementViewController {
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
+    private UserBLService userBLService;
 
     public ClientManagementViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
+        this.userBLService = new BLFactoryImpl().getClientBLService();
     }
 
     /**
@@ -59,6 +64,7 @@ public class ClientManagementViewController {
 
             clientManagementListViewController = listLoader.getController();
             clientManagementListViewController.setClientManagementViewController(this);
+            clientManagementListViewController.setUserBLService(userBLService);
 
             initNode = list;
 

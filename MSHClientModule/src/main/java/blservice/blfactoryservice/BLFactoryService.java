@@ -16,6 +16,10 @@ public interface BLFactoryService {
 
     public PromotionBLService getPromotionBLService();
 
-    public UserBLService getUserBLService();
+    public UserBLService getClientBLService();
+
+    public UserBLService getStaffBLService();
+
+    public UserBLService getSalesmanBLService();
 
 }

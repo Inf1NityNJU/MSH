@@ -9,12 +9,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.user.ClientManagementCellController;
+import ui.componentcontroller.user.ClientManagementPaneController;
 import ui.componentcontroller.user.ClientManagementSearchPaneController;
 import util.ResultMessage;
 import vo.ClientVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kray on 2016/11/24.
@@ -28,22 +30,30 @@ public class ClientManagementListViewController {
      */
     private ClientManagementViewController clientManagementViewController;
 
+    private ClientManagementPaneController clientManagementPaneController;
+
     private UserBLService userBLService;
 
     private ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
+    private ArrayList<ClientVO> tmpVOs = new ArrayList<>();
 
     private FXMLLoader[] cellLoaders = new FXMLLoader[ROW_IN_PANE];
     private Node[] cells = new Node[ROW_IN_PANE];
 
+    private Node pagePane;
     private int type;
 
     private int currentPage;
-    
+
     @FXML
     private VBox contentVBox;
 
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
+    }
+
+    public void setUserBLService(UserBLService userBLService) {
+        this.userBLService = userBLService;
     }
 
     /**
@@ -53,10 +63,6 @@ public class ClientManagementListViewController {
     public void initialize() {
         currentPage = 1;
 
-        //From DB
-        userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-//        From Stub
-//        userBLService = new UserBLService_Stub();
         clientVOs = new ArrayList<ClientVO>();
 
         try {
@@ -69,6 +75,13 @@ public class ClientManagementListViewController {
 
             contentVBox.getChildren().add(pane);
 
+            FXMLLoader pageLoader = new FXMLLoader();
+            pageLoader.setLocation(Main.class.getResource("../component/user/ClientManagementPagePane.fxml"));
+            pagePane = pageLoader.load();
+
+            clientManagementPaneController = pageLoader.getController();
+            clientManagementPaneController.setClientManagementListViewController(this);
+
             for (int i = 0; i < ROW_IN_PANE; i++) {
 
                 FXMLLoader cellLoader = new FXMLLoader();
@@ -77,10 +90,13 @@ public class ClientManagementListViewController {
 
                 cellLoaders[i] = cellLoader;
                 cells[i] = clientCell;
+
+                /*
                 contentVBox.getChildren().add(clientCell);
 
                 ClientManagementCellController clientManagementCellController = cellLoaders[i].getController();
                 clientManagementCellController.setClientManagementListViewController(this);
+                */
 
             }
 
@@ -100,45 +116,77 @@ public class ClientManagementListViewController {
 
         this.type = type;
 
-        clientVOs = userBLService.search("");
-        ArrayList<ClientVO> tmpVO = new ArrayList<ClientVO>();
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
+
+        if(userBLService == null){
+            System.out.println("NULL");
+        }
+
+        this.clientVOs = userBLService.search("");
+
         if (clientVOs.size() > 0) {
             if (type >= 0) {
                 for (ClientVO clientVO : clientVOs) {
                     if ((type == 0 && clientVO.enterprise.equals(""))) {
-                        tmpVO.add(clientVO);
+                        this.tmpVOs.add(clientVO);
                     } else if ((type == 1 && !clientVO.enterprise.equals(""))) {
-                        tmpVO.add(clientVO);
+                        this.tmpVOs.add(clientVO);
                     }
                 }
             } else {
-                tmpVO = clientVOs;
+                this.tmpVOs = clientVOs;
             }
-
-            try {
-                for (int i = (currentPage - 1) * ROW_IN_PANE; i < currentPage * ROW_IN_PANE; i++) {
-
-                    if (i < tmpVO.size()) {
-                        contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(true);
-                        FXMLLoader tmpLoader = cellLoaders[i];
-                        ClientManagementCellController clientManagementCellController = tmpLoader.getController();
-                        clientManagementCellController.setClientVO(tmpVO.get(i));
-                    } else {
-                        contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(false);
-                    }
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         } else {
             System.out.println("no client");
+        }
+
+        int size = this.tmpVOs.size();
+        clientManagementPaneController.setPageCount(size / ROW_IN_PANE + ((size % ROW_IN_PANE == 0) ? 0 : 1));
+        if (size > 0) {
+            turnPage(1);
+        } else {
+            System.out.println("No Client");
         }
     }
 
     public int getType() {
         return type;
+    }
+
+    public void turnPage(int page) {
+        int fromIndex = (page - 1) * ROW_IN_PANE;
+        int toIndex = Math.min(page * ROW_IN_PANE, clientVOs.size());
+        List<ClientVO> tmpClientVOs = this.tmpVOs.subList(fromIndex, toIndex);
+        setCells(tmpClientVOs);
+    }
+
+    private void setCells(List<ClientVO> clientVOs) {
+
+        if (clientVOs.size() > ROW_IN_PANE) {
+            System.out.println("ERROR");
+            return;
+        }
+
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
+
+        for (int i = 0; i < clientVOs.size(); i++) {
+//            contentVBox.getChildren().get(1 + i - (currentPage - 1) * ROW_IN_PANE).setVisible(true);
+
+            ClientVO clientVO = clientVOs.get(i);
+            FXMLLoader loader = cellLoaders[i];
+            Node ordercell = cells[i];
+
+            ClientManagementCellController clientManagementCellController = loader.getController();
+            clientManagementCellController.setClientManagementListViewController(this);
+            clientManagementCellController.setClientVO(clientVO);
+
+            contentVBox.getChildren().add(ordercell);
+        }
+        contentVBox.getChildren().add(pagePane);
     }
 
     /**

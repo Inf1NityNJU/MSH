@@ -138,6 +138,7 @@ public class Client extends User {
         ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
 //        ArrayList<ClientPO> clientPOs = userDataService.searchClient(keyword);
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
+
         for (ClientPO clientPO : clientPOs) {
             clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), clientPO.getLevel(),
                     new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
