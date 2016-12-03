@@ -46,7 +46,7 @@
                                     <Font name="PingFang SC Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <RectButton layoutX="866.0" layoutY="15.0" text="预 定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <!--<RectButton layoutX="866.0" layoutY="15.0" text="预 定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
                               <Label layoutX="132.0" layoutY="30.0" text="曾经预定过该酒店" textFill="#cccccc" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="10.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />

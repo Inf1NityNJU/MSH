@@ -1,10 +1,13 @@
 package ui.viewcontroller.client;
 
+import blservice.hotelblservice.HotelBLService;
+import blservice.hotelblservice.HotelBLService_Stub;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import vo.Hotel_DetailVO;
 import vo.OrderVO;
 
 import java.io.IOException;
@@ -22,8 +25,13 @@ public class ClientSearchHotelViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
+
+    private HotelBLService hotelBLService;
+
     public ClientSearchHotelViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
+        //TODO
+        hotelBLService = new HotelBLService_Stub();
     }
 
     /**
@@ -54,6 +62,7 @@ public class ClientSearchHotelViewController {
 
             ClientHotelListViewController clientHotelListViewController = listLoader.getController();
             clientHotelListViewController.setClientSearchHotelViewController(this);
+            clientHotelListViewController.setHotelBLService(hotelBLService);
 
             initNode = list;
 
@@ -68,6 +77,9 @@ public class ClientSearchHotelViewController {
      * 酒店详情
      */
     public void showHotelDetail(String hotelID) {
+
+        Hotel_DetailVO hotel = hotelBLService.getHotel(hotelID);
+
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/client/ClientHotelDetailView.fxml"));
@@ -75,7 +87,7 @@ public class ClientSearchHotelViewController {
 
             ClientHotelDetailViewController clientHotelDetailViewController = loader.getController();
             clientHotelDetailViewController.setClientSearchHotelViewController(this);
-            clientHotelDetailViewController.setHotel(hotelID);
+            clientHotelDetailViewController.setHotel(hotel);
 
             Node node = rootPane.getCenter();
             stack.push(node);

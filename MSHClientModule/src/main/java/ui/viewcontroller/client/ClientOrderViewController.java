@@ -1,5 +1,8 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.orderblservice.OrderBLService;
+import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -20,8 +23,12 @@ public class ClientOrderViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
+    private OrderBLService orderBLService;
+
     public ClientOrderViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
+        //TODO
+        orderBLService = new BLFactoryImpl().getOrderBLService();
     }
 
     /**
@@ -52,6 +59,7 @@ public class ClientOrderViewController {
 
             ClientOrderListViewController clientOrderListViewController = listLoader.getController();
             clientOrderListViewController.setClientViewController(this);
+            clientOrderListViewController.setOrderBLService(orderBLService);
 
             initNode = list;
 

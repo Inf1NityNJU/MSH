@@ -3,25 +3,18 @@ package ui.viewcontroller.client;
 import component.mydatepicker.MyDatePicker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.hotel.ClientHotelCellController;
-import ui.componentcontroller.hotel.ClientHotelPromotionCellController;
+import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
 import util.DateUtil;
-import vo.HotelRoomVO;
-import vo.OrderVO;
-import vo.Promotion_HotelVO;
-import vo.RoomStockVO;
+import vo.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by Sorumi on 16/12/2.
@@ -51,7 +44,7 @@ public class ClientHotelDetailViewController {
     }
 
     //TODO
-    public void setHotel(String hotelID) {
+    public void setHotel(Hotel_DetailVO hotel) {
         //AddPromotion
         addPromotions(null);
         addRooms(null);
@@ -63,7 +56,7 @@ public class ClientHotelDetailViewController {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 
         // new OrderVO
-        order = new OrderVO(hotelID, new DateUtil(LocalDate.now().format(dateFormatter)), new DateUtil(LocalDate.now().plusDays(1).format(dateFormatter)));
+        order = new OrderVO(hotel.ID, new DateUtil(LocalDate.now().format(dateFormatter)), new DateUtil(LocalDate.now().plusDays(1).format(dateFormatter)));
     }
 
 
@@ -72,18 +65,17 @@ public class ClientHotelDetailViewController {
 //        for (Promotion_HotelVO promotion : promotions) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/hotel/ClientHotelPromotionCell.fxml"));
+                loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
                 Pane pane = loader.load();
 
-                ClientHotelPromotionCellController clientHotelPromotionCellController = loader.getController();
-//                clientHotelPromotionCellController.setPromotion(promotion);
+                OrderPromotionCellController orderPromotionCellController = loader.getController();
+//                orderPromotionCellController.setPromotion(promotion);
 
                 promotionVBox.getChildren().add(pane);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
     }
 
     private void addRooms(ArrayList<RoomStockVO> rooms) {

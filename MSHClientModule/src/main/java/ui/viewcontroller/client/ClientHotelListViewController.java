@@ -85,10 +85,14 @@ public class ClientHotelListViewController {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
     }
 
+    public void setHotelBLService(HotelBLService hotelBLService) {
+        this.hotelBLService = hotelBLService;
+    }
+
     //TODO
     public void showHotel() {
 //        hotelBLService.
-        Hotel_BriefVO hotel = new Hotel_BriefVO("01012345", "酒店名字", "地址很长啦", 3, 4.8);
+        Hotel_BriefVO hotel = new Hotel_BriefVO("00000000", "酒店名字", "地址很长啦", 3, 4.8);
 
         for (int i=0; i<NUM_OF_CELL; i++) {
             FXMLLoader loader = cellLoaders[i];

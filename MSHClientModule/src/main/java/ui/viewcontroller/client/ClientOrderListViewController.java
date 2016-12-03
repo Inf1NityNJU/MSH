@@ -38,8 +38,6 @@ public class ClientOrderListViewController {
      */
     @FXML
     public void initialize() {
-        orderBLService = new OrderBLService_Stub();
-
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/order/ClientOrderSearchPane.fxml"));
@@ -69,6 +67,10 @@ public class ClientOrderListViewController {
 
     public void setClientViewController(ClientOrderViewController clientOrderViewController) {
         this.clientOrderViewController = clientOrderViewController;
+    }
+
+    public void setOrderBLService(OrderBLService orderBLService) {
+        this.orderBLService = orderBLService;
     }
 
     public void showOrders(OrderState orderState) {
