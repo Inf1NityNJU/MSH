@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
+import po.StaffPO;
 import ui.componentcontroller.user.SalesmanManagementCellController;
 import ui.componentcontroller.user.StaffManagementCellController;
 import ui.componentcontroller.user.WorkerManagementSearchPaneController;
@@ -16,11 +17,15 @@ import vo.StaffVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.jar.Pack200;
 
 /**
  * Created by Kray on 2016/11/26.
  */
 public class WorkerManagementListViewController {
+
+    private static final int ROW_IN_PANE = 4;
 
     private WorkerManagementViewController workerManagementViewController;
 
@@ -29,9 +34,12 @@ public class WorkerManagementListViewController {
     private ArrayList<StaffVO> staffVOs;
     private ArrayList<SalesmanVO> salesmanVOs;
 
+    private ArrayList<StaffVO> tmpStaffVOs;
+    private ArrayList<SalesmanVO> tmpSalesmanVOs;
+
     // tmp
-    private FXMLLoader[] cellLoaders = new FXMLLoader[]{};
-    private Node[] cells = new Node[]{};
+    private FXMLLoader[] cellLoaders = new FXMLLoader[ROW_IN_PANE];
+    private Node[] cells = new Node[ROW_IN_PANE];
 
     private int type;
 
@@ -125,7 +133,6 @@ public class WorkerManagementListViewController {
         }
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-        //TODO
         salesmanVOs = userBLService.search("");
 
         if (salesmanVOs.size() > 0) {
@@ -172,11 +179,9 @@ public class WorkerManagementListViewController {
         }
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-        //TODO
         staffVOs = userBLService.search("");
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-        //TODO
         salesmanVOs = userBLService.search("");
 
         if (staffVOs.size() + salesmanVOs.size() > 0) {
@@ -256,5 +261,12 @@ public class WorkerManagementListViewController {
      */
     public void addWorker() {
         workerManagementViewController.addWorker();
+    }
+
+    public void turnPage(int page) {
+//        int fromIndex = (page - 1) * ROW_IN_PANE;
+//        int toIndex = Math.min(page * ROW_IN_PANE, tmpStaffVOs.size() + tmpSalesmanVOs.size());
+//        List<ClientVO> tmpClientVOs = this.tmpVOs.subList(fromIndex, toIndex);
+//        setCells(tmpClientVOs);
     }
 }
