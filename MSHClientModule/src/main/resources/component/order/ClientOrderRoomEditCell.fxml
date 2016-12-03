@@ -45,6 +45,5 @@
                 <Font name="PingFang SC Regular" size="16.0" />
             </font>
         </Label>
-        <!--<RectButton isActiveProperty="false" text="加 入" />-->
     </children>
 </HBox>

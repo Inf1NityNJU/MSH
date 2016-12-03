@@ -58,7 +58,7 @@ public class ClientOrderViewController {
             ScrollPane list = listLoader.load();
 
             ClientOrderListViewController clientOrderListViewController = listLoader.getController();
-            clientOrderListViewController.setClientViewController(this);
+            clientOrderListViewController.setClientOrderViewController(this);
             clientOrderListViewController.setOrderBLService(orderBLService);
 
             initNode = list;

@@ -1,17 +1,16 @@
-package ui.viewcontroller.client;
+package ui.viewcontroller.staff;
 
 import blservice.orderblservice.OrderBLService;
-import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.Main;
-import ui.componentcontroller.order.ClientOrderCellController;
 import ui.componentcontroller.order.ClientOrderPagePaneController;
-import ui.componentcontroller.order.ClientOrderSearchPaneController;
+import ui.componentcontroller.order.HotelOrderCellController;
+import ui.componentcontroller.order.HotelOrderPagePaneController;
+import ui.componentcontroller.order.HotelOrderSearchPaneController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -20,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sorumi on 16/11/17.
+ * Created by Sorumi on 16/12/3.
  */
-public class ClientOrderListViewController {
+public class HotelOrderListViewController {
 
     private static final int NUM_OF_CELL = 4;
 
-    private ClientOrderViewController clientOrderViewController;
+    private HotelOrderViewController hotelOrderViewController;
 
     @FXML
     private VBox contentVBox;
@@ -35,7 +34,7 @@ public class ClientOrderListViewController {
     private Node[] cells = new Node[NUM_OF_CELL];
 
     private Node pagePane;
-    private ClientOrderPagePaneController clientOrderPagePaneController;
+    private HotelOrderPagePaneController hotelOrderPagePaneController;
 
     private OrderBLService orderBLService;
 
@@ -49,26 +48,24 @@ public class ClientOrderListViewController {
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/order/ClientOrderSearchPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/order/HotelOrderSearchPane.fxml"));
             VBox pane = loader.load();
 
-            ClientOrderSearchPaneController clientOrderSearchPaneController = loader.getController();
-            clientOrderSearchPaneController.setClientOrderListViewController(this);
+            HotelOrderSearchPaneController hotelOrderSearchPaneController = loader.getController();
+            hotelOrderSearchPaneController.setHotelOrderListViewController(this);
 
             contentVBox.getChildren().add(pane);
 
-
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/order/ClientOrderPagePane.fxml"));
+            pageLoader.setLocation(Main.class.getResource("../component/order/HotelOrderPagePane.fxml"));
             pagePane = pageLoader.load();
 
-            clientOrderPagePaneController = pageLoader.getController();
-            clientOrderPagePaneController.setClientOrderListViewController(this);
-
+            hotelOrderPagePaneController = pageLoader.getController();
+            hotelOrderPagePaneController.setHotelOrderListViewController(this);
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/order/ClientOrderCell.fxml"));
+                cellLoader.setLocation(Main.class.getResource("../component/order/HotelOrderCell.fxml"));
                 HBox ordercell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;
@@ -81,8 +78,8 @@ public class ClientOrderListViewController {
 
     }
 
-    public void setClientOrderViewController(ClientOrderViewController clientOrderViewController) {
-        this.clientOrderViewController = clientOrderViewController;
+    public void setHotelOrderViewController(HotelOrderViewController hotelOrderViewController) {
+        this.hotelOrderViewController = hotelOrderViewController;
     }
 
     public void setOrderBLService(OrderBLService orderBLService) {
@@ -90,9 +87,10 @@ public class ClientOrderListViewController {
     }
 
     public void showOrders(OrderState orderState) {
-        orders = orderBLService.searchClientOrder("000000001", orderState, null);
+        //TODO
+        orders = orderBLService.searchHotelOrder("01011234", orderState, null);
         int size = orders.size();
-        clientOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
+        hotelOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
             turnPage(1);
         } else {
@@ -127,9 +125,9 @@ public class ClientOrderListViewController {
             FXMLLoader loader = cellLoaders[i];
             Node ordercell = cells[i];
 
-            ClientOrderCellController clientOrderCellController = loader.getController();
-            clientOrderCellController.setClientOrderListViewController(this);
-            clientOrderCellController.setOrder(order);
+            HotelOrderCellController hotelOrderCellController = loader.getController();
+            hotelOrderCellController.setHotelOrderListViewController(this);
+            hotelOrderCellController.setOrder(order);
 
             contentVBox.getChildren().add(ordercell);
         }
@@ -137,11 +135,7 @@ public class ClientOrderListViewController {
         contentVBox.getChildren().add(pagePane);
     }
 
-    public void showClientOrderDetail(OrderVO order) {
-        clientOrderViewController.showClientOrderDetail(order);
-    }
-
-    public void showAssessmentEditView(OrderVO order) {
-        clientOrderViewController.showAssessmentEditView(order);
+    public void showHotelOrderDetail(OrderVO order) {
+        hotelOrderViewController.showHotelOrderDetail(order);
     }
 }

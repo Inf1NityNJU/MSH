@@ -2,6 +2,7 @@ package vo;
 
 import po.PromotionPO;
 import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -57,7 +58,7 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),
-                null, null, 0, null, this.clientGrade);
+                "", "", 0, Place.Unnecessary, this.clientGrade);
     }
 
 }

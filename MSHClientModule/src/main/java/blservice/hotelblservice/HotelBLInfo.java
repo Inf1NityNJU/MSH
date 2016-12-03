@@ -27,5 +27,5 @@ public interface HotelBLInfo {
      * @param hotelID 需要增加评分的酒店
      * @return 增加结果
      */
-    public ResultMessage addScoreToHotelByHotelID(double score,String hotelID);
+    public ResultMessage addScoreToHotelByHotelID(double score, String hotelID);
 }

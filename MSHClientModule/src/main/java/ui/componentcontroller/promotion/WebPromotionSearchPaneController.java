@@ -68,7 +68,7 @@ public class WebPromotionSearchPaneController {
     }
 
     @FXML
-    public void addPromotions(){
+    public void clickAddButton(){
         setButtonsInactive();
         webPromotionListViewController.addPromotion();
     }
