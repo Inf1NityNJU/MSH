@@ -56,7 +56,6 @@ public class WebPromotionViewController {
 
             webPromotionListViewController = listLoader.getController();
             webPromotionListViewController.setWebPromotionViewController(this);
-//            webPromotionListViewController.setPromotionBLService(promotionBLService);
 
             initNode = list;
 
