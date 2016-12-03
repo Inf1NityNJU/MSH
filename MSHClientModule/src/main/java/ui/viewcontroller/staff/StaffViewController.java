@@ -4,8 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
-import ui.viewcontroller.client.ClientNavbarController;
-import ui.viewcontroller.client.ClientOrderViewController;
 
 import java.io.IOException;
 
@@ -16,6 +14,7 @@ public class StaffViewController {
     private BorderPane rootPane;
 
     private RoomInfoViewController roomInfoViewController;
+    private HotelOrderViewController hotelOrderViewController;
 
     public StaffViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -36,9 +35,14 @@ public class StaffViewController {
         }
 
         roomInfoViewController = new RoomInfoViewController(rootPane);
+        hotelOrderViewController = new HotelOrderViewController(rootPane);
     }
 
     public void showRoomInfoList() {
         roomInfoViewController.showRoomInfoList();
+    }
+
+    public void showHotelOrderList() {
+        hotelOrderViewController.showHotelOrderList();
     }
 }

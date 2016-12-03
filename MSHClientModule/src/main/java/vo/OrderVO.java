@@ -101,6 +101,12 @@ public class OrderVO {
      */
     public AssessmentVO assessment;
 
+    public OrderVO(String hotelID, DateUtil checkInDate, DateUtil checkOutDate) {
+        this.hotelID = hotelID;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+    }
+
     public OrderVO(String orderID, String hotelID, String clientID, String hotelName, String clientName,
                    ArrayList<OrderRoomVO> rooms,
                    DateUtil checkInDate, DateUtil checkOutDate, TimeUtil checkInTime, TimeUtil checkOutTime,

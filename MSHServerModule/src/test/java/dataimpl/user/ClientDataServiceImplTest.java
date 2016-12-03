@@ -27,7 +27,7 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void login() throws Exception {
-        LoginState loginState = userDataService.login("adminClient", "12345678");
+        LoginState loginState = userDataService.login("testClient", "12345678");
         assertEquals(LoginState.LOGIN_SUCCESS_Client, loginState);
     }
 
@@ -47,8 +47,8 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void addClient() throws Exception {
-        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000003", "songkuixi", 500, 1,
-                "2016-02-02", "18795963603", "", "adminClient", "12345678"), new CreditPO("000000003"));
+        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000111", "songkuixi", 500, 1,
+                "2016-02-02", "18795963603", "", "testClient", "1234"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
 
 //        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000010", "宋奎熹", 500, 1,
@@ -80,7 +80,7 @@ public class ClientDataServiceImplTest {
     @Test
     public void searchClient() throws Exception {
         userDataService.addClient(new ClientPO("000000003", "songkuixi", 500, 1,
-            "2016-02-02", "18795963603", "", "adminClient", "12345678"), new CreditPO("000000003"));
+            "2016-02-02", "18795963603", "", "adminClient", "12345678"));
         ArrayList<ClientPO> clientPOs = userDataService.searchClient("003");
         ArrayList<ClientPO> exampleClientPOs = new ArrayList<ClientPO>();
         exampleClientPOs.add(new ClientPO("000000003", "songkuixi", 500, 1, "2016-02-02", "18795963603", "", "adminClient", "12345678"));

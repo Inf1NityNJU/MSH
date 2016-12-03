@@ -27,14 +27,27 @@ public class HotelClientNetworkImpl implements HotelDataService {
     private HotelServerNetworkService hotelServerNetworkService;
 
     public HotelClientNetworkImpl() {
-        try {
-            hotelServerNetworkService = (HotelServerNetworkService) Naming.lookup("HotelServerNetworkService");
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        while (hotelServerNetworkService==null) {
+            try {
+                hotelServerNetworkService = (HotelServerNetworkService) Naming.lookup("HotelServerNetworkService");
+            } catch (NotBoundException e) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                System.err.println("Client.network.hotelServerNetworkService: Not bound, trying to connect");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                break;
+            } catch (RemoteException e) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                System.err.println("Client.network.hotelServerNetworkService: No service, trying to connect");
+            }
         }
     }
 
@@ -162,7 +175,6 @@ public class HotelClientNetworkImpl implements HotelDataService {
 
     @Override
     public ResultMessage deleteHotel(String hotelID) {
-
         try {
             return hotelServerNetworkService.deleteHotel(hotelID);
         } catch (RemoteException e) {

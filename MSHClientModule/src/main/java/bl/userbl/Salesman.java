@@ -40,7 +40,8 @@ public class Salesman extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        LoginState loginState = userDataService.login(account, password);
+        LoginState loginState = userClientNetwork.login(account, password);
+//        LoginState loginState = userDataService.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
             System.out.println("Login Salesman");
             SalesmanPO salesmanPO = userDataService.searchSalesman(account).get(0);
@@ -60,7 +61,7 @@ public class Salesman extends User {
      * @return
      */
     public ResetState resetPassword(String account, String oldPassword, String newPassword) {
-        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+        if (userClientNetwork.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
             return ResetState.RESET_SUCCESS;
         } else {
             return ResetState.RESET_FAIL;

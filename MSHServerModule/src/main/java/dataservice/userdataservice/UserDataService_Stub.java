@@ -48,7 +48,7 @@ public class UserDataService_Stub implements UserDataService {
         }
     }
 
-    public ResultMessage addClient(ClientPO clientPO, CreditPO creditPO) {
+    public ResultMessage addClient(ClientPO clientPO) {
         System.out.println("Add Sucessfully!");
         return ResultMessage.SUCCESS;
     }

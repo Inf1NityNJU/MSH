@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.OrderPromotionCellController">
+   <children>
+      <Label prefWidth="250.0" text="折扣名称" textFill="GREY">
+         <font>
+            <Font name="PingFang SC Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="250.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" text="8.5折" textAlignment="RIGHT" textFill="#f62e2e">
+         <font>
+            <Font name="PingFang SC Regular" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

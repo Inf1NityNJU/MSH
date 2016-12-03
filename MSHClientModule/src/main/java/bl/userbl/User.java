@@ -34,6 +34,7 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState logout() {
+        this.currentID = "";
         return LoginState.LOGOUT;
     }
 

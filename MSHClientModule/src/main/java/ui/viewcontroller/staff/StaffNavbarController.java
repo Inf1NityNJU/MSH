@@ -52,6 +52,8 @@ public class StaffNavbarController {
         roomInfoButton.setIsCurrentProperty(false);
         hotelOrderButton.setIsCurrentProperty(true);
         promotionButton.setIsCurrentProperty(false);
+
+        staffViewController.showHotelOrderList();
     }
 
     @FXML

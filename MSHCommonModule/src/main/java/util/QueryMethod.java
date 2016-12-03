@@ -5,5 +5,9 @@ package util;
  *
  */
 public enum QueryMethod {
-    Prefix, Suffix, Fuzz, Range, Full
+    Prefix, Suffix, Fuzz, Range, Full;
+
+    public boolean valueShouldBeString(){
+        return this.equals(QueryMethod.Prefix)||this.equals(QueryMethod.Suffix)||this.equals(QueryMethod.Fuzz);
+    }
 }

@@ -39,7 +39,7 @@ public class ClientNavbarController {
         orderButton.setIsCurrentProperty(true);
         infoButton.setIsCurrentProperty(false);
 
-        clientViewController.showClientOrder();
+        clientViewController.showClientOrderList();
     }
 
     @FXML

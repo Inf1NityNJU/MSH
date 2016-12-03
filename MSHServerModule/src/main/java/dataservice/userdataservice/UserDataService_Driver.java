@@ -26,7 +26,7 @@ public class UserDataService_Driver {
         userDataService.resetPassword("adminStaff", "password", "newpassword");
         userDataService.resetPassword("adminSalesman", "password", "newpassword");
 
-        userDataService.addClient(exampleClientPO, exampleCreditPO);
+        userDataService.addClient(exampleClientPO);
         userDataService.searchClientByID("000000007");
         userDataService.updateClient("000000007", exampleClientPO);
         userDataService.deleteClient("000000007");

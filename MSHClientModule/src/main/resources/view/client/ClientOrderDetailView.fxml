@@ -8,15 +8,17 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientOrderDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -64,11 +66,6 @@
                               <Label fx:id="hotelNameLabel" text="!!酒店" textFill="GREY">
                                  <font>
                                     <Font name="PingFang SC Regular" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="南京市栖霞区仙林大道163号" textFill="#cccccc">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
                            </children>
@@ -129,7 +126,7 @@
                               <Insets top="3.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="优惠策略" textFill="#cccccc" GridPane.rowIndex="9" GridPane.valignment="TOP">
+                        <Label text="优惠策略" textFill="#cccccc" GridPane.rowIndex="10" GridPane.valignment="TOP">
                            <font>
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
@@ -137,23 +134,23 @@
                               <Insets top="3.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="2016年11月19日 21:46" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="bookTimeLabel" text="2016年11月19日 21:46" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <StateButton colorProperty="00cccc" isActiveProperty="true" text="未执行" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="2016年11月26日 - 2016年11月27日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <StateButton fx:id="stateLabel" colorProperty="00cccc" isActiveProperty="true" text="未执行" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="checkDateLabel" text="2016年11月26日 - 2016年11月27日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="尚未入住" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="checkInTimeLabel" text="尚未入住" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="尚未入住" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Label fx:id="checkOutTimeLabel" text="尚未入住" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <font>
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
@@ -171,12 +168,12 @@
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Label text="2016年11月26日" textFill="GREY">
+                                    <Label fx:id="latestExecuteDateLabel" text="2016年11月26日" textFill="GREY">
                                        <font>
                                           <Font name="PingFang SC Regular" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label text="18:00" textFill="#00cccc">
+                                    <Label fx:id="latestExecuteTimeLabel" text="18:00" textFill="#00cccc">
                                        <font>
                                           <Font name="PingFang SC Regular" size="16.0" />
                                        </font>
@@ -200,7 +197,7 @@
                               </Label>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                                  <children>
-                                    <Label text="3" textFill="#00cccc">
+                                    <Label fx:id="peopleQuantityLabel" text="3" textFill="#00cccc">
                                        <font>
                                           <Font name="PingFang SC Regular" size="16.0" />
                                        </font>
@@ -212,11 +209,71 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <MyCheckBox isActiveProperty="true" isAbledProperty="false" text="儿童" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <MyCheckBox fx:id="hasChildrenCheckBox" isAbledProperty="false" isActiveProperty="true" text="儿童" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
+                        <VBox fx:id="roomVBox" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" prefWidth="270.0" text="类型" textFill="#cccccc">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefWidth="170.0" text="单价" textFill="#cccccc">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefWidth="160.0" text="数量" textFill="#cccccc">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefWidth="170.0" text="小计" textFill="#cccccc">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Separator prefWidth="200.0" />
+                           </children>
+                        </VBox>
+                        <Pane maxWidth="-Infinity" minHeight="30.0" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                           <children>
+                              <Label layoutY="10.0" text="合计" textFill="#cccccc">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="originPriceLabel" alignment="CENTER_RIGHT" layoutX="100.0" prefWidth="200.0" text="¥ 1200" textFill="#ff2c14">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <VBox fx:id="promotionVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+                        <Pane maxWidth="-Infinity" minHeight="30.0" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+                           <children>
+                              <Label layoutY="10.0" text="总价" textFill="#cccccc">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalPriceLabel" alignment="CENTER_RIGHT" layoutX="100.0" prefWidth="200.0" text="¥ 1200" textFill="#ff2c14">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
                      <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />

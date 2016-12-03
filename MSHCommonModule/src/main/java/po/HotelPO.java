@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by Sorumi on 16/10/11.
  */
-public class HotelPO implements Serializable{
+public class HotelPO implements Serializable {
     /**
      * 酒店编号
      */
@@ -81,7 +81,6 @@ public class HotelPO implements Serializable{
     }
 
     public double getScore() {
-
         return score;
     }
 

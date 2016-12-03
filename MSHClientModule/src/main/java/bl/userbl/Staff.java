@@ -38,7 +38,8 @@ public class Staff extends User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        LoginState loginState = userDataService.login(account, password);
+        LoginState loginState = userClientNetwork.login(account, password);
+//        LoginState loginState = userDataService.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
             System.out.println("Login Staff");
             StaffPO staffPO = userDataService.searchStaff(account).get(0);
@@ -58,7 +59,7 @@ public class Staff extends User {
      * @return
      */
     public ResetState resetPassword(String account, String oldPassword, String newPassword) {
-        if (userDataService.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
+        if (userClientNetwork.resetPassword(account, oldPassword, newPassword) == ResultMessage.SUCCESS) {
             return ResetState.RESET_SUCCESS;
         } else {
             return ResetState.RESET_FAIL;
