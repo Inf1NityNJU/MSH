@@ -1,5 +1,6 @@
 package bl.hotelbl;
 
+import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
 
 /**
@@ -10,6 +11,13 @@ public class HotelBLFactory {
     private static HotelBLServiceImpl hotelBLServiceImpl;
 
     public synchronized static HotelBLServiceImpl getHotelBLService() {
+        if (hotelBLServiceImpl == null) {
+            hotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
+        }
+        return hotelBLServiceImpl;
+    }
+
+    public synchronized static HotelBLInfo getHotelBLInfo() {
         if (hotelBLServiceImpl == null) {
             hotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
         }

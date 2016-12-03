@@ -9,6 +9,7 @@ import static util.EqualJudgeHelper.judgeEqual;
  * Created by SilverNarcissus on 16/11/12.
  */
 public class RoomChangeInfoVO {
+
     public DateUtil start;
     public DateUtil end;
     public String hotelID;

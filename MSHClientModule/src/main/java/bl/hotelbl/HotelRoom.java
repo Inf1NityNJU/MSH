@@ -9,6 +9,7 @@ import util.*;
 import vo.HotelRoomVO;
 import vo.RoomChangeInfoVO;
 import vo.RoomStockVO;
+import vo.RoomStockWithPriceVO;
 
 import java.util.*;
 
@@ -116,17 +117,9 @@ public class HotelRoom {
      * @return 更新成功与否
      */
     public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
-        //多条件查询房间库存
-        ArrayList<CriteriaClause> criteriaClauses = new ArrayList<CriteriaClause>();
-        //酒店ID
-        criteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("hotelID", roomChangeInfoVO.hotelID, QueryMethod.Full));
-        //房间类型
-        criteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("roomType", roomChangeInfoVO.type, QueryMethod.Full));
-        //起止日期
-        criteriaClauses.add(CriteriaClauseImpl.createRangeValueQuery("date", roomChangeInfoVO.start.toString(), roomChangeInfoVO.end.toString(), QueryMethod.Range));
-        //得到指定房间的需要被预订的库存
-        ArrayList<RoomStockPO> roomStockPOs = hotelDataService.multiSearchRoomStockPO(criteriaClauses);
-        //保存要修改的数量
+        //得到符合条件的房间库存
+        ArrayList<RoomStockPO> roomStockPOs = getRoomStockPOs(roomChangeInfoVO);
+
         int quantity = roomChangeInfoVO.quantity;
         //为更新cache做准备
         ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
@@ -153,6 +146,26 @@ public class HotelRoom {
         cache.put(roomPO.getID(), roomVO);
         //
         return ResultMessage.SUCCESS;
+    }
+
+    /**
+     * 得到符合条件的房间库存
+     *
+     * @param roomChangeInfoVO 查询条件
+     * @return 符合条件的房间库存列表
+     */
+    private ArrayList<RoomStockPO> getRoomStockPOs(RoomChangeInfoVO roomChangeInfoVO) {
+        //多条件查询房间库存
+        ArrayList<CriteriaClause> criteriaClauses = new ArrayList<CriteriaClause>();
+        //酒店ID
+        criteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("hotelID", roomChangeInfoVO.hotelID, QueryMethod.Full));
+        //房间类型
+        criteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("roomType", roomChangeInfoVO.type, QueryMethod.Full));
+        //起止日期
+        criteriaClauses.add(CriteriaClauseImpl.createRangeValueQuery("date", roomChangeInfoVO.start.toString(), roomChangeInfoVO.end.toString(), QueryMethod.Range));
+        //得到指定房间的需要被预订的库存
+        //保存要修改的数量
+        return hotelDataService.multiSearchRoomStockPO(criteriaClauses);
     }
 
     /**
@@ -321,8 +334,8 @@ public class HotelRoom {
                 return ResultMessage.NOT_EXIST;
             }
             //
-            HotelRoomPO hotelRoomPO=hotelDataService.getRoomByID(ToolKit.generateID(hotelID, type.ordinal()));
-            if (!checkChangeIsValidByPO(roomStockPOs, hotelRoomPO.getTotalQuantity(),hotelRoomPO.getTotalQuantity())) {
+            HotelRoomPO hotelRoomPO = hotelDataService.getRoomByID(ToolKit.generateID(hotelID, type.ordinal()));
+            if (!checkChangeIsValidByPO(roomStockPOs, hotelRoomPO.getTotalQuantity(), hotelRoomPO.getTotalQuantity())) {
                 return ResultMessage.TRUE;
             } else {
                 return ResultMessage.FALSE;
@@ -330,7 +343,7 @@ public class HotelRoom {
         }
         //cache中找到
         else {
-            if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity,hotelRoom.totalQuantity)) {
+            if (!checkChangeIsValidByVO(hotelRoom.roomStockVOs, hotelRoom.totalQuantity, hotelRoom.totalQuantity)) {
                 return ResultMessage.TRUE;
             } else {
                 return ResultMessage.FALSE;
@@ -338,4 +351,16 @@ public class HotelRoom {
         }
     }
 
+    public ArrayList<RoomStockWithPriceVO> getRoomStocksWithPriceVO(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
+        //先得到符合日期区间的roomStockPO
+        ArrayList<RoomStockPO> roomStockPOs = getRoomStockPOs(new RoomChangeInfoVO(start, end, hotelID, roomType, 0));
+        //在得到房间价格
+        double price = hotelDataService.getRoomByID(ToolKit.generateID(hotelID, roomType.ordinal())).getPrice();
+        //
+        ArrayList<RoomStockWithPriceVO> result = new ArrayList<RoomStockWithPriceVO>();
+        for (RoomStockPO roomStockPO : roomStockPOs) {
+            result.add(new RoomStockWithPriceVO(price, roomStockPO));
+        }
+        return result;
+    }
 }

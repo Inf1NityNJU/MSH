@@ -116,7 +116,7 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
     @Override
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags) {
         ArrayList<Hotel_BriefVO> hotel_briefVOs = new ArrayList<Hotel_BriefVO>();
-        ArrayList<Hotel_DetailVO> hotel_detailVOs=searchHotel(flags);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = searchHotel(flags);
         for (Hotel_DetailVO hotel_DetailVO : hotel_detailVOs) {
             hotel_briefVOs.add(new Hotel_BriefVO(hotel_DetailVO));
         }
@@ -131,7 +131,6 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
 
     @Override
     public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
-        // TODO: 2016/12/3  
-        return null;
+        return hotelRoom.getRoomStocksWithPriceVO(start, end, hotelID, roomType);
     }
 }

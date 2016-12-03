@@ -1,5 +1,6 @@
 package vo;
 
+import po.RoomStockPO;
 import util.DateUtil;
 
 /**
@@ -18,5 +19,7 @@ public class RoomStockWithPriceVO {
         this.availableQuantity = availableQuantity;
     }
 
-
+    public RoomStockWithPriceVO(double price, RoomStockPO roomStockPO) {
+        this(price, new DateUtil(roomStockPO.getDate()), roomStockPO.getAvailableQuantity());
+    }
 }
