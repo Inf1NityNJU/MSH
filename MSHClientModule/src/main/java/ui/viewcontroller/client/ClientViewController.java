@@ -37,7 +37,7 @@ public class ClientViewController {
         clientSearchHotelViewController = new ClientSearchHotelViewController(rootPane);
     }
 
-    public void showClientOrder() {
+    public void showClientOrderList() {
 
         clientOrderViewController.showClientOrderList();
     }

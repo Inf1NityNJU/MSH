@@ -1,4 +1,4 @@
-package ui.viewcontroller.client;
+package ui.viewcontroller.staff;
 
 import component.mycheckbox.MyCheckBox;
 import component.statebutton.StateButton;
@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
+import ui.viewcontroller.client.ClientOrderViewController;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -20,9 +21,9 @@ import java.util.ArrayList;
 /**
  * Created by Sorumi on 16/11/22.
  */
-public class ClientOrderDetailViewController {
+public class HotelOrderDetailViewController {
 
-    private ClientOrderViewController clientOrderViewController;
+    private HotelOrderViewController hotelOrderViewController;
 
     @FXML
     private Label orderIDLabel;
@@ -69,8 +70,8 @@ public class ClientOrderDetailViewController {
     @FXML
     private Label totalPriceLabel;
 
-    public void setClientViewController(ClientOrderViewController clientOrderViewController) {
-        this.clientOrderViewController = clientOrderViewController;
+    public void setHotelOrderViewController(HotelOrderViewController hotelOrderViewController) {
+        this.hotelOrderViewController = hotelOrderViewController;
     }
 
     public void showOrder(OrderVO order) {
@@ -137,7 +138,8 @@ public class ClientOrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
-        clientOrderViewController.back();
+        hotelOrderViewController.back();
     }
 
 }
+

@@ -14,6 +14,7 @@ public class ClientOrderRoomEditCellController {
         this.clientBookOrderViewController = clientBookOrderViewController;
     }
 
+    //TODO
     public void setRoom(OrderRoomVO room) {
 
     }
