@@ -2,6 +2,7 @@ package bl.hotelbl;
 
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
+import util.DateUtil;
 import util.ResultMessage;
 import util.RoomType;
 import vo.*;
@@ -115,16 +116,21 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
     @Override
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags) {
         ArrayList<Hotel_BriefVO> hotel_briefVOs = new ArrayList<Hotel_BriefVO>();
-        ArrayList<Hotel_DetailVO> hotel_detailVOs=searchHotel(flags);
+        ArrayList<Hotel_DetailVO> hotel_detailVOs = searchHotel(flags);
         for (Hotel_DetailVO hotel_DetailVO : hotel_detailVOs) {
             hotel_briefVOs.add(new Hotel_BriefVO(hotel_DetailVO));
         }
-        
+
         return hotel_briefVOs;
     }
 
     @Override
     public ResultMessage addScoreToHotelByHotelID(double score, String hotelID) {
         return hotel.addScore(score, hotelID);
+    }
+
+    @Override
+    public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
+        return hotelRoom.getRoomStocksWithPriceVO(start, end, hotelID, roomType);
     }
 }

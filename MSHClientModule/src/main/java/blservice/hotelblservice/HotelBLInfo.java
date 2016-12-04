@@ -1,10 +1,13 @@
 package blservice.hotelblservice;
 
+import util.DateUtil;
 import util.InfoInvalidException;
 import util.ResultMessage;
+import util.RoomType;
 import vo.AssessmentVO;
 import vo.HotelRoomVO;
 import vo.RoomChangeInfoVO;
+import vo.RoomStockWithPriceVO;
 
 import java.util.ArrayList;
 
@@ -28,4 +31,14 @@ public interface HotelBLInfo {
      * @return 增加结果
      */
     public ResultMessage addScoreToHotelByHotelID(double score, String hotelID);
+
+    /**
+     * 得到指定日期的房间库存和房间价格
+     * @param start 开始日期
+     * @param end 结束日期
+     * @param hotelID 酒店ID
+     * @param roomType 房间类型
+     * @return 房间库存和价格列表
+     */
+    public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 }

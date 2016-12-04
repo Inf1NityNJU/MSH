@@ -1,6 +1,7 @@
 package bl.userbl;
 
 //import blservice.userblservice.LevelService;
+
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import util.LoginState;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/6.
  */
-public class UserBLServiceImpl implements UserBLService, UserBLInfo{
+public class UserBLServiceImpl implements UserBLService, UserBLInfo {
 
     private User user;
     private LoginState loginState;
@@ -153,7 +154,8 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo{
      */
     public int getCreditOfID(String id) {
         if (user instanceof Client) {
-            return user.getCreditOfID(id);
+            Client client = (Client) user;
+            return client.getCreditOfID(id);
         } else {
             return -1;
         }
@@ -168,8 +170,19 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo{
         return user.getCurrentID();
     }
 
-    public User getUser() {
-        return user;
+    /**
+     * 得到酒店工作人员对应的酒店名字
+     *
+     * @param ID
+     * @return
+     */
+    public String getHotelIDByStaffID(String ID) {
+        if (user instanceof Staff) {
+            Staff staff = (Staff) user;
+            return staff.getHotelIDByStaffID(ID);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -229,13 +242,22 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo{
         }
     }
 
-    public ArrayList<LevelVO> getAllLevel(){
-        if(user instanceof Salesman){
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
+    public ArrayList<LevelVO> getAllLevel() {
+        if (user instanceof Salesman) {
             Salesman salesman = (Salesman) user;
             return salesman.getAllLevel();
-        }else{
+        } else {
             return null;
         }
+    }
+
+    public User getUser() {
+        return user;
     }
 
 }
