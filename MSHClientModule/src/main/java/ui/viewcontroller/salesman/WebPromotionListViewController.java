@@ -27,7 +27,7 @@ import java.util.List;
 public class WebPromotionListViewController {
     private WebPromotionViewController webPromotionViewController;
 
-    private static final int NUM_OF_CELL = 6;
+    private static final int NUM_OF_CELL = 5;
 
     private ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
 

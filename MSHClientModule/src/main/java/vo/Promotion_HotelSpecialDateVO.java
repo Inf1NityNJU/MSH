@@ -61,6 +61,6 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO {
     public PromotionPO toPO() {
         return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                 this.startDate.toString(), this.endDate.toString(),
-                "", "", 0, Place.Unnecessary, 0);
+                "", this.hotelID, 0, Place.Unnecessary, 0);
     }
 }
