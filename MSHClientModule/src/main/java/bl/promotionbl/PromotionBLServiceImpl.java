@@ -1,6 +1,9 @@
 package bl.promotionbl;
 
+import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
+import util.DateUtil;
+import util.Place;
 import util.PromotionType;
 import util.ResultMessage;
 import vo.PromotionVO;
@@ -12,13 +15,14 @@ import java.util.ArrayList;
 /**
  * Created by vivian on 16/11/5.
  */
-public class PromotionBLServiceImpl implements PromotionBLService{
+public class PromotionBLServiceImpl implements PromotionBLService, PromotionBLInfo {
 
     private Promotion promotion;
-//    private MinPromotion minPromotion;
+    private MinPromotion minPromotion;
 
-    public PromotionBLServiceImpl(){
-            promotion = new Promotion();
+    public PromotionBLServiceImpl() {
+        promotion = new Promotion();
+        minPromotion = new MinPromotion();
     }
 
 
@@ -57,4 +61,13 @@ public class PromotionBLServiceImpl implements PromotionBLService{
         return promotion.searchWebPromotions();
     }
 
+    @Override
+    public double getMinWebProm(DateUtil date, int clientGrade, Place place) {
+        return minPromotion.getMinWebProm(date, clientGrade, place);
+    }
+
+    @Override
+    public double getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity) {
+        return minPromotion.getMinHotelProm(hotelID,date,birthday, enterpriseName,roomQuantity);
+    }
 }

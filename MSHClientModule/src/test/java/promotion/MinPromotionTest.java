@@ -17,13 +17,13 @@ public class MinPromotionTest {
     private MinPromotion minPromotion;
 
     public MinPromotionTest(){
-        minPromotion = new MockMinPromotion();
+        minPromotion = new MinPromotion();
     }
 
     @Test
     public void testMinWebProm(){
-        double discount = minPromotion.getMinWebProm(new DateUtil(2016,11,06), 2, Place.TangShan);
-        assertEquals(0.80, discount, 0);
+        double discount = minPromotion.getMinWebProm(new DateUtil(2016,01,11), 2, Place.TangShan);
+        assertEquals(0.50, discount, 0);
     }
 
 
@@ -31,7 +31,7 @@ public class MinPromotionTest {
 
     @Test
         public void testMinHotelProm(){
-        double discount = minPromotion.getMinHotelProm("00000000", new DateUtil(2016,11,06), new DateUtil(1997,06,14), "SIJIA", 2);
-        assertEquals(0.80, discount, 0);
+        double discount = minPromotion.getMinHotelProm("02", new DateUtil(2016,01,11), new DateUtil(2016,01,11), "001", 5);
+        assertEquals(0.40, discount, 0);
     }
 }
