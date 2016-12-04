@@ -1,6 +1,8 @@
 package ui.viewcontroller.manager;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.UserBLFactory;
+import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
@@ -13,10 +15,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import po.StaffPO;
-import vo.SalesmanVO;
-import vo.SalesmanVO_Register;
-import vo.StaffVO;
-import vo.StaffVO_Register;
+import vo.*;
+
+import java.util.ArrayList;
 
 /**
  * Created by Kray on 2016/11/28.
@@ -55,6 +56,7 @@ public class WorkerManagementAddViewController {
     @FXML
     private RectButton saveButton;
 
+    private ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<>();
     private ObservableList observableList;
 
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
@@ -65,10 +67,12 @@ public class WorkerManagementAddViewController {
 
         observableList = FXCollections.observableArrayList();
 
-        //TODO
-        observableList.add("HOTEL1");
-        observableList.add("HOTEL2");
-        observableList.add("HOTEL3");
+        HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+        hotel_detailVOs = hotelBLService.searchHotel(new FilterFlagsVO(null, null, "", null, 0, 0, null, null, 0, -1, 0, 0, null));
+        System.out.println(hotel_detailVOs.size());
+        for(Hotel_DetailVO hotel_detailVO : hotel_detailVOs){
+            observableList.add(hotel_detailVO.name);
+        }
 
         hotelChoiceBox.setItems(observableList);
     }
@@ -88,8 +92,10 @@ public class WorkerManagementAddViewController {
                     || hotelChoiceBox.getValue() == null) {
                 System.out.println("Not complete");
             } else {
+                int index = hotelChoiceBox.getItems().indexOf(hotelChoiceBox.getValue());
+                String hotelID = this.hotel_detailVOs.get(index).ID;
                 UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-                userBLService.add(new StaffVO_Register(nameText.getText(), hotelChoiceBox.getValue().toString(),
+                userBLService.add(new StaffVO_Register(nameText.getText(), hotelID,
                         accountText.getText(), passwordText.getText()));
 
                 clickBackButton();

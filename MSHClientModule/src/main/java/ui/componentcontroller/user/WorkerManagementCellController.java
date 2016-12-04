@@ -1,8 +1,13 @@
 package ui.componentcontroller.user;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.blfactoryservice.BLFactoryService;
+import blservice.hotelblservice.HotelBLService;
 import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
+import dataservice.hoteldataservice.HotelDataService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.manager.WorkerManagementListViewController;
@@ -58,7 +63,10 @@ public class WorkerManagementCellController {
 
         workerNameLabel.setText(staffVO.staffName);
         workerIDLabel.setText(staffVO.staffID);
-        staffHotelLabel.setText(staffVO.hotelID);
+
+        HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+        staffHotelLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
+
         staffHotelLabel.setVisible(true);
         hotelLabel.setVisible(true);
 
@@ -71,6 +79,7 @@ public class WorkerManagementCellController {
 
         workerNameLabel.setText(salesmanVO.salesmanName);
         workerIDLabel.setText(salesmanVO.salesmanID);
+
         staffHotelLabel.setText("");
         staffHotelLabel.setVisible(false);
         hotelLabel.setVisible(false);

@@ -1,6 +1,8 @@
 package ui.viewcontroller.manager;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.UserBLFactory;
+import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
@@ -51,7 +53,9 @@ public class StaffManagementDetailViewController {
         accountLabel.setText(staffVO.account);
         staffIDLabel.setText(staffVO.staffID);
         staffNameLabel.setText(staffVO.staffName);
-        hotelNameLabel.setText(staffVO.hotelID);
+
+        HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+        hotelNameLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
     }
 
     public void clickBackButton() {

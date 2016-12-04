@@ -98,6 +98,8 @@ public class WorkerManagementListViewController {
      * 展示酒店工作人员
      */
     public void showStaff() {
+        tmpVOs.clear();
+
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
@@ -124,6 +126,8 @@ public class WorkerManagementListViewController {
      * 展示网站营销人员
      */
     public void showSalesman() {
+        tmpVOs.clear();
+
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
@@ -151,6 +155,8 @@ public class WorkerManagementListViewController {
      * 展示所有工作人员
      */
     public void showAllWorkers() {
+        tmpVOs.clear();
+
         for (Node cell : cells) {
             contentVBox.getChildren().remove(cell);
         }
