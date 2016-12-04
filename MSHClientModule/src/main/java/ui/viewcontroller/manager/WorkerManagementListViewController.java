@@ -8,17 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.Main;
-import po.StaffPO;
-import ui.componentcontroller.user.SalesmanManagementCellController;
-import ui.componentcontroller.user.StaffManagementCellController;
+import ui.componentcontroller.user.WorkerManagementCellController;
+import ui.componentcontroller.user.WorkerManagementPaneController;
 import ui.componentcontroller.user.WorkerManagementSearchPaneController;
 import vo.SalesmanVO;
 import vo.StaffVO;
+import vo.UserVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Pack200;
 
 /**
  * Created by Kray on 2016/11/26.
@@ -28,22 +27,20 @@ public class WorkerManagementListViewController {
     private static final int ROW_IN_PANE = 4;
 
     private WorkerManagementViewController workerManagementViewController;
+    private WorkerManagementSearchPaneController workerManagementSearchPaneController;
+    private WorkerManagementPaneController workerManagementPaneController;
 
     private UserBLService userBLService;
 
     private ArrayList<StaffVO> staffVOs;
     private ArrayList<SalesmanVO> salesmanVOs;
 
-    private ArrayList<StaffVO> tmpStaffVOs;
-    private ArrayList<SalesmanVO> tmpSalesmanVOs;
+    private ArrayList<UserVO> tmpVOs = new ArrayList<>();
 
-    // tmp
     private FXMLLoader[] cellLoaders = new FXMLLoader[ROW_IN_PANE];
     private Node[] cells = new Node[ROW_IN_PANE];
 
-    private int type;
-
-    private int currentPage;
+    private Node pagePane;
 
     @FXML
     private VBox contentVBox;
@@ -57,7 +54,6 @@ public class WorkerManagementListViewController {
      */
     @FXML
     public void initialize() {
-        currentPage = 1;
 
         staffVOs = new ArrayList<StaffVO>();
         salesmanVOs = new ArrayList<SalesmanVO>();
@@ -67,17 +63,35 @@ public class WorkerManagementListViewController {
             loader.setLocation(Main.class.getResource("../component/user/WorkerManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
-            WorkerManagementSearchPaneController controller = loader.getController();
-            controller.setWorkerManagementListViewController(this);
+            workerManagementSearchPaneController = loader.getController();
+            workerManagementSearchPaneController.setWorkerManagementListViewController(this);
 
             contentVBox.getChildren().add(pane);
 
-            //TODO
-            controller.showAllWorkers();
+            FXMLLoader pageLoader = new FXMLLoader();
+            pageLoader.setLocation(Main.class.getResource("../component/user/WorkerManagementPagePane.fxml"));
+            pagePane = pageLoader.load();
+
+            workerManagementPaneController = pageLoader.getController();
+            workerManagementPaneController.setWorkerManagementListViewController(this);
+
+            for (int i = 0; i < ROW_IN_PANE; i++) {
+
+                FXMLLoader cellLoader = new FXMLLoader();
+                cellLoader.setLocation(Main.class.getResource("../component/user/WorkerInfoCell.fxml"));
+                HBox clientCell = cellLoader.load();
+
+                cellLoaders[i] = cellLoader;
+                cells[i] = clientCell;
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void launchSearchPane() {
+        workerManagementSearchPaneController.showAllWorkers();
     }
 
     /**
@@ -89,39 +103,21 @@ public class WorkerManagementListViewController {
         }
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-        staffVOs = userBLService.search("");
+        this.staffVOs = userBLService.search("");
 
         if (staffVOs.size() > 0) {
-
-            cellLoaders = new FXMLLoader[staffVOs.size()];
-            cells = new Node[staffVOs.size()];
-
-            try {
-                for (int i = 0; i < staffVOs.size(); i++) {
-
-                    FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/user/StaffInfoCell.fxml"));
-                    HBox clientCell = cellLoader.load();
-
-                    cellLoaders[i] = cellLoader;
-                    cells[i] = clientCell;
-
-                    StaffVO staffVO = staffVOs.get(i);
-                    FXMLLoader loader = cellLoaders[i];
-
-                    StaffManagementCellController staffManagementCellController = loader.getController();
-                    staffManagementCellController.setWorkerManagementListViewController(this);
-                    staffManagementCellController.setStaffVO(staffVO);
-
-                    contentVBox.getChildren().add(clientCell);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            tmpVOs.addAll(staffVOs);
         } else {
             System.out.println("no staff");
         }
 
+        int size = this.staffVOs.size();
+        workerManagementPaneController.setPageCount(size / ROW_IN_PANE + ((size % ROW_IN_PANE == 0) ? 0 : 1));
+        if (size > 0) {
+            turnPage(1);
+        } else {
+            System.out.println("No Staff");
+        }
     }
 
     /**
@@ -136,39 +132,20 @@ public class WorkerManagementListViewController {
         salesmanVOs = userBLService.search("");
 
         if (salesmanVOs.size() > 0) {
-
-            cellLoaders = new FXMLLoader[salesmanVOs.size()];
-            cells = new Node[salesmanVOs.size()];
-
-            try {
-                for (int i = 0; i < salesmanVOs.size(); i++) {
-
-                    FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/user/SalesmanInfoCell.fxml"));
-                    HBox clientCell = cellLoader.load();
-
-                    cellLoaders[i] = cellLoader;
-                    cells[i] = clientCell;
-
-                    SalesmanVO salesmanVO = salesmanVOs.get(i);
-                    FXMLLoader loader = cellLoaders[i];
-
-                    SalesmanManagementCellController salesmanManagementCellController = loader.getController();
-                    salesmanManagementCellController.setWorkerManagementListViewController(this);
-                    salesmanManagementCellController.setSalesmanVO(salesmanVO);
-
-                    contentVBox.getChildren().add(clientCell);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            tmpVOs.addAll(salesmanVOs);
         } else {
             System.out.println("no salesman");
         }
 
-    }
+        int size = this.salesmanVOs.size();
+        workerManagementPaneController.setPageCount(size / ROW_IN_PANE + ((size % ROW_IN_PANE == 0) ? 0 : 1));
+        if (size > 0) {
+            turnPage(1);
+        } else {
+            System.out.println("No Salesman");
+        }
 
-    //TODO
+    }
 
     /**
      * 展示所有工作人员
@@ -180,62 +157,19 @@ public class WorkerManagementListViewController {
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
         staffVOs = userBLService.search("");
+        tmpVOs.addAll(staffVOs);
 
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         salesmanVOs = userBLService.search("");
+        tmpVOs.addAll(salesmanVOs);
 
-        if (staffVOs.size() + salesmanVOs.size() > 0) {
-
-            cellLoaders = new FXMLLoader[staffVOs.size() + salesmanVOs.size()];
-            cells = new Node[staffVOs.size() + salesmanVOs.size()];
-
-            System.out.println(staffVOs.size());
-            System.out.println(salesmanVOs.size());
-
-            try {
-                for (int i = 0; i < staffVOs.size(); i++) {
-
-                    FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/user/StaffInfoCell.fxml"));
-                    HBox clientCell = cellLoader.load();
-
-                    cellLoaders[i] = cellLoader;
-                    cells[i] = clientCell;
-
-                    StaffVO staffVO = staffVOs.get(i);
-                    FXMLLoader loader = cellLoaders[i];
-
-                    StaffManagementCellController staffManagementCellController = loader.getController();
-                    staffManagementCellController.setWorkerManagementListViewController(this);
-                    staffManagementCellController.setStaffVO(staffVO);
-
-                    contentVBox.getChildren().add(clientCell);
-                }
-                for (int i = staffVOs.size(); i < staffVOs.size() + salesmanVOs.size(); i++) {
-
-                    FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/user/SalesmanInfoCell.fxml"));
-                    HBox clientCell = cellLoader.load();
-
-                    cellLoaders[i] = cellLoader;
-                    cells[i] = clientCell;
-
-                    SalesmanVO salesmanVO = salesmanVOs.get(i - staffVOs.size());
-                    FXMLLoader loader = cellLoaders[i];
-
-                    SalesmanManagementCellController salesmanManagementCellController = loader.getController();
-                    salesmanManagementCellController.setWorkerManagementListViewController(this);
-                    salesmanManagementCellController.setSalesmanVO(salesmanVO);
-
-                    contentVBox.getChildren().add(clientCell);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        int size = this.tmpVOs.size();
+        workerManagementPaneController.setPageCount(size / ROW_IN_PANE + ((size % ROW_IN_PANE == 0) ? 0 : 1));
+        if (size > 0) {
+            turnPage(1);
         } else {
-            System.out.println("no worker");
+            System.out.println("No Worker");
         }
-
     }
 
     /**
@@ -264,9 +198,45 @@ public class WorkerManagementListViewController {
     }
 
     public void turnPage(int page) {
-//        int fromIndex = (page - 1) * ROW_IN_PANE;
-//        int toIndex = Math.min(page * ROW_IN_PANE, tmpStaffVOs.size() + tmpSalesmanVOs.size());
-//        List<ClientVO> tmpClientVOs = this.tmpVOs.subList(fromIndex, toIndex);
-//        setCells(tmpClientVOs);
+        int fromIndex = (page - 1) * ROW_IN_PANE;
+        int toIndex = Math.min(page * ROW_IN_PANE, tmpVOs.size());
+        List<UserVO> tmpUserVOs = this.tmpVOs.subList(fromIndex, toIndex);
+        setCells(tmpUserVOs);
+    }
+
+    private void setCells(List<UserVO> userVOs) {
+
+        if (userVOs.size() > ROW_IN_PANE) {
+            System.out.println("ERROR");
+            return;
+        }
+
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
+
+        for (int i = 0; i < userVOs.size(); i++) {
+
+            UserVO userVO = userVOs.get(i);
+            FXMLLoader loader = cellLoaders[i];
+            Node ordercell = cells[i];
+
+            WorkerManagementCellController workerManagementCellController = loader.getController();
+            workerManagementCellController.setWorkerManagementListViewController(this);
+
+            if (userVO instanceof StaffVO) {
+                workerManagementCellController.setStaffVO((StaffVO) userVO);
+            } else if (userVO instanceof SalesmanVO) {
+                workerManagementCellController.setSalesmanVO((SalesmanVO) userVO);
+            } else {
+                continue;
+            }
+
+            contentVBox.getChildren().add(ordercell);
+        }
+
+        contentVBox.getChildren().add(pagePane);
     }
 }
