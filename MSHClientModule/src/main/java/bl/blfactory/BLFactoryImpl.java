@@ -8,6 +8,7 @@ import blservice.blfactoryservice.BLFactoryService;
 import blservice.hotelblservice.HotelBLService;
 import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
+import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLService;
 
@@ -30,6 +31,8 @@ public class BLFactoryImpl implements BLFactoryService {
     public PromotionBLService getPromotionBLService() {
         return PromotionBLFactory.getPromotionBLService();
     }
+
+    public PromotionBLInfo getPromotionBLInfo(){return PromotionBLFactory.getPromotionBLService();}
 
     public UserBLService getClientBLService() {
         return UserBLFactory.getUserBLServiceImpl_Client();
