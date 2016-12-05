@@ -62,15 +62,10 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Client Login");
             if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-//                System.out.println("Found Account");
-
                 //Encryption
 //                password = Encryptor.encrypt(password);
 
                 if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
-//                    System.out.println("Found Password");
-//                    System.out.println(userPO.getPassword());
-//                    System.out.println(tmpUserPO.getPassword());
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Client;
                     }

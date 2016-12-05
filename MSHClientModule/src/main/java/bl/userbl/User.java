@@ -6,12 +6,12 @@ import po.ClientPO;
 import po.SalesmanPO;
 import po.StaffPO;
 import util.LoginState;
+import util.ManagerInfo;
 import util.ResetState;
 import util.ResultMessage;
 import vo.*;
 
 import java.util.ArrayList;
-import java.util.jar.Pack200;
 
 /**
  * Created by Sorumi on 16/10/30.
@@ -23,6 +23,9 @@ public class User {
      */
     private String currentID;
 
+    /**
+     * UserBL
+     */
     protected UserClientNetworkService userClientNetwork;
 
     public User() {
@@ -37,10 +40,9 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        System.out.println("USER LOGIN");
-        System.out.println(account);
-        System.out.println(password);
-
+        if(account.equals(ManagerInfo.manager_account) && password.equals(ManagerInfo.manager_password)){
+            return LoginState.LOGIN_SUCCESS_Manager;
+        }
         LoginState loginState = userClientNetwork.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("Login Client");

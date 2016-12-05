@@ -22,16 +22,8 @@ public class Client extends User {
 
     //这里进行Dateutil和String的转换
 
-//    private UserDataService userDataService;
-//    private UserClientNetworkService userClientNetwork;
-
-//    private String account;
-//    private String password;
-
     public Client() {
         super();
-//        this.userDataService = UserDataServiceFactory.getClientDataService();
-//        this.userClientNetwork = new UserClientNetworkImpl();
     }
 
     /**

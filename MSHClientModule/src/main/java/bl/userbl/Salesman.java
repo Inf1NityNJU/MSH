@@ -21,16 +21,8 @@ import java.util.ArrayList;
  */
 public class Salesman extends User {
 
-//    private UserDataService userDataService;
-//    private UserClientNetworkService userClientNetwork;
-
-//    private String account;
-//    private String password;
-
     public Salesman() {
         super();
-//        this.userDataService = UserDataServiceFactory.getSalesmanDataService();
-//        this.userClientNetwork = new UserClientNetworkImpl();
     }
 
     /**

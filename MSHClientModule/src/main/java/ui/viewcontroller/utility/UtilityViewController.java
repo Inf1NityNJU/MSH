@@ -69,6 +69,11 @@ public class UtilityViewController {
         mainUIController.showSalesmanView();
     }
 
+    protected void showManagerView(){
+        mainUIController.showMainView();
+        mainUIController.showManagerView();
+    }
+
     public void showSignup() {
 
     }

@@ -69,7 +69,7 @@ public class WorkerManagementAddViewController {
 
         HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
         hotel_detailVOs = hotelBLService.searchHotel(new FilterFlagsVO(null, null, "", null, 0, 0, null, null, 0, -1, 0, 0, null));
-        System.out.println(hotel_detailVOs.size());
+
         for(Hotel_DetailVO hotel_detailVO : hotel_detailVOs){
             observableList.add(hotel_detailVO.name);
         }

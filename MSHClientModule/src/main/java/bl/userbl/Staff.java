@@ -19,16 +19,8 @@ import java.util.ArrayList;
  */
 public class Staff extends User {
 
-//    private UserDataService userDataService;
-//    private UserClientNetworkService userClientNetwork;
-
-//    private String account;
-//    private String password;
-
     public Staff() {
         super();
-//        this.userDataService = UserDataServiceFactory.getStaffDataService();
-//        this.userClientNetwork = new UserClientNetworkImpl();
     }
 
     /**

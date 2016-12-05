@@ -1,21 +1,9 @@
 package ui.viewcontroller.utility;
 
 import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import main.Main;
-import util.LoginState;
-
-import java.io.IOException;
-import java.util.Stack;
 
 /**
  * Created by Kray on 2016/11/27.
@@ -39,9 +27,6 @@ public class LoginViewController {
     @FXML
     public void clickLoginButton(){
         userBLService = new BLFactoryImpl().getClientBLService();
-//        System.out.println("LOGIN");
-//        System.out.println("ACCOUNT : " + accountText.getText());
-//        System.out.println("PASSWORD: " + passwordText.getText());
         switch (userBLService.login(accountText.getText(), passwordText.getText())) {
             case LOGIN_SUCCESS_Client:
                 utilityViewController.showClientView();
@@ -51,6 +36,9 @@ public class LoginViewController {
                 break;
             case LOGIN_SUCCESS_Salesman:
                 utilityViewController.showSalesmanView();
+                break;
+            case LOGIN_SUCCESS_Manager:
+                utilityViewController.showManagerView();
                 break;
             case LOGIN_FAIL:
                 break;
