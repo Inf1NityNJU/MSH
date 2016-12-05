@@ -5,7 +5,7 @@ import network.ServerHelper;
 /**
  * Created by SilverNarcissus on 2016/12/5.
  */
-public class main {
+public class ServerMain {
     public static void main(String[] args) {
         //打开网络连接
         ServerHelper.buildNetwork();
