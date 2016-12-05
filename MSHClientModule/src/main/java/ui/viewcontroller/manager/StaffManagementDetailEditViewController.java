@@ -1,6 +1,8 @@
 package ui.viewcontroller.manager;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.UserBLFactory;
+import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
@@ -60,7 +62,9 @@ public class StaffManagementDetailEditViewController {
         accountLabel.setText(staffVO.account);
         staffIDLabel.setText(staffVO.staffID);
         staffNameText.setText(staffVO.staffName);
-        hotelNameLabel.setText(staffVO.hotelID);
+
+        HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+        hotelNameLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
     }
 
 }

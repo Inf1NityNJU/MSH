@@ -43,8 +43,6 @@ public class ClientManagementListViewController {
     private Node pagePane;
     private int type;
 
-    private int currentPage;
-
     @FXML
     private VBox contentVBox;
 
@@ -61,7 +59,6 @@ public class ClientManagementListViewController {
      */
     @FXML
     public void initialize() {
-        currentPage = 1;
 
         clientVOs = new ArrayList<ClientVO>();
 

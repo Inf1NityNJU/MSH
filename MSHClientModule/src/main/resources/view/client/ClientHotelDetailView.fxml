@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.mydatepicker.MyDatePicker?>
+<?import component.ratestarpane.RateStarPane?>
 <?import component.rectbutton.RectButton?>
 <?import component.starlabel.StarLabel?>
 <?import component.statebutton.StateButton?>
@@ -11,13 +12,16 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="1500.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientHotelDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="1800.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientHotelDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -178,6 +182,108 @@
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
+                              <VBox fx:id="commentVBox" layoutX="150.0" prefHeight="200.0" prefWidth="770.0" spacing="20.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label prefWidth="200.0" text="32 条评价" textFill="GREY">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <RateStarPane />
+                                          <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="4.8分" textFill="GREY">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Separator prefWidth="200.0" />
+                                    <Pane>
+                                       <children>
+                                          <Label text="评分评价" textFill="#cccccc">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <GridPane hgap="40.0" layoutX="242.0" vgap="20.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="NEVER" />
+                                              <ColumnConstraints hgrow="NEVER" />
+                                            </columnConstraints>
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="服务" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <RateStarPane />
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="卫生" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <RateStarPane />
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="设施" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <RateStarPane />
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="位置" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <RateStarPane />
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                         <font>
+                                                            <Font name="PingFang SC Regular" size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <rowConstraints>
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </children>
+                                    </Pane>
+                                    <Separator prefWidth="200.0" />
+                                 </children>
+                              </VBox>
                            </children>
                         </Pane>
                      </children>

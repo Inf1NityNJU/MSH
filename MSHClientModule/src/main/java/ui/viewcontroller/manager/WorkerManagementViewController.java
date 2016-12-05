@@ -56,9 +56,10 @@ public class WorkerManagementViewController {
             workerManagementListViewController.setWorkerManagementViewController(this);
 
             initNode = list;
-//            stack.push(list);
 
             rootPane.setCenter(list);
+
+            workerManagementListViewController.launchSearchPane();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,7 +81,6 @@ public class WorkerManagementViewController {
             staffManagementDetailViewController.setWorkerManagementViewController(this);
             staffManagementDetailViewController.showStaff(staffVO);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
@@ -106,7 +106,6 @@ public class WorkerManagementViewController {
             staffManagementDetailViewController.setWorkerManagementViewController(this);
             staffManagementDetailViewController.showSalesman(salesmanVO);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
@@ -132,7 +131,6 @@ public class WorkerManagementViewController {
             staffManagementDetailEditViewController.setWorkerManagementViewController(this);
             staffManagementDetailEditViewController.showStaffEdit(staffVO);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
@@ -158,7 +156,6 @@ public class WorkerManagementViewController {
             salesmanManagementDetailEditViewController.setWorkerManagementViewController(this);
             salesmanManagementDetailEditViewController.showSalesmanEdit(salesmanVO);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
