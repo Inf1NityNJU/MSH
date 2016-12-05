@@ -184,7 +184,6 @@ public class Salesman extends User {
         ArrayList<LevelVO> levelVOs = new ArrayList<LevelVO>();
         if (levelPOs.size() > 0) {
             for (LevelPO levelPO : levelPOs) {
-                System.out.println(levelPO.getLevel() +","+ levelPO.getCredit());
                 levelVOs.add(new LevelVO(levelPO.getLevel() + "", levelPO.getCredit() + ""));
             }
             return levelVOs;

@@ -44,7 +44,6 @@ public class ClientManagementViewController {
         if (!stack.empty()) {
             Node node = stack.pop();
             rootPane.setCenter(node);
-
         }
     }
 
@@ -53,6 +52,7 @@ public class ClientManagementViewController {
      */
     public void showClientList() {
         if (initNode != null) {
+            stack.clear();
             rootPane.setCenter(initNode);
             return;
         }
