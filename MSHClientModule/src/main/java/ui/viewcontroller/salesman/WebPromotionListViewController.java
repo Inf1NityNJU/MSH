@@ -109,7 +109,7 @@ public class WebPromotionListViewController {
         if (size > 0) {
             turnPage(1);
         } else {
-            System.out.println("No Order");
+            System.out.println("No Promotion");
         }
     }
 

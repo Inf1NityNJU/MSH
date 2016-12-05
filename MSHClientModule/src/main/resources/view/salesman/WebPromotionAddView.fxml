@@ -2,8 +2,8 @@
 
 <?import component.commontextfield.CommonTextField?>
 <?import component.mychoicebox.MyChoiceBox?>
+<?import component.mydatepicker.MyDatePicker?>
 <?import component.rectbutton.RectButton?>
-<?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
@@ -41,7 +41,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <StateButton fx:id="typeButton" text="Web_ClientGrade" textFill="#f9f9f9" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CommonTextField GridPane.columnIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -50,6 +50,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
+                        <MyChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label text="名称" textFill="#cccccc" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -106,9 +107,9 @@
                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                     <children>
                                         <Label text="StartTime" textFill="GREY" />
-                                        <CommonTextField fx:id="startTimeTextField" />
+                              <MyDatePicker />
                                         <Label text="EndTime" textFill="GREY" />
-                                        <CommonTextField fx:id="endTimeTextField" />
+                              <MyDatePicker />
                                     </children>
                                 </HBox>
                                 <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -138,7 +139,6 @@
                                         </MyChoiceBox>
                                     </children>
                                 </HBox>
-                                <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

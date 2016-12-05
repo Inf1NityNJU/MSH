@@ -45,6 +45,7 @@ public class WebPromotionViewController {
      */
     public void showWebPromotionList() {
         if (initNode != null) {
+            stack.clear();
             rootPane.setCenter(initNode);
             return;
         }

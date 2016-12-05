@@ -41,6 +41,7 @@ public class LevelManagementViewController {
      */
     public void showLevelList(){
         if (initNode != null) {
+            stack.clear();
             rootPane.setCenter(initNode);
             return;
         }
