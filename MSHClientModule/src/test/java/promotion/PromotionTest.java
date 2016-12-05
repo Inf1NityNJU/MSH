@@ -22,7 +22,7 @@ public class PromotionTest {
     private Promotion promotion;
 
     public PromotionTest() {
-        promotion = new Promotion();
+        promotion = new MockPromotion();
     }
 
     @Test

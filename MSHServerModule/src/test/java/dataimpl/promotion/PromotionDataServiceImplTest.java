@@ -24,10 +24,10 @@ public class PromotionDataServiceImplTest {
 
     @Test
     public void addPromotion() throws Exception {
-        promotionDataService.deletePromotion("201611210101");
-        promotionDataService.deletePromotion("201611210102");
+//        promotionDataService.deletePromotion("201611210101");
+//        promotionDataService.deletePromotion("201611210102");
         ResultMessage resultMessage = promotionDataService.addPromotion(new PromotionPO("201611210101", PromotionType.Web_ClientGrade,0.80,"2016-11-01","2016-11-30","12","34",0, Place.TangShan,0));
-        promotionDataService.addPromotion(new PromotionPO("201611210102", PromotionType.Web_ClientGrade,0.80,"2016-11-01","2016-11-30","12","34",0, Place.TangShan,0));
+//        promotionDataService.addPromotion(new PromotionPO("201611210102", PromotionType.Web_ClientGrade,0.80,"2016-11-01","2016-11-30","12","34",0, Place.TangShan,0));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
     }
 

@@ -18,6 +18,11 @@ public class PromotionPO implements Serializable {
     private String promotionID;
 
     /**
+     * 策略名称
+     */
+    private String promotionName;
+
+    /**
      * 策略类型
      */
     private PromotionType promotionType;
@@ -26,6 +31,8 @@ public class PromotionPO implements Serializable {
      * 策略折扣
      */
     private double promotionDiscount;
+
+
 
     /**
      * 策略执行开始日期
@@ -62,19 +69,20 @@ public class PromotionPO implements Serializable {
      */
     private int clientGrade;
 
-
-    /**
-     * 客户生日
-     */
-    private String birthday;
-
-
     public String getPromotionID() {
         return promotionID;
     }
 
     public void setPromotionID(String promotionID) {
         this.promotionID = promotionID;
+    }
+
+    public String getPromotionName() {
+        return promotionName;
+    }
+
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
     }
 
     public PromotionType getPromotionType() {
@@ -149,14 +157,6 @@ public class PromotionPO implements Serializable {
         this.clientGrade = clientGrade;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
     public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {
 
         this.promotionID = promotionID;
@@ -169,11 +169,12 @@ public class PromotionPO implements Serializable {
         this.roomQuantity = roomQuantity;
         this.place = place;
         this.clientGrade = clientGrade;
+        this.promotionName = "Default Name";
     }
 
-    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade, String birthday) {
+    public PromotionPO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade, String birthday) {
         this(promotionID, promotionType, promotionDiscount, startDate, endDate, companyName, hotelID, roomQuantity, place, clientGrade);
-        this.birthday = birthday;
+        this.promotionName = promotionName;
     }
 
     public PromotionPO() {
@@ -212,6 +213,7 @@ public class PromotionPO implements Serializable {
      */
     private boolean compareData(PromotionPO promotionPO) {
         return judgeEqual(promotionID, promotionPO.promotionID)
+                && judgeEqual(promotionName, promotionPO.promotionName)
                 && judgeEqual(promotionType, promotionPO.promotionType)
                 && judgeEqual(promotionDiscount, promotionPO.promotionDiscount)
                 && judgeEqual(startDate, promotionPO.startDate)
@@ -220,7 +222,6 @@ public class PromotionPO implements Serializable {
                 && judgeEqual(hotelID, promotionPO.hotelID)
                 && judgeEqual(roomQuantity, promotionPO.roomQuantity)
                 && judgeEqual(place, promotionPO.place)
-                && judgeEqual(clientGrade, promotionPO.clientGrade)
-                && judgeEqual(birthday, promotionPO.birthday);
+                && judgeEqual(clientGrade, promotionPO.clientGrade);
     }
 }
