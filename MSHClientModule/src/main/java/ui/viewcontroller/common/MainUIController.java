@@ -56,6 +56,11 @@ public class MainUIController {
         }
     }
 
+
+    public void showUtilView() {
+        utilityViewController = new UtilityViewController(rootPane);
+    }
+
     public void showClientView() {
         clientViewController = new ClientViewController(rootPane);
     }
@@ -66,10 +71,6 @@ public class MainUIController {
 
     public void showSalesmanView() {
         salesmanViewController = new SalesmanViewController(rootPane);
-    }
-
-    public void showUtilView() {
-        utilityViewController = new UtilityViewController(rootPane);
     }
 
     public void showStaffView() {
