@@ -13,6 +13,11 @@ public class PromotionVO {
     public String promotionID;
 
     /**
+     * 策略名称
+     */
+    public String promotionName;
+
+    /**
      * 策略类型
      */
     public PromotionType promotionType;
@@ -34,6 +39,12 @@ public class PromotionVO {
         this.promotionDiscount = promotionDiscount;
     }
 
+    public PromotionVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount) {
+        this.promotionID = promotionID;
+        this.promotionType = promotionType;
+        this.promotionDiscount = promotionDiscount;
+        this.promotionName = promotionName;
+    }
     public PromotionPO toPO(){
         return null;
     };

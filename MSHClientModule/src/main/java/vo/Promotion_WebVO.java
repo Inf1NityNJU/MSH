@@ -35,6 +35,12 @@ public class Promotion_WebVO extends PromotionVO{
         this.endDate = endDate;
     }
 
+    public Promotion_WebVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
+        super(promotionID, promotionName, promotionType, promotionDiscount);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
 
     @Override
     public boolean equals(Object o){
@@ -52,6 +58,7 @@ public class Promotion_WebVO extends PromotionVO{
 
     private boolean compareData(Promotion_WebVO pvo) {
         return judgeEqual(pvo.promotionID, this.promotionID)
+                && judgeEqual(pvo.promotionName, this.promotionName)
                 && judgeEqual(pvo.promotionType, this.promotionType)
                 && judgeEqual(pvo.promotionDiscount,this.promotionDiscount)
                 && judgeEqual(pvo.startDate,this.startDate)

@@ -31,6 +31,11 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
         this.clientGrade = clientGrade;
     }
 
+    public Promotion_ClientGradeVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, int clientGrade) {
+        super(promotionID, promotionName, promotionType, promotionDiscount, startDate, endDate);
+        this.clientGrade = clientGrade;
+    }
+
     @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_ClientGradeVO) {
@@ -47,6 +52,7 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
 
     private boolean compareData(Promotion_ClientGradeVO pvo) {
         return judgeEqual(pvo.promotionID, this.promotionID)
+                && judgeEqual(pvo.promotionName,this.promotionName)
                 && judgeEqual(pvo.promotionType, this.promotionType)
                 && judgeEqual(pvo.startDate,this.startDate)
                 && judgeEqual(pvo.endDate,this.endDate)
@@ -56,9 +62,16 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
 
     @Override
     public PromotionPO toPO() {
-        return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
-                this.startDate.toString(), this.endDate.toString(),
-                "", "", 0, Place.Unnecessary, this.clientGrade);
+        if (promotionName==null){
+            return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+                    this.startDate.toString(), this.endDate.toString(),
+                    "", "", 0, Place.Unnecessary, this.clientGrade);
+        }else {
+            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
+                    this.startDate.toString(), this.endDate.toString(),
+                    "", "", 0, Place.Unnecessary, this.clientGrade);
+        }
+
     }
 
 }

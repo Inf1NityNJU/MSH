@@ -15,6 +15,9 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
         super(promotionID, promotionType, promotionDiscount, hotelID);
     }
 
+    public Promotion_BirthdayVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, String hotelID) {
+        super(promotionID, promotionName, promotionType, promotionDiscount, hotelID);
+    }
     @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_BirthdayVO) {
@@ -31,14 +34,22 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
 
     private boolean compareData(Promotion_BirthdayVO pvo) {
         return judgeEqual(pvo.promotionID, this.promotionID)
+                && judgeEqual(pvo.promotionName, this.promotionName)
                 && judgeEqual(pvo.promotionType, this.promotionType)
                 && judgeEqual(pvo.promotionDiscount, this.promotionDiscount);
     }
 
     @Override
     public PromotionPO toPO() {
-        return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
-                "", "",
-                "", this.hotelID, 0, Place.Unnecessary, 0);
+        if (promotionName==null){
+            return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+                    "", "",
+                    "", this.hotelID, 0, Place.Unnecessary, 0);
+        }else {
+            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
+                    "", "",
+                    "", this.hotelID, 0, Place.Unnecessary, 0);
+        }
+
     }
 }

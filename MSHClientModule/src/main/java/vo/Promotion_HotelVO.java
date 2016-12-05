@@ -17,6 +17,11 @@ public class Promotion_HotelVO extends PromotionVO{
         this.hotelID = hotelID;
     }
 
+    public Promotion_HotelVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount,String hotelID) {
+        super(promotionID, promotionName, promotionType, promotionDiscount);
+        this.hotelID = hotelID;
+    }
+
     @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_HotelVO) {
@@ -33,6 +38,7 @@ public class Promotion_HotelVO extends PromotionVO{
 
     private boolean compareData(Promotion_HotelVO pvo) {
         return judgeEqual(pvo.promotionID, this.promotionID)
+                &&judgeEqual(pvo.promotionName, this.promotionName)
                 && judgeEqual(pvo.promotionType, this.promotionType)
                 && judgeEqual(pvo.promotionDiscount,this.promotionDiscount);
     }
