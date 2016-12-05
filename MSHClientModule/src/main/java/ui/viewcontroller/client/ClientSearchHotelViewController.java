@@ -50,7 +50,7 @@ public class ClientSearchHotelViewController {
      */
     public void showClientHotelList() {
         if (initNode != null) {
-            stack.empty();
+            stack.clear();
             rootPane.setCenter(initNode);
             return;
         }

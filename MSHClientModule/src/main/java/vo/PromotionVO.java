@@ -37,6 +37,7 @@ public class PromotionVO {
         this.promotionID = promotionID;
         this.promotionType = promotionType;
         this.promotionDiscount = promotionDiscount;
+        this.promotionName="DefaultName";
     }
 
     public PromotionVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount) {

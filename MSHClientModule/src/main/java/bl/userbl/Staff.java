@@ -19,35 +19,8 @@ import java.util.ArrayList;
  */
 public class Staff extends User {
 
-    private UserDataService userDataService;
-    private UserClientNetworkService userClientNetwork;
-
-    private String account;
-    private String password;
-
     public Staff() {
-        this.userDataService = UserDataServiceFactory.getStaffDataService();
-        this.userClientNetwork = new UserClientNetworkImpl();
-    }
-
-    /**
-     * 登录
-     *
-     * @param account
-     * @param password
-     * @return 当前登录状态
-     */
-    public LoginState login(String account, String password) {
-        LoginState loginState = userClientNetwork.login(account, password);
-//        LoginState loginState = userDataService.login(account, password);
-        if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
-            System.out.println("Login Staff");
-            StaffPO staffPO = userDataService.searchStaff(account).get(0);
-            super.setCurrentID(staffPO.getStaffID());
-            this.account = account;
-            this.password = password;
-        }
-        return loginState;
+        super();
     }
 
     /**
@@ -86,7 +59,7 @@ public class Staff extends User {
      * @return 符合ID的StaffVO
      */
     public StaffVO searchByID(String staffID) {
-        StaffPO staffPO = userClientNetwork.searchStaffByID(staffID);
+        StaffPO staffPO = super.userClientNetwork.searchStaffByID(staffID);
 //        StaffPO staffPO = userDataService.searchStaffByID(staffID);
         if (staffPO == null) {
             return null;

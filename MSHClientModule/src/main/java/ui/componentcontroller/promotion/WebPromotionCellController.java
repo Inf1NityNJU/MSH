@@ -35,8 +35,9 @@ public class WebPromotionCellController {
     public void setPromotionVO(PromotionVO promotionVO){
         this.promotionVO = promotionVO;
 
-        promotionNameLabel.setText(promotionVO.promotionID);
-        promotionType.setText(promotionVO.promotionType.toString());
+        promotionNameLabel.setText(promotionVO.promotionName);
+        promotionType.setText(promotionVO.promotionType.getType());
+        promotionType.setColorProperty(promotionVO.promotionType.getColor());
         promotionDiscountLabel.setText(Double.toString(promotionVO.promotionDiscount));
     }
 

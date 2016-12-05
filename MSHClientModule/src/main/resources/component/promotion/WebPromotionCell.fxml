@@ -6,13 +6,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox spacing="140.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.WebPromotionCellController">
+<HBox spacing="160.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.WebPromotionCellController">
     <children>
         <Label fx:id="promotionNameLabel" prefWidth="80.0" text="名称1" textFill="GREY">
          <padding>
             <Insets top="5.0" />
          </padding></Label>
-        <StateButton fx:id="promotionType" colorProperty="12B7F3" text="类型" />
+        <StateButton fx:id="promotionType" colorProperty="12B7F3" isActiveProperty="true" text="类型" />
         <Label fx:id="promotionDiscountLabel" text="折扣" textFill="GREY">
          <padding>
             <Insets top="5.0" />
@@ -20,7 +20,7 @@
          <HBox.margin>
             <Insets left="-15.0" />
          </HBox.margin></Label>
-      <RectButton fx:id="detailButton" sizeProperty="Small" text="查看" onMouseClicked="#clickDetailButton">
+      <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看">
          <HBox.margin>
             <Insets left="-10.0" />
          </HBox.margin></RectButton>

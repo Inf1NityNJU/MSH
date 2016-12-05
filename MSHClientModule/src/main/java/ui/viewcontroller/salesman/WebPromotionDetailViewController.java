@@ -52,7 +52,7 @@ public class WebPromotionDetailViewController {
     public void showWebPromotionDetail(PromotionVO promotionVO){
         this.promotionVO = promotionVO;
 
-        nameLabel.setText(promotionVO.promotionID);
+        nameLabel.setText(promotionVO.promotionName);
         typeButton.setText(promotionVO.promotionType.toString());
 
         Promotion_WebVO promotion_webVO = (Promotion_WebVO)promotionVO;

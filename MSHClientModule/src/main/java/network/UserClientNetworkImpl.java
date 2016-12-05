@@ -154,7 +154,6 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
         try {
-            System.out.println("++++");
             return userServerNetworkService.searchStaff(keyword);
         } catch (Exception e) {
             e.printStackTrace();
