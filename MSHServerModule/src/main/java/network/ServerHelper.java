@@ -19,11 +19,11 @@ import java.rmi.registry.LocateRegistry;
  */
 public class ServerHelper {
 
-    public ServerHelper() {
+    private ServerHelper() {
 
     }
 
-    public static void main(String[] args) {
+    public static void buildNetwork() {
 
         try {
             //启动RMI注册服务，指定端口为1099　（1099为默认端口）

@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Calendar;
+
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
@@ -13,6 +15,17 @@ public class TimeUtil {
     public int min;
     public int sec;
 
+    public TimeUtil(String timeUtil) {
+        //第一次分割
+        String[] dateAndTime=timeUtil.split(" ");
+        date=new DateUtil(dateAndTime[0]);
+        //
+        String[] time=dateAndTime[1].split(":");
+        hour=Integer.parseInt(time[0]);
+        min=Integer.parseInt(time[1]);
+        sec=Integer.parseInt(time[2]);
+    }
+
     public TimeUtil(int year, int month, int day, int hour, int min, int sec) {
         date = new DateUtil(year, month, day);
         this.hour = hour;
@@ -20,6 +33,35 @@ public class TimeUtil {
         this.sec = sec;
     }
 
+    /**
+     * 得到两个时间的间隔
+     *
+     * @param timeUtil 另一个时间
+     * @return 时间间隔(毫秒)
+     */
+    public long getIntervalTime(TimeUtil timeUtil) {
+        Calendar calendar = Calendar.getInstance();
+        //第一个日期的秒值
+        long firstSecond = 0;
+        calendar.set(date.year
+                , date.month - 1
+                , date.day
+                , hour
+                , min
+                , sec);
+        firstSecond = calendar.getTimeInMillis();
+        //第二个日期的秒值
+        long secondSecond = 0;
+        calendar.set(timeUtil.date.year
+                , timeUtil.date.month - 1
+                , timeUtil.date.day
+                , timeUtil.hour
+                , timeUtil.min
+                , timeUtil.sec);
+        secondSecond = calendar.getTimeInMillis();
+        //
+        return secondSecond - firstSecond;
+    }
 
     /**
      * 比较两个time
@@ -70,10 +112,10 @@ public class TimeUtil {
         if (min.length() == 1) {
             min = "0" + min;
         }
-        if (sec.length() == 1 ) {
+        if (sec.length() == 1) {
             sec = "0" + sec;
         }
-        return date.toString()+ " " + hour + ":" + min + ":" + sec;
+        return date.toString() + " " + hour + ":" + min + ":" + sec;
     }
 
 }

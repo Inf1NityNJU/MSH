@@ -152,4 +152,5 @@ public interface HotelBLService {
      */
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags);
 
+
 }
