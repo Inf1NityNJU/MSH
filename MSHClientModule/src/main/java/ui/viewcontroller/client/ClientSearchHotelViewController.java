@@ -1,5 +1,6 @@
 package ui.viewcontroller.client;
 
+import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.hotelblservice.HotelBLService_Stub;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +32,7 @@ public class ClientSearchHotelViewController {
     public ClientSearchHotelViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
         //TODO
-        hotelBLService = new HotelBLService_Stub();
+        hotelBLService = HotelBLFactory.getHotelBLService();
     }
 
     /**

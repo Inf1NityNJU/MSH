@@ -1,10 +1,15 @@
 package ui.viewcontroller.client;
 
 import component.mydatepicker.MyDatePicker;
+import component.ratestarpane.RateStarPane;
+import component.starlabel.StarLabel;
+import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.Main;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
@@ -33,6 +38,35 @@ public class ClientHotelDetailViewController {
     @FXML
     private MyDatePicker checkOutDatePicker;
 
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private StarLabel starLabel;
+
+    @FXML
+    private StateButton cityButton;
+
+    @FXML
+    private StateButton placeButton;
+
+    @FXML
+    private Label addressLabel;
+
+    @FXML
+    private Text introductionText;
+
+    @FXML
+    private Text facilitiesText;
+
+    @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private RateStarPane rateScorePane;
+
+
+
     private OrderVO order;
 
 
@@ -45,6 +79,16 @@ public class ClientHotelDetailViewController {
 
     //TODO
     public void setHotel(Hotel_DetailVO hotel) {
+        //Add hotel
+        nameLabel.setText(hotel.name);
+        starLabel.setStar(hotel.star);
+        cityButton.setText(hotel.city.toString());
+        placeButton.setText(hotel.place.toString());
+        addressLabel.setText(hotel.address);
+        introductionText.setText(hotel.introduction);
+        facilitiesText.setText(hotel.facilities);
+        scoreLabel.setText(String.valueOf(hotel.score)+"分");
+        rateScorePane.setScore((int)hotel.score);
         //AddPromotion
         addPromotions(null);
         addRooms(null);

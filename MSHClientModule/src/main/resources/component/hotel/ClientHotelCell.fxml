@@ -28,26 +28,26 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label onMouseClicked="#showHotelDetail" text="酒店名称" textFill="#5b6e79">
+                  <Label fx:id="nameLabel" onMouseClicked="#showHotelDetail" text="酒店名称" textFill="#5b6e79">
                      <font>
                         <Font name="PingFang SC Regular" size="20.0" />
                      </font>
                   </Label>
-                  <StarLabel />
+                  <StarLabel fx:id="starLabel" />
                </children>
             </HBox>
-            <Label layoutX="189.0" layoutY="92.0" text="地址：" textFill="#b3b3b3" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+            <Label fx:id="addressLabel" layoutX="189.0" layoutY="92.0" text="地址：" textFill="#b3b3b3" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <RateStarPane layoutX="20.0" layoutY="94.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-            <Label layoutX="199.0" layoutY="102.0" text="4.8分" textFill="GREY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="140.0">
+            <RateStarPane fx:id="rateScorePane" layoutX="20.0" layoutY="94.0" score="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+            <Label fx:id="scoreLabel" layoutX="199.0" layoutY="102.0" text="4.8分" textFill="GREY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="140.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_CENTER" text="¥400" textFill="#ff2c14" AnchorPane.bottomAnchor="-3.0" AnchorPane.rightAnchor="20.0">
+            <Label fx:id="minPriceLabel" alignment="BOTTOM_CENTER" text="¥400" textFill="#ff2c14" AnchorPane.bottomAnchor="-3.0" AnchorPane.rightAnchor="20.0">
                <font>
                   <Font name="PingFang SC Regular" size="20.0" />
                </font>
