@@ -56,9 +56,9 @@ public class MainUIController {
         }
     }
 
-
     public void showUtilView() {
         utilityViewController = new UtilityViewController(rootPane);
+        utilityViewController.setMainUIController(this);
     }
 
     public void showClientView() {

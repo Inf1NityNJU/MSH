@@ -1,5 +1,7 @@
 package ui.viewcontroller.utility;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,6 @@ import java.util.Stack;
  */
 public class LoginViewController {
 
-
     @FXML
     private TextField accountText;
 
@@ -37,7 +38,23 @@ public class LoginViewController {
 
     @FXML
     public void clickLoginButton(){
-        System.out.println("LOGIN");
+        userBLService = new BLFactoryImpl().getClientBLService();
+//        System.out.println("LOGIN");
+//        System.out.println("ACCOUNT : " + accountText.getText());
+//        System.out.println("PASSWORD: " + passwordText.getText());
+        switch (userBLService.login(accountText.getText(), passwordText.getText())) {
+            case LOGIN_SUCCESS_Client:
+                utilityViewController.showClientView();
+                break;
+            case LOGIN_SUCCESS_Staff:
+                utilityViewController.showStaffView();
+                break;
+            case LOGIN_SUCCESS_Salesman:
+                utilityViewController.showSalesmanView();
+                break;
+            case LOGIN_FAIL:
+                break;
+        }
     }
 
     @FXML

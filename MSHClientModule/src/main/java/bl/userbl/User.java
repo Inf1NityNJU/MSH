@@ -1,11 +1,17 @@
 package bl.userbl;
 
+import network.UserClientNetworkImpl;
+import network.UserClientNetworkService;
+import po.ClientPO;
+import po.SalesmanPO;
+import po.StaffPO;
 import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
 import vo.*;
 
 import java.util.ArrayList;
+import java.util.jar.Pack200;
 
 /**
  * Created by Sorumi on 16/10/30.
@@ -17,6 +23,12 @@ public class User {
      */
     private String currentID;
 
+    protected UserClientNetworkService userClientNetwork;
+
+    public User() {
+        this.userClientNetwork = new UserClientNetworkImpl();
+    }
+
     /**
      * 登录
      *
@@ -25,7 +37,25 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        return null;
+        System.out.println("USER LOGIN");
+        System.out.println(account);
+        System.out.println(password);
+
+        LoginState loginState = userClientNetwork.login(account, password);
+        if (loginState == LoginState.LOGIN_SUCCESS_Client) {
+            System.out.println("Login Client");
+            ClientPO clientPO = userClientNetwork.searchClient(account).get(0);
+            this.setCurrentID(clientPO.getClientID());
+        } else if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
+            System.out.println("Login Salesman");
+            SalesmanPO salesmanPO = userClientNetwork.searchSalesman(account).get(0);
+            this.setCurrentID(salesmanPO.getSalesmanID());
+        } else if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
+            System.out.println("Login Staff");
+            StaffPO staffPO = userClientNetwork.searchStaff(account).get(0);
+            this.setCurrentID(staffPO.getStaffID());
+        }
+        return loginState;
     }
 
     /**
@@ -132,5 +162,9 @@ public class User {
     public String getCurrentID() {
         System.out.println("Get ID: " + currentID);
         return this.currentID;
+    }
+
+    public UserClientNetworkService getUserClientNetwork() {
+        return userClientNetwork;
     }
 }
