@@ -1,6 +1,9 @@
 package blservice.userblservice;
 
 import bl.userbl.Salesman;
+import vo.LevelVO;
+
+import java.util.ArrayList;
 
 /**
  * Created by Kray on 2016/11/11.
@@ -29,4 +32,11 @@ public interface UserBLInfo {
      * @return
      */
     public String getHotelIDByStaffID(String ID);
+
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
+    public ArrayList<LevelVO> getAllLevel();
 }

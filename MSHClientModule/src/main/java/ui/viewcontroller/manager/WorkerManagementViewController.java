@@ -43,6 +43,7 @@ public class WorkerManagementViewController {
      */
     public void showWorkerList() {
         if (initNode != null) {
+            stack.clear();
             rootPane.setCenter(initNode);
             return;
         }

@@ -547,14 +547,14 @@ public class UserDataServiceImpl implements UserDataService {
 
     private boolean checkAccountExist(String account, String userType) {
         if (userType.equals("client")) {
-            ArrayList<ClientPO> clientPOs = clientDataHelper.prefixMatchQuery("account", account);
-            return clientPOs.size() > 0;
+            ClientPO clientPO = clientDataHelper.exactlyQuery("account", account);
+            return clientPO != null;
         } else if (userType.equals("staff")) {
-            ArrayList<StaffPO> staffPOs = staffDataHelper.prefixMatchQuery("account", account);
-            return staffPOs.size() > 0;
+            StaffPO staffPO = staffDataHelper.exactlyQuery("account", account);
+            return staffPO != null;
         } else if (userType.equals("salesman")) {
-            ArrayList<SalesmanPO> salesmanPOs = salesmanDataHelper.prefixMatchQuery("account", account);
-            return salesmanPOs.size() > 0;
+            SalesmanPO salesmanPO = salesmanDataHelper.exactlyQuery("account", account);
+            return salesmanPO != null;
         } else {
             return false;
         }

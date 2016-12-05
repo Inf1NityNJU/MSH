@@ -1,6 +1,8 @@
 package bl.userbl;
 
 //import blservice.userblservice.LevelService;
+
+import blservice.userblservice.UserBLInfo;
 import util.LoginState;
 
 /**
@@ -31,5 +33,25 @@ public class UserBLFactory {
         return userBLService;
     }
 
+    public synchronized static UserBLInfo getUserInfo_Client() {
+        if (userBLService == null || !(userBLService.getUser() instanceof Client)) {
+            userBLService = new UserBLServiceImpl(new Client(), LoginState.LOGOUT);
+        }
+        return userBLService;
+    }
+
+    public synchronized static UserBLInfo getUserInfo_Staff() {
+        if (userBLService == null || !(userBLService.getUser() instanceof Staff)) {
+            userBLService = new UserBLServiceImpl(new Staff(), LoginState.LOGOUT);
+        }
+        return userBLService;
+    }
+
+    public synchronized static UserBLInfo getUserInfo_Salesman() {
+        if (userBLService == null || !(userBLService.getUser() instanceof Salesman)) {
+            userBLService = new UserBLServiceImpl(new Salesman(), LoginState.LOGOUT);
+        }
+        return userBLService;
+    }
 
 }
