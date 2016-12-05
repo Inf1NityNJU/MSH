@@ -57,22 +57,15 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public LoginState login(String account, String password) {
-        System.out.println(account);
-        System.out.println(password);
         UserPO userPO;
         if (clientDataHelper != null) {
             System.out.println("Client Login");
             if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-//                System.out.println("Found Account");
-
                 //Encryption
-                password = Encryptor.encrypt(password);
+//                password = Encryptor.encrypt(password);
 
                 if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
-//                    System.out.println("Found Password");
-//                    System.out.println(userPO.getPassword());
-//                    System.out.println(tmpUserPO.getPassword());
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Client;
                     }
@@ -82,7 +75,7 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Staff Login");
             if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-                password = Encryptor.encrypt(password);
+//                password = Encryptor.encrypt(password);
                 if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Staff;
@@ -93,7 +86,7 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Salesman Login");
             if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-                password = Encryptor.encrypt(password);
+//                password = Encryptor.encrypt(password);
                 if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Salesman;
@@ -140,7 +133,7 @@ public class UserDataServiceImpl implements UserDataService {
             if (clientDataHelper != null) {
                 if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-                    oldPassword = Encryptor.encrypt(oldPassword);
+//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = clientDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             ClientPO clientPO = (ClientPO) tmpUserPO;
@@ -154,7 +147,7 @@ public class UserDataServiceImpl implements UserDataService {
             } else if (staffDataHelper != null) {
                 if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-                    oldPassword = Encryptor.encrypt(oldPassword);
+//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = staffDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             StaffPO staffPO = (StaffPO) tmpUserPO;
@@ -166,7 +159,7 @@ public class UserDataServiceImpl implements UserDataService {
             } else if (salesmanDataHelper != null) {
                 if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-                    oldPassword = Encryptor.encrypt(oldPassword);
+//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;

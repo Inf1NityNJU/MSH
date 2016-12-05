@@ -3,7 +3,9 @@ package ui.viewcontroller.utility;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
 
@@ -13,6 +15,8 @@ import java.io.IOException;
 public class UtilityViewController {
 
     private BorderPane rootPane;
+
+    private MainUIController mainUIController;
 
     private LoginViewController loginViewController;
 
@@ -28,12 +32,15 @@ public class UtilityViewController {
 //        loginViewController.showLogin();
     }
 
-    public void showLogin() {
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
 
+    public void showLogin() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("../view/utility/LoginView.fxml"));
-            AnchorPane list = fxmlLoader.load();
+            Pane list = fxmlLoader.load();
 
             LoginViewController loginViewController = fxmlLoader.getController();
             loginViewController.setUtilityViewController(this);
@@ -45,6 +52,26 @@ public class UtilityViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void showClientView(){
+        mainUIController.showMainView();
+        mainUIController.showClientView();
+    }
+
+    protected void showStaffView(){
+        mainUIController.showMainView();
+        mainUIController.showStaffView();
+    }
+
+    protected void showSalesmanView(){
+        mainUIController.showMainView();
+        mainUIController.showSalesmanView();
+    }
+
+    protected void showManagerView(){
+        mainUIController.showMainView();
+        mainUIController.showManagerView();
     }
 
     public void showSignup() {

@@ -21,35 +21,8 @@ import java.util.ArrayList;
  */
 public class Salesman extends User {
 
-    private UserDataService userDataService;
-    private UserClientNetworkService userClientNetwork;
-
-    private String account;
-    private String password;
-
     public Salesman() {
-        this.userDataService = UserDataServiceFactory.getSalesmanDataService();
-        this.userClientNetwork = new UserClientNetworkImpl();
-    }
-
-    /**
-     * 登录
-     *
-     * @param account
-     * @param password
-     * @return 当前登录状态
-     */
-    public LoginState login(String account, String password) {
-        LoginState loginState = userClientNetwork.login(account, password);
-//        LoginState loginState = userDataService.login(account, password);
-        if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
-            System.out.println("Login Salesman");
-            SalesmanPO salesmanPO = userDataService.searchSalesman(account).get(0);
-            super.setCurrentID(salesmanPO.getSalesmanID());
-            this.account = account;
-            this.password = password;
-        }
-        return loginState;
+        super();
     }
 
     /**
