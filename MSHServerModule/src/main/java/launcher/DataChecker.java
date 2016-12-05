@@ -11,14 +11,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by SilverNarcissus on 2016/12/5.
+ * Created by SilverNarcissus on 2016/12/5.<br>
+ * All Done on 2016/12/5
  */
 public class DataChecker {
 
     /**
      * 检查时间间隔
      */
-    private static final int checkInterval = 1000;
+    private static final int checkInterval = 1000*60*60;
 
     /**
      * 6小时间隔
@@ -65,7 +66,6 @@ public class DataChecker {
         for (OrderPO orderPO : orderDataService.searchOrderByState(OrderState.Unexecuted)) {
             TimeUtil lastTime = new TimeUtil(orderPO.getLatestExecuteTime());
             if (now.getIntervalTime(lastTime) < sixHourInterval) {
-                System.out.println(now.getIntervalTime(lastTime));
                 orderPO.setState(OrderState.Abnormal);
                 orderDataService.updateOrder(orderPO);
             }

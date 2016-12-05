@@ -27,16 +27,22 @@ public class Hotel_BriefVO {
      */
     public double score;
 
-    public Hotel_BriefVO(String ID, String name, String address, int star, double score) {
+    /**
+     * 最小价格
+     */
+    public double minPrice;
+
+    public Hotel_BriefVO(String ID, String name, String address, int star, double score, double minPrice) {
         this.ID = ID;
         this.name = name;
         this.address = address;
         this.star = star;
         this.score = score;
+        this.minPrice = minPrice;
     }
 
     public Hotel_BriefVO(Hotel_DetailVO hotel_detailVO) {
-        this(hotel_detailVO.ID, hotel_detailVO.name, hotel_detailVO.address, hotel_detailVO.star, hotel_detailVO.score);
+        this(hotel_detailVO.ID, hotel_detailVO.name, hotel_detailVO.address, hotel_detailVO.star, hotel_detailVO.score, hotel_detailVO.minPrice);
     }
 
     /**
@@ -76,5 +82,12 @@ public class Hotel_BriefVO {
                 && judgeEqual(address, h_bvo.address)
                 && judgeEqual(star, h_bvo.star)
                 && judgeEqual(score, h_bvo.score);
+    }
+
+    @Override
+    public String toString() {
+        String result = "ID: " + ID  + " Address: " + address +
+                " Name: " + name + " Star: " + star + " minPrice: " + minPrice ;
+        return result;
     }
 }
