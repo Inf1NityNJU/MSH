@@ -47,6 +47,7 @@ public class ManagerViewController {
 
     public void showClientList() {
         clientManagementViewController.showClientList();
+        clientManagementViewController.setSalesman(false);
     }
 
     public void showWorkerList() {

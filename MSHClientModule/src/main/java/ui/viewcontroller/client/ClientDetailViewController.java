@@ -14,36 +14,36 @@ import vo.ClientVO;
  */
 public class ClientDetailViewController {
 
-    private ClientVO clientVO;
+    protected ClientVO clientVO;
 
-    private ClientManagementViewController clientManagementViewController;
-
-    @FXML
-    private Label clientIDLabel;
+    protected ClientManagementViewController clientManagementViewController;
 
     @FXML
-    private Label clientNameLabel;
+    protected Label clientIDLabel;
 
     @FXML
-    private Label accountLabel;
+    protected Label clientNameLabel;
+
+    @FXML
+    protected Label accountLabel;
 
     @FXML
     private TinyButton passwordButton;
 
     @FXML
-    private Label typeLabel;
+    protected Label typeLabel;
 
     @FXML
-    private Label birthdayLabel;
+    protected Label birthdayLabel;
 
     @FXML
-    private Label creditLabel;
+    protected Label creditLabel;
 
     @FXML
     private TinyButton creditButton;
 
     @FXML
-    private Label currentLevelLabel;
+    protected Label currentLevelLabel;
 
     @FXML
     private Label nextLevelLabel;
@@ -51,8 +51,13 @@ public class ClientDetailViewController {
     @FXML
     private Label deltaCreditLabel;
 
+    @FXML
+    protected RectButton actionButton;
+
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
+
+        actionButton.setText("编 辑");
     }
 
     public void showClient(ClientVO clientVO) {
@@ -72,10 +77,10 @@ public class ClientDetailViewController {
         creditLabel.setText(clientVO.credit + "");
 
         currentLevelLabel.setText("Lv." + clientVO.level);
-        nextLevelLabel.setText("Lv." + (clientVO.level+1));
+        nextLevelLabel.setText("Lv." + (clientVO.level + 1));
 
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-        int nextCredit = Integer.parseInt(userBLService.getLevel((clientVO.level+1)+"").credit);
+        int nextCredit = Integer.parseInt(userBLService.getLevel((clientVO.level + 1) + "").credit);
         deltaCreditLabel.setText((nextCredit - clientVO.credit) + "");
 
     }
@@ -93,7 +98,7 @@ public class ClientDetailViewController {
         clientManagementViewController.editClientDetail(clientVO);
     }
 
-    public void clickCreditButton(){
+    public void clickCreditButton() {
         clientManagementViewController.showCreditOfClient(clientVO.clientID);
     }
 }
