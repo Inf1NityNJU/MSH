@@ -415,8 +415,27 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
-        //这个 clientID 好像没用?
-        return creditDataHelper.save(creditPO);
+        ClientPO clientPO = clientDataHelper.exactlyQuery("clientID", clientID);
+        int resultCredit = clientPO.getCredit() + creditPO.getDeltaCredit();
+        System.out.println(clientPO.getAccount());
+        System.out.println(resultCredit);
+        creditPO.setResultCredit(resultCredit);
+        ResultMessage rm = creditDataHelper.save(creditPO);
+        if (rm == ResultMessage.SUCCESS) {
+            int level = clientPO.getLevel();
+
+            while (true) {
+                if (canLevelUp(level, resultCredit)) {
+                    break;
+                }
+                level++;
+            }
+
+            clientDataHelper.update(new ClientPO(clientPO.getClientID(), clientPO.getClientName(), resultCredit,
+                    level, clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
+                    clientPO.getAccount(), clientPO.getPassword()));
+        }
+        return rm;
     }
 
     /**
@@ -476,6 +495,11 @@ public class UserDataServiceImpl implements UserDataService {
         return levelDataHelper.exactlyQuery("ID", level);
     }
 
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
     public ArrayList<LevelPO> getAllLevel() {
         return levelDataHelper.prefixMatchQuery("ID", "");
     }
@@ -496,6 +520,11 @@ public class UserDataServiceImpl implements UserDataService {
         return true;
     }
 
+    /**
+     * 得到酒店工作人员ID最大值
+     *
+     * @return
+     */
     private String getMaxStaffID() {
         ArrayList<StaffPO> staffPOs = staffDataHelper.prefixMatchQuery("staffID", "");
         if (staffPOs.size() == 0) {
@@ -509,6 +538,11 @@ public class UserDataServiceImpl implements UserDataService {
         }
     }
 
+    /**
+     * 得到网站营销人员ID最大值
+     *
+     * @return
+     */
     private String getMaxSalesmanID() {
         ArrayList<SalesmanPO> salesmanPOs = salesmanDataHelper.prefixMatchQuery("salesmanID", "");
         if (salesmanPOs.size() == 0) {
@@ -522,6 +556,11 @@ public class UserDataServiceImpl implements UserDataService {
         }
     }
 
+    /**
+     * 得到客户ID最大值
+     *
+     * @return
+     */
     private String getMaxClientID() {
         ArrayList<ClientPO> clientPOs = clientDataHelper.prefixMatchQuery("clientID", "");
         if (clientPOs.size() == 0) {
@@ -531,13 +570,20 @@ public class UserDataServiceImpl implements UserDataService {
             String str = clientPO.getClientID();
             int i = Integer.parseInt(str) + 1;
             String result = i + "";
-            while(result.length() < 9){
+            while (result.length() < 9) {
                 result = "0" + result;
             }
             return result;
         }
     }
 
+    /**
+     * 判断账号是否存在
+     *
+     * @param account
+     * @param userType
+     * @return
+     */
     private boolean checkAccountExist(String account, String userType) {
         if (userType.equals("client")) {
             ClientPO clientPO = clientDataHelper.exactlyQuery("account", account);
@@ -551,6 +597,17 @@ public class UserDataServiceImpl implements UserDataService {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 判断是否可以升级
+     *
+     * @param level
+     * @param credit
+     * @return
+     */
+    private boolean canLevelUp(int level, int credit) {
+        return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
     }
 
 }
