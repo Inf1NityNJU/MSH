@@ -133,6 +133,10 @@ public class WebPromotionViewController {
             case Web_ClientGrade:
                 this.addWeb_ClientGradePromotion();
                 break;
+            case Web_SpecilaDate:
+                this.addWeb_SpecialDatePromotion();
+                break;
+
         }
     }
 
@@ -148,6 +152,29 @@ public class WebPromotionViewController {
             WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
             webPromotion_clientGradeAddViewController.setWebPromotionViewController(this);
             webPromotion_clientGradeAddViewController.setPromotionBLService(promotionBLService);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 增加网站特殊期间折扣策略
+     */
+    public void addWeb_SpecialDatePromotion() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialDateAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            WebPromotion_SpecialDateAddViewController webPromotion_specialDateAddViewController = loader.getController();
+            webPromotion_specialDateAddViewController.setWebPromotionViewController(this);
+            webPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
 
             Node node = rootPane.getCenter();
             stack.push(node);
