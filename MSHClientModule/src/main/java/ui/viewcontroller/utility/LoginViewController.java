@@ -2,8 +2,8 @@ package ui.viewcontroller.utility;
 
 import bl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLService;
+import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 /**
  * Created by Kray on 2016/11/27.
@@ -11,10 +11,10 @@ import javafx.scene.control.TextField;
 public class LoginViewController {
 
     @FXML
-    private TextField accountText;
+    private CommonTextField accountText;
 
     @FXML
-    private TextField passwordText;
+    private CommonTextField passwordText;
 
     private UtilityViewController utilityViewController;
 
@@ -25,7 +25,7 @@ public class LoginViewController {
     }
 
     @FXML
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         userBLService = new BLFactoryImpl().getClientBLService();
         switch (userBLService.login(accountText.getText(), passwordText.getText())) {
             case LOGIN_SUCCESS_Client:
@@ -46,7 +46,8 @@ public class LoginViewController {
     }
 
     @FXML
-    public void clickSignupButton(){
-
+    public void clickSignupButton() {
+        utilityViewController.back();
+        utilityViewController.showSignUp();
     }
 }

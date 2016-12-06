@@ -14,10 +14,6 @@ public class ClientVO_Register extends ClientVO {
      */
     public String clientName;
     /**
-     * 客户信用值
-     */
-    public int credit;
-    /**
      * 客户等级
      */
     public int level;
@@ -49,21 +45,18 @@ public class ClientVO_Register extends ClientVO {
     /**
      * 注册时的客户构造方法
      *
-     * @param name
-     * @param level
      * @param birthday
-     * @param credit
      * @param type
      * @param contactInfo
      * @param enterprise
      * @param account
      * @param password
      */
-    public ClientVO_Register(String name, int level, DateUtil birthday, int credit, int type, String contactInfo,
+    public ClientVO_Register(DateUtil birthday, int type, String contactInfo,
                              String enterprise, String account, String password) {
-        this.clientName = name;
-        this.credit = credit;
-        this.level = level;
+        this.clientName = "temp name";
+        this.credit = 500;
+        this.level = 1;
         this.type = type;
         this.birthday = birthday;
         this.contactInfo = contactInfo;
