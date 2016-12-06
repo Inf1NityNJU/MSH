@@ -5,6 +5,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import main.Main;
+import ui.componentcontroller.common.HeaderViewController;
 import ui.viewcontroller.client.ClientViewController;
 import ui.viewcontroller.manager.ManagerViewController;
 import ui.viewcontroller.salesman.SalesmanViewController;
@@ -22,16 +23,13 @@ public class MainUIController {
 
     private BorderPane rootPane;
 
+    private HeaderViewController headerViewController;
+
     private ClientViewController clientViewController;
-
     private ManagerViewController managerViewController;
-
     private SalesmanViewController salesmanViewController;
-
     private UtilityViewController utilityViewController;
-
     private StaffViewController staffViewController;
-
 
     public void setRootPane(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -43,6 +41,9 @@ public class MainUIController {
             FXMLLoader headerLoader = new FXMLLoader();
             headerLoader.setLocation(Main.class.getResource("../component/common/Header.fxml"));
             HBox header = headerLoader.load();
+
+            headerViewController = headerLoader.getController();
+            headerViewController.setMainUIController(this);
 
             FXMLLoader sectionLoader = new FXMLLoader();
             sectionLoader.setLocation(Main.class.getResource("../component/common/Section.fxml"));
@@ -75,7 +76,6 @@ public class MainUIController {
 
     public void showStaffView() {
         staffViewController = new StaffViewController(rootPane);
-
     }
 
 }

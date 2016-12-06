@@ -66,7 +66,7 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState logout() {
-        this.currentID = "";
+        setCurrentID("");
         return LoginState.LOGOUT;
     }
 
@@ -79,7 +79,7 @@ public class User {
      * @return 重置密码结果状态
      */
     public ResetState resetPassword(String account, String oldPassword, String newPassword) {
-        return ResetState.RESET_SUCCESS;
+        return null;
     }
 
     /**
