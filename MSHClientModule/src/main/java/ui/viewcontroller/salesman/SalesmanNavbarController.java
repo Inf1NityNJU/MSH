@@ -28,6 +28,12 @@ public class SalesmanNavbarController {
 
     @FXML
     public void clickOrderManageButton() {
+        orderManageButton.setIsCurrentProperty(true);
+        clientRechargeButton.setIsCurrentProperty(false);
+        promotionButton.setIsCurrentProperty(false);
+        clientGradeButton.setIsCurrentProperty(false);
+
+        salesmanViewController.showWebOrderList();
     }
 
     @FXML

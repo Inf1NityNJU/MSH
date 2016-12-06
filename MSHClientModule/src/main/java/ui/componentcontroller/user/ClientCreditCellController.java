@@ -31,7 +31,7 @@ public class ClientCreditCellController {
         this.creditVO = creditVO;
 
         dateLabel.setText(creditVO.date.toString());
-        if (Integer.parseInt(creditVO.orderID) >= 0) {
+        if (creditVO.orderID.charAt(0) != '-') {
             orderIDLabel.setText(creditVO.orderID);
         } else {
             orderIDLabel.setText("/");

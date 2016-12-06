@@ -22,34 +22,8 @@ public class Client extends User {
 
     //这里进行Dateutil和String的转换
 
-    private UserDataService userDataService;
-    private UserClientNetworkService userClientNetwork;
-
-    private String account;
-    private String password;
-
     public Client() {
-        this.userDataService = UserDataServiceFactory.getClientDataService();
-        this.userClientNetwork = new UserClientNetworkImpl();
-    }
-
-    /**
-     * 登录方法
-     *
-     * @param account
-     * @param password
-     * @return 当前登录状态
-     */
-    public LoginState login(String account, String password) {
-        LoginState loginState = userClientNetwork.login(account, password);
-//        LoginState loginState = userDataService.login(account, password);
-        if (loginState == LoginState.LOGIN_SUCCESS_Client) {
-            ClientPO clientPO = userDataService.searchClient(account).get(0);
-            super.setCurrentID(clientPO.getClientID());
-            this.account = account;
-            this.password = password;
-        }
-        return loginState;
+        super();
     }
 
     /**
@@ -110,7 +84,7 @@ public class Client extends User {
      */
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
-        ClientPO tmpPO = userDataService.searchClientByID(clientVO.clientID);
+        ClientPO tmpPO = userClientNetwork.searchClientByID(clientVO.clientID);
         ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit, clientVO.level,
                 clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, tmpPO.getPassword());
 //        return userDataService.updateClient(clientVO.clientID, clientPO);

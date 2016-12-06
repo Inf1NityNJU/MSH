@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.commontextfield.CommonTextField?>
+<?import component.mydatepicker.MyDatePicker?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
@@ -59,7 +60,7 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                                <Label text="昵称" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <Label text="姓名" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -116,9 +117,13 @@
                               <Font name="Bangla MN" size="14.0" />
                            </font>
                         </Label>
-                        <CommonTextField fx:id="accountText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" />
                         <CommonTextField fx:id="clientNameText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <CommonTextField fx:id="birthdayText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <MyDatePicker fx:id="birthdayPicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="accountLabel" text="account" textFill="GREY" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="PingFang SC Regular" size="16.0" />
+                           </font>
+                        </Label>
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

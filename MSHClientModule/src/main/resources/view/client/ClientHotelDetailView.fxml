@@ -45,12 +45,12 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
-                              <Label text="酒店名称" textFill="#5b6e79">
+                              <Label fx:id="nameLabel" text="酒店名称" textFill="#5b6e79">
                                  <font>
                                     <Font name="PingFang SC Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <StarLabel />
+                              <StarLabel fx:id="starLabel" />
                               <Pane HBox.hgrow="ALWAYS" />
                               <!--<RectButton layoutX="866.0" layoutY="15.0" text="预 定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
                               <Label text="曾经预定过该酒店" textFill="#cccccc">
@@ -69,9 +69,9 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" layoutX="150.0" spacing="10.0">
                                  <children>
-                                    <StateButton colorProperty="00cccc" text="地址" />
-                                    <StateButton colorProperty="00cccc" text="商区" />
-                                    <Label text="酒店地址" textFill="GREY">
+                                    <StateButton fx:id="cityButton" colorProperty="00cccc" text="地址" />
+                                    <StateButton fx:id="placeButton" colorProperty="00cccc" text="商区" />
+                                    <Label fx:id="addressLabel" text="酒店地址" textFill="GREY">
                                        <font>
                                           <Font name="PingFang SC Regular" size="16.0" />
                                        </font>
@@ -88,7 +88,7 @@
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Text fill="GREY" layoutX="150.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="可以在别墅大院里晒太阳品咖啡，倾听鸟语花香，一个人发发呆，度过安静的一天。每天都有专人打扫卫生。周边生活设施很齐全，生活方便。酒店门口就是地铁站，去市中心很便利。" wrappingWidth="770.0">
+                              <Text fx:id="introductionText" fill="GREY" layoutX="150.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="可以在别墅大院里晒太阳品咖啡，倾听鸟语花香，一个人发发呆，度过安静的一天。每天都有专人打扫卫生。周边生活设施很齐全，生活方便。酒店门口就是地铁站，去市中心很便利。" wrappingWidth="770.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
@@ -96,13 +96,18 @@
                            </children>
                         </Pane>
                         <Separator prefWidth="200.0" />
-                        <Pane>
+                        <Pane prefWidth="530.0">
                            <children>
                               <Label layoutY="2.0" text="服务设施" textFill="#cccccc">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
+                              <Text fx:id="facilitiesText" fill="GREY" layoutX="151.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="哈哈哈哈哈哈啊哈哈哈哈哈哈哈按实际的哈桑就等哈看收到货">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="13.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </Pane>
                         <Separator prefWidth="200.0" />
@@ -191,8 +196,8 @@
                                                 <Font name="PingFang SC Regular" size="16.0" />
                                              </font>
                                           </Label>
-                                          <RateStarPane />
-                                          <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="4.8分" textFill="GREY">
+                                          <RateStarPane fx:id="rateScorePane" />
+                                          <Label fx:id="scoreLabel" alignment="CENTER_RIGHT" prefWidth="100.0" text="4.8分" textFill="GREY">
                                              <font>
                                                 <Font name="PingFang SC Regular" size="16.0" />
                                              </font>

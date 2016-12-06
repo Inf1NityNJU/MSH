@@ -1,70 +1,41 @@
 package ui.viewcontroller.utility;
 
+import bl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLService;
+import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import main.Main;
-import util.LoginState;
-
-import java.io.IOException;
-import java.util.Stack;
 
 /**
  * Created by Kray on 2016/11/27.
  */
 public class LoginViewController {
 
-    private BorderPane rootPane;
-    private Node initNode;
-    private Stack<Node> stack = new Stack<Node>();
+    @FXML
+    private CommonTextField accountText;
 
     @FXML
-    private TextField accountText;
+    private CommonTextField passwordText;
 
-    @FXML
-    private TextField passwordText;
+    private UtilityViewController utilityViewController;
 
-    private UserBLService userBLService;
-
-    public LoginViewController(BorderPane rootPane) {
-        System.out.println("C LOGIN");
-        this.rootPane = rootPane;
-    }
-
-    public void showLogin(){
-        System.out.println("INIT LOGIN");
-        if (initNode != null) {
-            rootPane.setCenter(initNode);
-            return;
-        }
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("../view/utility/LoginView.fxml"));
-            AnchorPane list = fxmlLoader.load();
-
-            initNode = list;
-            rootPane.setCenter(list);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public void setUtilityViewController(UtilityViewController utilityViewController) {
+        this.utilityViewController = utilityViewController;
     }
 
     @FXML
-    public void clickLoginButton(){
-        System.out.println("LOGIN");
+    public void clickLoginButton() {
+        utilityViewController.login(accountText.getText(), passwordText.getText());
     }
 
     @FXML
-    public void clickSignupButton(){
+    public void clickSignUpButton() {
+        utilityViewController.back();
+        utilityViewController.showSignUp();
+    }
 
+    @FXML
+    public void clickTouristButton() {
+        //TODO
+        utilityViewController.showClientView();
     }
 }

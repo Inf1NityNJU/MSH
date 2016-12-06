@@ -1,24 +1,18 @@
 package ui.viewcontroller.client;
 
+import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
-import blservice.hotelblservice.HotelBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.hotel.ClientHotelCellController;
 import ui.componentcontroller.hotel.ClientHotelPagePaneController;
 import ui.componentcontroller.hotel.ClientHotelSearchPaneController;
-import ui.componentcontroller.order.ClientOrderCellController;
-import ui.componentcontroller.order.ClientOrderPagePaneController;
-import ui.componentcontroller.order.ClientOrderSearchPaneController;
-import util.OrderState;
+import vo.FilterFlagsVO;
 import vo.Hotel_BriefVO;
-import vo.Hotel_DetailVO;
-import vo.OrderVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -80,7 +74,7 @@ public class ClientHotelListViewController {
             clientHotelPagePaneController = pageLoader.getController();
             clientHotelPagePaneController.setClientHotelListViewController(this);
 
-            for (int i=0; i<NUM_OF_CELL; i++) {
+            for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
                 cellLoader.setLocation(Main.class.getResource("../component/hotel/ClientHotelCell.fxml"));
                 VBox cell = cellLoader.load();
@@ -89,7 +83,7 @@ public class ClientHotelListViewController {
                 cells[i] = cell;
             }
 
-            showHotel();
+            //showHotel();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,18 +99,18 @@ public class ClientHotelListViewController {
         this.hotelBLService = hotelBLService;
     }
 
-    //TODO
-    public void showHotel() {
-//        hotels = hotelBLService.;
+    public void showHotel(FilterFlagsVO filterFlagsVO) {
+        hotelBLService = HotelBLFactory.getHotelBLService();
+        hotels = hotelBLService.searchHotelInBriefVO(filterFlagsVO);
 
-        Hotel_BriefVO hotel = new Hotel_BriefVO("00000000", "酒店名字", "地址很长啦", 3, 4.8);
-
-        for (int i = 0; i < 7; i++) {
-            hotels.add(hotel);
-        }
+//        Hotel_BriefVO hotel = new Hotel_BriefVO("00000000", "酒店名字", "地址很长啦", 3, 4.8);
+//
+//        for (int i = 0; i < 7; i++) {
+//            hotels.add(hotel);
+//        }
 
         int size = hotels.size();
-        clientHotelPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
+        clientHotelPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
             turnPage(1);
         } else {
@@ -126,15 +120,19 @@ public class ClientHotelListViewController {
     }
 
     public void turnPage(int page) {
-        int fromIndex = (page-1)*NUM_OF_CELL;
-        int toIndex = Math.min(page*NUM_OF_CELL, hotels.size());
+        int fromIndex = (page - 1) * NUM_OF_CELL;
+        int toIndex = Math.min(page * NUM_OF_CELL, hotels.size());
         List<Hotel_BriefVO> tmpHotels = hotels.subList(fromIndex, toIndex);
+//        for(Hotel_BriefVO hotel_briefVO:tmpHotels){
+//            System.out.println(hotel_briefVO);
+//        }
         setCells(tmpHotels);
     }
 
-    private void setCells(List<Hotel_BriefVO> orders) {
+    private void setCells(List<Hotel_BriefVO> hotel_BriefVOs) {
 
-        if (orders.size() > NUM_OF_CELL) {
+
+        if (hotel_BriefVOs.size() > NUM_OF_CELL) {
             System.out.println("ERROR");
             return;
         }
@@ -145,9 +143,10 @@ public class ClientHotelListViewController {
 
         contentVBox.getChildren().remove(pagePane);
 
-        for (int i = 0; i < orders.size(); i++) {
+        for (int i = 0; i < hotel_BriefVOs.size(); i++) {
 
-            Hotel_BriefVO hotel = hotels.get(i);
+            Hotel_BriefVO hotel = hotel_BriefVOs.get(i);
+
             FXMLLoader loader = cellLoaders[i];
             Node cell = cells[i];
 

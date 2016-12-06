@@ -1,60 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.commontextfield.CommonTextField?>
 <?import component.rectbutton.RectButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-image: url('../../images/example.jpeg');" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.utility.LoginViewController">
    <children>
-      <VBox alignment="BASELINE_CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" spacing="100.0" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="125.0">
+      <AnchorPane layoutX="240.0" layoutY="200.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="40.0">
-               <children>
-                  <Label contentDisplay="CENTER" text="用户名">
-                     <font>
-                        <Font name="PingFang SC Regular" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="accountText" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="488.0">
-                     <font>
-                        <Font name="PingFang SC Regular" size="24.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="40.0">
-               <children>
-                  <Label contentDisplay="CENTER" text="密码   ">
-                     <font>
-                        <Font name="PingFang SC Regular" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="passwordText" prefHeight="51.0" prefWidth="488.0">
-                     <font>
-                        <Font name="PingFang SC Regular" size="24.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
-               <children>
-                  <RectButton isActiveProperty="false" text="注 册">
-                     <font>
-                        <Font name="PingFang SC Regular" size="24.0" />
-                     </font>
-                  </RectButton>
-                  <RectButton isActiveProperty="true" onAction="#clickLoginButton" text="登 录">
-                     <font>
-                        <Font name="PingFang SC Regular" size="24.0" />
-                     </font>
-                  </RectButton>
-               </children>
-            </HBox>
+            <Label text="登 录" textFill="#00cccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="PingFang SC Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label text="账号" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font>
+            </Label>
+            <CommonTextField fx:id="accountText" layoutX="59.0" layoutY="152.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
+            <CommonTextField fx:id="passwordText" layoutX="66.0" layoutY="220.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0" />
+            <Label layoutX="10.0" layoutY="20.0" text="密码" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="150.0">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font>
+            </Label>
+            <RectButton layoutX="48.0" layoutY="314.0" onAction="#clickLoginButton" text="登 录" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" onMouseClicked="#clickLoginButton"/>
+            <RectButton isActiveProperty="false" layoutX="171.0" layoutY="310.0" text="游 客" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" onMouseClicked="#clickTouristButton" />
          </children>
-      </VBox>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </AnchorPane>
+      <AnchorPane layoutX="740.0" layoutY="200.0" opacity="0.9" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #2B3135;">
+         <children>
+            <Label text="MSH" textFill="#eeeeee" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-16.0">
+               <font>
+                  <Font name="Bangla MN" size="20.0" />
+               </font>
+            </Label>
+            <RectButton isAbledProperty="false" isActiveProperty="false" layoutX="166.0" layoutY="219.0" text="注 册" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickSignUpButton"/>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</Pane>

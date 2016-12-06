@@ -1,6 +1,12 @@
 package bl.userbl;
 
+import network.UserClientNetworkImpl;
+import network.UserClientNetworkService;
+import po.ClientPO;
+import po.SalesmanPO;
+import po.StaffPO;
 import util.LoginState;
+import util.ManagerInfo;
 import util.ResetState;
 import util.ResultMessage;
 import vo.*;
@@ -18,6 +24,15 @@ public class User {
     private String currentID;
 
     /**
+     * UserBL
+     */
+    protected UserClientNetworkService userClientNetwork;
+
+    public User() {
+        this.userClientNetwork = new UserClientNetworkImpl();
+    }
+
+    /**
      * 登录
      *
      * @param account
@@ -25,7 +40,24 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        return null;
+        if(account.equals(ManagerInfo.manager_account) && password.equals(ManagerInfo.manager_password)){
+            return LoginState.LOGIN_SUCCESS_Manager;
+        }
+        LoginState loginState = userClientNetwork.login(account, password);
+        if (loginState == LoginState.LOGIN_SUCCESS_Client) {
+            System.out.println("Login Client");
+            ClientPO clientPO = userClientNetwork.searchClient(account).get(0);
+            this.setCurrentID(clientPO.getClientID());
+        } else if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
+            System.out.println("Login Salesman");
+            SalesmanPO salesmanPO = userClientNetwork.searchSalesman(account).get(0);
+            this.setCurrentID(salesmanPO.getSalesmanID());
+        } else if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
+            System.out.println("Login Staff");
+            StaffPO staffPO = userClientNetwork.searchStaff(account).get(0);
+            this.setCurrentID(staffPO.getStaffID());
+        }
+        return loginState;
     }
 
     /**
@@ -34,7 +66,7 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState logout() {
-        this.currentID = "";
+        setCurrentID("");
         return LoginState.LOGOUT;
     }
 
@@ -47,7 +79,7 @@ public class User {
      * @return 重置密码结果状态
      */
     public ResetState resetPassword(String account, String oldPassword, String newPassword) {
-        return ResetState.RESET_SUCCESS;
+        return null;
     }
 
     /**
@@ -132,5 +164,9 @@ public class User {
     public String getCurrentID() {
         System.out.println("Get ID: " + currentID);
         return this.currentID;
+    }
+
+    public UserClientNetworkService getUserClientNetwork() {
+        return userClientNetwork;
     }
 }

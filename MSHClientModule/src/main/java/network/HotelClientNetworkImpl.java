@@ -24,7 +24,7 @@ public class HotelClientNetworkImpl implements HotelDataService {
     /**
      * 再次尝试连接的时间间隔
      */
-    public static final int SLEEP_TIME = 2000;
+    private static final int SLEEP_TIME = 2000;
     /**
      * 传递过来的数据持久化接口
      */

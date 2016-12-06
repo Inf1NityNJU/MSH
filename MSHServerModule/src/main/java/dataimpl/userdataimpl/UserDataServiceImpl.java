@@ -57,22 +57,15 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public LoginState login(String account, String password) {
-        System.out.println(account);
-        System.out.println(password);
         UserPO userPO;
         if (clientDataHelper != null) {
             System.out.println("Client Login");
             if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-//                System.out.println("Found Account");
-
                 //Encryption
-                password = Encryptor.encrypt(password);
+//                password = Encryptor.encrypt(password);
 
                 if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
-//                    System.out.println("Found Password");
-//                    System.out.println(userPO.getPassword());
-//                    System.out.println(tmpUserPO.getPassword());
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Client;
                     }
@@ -82,7 +75,7 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Staff Login");
             if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-                password = Encryptor.encrypt(password);
+//                password = Encryptor.encrypt(password);
                 if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Staff;
@@ -93,7 +86,7 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Salesman Login");
             if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-                password = Encryptor.encrypt(password);
+//                password = Encryptor.encrypt(password);
                 if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Salesman;
@@ -140,7 +133,7 @@ public class UserDataServiceImpl implements UserDataService {
             if (clientDataHelper != null) {
                 if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-                    oldPassword = Encryptor.encrypt(oldPassword);
+//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = clientDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             ClientPO clientPO = (ClientPO) tmpUserPO;
@@ -154,7 +147,7 @@ public class UserDataServiceImpl implements UserDataService {
             } else if (staffDataHelper != null) {
                 if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-                    oldPassword = Encryptor.encrypt(oldPassword);
+//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = staffDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             StaffPO staffPO = (StaffPO) tmpUserPO;
@@ -166,7 +159,7 @@ public class UserDataServiceImpl implements UserDataService {
             } else if (salesmanDataHelper != null) {
                 if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-                    oldPassword = Encryptor.encrypt(oldPassword);
+//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;
@@ -422,8 +415,27 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
-        //这个 clientID 好像没用?
-        return creditDataHelper.save(creditPO);
+        ClientPO clientPO = clientDataHelper.exactlyQuery("clientID", clientID);
+        int resultCredit = clientPO.getCredit() + creditPO.getDeltaCredit();
+        System.out.println(clientPO.getAccount());
+        System.out.println(resultCredit);
+        creditPO.setResultCredit(resultCredit);
+        ResultMessage rm = creditDataHelper.save(creditPO);
+        if (rm == ResultMessage.SUCCESS) {
+            int level = clientPO.getLevel();
+
+            while (true) {
+                if (canLevelUp(level, resultCredit)) {
+                    break;
+                }
+                level++;
+            }
+
+            clientDataHelper.update(new ClientPO(clientPO.getClientID(), clientPO.getClientName(), resultCredit,
+                    level, clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
+                    clientPO.getAccount(), clientPO.getPassword()));
+        }
+        return rm;
     }
 
     /**
@@ -483,6 +495,11 @@ public class UserDataServiceImpl implements UserDataService {
         return levelDataHelper.exactlyQuery("ID", level);
     }
 
+    /**
+     * 得到所有等级信息
+     *
+     * @return
+     */
     public ArrayList<LevelPO> getAllLevel() {
         return levelDataHelper.prefixMatchQuery("ID", "");
     }
@@ -503,6 +520,11 @@ public class UserDataServiceImpl implements UserDataService {
         return true;
     }
 
+    /**
+     * 得到酒店工作人员ID最大值
+     *
+     * @return
+     */
     private String getMaxStaffID() {
         ArrayList<StaffPO> staffPOs = staffDataHelper.prefixMatchQuery("staffID", "");
         if (staffPOs.size() == 0) {
@@ -516,6 +538,11 @@ public class UserDataServiceImpl implements UserDataService {
         }
     }
 
+    /**
+     * 得到网站营销人员ID最大值
+     *
+     * @return
+     */
     private String getMaxSalesmanID() {
         ArrayList<SalesmanPO> salesmanPOs = salesmanDataHelper.prefixMatchQuery("salesmanID", "");
         if (salesmanPOs.size() == 0) {
@@ -529,6 +556,11 @@ public class UserDataServiceImpl implements UserDataService {
         }
     }
 
+    /**
+     * 得到客户ID最大值
+     *
+     * @return
+     */
     private String getMaxClientID() {
         ArrayList<ClientPO> clientPOs = clientDataHelper.prefixMatchQuery("clientID", "");
         if (clientPOs.size() == 0) {
@@ -538,13 +570,20 @@ public class UserDataServiceImpl implements UserDataService {
             String str = clientPO.getClientID();
             int i = Integer.parseInt(str) + 1;
             String result = i + "";
-            while(result.length() < 9){
+            while (result.length() < 9) {
                 result = "0" + result;
             }
             return result;
         }
     }
 
+    /**
+     * 判断账号是否存在
+     *
+     * @param account
+     * @param userType
+     * @return
+     */
     private boolean checkAccountExist(String account, String userType) {
         if (userType.equals("client")) {
             ClientPO clientPO = clientDataHelper.exactlyQuery("account", account);
@@ -558,6 +597,17 @@ public class UserDataServiceImpl implements UserDataService {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 判断是否可以升级
+     *
+     * @param level
+     * @param credit
+     * @return
+     */
+    private boolean canLevelUp(int level, int credit) {
+        return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
     }
 
 }

@@ -11,5 +11,6 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class OrderServerNetworkImpl extends UnicastRemoteObject implements OrderServerNetworkService {
     public OrderServerNetworkImpl() throws RemoteException {
+
     }
 }

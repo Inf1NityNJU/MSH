@@ -3,6 +3,7 @@ package ui.viewcontroller.client;
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
+import component.mydatepicker.MyDatePicker;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import ui.viewcontroller.manager.ClientManagementListViewController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import vo.ClientVO;
+
+import java.time.LocalDate;
 
 /**
  * Created by Kray on 2016/11/27.
@@ -30,7 +33,7 @@ public class ClientDetailEditViewController {
     private CommonTextField clientNameText;
 
     @FXML
-    private CommonTextField accountText;
+    private Label accountLabel;
 
     @FXML
     private StateButton normalButton;
@@ -42,7 +45,7 @@ public class ClientDetailEditViewController {
     private CommonTextField enterpriseText;
 
     @FXML
-    private CommonTextField birthdayText;
+    private MyDatePicker birthdayPicker;
 
     @FXML
     private Label creditLabel;
@@ -62,9 +65,7 @@ public class ClientDetailEditViewController {
 
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
-        accountText.setText(clientVO.account);
-        birthdayText.setText(clientVO.birthday.toString());
-
+        accountLabel.setText(clientVO.account);
         if (clientVO.enterprise.equals("")) {
             enterpriseButton.setIsActiveProperty(false);
             normalButton.setIsActiveProperty(true);
@@ -82,7 +83,6 @@ public class ClientDetailEditViewController {
         creditLabel.setText(clientVO.credit + "");
     }
 
-    //TODO
     public void clickNormalButton() {
         normalButton.setIsActiveProperty(true);
         enterpriseButton.setIsActiveProperty(false);
@@ -90,7 +90,6 @@ public class ClientDetailEditViewController {
         enterpriseText.setVisible(false);
     }
 
-    //TODO
     public void clickEnterpriseButton() {
         normalButton.setIsActiveProperty(false);
         enterpriseButton.setIsActiveProperty(true);
@@ -107,8 +106,9 @@ public class ClientDetailEditViewController {
     public void clickSaveButton() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
-        clientVO.birthday = new DateUtil(birthdayText.getText());
-        clientVO.account = accountText.getText();
+        DateUtil birthday = new DateUtil(birthdayPicker.getDate().getYear(),
+                birthdayPicker.getDate().getMonthValue(), birthdayPicker.getDate().getDayOfMonth());
+        clientVO.birthday = birthday;
 
         if (normalButton.getIsActiveProperty()) {
             clientVO.enterprise = "";

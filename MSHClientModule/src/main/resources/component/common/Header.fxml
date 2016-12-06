@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="80.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="80.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.common.HeaderViewController">
    <children>
       <Rectangle fill="#5b6e79" height="80.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
       <BorderPane prefHeight="80.0" prefWidth="1080.0" style="-fx-background-color: #f9f9f9;">
@@ -32,12 +32,12 @@
          <right>
             <HBox spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="aboutButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="关于" textFill="#00cccc">
+                  <Button fx:id="aboutButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="关于" textFill="#00cccc" onMouseClicked="#clickAboutButton">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="logoutButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="注销" textFill="#00cccc">
+                  <Button fx:id="logoutButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="注销" textFill="#00cccc" onMouseClicked="#clickLogoutButton">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>

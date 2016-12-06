@@ -27,7 +27,7 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void login() throws Exception {
-        LoginState loginState = userDataService.login("testClient", "12345678");
+        LoginState loginState = userDataService.login("songkuixi", "1");
         assertEquals(LoginState.LOGIN_SUCCESS_Client, loginState);
     }
 

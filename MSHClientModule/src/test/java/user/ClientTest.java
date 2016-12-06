@@ -32,9 +32,9 @@ public class ClientTest {
 //        ResultMessage rm = client.add(new ClientVO_Register("KrayC", 0, new DateUtil(2016, 1, 1), 500, 0,
 //                "18795963603", "", "adminClient", "123456789"));
 //        assertEquals(ResultMessage.FAILED, rm);
-        ResultMessage rm = client.add(new ClientVO_Register("Sorumi", 0, new DateUtil(2016, 1, 1), 500, 0,
-                "18795963603", "NJU", "srm", "12345678"));
-        assertEquals(ResultMessage.SUCCESS, rm);
+//        ResultMessage rm = client.add(new ClientVO_Register("Sorumi", 0, new DateUtil(2016, 1, 1), 500, 0,
+//                "18795963603", "NJU", "srm", "12345678"));
+//        assertEquals(ResultMessage.SUCCESS, rm);
 //        rm = client.add(new ClientVO_Register("Silver Narcissus", 0, new DateUtil(2016, 1, 1), 500, 0,
 //                "18795963603", "", "xuekaifang", "12345678"));
 //        assertEquals(ResultMessage.SUCCESS, rm);
@@ -93,10 +93,10 @@ public class ClientTest {
 
     @Test
     public void testAddCreditByID() throws Exception {
-        ResultMessage rm = client.addCreditByID("000000007", new CreditVO(200, 500, CreditAction.ADD_CREDIT, "20161012010112340000", new DateUtil(2016, 11, 1)));
+        ResultMessage rm = client.addCreditByID("000000003", new CreditVO(2000, 0, CreditAction.ADD_CREDIT, "20161012010112341635", new DateUtil(2016, 11, 1)));
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, "20161012010112340000", new DateUtil(2016, 11, 1)));
-        assertEquals(ResultMessage.FAILED, rm);
+//        rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, "20161012010112340000", new DateUtil(2016, 11, 1)));
+//        assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
