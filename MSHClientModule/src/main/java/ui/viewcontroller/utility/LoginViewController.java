@@ -18,36 +18,24 @@ public class LoginViewController {
 
     private UtilityViewController utilityViewController;
 
-    private UserBLService userBLService;
-
     public void setUtilityViewController(UtilityViewController utilityViewController) {
         this.utilityViewController = utilityViewController;
     }
 
     @FXML
     public void clickLoginButton() {
-        userBLService = new BLFactoryImpl().getClientBLService();
-        switch (userBLService.login(accountText.getText(), passwordText.getText())) {
-            case LOGIN_SUCCESS_Client:
-                utilityViewController.showClientView();
-                break;
-            case LOGIN_SUCCESS_Staff:
-                utilityViewController.showStaffView();
-                break;
-            case LOGIN_SUCCESS_Salesman:
-                utilityViewController.showSalesmanView();
-                break;
-            case LOGIN_SUCCESS_Manager:
-                utilityViewController.showManagerView();
-                break;
-            case LOGIN_FAIL:
-                break;
-        }
+        utilityViewController.login(accountText.getText(), passwordText.getText());
     }
 
     @FXML
-    public void clickSignupButton() {
+    public void clickSignUpButton() {
         utilityViewController.back();
         utilityViewController.showSignUp();
+    }
+
+    @FXML
+    public void clickTouristButton() {
+        //TODO
+        utilityViewController.showClientView();
     }
 }

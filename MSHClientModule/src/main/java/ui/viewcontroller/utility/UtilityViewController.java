@@ -1,5 +1,7 @@
 package ui.viewcontroller.utility;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.userblservice.UserBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -22,13 +24,16 @@ public class UtilityViewController {
     private LoginViewController loginViewController;
     private SignUpViewController signUpViewController;
 
+    private UserBLService userBLService;
+
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
     public UtilityViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
-//        showLogin();
-        showSignUp();
+        userBLService = new BLFactoryImpl().getClientBLService();
+        showLogin();
+//        showSignUp();
     }
 
     public void back() {
@@ -49,14 +54,12 @@ public class UtilityViewController {
             return;
         }
 
-        System.out.println(stack.size());
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("../view/utility/LoginView.fxml"));
             Pane list = fxmlLoader.load();
 
-            LoginViewController loginViewController = fxmlLoader.getController();
+            loginViewController = fxmlLoader.getController();
             loginViewController.setUtilityViewController(this);
 
             rootPane.setTop(null);
@@ -95,14 +98,12 @@ public class UtilityViewController {
             return;
         }
 
-        System.out.println(stack.size());
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("../view/utility/SignUpView.fxml"));
             Pane list = fxmlLoader.load();
 
-            SignUpViewController signUpViewController = fxmlLoader.getController();
+            signUpViewController = fxmlLoader.getController();
             signUpViewController.setUtilityViewController(this);
 
             rootPane.setTop(null);
@@ -112,5 +113,28 @@ public class UtilityViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void login(String account, String password){
+        switch (userBLService.login(account, password)) {
+            case LOGIN_SUCCESS_Client:
+                showClientView();
+                break;
+            case LOGIN_SUCCESS_Staff:
+                showStaffView();
+                break;
+            case LOGIN_SUCCESS_Salesman:
+                showSalesmanView();
+                break;
+            case LOGIN_SUCCESS_Manager:
+                showManagerView();
+                break;
+            case LOGIN_FAIL:
+                break;
+        }
+    }
+
+    public UserBLService getUserBLService() {
+        return userBLService;
     }
 }

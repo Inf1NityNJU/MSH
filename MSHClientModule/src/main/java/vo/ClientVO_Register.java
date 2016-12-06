@@ -47,20 +47,18 @@ public class ClientVO_Register extends ClientVO {
      *
      * @param birthday
      * @param type
-     * @param contactInfo
      * @param enterprise
      * @param account
      * @param password
      */
-    public ClientVO_Register(DateUtil birthday, int type, String contactInfo,
-                             String enterprise, String account, String password) {
-        this.clientName = "temp name";
+    public ClientVO_Register(DateUtil birthday, int type, String enterprise, String account, String password) {
+        this.clientName = account;
         this.credit = 500;
         this.level = 1;
         this.type = type;
         this.birthday = birthday;
-        this.contactInfo = contactInfo;
         this.enterprise = enterprise;
+        this.contactInfo = "";
         this.account = account;
         this.password = password;
     }

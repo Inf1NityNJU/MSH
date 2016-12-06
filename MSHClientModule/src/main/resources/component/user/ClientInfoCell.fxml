@@ -36,7 +36,7 @@
                         <Font name="PingFang SC Regular" size="18.0"/>
                     </font>
                 </Label>
-                <Label text="用户名:" textFill="#cccccc" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0">
+                <Label text="账号:" textFill="#cccccc" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font name="PingFang SC Regular" size="14.0"/>
                     </font>

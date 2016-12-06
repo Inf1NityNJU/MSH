@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.commontextfield.CommonTextField?>
+<?import component.mydatepicker.MyDatePicker?>
 <?import component.rectbutton.RectButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -12,14 +13,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-image: url('../../images/example.jpeg');" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.utility.SignUpViewController">
     <children>
-        <AnchorPane layoutX="540.0" layoutY="200.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
+        <AnchorPane layoutX="543.0" layoutY="199.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
             <children>
                 <Label text="注 册" textFill="#00cccc" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <font>
                         <Font name="PingFang SC Regular" size="20.0" />
                     </font>
                 </Label>
-                <Label text="用户名" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+                <Label text="账号" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
                     <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                     </font>
@@ -45,19 +46,20 @@
             </Label>
             <HBox layoutX="31.0" layoutY="16.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label text="普通客户" textFill="#00cccc">
+                  <Label fx:id="normalLabel"  text="普通客户" textFill="#00cccc" onMouseClicked="#clickNormalLabel">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>
                   </Label>
                   <Separator orientation="VERTICAL" />
-                  <Label text="企业客户" textFill="#cccccc">
+                  <Label fx:id="enterpriseLabel" text="企业客户" textFill="#cccccc" onMouseClicked="#clickEnterpriseLabel">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
+            <MyDatePicker fx:id="birthdayPicker" layoutX="150.0" layoutY="265.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="210.0" />
             </children>
             <padding>
                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
@@ -70,7 +72,7 @@
                         <Font name="Bangla MN" size="20.0" />
                     </font>
                 </Label>
-                <RectButton isAbledProperty="false" isActiveProperty="false" layoutX="166.0" layoutY="219.0" text="登 录" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" onMouseClicked="#clickLoginButton"/>
+                <RectButton isAbledProperty="false" isActiveProperty="false" layoutX="166.0" layoutY="219.0" onMouseClicked="#clickLoginButton" text="登 录" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
             </children>
             <padding>
                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
