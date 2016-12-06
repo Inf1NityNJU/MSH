@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.circlebutton.CircleButton?>
+<?import component.mychoicebox.MyChoiceBox?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -20,20 +23,35 @@
     </padding>
     <children>
         <TitleLabel text="网站促销策略" />
-        <HBox spacing="10.0">
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="920.0" spacing="5.0">
             <children>
-                <StateButton fx:id="allButton" colorProperty="F8E81C" onMouseClicked="#showAllPromotions" text="全部" />
-                <StateButton fx:id="clientGradeButton" colorProperty="12B7F3" onMouseClicked="#showClientGradePromotions" text="会员等级折扣" />
-                <StateButton fx:id="placeButton" colorProperty="BC52FD" onMouseClicked="#showPlacePromotions" text="会员商圈折扣" />
-                <StateButton fx:id="specialDateButton" colorProperty="FC537D" onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣" />
-            <CircleButton fx:id="addButton" typeProperty="Add" onMouseClicked="#clickAddButton">
+                <StateButton fx:id="allButton" colorProperty="F8E81C" onMouseClicked="#showAllPromotions" prefHeight="24.0" prefWidth="50.0" text="全部">
                <HBox.margin>
-                  <Insets left="450.0" />
-               </HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></StateButton>
+                <StateButton fx:id="clientGradeButton" colorProperty="12B7F3" onMouseClicked="#showClientGradePromotions" prefHeight="24.0" prefWidth="107.0" text="会员等级折扣" />
+                <StateButton fx:id="placeButton" colorProperty="BC52FD" maxWidth="1.7976931348623157E308" onMouseClicked="#showPlacePromotions" prefHeight="24.0" prefWidth="109.0" text="会员商圈折扣" />
+                <StateButton fx:id="specialDateButton" colorProperty="FC537D" onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></StateButton>
+            <CircleButton fx:id="addButton" onMouseClicked="#clickAddButton" typeProperty="Add">
                <font>
                   <Font size="24.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
             </CircleButton>
+            <MyChoiceBox fx:id="typeChoiceBox" prefWidth="134.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="会员等级折扣" />
+                        <String fx:value="会员商圈折扣" />
+                        <String fx:value="特定期间折扣" />
+                    </FXCollections>
+                </items>
+                </MyChoiceBox>
             </children>
         </HBox>
       <HBox prefWidth="200.0" spacing="150.0">

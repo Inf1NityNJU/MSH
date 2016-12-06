@@ -2,6 +2,7 @@ package ui.viewcontroller.salesman;
 
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
+import component.mychoicebox.MyChoiceBox;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -29,19 +30,19 @@ public class WebPromotionDetailEditViewController {
     private StateButton typeButton;
 
     @FXML
-    private ChoiceBox levelChoiceBox;
+    private MyChoiceBox levelChoiceBox;
 
     @FXML
-    private ChoiceBox cityChoiceBox;
+    private MyChoiceBox cityChoiceBox;
 
     @FXML
-    private ChoiceBox placeChoiceBox;
+    private MyChoiceBox placeChoiceBox;
 
     @FXML
-    private CommonTextField startTimeTextField;
+    private CommonTextField startTime;
 
     @FXML
-    private CommonTextField endTimeTextField;
+    private CommonTextField endTime;
 
     @FXML
     private RectButton cancelButton;
@@ -51,6 +52,8 @@ public class WebPromotionDetailEditViewController {
 
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController){
         this.webPromotionViewController = webPromotionViewController;
+
+
     }
 
     public void clickCancelButton(){
@@ -61,8 +64,11 @@ public class WebPromotionDetailEditViewController {
     public void clickSaveButton(){
     }
 
-    public void show(String type){
-        typeButton.setText(type);
+    public void show(PromotionVO promotionVO){
+        nameTextField.setText(promotionVO.promotionID);
+        typeButton.setText(promotionVO.promotionType.getType());
+        typeButton.setColorProperty(promotionVO.promotionType.getColor());
+        levelChoiceBox.show();
     }
 
 }

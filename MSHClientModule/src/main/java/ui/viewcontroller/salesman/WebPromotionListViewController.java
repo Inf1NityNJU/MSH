@@ -92,7 +92,7 @@ public class WebPromotionListViewController {
      */
     public void showAllWebPromotions(){
         promotionVOs = promotionBLService.searchWebPromotions();
-        showWebPromotions();
+            showWebPromotions();
     }
 
     /**
@@ -152,8 +152,8 @@ public class WebPromotionListViewController {
     /**
      * 增加新的策略
      */
-    public void addPromotion(){
-        webPromotionViewController.addWebPromotion();
+    public void addPromotion(PromotionType promotionType){
+        webPromotionViewController.addWebPromotion(promotionType);
     }
 
     /**

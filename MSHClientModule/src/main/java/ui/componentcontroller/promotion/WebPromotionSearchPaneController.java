@@ -1,6 +1,7 @@
 package ui.componentcontroller.promotion;
 
 import component.circlebutton.CircleButton;
+import component.mychoicebox.MyChoiceBox;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -31,6 +32,9 @@ public class WebPromotionSearchPaneController {
     @FXML
     private CircleButton addButton;
 
+    @FXML
+    private MyChoiceBox typeChoiceBox;
+
     private StateButton[] buttons;
 
     public void setWebPromotionListViewController(WebPromotionListViewController webPromotionListViewController) {
@@ -40,37 +44,49 @@ public class WebPromotionSearchPaneController {
     }
 
     @FXML
-    public void showAllPromotions(){
+    public void showAllPromotions() {
         setButtonsInactive();
         allButton.setIsActiveProperty(true);
         webPromotionListViewController.showAllWebPromotions();
     }
 
     @FXML
-    public void showClientGradePromotions(){
+    public void showClientGradePromotions() {
         setButtonsInactive();
         clientGradeButton.setIsActiveProperty(true);
         webPromotionListViewController.showWebPromotionsByType(PromotionType.Web_ClientGrade);
     }
 
     @FXML
-    public void showPlacePromotions(){
+    public void showPlacePromotions() {
         setButtonsInactive();
         placeButton.setIsActiveProperty(true);
         webPromotionListViewController.showWebPromotionsByType(PromotionType.Web_SpecilPlace);
     }
 
     @FXML
-    public void showSpecialDatePromotions(){
+    public void showSpecialDatePromotions() {
         setButtonsInactive();
         specialDateButton.setIsActiveProperty(true);
         webPromotionListViewController.showWebPromotionsByType(PromotionType.Web_SpecilaDate);
     }
 
     @FXML
-    public void clickAddButton(){
+    public void clickAddButton() {
+        PromotionType promotionType = null;
         setButtonsInactive();
-        webPromotionListViewController.addPromotion();
+        switch ((String) typeChoiceBox.getValue()) {
+            case "会员等级折扣":
+                promotionType = PromotionType.Web_ClientGrade;
+                break;
+            case "会员商圈折扣":
+                promotionType = PromotionType.Web_SpecilPlace;
+                break;
+            case "特定期间折扣":
+                promotionType = PromotionType.Web_SpecilaDate;
+                break;
+        }
+        webPromotionListViewController.addPromotion(promotionType);
     }
 
     private void setButtonsInactive() {

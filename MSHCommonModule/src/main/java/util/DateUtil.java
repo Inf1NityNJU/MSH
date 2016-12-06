@@ -1,5 +1,6 @@
 package util;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -33,6 +34,9 @@ public class DateUtil {
         day = Integer.parseInt(param[2]);
     }
 
+    public DateUtil(LocalDate localDate){
+        this(localDate.toString());
+    }
     /**
      * 日期向前递增一天
      */
@@ -160,4 +164,6 @@ public class DateUtil {
         }
         return String.valueOf(year) + "-" + month + "-" + day;
     }
+
+
 }

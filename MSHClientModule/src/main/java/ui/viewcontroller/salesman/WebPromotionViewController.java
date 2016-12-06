@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import util.PromotionType;
 import vo.PromotionVO;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class WebPromotionViewController {
         this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
         this.rootPane = rootPane;
     }
+
     /**
      * 返回上一界面
      */
@@ -69,40 +71,41 @@ public class WebPromotionViewController {
 
     /**
      * 展示策略详情
+     *
      * @param promotionVO
      */
-    public void showPromotionDetail(PromotionVO promotionVO){
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionDetailView.fxml"));
-                ScrollPane view = loader.load();
+    public void showPromotionDetail(PromotionVO promotionVO) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionDetailView.fxml"));
+            ScrollPane view = loader.load();
 
-                WebPromotionDetailViewController webPromotionDetailViewController = loader.getController();
-                webPromotionDetailViewController.setWebPromotionViewController(this);
-                webPromotionDetailViewController.setPromotionBLService(promotionBLService);
-                webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
+            WebPromotionDetailViewController webPromotionDetailViewController = loader.getController();
+            webPromotionDetailViewController.setWebPromotionViewController(this);
+            webPromotionDetailViewController.setPromotionBLService(promotionBLService);
+            webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
 
-                Node node = rootPane.getCenter();
-                stack.push(node);
+            Node node = rootPane.getCenter();
+            stack.push(node);
 
-                rootPane.setCenter(view);
+            rootPane.setCenter(view);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 更新策略列表
      */
-    public void refreshWebPromotionList(){
+    public void refreshWebPromotionList() {
         webPromotionListViewController.showAllWebPromotions();
     }
 
     /**
      * 编辑策略
      */
-    public void showPromotionDetailEditView(String type){
+    public void showPromotionDetailEditView(PromotionVO promotionVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionDetailEditView.fxml"));
@@ -110,7 +113,7 @@ public class WebPromotionViewController {
 
             WebPromotionDetailEditViewController webPromotionDetailEditViewController = loader.getController();
             webPromotionDetailEditViewController.setWebPromotionViewController(this);
-            webPromotionDetailEditViewController.show(type);
+            webPromotionDetailEditViewController.show(promotionVO);
 
             Node node = rootPane.getCenter();
             stack.push(node);
@@ -125,15 +128,26 @@ public class WebPromotionViewController {
     /**
      * 增加策略
      */
-    public void addWebPromotion(){
+    public void addWebPromotion(PromotionType promotionType) {
+        switch (promotionType) {
+            case Web_ClientGrade:
+                this.addWeb_ClientGradePromotion();
+                break;
+        }
+    }
+
+    /**
+     * 增加网站会员等级策略
+     */
+    public void addWeb_ClientGradePromotion() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionAddView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_ClientGradeAddView.fxml"));
             ScrollPane view = loader.load();
 
-            WebPromotionAddViewController webPromotionAddViewController = loader.getController();
-            webPromotionAddViewController.setWebPromotionViewController(this);
-            webPromotionAddViewController.setPromotionBLService(promotionBLService);
+            WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
+            webPromotion_clientGradeAddViewController.setWebPromotionViewController(this);
+            webPromotion_clientGradeAddViewController.setPromotionBLService(promotionBLService);
 
             Node node = rootPane.getCenter();
             stack.push(node);

@@ -88,6 +88,6 @@ public class WebPromotionDetailViewController {
 
     @FXML
     public void clickEditButton(){
-        webPromotionViewController.showPromotionDetailEditView(typeButton.getText());
+        webPromotionViewController.showPromotionDetailEditView(promotionVO);
     }
 }

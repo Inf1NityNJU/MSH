@@ -41,7 +41,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                        <CommonTextField GridPane.columnIndex="1" />
+                        <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -50,7 +50,15 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                        <MyChoiceBox GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <MyChoiceBox fx:id="typeChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="会员等级折扣" />
+                                        <String fx:value="会员商圈折扣" />
+                                        <String fx:value="特定期间折扣" />
+                                    </FXCollections>
+                                </items>
+                            </MyChoiceBox>
                                 <Label text="名称" textFill="#cccccc" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -74,18 +82,8 @@
                                                 <Insets top="5.0" />
                                             </HBox.margin>
                                         </Label>
-                                        <MyChoiceBox fx:id="levelChoiceBox">
-                                            <items>
-                                                <FXCollections fx:factory="observableArrayList">
-                                                    <String fx:value="0" />
-                                                    <String fx:value="1" />
-                                                    <String fx:value="2" />
-                                                    <String fx:value="3" />
-                                                    <String fx:value="4" />
-                                                    <String fx:value="5" />
-                                                </FXCollections>
-                                            </items>
-                                        </MyChoiceBox>
+                                      <MyChoiceBox fx:id="levelChoiceBox">
+                                </MyChoiceBox>
                                     </children>
                                 </HBox>
                                 <Label text="优惠商圈" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
@@ -107,9 +105,9 @@
                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                     <children>
                                         <Label text="StartTime" textFill="GREY" />
-                              <MyDatePicker />
+                              <MyDatePicker fx:id="startTime" />
                                         <Label text="EndTime" textFill="GREY" />
-                              <MyDatePicker />
+                              <MyDatePicker fx:id="endTime" />
                                     </children>
                                 </HBox>
                                 <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
