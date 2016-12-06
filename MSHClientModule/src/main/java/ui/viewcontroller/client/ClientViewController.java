@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.manager.ClientManagementViewController;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class ClientViewController {
 
     private ClientOrderViewController clientOrderViewController;
     private ClientSearchHotelViewController clientSearchHotelViewController;
+    private ClientManagementViewController clientManagementViewController;
 
     public ClientViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -35,6 +37,7 @@ public class ClientViewController {
 
         clientOrderViewController = new ClientOrderViewController(rootPane);
         clientSearchHotelViewController = new ClientSearchHotelViewController(rootPane);
+        clientManagementViewController = new ClientManagementViewController(rootPane);
     }
 
     public void showClientOrderList() {
@@ -44,6 +47,11 @@ public class ClientViewController {
 
     public void showHotelSearch() {
         clientSearchHotelViewController.showClientHotelList();
+    }
+
+    public void showClientDetail() {
+        //TODO
+//        clientManagementViewController.showClientDetail();
     }
 
 }

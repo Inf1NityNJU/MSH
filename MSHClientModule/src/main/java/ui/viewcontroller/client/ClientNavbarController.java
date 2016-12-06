@@ -47,5 +47,7 @@ public class ClientNavbarController {
         searchHotelButton.setIsCurrentProperty(false);
         orderButton.setIsCurrentProperty(false);
         infoButton.setIsCurrentProperty(true);
+
+        clientViewController.showClientDetail();
     }
 }

@@ -23,6 +23,8 @@ public class ClientManagementViewController {
 
     private BorderPane rootPane;
 
+    private boolean isSalesman;
+
     private ClientManagementListViewController clientManagementListViewController;
     private ClientDetailViewController clientDetailViewController;
     private ClientDetailEditViewController clientDetailEditViewController;
@@ -85,7 +87,11 @@ public class ClientManagementViewController {
     public void showClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/client/ClientDetailView.fxml"));
+            if(isSalesman) {
+                loader.setLocation(Main.class.getResource("../view/client/ClientDetailCreditView.fxml"));
+            }else{
+                loader.setLocation(Main.class.getResource("../view/client/ClientDetailView.fxml"));
+            }
             ScrollPane view = loader.load();
 
             clientDetailViewController = loader.getController();
@@ -181,4 +187,9 @@ public class ClientManagementViewController {
     public ClientManagementListViewController getClientManagementListViewController() {
         return clientManagementListViewController;
     }
+
+    public void setSalesman(boolean salesman) {
+        isSalesman = salesman;
+    }
+
 }
