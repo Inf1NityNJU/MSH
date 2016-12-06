@@ -18,4 +18,8 @@ public enum City {
         this.name = name;
         this.places = places;
     }
+
+    public Place[] getPlaces(){
+        return this.places;
+    }
 }
