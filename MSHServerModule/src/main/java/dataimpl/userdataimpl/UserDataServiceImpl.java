@@ -4,7 +4,6 @@ import datahelper.DataHelper;
 import datahelper.HibernateHelper;
 import dataservice.userdataservice.UserDataService;
 import po.*;
-import util.Encryptor;
 import util.LoginState;
 import util.ResultMessage;
 
@@ -425,7 +424,7 @@ public class UserDataServiceImpl implements UserDataService {
             int level = clientPO.getLevel();
 
             while (true) {
-                if (canLevelUp(level, resultCredit)) {
+                if (reachedLevel(level, resultCredit)) {
                     break;
                 }
                 level++;
@@ -606,8 +605,12 @@ public class UserDataServiceImpl implements UserDataService {
      * @param credit
      * @return
      */
-    private boolean canLevelUp(int level, int credit) {
-        return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
+    private boolean reachedLevel(int level, int credit) {
+        if (credit >= getLevel(getAllLevel().size()+"").getCredit()) {
+            return true;
+        } else {
+            return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
+        }
     }
 
 }
