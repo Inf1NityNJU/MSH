@@ -22,4 +22,9 @@ public enum City {
     public Place[] getPlaces(){
         return this.places;
     }
+
+
+    public String getName() {
+        return name;
+    }
 }

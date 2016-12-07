@@ -6,10 +6,7 @@ import network.HotelDataService;
 import po.HotelRoomPO;
 import po.RoomStockPO;
 import util.*;
-import vo.HotelRoomVO;
-import vo.RoomChangeInfoVO;
-import vo.RoomStockVO;
-import vo.RoomStockWithPriceVO;
+import vo.*;
 
 import java.util.*;
 
@@ -353,21 +350,25 @@ public class HotelRoom {
 
     /**
      * 得到指定日期的房间库存和房间价格
-     * @param start 开始日期
-     * @param end 结束日期
+     *
+     * @param start   开始日期
+     * @param end     结束日期
      * @param hotelID 酒店ID
-     * @param roomType 房间类型
      * @return 房间库存和价格列表
      */
-    public ArrayList<RoomStockWithPriceVO> getRoomStocksWithPriceVO(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
-        //先得到符合日期区间的roomStockPO
-        ArrayList<RoomStockPO> roomStockPOs = getRoomStockPOs(new RoomChangeInfoVO(start, end, hotelID, roomType, 0));
-        //在得到房间价格
-        double price = hotelDataService.getRoomByID(ToolKit.generateID(hotelID, roomType.ordinal())).getPrice();
+    public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID) {
+        //保存结果
+        ArrayList<OrderRoomStockVO> result = new ArrayList<OrderRoomStockVO>();
         //
-        ArrayList<RoomStockWithPriceVO> result = new ArrayList<RoomStockWithPriceVO>();
-        for (RoomStockPO roomStockPO : roomStockPOs) {
-            result.add(new RoomStockWithPriceVO(price, roomStockPO));
+        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
+            //先得到符合日期区间的roomStockPO
+            ArrayList<RoomStockPO> roomStockPOs = getRoomStockPOs(new RoomChangeInfoVO(start, end, hotelID, hotelRoomPO.getRoomType(), 0));
+            //寻找最小房间量
+            int minQuantity = Integer.MAX_VALUE;
+            for (RoomStockPO roomStockPO : roomStockPOs) {
+                minQuantity = Math.min(roomStockPO.getAvailableQuantity(), minQuantity);
+            }
+            result.add(new OrderRoomStockVO(hotelRoomPO.getRoomType(),hotelRoomPO.getPrice(),minQuantity));
         }
         return result;
     }

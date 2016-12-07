@@ -150,7 +150,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        userBLInfo = new UserBLService_Stub();
+//        userBLInfo = new UserBLService_Stub();
         String clientID = userBLInfo.getCurrentID();
         return  order.searchClientOrder(clientID, os, keyword);
     }
@@ -163,7 +163,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        userBLInfo = new UserBLService_Stub();
+//        userBLInfo = new UserBLService_Stub();
         String staffID = userBLInfo.getCurrentID();
         String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
         return  order.searchHotelOrder(hotelID, os, keyword);
