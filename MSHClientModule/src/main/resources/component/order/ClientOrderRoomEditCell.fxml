@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.ClientOrderRoomEditCellController">
@@ -14,28 +15,37 @@
                 <Image url="@../../images/example.jpeg" />
             </image>
         </CircleImage>
-        <Label alignment="CENTER" prefWidth="190.0" text="大床房" textFill="GREY">
+        <Label fx:id="typeLabel" alignment="CENTER" prefWidth="190.0" text="大床房" textFill="GREY">
             <font>
                 <Font name="PingFang SC Regular" size="16.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" prefWidth="130.0" text="¥ 500" textFill="GREY">
+        <Label fx:id="priceLabel" alignment="CENTER" prefWidth="130.0" text="¥ 500" textFill="GREY">
             <font>
                 <Font name="PingFang SC Regular" size="16.0" />
             </font>
         </Label>
-      <HBox alignment="CENTER" prefWidth="140.0">
+      <StackPane>
          <children>
-            <CircleButton typeProperty="Minus" />
-            <Label alignment="CENTER" prefWidth="50.0" text="1" textFill="GREY">
+            <HBox alignment="CENTER" prefWidth="140.0">
+               <children>
+                  <CircleButton fx:id="minusButton" typeProperty="Minus" onMouseClicked="#clickMinusButton"/>
+                  <Label fx:id="quantityLabel" alignment="CENTER" prefWidth="50.0" text="1" textFill="GREY">
+                     <font>
+                        <Font name="PingFang SC Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <CircleButton fx:id="plusButton" typeProperty="Add" onMouseClicked="#clickPlusButton"/>
+               </children>
+            </HBox>
+            <Label fx:id="availableQuantityLabel" text="剩余 3 间" textFill="#dddddd" StackPane.alignment="BOTTOM_CENTER">
                <font>
-                  <Font name="PingFang SC Regular" size="16.0" />
+                  <Font name="PingFang SC Regular" size="12.0" />
                </font>
             </Label>
-            <CircleButton typeProperty="Add" />
          </children>
-      </HBox>
-        <Label alignment="CENTER" prefWidth="130.0" text="¥ 500" textFill="#ff2c14">
+      </StackPane>
+        <Label fx:id="totalPriceLabel" alignment="CENTER" prefWidth="130.0" text="¥ 500" textFill="#ff2c14">
             <font>
                 <Font name="PingFang SC Regular" size="16.0" />
             </font>

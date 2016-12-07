@@ -41,7 +41,7 @@ public class OrderBLService_Driver {
             System.out.print("Modify Failed");
         }
 
-        BillVO bill = orderBLService.getBill("01011234", "000000001", new DateUtil(2016, 10, 9),  new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), 3);
+        BillVO bill = orderBLService.getBill();
         if (bill != null) {
             System.out.print("Success");
         } else {

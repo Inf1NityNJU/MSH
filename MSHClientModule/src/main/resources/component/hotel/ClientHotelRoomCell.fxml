@@ -15,21 +15,21 @@
             <Image url="@../../images/example.jpeg" />
          </image>
       </CircleImage>
-      <Label alignment="CENTER" prefWidth="190.0" text="大床房" textFill="GREY">
+      <Label fx:id="typeLabel" alignment="CENTER" prefWidth="190.0" text="大床房" textFill="GREY">
          <font>
             <Font name="PingFang SC Regular" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefWidth="200.0" text="¥ 500" textFill="#ff2c14">
+      <Label fx:id="priceLabel" alignment="CENTER" prefWidth="200.0" text="¥ 500" textFill="#ff2c14">
          <font>
             <Font name="PingFang SC Regular" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" prefWidth="200.0" text="剩余 6 间" textFill="GREY">
+      <Label fx:id="quantityLabel" alignment="CENTER" prefWidth="200.0" text="剩余 6 间" textFill="GREY">
          <font>
             <Font name="PingFang SC Regular" size="16.0" />
          </font>
       </Label>
-      <RectButton isActiveProperty="false" text="加 入" />
+      <RectButton fx:id="addButton" isActiveProperty="false" text="加 入" />
    </children>
 </HBox>

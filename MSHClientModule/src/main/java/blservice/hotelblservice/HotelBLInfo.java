@@ -42,4 +42,5 @@ public interface HotelBLInfo {
 
     public OrderRoomStockVO getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
+
 }

@@ -1,5 +1,8 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.orderblservice.OrderBLService;
+import com.sun.xml.internal.bind.v2.TODO;
 import component.mydatepicker.MyDatePicker;
 import component.ratestarpane.RateStarPane;
 import component.starlabel.StarLabel;
@@ -14,6 +17,7 @@ import main.Main;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
 import util.DateUtil;
+import util.RoomType;
 import vo.*;
 
 import java.io.IOException;
@@ -65,8 +69,6 @@ public class ClientHotelDetailViewController {
     @FXML
     private RateStarPane rateScorePane;
 
-
-
     private OrderVO order;
 
 
@@ -90,8 +92,6 @@ public class ClientHotelDetailViewController {
         scoreLabel.setText(String.valueOf(hotel.score)+"分");
         rateScorePane.setScore((int)hotel.score);
         //AddPromotion
-        addPromotions(null);
-        addRooms(null);
 
         checkInDatePicker.setDate(LocalDate.now());
         checkOutDatePicker.setDate(LocalDate.now().plusDays(1));
@@ -101,6 +101,11 @@ public class ClientHotelDetailViewController {
 
         // new OrderVO
         order = new OrderVO(hotel.ID, new DateUtil(LocalDate.now().format(dateFormatter)), new DateUtil(LocalDate.now().plusDays(1).format(dateFormatter)));
+        order.rooms = new ArrayList<>();
+        order.hotelName = hotel.name;
+
+        addPromotions(null);
+        addRooms();
     }
 
 
@@ -122,9 +127,15 @@ public class ClientHotelDetailViewController {
         }
     }
 
-    private void addRooms(ArrayList<RoomStockVO> rooms) {
+    private void addRooms() {
+
+        //TODO
+        //需要Hotel所有的OrderRoomStock和Order的OrderRoomStock
+//        OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+//        ArrayList<OrderRoomStockVO> rooms = orderBLService.getOrderRoomStocks(order);
+
         for (int i = 0; i < 3; i++) {
-//        for (HotelRoomVO room : rooms) {
+//        for (OrderRoomStockVO room : rooms) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("../component/hotel/ClientHotelRoomCell.fxml"));
@@ -144,6 +155,11 @@ public class ClientHotelDetailViewController {
 
 
     public void clickBookButton() {
+        //TODO
+        OrderRoomVO roomVO = new OrderRoomVO(RoomType.SingleRoom, 1, 200);
+        OrderRoomVO roomVO1 = new OrderRoomVO(RoomType.DoubleRoom, 1, 300);
+        order.rooms.add(roomVO);
+        order.rooms.add(roomVO1);
         clientSearchHotelViewController.showBookOrder(order);
     }
 

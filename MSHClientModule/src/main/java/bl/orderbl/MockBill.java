@@ -17,17 +17,16 @@ public class MockBill extends Bill {
 
     /**
      * 更新账单信息
-     * @param date
-     * @param start
-     * @param end
-     * @param birthday
      * @param hotelID
-     * @param quantity
-     * @return BillVO
+     * @param date
+     * @param birthday
+     * @param enterpriseName
+     * @param roomQuantity
+     * @return
      */
-    public BillVO refresh(String hotelID, DateUtil date, DateUtil start, DateUtil end, DateUtil birthday, int quantity) {
+    public BillVO refresh(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity) {
         Promotion_HotelVO hotelPromotion = new Promotion_HotelVO("201610130101", PromotionType.Hotel_Birthday, 0.80,"00000000");
-        return new BillVO(null, hotelPromotion, 300, 240);
+        return new BillVO(null, hotelPromotion, 0, 0);
     }
 
 //    public MockBill(Promotion_HotelVO websitePromotion, Promotion_HotelVO hotelPromotion, double originPrice, double totalPrice) {

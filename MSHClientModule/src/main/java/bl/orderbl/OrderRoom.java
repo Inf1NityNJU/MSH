@@ -22,7 +22,7 @@ public class OrderRoom {
         hotelBLInfo = HotelBLFactory.getHotelBLService();
     }
 
-    public OrderRoom(RoomType roomType, int quantity, int price) {
+    public OrderRoom(RoomType roomType, int quantity, double price) {
         hotelBLInfo = HotelBLFactory.getHotelBLService();
         this.type = roomType;
         this.quantity = quantity;
