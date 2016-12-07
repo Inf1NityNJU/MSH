@@ -12,14 +12,14 @@ import static util.EqualJudgeHelper.judgeEqual;
  */
 public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
     /**
-     * @param promotionID       策略编号
+     * @param promotionName       策略名称
      * @param promotionType     策略类型
      * @param promotionDiscount 策略折扣
      * @param startDate         策略起始日期
      * @param endDate           策略截止日期
      */
-    public Promotion_WebSpecialDateVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
-        super(promotionID, promotionType, promotionDiscount, startDate, endDate);
+    public Promotion_WebSpecialDateVO(String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
+        super(promotionName, promotionType, promotionDiscount, startDate, endDate);
     }
 
     public Promotion_WebSpecialDateVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
@@ -51,14 +51,8 @@ public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
 
     @Override
     public PromotionPO toPO() {
-        if(promotionName==null){
-            return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+            return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
                     "", "", 0, Place.Unnecessary, 0);
-        }else {
-            return new PromotionPO(this.promotionID, promotionName, this.promotionType, this.promotionDiscount,
-                    this.startDate.toString(), this.endDate.toString(),
-                    "", "", 0, Place.Unnecessary, 0);
-        }
     }
 }

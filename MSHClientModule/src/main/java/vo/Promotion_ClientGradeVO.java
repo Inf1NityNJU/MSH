@@ -19,15 +19,15 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
 
     /**
      *
-     * @param promotionID 策略编号
+     * @param promotionName 策略名称
      * @param promotionType 策略类型
      * @param promotionDiscount 策略折扣
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
      * @param clientGrade 执行策略所需的最低用户等级
      */
-    public Promotion_ClientGradeVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, int clientGrade) {
-        super(promotionID, promotionType, promotionDiscount, startDate, endDate);
+    public Promotion_ClientGradeVO(String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, int clientGrade) {
+        super(promotionName, promotionType, promotionDiscount, startDate, endDate);
         this.clientGrade = clientGrade;
     }
 

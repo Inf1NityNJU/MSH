@@ -11,8 +11,8 @@ import static util.EqualJudgeHelper.judgeEqual;
  * Created by vivian on 16/10/22.
  */
 public class Promotion_BirthdayVO extends Promotion_HotelVO {
-    public Promotion_BirthdayVO(String promotionID, PromotionType promotionType, double promotionDiscount, String hotelID) {
-        super(promotionID, promotionType, promotionDiscount, hotelID);
+    public Promotion_BirthdayVO(String promotionName, PromotionType promotionType, double promotionDiscount, String hotelID) {
+        super(promotionName, promotionType, promotionDiscount, hotelID);
     }
 
     public Promotion_BirthdayVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, String hotelID) {
@@ -41,15 +41,9 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
 
     @Override
     public PromotionPO toPO() {
-        if (promotionName==null){
             return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                     "", "",
                     "", this.hotelID, 0, Place.Unnecessary, 0);
-        }else {
-            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
-                    "", "",
-                    "", this.hotelID, 0, Place.Unnecessary, 0);
-        }
 
     }
 }

@@ -157,9 +157,8 @@ public class PromotionPO implements Serializable {
         this.clientGrade = clientGrade;
     }
 
-    public PromotionPO(String promotionID, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {
+    public PromotionPO(String promotionName, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {
 
-        this.promotionID = promotionID;
         this.promotionType = promotionType;
         this.promotionDiscount = promotionDiscount;
         this.startDate = startDate;
@@ -169,7 +168,7 @@ public class PromotionPO implements Serializable {
         this.roomQuantity = roomQuantity;
         this.place = place;
         this.clientGrade = clientGrade;
-        this.promotionName = "Default Name";
+        this.promotionName = promotionName;
     }
 
     public PromotionPO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {

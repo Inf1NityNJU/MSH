@@ -53,7 +53,8 @@ public class WebPromotionDetailViewController {
         this.promotionVO = promotionVO;
 
         nameLabel.setText(promotionVO.promotionName);
-        typeButton.setText(promotionVO.promotionType.toString());
+        typeButton.setText(promotionVO.promotionType.getType());
+        typeButton.setColorProperty(promotionVO.promotionType.getColor());
 
         Promotion_WebVO promotion_webVO = (Promotion_WebVO)promotionVO;
         timeLabel.setText(promotion_webVO.startDate.toString()+" - "+promotion_webVO.endDate.toString());
@@ -62,7 +63,7 @@ public class WebPromotionDetailViewController {
             Promotion_ClientGradeVO promotion_clientGradeVO = (Promotion_ClientGradeVO)promotionVO;
             clientGradeLabel.setText(Integer.toString(promotion_clientGradeVO.clientGrade));
         }else{
-            clientGradeLabel.setText("0");
+            clientGradeLabel.setText("1");
         }
 
         if(promotionVO.promotionType== PromotionType.Web_SpecilPlace){

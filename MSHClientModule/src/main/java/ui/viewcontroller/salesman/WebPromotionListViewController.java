@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.promotion.WebPromotionCellController;
@@ -42,6 +43,8 @@ public class WebPromotionListViewController {
 
     private PromotionBLService promotionBLService;
 
+    private TilePane tilePane;
+
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
@@ -59,6 +62,13 @@ public class WebPromotionListViewController {
             controller.setWebPromotionListViewController(this);
 
             contentVBox.getChildren().add(pane);
+
+            tilePane = new TilePane();
+            tilePane.setPrefColumns(5);
+            tilePane.setHgap(20);
+            tilePane.setVgap(10);
+
+            contentVBox.getChildren().add(tilePane);
 
             FXMLLoader pageLoader = new FXMLLoader();
             pageLoader.setLocation(Main.class.getResource("../component/promotion/WebPromotionPagePane.fxml"));
@@ -90,22 +100,22 @@ public class WebPromotionListViewController {
     /**
      * 展示所有策略列表
      */
-    public void showAllWebPromotions(){
+    public void showAllWebPromotions() {
         promotionVOs = promotionBLService.searchWebPromotions();
-            showWebPromotions();
+        showWebPromotions();
     }
 
     /**
      * 根据策略类型展示策略
      */
-    public void showWebPromotionsByType(PromotionType promotionType){
+    public void showWebPromotionsByType(PromotionType promotionType) {
         promotionVOs = promotionBLService.searchPromotions(promotionType);
         showWebPromotions();
     }
 
-    public void showWebPromotions(){
+    public void showWebPromotions() {
         int size = promotionVOs.size();
-        webPromotionPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
+        webPromotionPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
             turnPage(1);
         } else {
@@ -114,8 +124,8 @@ public class WebPromotionListViewController {
     }
 
     public void turnPage(int page) {
-        int fromIndex = (page-1)*NUM_OF_CELL;
-        int toIndex = Math.min(page*NUM_OF_CELL, promotionVOs.size());
+        int fromIndex = (page - 1) * NUM_OF_CELL;
+        int toIndex = Math.min(page * NUM_OF_CELL, promotionVOs.size());
         List<PromotionVO> tmpPromotions = promotionVOs.subList(fromIndex, toIndex);
         setCells(tmpPromotions);
     }
@@ -128,7 +138,7 @@ public class WebPromotionListViewController {
         }
 
         for (Node cell : cells) {
-            contentVBox.getChildren().remove(cell);
+            tilePane.getChildren().remove(cell);
         }
 
         contentVBox.getChildren().remove(pagePane);
@@ -143,7 +153,7 @@ public class WebPromotionListViewController {
             webPromotionCellController.setWebPromotionListViewController(this);
             webPromotionCellController.setPromotionVO(promotionVO);
 
-            contentVBox.getChildren().add(promotionCell);
+            tilePane.getChildren().add(promotionCell);
         }
 
         contentVBox.getChildren().add(pagePane);
@@ -152,14 +162,14 @@ public class WebPromotionListViewController {
     /**
      * 增加新的策略
      */
-    public void addPromotion(PromotionType promotionType){
+    public void addPromotion(PromotionType promotionType) {
         webPromotionViewController.addWebPromotion(promotionType);
     }
 
     /**
      * 展示策略详细信息
      */
-    public void showPromotionDetail(PromotionVO promotionVO){
+    public void showPromotionDetail(PromotionVO promotionVO) {
         webPromotionViewController.showPromotionDetail(promotionVO);
     }
 }

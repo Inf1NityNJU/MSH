@@ -23,14 +23,14 @@ public class Promotion_WebVO extends PromotionVO{
 
     /**
      *
-     * @param promotionID 策略编号
+     * @param promotionName 策略名称
      * @param promotionType 策略类型
      * @param promotionDiscount 策略折扣
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
      */
-    public Promotion_WebVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
-        super(promotionID, promotionType, promotionDiscount);
+    public Promotion_WebVO(String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate) {
+        super(promotionName, promotionType, promotionDiscount);
         this.startDate = startDate;
         this.endDate = endDate;
     }

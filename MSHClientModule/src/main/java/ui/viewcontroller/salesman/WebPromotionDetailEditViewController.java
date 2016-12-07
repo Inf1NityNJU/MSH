@@ -3,6 +3,7 @@ package ui.viewcontroller.salesman;
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
 import component.mychoicebox.MyChoiceBox;
+import component.mydatepicker.MyDatePicker;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -39,10 +40,10 @@ public class WebPromotionDetailEditViewController {
     private MyChoiceBox placeChoiceBox;
 
     @FXML
-    private CommonTextField startTime;
+    private MyDatePicker startTime;
 
     @FXML
-    private CommonTextField endTime;
+    private MyDatePicker endTime;
 
     @FXML
     private RectButton cancelButton;
@@ -65,7 +66,7 @@ public class WebPromotionDetailEditViewController {
     }
 
     public void show(PromotionVO promotionVO){
-        nameTextField.setText(promotionVO.promotionID);
+        nameTextField.setText(promotionVO.promotionName);
         typeButton.setText(promotionVO.promotionType.getType());
         typeButton.setColorProperty(promotionVO.promotionType.getColor());
         levelChoiceBox.show();

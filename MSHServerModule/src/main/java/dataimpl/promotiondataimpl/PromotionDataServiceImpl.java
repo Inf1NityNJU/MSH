@@ -21,6 +21,15 @@ public class PromotionDataServiceImpl implements PromotionDataService{
 
     @Override
     public ResultMessage addPromotion(PromotionPO promotionpo) {
+        String promotionID = "";
+        if (promotionpo.getPromotionType()==PromotionType.Web_SpecilaDate
+                ||promotionpo.getPromotionType()==PromotionType.Web_ClientGrade
+                ||promotionpo.getPromotionType()==PromotionType.Web_SpecilPlace){
+            promotionID = getWebPromotionID();
+        }else {
+            promotionID = getHotelPromotionID();
+        }
+        promotionpo.setPromotionID(promotionID);
         return promotionDataHelper.save(promotionpo);
     }
 
@@ -59,6 +68,28 @@ public class PromotionDataServiceImpl implements PromotionDataService{
         promotionPOs1.addAll(promotionPOs2);
         promotionPOs1.addAll(promotionPOs3);
         return promotionPOs1;
+    }
+
+    public String getHotelPromotionID(){
+        ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionID", "1");
+        if(promotionPOs.size()==0){
+            return "10001";
+        }else {
+            String tempID = promotionPOs.get(promotionPOs.size()-1).getPromotionID();
+            int count = Integer.parseInt(tempID)+1;
+            return count+"";
+        }
+    }
+
+    public String getWebPromotionID(){
+        ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionID", "2");
+        if(promotionPOs.size()==0){
+            return "20001";
+        }else {
+            String tempID = promotionPOs.get(promotionPOs.size()-1).getPromotionID();
+            int count = Integer.parseInt(tempID)+1;
+            return count+"";
+        }
     }
 
 

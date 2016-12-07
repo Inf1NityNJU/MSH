@@ -112,28 +112,22 @@ public class Promotion{
     private PromotionVO POToVO(PromotionPO promotionPO){
         switch (promotionPO.getPromotionType()){
             case Hotel_Birthday:
-                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID());
+                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID());
             case Hotel_SpecilaDate:
-                return new Promotion_HotelSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID());
+                return new Promotion_HotelSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getHotelID());
             case Hotel_RoomQuantity:
-                return new Promotion_RoomQuantityVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getHotelID(),promotionPO.getRoomQuantity());
+                return new Promotion_RoomQuantityVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getHotelID(),promotionPO.getRoomQuantity());
             case Hotel_Enterprise:
-                return new Promotion_EnterpriseVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
+                return new Promotion_EnterpriseVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
             case Web_ClientGrade:
-                return new Promotion_ClientGradeVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getClientGrade());
+                return new Promotion_ClientGradeVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getClientGrade());
             case Web_SpecilPlace:
-                return new Promotion_SpecialPlaceVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()),promotionPO.getPlace());
+                return new Promotion_SpecialPlaceVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getPlace());
             case Web_SpecilaDate:
-                return new Promotion_WebSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),this.date(promotionPO.getStartDate()),this.date(promotionPO.getEndDate()));
+                return new Promotion_WebSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()));
             default:return null;
         }
     }
 
-    private DateUtil date(String s){
-        int first = Integer.valueOf(s.substring(0,4));
-        int second = Integer.valueOf(s.substring(5,7));
-        int third = Integer.valueOf(s.substring(8,10));
-        return new DateUtil(first,second,third);
-    }
 
 }
