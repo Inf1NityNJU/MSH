@@ -129,11 +129,4 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
         return hotel.addScore(score, hotelID);
     }
 
-    @Override
-    public OrderRoomStockVO getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
-        return null;
-    }
-//    public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
-//        return hotelRoom.getRoomStocksWithPriceVO(start, end, hotelID, roomType);
-//    }
 }

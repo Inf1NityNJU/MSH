@@ -73,19 +73,11 @@ public class ClientOrderRoomEditCellController {
 
 
     private void refreshBill() {
-        if (room.quantity <= 1) {
-            minusButton.setVisible(false);
-        } else {
-            minusButton.setVisible(true);
-        }
+        minusButton.setAbled(room.quantity > 1);
+        plusButton.setAbled(room.quantity < availableQuantity);
 
-        if (room.quantity >= availableQuantity) {
-            plusButton.setVisible(false);
-        } else {
-            plusButton.setVisible(true);
-        }
         quantityLabel.setText(room.quantity + "");
-        totalPriceLabel.setText("¥ " + room.price*room.quantity);
+        totalPriceLabel.setText("¥ " + room.price * room.quantity);
         clientBookOrderViewController.refreshBill();
     }
 }

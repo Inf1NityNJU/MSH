@@ -37,10 +37,8 @@ public interface HotelBLInfo {
      * @param roomType 房间类型
      * @return 房间库存和价格列表
      */
-//    public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
-
-    public OrderRoomStockVO getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
+//    public int getAvailbaleQuantity(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
 
 }

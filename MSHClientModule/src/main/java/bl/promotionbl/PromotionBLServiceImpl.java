@@ -62,12 +62,12 @@ public class PromotionBLServiceImpl implements PromotionBLService, PromotionBLIn
     }
 
     @Override
-    public double getMinWebProm(DateUtil date, int clientGrade, Place place) {
+    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, Place place) {
         return minPromotion.getMinWebProm(date, clientGrade, place);
     }
 
     @Override
-    public double getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity) {
-        return minPromotion.getMinHotelProm(hotelID,date,birthday, enterpriseName,roomQuantity);
+    public Promotion_HotelVO getMinHotelProm(String hotelID, DateUtil currentDate, DateUtil birthday, String enterpriseName, int roomQuantity) {
+        return minPromotion.getMinHotelProm(hotelID,currentDate,birthday, enterpriseName,roomQuantity);
     }
 }
