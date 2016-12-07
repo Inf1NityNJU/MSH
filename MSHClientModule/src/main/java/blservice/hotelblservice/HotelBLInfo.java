@@ -37,8 +37,15 @@ public interface HotelBLInfo {
      * @param roomType 房间类型
      * @return 房间库存和价格列表
      */
-
-//    public int getAvailbaleQuantity(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
+    /**
+     * 得到指定日期内的最小可用房间数量
+     * @param start 起始日期
+     * @param end 结束日期
+     * @param hotelID 酒店ID
+     * @param roomType 房间类型
+     * @return 最小可用房间数量
+     */
+    public int getAvailableQuantity(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
 
 }

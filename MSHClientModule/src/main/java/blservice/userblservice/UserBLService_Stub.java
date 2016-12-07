@@ -164,6 +164,11 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
         return null;
     }
 
+    @Override
+    public ClientVO getClientByID(String ID) {
+        return null;
+    }
+
     //TODO
     public ResultMessage updateLevel(LevelVO levelVO){
         return null;

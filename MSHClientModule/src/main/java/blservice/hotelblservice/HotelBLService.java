@@ -153,8 +153,14 @@ public interface HotelBLService {
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags);
 
 
-
-//    public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID);
+    /**
+     * 找到对应酒店的对应日期的所有可用房间状况
+     * @param start 起始日期
+     * @param end 结束日期
+     * @param hotelID 酒店ID
+     * @return 所有可用房间状况
+     */
+    public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID);
 
 
 }

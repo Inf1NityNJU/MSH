@@ -1,6 +1,7 @@
 package blservice.hotelblservice;
 
 import util.City;
+import util.DateUtil;
 import util.ResultMessage;
 import util.RoomType;
 import vo.*;
@@ -132,6 +133,11 @@ public class HotelBLService_Stub implements HotelBLService {
 
     @Override
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID) {
         return null;
     }
 }

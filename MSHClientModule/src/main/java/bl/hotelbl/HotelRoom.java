@@ -356,7 +356,7 @@ public class HotelRoom {
      * @param hotelID 酒店ID
      * @return 房间库存和价格列表
      */
-    public ArrayList<OrderRoomStockVO> getRoomStocksWithPriceVO(DateUtil start, DateUtil end, String hotelID) {
+    public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID) {
         //保存结果
         ArrayList<OrderRoomStockVO> result = new ArrayList<OrderRoomStockVO>();
         //
