@@ -16,7 +16,6 @@ public class Promotion_HotelSpecialDate extends ConcretePromotion{
     public double getPromotionDiscount(PromotionVO promotionVO , Object o){
         double discount = 0;
         if(o instanceof DateUtil){
-            DateUtil currentDate = (DateUtil)o;
             Promotion_HotelSpecialDateVO promotion_hotelSpecialDateVO = (Promotion_HotelSpecialDateVO) promotionVO;
             if(dateUtil.isInRange(promotion_hotelSpecialDateVO.startDate,promotion_hotelSpecialDateVO.endDate)){
                 discount = promotion_hotelSpecialDateVO.promotionDiscount;
