@@ -7,6 +7,8 @@ import util.Place;
 import util.PromotionType;
 import vo.OrderRoomVO;
 import vo.PromotionVO;
+import vo.Promotion_HotelVO;
+import vo.Promotion_WebVO;
 
 import java.util.ArrayList;
 
@@ -14,8 +16,10 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class MinPromotion {
-    private double minWebProm = 0;
-    private double minHotelProm = 0;
+    private double minWebPromDiscount = 0;
+    private double minHotelPromDiscount = 0;
+    private Promotion_WebVO promotion_webVO;
+    private Promotion_HotelVO promotion_hotelVO;
     private Promotion promotion = new Promotion();
     private ConcretePromotion concretePromotion;
 
@@ -26,7 +30,7 @@ public class MinPromotion {
      * @param place 所在商圈
      * @return
      */
-    public double getMinWebProm(DateUtil date, int clientGrade, Place place) {
+    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, Place place) {
         double currentDiscount = 0;
         ArrayList<PromotionVO> promotionVOs = promotion.searchWebPromotions();
         for (int i = 0; i < promotionVOs.size(); i++) {
@@ -43,11 +47,11 @@ public class MinPromotion {
                     concretePromotion = new Promotion_WebSpecialPlace(date);
                     currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), place);
             }
-            if(minWebProm>currentDiscount||minWebProm==0){
-                minWebProm = currentDiscount;
+            if(minWebPromDiscount>currentDiscount||minWebPromDiscount==0){
+                promotion_webVO = (Promotion_WebVO)promotionVOs.get(i);
             }
         }
-        return minWebProm;
+        return promotion_webVO;
 
     }
 
@@ -60,7 +64,7 @@ public class MinPromotion {
      * @param roomQuantity 所定房间数量
      * @return
      */
-    public double getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity) {
+    public Promotion_HotelVO getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity) {
         double currentDiscount = 0;
         ArrayList<PromotionVO> promotionVOs = promotion.searchHotelPromotions(hotelID);
         for (int i = 0; i < promotionVOs.size(); i++) {
@@ -81,11 +85,11 @@ public class MinPromotion {
                     concretePromotion = new Promotion_HotelSpecialDate(date);
                     currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), date);
             }
-            if(minHotelProm>currentDiscount||minHotelProm==0){
-                minHotelProm = currentDiscount;
+            if(minHotelPromDiscount>currentDiscount||minHotelPromDiscount==0){
+                promotion_hotelVO = (Promotion_HotelVO)promotionVOs.get(i);
             }
         }
-        return minHotelProm;
+        return promotion_hotelVO;
     }
 
 

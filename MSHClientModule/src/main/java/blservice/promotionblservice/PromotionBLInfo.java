@@ -3,6 +3,8 @@ package blservice.promotionblservice;
 import util.DateUtil;
 import util.Place;
 import vo.OrderRoomVO;
+import vo.Promotion_HotelVO;
+import vo.Promotion_WebVO;
 
 import java.util.ArrayList;
 
@@ -17,7 +19,7 @@ public interface PromotionBLInfo {
      * @param place 所在商圈
      * @return
      */
-    public double getMinWebProm(DateUtil date, int clientGrade, Place place);
+    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, Place place);
 
     /**
      * 获得最小酒店促销策略
@@ -28,5 +30,5 @@ public interface PromotionBLInfo {
      * @param roomQuantity 所定房间数量
      * @return
      */
-    public double getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity);
+    public Promotion_HotelVO getMinHotelProm(String hotelID, DateUtil date, DateUtil birthday, String enterpriseName, int roomQuantity);
 }
