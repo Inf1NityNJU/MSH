@@ -27,4 +27,12 @@ public enum City {
     public String getName() {
         return name;
     }
+
+    public static City getCityByName(String name) {
+        for (City city : City.values()){
+            if(name.equals(city.name))
+                return city;
+        }
+        return null;
+    }
 }
