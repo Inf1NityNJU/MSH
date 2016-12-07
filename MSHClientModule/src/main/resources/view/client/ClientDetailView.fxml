@@ -143,24 +143,30 @@
                                     <Font name="Bangla MN" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="还差">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
-                                 </font></Label>
-                              <Label fx:id="deltaCreditLabel" text="Label" textAlignment="CENTER" textFill="GREY">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="信用值升">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
-                                 </font></Label>
-                              <Label fx:id="nextLevelLabel" text="Label" textFill="#00cccc">
-                                 <font>
-                                    <Font name="Bangla MN" size="14.0" />
-                                 </font>
-                              </Label>
+                              <HBox fx:id="creditHBox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label text="还差">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="deltaCreditLabel" text="Label" textAlignment="CENTER" textFill="GREY">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="信用值升">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nextLevelLabel" text="Label" textFill="#00cccc">
+                                       <font>
+                                          <Font name="Bangla MN" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
                         </HBox>
                         <TinyButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" />
