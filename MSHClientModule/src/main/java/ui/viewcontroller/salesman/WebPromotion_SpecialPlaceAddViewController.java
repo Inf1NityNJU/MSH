@@ -47,8 +47,8 @@ public class WebPromotion_SpecialPlaceAddViewController {
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
         this.webPromotionViewController = webPromotionViewController;
 
-        typeButton.setText(PromotionType.Web_SpecilaDate.getType());
-        typeButton.setColorProperty(PromotionType.Web_SpecilaDate.getColor());
+        typeButton.setText(PromotionType.Web_SpecilPlace.getType());
+        typeButton.setColorProperty(PromotionType.Web_SpecilPlace.getColor());
 
     }
 
@@ -95,5 +95,10 @@ public class WebPromotion_SpecialPlaceAddViewController {
             observableList.add(city.getPlaces()[i]);
         }
         placeChoiceBox.setItems(observableList);
+    }
+
+    public void showEditView(PromotionVO promotionVO){
+        nameTextField.setText(promotionVO.promotionName);
+        discountTextField.setText(promotionVO.promotionDiscount+"");
     }
 }

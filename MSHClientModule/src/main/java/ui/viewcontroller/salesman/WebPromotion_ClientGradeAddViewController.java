@@ -75,4 +75,9 @@ public class WebPromotion_ClientGradeAddViewController {
         promotionBLService.addPromotion(promotionVO);
 
     }
+
+    public void showEditView(PromotionVO promotionVO){
+        nameTextField.setText(promotionVO.promotionName);
+        discountTextField.setText(promotionVO.promotionDiscount+"");
+    }
 }

@@ -55,4 +55,9 @@ public class WebPromotion_SpecialDateAddViewController {
         promotionBLService.addPromotion(promotionVO);
 
     }
+
+    public void showEditView(PromotionVO promotionVO){
+        nameTextField.setText(promotionVO.promotionName);
+        discountTextField.setText(promotionVO.promotionDiscount+"");
+    }
 }

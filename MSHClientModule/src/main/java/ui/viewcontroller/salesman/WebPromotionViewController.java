@@ -26,6 +26,8 @@ public class WebPromotionViewController {
 
     private PromotionBLService promotionBLService;
 
+    private PromotionVO promotionVO;
+
     public WebPromotionViewController(BorderPane rootPane) {
         this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
         this.rootPane = rootPane;
@@ -106,46 +108,31 @@ public class WebPromotionViewController {
      * 编辑策略
      */
     public void showPromotionDetailEditView(PromotionVO promotionVO) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionDetailEditView.fxml"));
-            ScrollPane view = loader.load();
-
-            WebPromotionDetailEditViewController webPromotionDetailEditViewController = loader.getController();
-            webPromotionDetailEditViewController.setWebPromotionViewController(this);
-            webPromotionDetailEditViewController.show(promotionVO);
-
-            Node node = rootPane.getCenter();
-            stack.push(node);
-
-            rootPane.setCenter(view);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.promotionVO = promotionVO;
+        this.addWebPromotion(promotionVO.promotionType, true);
     }
 
     /**
      * 增加策略
      */
-    public void addWebPromotion(PromotionType promotionType) {
+    public void addWebPromotion(PromotionType promotionType, boolean isEdit) {
         switch (promotionType) {
             case Web_ClientGrade:
-                this.addWeb_ClientGradePromotion();
+                this.addWeb_ClientGradePromotion(isEdit);
                 break;
             case Web_SpecilaDate:
-                this.addWeb_SpecialDatePromotion();
+                this.addWeb_SpecialDatePromotion(isEdit);
                 break;
             case Web_SpecilPlace:
-                this.addWeb_SpecialPlacePromotion();
+                this.addWeb_SpecialPlacePromotion(isEdit);
                 break;
         }
     }
 
     /**
-     * 增加网站会员等级策略
+     * 增加或编辑网站会员等级策略
      */
-    public void addWeb_ClientGradePromotion() {
+    public void addWeb_ClientGradePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_ClientGradeAddView.fxml"));
@@ -154,6 +141,9 @@ public class WebPromotionViewController {
             WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
             webPromotion_clientGradeAddViewController.setWebPromotionViewController(this);
             webPromotion_clientGradeAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                webPromotion_clientGradeAddViewController.showEditView(promotionVO);
+            }
 
             Node node = rootPane.getCenter();
             stack.push(node);
@@ -166,9 +156,9 @@ public class WebPromotionViewController {
     }
 
     /**
-     * 增加网站特殊期间折扣策略
+     * 增加或编辑网站特殊期间折扣策略
      */
-    public void addWeb_SpecialDatePromotion() {
+    public void addWeb_SpecialDatePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialDateAddView.fxml"));
@@ -177,6 +167,9 @@ public class WebPromotionViewController {
             WebPromotion_SpecialDateAddViewController webPromotion_specialDateAddViewController = loader.getController();
             webPromotion_specialDateAddViewController.setWebPromotionViewController(this);
             webPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                webPromotion_specialDateAddViewController.showEditView(promotionVO);
+            }
 
             Node node = rootPane.getCenter();
             stack.push(node);
@@ -189,9 +182,9 @@ public class WebPromotionViewController {
     }
 
     /**
-     * 增加网站特殊商圈折扣策略
+     * 增加或编辑网站特殊商圈折扣策略
      */
-    public void addWeb_SpecialPlacePromotion() {
+    public void addWeb_SpecialPlacePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialPlaceAddView.fxml"));
@@ -200,6 +193,9 @@ public class WebPromotionViewController {
             WebPromotion_SpecialPlaceAddViewController webPromotion_specialPlaceAddViewController = loader.getController();
             webPromotion_specialPlaceAddViewController.setWebPromotionViewController(this);
             webPromotion_specialPlaceAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                webPromotion_specialPlaceAddViewController.showEditView(promotionVO);
+            }
 
             Node node = rootPane.getCenter();
             stack.push(node);
