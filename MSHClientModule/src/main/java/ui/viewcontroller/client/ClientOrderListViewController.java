@@ -1,5 +1,6 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class ClientOrderListViewController {
     private Node pagePane;
     private ClientOrderPagePaneController clientOrderPagePaneController;
 
-    private OrderBLService orderBLService;
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
@@ -85,12 +86,8 @@ public class ClientOrderListViewController {
         this.clientOrderViewController = clientOrderViewController;
     }
 
-    public void setOrderBLService(OrderBLService orderBLService) {
-        this.orderBLService = orderBLService;
-    }
-
     public void showOrders(OrderState orderState) {
-        orders = orderBLService.searchClientOrder("000000001", orderState, null);
+        orders = orderBLService.searchClientOrder(orderState, null);
         int size = orders.size();
         clientOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {

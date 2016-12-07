@@ -1,12 +1,13 @@
 package bl.orderbl;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
 import bl.hotelbl.HotelRoom;
 import blservice.orderblservice.OrderBLService;
+import blservice.userblservice.UserBLInfo;
+import blservice.userblservice.UserBLService_Stub;
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 public class OrderBLServiceImpl implements OrderBLService {
 
     private Order order;
-//    private HotelRoom hotelRoom;
 
     protected OrderBLServiceImpl(Order order) {
         this.order = order;
@@ -27,7 +27,22 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否足以生成订单
      */
     public ResultMessage checkCredit() {
-        return null;
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        userBLInfo = new UserBLService_Stub();
+        String clientID = userBLInfo.getCurrentID();
+        int credit = userBLInfo.getCreditOfID(clientID);
+        return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
+    }
+
+    @Override
+    public ResultMessage startOrder(OrderVO order) {
+        return this.order.startOrder(order);
+    }
+
+
+    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO room) {
+
+        return this.order.getOrderRoomStock(room);
     }
 
     /**
@@ -47,21 +62,15 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否成功修改
      */
     public ResultMessage modifyRoomQuantity(RoomType type, int quantity) {
-        return null;
+        return order.modifyRoomQuantity(type, quantity);
     }
 
     /**
      * 得到账单信息
-     * @param hotelID
-     * @param date
-     * @param start
-     * @param end
-     * @param clientID
-     * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity) {
-        return order.getBill(hotelID, clientID, date, start, end, quantity);
+    public BillVO getBill() {
+        return order.getBill();
     }
 
     /**
@@ -120,7 +129,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO
      */
     public OrderVO searchOrderByID(String orderID) {
-        return null;
+        return order.searchOrderByID(orderID);
     }
 
     /**
@@ -130,29 +139,34 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
-        return null;
+        return searchOrder(os, keyword);
     }
 
     /**
      * 通过客户ID、订单状态、关键字搜索订单
-     * @param clientID
      * @param os
      * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
-        return null;
+    public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        userBLInfo = new UserBLService_Stub();
+        String clientID = userBLInfo.getCurrentID();
+        return  order.searchClientOrder(clientID, os, keyword);
     }
 
     /**
      * 通过酒店ID、订单状态、关键字搜索订单
-     * @param hotelID
      * @param os
      * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword) {
-        return null;
+    public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        userBLInfo = new UserBLService_Stub();
+        String staffID = userBLInfo.getCurrentID();
+        String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
+        return  order.searchHotelOrder(hotelID, os, keyword);
     }
 
 }

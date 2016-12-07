@@ -24,6 +24,12 @@ public class OrderTest {
     }
 
     @Test
+    public void testGetOrderRoomStocks() {
+
+    }
+
+
+    @Test
     public void testModifyRoomQuantity() {
         ResultMessage rm = order.modifyRoomQuantity(RoomType.DoubleRoom, 1);
         assertEquals(ResultMessage.SUCCESS, rm);
@@ -33,7 +39,7 @@ public class OrderTest {
 
     @Test
     public void testGetBill() {
-        BillVO bill = order.getBill("01011234", "000000001", new DateUtil(2016, 10, 27), new DateUtil(2016, 10, 29), new DateUtil(2016, 10, 30), 3);
+        BillVO bill = order.getBill();
         assertNotNull(bill);
     }
 

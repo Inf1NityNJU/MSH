@@ -1,8 +1,10 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.hotelblservice.HotelBLService_Stub;
+import blservice.orderblservice.OrderBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -63,7 +65,6 @@ public class ClientSearchHotelViewController {
 
             ClientHotelListViewController clientHotelListViewController = listLoader.getController();
             clientHotelListViewController.setClientSearchHotelViewController(this);
-            clientHotelListViewController.setHotelBLService(hotelBLService);
 
             initNode = list;
 
@@ -105,7 +106,7 @@ public class ClientSearchHotelViewController {
      */
     public void showBookOrder(OrderVO order) {
 
-        System.out.print("!!!");
+//        System.out.print("!!!");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../view/client/ClientBookOrderView.fxml"));

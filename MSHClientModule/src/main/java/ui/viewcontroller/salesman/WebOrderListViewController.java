@@ -35,7 +35,7 @@ public class WebOrderListViewController {
     private Node pagePane;
     private WebOrderPagePaneController webOrderPagePaneController;
 
-    private OrderBLService orderBLService;
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
@@ -77,9 +77,6 @@ public class WebOrderListViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        orderBLService = new BLFactoryImpl().getOrderBLService();
-
 
     }
 
@@ -135,8 +132,8 @@ public class WebOrderListViewController {
         contentVBox.getChildren().add(pagePane);
     }
 
-//    public void showClientOrderDetail(OrderVO order) {
-//        clientOrderViewController.showClientOrderDetail(order);
-//    }
+    public void showWebOrderDetail(OrderVO order) {
+        webOrderViewController.showWebOrderDetail(order);
+    }
 
 }

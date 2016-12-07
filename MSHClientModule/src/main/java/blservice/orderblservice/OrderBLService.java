@@ -1,10 +1,7 @@
 package blservice.orderblservice;
 
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -18,6 +15,10 @@ public interface OrderBLService {
      * @return 是否足以生成订单
      */
     public ResultMessage checkCredit();
+
+    public ResultMessage startOrder(OrderVO order);
+
+    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO roomVO);
 
     /**
      * 修改入住退房日期
@@ -37,15 +38,9 @@ public interface OrderBLService {
 
     /**
      * 得到账单信息
-     * @param hotelID
-     * @param date
-     * @param start
-     * @param end
-     * @param clientID
-     * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity);
+    public BillVO getBill();
 
     /**
      * 生成订单
@@ -104,20 +99,18 @@ public interface OrderBLService {
 
     /**
      * 通过客户ID、订单状态、关键字搜索订单
-     * @param clientID
      * @param os
      * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword);
+    public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword);
 
     /**
      * 通过酒店ID、订单状态、关键字搜索订单
-     * @param hotelID
      * @param os
      * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword);
+    public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword);
 
 }

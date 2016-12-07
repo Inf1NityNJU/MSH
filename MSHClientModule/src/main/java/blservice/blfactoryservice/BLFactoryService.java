@@ -5,6 +5,7 @@ import blservice.hotelblservice.HotelBLService;
 import blservice.orderblservice.OrderBLService;
 import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 
 /**
@@ -28,4 +29,5 @@ public interface BLFactoryService {
 
     public PromotionBLInfo getPromotionBLInfo();
 
+    public UserBLInfo getUserBLInfo();
 }

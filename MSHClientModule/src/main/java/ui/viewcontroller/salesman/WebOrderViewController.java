@@ -7,7 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.client.ClientOrderDetailViewController;
 import ui.viewcontroller.client.ClientOrderListViewController;
+import vo.OrderVO;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -60,6 +62,29 @@ public class WebOrderViewController {
             initNode = list;
 
             rootPane.setCenter(list);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 网站订单详情
+     */
+    public void showWebOrderDetail(OrderVO order) {
+        try {
+            FXMLLoader orderLoader = new FXMLLoader();
+            orderLoader.setLocation(Main.class.getResource("../view/salesman/WebOrderDetailView.fxml"));
+            ScrollPane view = orderLoader.load();
+
+            WebOrderDetailViewController webOrderDetailViewController = orderLoader.getController();
+            webOrderDetailViewController.setWebOrderViewController(this);
+            webOrderDetailViewController.showOrder(order);
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

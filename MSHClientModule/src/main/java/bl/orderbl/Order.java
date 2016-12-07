@@ -1,11 +1,12 @@
 package bl.orderbl;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.hotelblservice.HotelBLInfo;
+import blservice.userblservice.UserBLInfo;
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -15,49 +16,114 @@ public class Order {
 
     private OrderVO order;
 
-    private ArrayList<OrderRoom> rooms;
+    private ArrayList<OrderRoom> orderRooms;
     private Bill bill;
+
+    public ResultMessage startOrder(OrderVO order) {
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        this.order = order;
+
+        order.clientID = userBLInfo.getCurrentID();
+
+        orderRooms = new ArrayList<>();
+
+        for (OrderRoomVO room : order.rooms) {
+            OrderRoom orderRoom = new OrderRoom(room.type, room.quantity, room.price);
+            orderRooms.add(orderRoom);
+        }
+
+        bill = new Bill();
+        return ResultMessage.SUCCESS;
+    }
+
+    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO room) {
+
+        HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
+
+//        OrderRoomStockVO stock = hotelBLInfo.getRoomStocks(order.checkInDate, order.checkOutDate, order.hotelID, room.type);
+        //TODO
+        OrderRoomStockVO stock = new OrderRoomStockVO(room.type, 300, 3);
+
+        return stock;
+
+    }
 
     /**
      * 修改订单房间数量
+     *
      * @param type
      * @param quantity
      * @return 是否成功修改
      */
-    public ResultMessage modifyRoomQuantity(RoomType type, int quantity){
+    public ResultMessage modifyRoomQuantity(RoomType type, int quantity) {
 
-        OrderRoom room = null;
+        OrderRoom orderRoom = null;
 
-        for (OrderRoom roomItr : rooms) {
-            if (roomItr.getType() == type) {
+        for (OrderRoom orderRoomItr : orderRooms) {
+            if (orderRoomItr.getType() == type) {
+                orderRoom = orderRoomItr;
+                break;
+            }
+        }
+
+        orderRoom.modifyQuantity(quantity);
+
+        ArrayList<OrderRoomVO> rooms = order.rooms;
+        OrderRoomVO room = null;
+
+        for (OrderRoomVO roomItr : rooms) {
+            if (roomItr.type == type) {
                 room = roomItr;
                 break;
             }
         }
 
-        if (room == null) {
-//            room = new OrderRoom(type, quantity);
-        }
-//        OrderRoom room = new OrderRoom();
+        room.quantity += quantity;
+
         return ResultMessage.SUCCESS;
     }
 
     /**
      * 得到账单
-     * @param date
-     * @param start
-     * @param end
-     * @param clientID
-     * @param hotelID
-     * @param quantity
-     * @return BillVO
+     * * @return BillVO
      */
-    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity){
-        return null;
+    public BillVO getBill() {
+
+        Bill mockbill = new MockBill();
+
+        int quantity = 0;
+
+        for (OrderRoomVO roomItr : order.rooms) {
+            quantity += roomItr.quantity;
+        }
+        //TODO need userBLInfo
+        ClientVO client = new ClientVO("000000001", "哈哈哈", 3, new DateUtil(2011, 02, 14), 200, 0, "12", "1111111", "123");
+        BillVO billVO = mockbill.refresh(order.hotelID, new DateUtil(LocalDate.now()), client.birthday, client.enterprise, quantity);
+
+        double originPrice = 0;
+
+        for (OrderRoom orderRoomItr : orderRooms) {
+            originPrice += orderRoomItr.getTotal();
+        }
+
+        billVO.originPrice = originPrice;
+
+        if (billVO.hotelPromotion != null) {
+            billVO.totalPrice = originPrice * billVO.hotelPromotion.promotionDiscount;
+        }
+
+        if (billVO.websitePromotion != null) {
+            billVO.totalPrice = originPrice * billVO.websitePromotion.promotionDiscount;
+        }
+
+        System.out.println(billVO.totalPrice);
+
+        return billVO;
     }
 
     /**
      * 生成订单
+     *
      * @param latest
      * @param peopleQuantity
      * @param hasChildren
@@ -69,6 +135,7 @@ public class Order {
 
     /**
      * 撤销订单
+     *
      * @param orderID
      * @return 是否成功撤销
      */
@@ -78,6 +145,7 @@ public class Order {
 
     /**
      * 更新入住
+     *
      * @param orderID
      * @param time
      * @return 是否成功
@@ -88,6 +156,7 @@ public class Order {
 
     /**
      * 更新退房
+     *
      * @param orderID
      * @param time
      * @return 是否成功
@@ -98,6 +167,7 @@ public class Order {
 
     /**
      * 编辑评分评价
+     *
      * @param orderID
      * @param assessment
      * @return 是否成功
@@ -108,6 +178,7 @@ public class Order {
 
     /**
      * 通过订单ID搜索订单
+     *
      * @param orderID
      * @return OrderVO
      */
@@ -117,6 +188,7 @@ public class Order {
 
     /**
      * 通过订单状态、关键字搜索订单
+     *
      * @param os
      * @param keyword
      * @return OrderVO列表
@@ -127,6 +199,7 @@ public class Order {
 
     /**
      * 通过客户ID、订单状态、关键字搜索订单
+     *
      * @param clientID
      * @param os
      * @param keyword
@@ -138,6 +211,7 @@ public class Order {
 
     /**
      * 通过酒店ID、订单状态、关键字搜索订单
+     *
      * @param hotelID
      * @param os
      * @param keyword

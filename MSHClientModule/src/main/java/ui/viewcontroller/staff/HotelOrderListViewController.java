@@ -1,5 +1,6 @@
 package ui.viewcontroller.staff;
 
+import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,7 @@ public class HotelOrderListViewController {
     private Node pagePane;
     private HotelOrderPagePaneController hotelOrderPagePaneController;
 
-    private OrderBLService orderBLService;
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
@@ -82,13 +83,9 @@ public class HotelOrderListViewController {
         this.hotelOrderViewController = hotelOrderViewController;
     }
 
-    public void setOrderBLService(OrderBLService orderBLService) {
-        this.orderBLService = orderBLService;
-    }
-
     public void showOrders(OrderState orderState) {
         //TODO
-        orders = orderBLService.searchHotelOrder("01011234", orderState, null);
+        orders = orderBLService.searchHotelOrder(orderState, null);
         int size = orders.size();
         hotelOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {

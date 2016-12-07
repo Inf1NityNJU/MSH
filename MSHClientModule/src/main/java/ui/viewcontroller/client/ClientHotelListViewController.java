@@ -39,7 +39,7 @@ public class ClientHotelListViewController {
     private TilePane tilePane;
 
 
-    private HotelBLService hotelBLService;
+    private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
 
     private ArrayList<Hotel_BriefVO> hotels = new ArrayList<>();
 
@@ -93,10 +93,6 @@ public class ClientHotelListViewController {
 
     public void setClientSearchHotelViewController(ClientSearchHotelViewController clientSearchHotelViewController) {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
-    }
-
-    public void setHotelBLService(HotelBLService hotelBLService) {
-        this.hotelBLService = hotelBLService;
     }
 
     public void showHotel(FilterFlagsVO filterFlagsVO) {

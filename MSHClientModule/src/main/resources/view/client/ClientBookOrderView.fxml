@@ -94,7 +94,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="2016年11月26日 - 2016年11月27日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <Label fx:id="checkDateLabel" text="2016年11月26日 - 2016年11月27日" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <font>
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
@@ -179,7 +179,7 @@
                                                 </Label>
                                             </children>
                                         </HBox>
-                                        <MyCheckBox text="儿童" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <MyCheckBox fx:id="hasChildrenCheckBox" text="儿童" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     </children>
                                 </GridPane>
                         <Pane maxWidth="-Infinity" minHeight="30.0" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
@@ -189,7 +189,7 @@
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="100.0" prefWidth="200.0" text="¥ 1200" textFill="#ff2c14">
+                              <Label fx:id="totalPriceLabel" alignment="CENTER_RIGHT" layoutX="100.0" prefWidth="200.0" text="¥ 1200" textFill="#ff2c14">
                                  <font>
                                     <Font name="PingFang SC Regular" size="20.0" />
                                  </font>
@@ -204,7 +204,7 @@
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="100.0" prefWidth="200.0" text="¥ 1200" textFill="#ff2c14">
+                              <Label fx:id="originPriceLabel" alignment="CENTER_RIGHT" layoutX="100.0" prefWidth="200.0" text="¥ 1200" textFill="#ff2c14">
                                  <font>
                                     <Font name="PingFang SC Regular" size="20.0" />
                                  </font>

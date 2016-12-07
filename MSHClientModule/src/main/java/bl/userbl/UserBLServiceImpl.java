@@ -7,6 +7,7 @@ import blservice.userblservice.UserBLService;
 import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
+import vo.ClientVO;
 import vo.CreditVO;
 import vo.LevelVO;
 import vo.UserVO;
@@ -254,6 +255,16 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
         } else {
             return null;
         }
+    }
+
+    /**
+     * 得到客户
+     *
+     * @param ID
+     * @return
+     */
+    public ClientVO getClientByID(String ID) {
+        return (ClientVO) user.searchByID(ID);
     }
 
     public User getUser() {
