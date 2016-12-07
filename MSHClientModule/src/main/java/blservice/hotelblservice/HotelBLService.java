@@ -153,4 +153,8 @@ public interface HotelBLService {
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags);
 
 
+
+//    public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID);
+
+
 }
