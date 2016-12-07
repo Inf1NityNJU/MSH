@@ -1,10 +1,9 @@
 package bl.orderbl;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.hotelblservice.HotelBLInfo;
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -17,6 +16,26 @@ public class Order {
 
     private ArrayList<OrderRoom> rooms;
     private Bill bill;
+
+    public ArrayList<OrderRoomStockVO> getOrderRoomStocks(OrderVO order) {
+        this.order = order;
+
+        HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
+
+
+        ArrayList<OrderRoomVO> rooms = order.rooms;
+        ArrayList<OrderRoomStockVO> stocks = new ArrayList<>();
+
+        for (OrderRoomVO room : rooms) {
+            OrderRoomStockVO stock = hotelBLInfo.getRoomStocks(order.checkInDate, order.checkOutDate, order.hotelID, room.type);
+            //TODO
+            stock = new OrderRoomStockVO(room.type, 300, 3);
+            stocks.add(stock);
+        }
+
+
+        return stocks;
+    }
 
     /**
      * 修改订单房间数量

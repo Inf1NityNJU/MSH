@@ -1,10 +1,7 @@
 package blservice.orderblservice;
 
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -15,6 +12,11 @@ public class OrderBLService_Stub implements OrderBLService {
 
     public ResultMessage checkCredit() {
         return ResultMessage.SUCCESS;
+    }
+
+    @Override
+    public ArrayList<OrderRoomStockVO> getOrderRoomStocks(OrderVO order) {
+        return null;
     }
 
     public ResultMessage modifyDate(DateUtil start, DateUtil end) {
@@ -103,7 +105,7 @@ public class OrderBLService_Stub implements OrderBLService {
 
         OrderVO order2 = new OrderVO("20161012010112340001", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), new TimeUtil(2016, 10, 12, 14, 0, 0), null,
-                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5,5,5,5, "很好很舒适"));
+                new TimeUtil(2016, 10, 10, 14, 0, 0), null, new TimeUtil(2016, 10, 11, 14, 0, 0), 2, false, OrderState.Executed, new BillVO(null, null, 300, 280), new AssessmentVO(5, 5, 5, 5, "很好很舒适"));
 
         OrderVO order3 = new OrderVO("20161012010112340002", "01011234", "000000001", "喵喵酒店", "小茗同学", rooms,
                 new DateUtil(2016, 10, 12), new DateUtil(2016, 10, 13), null, null,
@@ -143,17 +145,11 @@ public class OrderBLService_Stub implements OrderBLService {
         return orderVOs;
     }
 
-    public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
-        if (clientID.equals("000000001"))
-            return searchOrder(os, null);
-        else
-            return new ArrayList<OrderVO>();
+    public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
+        return searchOrder(os, null);
     }
 
-    public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword) {
-        if (hotelID.equals("01011234"))
-            return searchOrder(os, null);
-        else
-            return new ArrayList<OrderVO>();
+    public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
+        return searchOrder(os, null);
     }
 }

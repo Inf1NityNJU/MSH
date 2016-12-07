@@ -27,8 +27,6 @@ public class HotelOrderViewController {
 
     public HotelOrderViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
-        //TODO
-        orderBLService = new BLFactoryImpl().getOrderBLService();
     }
 
     /**
@@ -59,7 +57,6 @@ public class HotelOrderViewController {
 
             HotelOrderListViewController hotelOrderListViewController = listLoader.getController();
             hotelOrderListViewController.setHotelOrderViewController(this);
-            hotelOrderListViewController.setOrderBLService(orderBLService);
 
             initNode = list;
 

@@ -125,14 +125,14 @@ public class OrderBLService_Driver {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchClientOrder("000000001", null, null);
+        orders = orderBLService.searchClientOrder(null, null);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchHotelOrder("01011234", null, null);
+        orders = orderBLService.searchHotelOrder(null, null);
         if (orders != null) {
             System.out.print("Success");
         } else {

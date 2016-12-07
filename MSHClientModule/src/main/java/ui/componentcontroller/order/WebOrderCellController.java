@@ -81,7 +81,7 @@ public class WebOrderCellController {
 
     @FXML
     private void clickDetailButton() {
-//        webOrderListViewController.showClientOrderDetail(order);
+        webOrderListViewController.showWebOrderDetail(order);
     }
 
 }

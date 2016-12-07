@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/10/12.
  */
-public class UserBLService_Stub implements UserBLService {
+public class UserBLService_Stub implements UserBLService, UserBLInfo {
 
     private ClientVO exampleClientVO = new ClientVO("000000007", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
 
@@ -158,6 +158,7 @@ public class UserBLService_Stub implements UserBLService {
 
     }
 
+
     //TODO
     public ArrayList<LevelVO> getAllLevel(){
         return null;
@@ -182,4 +183,20 @@ public class UserBLService_Stub implements UserBLService {
     public LevelVO getLevel(String ID){
         return null;
     }
+
+    @Override
+    public int getCreditOfID(String id) {
+        return 200;
+    }
+
+    @Override
+    public String getCurrentID() {
+        return "000000001";
+    }
+
+    @Override
+    public String getHotelIDByStaffID(String ID) {
+        return null;
+    }
+
 }

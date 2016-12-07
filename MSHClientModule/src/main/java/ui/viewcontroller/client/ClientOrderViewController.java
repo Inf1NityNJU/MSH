@@ -23,12 +23,9 @@ public class ClientOrderViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
-    private OrderBLService orderBLService;
 
     public ClientOrderViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
-        //TODO
-        orderBLService = new BLFactoryImpl().getOrderBLService();
     }
 
     /**
@@ -59,7 +56,6 @@ public class ClientOrderViewController {
 
             ClientOrderListViewController clientOrderListViewController = listLoader.getController();
             clientOrderListViewController.setClientOrderViewController(this);
-            clientOrderListViewController.setOrderBLService(orderBLService);
 
             initNode = list;
 
@@ -84,7 +80,6 @@ public class ClientOrderViewController {
             clientOrderDetailViewController.setClientViewController(this);
             clientOrderDetailViewController.showOrder(order);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 

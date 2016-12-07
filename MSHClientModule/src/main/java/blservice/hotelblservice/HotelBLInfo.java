@@ -4,10 +4,7 @@ import util.DateUtil;
 import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
-import vo.AssessmentVO;
-import vo.HotelRoomVO;
-import vo.RoomChangeInfoVO;
-import vo.RoomStockWithPriceVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,9 @@ public interface HotelBLInfo {
      * @param roomType 房间类型
      * @return 房间库存和价格列表
      */
-    public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
+//    public ArrayList<RoomStockWithPriceVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
+
+    public OrderRoomStockVO getRoomStocks(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
 }

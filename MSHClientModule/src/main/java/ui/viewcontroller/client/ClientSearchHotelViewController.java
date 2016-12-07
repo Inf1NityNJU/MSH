@@ -63,7 +63,6 @@ public class ClientSearchHotelViewController {
 
             ClientHotelListViewController clientHotelListViewController = listLoader.getController();
             clientHotelListViewController.setClientSearchHotelViewController(this);
-            clientHotelListViewController.setHotelBLService(hotelBLService);
 
             initNode = list;
 

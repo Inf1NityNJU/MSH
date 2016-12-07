@@ -11,6 +11,7 @@ import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
 import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 
 /**
@@ -43,15 +44,23 @@ public class BLFactoryImpl implements BLFactoryService {
         return PromotionBLFactory.getPromotionBLService();
     }
 
+    @Override
     public UserBLService getClientBLService() {
         return UserBLFactory.getUserBLServiceImpl_Client();
     }
 
+    @Override
     public UserBLService getStaffBLService() {
         return UserBLFactory.getUserBLServiceImpl_Staff();
     }
 
+    @Override
     public UserBLService getSalesmanBLService() {
         return UserBLFactory.getUserBLServiceImpl_Salesman();
+    }
+
+    @Override
+    public UserBLInfo getUserBLInfo() {
+        return UserBLFactory.getUserInfo_Client();
     }
 }
