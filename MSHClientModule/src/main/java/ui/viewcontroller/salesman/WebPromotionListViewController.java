@@ -163,7 +163,7 @@ public class WebPromotionListViewController {
      * 增加新的策略
      */
     public void addPromotion(PromotionType promotionType) {
-        webPromotionViewController.addWebPromotion(promotionType);
+        webPromotionViewController.addWebPromotion(promotionType, false);
     }
 
     /**
