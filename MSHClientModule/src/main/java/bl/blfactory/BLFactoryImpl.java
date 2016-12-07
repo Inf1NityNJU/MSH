@@ -2,6 +2,7 @@ package bl.blfactory;
 
 import bl.hotelbl.HotelBLFactory;
 import bl.hotelbl.HotelBLServiceImpl;
+import bl.orderbl.OrderBLFactory;
 import bl.promotionbl.PromotionBLFactory;
 import bl.userbl.UserBLFactory;
 import blservice.blfactoryservice.BLFactoryService;
@@ -26,7 +27,8 @@ public class BLFactoryImpl implements BLFactoryService {
 
     @Override
     public OrderBLService getOrderBLService() {
-        return new OrderBLService_Stub();
+        return OrderBLFactory.getOrderBLServiceImpl();
+//        return new OrderBLService_Stub();
     }
 
     @Override

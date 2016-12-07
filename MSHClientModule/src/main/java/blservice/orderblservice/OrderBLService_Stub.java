@@ -15,7 +15,12 @@ public class OrderBLService_Stub implements OrderBLService {
     }
 
     @Override
-    public ArrayList<OrderRoomStockVO> getOrderRoomStocks(OrderVO order) {
+    public ResultMessage startOrder(OrderVO order) {
+        return null;
+    }
+
+    @Override
+    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO roomVO) {
         return null;
     }
 
@@ -35,7 +40,8 @@ public class OrderBLService_Stub implements OrderBLService {
         }
     }
 
-    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity) {
+    @Override
+    public BillVO getBill() {
         return new BillVO(null, null, 300, 300);
     }
 

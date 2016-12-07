@@ -16,8 +16,9 @@ public interface OrderBLService {
      */
     public ResultMessage checkCredit();
 
+    public ResultMessage startOrder(OrderVO order);
 
-    public ArrayList<OrderRoomStockVO> getOrderRoomStocks(OrderVO order);
+    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO roomVO);
 
     /**
      * 修改入住退房日期
@@ -37,15 +38,9 @@ public interface OrderBLService {
 
     /**
      * 得到账单信息
-     * @param hotelID
-     * @param date
-     * @param start
-     * @param end
-     * @param clientID
-     * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity);
+    public BillVO getBill();
 
     /**
      * 生成订单

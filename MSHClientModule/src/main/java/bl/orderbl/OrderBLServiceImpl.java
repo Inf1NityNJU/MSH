@@ -7,10 +7,7 @@ import blservice.orderblservice.OrderBLService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService_Stub;
 import util.*;
-import vo.AssessmentVO;
-import vo.BillVO;
-import vo.OrderRoomStockVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -37,9 +34,15 @@ public class OrderBLServiceImpl implements OrderBLService {
         return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
     }
 
-    public ArrayList<OrderRoomStockVO> getOrderRoomStocks(OrderVO order) {
+    @Override
+    public ResultMessage startOrder(OrderVO order) {
+        return this.order.startOrder(order);
+    }
 
-        return this.order.getOrderRoomStocks(order);
+
+    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO room) {
+
+        return this.order.getOrderRoomStock(room);
     }
 
     /**
@@ -59,21 +62,15 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否成功修改
      */
     public ResultMessage modifyRoomQuantity(RoomType type, int quantity) {
-        return null;
+        return order.modifyRoomQuantity(type, quantity);
     }
 
     /**
      * 得到账单信息
-     * @param hotelID
-     * @param date
-     * @param start
-     * @param end
-     * @param clientID
-     * @param quantity
      * @return BillVO
      */
-    public BillVO getBill(String hotelID, String clientID, DateUtil date, DateUtil start, DateUtil end, int quantity) {
-        return order.getBill(hotelID, clientID, date, start, end, quantity);
+    public BillVO getBill() {
+        return order.getBill();
     }
 
     /**
