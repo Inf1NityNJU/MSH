@@ -1,6 +1,7 @@
 package blservice.userblservice;
 
 import bl.userbl.Salesman;
+import vo.ClientVO;
 import vo.LevelVO;
 
 import java.util.ArrayList;
@@ -39,4 +40,11 @@ public interface UserBLInfo {
      * @return
      */
     public ArrayList<LevelVO> getAllLevel();
+
+    /**
+     *
+     * @param ID
+     * @return
+     */
+    public ClientVO getClientByID(String ID);
 }
