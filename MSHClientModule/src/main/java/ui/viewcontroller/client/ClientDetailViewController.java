@@ -6,6 +6,7 @@ import component.rectbutton.RectButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import vo.ClientVO;
 
@@ -54,6 +55,9 @@ public class ClientDetailViewController {
     @FXML
     protected RectButton actionButton;
 
+    @FXML
+    private HBox creditHBox;
+
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
 
@@ -77,11 +81,18 @@ public class ClientDetailViewController {
         creditLabel.setText(clientVO.credit + "");
 
         currentLevelLabel.setText("Lv." + clientVO.level);
-        nextLevelLabel.setText("Lv." + (clientVO.level + 1));
 
-        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-        int nextCredit = Integer.parseInt(userBLService.getLevel((clientVO.level + 1) + "").credit);
-        deltaCreditLabel.setText((nextCredit - clientVO.credit) + "");
+        UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
+        if(clientVO.level < userBLService.getAllLevel().size()){
+            creditHBox.setVisible(true);
+
+            userBLService = UserBLFactory.getUserBLServiceImpl_Client();
+            nextLevelLabel.setText("Lv." + (clientVO.level + 1));
+            int nextCredit = Integer.parseInt(userBLService.getLevel((clientVO.level + 1) + "").credit);
+            deltaCreditLabel.setText((nextCredit - clientVO.credit) + "");
+        }else{
+            creditHBox.setVisible(false);
+        }
 
     }
 

@@ -32,15 +32,15 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
 
     /**
      *
-     * @param promotionID 策略编号
+     * @param promotionName 策略名称
      * @param promotionType 策略类型
      * @param promotionDiscount 策略折扣
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
      * @param roomQuantity 最低房间数量
      */
-    public Promotion_RoomQuantityVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String hotelID, int roomQuantity) {
-        super(promotionID, promotionType, promotionDiscount,hotelID);
+    public Promotion_RoomQuantityVO(String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, String hotelID, int roomQuantity) {
+        super(promotionName, promotionType, promotionDiscount,hotelID);
         this.startDate = startDate;
         this.endDate = endDate;
         this.roomQuantity = roomQuantity;
@@ -79,15 +79,8 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
 
     @Override
     public PromotionPO toPO() {
-        if(promotionName==null){
             return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
                     "", this.hotelID, this.roomQuantity, Place.Unnecessary, 0);
-        }else {
-            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
-                    this.startDate.toString(), this.endDate.toString(),
-                    "", this.hotelID, this.roomQuantity, Place.Unnecessary, 0);
-        }
-
     }
 }

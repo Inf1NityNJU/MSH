@@ -29,15 +29,14 @@ public class PromotionVO {
 
     /**
      *
-     * @param promotionID 策略编号
+     * @param promotionName 策略名称
      * @param promotionType 策略类型
      * @param promotionDiscount 策略折扣
      */
-    public PromotionVO(String promotionID, PromotionType promotionType, double promotionDiscount) {
-        this.promotionID = promotionID;
+    public PromotionVO(String promotionName, PromotionType promotionType, double promotionDiscount) {
         this.promotionType = promotionType;
         this.promotionDiscount = promotionDiscount;
-        this.promotionName="DefaultName";
+        this.promotionName=promotionName;
     }
 
     public PromotionVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount) {

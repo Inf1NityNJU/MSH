@@ -20,15 +20,15 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
 
     /**
      *
-     * @param promotionID 策略编号
+     * @param promotionName 策略名称
      * @param promotionType 策略类型
      * @param promotionDiscount 策略折扣
      * @param startDate 策略起始日期
      * @param endDate 策略截止日期
      * @param place 策略涉及的商圈
      */
-    public Promotion_SpecialPlaceVO(String promotionID, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, Place place) {
-        super(promotionID, promotionType, promotionDiscount, startDate, endDate);
+    public Promotion_SpecialPlaceVO(String promotionName, PromotionType promotionType, double promotionDiscount, DateUtil startDate, DateUtil endDate, Place place) {
+        super(promotionName, promotionType, promotionDiscount, startDate, endDate);
         this.place = place;
     }
 
@@ -63,15 +63,8 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
 
     @Override
     public PromotionPO toPO() {
-        if (promotionName==null){
             return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
                     "", "", 0, this.place, 0);
-        }else {
-            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
-                    this.startDate.toString(), this.endDate.toString(),
-                    "", "", 0, this.place, 0);
         }
-
-    }
 }

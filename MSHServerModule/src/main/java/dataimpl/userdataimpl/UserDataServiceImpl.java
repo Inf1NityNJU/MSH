@@ -606,7 +606,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     private boolean reachedLevel(int level, int credit) {
-        if (credit >= getLevel(getAllLevel().size()+"").getCredit()) {
+        if (level == getLevel(getAllLevel().size() + "").getLevel()) {
             return true;
         } else {
             return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
