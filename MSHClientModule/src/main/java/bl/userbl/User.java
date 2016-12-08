@@ -46,16 +46,28 @@ public class User {
         LoginState loginState = userClientNetwork.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("Login Client");
-            ClientPO clientPO = userClientNetwork.searchClient(account).get(0);
-            this.setCurrentID(clientPO.getClientID());
+            ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(account);
+            for(ClientPO clientPO : clientPOs){
+                if(clientPO.getPassword().equals(password) && clientPO.getAccount().equals(account)){
+                    this.setCurrentID(clientPO.getClientID());
+                }
+            }
         } else if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
             System.out.println("Login Salesman");
-            SalesmanPO salesmanPO = userClientNetwork.searchSalesman(account).get(0);
-            this.setCurrentID(salesmanPO.getSalesmanID());
+            ArrayList<SalesmanPO> salesmanPOs = userClientNetwork.searchSalesman(account);
+            for(SalesmanPO salesmanPO : salesmanPOs){
+                if(salesmanPO.getPassword().equals(password) && salesmanPO.getAccount().equals(account)){
+                    this.setCurrentID(salesmanPO.getSalesmanID());
+                }
+            }
         } else if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
             System.out.println("Login Staff");
-            StaffPO staffPO = userClientNetwork.searchStaff(account).get(0);
-            this.setCurrentID(staffPO.getStaffID());
+            ArrayList<StaffPO> staffPOs = userClientNetwork.searchStaff(account);
+            for(StaffPO staffPO : staffPOs){
+                if(staffPO.getPassword().equals(password) && staffPO.getAccount().equals(account)){
+                    this.setCurrentID(staffPO.getStaffID());
+                }
+            }
         }
         return loginState;
     }

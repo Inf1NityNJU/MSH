@@ -24,7 +24,11 @@ public class LoginViewController {
 
     @FXML
     public void clickLoginButton() {
-        utilityViewController.login(accountText.getText(), passwordText.getText());
+        if (accountText.getText().equals("") || passwordText.getText().equals("")) {
+            System.out.println("Not Complete Info");
+        } else {
+            utilityViewController.login(accountText.getText(), passwordText.getText());
+        }
     }
 
     @FXML
