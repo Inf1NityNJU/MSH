@@ -28,7 +28,7 @@ public class Order {
     private ArrayList<OrderRoom> orderRooms;
     private Bill bill;
 
-    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
     private HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
 
     //TODO

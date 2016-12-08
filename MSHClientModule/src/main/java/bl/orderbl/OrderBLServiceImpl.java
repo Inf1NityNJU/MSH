@@ -27,7 +27,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否足以生成订单
      */
     public ResultMessage checkCredit() {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
         String clientID = userBLInfo.getCurrentID();
         int credit = userBLInfo.getCreditOfID(clientID);
         return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
@@ -148,7 +148,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
         String clientID = userBLInfo.getCurrentID();
 
         return  order.searchClientOrder(clientID, os, keyword);
@@ -161,7 +161,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
         String staffID = userBLInfo.getCurrentID();
         String hotelID = userBLInfo.getHotelIDByStaffID(staffID);

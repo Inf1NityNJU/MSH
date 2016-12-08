@@ -145,20 +145,6 @@ public class User {
     }
 
     /**
-     * 得到某客户的总信用值
-     *
-     * @param clientID
-     * @return 客户总信用值
-     */
-    public int getCreditOfID(String clientID) {
-        if (this instanceof Client) {
-            return this.getCreditOfID(clientID);
-        } else {
-            return -1;
-        }
-    }
-
-    /**
      * 设置当前用户ID
      *
      * @param currentID
