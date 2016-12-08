@@ -26,6 +26,10 @@ public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
         super(promotionID, promotionName, promotionType, promotionDiscount, startDate, endDate);
     }
 
+    public Promotion_WebSpecialDateVO(PromotionPO promotionPO){
+        super(promotionPO);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_WebSpecialDateVO) {

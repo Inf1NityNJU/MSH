@@ -53,6 +53,13 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
         this.roomQuantity = roomQuantity;
     }
 
+    public Promotion_RoomQuantityVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.startDate = new DateUtil(promotionPO.getStartDate());
+        this.endDate = new DateUtil(promotionPO.getEndDate());
+        this.roomQuantity = promotionPO.getRoomQuantity();
+    }
+
     @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_RoomQuantityVO) {

@@ -37,6 +37,11 @@ public class Promotion_SpecialPlaceVO extends Promotion_WebVO{
         this.place = place;
     }
 
+    public Promotion_SpecialPlaceVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.place = promotionPO.getPlace();
+    }
+
     @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_SpecialPlaceVO) {

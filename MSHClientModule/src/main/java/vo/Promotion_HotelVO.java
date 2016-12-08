@@ -1,5 +1,6 @@
 package vo;
 
+import po.PromotionPO;
 import util.DateUtil;
 import util.PromotionType;
 
@@ -20,6 +21,11 @@ public class Promotion_HotelVO extends PromotionVO{
     public Promotion_HotelVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount,String hotelID) {
         super(promotionID, promotionName, promotionType, promotionDiscount);
         this.hotelID = hotelID;
+    }
+
+    public Promotion_HotelVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.hotelID = promotionPO.getHotelID();
     }
 
     @Override

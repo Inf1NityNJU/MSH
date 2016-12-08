@@ -51,7 +51,12 @@ public class Promotion_EnterpriseVO extends Promotion_HotelVO{
         this.enterpriseName = enterpriseName;
     }
 
-
+    public Promotion_EnterpriseVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.startDate = new DateUtil(promotionPO.getStartDate());
+        this.endDate = new DateUtil(promotionPO.getEndDate());
+        this.enterpriseName = promotionPO.getEnterpriseName();
+    }
 
     @Override
     public boolean equals(Object o){

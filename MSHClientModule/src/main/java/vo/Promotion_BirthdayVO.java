@@ -18,6 +18,11 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
     public Promotion_BirthdayVO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, String hotelID) {
         super(promotionID, promotionName, promotionType, promotionDiscount, hotelID);
     }
+
+    public Promotion_BirthdayVO(PromotionPO promotionPO){
+        super(promotionPO);
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_BirthdayVO) {
