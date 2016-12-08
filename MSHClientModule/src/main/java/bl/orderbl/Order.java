@@ -3,11 +3,17 @@ package bl.orderbl;
 import bl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.userblservice.UserBLInfo;
+import dataimpl.orderdataimpl.OrderDataServiceFactory;
+import dataservice.orderdataservice.OrderDataService;
+import po.AssessmentPO;
+import po.OrderPO;
+import po.OrderRoomPO;
 import util.*;
 import vo.*;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -21,11 +27,17 @@ public class Order {
     private ArrayList<OrderRoom> orderRooms;
     private Bill bill;
 
-    private Map<OrderRoomStockVO, OrderRoomVO> rooms;
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+    private HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
+
+    //TODO
+    private OrderDataService orderDataService = OrderDataServiceFactory.getOrderDataService();
 
     public ResultMessage startOrder(OrderVO order) {
         this.order = order;
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+
+        order.clientID = userBLInfo.getCurrentID();
+        order.clientID = "000101101";
 
         orderRooms = new ArrayList<>();
 
@@ -116,6 +128,8 @@ public class Order {
         DecimalFormat df = new DecimalFormat("#.00");
         billVO.totalPrice = Double.parseDouble(df.format(totalPrice));
 
+        order.bill = billVO;
+
         return billVO;
     }
 
@@ -128,7 +142,26 @@ public class Order {
      * @return 是否成功生成
      */
     public ResultMessage generate(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
-        return ResultMessage.SUCCESS;
+        //TODO
+        order.orderID = "123456789213130213";
+
+        //OrderRoom
+        ArrayList<OrderRoomVO> roomVOs = order.rooms;
+
+        for (OrderRoomVO orderRoomVO : roomVOs) {
+            OrderRoomPO orderRoomPO = orderRoomVO.toPO(order.orderID + roomVOs.indexOf(orderRoomVO), order.orderID);
+            orderDataService.addOrderRoom(orderRoomPO);
+        }
+
+        order.bookedTime = new TimeUtil(LocalDateTime.now());
+        order.state = OrderState.Unexecuted;
+
+        order.latestExecuteTime = latest;
+        order.peopleQuantity = peopleQuantity;
+        order.hasChildren = hasChildren;
+
+        OrderPO orderPO = order.toPO();
+        return orderDataService.addOrder(orderPO);
     }
 
     /**
@@ -204,7 +237,37 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
-        return null;
+
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+        ArrayList<OrderPO> orderPOs = orderDataService.searchOrderByClientID(clientID, os);
+        for (OrderPO orderPO : orderPOs) {
+            Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());
+            String hotelName = hotel != null ? hotel.name : "不存在";
+            ClientVO client = userBLInfo.getClientByID(orderPO.getClientID());
+            String clientName = client != null ? client.clientName : "不存在";
+
+            ArrayList<OrderRoomPO> orderRoomPOs = orderDataService.searchOrderRoomByOrderID(orderPO.getOrderID());
+            ArrayList<OrderRoomVO> orderRoomVOs = new ArrayList<>();
+
+            for (OrderRoomPO orderRoomPO : orderRoomPOs) {
+                OrderRoomVO orderRoomVO = new OrderRoomVO(orderRoomPO);
+                orderRoomVOs.add(orderRoomVO);
+            }
+
+            BillVO billVO = new BillVO(orderPO);
+
+            AssessmentPO assessmentPO = orderDataService.searchAssessmentByOrderID(orderPO.getOrderID());
+            AssessmentVO assessmentVO = null;
+            if (assessmentPO != null) {
+                assessmentVO = new AssessmentVO(assessmentPO);
+            }
+
+            OrderVO orderVO = new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
+
+            orderVOs.add(orderVO);
+        }
+
+        return orderVOs;
     }
 
     /**

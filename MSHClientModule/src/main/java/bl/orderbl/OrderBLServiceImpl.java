@@ -80,8 +80,8 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @param hasChildren
      * @return 是否成功生成
      */
-    public ResultMessage generateOrder(String hotelID, TimeUtil latest, int peopleQuantity, boolean hasChildren) {
-        return null;
+    public ResultMessage generateOrder(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
+        return order.generate(latest, peopleQuantity, hasChildren);
     }
 
     /**
@@ -150,8 +150,9 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        userBLInfo = new UserBLService_Stub();
+//        userBLInfo = new UserBLService_Stub();
         String clientID = userBLInfo.getCurrentID();
+        clientID = "000101101";
         return  order.searchClientOrder(clientID, os, keyword);
     }
 
@@ -163,7 +164,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        userBLInfo = new UserBLService_Stub();
+//        userBLInfo = new UserBLService_Stub();
         String staffID = userBLInfo.getCurrentID();
         String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
         return  order.searchHotelOrder(hotelID, os, keyword);

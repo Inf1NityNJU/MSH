@@ -1,5 +1,8 @@
 package vo;
 
+import bl.orderbl.Bill;
+import po.OrderPO;
+
 /**
  * Created by Sorumi on 16/10/12.
  */
@@ -32,5 +35,18 @@ public class BillVO {
         this.hotelPromotion = hotelPromotion;
         this.originPrice = originPrice;
         this.totalPrice = totalPrice;
+    }
+
+    public BillVO(OrderPO orderPO) {
+        if (orderPO.getWebsitePromotionName() != null) {
+            this.websitePromotion = new PromotionVO(orderPO.getWebsitePromotionName(), null, orderPO.getWebsitePromotionDiscount());
+        }
+
+        if (orderPO.getHotelPromotionName() != null) {
+            this.hotelPromotion = new PromotionVO(orderPO.getHotelPromotionName(), null, orderPO.getHotelPromotionDiscount());
+        }
+
+        this.originPrice = orderPO.getOriginPrice();
+        this.totalPrice = orderPO.getTotalPrice();
     }
 }

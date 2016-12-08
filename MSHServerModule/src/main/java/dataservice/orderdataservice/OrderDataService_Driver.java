@@ -39,9 +39,9 @@ public class OrderDataService_Driver {
 
         orderDataService.searchOrderByOrderID("20161012010112340000");
 
-        orderDataService.searchOrderByClientID("000000001");
+        orderDataService.searchOrderByClientID("000000001", null);
 
-        orderDataService.searchOrderByHotelID("01011234");
+        orderDataService.searchOrderByHotelID("01011234", null);
 
         orderDataService.searchOrderRoomByOrderID("20161012010112340000");
 

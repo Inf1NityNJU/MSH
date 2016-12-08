@@ -1,5 +1,7 @@
 package util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 import static util.EqualJudgeHelper.judgeEqual;
@@ -17,13 +19,13 @@ public class TimeUtil {
 
     public TimeUtil(String timeUtil) {
         //第一次分割
-        String[] dateAndTime=timeUtil.split(" ");
-        date=new DateUtil(dateAndTime[0]);
+        String[] dateAndTime = timeUtil.split(" ");
+        date = new DateUtil(dateAndTime[0]);
         //
-        String[] time=dateAndTime[1].split(":");
-        hour=Integer.parseInt(time[0]);
-        min=Integer.parseInt(time[1]);
-        sec=Integer.parseInt(time[2]);
+        String[] time = dateAndTime[1].split(":");
+        hour = Integer.parseInt(time[0]);
+        min = Integer.parseInt(time[1]);
+        sec = Integer.parseInt(time[2]);
     }
 
     public TimeUtil(int year, int month, int day, int hour, int min, int sec) {
@@ -31,6 +33,20 @@ public class TimeUtil {
         this.hour = hour;
         this.min = min;
         this.sec = sec;
+    }
+
+    public TimeUtil (LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = dateTime.format(formatter);
+
+        String[] dateAndTime = formattedDateTime.split(" ");
+        date = new DateUtil(dateAndTime[0]);
+        //
+        String[] time = dateAndTime[1].split(":");
+        hour = Integer.parseInt(time[0]);
+        min = Integer.parseInt(time[1]);
+        sec = Integer.parseInt(time[2]);
+
     }
 
     /**
@@ -62,6 +78,7 @@ public class TimeUtil {
         //
         return secondSecond - firstSecond;
     }
+
 
     /**
      * 比较两个time
@@ -103,6 +120,10 @@ public class TimeUtil {
 
     @Override
     public String toString() {
+        return date.toString() + " " + timeString();
+    }
+
+    public String timeString() {
         String hour = String.valueOf(this.hour);
         String min = String.valueOf(this.min);
         String sec = String.valueOf(this.sec);
@@ -115,7 +136,7 @@ public class TimeUtil {
         if (sec.length() == 1) {
             sec = "0" + sec;
         }
-        return date.toString() + " " + hour + ":" + min + ":" + sec;
+        return hour + ":" + min + ":" + sec;
     }
 
 }

@@ -7,4 +7,5 @@ import java.rmi.Remote;
  */
 public interface OrderServerNetworkService extends Remote{
 
+
 }

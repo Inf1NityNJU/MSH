@@ -1,5 +1,6 @@
 package vo;
 
+import po.OrderRoomPO;
 import util.RoomType;
 
 /**
@@ -31,5 +32,15 @@ public class OrderRoomVO {
         this.type = type;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public OrderRoomPO toPO(String ID, String orderID) {
+        return new OrderRoomPO(ID, orderID, type, quantity, price);
+    }
+
+    public OrderRoomVO(OrderRoomPO orderRoomPO) {
+        this.type = orderRoomPO.getRoomType();
+        this.quantity = orderRoomPO.getQuantity();
+        this.price = orderRoomPO.getPrice();
     }
 }

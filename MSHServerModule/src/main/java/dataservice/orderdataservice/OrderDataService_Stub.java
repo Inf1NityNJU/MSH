@@ -76,7 +76,7 @@ public class OrderDataService_Stub implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrderByClientID(String clientID) {
+    public ArrayList<OrderPO> searchOrderByClientID(String clientID, OrderState orderState) {
         if (clientID.equals("000000001")) {
             System.out.println("SearchByClientID Succeed!");
             return orderPOs;
@@ -88,7 +88,7 @@ public class OrderDataService_Stub implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrderByHotelID(String hotelID) {
+    public ArrayList<OrderPO> searchOrderByHotelID(String hotelID, OrderState orderState) {
         if (hotelID.equals("01011234")) {
             System.out.println("SearchByHotelID Succeed!");
             return orderPOs;

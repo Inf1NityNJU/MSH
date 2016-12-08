@@ -49,7 +49,7 @@ public interface OrderBLService {
      * @param hasChildren
      * @return 是否成功生成
      */
-    public ResultMessage generateOrder(String hotelID, TimeUtil latest, int peopleQuantity, boolean hasChildren);
+    public ResultMessage generateOrder(TimeUtil latest, int peopleQuantity, boolean hasChildren);
 
     /**
      * 撤销订单

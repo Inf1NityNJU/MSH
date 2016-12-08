@@ -3,6 +3,7 @@ package ui.viewcontroller.client;
 import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
+import component.mychoicebox.MyChoiceBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,7 +12,9 @@ import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.order.ClientOrderRoomEditCellController;
+import util.ResultMessage;
 import util.RoomType;
+import util.TimeUtil;
 import vo.*;
 
 import java.io.IOException;
@@ -32,6 +35,15 @@ public class ClientBookOrderViewController {
     private MyCheckBox hasChildrenCheckBox;
 
     @FXML
+    private MyChoiceBox peopleQuantityBox;
+
+    @FXML
+    private MyChoiceBox executeTimeBox;
+
+    @FXML
+    private Label executeDateLabel;
+
+    @FXML
     private Label originPriceLabel;
 
     @FXML
@@ -47,6 +59,8 @@ public class ClientBookOrderViewController {
 
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
+    private OrderVO order;
+
     public void setClientSearchHotelViewController(ClientSearchHotelViewController clientSearchHotelViewController) {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
     }
@@ -54,10 +68,15 @@ public class ClientBookOrderViewController {
 
     //TODO
     public void setOrder(OrderVO order) {
+        this.order = order;
         orderBLService.startOrder(order);
 
         hotelNameLabel.setText(order.hotelName);
         checkDateLabel.setText(order.checkInDate.toString() + " - " + order.checkOutDate.toString());
+        executeDateLabel.setText(order.checkInDate.toString());
+
+        peopleQuantityBox.getSelectionModel().selectFirst();
+        executeTimeBox.getSelectionModel().selectFirst();
 
         addRoom(order.rooms);
 
@@ -101,6 +120,20 @@ public class ClientBookOrderViewController {
     }
 
     @FXML
+    private void clickBookButton() {
+        boolean hasChildren = hasChildrenCheckBox.getIsActiveProperty();
+        int peopleQuantity = (Integer) peopleQuantityBox.getSelectionModel().getSelectedItem();
+        String time = (String) executeTimeBox.getSelectionModel().getSelectedItem();
+        TimeUtil latest = new TimeUtil(order.checkInDate.toString() + " " + time + ":00");
+
+        ResultMessage rm = orderBLService.generateOrder(latest, peopleQuantity, hasChildren);
+
+        if (rm == ResultMessage.SUCCESS) {
+            //TODO
+        }
+    }
+
+    @FXML
     private void clickBackButton() {
         clientSearchHotelViewController.back();
         clientSearchHotelViewController.refreshHotel();
@@ -112,7 +145,6 @@ public class ClientBookOrderViewController {
         originPriceLabel.setText("¥ " + bill.originPrice);
         totalPriceLabel.setText("¥ " + bill.totalPrice);
 
-        //TODO addPromotion
         promotionVBox.getChildren().clear();
         if (bill.hotelPromotion != null) {
             addPromotions(bill.hotelPromotion);

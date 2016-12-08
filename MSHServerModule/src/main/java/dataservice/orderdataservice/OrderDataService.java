@@ -61,14 +61,14 @@ public interface OrderDataService {
      * @param clientID
      * @return
      */
-    public ArrayList<OrderPO> searchOrderByClientID(String clientID);
+    public ArrayList<OrderPO> searchOrderByClientID(String clientID, OrderState orderState);
 
     /**
      * 根据酒店ID搜索订单
      * @param hotelID
      * @return
      */
-    public ArrayList<OrderPO> searchOrderByHotelID(String hotelID);
+    public ArrayList<OrderPO> searchOrderByHotelID(String hotelID, OrderState orderState);
 
     /**
      * 根据订单ID搜索订单房间

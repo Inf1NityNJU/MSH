@@ -78,7 +78,7 @@ public class OrderPO {
     /**
      * 网站促销策略类型
      */
-    private PromotionType websitePromotionType;
+    private String websitePromotionName;
 
     /**
      * 网站促销策略折扣
@@ -88,7 +88,7 @@ public class OrderPO {
     /**
      * 酒店促销策略类型
      */
-    private PromotionType hotelPromotionType;
+    private String hotelPromotionName;
 
     /**
      * 酒店促销策略折扣
@@ -209,12 +209,12 @@ public class OrderPO {
         this.state = state;
     }
 
-    public PromotionType getWebsitePromotionType() {
-        return websitePromotionType;
+    public String getWebsitePromotionName() {
+        return websitePromotionName;
     }
 
-    public void setWebsitePromotionType(PromotionType websitePromotionType) {
-        this.websitePromotionType = websitePromotionType;
+    public void setWebsitePromotionName(String websitePromotionName) {
+        this.websitePromotionName = websitePromotionName;
     }
 
     public double getWebsitePromotionDiscount() {
@@ -225,12 +225,12 @@ public class OrderPO {
         this.websitePromotionDiscount = websitePromotionDiscount;
     }
 
-    public PromotionType getHotelPromotionType() {
-        return hotelPromotionType;
+    public String getHotelPromotionName() {
+        return hotelPromotionName;
     }
 
-    public void setHotelPromotionType(PromotionType hotelPromotionType) {
-        this.hotelPromotionType = hotelPromotionType;
+    public void setHotelPromotionName(String hotelPromotionName) {
+        this.hotelPromotionName = hotelPromotionName;
     }
 
     public double getHotelPromotionDiscount() {
@@ -264,7 +264,7 @@ public class OrderPO {
     public OrderPO(String orderID, String hotelID, String clientID, DateUtil checkInDate, DateUtil checkOutDate,
                    TimeUtil checkInTime, TimeUtil checkOutTime, TimeUtil bookedTime, TimeUtil cancelledTime, TimeUtil latestExecuteTime,
                    int peopleQuantity, boolean hasChildren, OrderState state,
-                   PromotionType websitePromotionType, double websitePromotionDiscount, PromotionType hotelPromotionType, double hotelPromotionDiscount,
+                   String websitePromotionName, double websitePromotionDiscount, String hotelPromotionName, double hotelPromotionDiscount,
                    double originPrice, double totalPrice) {
             this.orderID = orderID;
         this.hotelID = hotelID;
@@ -272,20 +272,20 @@ public class OrderPO {
 
         this.checkInDate = checkInDate.toString();
         this.checkOutDate = checkOutDate.toString();
-        this.checkInTime = checkInTime != null ? checkInTime.toString() : "";
-        this.checkOutTime = checkOutTime != null ? checkOutTime.toString() : "";
+        this.checkInTime = checkInTime != null ? checkInTime.toString() : null;
+        this.checkOutTime = checkOutTime != null ? checkOutTime.toString() : null;
 
         this.bookedTime = bookedTime.toString();
-        this.cancelledTime = cancelledTime != null ? cancelledTime.toString() : "";
+        this.cancelledTime = cancelledTime != null ? cancelledTime.toString() : null;
 
         this.latestExecuteTime = latestExecuteTime.toString();
         this.peopleQuantity = peopleQuantity;
         this.hasChildren = hasChildren;
 
         this.state = state;
-        this.websitePromotionType = websitePromotionType;
+        this.websitePromotionName = websitePromotionName;
         this.websitePromotionDiscount = websitePromotionDiscount;
-        this.hotelPromotionType = hotelPromotionType;
+        this.hotelPromotionName = hotelPromotionName;
         this.hotelPromotionDiscount = hotelPromotionDiscount;
         this.originPrice = originPrice;
         this.totalPrice = totalPrice;
@@ -304,4 +304,5 @@ public class OrderPO {
     public int hashCode() {
         return orderID.hashCode();
     }
+
 }
