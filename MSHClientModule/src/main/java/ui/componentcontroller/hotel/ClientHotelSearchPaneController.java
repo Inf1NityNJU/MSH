@@ -117,12 +117,17 @@ public class ClientHotelSearchPaneController {
                     star=5;
                     break;
                 default:
-                    System.err.println("Wrong in starPane!");
             }
         }
         //score
-        int minScore=(Integer) minScoreBox.getSelectionModel().getSelectedItem();
-        int maxScore=(Integer) minScoreBox.getSelectionModel().getSelectedItem();
+        int minScore=0;
+        int maxScore=0;
+        if(minScoreBox.getSelectionModel().getSelectedItem()!=null) {
+            minScore = (Integer) minScoreBox.getSelectionModel().getSelectedItem();
+        }
+        if(minScoreBox.getSelectionModel().getSelectedItem()!=null) {
+            maxScore = (Integer) minScoreBox.getSelectionModel().getSelectedItem();
+        }
         //ordered
 
         // TODO: 2016/12/9    client ID
