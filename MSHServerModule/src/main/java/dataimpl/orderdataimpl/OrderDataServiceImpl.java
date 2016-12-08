@@ -45,13 +45,15 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrder(String field, String value) {
-        return orderDataHelper.fuzzyMatchQuery(field, value);
-    }
+    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value) {
+        ArrayList<CriteriaClause> queries = new ArrayList<>();
 
-    @Override
-    public ArrayList<OrderPO> searchOrderByState(OrderState state) {
-        return orderDataHelper.fullMatchQuery("state", state);
+        if (orderState != null) {
+            CriteriaClauseImpl stateQuery = CriteriaClauseImpl.createSingleValueQuery("state", orderState, QueryMethod.Full);
+            queries.add(stateQuery);
+        }
+
+        return orderDataHelper.multiCriteriaQuery(queries);
     }
 
     @Override
@@ -102,5 +104,10 @@ public class OrderDataServiceImpl implements OrderDataService {
     @Override
     public AssessmentPO searchAssessmentByOrderID(String orderID) {
         return assessmentDataHelper.exactlyQuery("orderID", orderID);
+    }
+
+    @Override
+    public int searchOrderQuantity(String orderIDPrefix) {
+        return orderDataHelper.prefixMatchQuery("orderID", orderIDPrefix).size();
     }
 }

@@ -63,7 +63,7 @@ public class DataChecker {
                 , calendar.get(Calendar.MINUTE)
                 , calendar.get(Calendar.SECOND));
         //依次检测每一个未执行的Order
-        for (OrderPO orderPO : orderDataService.searchOrderByState(OrderState.Unexecuted)) {
+        for (OrderPO orderPO : orderDataService.searchOrder(OrderState.Unexecuted, null, null)) {
             TimeUtil lastTime = new TimeUtil(orderPO.getLatestExecuteTime());
             if (now.getIntervalTime(lastTime) < sixHourInterval) {
                 orderPO.setState(OrderState.Abnormal);

@@ -178,7 +178,7 @@ public class OrderVO {
         this.rooms = rooms;
 
         this.checkInDate = new DateUtil(orderPO.getCheckInDate());
-        this.checkOutDate = new DateUtil(orderPO.getCheckInDate());
+        this.checkOutDate = new DateUtil(orderPO.getCheckOutDate());
         this.checkInTime = orderPO.getCheckInTime() != null ? new TimeUtil(orderPO.getCheckInTime()) : null;
         this.checkOutTime = orderPO.getCheckOutTime() != null ? new TimeUtil(orderPO.getCheckOutTime()) : null;
 

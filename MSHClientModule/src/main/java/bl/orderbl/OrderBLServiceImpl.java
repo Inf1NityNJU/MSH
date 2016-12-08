@@ -28,7 +28,6 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ResultMessage checkCredit() {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        userBLInfo = new UserBLService_Stub();
         String clientID = userBLInfo.getCurrentID();
         int credit = userBLInfo.getCreditOfID(clientID);
         return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
@@ -150,9 +149,8 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-//        userBLInfo = new UserBLService_Stub();
         String clientID = userBLInfo.getCurrentID();
-        clientID = "000101101";
+
         return  order.searchClientOrder(clientID, os, keyword);
     }
 
@@ -164,7 +162,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-//        userBLInfo = new UserBLService_Stub();
+
         String staffID = userBLInfo.getCurrentID();
         String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
         return  order.searchHotelOrder(hotelID, os, keyword);

@@ -66,14 +66,10 @@ public class OrderDataService_Stub implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrder(String field, String value) {
+    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value) {
         return null;
     }
 
-    @Override
-    public ArrayList<OrderPO> searchOrderByState(OrderState state) {
-        return null;
-    }
 
     @Override
     public ArrayList<OrderPO> searchOrderByClientID(String clientID, OrderState orderState) {
@@ -122,5 +118,10 @@ public class OrderDataService_Stub implements OrderDataService {
     @Override
     public AssessmentPO searchAssessmentByOrderID(String orderID) {
         return null;
+    }
+
+    @Override
+    public int searchOrderQuantity(String orderIDPrefix) {
+        return 0;
     }
 }

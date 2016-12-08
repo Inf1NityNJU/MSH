@@ -99,18 +99,13 @@ public class ClientHotelListViewController {
         hotelBLService = HotelBLFactory.getHotelBLService();
         hotels = hotelBLService.searchHotelInBriefVO(filterFlagsVO);
 
-//        Hotel_BriefVO hotel = new Hotel_BriefVO("00000000", "酒店名字", "地址很长啦", 3, 4.8);
-//
-//        for (int i = 0; i < 7; i++) {
-//            hotels.add(hotel);
-//        }
-
         int size = hotels.size();
         clientHotelPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
             turnPage(1);
         } else {
             System.out.println("No Hotel");
+            clearCells();
         }
 
     }
@@ -119,10 +114,16 @@ public class ClientHotelListViewController {
         int fromIndex = (page - 1) * NUM_OF_CELL;
         int toIndex = Math.min(page * NUM_OF_CELL, hotels.size());
         List<Hotel_BriefVO> tmpHotels = hotels.subList(fromIndex, toIndex);
-//        for(Hotel_BriefVO hotel_briefVO:tmpHotels){
-//            System.out.println(hotel_briefVO);
-//        }
+
         setCells(tmpHotels);
+    }
+
+    private void clearCells() {
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
     }
 
     private void setCells(List<Hotel_BriefVO> hotel_BriefVOs) {
@@ -133,11 +134,7 @@ public class ClientHotelListViewController {
             return;
         }
 
-        for (Node cell : cells) {
-            tilePane.getChildren().remove(cell);
-        }
-
-        contentVBox.getChildren().remove(pagePane);
+        clearCells();
 
         for (int i = 0; i < hotel_BriefVOs.size(); i++) {
 

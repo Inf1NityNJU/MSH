@@ -92,6 +92,7 @@ public class HotelOrderListViewController {
             turnPage(1);
         } else {
             System.out.println("No Order");
+            clearCells();
         }
 
     }
@@ -103,6 +104,14 @@ public class HotelOrderListViewController {
         setCells(tmpOrders);
     }
 
+    private void clearCells() {
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
+    }
+
     private void setCells(List<OrderVO> orders) {
 
         if (orders.size() > NUM_OF_CELL) {
@@ -110,11 +119,7 @@ public class HotelOrderListViewController {
             return;
         }
 
-        for (Node cell : cells) {
-            contentVBox.getChildren().remove(cell);
-        }
-
-        contentVBox.getChildren().remove(pagePane);
+        clearCells();
 
         for (int i = 0; i < orders.size(); i++) {
 

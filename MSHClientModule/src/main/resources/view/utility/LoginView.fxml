@@ -43,7 +43,7 @@
                   <Font name="Bangla MN" size="20.0" />
                </font>
             </Label>
-            <RectButton isAbledProperty="false" isActiveProperty="false" layoutX="166.0" layoutY="219.0" text="注 册" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickSignUpButton"/>
+            <RectButton isAbledProperty="true" isActiveProperty="false" layoutX="166.0" layoutY="219.0" text="注 册" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickSignUpButton"/>
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
