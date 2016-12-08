@@ -5,6 +5,8 @@ import util.DateUtil;
 import util.Place;
 import util.RoomType;
 
+import java.lang.reflect.Field;
+
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**
@@ -64,8 +66,8 @@ public class FilterFlagsVO {
      */
     public String bookedClientID;
 
-    public FilterFlagsVO(City city,Place place, String name, RoomType roomType, double minPrice, double maxPrice, DateUtil checkInDate, DateUtil checkOutDate, int quantity, int star, double minScore, double maxScore, String bookedClientID) {
-        this.city=city;
+    public FilterFlagsVO(City city, Place place, String name, RoomType roomType, double minPrice, double maxPrice, DateUtil checkInDate, DateUtil checkOutDate, int quantity, int star, double minScore, double maxScore, String bookedClientID) {
+        this.city = city;
         this.place = place;
         this.name = name;
         this.roomType = roomType;
@@ -120,9 +122,31 @@ public class FilterFlagsVO {
                 && judgeEqual(checkInDate, filterFlagsVO.checkInDate)
                 && judgeEqual(checkOutDate, filterFlagsVO.checkOutDate)
                 && judgeEqual(quantity, filterFlagsVO.quantity)
-                && judgeEqual(star,filterFlagsVO.star )
+                && judgeEqual(star, filterFlagsVO.star)
                 && judgeEqual(minScore, filterFlagsVO.minPrice)
                 && judgeEqual(maxScore, filterFlagsVO.maxPrice)
                 && judgeEqual(bookedClientID, filterFlagsVO.bookedClientID);
     }
+
+    @Override
+    public String toString() {
+        String lineSeparator = System.getProperty("line.separator", "\n");
+
+        String result = "----------" + this.getClass().getName() + "----------" + lineSeparator;
+        for (Field field : this.getClass().getDeclaredFields()) {
+            try {
+                if (field.get(this) == null) {
+                    result += field.getName() + ": null" + "    ";
+                } else {
+                    result += field.getName() + ": " + field.get(this).toString() + "    ";
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        result += lineSeparator + "--------------------" + lineSeparator;
+
+        return result;
+    }
+
 }

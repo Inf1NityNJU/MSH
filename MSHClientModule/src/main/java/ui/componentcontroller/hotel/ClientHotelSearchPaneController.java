@@ -100,7 +100,7 @@ public class ClientHotelSearchPaneController {
         String cityName = citySelect.getText();
         City city = City.getCityByName(cityName);
         //place
-        String placeName = citySelect.getText();
+        String placeName = placeSelect.getText();
         Place place = Place.getPlaceByName(placeName);
         //name
         String name = keywordTextField.getText();
@@ -115,7 +115,10 @@ public class ClientHotelSearchPaneController {
         DateUtil end = new DateUtil(checkOutDatePicker.getDate());
         //quantity
         String quantityName = roomQuantitySelect.getText();
-        int quantity = Integer.parseInt(quantityName.substring(0, 1));
+        int quantity=0;
+        if(quantityName.charAt(0)!='房'){
+           quantity = Integer.parseInt(quantityName.substring(0, 1));
+        }
         //star
         String starName = starPane.getText();
         int star = -1;
@@ -146,12 +149,13 @@ public class ClientHotelSearchPaneController {
             minScore = (Integer) minScoreBox.getSelectionModel().getSelectedItem();
         }
         if(minScoreBox.getSelectionModel().getSelectedItem()!=null) {
-            maxScore = (Integer) minScoreBox.getSelectionModel().getSelectedItem();
+            maxScore = (Integer) maxScoreBox.getSelectionModel().getSelectedItem();
         }
         //ordered
 
         // TODO: 2016/12/9    client ID
         FilterFlagsVO flags = new FilterFlagsVO(city, place, name, roomType, minPrice, maxPrice, start, end, quantity, star, minScore, maxScore, null);
+        System.out.println(flags);
         clientHotelListViewController.showHotel(flags);
     }
 }
