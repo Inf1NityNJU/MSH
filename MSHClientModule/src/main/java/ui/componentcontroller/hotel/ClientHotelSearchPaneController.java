@@ -2,9 +2,15 @@ package ui.componentcontroller.hotel;
 
 import component.mydatepicker.MyDatePicker;
 import component.radioboxpane.RadioBoxPane;
+import component.selectpane.SelectPane;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientHotelListViewController;
 import ui.viewcontroller.client.ClientOrderListViewController;
+import util.City;
+import util.Place;
 import util.RoomType;
 import vo.FilterFlagsVO;
 
@@ -16,6 +22,12 @@ import java.time.LocalDate;
 public class ClientHotelSearchPaneController {
 
     private ClientHotelListViewController clientHotelListViewController;
+
+    @FXML
+    private SelectPane citySelect;
+
+    @FXML
+    private SelectPane placeSelect;
 
     @FXML
     private MyDatePicker checkInDatePicker;
@@ -37,6 +49,25 @@ public class ClientHotelSearchPaneController {
     public void initialize() {
         checkInDatePicker.setDate(LocalDate.now());
         checkOutDatePicker.setDate(LocalDate.now().plusDays(1));
+
+        citySelect.getLabels().clear();
+        for (City city : City.values()) {
+            Label label = new Label(city.getName());
+            citySelect.getLabels().add(label);
+        }
+        citySelect.setOnValueChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                placeSelect.getLabels().clear();
+                City city = City.getCityByName(citySelect.getText());
+                for (Place place : city.getPlaces()) {
+                    Label label = new Label(place.getName());
+                    placeSelect.getLabels().add(label);
+                }
+            }
+        });
+
+
     }
 
     @FXML

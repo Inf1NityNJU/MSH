@@ -81,7 +81,6 @@ public class HotelOrderViewController {
             hotelOrderDetailViewController.setHotelOrderViewController(this);
             hotelOrderDetailViewController.showOrder(order);
 
-//            stack.push(view);
             Node node = rootPane.getCenter();
             stack.push(node);
 
