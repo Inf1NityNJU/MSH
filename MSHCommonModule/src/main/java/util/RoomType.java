@@ -26,5 +26,12 @@ public enum RoomType {
         return this.name;
     }
 
+    public static RoomType getRoomTypeByName(String name) {
+        for (RoomType type : RoomType.values()){
+            if(name.equals(type.name))
+                return type;
+        }
+        return null;
+    }
 }
 

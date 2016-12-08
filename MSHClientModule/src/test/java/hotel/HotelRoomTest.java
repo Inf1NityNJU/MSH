@@ -10,8 +10,8 @@ import util.DateUtil;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
+import vo.OrderRoomStockVO;
 import vo.RoomChangeInfoVO;
-import vo.RoomStockWithPriceVO;
 
 import java.util.ArrayList;
 
@@ -93,10 +93,16 @@ public class HotelRoomTest {
         assertEquals(ResultMessage.FALSE, resultMessage);
     }
 
-//    @Test
-//    public void getRoomStockWithPrice() {
-//        ArrayList<RoomStockWithPriceVO> roomStockWithPriceVOs =hotelBLInfo.getRoomStocks(new DateUtil(2016,12,5),new DateUtil(2016,12,20),"00000000",RoomType.SingleRoom);
-//        System.out.println(roomStockWithPriceVOs.get(0).price);
-//        assertEquals(16,roomStockWithPriceVOs.size());
-//    }
+    @Test
+    public void getAvailableQuantity() {
+        int quantity = hotelBLInfo.getAvailableQuantity(new DateUtil(2016, 12, 5), new DateUtil(2016, 12, 20), "00000000", RoomType.SingleRoom);
+        System.out.println(quantity);
+    }
+
+    @Test
+    public void getOrderRoomStockVO() {
+        ArrayList<OrderRoomStockVO> orderRoomStockVOs = hotelBLService.getRoomStocks(new DateUtil(2016, 12, 5), new DateUtil(2016, 12, 20), "00000000");
+        System.out.println(orderRoomStockVOs.get(1).orderRoom.price);
+        assertEquals(2, orderRoomStockVOs.size());
+    }
 }

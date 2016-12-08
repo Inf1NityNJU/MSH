@@ -37,7 +37,7 @@ public class HotelOrderListViewController {
     private Node pagePane;
     private HotelOrderPagePaneController hotelOrderPagePaneController;
 
-    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();;
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 

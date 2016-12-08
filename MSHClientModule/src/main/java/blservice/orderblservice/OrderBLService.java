@@ -18,7 +18,7 @@ public interface OrderBLService {
 
     public ResultMessage startOrder(OrderVO order);
 
-    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO roomVO);
+    public int getOrderRoomStock(OrderRoomVO roomVO);
 
     /**
      * 修改入住退房日期

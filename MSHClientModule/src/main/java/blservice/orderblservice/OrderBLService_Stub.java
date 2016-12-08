@@ -20,8 +20,8 @@ public class OrderBLService_Stub implements OrderBLService {
     }
 
     @Override
-    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO roomVO) {
-        return null;
+    public int getOrderRoomStock(OrderRoomVO roomVO) {
+        return 2;
     }
 
     public ResultMessage modifyDate(DateUtil start, DateUtil end) {

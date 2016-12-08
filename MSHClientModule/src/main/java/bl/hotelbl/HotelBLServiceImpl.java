@@ -137,7 +137,7 @@ public class HotelBLServiceImpl implements HotelBLService, HotelBLInfo {
     @Override
     public int getAvailableQuantity(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
         for(OrderRoomStockVO orderRoomStockVO:hotelRoom.getRoomStocks(start, end, hotelID)){
-            if(orderRoomStockVO.type.equals(roomType)){
+            if(orderRoomStockVO.orderRoom.type.equals(roomType)){
                 return orderRoomStockVO.availableQuantity;
             }
         }

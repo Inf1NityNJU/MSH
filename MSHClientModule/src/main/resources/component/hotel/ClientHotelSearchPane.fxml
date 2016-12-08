@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import component.radioboxpane.RadioBoxPane?>
 <VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.ClientHotelSearchPaneController">
     <padding>
         <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
@@ -85,8 +86,8 @@
                      </GridPane.margin>
                   </Label>
                   <MyRangeSlider fx:id="roomPriceSlider" prefix="￥" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TilePane hgap="70.0" tileAlignment="TOP_LEFT" GridPane.columnIndex="1">
-                     <children>
+                  <RadioBoxPane fx:id="roomTypePane" hgap="70.0" tileAlignment="TOP_LEFT" GridPane.columnIndex="1">
+                     <items>
                         <MyCheckBox text="单人房" />
                         <MyCheckBox text="大床房" />
                         <MyCheckBox text="双人房" />
@@ -97,8 +98,8 @@
                         <MyCheckBox text="高级房" />
                         <MyCheckBox text="商务房" />
                         <MyCheckBox text="奢华房" />
-                     </children>
-                  </TilePane>
+                     </items>
+                  </RadioBoxPane>
                   <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <MyChoiceBox fx:id="minScoreBox" minHeight="-Infinity" prefWidth="70.0">
@@ -130,15 +131,15 @@
                         </MyChoiceBox>
                      </children>
                   </HBox>
-                  <TilePane hgap="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <children>
+                  <RadioBoxPane fx:id="starPane" hgap="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <items>
                         <MyCheckBox text="五星" />
                         <MyCheckBox text="四星" />
                         <MyCheckBox text="三星" />
                         <MyCheckBox text="二星" />
                         <MyCheckBox text="一星" />
-                     </children>
-                  </TilePane>
+                     </items>
+                  </RadioBoxPane>
                   <MyCheckBox text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>

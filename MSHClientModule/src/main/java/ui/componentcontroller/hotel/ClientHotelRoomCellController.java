@@ -26,14 +26,27 @@ public class ClientHotelRoomCellController {
 
     private ClientHotelDetailViewController clientHotelDetailViewController;
 
+    private OrderRoomStockVO orderRoomStock;
+
     public void setClientHotelDetailViewController(ClientHotelDetailViewController clientHotelDetailViewController) {
         this.clientHotelDetailViewController = clientHotelDetailViewController;
     }
 
     public void setRoom(OrderRoomStockVO room) {
-        typeLabel.setText(room.type.getName());
-        priceLabel.setText("¥ " + room.price);
+        this.orderRoomStock = room;
+
+        typeLabel.setText(room.orderRoom.type.getName());
+        priceLabel.setText("¥ " + room.orderRoom.price);
         quantityLabel.setText("剩余 " + room.availableQuantity + " 间");
         addButton.setIsAbledProperty(room.availableQuantity > 0);
+    }
+
+    @FXML
+    private void clickAddButton() {
+        orderRoomStock.orderRoom.quantity++;
+        if (orderRoomStock.orderRoom.quantity >= orderRoomStock.availableQuantity) {
+            addButton.setIsAbledProperty(false);
+        }
+        clientHotelDetailViewController.addRoomInOrder(orderRoomStock);
     }
 }

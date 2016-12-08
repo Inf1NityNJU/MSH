@@ -7,15 +7,12 @@ import util.RoomType;
  */
 public class OrderRoomStockVO {
 
-    public RoomType type;
-
-    public double price;
+    public OrderRoomVO orderRoom;
 
     public int availableQuantity;
 
     public OrderRoomStockVO(RoomType type, double price, int availableQuantity) {
-        this.type = type;
-        this.price = price;
+        this.orderRoom = new OrderRoomVO(type, 0, price);
         this.availableQuantity = availableQuantity;
     }
 }

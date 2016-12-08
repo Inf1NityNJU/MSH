@@ -59,13 +59,12 @@ public class ClientBookOrderViewController {
         hotelNameLabel.setText(order.hotelName);
         checkDateLabel.setText(order.checkInDate.toString() + " - " + order.checkOutDate.toString());
 
-        addPromotions(null);
         addRoom(order.rooms);
 
     }
 
     private void addRoom(ArrayList<OrderRoomVO> rooms) {
-//        for (int i = 0; i < 1; i++) {
+
         for (OrderRoomVO room : rooms) {
 
             try {
@@ -85,27 +84,26 @@ public class ClientBookOrderViewController {
         }
     }
 
-    private void addPromotions(ArrayList<PromotionVO> promotions) {
-        for (int i = 0; i < 2; i++) {
-//        for (PromotionVO promotion : promotions) {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
-                Pane pane = loader.load();
+    private void addPromotions(PromotionVO promotion) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
+            Pane pane = loader.load();
 
-                OrderPromotionCellController orderPromotionCellController = loader.getController();
-//                orderPromotionCellController.setPromotion(promotion);
+            OrderPromotionCellController orderPromotionCellController = loader.getController();
+            orderPromotionCellController.setPromotion(promotion);
 
-                promotionVBox.getChildren().add(pane);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            promotionVBox.getChildren().add(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     @FXML
     private void clickBackButton() {
         clientSearchHotelViewController.back();
+        clientSearchHotelViewController.refreshHotel();
     }
 
 
@@ -113,5 +111,14 @@ public class ClientBookOrderViewController {
         BillVO bill = orderBLService.getBill();
         originPriceLabel.setText("¥ " + bill.originPrice);
         totalPriceLabel.setText("¥ " + bill.totalPrice);
+
+        //TODO addPromotion
+        promotionVBox.getChildren().clear();
+        if (bill.hotelPromotion != null) {
+            addPromotions(bill.hotelPromotion);
+        }
+        if (bill.websitePromotion != null) {
+            addPromotions(bill.websitePromotion);
+        }
     }
 }
