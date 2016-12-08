@@ -1,5 +1,6 @@
 package vo;
 
+import po.PromotionPO;
 import util.DateUtil;
 import util.Place;
 import util.PromotionType;
@@ -41,6 +42,11 @@ public class Promotion_WebVO extends PromotionVO{
         this.endDate = endDate;
     }
 
+    public Promotion_WebVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.startDate = new DateUtil(promotionPO.getStartDate());
+        this.endDate = new DateUtil(promotionPO.getEndDate());
+    }
 
     @Override
     public boolean equals(Object o){

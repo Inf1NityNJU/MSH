@@ -45,6 +45,14 @@ public class PromotionVO {
         this.promotionDiscount = promotionDiscount;
         this.promotionName = promotionName;
     }
+
+    public PromotionVO(PromotionPO promotionPO){
+        this.promotionName = promotionPO.getPromotionName();
+        this.promotionID = promotionPO.getPromotionID();
+        this.promotionType = promotionPO.getPromotionType();
+        this.promotionDiscount = promotionPO.getPromotionDiscount();
+    }
+
     public PromotionPO toPO(){
         return null;
     };

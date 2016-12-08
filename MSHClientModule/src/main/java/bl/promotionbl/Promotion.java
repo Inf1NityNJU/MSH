@@ -112,19 +112,19 @@ public class Promotion{
     private PromotionVO POToVO(PromotionPO promotionPO){
         switch (promotionPO.getPromotionType()){
             case Hotel_Birthday:
-                return new Promotion_BirthdayVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),promotionPO.getHotelID());
+                return new Promotion_BirthdayVO(promotionPO);
             case Hotel_SpecilaDate:
-                return new Promotion_HotelSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getHotelID());
+                return new Promotion_HotelSpecialDateVO(promotionPO);
             case Hotel_RoomQuantity:
-                return new Promotion_RoomQuantityVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getHotelID(),promotionPO.getRoomQuantity());
+                return new Promotion_RoomQuantityVO(promotionPO);
             case Hotel_Enterprise:
-                return new Promotion_EnterpriseVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getCompanyName(),promotionPO.getHotelID());
+                return new Promotion_EnterpriseVO(promotionPO);
             case Web_ClientGrade:
-                return new Promotion_ClientGradeVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getClientGrade());
+                return new Promotion_ClientGradeVO(promotionPO);
             case Web_SpecilPlace:
-                return new Promotion_SpecialPlaceVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()),promotionPO.getPlace());
+                return new Promotion_SpecialPlaceVO(promotionPO);
             case Web_SpecilaDate:
-                return new Promotion_WebSpecialDateVO(promotionPO.getPromotionID(),promotionPO.getPromotionName(),promotionPO.getPromotionType(),promotionPO.getPromotionDiscount(),new DateUtil(promotionPO.getStartDate()),new DateUtil(promotionPO.getEndDate()));
+                return new Promotion_WebSpecialDateVO(promotionPO);
             default:return null;
         }
     }

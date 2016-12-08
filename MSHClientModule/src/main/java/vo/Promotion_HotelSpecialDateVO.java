@@ -41,6 +41,12 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO {
         this.endDate = endDate;
     }
 
+    public Promotion_HotelSpecialDateVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.startDate = new DateUtil(promotionPO.getStartDate());
+        this.endDate = new DateUtil(promotionPO.getEndDate());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_HotelSpecialDateVO) {

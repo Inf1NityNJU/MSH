@@ -36,6 +36,11 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
         this.clientGrade = clientGrade;
     }
 
+    public Promotion_ClientGradeVO(PromotionPO promotionPO){
+        super(promotionPO);
+        this.clientGrade = promotionPO.getClientGrade();
+    }
+
     @Override
     public boolean equals(Object o){
         if (o instanceof Promotion_ClientGradeVO) {
