@@ -30,6 +30,6 @@
             <Font name="PingFang SC Regular" size="16.0" />
          </font>
       </Label>
-      <RectButton fx:id="addButton" isActiveProperty="false" text="加 入" />
+      <RectButton fx:id="addButton" isActiveProperty="false" text="加 入" onMouseClicked="#clickAddButton"/>
    </children>
 </HBox>

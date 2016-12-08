@@ -31,9 +31,10 @@ public class ClientSearchHotelViewController {
 
     private HotelBLService hotelBLService;
 
+    private  ClientHotelDetailViewController clientHotelDetailViewController;
+
     public ClientSearchHotelViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
-        //TODO
         hotelBLService = HotelBLFactory.getHotelBLService();
     }
 
@@ -44,7 +45,6 @@ public class ClientSearchHotelViewController {
         if (!stack.empty()) {
             Node node = stack.pop();
             rootPane.setCenter(node);
-
         }
     }
 
@@ -87,7 +87,7 @@ public class ClientSearchHotelViewController {
             loader.setLocation(Main.class.getResource("../view/client/ClientHotelDetailView.fxml"));
             ScrollPane pane = loader.load();
 
-            ClientHotelDetailViewController clientHotelDetailViewController = loader.getController();
+            clientHotelDetailViewController = loader.getController();
             clientHotelDetailViewController.setClientSearchHotelViewController(this);
             clientHotelDetailViewController.setHotel(hotel);
 
@@ -124,6 +124,10 @@ public class ClientSearchHotelViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void refreshHotel() {
+        clientHotelDetailViewController.newOrder();
     }
 
 }

@@ -1,5 +1,7 @@
 package ui.componentcontroller.promotion;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import vo.PromotionVO;
 
 /**
@@ -7,9 +9,15 @@ import vo.PromotionVO;
  */
 public class OrderPromotionCellController {
 
-    //TODO
-    public void setPromotion(PromotionVO promotion) {
+    @FXML
+    private Label nameLabel;
 
+    @FXML
+    private Label discountLabel;
+
+    public void setPromotion(PromotionVO promotion) {
+        nameLabel.setText(promotion.promotionName);
+        discountLabel.setText(promotion.promotionDiscount*10 + "折");
     }
 
 }

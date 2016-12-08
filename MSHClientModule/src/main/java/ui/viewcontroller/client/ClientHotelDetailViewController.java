@@ -1,12 +1,18 @@
 package ui.viewcontroller.client;
 
 import bl.blfactory.BLFactoryImpl;
+import bl.orderbl.OrderRoom;
+import blservice.hotelblservice.HotelBLService;
 import blservice.orderblservice.OrderBLService;
+import blservice.promotionblservice.PromotionBLService;
 import com.sun.xml.internal.bind.v2.TODO;
 import component.mydatepicker.MyDatePicker;
 import component.ratestarpane.RateStarPane;
+import component.rectbutton.RectButton;
 import component.starlabel.StarLabel;
 import component.statebutton.StateButton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -67,6 +73,12 @@ public class ClientHotelDetailViewController {
     private Label scoreLabel;
 
     @FXML
+    private Label bookRoomLabel;
+
+    @FXML
+    private RectButton bookButton;
+
+    @FXML
     private RateStarPane rateScorePane;
 
     private OrderVO order;
@@ -74,13 +86,21 @@ public class ClientHotelDetailViewController {
 
     private ClientSearchHotelViewController clientSearchHotelViewController;
 
+    private  HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+    private  OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+
+    private Hotel_DetailVO hotel;
+
+    private ArrayList<OrderRoomStockVO> roomStocks;
+    private int bookRoomQuantity;
 
     public void setClientSearchHotelViewController(ClientSearchHotelViewController clientSearchHotelViewController) {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
     }
 
-    //TODO
     public void setHotel(Hotel_DetailVO hotel) {
+        this.hotel = hotel;
+
         //Add hotel
         nameLabel.setText(hotel.name);
         starLabel.setStar(hotel.star);
@@ -94,31 +114,62 @@ public class ClientHotelDetailViewController {
         //AddPromotion
 
         checkInDatePicker.setDate(LocalDate.now());
-        checkOutDatePicker.setDate(LocalDate.now().plusDays(1));
+        checkInDatePicker.setMinDate(LocalDate.now());
+        checkInDatePicker.setMaxDate(LocalDate.now().plusDays(28));
+        checkOutDatePicker.setDate(checkInDatePicker.getDate().plusDays(1));
+        checkOutDatePicker.setMinDate(checkInDatePicker.getDate().plusDays(1));
+        checkOutDatePicker.setMaxDate(LocalDate.now().plusDays(29));
+        checkInDatePicker.dateProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                checkOutDatePicker.setMinDate(newValue.plusDays(1));
+                if (checkOutDatePicker.getDate().isBefore(newValue)) {
+                    checkOutDatePicker.setDate(newValue.plusDays(1));
+                }
+                newOrder();
+            }
+        });
+        checkOutDatePicker.dateProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                newOrder();
+            }
+        });
 
+        addPromotions();
+
+        newOrder();
+
+    }
+
+    public void newOrder() {
         String pattern = "yyyy-MM-dd";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 
-        // new OrderVO
         order = new OrderVO(hotel.ID, new DateUtil(LocalDate.now().format(dateFormatter)), new DateUtil(LocalDate.now().plusDays(1).format(dateFormatter)));
         order.rooms = new ArrayList<>();
         order.hotelName = hotel.name;
-
-        addPromotions(null);
+        orderBLService.startOrder(order);
         addRooms();
+
+        bookRoomQuantity = 0;
+        bookRoomLabel.setText("");
+        bookButton.setVisible(false);
     }
 
 
-    private void addPromotions(ArrayList<Promotion_HotelVO> promotions) {
-        for (int i = 0; i < 3; i++) {
-//        for (Promotion_HotelVO promotion : promotions) {
+    private void addPromotions() {
+        PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
+        ArrayList<PromotionVO> promotions = promotionBLService.searchHotelPromotions(hotel.ID);
+
+        for (PromotionVO promotion : promotions) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
                 Pane pane = loader.load();
 
                 OrderPromotionCellController orderPromotionCellController = loader.getController();
-//                orderPromotionCellController.setPromotion(promotion);
+                orderPromotionCellController.setPromotion(promotion);
 
                 promotionVBox.getChildren().add(pane);
             } catch (IOException e) {
@@ -128,14 +179,11 @@ public class ClientHotelDetailViewController {
     }
 
     private void addRooms() {
+        roomVBox.getChildren().clear();
 
-        //TODO
-        //需要Hotel所有的OrderRoomStock和Order的OrderRoomStock
-//        OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
-//        ArrayList<OrderRoomStockVO> rooms = orderBLService.getOrderRoomStocks(order);
+        roomStocks = hotelBLService.getRoomStocks(new DateUtil(checkInDatePicker.getDate()), new DateUtil(checkOutDatePicker.getDate()), hotel.ID);
 
-        for (int i = 0; i < 3; i++) {
-//        for (OrderRoomStockVO room : rooms) {
+        for (OrderRoomStockVO room : roomStocks) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(Main.class.getResource("../component/hotel/ClientHotelRoomCell.fxml"));
@@ -143,7 +191,7 @@ public class ClientHotelDetailViewController {
 
                 ClientHotelRoomCellController clientHotelRoomCellController = loader.getController();
                 clientHotelRoomCellController.setClientHotelDetailViewController(this);
-//                clientHotelRoomCellController.setRoom(room);
+                clientHotelRoomCellController.setRoom(room);
 
                 roomVBox.getChildren().add(pane);
 
@@ -153,13 +201,23 @@ public class ClientHotelDetailViewController {
         }
     }
 
+    public void addRoomInOrder(OrderRoomStockVO orderRoomStock) {
+        bookRoomQuantity++;
+        bookButton.setVisible(true);
+        bookRoomLabel.setText("已定 " + bookRoomQuantity + " 间");
+    }
 
-    public void clickBookButton() {
+    @FXML
+    private void clickBookButton() {
         //TODO
-        OrderRoomVO roomVO = new OrderRoomVO(RoomType.SingleRoom, 1, 200);
-        OrderRoomVO roomVO1 = new OrderRoomVO(RoomType.DoubleRoom, 1, 300);
-        order.rooms.add(roomVO);
-        order.rooms.add(roomVO1);
+
+        for (OrderRoomStockVO room : roomStocks) {
+            if (room.orderRoom.quantity > 0) {
+                OrderRoomVO roomVO = room.orderRoom;
+                order.rooms.add(roomVO);
+            }
+        }
+
         clientSearchHotelViewController.showBookOrder(order);
     }
 

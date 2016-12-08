@@ -4,10 +4,8 @@ import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.circlebutton.CircleButton;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientBookOrderViewController;
-import vo.OrderRoomStockVO;
 import vo.OrderRoomVO;
 
 /**
@@ -49,8 +47,7 @@ public class ClientOrderRoomEditCellController {
 
     public void setRoom(OrderRoomVO room) {
         this.room = room;
-        OrderRoomStockVO stock = orderBLService.getOrderRoomStock(room);
-        availableQuantity = stock.availableQuantity;
+        availableQuantity = orderBLService.getOrderRoomStock(room);
 
         typeLabel.setText(room.type.getName());
         priceLabel.setText("¥ " + room.price);
@@ -70,7 +67,6 @@ public class ClientOrderRoomEditCellController {
         orderBLService.modifyRoomQuantity(room.type, 1);
         refreshBill();
     }
-
 
     private void refreshBill() {
         minusButton.setAbled(room.quantity > 1);

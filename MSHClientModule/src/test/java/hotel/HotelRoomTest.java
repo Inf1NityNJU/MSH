@@ -12,7 +12,6 @@ import util.RoomType;
 import vo.HotelRoomVO;
 import vo.OrderRoomStockVO;
 import vo.RoomChangeInfoVO;
-import vo.RoomStockWithPriceVO;
 
 import java.util.ArrayList;
 
@@ -103,7 +102,7 @@ public class HotelRoomTest {
     @Test
     public void getOrderRoomStockVO() {
         ArrayList<OrderRoomStockVO> orderRoomStockVOs = hotelBLService.getRoomStocks(new DateUtil(2016, 12, 5), new DateUtil(2016, 12, 20), "00000000");
-        System.out.println(orderRoomStockVOs.get(1).price);
+        System.out.println(orderRoomStockVOs.get(1).orderRoom.price);
         assertEquals(2, orderRoomStockVOs.size());
     }
 }

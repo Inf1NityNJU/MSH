@@ -6,8 +6,10 @@ import blservice.userblservice.UserBLInfo;
 import util.*;
 import vo.*;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Sorumi on 16/10/30.
@@ -19,11 +21,11 @@ public class Order {
     private ArrayList<OrderRoom> orderRooms;
     private Bill bill;
 
-    public ResultMessage startOrder(OrderVO order) {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        this.order = order;
+    private Map<OrderRoomStockVO, OrderRoomVO> rooms;
 
-        order.clientID = userBLInfo.getCurrentID();
+    public ResultMessage startOrder(OrderVO order) {
+        this.order = order;
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
 
         orderRooms = new ArrayList<>();
 
@@ -36,16 +38,9 @@ public class Order {
         return ResultMessage.SUCCESS;
     }
 
-    public OrderRoomStockVO getOrderRoomStock(OrderRoomVO room) {
-
+    public int getOrderRoomStock(OrderRoomVO room) {
         HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
-
-//        OrderRoomStockVO stock = hotelBLInfo.getRoomStocks(order.checkInDate, order.checkOutDate, order.hotelID, room.type);
-        //TODO
-        OrderRoomStockVO stock = new OrderRoomStockVO(room.type, 300, 3);
-
-        return stock;
-
+        return hotelBLInfo.getAvailableQuantity(order.checkInDate, order.checkOutDate, order.hotelID, room.type);
     }
 
     /**
@@ -102,21 +97,24 @@ public class Order {
 
         double originPrice = 0;
 
+
         for (OrderRoom orderRoomItr : orderRooms) {
             originPrice += orderRoomItr.getTotal();
         }
 
         billVO.originPrice = originPrice;
+        double totalPrice = originPrice;
 
         if (billVO.hotelPromotion != null) {
-            billVO.totalPrice = originPrice * billVO.hotelPromotion.promotionDiscount;
+            totalPrice = totalPrice * billVO.hotelPromotion.promotionDiscount;
         }
 
         if (billVO.websitePromotion != null) {
-            billVO.totalPrice = originPrice * billVO.websitePromotion.promotionDiscount;
+            totalPrice = totalPrice * billVO.websitePromotion.promotionDiscount;
         }
 
-        System.out.println(billVO.totalPrice);
+        DecimalFormat df = new DecimalFormat("#.00");
+        billVO.totalPrice = Double.parseDouble(df.format(totalPrice));
 
         return billVO;
     }
