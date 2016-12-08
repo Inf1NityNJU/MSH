@@ -48,7 +48,7 @@ public class OrderBLService_Driver {
             System.out.print("Failed");
         }
 
-        rm = orderBLService.generateOrder("01011234", new TimeUtil(2016, 10, 12, 18, 0, 0), 3, false);
+        rm = orderBLService.generateOrder(new TimeUtil(2016, 10, 12, 18, 0, 0), 3, false);
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Generate Success");
         } else {

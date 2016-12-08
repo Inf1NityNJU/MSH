@@ -11,9 +11,9 @@ public class OrderDataServiceFactory {
     private static OrderDataServiceImpl orderDataService;
 
     /**
-     * 得到一个HotelDataService实例
+     * 得到一个OrderDataService实例
      *
-     * @return HotelDataService实例
+     * @return OrderDataService实例
      */
     public static synchronized OrderDataServiceImpl getOrderDataService() {
         if (orderDataService == null) {

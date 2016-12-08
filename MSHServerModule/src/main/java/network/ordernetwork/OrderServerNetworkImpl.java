@@ -1,4 +1,4 @@
-package network;
+package network.ordernetwork;
 
 import dataservice.orderdataservice.OrderDataService;
 import network.ordernetwork.OrderServerNetworkService;

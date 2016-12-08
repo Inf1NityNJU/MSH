@@ -45,11 +45,8 @@ public class OrderBLService_Stub implements OrderBLService {
         return new BillVO(null, null, 300, 300);
     }
 
-    public ResultMessage generateOrder(String hotelID, TimeUtil latest, int peopleQuantity, boolean hasChildren) {
-        if (hotelID.equals("01011234"))
+    public ResultMessage generateOrder(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
             return ResultMessage.SUCCESS;
-        else
-            return ResultMessage.FAILED;
     }
 
 

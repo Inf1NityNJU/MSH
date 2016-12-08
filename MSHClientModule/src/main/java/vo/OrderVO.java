@@ -1,7 +1,10 @@
 package vo;
 
+import po.AssessmentPO;
+import po.OrderPO;
 import util.DateUtil;
 import util.OrderState;
+import util.PromotionType;
 import util.TimeUtil;
 
 import java.util.ArrayList;
@@ -77,17 +80,17 @@ public class OrderVO {
     public TimeUtil latestExecuteTime;
 
     /**
-     *入住人数
+     * 入住人数
      */
     public int peopleQuantity;
 
     /**
-     *有无儿童
+     * 有无儿童
      */
     public boolean hasChildren;
 
     /**
-     *订单状态
+     * 订单状态
      */
     public OrderState state;
 
@@ -134,6 +137,59 @@ public class OrderVO {
         this.hasChildren = hasChildren;
 
         this.state = state;
+        this.bill = bill;
+        this.assessment = assessment;
+    }
+
+    public OrderPO toPO() {
+        String websitePromotionName = null;
+        double websitePromotionDiscount = 1;
+        String hotelPromotionName = null;
+        double hotelPromotionDiscount = 1;
+
+        if (bill.websitePromotion != null) {
+            websitePromotionName = bill.websitePromotion.promotionName;
+            websitePromotionDiscount = bill.websitePromotion.promotionDiscount;
+        }
+
+        if (bill.hotelPromotion != null) {
+            hotelPromotionName = bill.hotelPromotion.promotionName;
+            hotelPromotionDiscount = bill.hotelPromotion.promotionDiscount;
+        }
+        return new OrderPO(orderID, hotelID, clientID,
+                checkInDate, checkOutDate, checkInTime, checkOutTime,
+                bookedTime, cancelledTime, latestExecuteTime,
+                peopleQuantity, hasChildren, state,
+                websitePromotionName, websitePromotionDiscount,
+                hotelPromotionName, hotelPromotionDiscount,
+                bill.originPrice, bill.totalPrice);
+    }
+
+    public OrderVO(OrderPO orderPO, String hotelName, String clientName,
+                   ArrayList<OrderRoomVO> rooms, BillVO bill, AssessmentVO assessment) {
+
+        this.orderID = orderPO.getOrderID();
+        this.hotelID = orderPO.getHotelID();
+        this.clientID = orderPO.getClientID();
+
+        this.hotelName = hotelName;
+        this.clientName = clientName;
+
+        this.rooms = rooms;
+
+        this.checkInDate = new DateUtil(orderPO.getCheckInDate());
+        this.checkOutDate = new DateUtil(orderPO.getCheckInDate());
+        this.checkInTime = orderPO.getCheckInTime() != null ? new TimeUtil(orderPO.getCheckInTime()) : null;
+        this.checkOutTime = orderPO.getCheckOutTime() != null ? new TimeUtil(orderPO.getCheckOutTime()) : null;
+
+        this.bookedTime = new TimeUtil(orderPO.getBookedTime());
+        this.cancelledTime = orderPO.getCancelledTime() != null ? new TimeUtil(orderPO.getCancelledTime()) : null;
+
+        this.latestExecuteTime = orderPO.getLatestExecuteTime() != null ? new TimeUtil(orderPO.getLatestExecuteTime()) : null;
+        this.peopleQuantity = orderPO.getPeopleQuantity();
+        this.hasChildren = orderPO.isHasChildren();
+
+        this.state = orderPO.getState();
         this.bill = bill;
         this.assessment = assessment;
     }

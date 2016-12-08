@@ -47,5 +47,12 @@ public interface HotelBLInfo {
      */
     public int getAvailableQuantity(DateUtil start, DateUtil end, String hotelID, RoomType roomType);
 
-
+    /**
+     * 通过酒店ID查找酒店
+     *
+     * @param hotelID
+     * @return 符合ID的酒店VO
+     *
+     */
+    public Hotel_DetailVO getHotel(String hotelID);
 }

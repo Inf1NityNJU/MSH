@@ -1,5 +1,7 @@
 package vo;
 
+import po.AssessmentPO;
+
 /**
  * Created by Sorumi on 16/10/12.
  */
@@ -47,5 +49,13 @@ public class AssessmentVO {
         this.locationScore = locationScore;
         this.comment = comment;
         this.clientID = null;
+    }
+
+    public AssessmentVO(AssessmentPO assessmentPO) {
+        this.serviceScore = assessmentPO.getServiceScore();
+        this.facilityScore = assessmentPO.getFacilityScore();
+        this.healthScore = assessmentPO.getHealthScore();
+        this.locationScore = assessmentPO.getLocationScore();
+        this.comment = assessmentPO.getComments();
     }
 }

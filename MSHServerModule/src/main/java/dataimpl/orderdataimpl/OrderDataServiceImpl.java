@@ -5,8 +5,7 @@ import dataservice.orderdataservice.OrderDataService;
 import po.AssessmentPO;
 import po.OrderPO;
 import po.OrderRoomPO;
-import util.OrderState;
-import util.ResultMessage;
+import util.*;
 
 import java.util.ArrayList;
 
@@ -56,13 +55,33 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrderByClientID(String clientID) {
-        return orderDataHelper.fuzzyMatchQuery("clientID", clientID);
+    public ArrayList<OrderPO> searchOrderByClientID(String clientID, OrderState orderState) {
+        ArrayList<CriteriaClause> queries = new ArrayList<>();
+
+        CriteriaClauseImpl clientIDQuery = CriteriaClauseImpl.createSingleValueQuery("clientID", clientID, QueryMethod.Full);
+        queries.add(clientIDQuery);
+
+        if (orderState != null) {
+            CriteriaClauseImpl stateQuery = CriteriaClauseImpl.createSingleValueQuery("state", orderState, QueryMethod.Full);
+            queries.add(stateQuery);
+        }
+
+        return orderDataHelper.multiCriteriaQuery(queries);
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrderByHotelID(String hotelID) {
-        return orderDataHelper.fuzzyMatchQuery("hotelID", hotelID);
+    public ArrayList<OrderPO> searchOrderByHotelID(String hotelID, OrderState orderState) {
+        ArrayList<CriteriaClause> queries = new ArrayList<>();
+
+        CriteriaClauseImpl hotelIDQuery = CriteriaClauseImpl.createSingleValueQuery("hotelID", hotelID, QueryMethod.Full);
+        queries.add(hotelIDQuery);
+
+        if (orderState != null) {
+            CriteriaClauseImpl stateQuery = CriteriaClauseImpl.createSingleValueQuery("state", orderState, QueryMethod.Full);
+            queries.add(stateQuery);
+        }
+
+        return orderDataHelper.multiCriteriaQuery(queries);
     }
 
     @Override

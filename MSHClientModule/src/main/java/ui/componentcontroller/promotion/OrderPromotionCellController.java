@@ -17,7 +17,7 @@ public class OrderPromotionCellController {
 
     public void setPromotion(PromotionVO promotion) {
         nameLabel.setText(promotion.promotionName);
-        discountLabel.setText(promotion.promotionDiscount*10 + "折");
+        discountLabel.setText(promotion.promotionDiscount*10 + " 折");
     }
 
 }
