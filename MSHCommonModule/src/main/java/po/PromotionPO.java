@@ -47,7 +47,7 @@ public class PromotionPO implements Serializable {
     /**
      * 策略涉及的公司名称
      */
-    private String enterpriseName;
+    private String companyName;
 
     /**
      * 策略涉及的酒店编号
@@ -117,12 +117,12 @@ public class PromotionPO implements Serializable {
         this.promotionDiscount = promotionDiscount;
     }
 
-    public String getEnterpriseName() {
-        return enterpriseName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setEnterpriseName(String companyName) {
-        this.enterpriseName = companyName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getHotelID() {
@@ -157,13 +157,13 @@ public class PromotionPO implements Serializable {
         this.clientGrade = clientGrade;
     }
 
-    public PromotionPO(String promotionName, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String enterpriseName, String hotelID, int roomQuantity, Place place, int clientGrade) {
+    public PromotionPO(String promotionName, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {
 
         this.promotionType = promotionType;
         this.promotionDiscount = promotionDiscount;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.enterpriseName = enterpriseName;
+        this.companyName = companyName;
         this.hotelID = hotelID;
         this.roomQuantity = roomQuantity;
         this.place = place;
@@ -217,7 +217,7 @@ public class PromotionPO implements Serializable {
                 && judgeEqual(promotionDiscount, promotionPO.promotionDiscount)
                 && judgeEqual(startDate, promotionPO.startDate)
                 && judgeEqual(endDate, promotionPO.endDate)
-                && judgeEqual(enterpriseName, promotionPO.enterpriseName)
+                && judgeEqual(companyName, promotionPO.companyName)
                 && judgeEqual(hotelID, promotionPO.hotelID)
                 && judgeEqual(roomQuantity, promotionPO.roomQuantity)
                 && judgeEqual(place, promotionPO.place)

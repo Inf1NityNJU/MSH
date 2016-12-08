@@ -19,7 +19,7 @@
         <property name="promotionDiscount"/>
         <property name="startDate"/>
         <property name="endDate"/>
-        <property name="enterpriseName"/>
+        <property name="companyName"/>
         <property name="hotelID"/>
         <property name="roomQuantity"/>
 

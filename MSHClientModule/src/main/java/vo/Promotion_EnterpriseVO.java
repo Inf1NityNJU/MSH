@@ -55,7 +55,7 @@ public class Promotion_EnterpriseVO extends Promotion_HotelVO{
         super(promotionPO);
         this.startDate = new DateUtil(promotionPO.getStartDate());
         this.endDate = new DateUtil(promotionPO.getEndDate());
-        this.enterpriseName = promotionPO.getEnterpriseName();
+        this.enterpriseName = promotionPO.getCompanyName();
     }
 
     @Override
