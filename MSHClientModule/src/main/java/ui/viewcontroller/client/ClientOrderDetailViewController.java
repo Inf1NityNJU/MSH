@@ -1,6 +1,9 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
+import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +25,6 @@ import java.util.ArrayList;
  * Created by Sorumi on 16/11/22.
  */
 public class ClientOrderDetailViewController {
-
-    private ClientOrderViewController clientOrderViewController;
 
     @FXML
     private Label orderIDLabel;
@@ -76,16 +77,25 @@ public class ClientOrderDetailViewController {
     @FXML
     private Label totalPriceLabel;
 
+    @FXML
+    private RectButton cancelButton;
+
+    private ClientOrderViewController clientOrderViewController;
+
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+
+    private OrderVO order;
+
     public void setClientViewController(ClientOrderViewController clientOrderViewController) {
         this.clientOrderViewController = clientOrderViewController;
     }
 
     public void showOrder(OrderVO order) {
+        this.order = order;
+
         orderIDLabel.setText(order.orderID);
         hotelNameLabel.setText(order.hotelName);
         bookTimeLabel.setText(order.bookedTime.toString());
-        stateLabel.setText(order.state.getName());
-        stateLabel.setColorProperty(order.state.getColor());
         checkDateLabel.setText(order.checkInDate.toString() + " - " + order.checkOutDate.toString());
         checkInTimeLabel.setText((order.checkInTime != null) ? order.checkInTime.toString() : "未入住");
         checkOutTimeLabel.setText((order.checkOutTime != null) ? order.checkOutTime.toString() : "未退房");
@@ -97,14 +107,7 @@ public class ClientOrderDetailViewController {
         originPriceLabel.setText("¥ " + order.bill.originPrice);
         totalPriceLabel.setText("¥ " + order.bill.totalPrice);
 
-        if (order.state == OrderState.Cancelled) {
-            cancelledLabel.setVisible(true);
-            cancelledTimeLabel.setVisible(true);
-            cancelledTimeLabel.setText(order.cancelledTime.toString());
-        } else {
-            cancelledLabel.setVisible(false);
-            cancelledTimeLabel.setVisible(false);
-        }
+        updateState();
 
         addRooms(order.rooms);
 
@@ -115,6 +118,24 @@ public class ClientOrderDetailViewController {
             addPromotion(order.bill.hotelPromotion);
         }
 
+    }
+
+    private void updateState() {
+        stateLabel.setText(order.state.getName());
+        stateLabel.setColorProperty(order.state.getColor());
+
+        if (order.state == OrderState.Cancelled) {
+            cancelledLabel.setVisible(true);
+            cancelledTimeLabel.setVisible(true);
+            cancelledTimeLabel.setText(order.cancelledTime.toString());
+            cancelButton.setVisible(false);
+            cancelButton.setManaged(false);
+        } else {
+            cancelledLabel.setVisible(false);
+            cancelledTimeLabel.setVisible(false);
+            cancelButton.setVisible(true);
+            cancelButton.setManaged(true);
+        }
     }
 
     private void addRooms(ArrayList<OrderRoomVO> rooms) {
@@ -156,4 +177,10 @@ public class ClientOrderDetailViewController {
         clientOrderViewController.back();
     }
 
+    @FXML
+    private void clickCancelButton() {
+        orderBLService.revokeOrder(order.orderID);
+        order = orderBLService.searchOrderByID(order.orderID);
+        updateState();
+    }
 }

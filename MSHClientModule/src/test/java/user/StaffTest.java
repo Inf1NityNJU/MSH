@@ -1,6 +1,9 @@
 package user;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.userbl.Salesman;
 import bl.userbl.Staff;
+import blservice.userblservice.UserBLInfo;
 import org.junit.Test;
 import util.LoginState;
 import util.ResultMessage;
@@ -84,5 +87,12 @@ public class StaffTest {
             StaffVO tmpAsvo = asvo.get(i);
             assertEquals(tmpAsvo, tmpAsvoS.get(i));
         }
+    }
+
+    @Test
+    public void testGetHotelIDByStaffID() throws Exception {
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+        String hotelID = userBLInfo.getHotelIDByStaffID("300002");
+        assertEquals("02000001", hotelID);
     }
 }

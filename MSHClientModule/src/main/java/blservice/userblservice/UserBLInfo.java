@@ -1,7 +1,9 @@
 package blservice.userblservice;
 
 import bl.userbl.Salesman;
+import util.ResultMessage;
 import vo.ClientVO;
+import vo.CreditVO;
 import vo.LevelVO;
 
 import java.util.ArrayList;
@@ -42,9 +44,17 @@ public interface UserBLInfo {
     public ArrayList<LevelVO> getAllLevel();
 
     /**
-     *
      * @param ID
      * @return
      */
     public ClientVO getClientByID(String ID);
+
+    /**
+     * 给客户增加信用记录
+     *
+     * @param clientID
+     * @param creditVO
+     * @return
+     */
+    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO);
 }

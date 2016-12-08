@@ -28,7 +28,7 @@ public class Order {
     private ArrayList<OrderRoom> orderRooms;
     private Bill bill;
 
-    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
     private HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
 
     //TODO
@@ -95,8 +95,6 @@ public class Order {
      * * @return BillVO
      */
     public BillVO getBill() {
-
-//        Bill mockbill = new MockBill();
 
         int quantity = 0;
 
@@ -167,7 +165,17 @@ public class Order {
         generateOrderID();
 
         OrderPO orderPO = order.toPO();
-        return orderDataService.addOrder(orderPO);
+
+        ResultMessage rm = orderDataService.addOrder(orderPO);
+
+        if (rm == ResultMessage.SUCCESS) {
+
+            for (OrderRoomVO orderRoomVO : roomVOs) {
+                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, order.checkOutDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
+                hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
+            }
+        }
+        return rm;
     }
 
     /**
@@ -177,7 +185,13 @@ public class Order {
      * @return 是否成功撤销
      */
     public ResultMessage revoke(String orderID) {
-        return ResultMessage.SUCCESS;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        orderPO.setCancelledTime(new TimeUtil(LocalDateTime.now()).toString());
+        orderPO.setState(OrderState.Cancelled);
+//        userBLInfo.
+        //TODO
+        //update user credit
+        return orderDataService.updateOrder(orderPO);
     }
 
     /**
@@ -188,7 +202,11 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage checkIn(String orderID, TimeUtil time) {
-        return ResultMessage.SUCCESS;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        orderPO.setCheckInTime(time.toString());
+        orderPO.setState(OrderState.Executed);
+        return orderDataService.updateOrder(orderPO);
+
     }
 
     /**
@@ -199,7 +217,9 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage checkOut(String orderID, TimeUtil time) {
-        return ResultMessage.SUCCESS;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        orderPO.setCheckOutTime(time.toString());
+        return orderDataService.updateOrder(orderPO);
     }
 
     /**
@@ -220,7 +240,8 @@ public class Order {
      * @return OrderVO
      */
     public OrderVO searchOrderByID(String orderID) {
-        return null;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        return orderPOToOrderVO(orderPO);
     }
 
     /**
@@ -231,8 +252,8 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
-//        ArrayList<OrderPO> orderPOs = orderDataService.s
-        return null;
+        ArrayList<OrderPO> orderPOs = orderDataService.searchOrder(os, null, null);
+        return orderPOsToOrderVOs(orderPOs);
     }
 
     /**
@@ -262,38 +283,41 @@ public class Order {
         return orderPOsToOrderVOs(orderPOs);
     }
 
-
     private ArrayList<OrderVO> orderPOsToOrderVOs(ArrayList<OrderPO> orderPOs) {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
 
         for (OrderPO orderPO : orderPOs) {
-            Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());
-            String hotelName = hotel != null ? hotel.name : "不存在";
-            ClientVO client = userBLInfo.getClientByID(orderPO.getClientID());
-            String clientName = client != null ? client.clientName : "不存在";
-
-            ArrayList<OrderRoomPO> orderRoomPOs = orderDataService.searchOrderRoomByOrderID(orderPO.getOrderID());
-            ArrayList<OrderRoomVO> orderRoomVOs = new ArrayList<>();
-
-            for (OrderRoomPO orderRoomPO : orderRoomPOs) {
-                OrderRoomVO orderRoomVO = new OrderRoomVO(orderRoomPO);
-                orderRoomVOs.add(orderRoomVO);
-            }
-
-            BillVO billVO = new BillVO(orderPO);
-
-            AssessmentPO assessmentPO = orderDataService.searchAssessmentByOrderID(orderPO.getOrderID());
-            AssessmentVO assessmentVO = null;
-            if (assessmentPO != null) {
-                assessmentVO = new AssessmentVO(assessmentPO);
-            }
-
-            OrderVO orderVO = new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
-
+            OrderVO orderVO = orderPOToOrderVO(orderPO);
             orderVOs.add(orderVO);
         }
 
         return orderVOs;
+    }
+
+    private OrderVO orderPOToOrderVO(OrderPO orderPO) {
+        Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());
+        String hotelName = hotel != null ? hotel.name : "不存在";
+        ClientVO client = userBLInfo.getClientByID(orderPO.getClientID());
+        String clientName = client != null ? client.clientName : "不存在";
+
+        ArrayList<OrderRoomPO> orderRoomPOs = orderDataService.searchOrderRoomByOrderID(orderPO.getOrderID());
+        ArrayList<OrderRoomVO> orderRoomVOs = new ArrayList<>();
+
+        for (OrderRoomPO orderRoomPO : orderRoomPOs) {
+            OrderRoomVO orderRoomVO = new OrderRoomVO(orderRoomPO);
+            orderRoomVOs.add(orderRoomVO);
+        }
+
+        BillVO billVO = new BillVO(orderPO);
+
+        AssessmentPO assessmentPO = orderDataService.searchAssessmentByOrderID(orderPO.getOrderID());
+        AssessmentVO assessmentVO = null;
+        if (assessmentPO != null) {
+            assessmentVO = new AssessmentVO(assessmentPO);
+        }
+
+        return new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
+
     }
 
     private void generateOrderID() {

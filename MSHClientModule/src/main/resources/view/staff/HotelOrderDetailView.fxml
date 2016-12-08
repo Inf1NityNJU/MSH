@@ -291,7 +291,7 @@
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <TinyButton fx:id="updateCheckInButton" text="更新入住" />
+                              <TinyButton fx:id="updateCheckInButton" text="更新入住" onMouseClicked="#clickCheckInButton"/>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
@@ -301,7 +301,7 @@
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <TinyButton fx:id="updateCheckOutButton" text="更新退房" />
+                              <TinyButton fx:id="updateCheckOutButton" text="更新退房" onMouseClicked="#clickCheckOutButton"/>
                            </children>
                         </HBox>
                      </children>

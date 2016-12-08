@@ -13,7 +13,6 @@ import main.Main;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.order.ClientOrderRoomEditCellController;
 import util.ResultMessage;
-import util.RoomType;
 import util.TimeUtil;
 import vo.*;
 
