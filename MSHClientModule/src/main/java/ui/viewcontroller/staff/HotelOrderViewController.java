@@ -23,7 +23,7 @@ public class HotelOrderViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
-    private OrderBLService orderBLService;
+    private HotelOrderListViewController hotelOrderListViewController;
 
     public HotelOrderViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -55,7 +55,7 @@ public class HotelOrderViewController {
             listLoader.setLocation(Main.class.getResource("../view/staff/HotelOrderListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            HotelOrderListViewController hotelOrderListViewController = listLoader.getController();
+            hotelOrderListViewController = listLoader.getController();
             hotelOrderListViewController.setHotelOrderViewController(this);
 
             initNode = list;
@@ -89,6 +89,12 @@ public class HotelOrderViewController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void refreshHotelOrderList() {
+        if (hotelOrderListViewController != null) {
+            hotelOrderListViewController.refreshShowOrders();
         }
     }
 

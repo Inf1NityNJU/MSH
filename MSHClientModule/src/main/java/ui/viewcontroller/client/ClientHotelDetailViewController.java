@@ -104,8 +104,8 @@ public class ClientHotelDetailViewController {
         //Add hotel
         nameLabel.setText(hotel.name);
         starLabel.setStar(hotel.star);
-        cityButton.setText(hotel.city.toString());
-        placeButton.setText(hotel.place.toString());
+        cityButton.setText(hotel.city.getName());
+        placeButton.setText(hotel.place.getName());
         addressLabel.setText(hotel.address);
         introductionText.setText(hotel.introduction);
         facilitiesText.setText(hotel.facilities);

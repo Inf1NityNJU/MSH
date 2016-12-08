@@ -23,6 +23,7 @@ public class ClientOrderViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
+    private ClientOrderListViewController clientOrderListViewController;
 
     public ClientOrderViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -54,7 +55,7 @@ public class ClientOrderViewController {
             listLoader.setLocation(Main.class.getResource("../view/client/ClientOrderListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            ClientOrderListViewController clientOrderListViewController = listLoader.getController();
+            clientOrderListViewController = listLoader.getController();
             clientOrderListViewController.setClientOrderViewController(this);
 
             initNode = list;
@@ -112,4 +113,11 @@ public class ClientOrderViewController {
             e.printStackTrace();
         }
     }
+
+    public void refreshHotelOrderList() {
+        if (clientOrderListViewController != null) {
+            clientOrderListViewController.refreshShowOrders();
+        }
+    }
+
 }

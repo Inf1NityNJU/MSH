@@ -96,12 +96,12 @@ public class WebOrderDetailViewController {
         checkInTimeLabel.setText((order.checkInTime != null) ? order.checkInTime.toString() : "未入住");
         checkOutTimeLabel.setText((order.checkOutTime != null) ? order.checkOutTime.toString() : "未退房");
         latestExecuteDateLabel.setText(order.latestExecuteTime.date.toString());
-        latestExecuteTimeLabel.setText(order.latestExecuteTime.toString());
+        latestExecuteTimeLabel.setText(order.latestExecuteTime.timeString());
         peopleQuantityLabel.setText(order.peopleQuantity + "");
         hasChildrenCheckBox.setIsAbledProperty(false);
         hasChildrenCheckBox.setIsActiveProperty(order.hasChildren);
-        originPriceLabel.setText(order.bill.originPrice + "");
-        totalPriceLabel.setText(order.bill.totalPrice + "");
+        originPriceLabel.setText("¥ " + order.bill.originPrice);
+        totalPriceLabel.setText("¥ " + order.bill.totalPrice);
 
         if (order.state == OrderState.Cancelled) {
             cancelledLabel.setVisible(true);
