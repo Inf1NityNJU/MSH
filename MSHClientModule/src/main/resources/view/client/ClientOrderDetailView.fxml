@@ -312,7 +312,7 @@
                   <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                      <buttons>
                         <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
-                        <RectButton minHeight="40.0" text="撤销订单" />
+                        <RectButton fx:id="cancelButton" minHeight="40.0" text="撤销订单" onMouseClicked="#clickCancelButton"/>
                      </buttons>
                   </ButtonBar>
                </children>

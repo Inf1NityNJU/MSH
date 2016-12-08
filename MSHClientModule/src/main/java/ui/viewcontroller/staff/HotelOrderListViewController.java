@@ -41,6 +41,8 @@ public class HotelOrderListViewController {
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
+    private OrderState orderState;
+
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
@@ -83,8 +85,12 @@ public class HotelOrderListViewController {
         this.hotelOrderViewController = hotelOrderViewController;
     }
 
+    public void refreshShowOrders() {
+        showOrders(orderState);
+    }
+
     public void showOrders(OrderState orderState) {
-        //TODO
+        this.orderState = orderState;
         orders = orderBLService.searchHotelOrder(orderState, null);
         int size = orders.size();
         hotelOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));

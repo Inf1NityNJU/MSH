@@ -41,6 +41,7 @@ public class ClientOrderListViewController {
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
+    private OrderState orderState;
 
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
@@ -86,7 +87,12 @@ public class ClientOrderListViewController {
         this.clientOrderViewController = clientOrderViewController;
     }
 
+    public void refreshShowOrders() {
+        showOrders(orderState);
+    }
+
     public void showOrders(OrderState orderState) {
+        this.orderState = orderState;
         orders = orderBLService.searchClientOrder(orderState, null);
         int size = orders.size();
         clientOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
