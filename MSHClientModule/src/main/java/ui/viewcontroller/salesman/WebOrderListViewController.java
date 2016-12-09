@@ -39,6 +39,8 @@ public class WebOrderListViewController {
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
+    private OrderState orderState;
+
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
@@ -84,7 +86,12 @@ public class WebOrderListViewController {
         this.webOrderViewController = webOrderViewController;
     }
 
+    public void refreshShowOrders() {
+        showOrders(orderState);
+    }
+
     public void showOrders(OrderState orderState) {
+        this.orderState = orderState;
         orders = orderBLService.searchOrder(orderState, null);
         int size = orders.size();
         webOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));

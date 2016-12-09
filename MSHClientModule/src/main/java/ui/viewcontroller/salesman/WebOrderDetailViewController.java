@@ -1,5 +1,7 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
 import component.statebutton.StateButton;
 import component.tinybutton.TinyButton;
@@ -13,11 +15,13 @@ import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.viewcontroller.client.ClientOrderViewController;
 import util.OrderState;
+import util.TimeUtil;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -84,8 +88,9 @@ public class WebOrderDetailViewController {
     @FXML
     private Label totalPriceLabel;
 
-
     private OrderVO order;
+
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
     public void setWebOrderViewController(WebOrderViewController webOrderViewController) {
         this.webOrderViewController = webOrderViewController;
@@ -179,12 +184,15 @@ public class WebOrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
+        webOrderViewController.refreshHotelOrderList();
         webOrderViewController.back();
     }
 
 
     @FXML
     private void clickCancelButton() {
-
+        orderBLService.revokeOrder(order.orderID);
+        order = orderBLService.searchOrderByID(order.orderID);
+        updateState();
     }
 }

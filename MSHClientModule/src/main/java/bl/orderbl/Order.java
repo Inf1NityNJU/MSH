@@ -229,7 +229,9 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
-        return ResultMessage.SUCCESS;
+        OrderVO orderVO = searchOrderByID(orderID);
+        assessment.clientID = orderVO.clientID;
+        return  orderDataService.addAssessment(assessment.toPO(orderID));
     }
 
     /**

@@ -269,7 +269,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <StateButton fx:id="stateLabel" colorProperty="00cccc" isActiveProperty="true" text="未执行" />
-                              <TinyButton fx:id="cancelButton" text="撤销异常">
+                              <TinyButton fx:id="cancelButton" text="撤销异常" onMouseClicked="#clickCancelButton">
                                  <HBox.margin>
                                     <Insets left="50.0" />
                                  </HBox.margin>

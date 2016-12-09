@@ -7,6 +7,7 @@ import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 
 import ui.viewcontroller.client.ClientOrderListViewController;
+import util.OrderState;
 import vo.BillVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
@@ -66,18 +67,36 @@ public class ClientOrderCellController {
         String roomText = "";
 
         for (OrderRoomVO room : order.rooms) {
-            roomText = roomText + " " + room.type.getName() + " × " + room.quantity;
+            if (order.rooms.indexOf(room) > 0) {
+                roomText = roomText + " ";
+            }
+            roomText = roomText + room.type.getName() + " × " + room.quantity;
         }
         roomLabel.setText(roomText);
 
         BillVO bill = order.bill;
         priceLabel.setText("¥ " + String.format("%.2f", bill.totalPrice));
 
-        if (order.assessment == null) {
-            assessmentLabel.setManaged(false);
+        if (order.state == OrderState.Executed) {
+            if (order.assessment == null) {
+                assessmentButton.setVisible(true);
+                assessmentButton.setManaged(true);
+                assessmentLabel.setVisible(false);
+                assessmentLabel.setManaged(false);
+
+            } else {
+                assessmentButton.setVisible(false);
+                assessmentButton.setManaged(false);
+                assessmentLabel.setVisible(true);
+                assessmentLabel.setManaged(true);
+            }
         } else {
+            assessmentLabel.setVisible(false);
+            assessmentLabel.setManaged(false);
+            assessmentButton.setVisible(false);
             assessmentButton.setManaged(false);
         }
+
     }
 
     @FXML

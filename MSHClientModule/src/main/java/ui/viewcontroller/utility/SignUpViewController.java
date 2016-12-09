@@ -2,6 +2,7 @@ package ui.viewcontroller.utility;
 
 import bl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLService;
+import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
 import javafx.fxml.FXML;
@@ -28,10 +29,10 @@ public class SignUpViewController {
     private CommonTextField accountText;
 
     @FXML
-    private CommonTextField passwordText;
+    private CommonPasswordField passwordText;
 
     @FXML
-    private CommonTextField confirmPasswordText;
+    private CommonPasswordField confirmPasswordText;
 
     @FXML
     private MyDatePicker birthdayPicker;

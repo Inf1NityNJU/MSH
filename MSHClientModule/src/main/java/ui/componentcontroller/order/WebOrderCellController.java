@@ -66,7 +66,10 @@ public class WebOrderCellController {
         String roomText = "";
 
         for (OrderRoomVO room : order.rooms) {
-            roomText = roomText + " " + room.type.getName() + " × " + room.quantity;
+            if (order.rooms.indexOf(room) > 0) {
+                roomText = roomText + " ";
+            }
+            roomText = roomText + room.type.getName() + " × " + room.quantity;
         }
         roomLabel.setText(roomText);
 

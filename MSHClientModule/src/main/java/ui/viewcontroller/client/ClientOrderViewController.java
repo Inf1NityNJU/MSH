@@ -103,6 +103,7 @@ public class ClientOrderViewController {
 
             ClientAssessmentEditView clientAssessmentEditView = orderLoader.getController();
             clientAssessmentEditView.setClientViewController(this);
+            clientAssessmentEditView.setOrder(order);
 
             Node node = rootPane.getCenter();
             stack.push(node);

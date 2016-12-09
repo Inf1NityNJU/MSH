@@ -114,12 +114,12 @@ public class OrderBLServiceImpl implements OrderBLService {
 
     /**
      * 编辑订单评分评价
-     * @param orderId
+     * @param orderID
      * @param assessment
      * @return 是否更新成功
      */
-    public ResultMessage editOrderAssessment(String orderId, AssessmentVO assessment) {
-        return null;
+    public ResultMessage editOrderAssessment(String orderID, AssessmentVO assessment) {
+        return order.editAssessment(orderID, assessment);
     }
 
     /**

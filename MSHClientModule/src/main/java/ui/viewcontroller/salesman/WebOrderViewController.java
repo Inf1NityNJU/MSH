@@ -25,6 +25,9 @@ public class WebOrderViewController {
     private Stack<Node> stack = new Stack<Node>();
 
     private OrderBLService orderBLService;
+
+    private WebOrderListViewController webOrderListViewController;
+
     public WebOrderViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
         orderBLService = new BLFactoryImpl().getOrderBLService();
@@ -56,7 +59,7 @@ public class WebOrderViewController {
             listLoader.setLocation(Main.class.getResource("../view/salesman/WebOrderListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            WebOrderListViewController webOrderListViewController = listLoader.getController();
+            webOrderListViewController = listLoader.getController();
             webOrderListViewController.setWebOrderViewController(this);
 
             initNode = list;
@@ -88,6 +91,12 @@ public class WebOrderViewController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void refreshHotelOrderList() {
+        if (webOrderListViewController != null) {
+            webOrderListViewController.refreshShowOrders();
         }
     }
 }
