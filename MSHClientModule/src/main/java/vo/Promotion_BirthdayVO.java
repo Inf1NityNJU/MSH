@@ -22,7 +22,7 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
     public Promotion_BirthdayVO(PromotionPO promotionPO){
         super(promotionPO);
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Promotion_BirthdayVO) {
@@ -46,9 +46,14 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
 
     @Override
     public PromotionPO toPO() {
-            return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+        if(this.promotionID==null){
+            return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     "", "",
                     "", this.hotelID, 0, Place.Unnecessary, 0);
-
+        }else {
+            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
+                    "", "",
+                    "", this.hotelID, 0, Place.Unnecessary, 0);
+        }
     }
 }

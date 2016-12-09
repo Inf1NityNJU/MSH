@@ -86,8 +86,15 @@ public class Promotion_RoomQuantityVO extends Promotion_HotelVO{
 
     @Override
     public PromotionPO toPO() {
-            return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+        if(this.promotionID==null) {
+            return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
                     "", this.hotelID, this.roomQuantity, Place.Unnecessary, 0);
+        }else {
+            return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
+                    this.startDate.toString(), this.endDate.toString(),
+                    "", this.hotelID, this.roomQuantity, Place.Unnecessary, 0);
+
+        }
     }
 }

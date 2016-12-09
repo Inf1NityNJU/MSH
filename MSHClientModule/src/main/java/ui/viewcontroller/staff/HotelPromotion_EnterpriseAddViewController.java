@@ -1,4 +1,4 @@
-package ui.viewcontroller.salesman;
+package ui.viewcontroller.staff;
 
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
@@ -8,14 +8,14 @@ import javafx.fxml.FXML;
 import util.DateUtil;
 import util.PromotionType;
 import vo.PromotionVO;
-import vo.Promotion_WebSpecialDateVO;
+import vo.Promotion_EnterpriseVO;
 
 /**
- * Created by vivian on 16/12/6.
+ * Created by vivian on 16/12/9.
  */
-public class WebPromotion_SpecialDateAddViewController {
+public class HotelPromotion_EnterpriseAddViewController {
     private PromotionVO promotionVO;
-    private WebPromotionViewController webPromotionViewController;
+    private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
 
     private boolean isEdit = false;
@@ -36,11 +36,15 @@ public class WebPromotion_SpecialDateAddViewController {
     @FXML
     private MyDatePicker endTime;
 
-    public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
-        this.webPromotionViewController = webPromotionViewController;
+    @FXML
+    private CommonTextField enterpriseTextField;
 
-        typeButton.setText(PromotionType.Web_SpecilaDate.getType());
-        typeButton.setColorProperty(PromotionType.Web_SpecilaDate.getColor());
+
+    public void setHotelPromotionViewController(HotelPromotionViewController hotelPromotionViewController) {
+        this.hotelPromotionViewController = hotelPromotionViewController;
+
+        typeButton.setText(PromotionType.Hotel_Enterprise.getType());
+        typeButton.setColorProperty(PromotionType.Hotel_Enterprise.getColor());
     }
 
     public void setPromotionBLService(PromotionBLService promotionBLService){
@@ -48,16 +52,17 @@ public class WebPromotion_SpecialDateAddViewController {
     }
 
     public void clickCancelButton(){
-        webPromotionViewController.refreshWebPromotionList();
+        hotelPromotionViewController.refreshHotelPromotionList();
         if(isEdit){
-            webPromotionViewController.back();
+            hotelPromotionViewController.back();
         }
-        webPromotionViewController.back();
+        hotelPromotionViewController.back();
     }
 
     public void clickSaveButton(){
-        promotionVO = new Promotion_WebSpecialDateVO(nameTextField.getText(),PromotionType.Web_SpecilaDate, Double.valueOf(discountTextField.getText()),
-                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()));
+        promotionVO = new Promotion_EnterpriseVO(nameTextField.getText(),PromotionType.Hotel_Enterprise, Double.valueOf(discountTextField.getText()),
+                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
+                enterpriseTextField.getText(), DataClass.hotelID);
         if(isEdit){
             promotionVO.promotionID = promotionID;
             promotionBLService.updatePromotion(promotionVO);
@@ -70,8 +75,10 @@ public class WebPromotion_SpecialDateAddViewController {
     }
 
     public void showEditView(PromotionVO promotionVO){
+        Promotion_EnterpriseVO promotion_enterpriseVO = (Promotion_EnterpriseVO) promotionVO;
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
+        enterpriseTextField.setText(promotion_enterpriseVO.enterpriseName+"");
         isEdit = true;
         this.promotionID = promotionVO.promotionID;
     }

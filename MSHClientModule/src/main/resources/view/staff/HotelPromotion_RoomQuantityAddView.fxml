@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.commontextfield.CommonTextField?>
-<?import component.mychoicebox.MyChoiceBox?>
 <?import component.mydatepicker.MyDatePicker?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -20,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.WebPromotionDetailEditViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelPromotion_RoomQuantityAddViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -42,7 +39,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <StateButton fx:id="typeButton" text="Web_ClientGrade" textFill="#f9f9f9" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -59,7 +56,8 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="优惠会员等级" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <Label text="优惠折扣" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -67,28 +65,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <Label text="Lv" textFill="GREY">
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <MyChoiceBox fx:id="levelChoiceBox">
-                               <items>
-                                   <FXCollections fx:factory="observableArrayList">
-                                       <String fx:value="0" />
-                                       <String fx:value="1" />
-                                       <String fx:value="2" />
-                                       <String fx:value="3" />
-                                       <String fx:value="4" />
-                                       <String fx:value="5" />
-                                   </FXCollections>
-                               </items>
-                           </MyChoiceBox>
-                           </children>
-                        </HBox>
-                                <Label text="优惠商圈" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                <Label text="优惠时间" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -96,50 +73,26 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="优惠时间" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                    <font>
-                                        <Font name="PingFang SC Regular" size="14.0" />
-                                    </font>
-                                    <GridPane.margin>
-                                        <Insets top="3.0" />
-                                    </GridPane.margin>
-                                </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <children>
-                              <Label text="StartTime" textFill="GREY" />
-                              <MyDatePicker fx:id="startTime" />
-                              <Label text="EndTime" textFill="GREY" />
-                              <MyDatePicker fx:id="endTime" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <MyChoiceBox fx:id="cityChoiceBox">
-                               <items>
-                                   <FXCollections fx:factory="observableArrayList">
-                                       <String fx:value="NanJing" />
-                                       <String fx:value="BeiJing" />
-                                       <String fx:value="GuangZhou" />
-                                       <String fx:value="LanZhou" />
-                                       <String fx:value="ShangHai" />
-                                       <String fx:value="GuiYang" />
-                                   </FXCollections>
-                               </items>
-                           </MyChoiceBox>
-                              <MyChoiceBox fx:id="placeChoiceBox">
-                                  <items>
-                                      <FXCollections fx:factory="observableArrayList">
-                                          <String fx:value="XianLin" />
-                                          <String fx:value="TangShan" />
-                                          <String fx:value="XinJieKou" />
-                                          <String fx:value="WanDa" />
-                                          <String fx:value="Unnecessary" />
-                                      </FXCollections>
-                                  </items>
-                              </MyChoiceBox>
-                           </children>
-                        </HBox>
-                        <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
+                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <children>
+                                        <Label text="StartTime" textFill="GREY" />
+                                        <MyDatePicker fx:id="startTime" />
+                                        <Label text="EndTime" textFill="GREY" />
+                                        <MyDatePicker fx:id="endTime" />
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <children>
+                                        <CommonTextField fx:id="discountTextField" />
+                                    </children>
+                                </HBox>
+                                <StateButton fx:id="typeButton" isActiveProperty="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="优惠所需房间数量" textFill="#cccccc" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <CommonTextField fx:id="roomQuantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
@@ -150,6 +103,15 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                        <RowConstraints />
                             </rowConstraints>
                             <VBox.margin>
                                 <Insets />

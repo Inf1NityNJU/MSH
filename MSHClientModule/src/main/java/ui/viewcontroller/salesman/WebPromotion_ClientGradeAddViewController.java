@@ -23,6 +23,9 @@ public class WebPromotion_ClientGradeAddViewController {
     private WebPromotionViewController webPromotionViewController;
     private PromotionBLService promotionBLService;
 
+    private boolean isEdit = false;
+    private String promotionID = null;
+
     @FXML
     private CommonTextField nameTextField;
 
@@ -62,22 +65,32 @@ public class WebPromotion_ClientGradeAddViewController {
 
     public void clickCancelButton(){
         webPromotionViewController.refreshWebPromotionList();
+        if(isEdit){
+            webPromotionViewController.back();
+        }
         webPromotionViewController.back();
     }
 
     public void clickSaveButton(){
-
         int clientGrade = (int)levelChoiceBox.getValue();
-
         promotionVO = new Promotion_ClientGradeVO(nameTextField.getText(),PromotionType.Web_ClientGrade, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
                 clientGrade);
-        promotionBLService.addPromotion(promotionVO);
+        if(isEdit){
+            promotionVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotionVO);
+            System.out.println("update successfully!");
+        }else {
+            promotionBLService.addPromotion(promotionVO);
+            System.out.println("save successfully!");
+        }
 
     }
 
     public void showEditView(PromotionVO promotionVO){
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
+        isEdit = true;
+        this.promotionID = promotionVO.promotionID;
     }
 }
