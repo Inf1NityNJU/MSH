@@ -167,8 +167,31 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      *
      * @return 当前登录状态下的客户ID
      */
-    public String getCurrentID() {
-        return user.getCurrentID();
+    public String getCurrentClientID(){
+        if (user instanceof Client) {
+            Client client = (Client) user;
+            return client.getCurrentClientID();
+        } else {
+            return null;
+        }
+    }
+
+    public String getCurrentStaffID(){
+        if (user instanceof Staff) {
+            Staff staff = (Staff) user;
+            return staff.getCurrentStaffID();
+        } else {
+            return null;
+        }
+    }
+
+    public String getCurrentSalesmanID(){
+        if (user instanceof Salesman) {
+            Salesman salesman = (Salesman) user;
+            return salesman.getCurrentSalesmanID();
+        } else {
+            return null;
+        }
     }
 
     /**

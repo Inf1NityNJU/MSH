@@ -26,8 +26,11 @@ public interface UserBLInfo {
      *
      * @return 当前登录状态下的客户ID
      */
-    public String getCurrentID();
+    public String getCurrentClientID();
 
+    public String getCurrentStaffID();
+
+    public String getCurrentSalesmanID();
     /**
      * 得到酒店工作人员对应的酒店名字
      *

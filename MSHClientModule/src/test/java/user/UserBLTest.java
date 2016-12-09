@@ -1,6 +1,8 @@
 package user;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import org.junit.Test;
 import util.LoginState;
@@ -39,6 +41,7 @@ public class UserBLTest {
 
         userBLService = null;
 */
+        /*
 
         System.out.println("--SALESMAN--");
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
@@ -63,5 +66,19 @@ public class UserBLTest {
         } else {
             System.out.println("LOGIN FAILED");
         }
+
+        */
+
+        UserBLService userBLService = new BLFactoryImpl().getClientBLService();
+        userBLService.login("s", "s");
+
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+        System.out.println(userBLInfo.getCurrentClientID());
+
+        userBLService = new BLFactoryImpl().getStaffBLService();
+        userBLService.login("AAAAA", "B");
+
+        userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+        System.out.println(userBLInfo.getCurrentStaffID());
     }
 }

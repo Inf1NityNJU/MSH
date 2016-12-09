@@ -19,11 +19,6 @@ import java.util.ArrayList;
 public class User {
 
     /**
-     * 当前用户ID
-     */
-    private String currentID;
-
-    /**
      * UserBL
      */
     protected UserClientNetworkService userClientNetwork;
@@ -150,8 +145,18 @@ public class User {
      * @param currentID
      */
     public void setCurrentID(String currentID) {
+        switch (currentID.charAt(0)){
+            case '1':
+                UserInfoManager.getUserInfoManager().setCurrentSalesmanID(currentID);
+                break;
+            case '3':
+                UserInfoManager.getUserInfoManager().setCurrentStaffID(currentID);
+                break;
+            case '0':
+                UserInfoManager.getUserInfoManager().setCurrentClientID(currentID);
+                break;
+        }
         System.out.println("Set ID: " + currentID);
-        this.currentID = currentID;
     }
 
     /**
@@ -159,9 +164,19 @@ public class User {
      *
      * @return 当前用户ID
      */
-    public String getCurrentID() {
-        System.out.println("Get ID: " + currentID);
-        return this.currentID;
+    public String getCurrentClientID() {
+        System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentClientID());
+        return UserInfoManager.getUserInfoManager().getCurrentClientID();
+    }
+
+    public String getCurrentStaffID() {
+        System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentStaffID());
+        return UserInfoManager.getUserInfoManager().getCurrentStaffID();
+    }
+
+    public String getCurrentSalesmanID() {
+        System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentSalesmanID());
+        return UserInfoManager.getUserInfoManager().getCurrentSalesmanID();
     }
 
     public UserClientNetworkService getUserClientNetwork() {
