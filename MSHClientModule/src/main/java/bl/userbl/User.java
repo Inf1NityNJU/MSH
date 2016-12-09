@@ -145,16 +145,18 @@ public class User {
      * @param currentID
      */
     public void setCurrentID(String currentID) {
-        switch (currentID.charAt(0)){
-            case '1':
-                UserInfoManager.getUserInfoManager().setCurrentSalesmanID(currentID);
-                break;
-            case '3':
-                UserInfoManager.getUserInfoManager().setCurrentStaffID(currentID);
-                break;
-            case '0':
-                UserInfoManager.getUserInfoManager().setCurrentClientID(currentID);
-                break;
+        if(!currentID.equals("")) {
+            switch (currentID.charAt(0)) {
+                case '1':
+                    UserInfoManager.getUserInfoManager().setCurrentSalesmanID(currentID);
+                    break;
+                case '3':
+                    UserInfoManager.getUserInfoManager().setCurrentStaffID(currentID);
+                    break;
+                case '0':
+                    UserInfoManager.getUserInfoManager().setCurrentClientID(currentID);
+                    break;
+            }
         }
         System.out.println("Set ID: " + currentID);
     }
