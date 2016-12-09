@@ -170,4 +170,11 @@ public class HotelPromotionListViewController {
     public void showPromotionDetail(PromotionVO promotionVO) {
         hotelPromotionViewController.showPromotionDetail(promotionVO);
     }
+
+    /**
+     * 增加新的策略
+     */
+    public void addPromotion(PromotionType promotionType) {
+        hotelPromotionViewController.addHotelPromotion(promotionType, false);
+    }
 }

@@ -46,12 +46,12 @@ public class HotelPromotion_SpecialDateAddViewController {
     }
 
     public void clickCancelButton(){
-        hotelPromotionViewController.refreshWebPromotionList();
+        hotelPromotionViewController.refreshHotelPromotionList();
         hotelPromotionViewController.back();
     }
 
     public void clickSaveButton(){
-        promotionVO = new Promotion_HotelSpecialDateVO(nameTextField.getText(),PromotionType.Web_SpecilaDate, Double.valueOf(discountTextField.getText()),
+        promotionVO = new Promotion_HotelSpecialDateVO(nameTextField.getText(),PromotionType.Hotel_SpecilaDate, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()), DataClass.hotelID);
         promotionBLService.addPromotion(promotionVO);
 

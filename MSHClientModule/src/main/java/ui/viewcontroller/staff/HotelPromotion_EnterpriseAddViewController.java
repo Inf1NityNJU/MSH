@@ -49,12 +49,12 @@ public class HotelPromotion_EnterpriseAddViewController {
     }
 
     public void clickCancelButton(){
-        hotelPromotionViewController.refreshWebPromotionList();
+        hotelPromotionViewController.refreshHotelPromotionList();
         hotelPromotionViewController.back();
     }
 
     public void clickSaveButton(){
-        promotionVO = new Promotion_EnterpriseVO(nameTextField.getText(),PromotionType.Hotel_Birthday, Double.valueOf(discountTextField.getText()),
+        promotionVO = new Promotion_EnterpriseVO(nameTextField.getText(),PromotionType.Hotel_Enterprise, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
                 enterpriseTextField.getText(), DataClass.hotelID);
         promotionBLService.addPromotion(promotionVO);

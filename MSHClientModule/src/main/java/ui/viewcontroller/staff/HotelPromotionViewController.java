@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import util.PromotionType;
 import vo.PromotionVO;
 
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class HotelPromotionViewController {
     /**
      * 更新策略列表
      */
-    public void refreshWebPromotionList() {
+    public void refreshHotelPromotionList() {
         hotelPromotionListViewController.showAllHotelPromotions();
     }
 
@@ -103,12 +104,6 @@ public class HotelPromotionViewController {
         }
     }
 
-    /**
-     * 更新策略列表
-     */
-//    public void refreshWebPromotionList() {
-//        webPromotionListViewController.showAllWebPromotions();
-//    }
 
     /**
      * 编辑策略
@@ -121,95 +116,124 @@ public class HotelPromotionViewController {
     /**
      * 增加策略
      */
-//    public void addWebPromotion(PromotionType promotionType, boolean isEdit) {
-//        switch (promotionType) {
-//            case Web_ClientGrade:
-//                this.addWeb_ClientGradePromotion(isEdit);
-//                break;
-//            case Web_SpecilaDate:
-//                this.addWeb_SpecialDatePromotion(isEdit);
-//                break;
-//            case Web_SpecilPlace:
-//                this.addWeb_SpecialPlacePromotion(isEdit);
-//                break;
-//        }
-//    }
+    public void addHotelPromotion(PromotionType promotionType, boolean isEdit) {
+        switch (promotionType) {
+            case Hotel_Birthday:
+                this.addHotel_BirthdayPromotion(isEdit);
+                break;
+            case Hotel_Enterprise:
+                this.addHotel_EnterprisePromotion(isEdit);
+                break;
+            case Hotel_RoomQuantity:
+                this.addHotel_RoomQuantityPromotion(isEdit);
+                break;
+            case Hotel_SpecilaDate:
+                this.addHotel_SpecialDatePromotion(isEdit);
+                break;
+        }
+    }
 
     /**
-     * 增加或编辑网站会员等级策略
+     * 增加或编辑酒店生日策略
      */
-//    public void addWeb_ClientGradePromotion(boolean isEdit) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_ClientGradeAddView.fxml"));
-//            ScrollPane view = loader.load();
-//
-//            WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
-//            webPromotion_clientGradeAddViewController.setWebPromotionViewController(this);
-//            webPromotion_clientGradeAddViewController.setPromotionBLService(promotionBLService);
-//            if(isEdit){
-//                webPromotion_clientGradeAddViewController.showEditView(promotionVO);
-//            }
-//
-//            Node node = rootPane.getCenter();
-//            stack.push(node);
-//
-//            rootPane.setCenter(view);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void addHotel_BirthdayPromotion(boolean isEdit) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_BirthdayAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            HotelPromotion_BirthdayAddViewController hotelPromotion_birthdayAddViewController = loader.getController();
+            hotelPromotion_birthdayAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_birthdayAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                hotelPromotion_birthdayAddViewController.showEditView(promotionVO);
+            }
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
-     * 增加或编辑网站特殊期间折扣策略
+     * 增加或编辑酒店合作企业折扣策略
      */
-//    public void addWeb_SpecialDatePromotion(boolean isEdit) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialDateAddView.fxml"));
-//            ScrollPane view = loader.load();
-//
-//            WebPromotion_SpecialDateAddViewController webPromotion_specialDateAddViewController = loader.getController();
-//            webPromotion_specialDateAddViewController.setWebPromotionViewController(this);
-//            webPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
-//            if(isEdit){
-//                webPromotion_specialDateAddViewController.showEditView(promotionVO);
-//            }
-//
-//            Node node = rootPane.getCenter();
-//            stack.push(node);
-//
-//            rootPane.setCenter(view);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void addHotel_EnterprisePromotion(boolean isEdit) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_EnterpriseAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            HotelPromotion_EnterpriseAddViewController hotelPromotion_enterpriseAddViewController = loader.getController();
+            hotelPromotion_enterpriseAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_enterpriseAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                hotelPromotion_enterpriseAddViewController.showEditView(promotionVO);
+            }
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
-     * 增加或编辑网站特殊商圈折扣策略
+     * 增加或编辑房间数量折扣策略
      */
-//    public void addWeb_SpecialPlacePromotion(boolean isEdit) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialPlaceAddView.fxml"));
-//            ScrollPane view = loader.load();
-//
-//            WebPromotion_SpecialPlaceAddViewController webPromotion_specialPlaceAddViewController = loader.getController();
-//            webPromotion_specialPlaceAddViewController.setWebPromotionViewController(this);
-//            webPromotion_specialPlaceAddViewController.setPromotionBLService(promotionBLService);
-//            if(isEdit){
-//                webPromotion_specialPlaceAddViewController.showEditView(promotionVO);
-//            }
-//
-//            Node node = rootPane.getCenter();
-//            stack.push(node);
-//
-//            rootPane.setCenter(view);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void addHotel_RoomQuantityPromotion(boolean isEdit) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_RoomQuantityAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            HotelPromotion_RoomQuantityAddViewController hotelPromotion_roomQuantityAddViewController = loader.getController();
+            hotelPromotion_roomQuantityAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_roomQuantityAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                hotelPromotion_roomQuantityAddViewController.showEditView(promotionVO);
+            }
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 增加或编辑特定期间折扣策略
+     */
+    public void addHotel_SpecialDatePromotion(boolean isEdit) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_SpecialDateAddView.fxml"));
+            ScrollPane view = loader.load();
+
+            HotelPromotion_SpecialDateAddViewController hotelPromotion_specialDateAddViewController = loader.getController();
+            hotelPromotion_specialDateAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
+            if(isEdit){
+                hotelPromotion_specialDateAddViewController.showEditView(promotionVO);
+            }
+
+            Node node = rootPane.getCenter();
+            stack.push(node);
+
+            rootPane.setCenter(view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

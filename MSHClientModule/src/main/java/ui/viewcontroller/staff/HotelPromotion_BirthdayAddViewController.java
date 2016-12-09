@@ -39,7 +39,7 @@ public class HotelPromotion_BirthdayAddViewController {
     }
 
     public void clickCancelButton(){
-        hotelPromotionViewController.refreshWebPromotionList();
+        hotelPromotionViewController.refreshHotelPromotionList();
         hotelPromotionViewController.back();
     }
 

@@ -76,24 +76,30 @@ public class HotelPromotionSearchPaneController {
         specialDateButton.setIsActiveProperty(true);
         hotelPromotionListViewController.showHotelPromotionsByType(PromotionType.Hotel_SpecilaDate);
     }
-//
-//    @FXML
-//    public void clickAddButton() {
-//        PromotionType promotionType = null;
-//        setButtonsInactive();
-//        switch ((String) typeChoiceBox.getValue()) {
-//            case "会员等级折扣":
-//                promotionType = PromotionType.Web_ClientGrade;
-//                break;
-//            case "会员商圈折扣":
-//                promotionType = PromotionType.Web_SpecilPlace;
-//                break;
-//            case "特定期间折扣":
-//                promotionType = PromotionType.Web_SpecilaDate;
-//                break;
-//        }
-//        webPromotionListViewController.addPromotion(promotionType);
-//    }
+
+    @FXML
+    public void clickAddButton() {
+        PromotionType promotionType = null;
+        setButtonsInactive();
+        if (typeChoiceBox.getValue()!=null){
+            switch ((String) typeChoiceBox.getValue()) {
+                case "生日折扣":
+                    promotionType = PromotionType.Hotel_Birthday;
+                    break;
+                case "房间数量折扣":
+                    promotionType = PromotionType.Hotel_RoomQuantity;
+                    break;
+                case "合作企业折扣":
+                    promotionType = PromotionType.Hotel_Enterprise;
+                    break;
+                case "特定期间折扣":
+                    promotionType = PromotionType.Hotel_SpecilaDate;
+                    break;
+            }
+            hotelPromotionListViewController.addPromotion(promotionType);
+        }
+
+    }
 
     private void setButtonsInactive() {
         for (StateButton button : buttons) {

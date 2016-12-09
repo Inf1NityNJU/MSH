@@ -36,7 +36,7 @@
                     <HBox.margin>
                         <Insets />
                     </HBox.margin></StateButton>
-                <CircleButton fx:id="addButton"  typeProperty="Add">
+                <CircleButton fx:id="addButton"  typeProperty="Add" onMouseClicked="#clickAddButton">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -47,8 +47,9 @@
                 <MyChoiceBox fx:id="typeChoiceBox" prefWidth="134.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="会员等级折扣" />
-                            <String fx:value="会员商圈折扣" />
+                            <String fx:value="生日折扣" />
+                            <String fx:value="房间数量折扣" />
+                            <String fx:value="合作企业折扣" />
                             <String fx:value="特定期间折扣" />
                         </FXCollections>
                     </items>

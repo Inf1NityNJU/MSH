@@ -49,7 +49,7 @@ public class HotelPromotion_RoomQuantityAddViewController {
     }
 
     public void clickCancelButton(){
-        hotelPromotionViewController.refreshWebPromotionList();
+        hotelPromotionViewController.refreshHotelPromotionList();
         hotelPromotionViewController.back();
     }
 
@@ -58,7 +58,7 @@ public class HotelPromotion_RoomQuantityAddViewController {
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
                 DataClass.hotelID, Integer.valueOf(roomQuantityTextField.getText()));
         promotionBLService.addPromotion(promotionVO);
-
+        System.out.println("save successfully!");
     }
 
     public void showEditView(PromotionVO promotionVO){
