@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelPromotion_RoomQuantityAddViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelPromotion_EnterpriseAddViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -87,12 +87,12 @@
                                     </children>
                                 </HBox>
                                 <StateButton fx:id="typeButton" isActiveProperty="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="优惠所需房间数量" textFill="#cccccc" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <CommonTextField fx:id="roomQuantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="优惠企业名称" textFill="#cccccc" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <CommonTextField fx:id="enterpriseTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
@@ -111,7 +111,7 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
-                        <RowConstraints />
+                                <RowConstraints />
                             </rowConstraints>
                             <VBox.margin>
                                 <Insets />
