@@ -172,8 +172,8 @@ public class PromotionPO implements Serializable {
     }
 
     public PromotionPO(String promotionID, String promotionName, PromotionType promotionType, double promotionDiscount, String startDate, String endDate, String companyName, String hotelID, int roomQuantity, Place place, int clientGrade) {
-        this(promotionID, promotionType, promotionDiscount, startDate, endDate, companyName, hotelID, roomQuantity, place, clientGrade);
-        this.promotionName = promotionName;
+        this(promotionName, promotionType, promotionDiscount, startDate, endDate, companyName, hotelID, roomQuantity, place, clientGrade);
+        this.promotionID = promotionID;
     }
 
     public PromotionPO() {
