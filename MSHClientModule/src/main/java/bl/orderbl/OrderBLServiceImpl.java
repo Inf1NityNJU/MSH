@@ -28,7 +28,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ResultMessage checkCredit() {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
-        String clientID = userBLInfo.getCurrentID();
+        String clientID = userBLInfo.getCurrentClientID();
         int credit = userBLInfo.getCreditOfID(clientID);
         return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
     }
@@ -152,7 +152,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      */
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
-        String clientID = userBLInfo.getCurrentID();
+        String clientID = userBLInfo.getCurrentClientID();
 
         return  order.searchClientOrder(clientID, os, keyword);
     }
@@ -167,10 +167,11 @@ public class OrderBLServiceImpl implements OrderBLService {
         UserBLInfo userBLInfo_Client = new BLFactoryImpl().getUserBLInfo_Client();
         UserBLInfo userBLInfo_staff = new BLFactoryImpl().getUserBLInfo_Staff();
 
-//        String staffID = userBLInfo_Client.getCurrentID();
-//        String hotelID = userBLInfo_staff.getHotelIDByStaffID(staffID);
-//        System.out.print(staffID + " " + hotelID);
-        String hotelID = "00000001";
+        String staffID = userBLInfo_Client.getCurrentStaffID();
+        String hotelID = userBLInfo_staff.getHotelIDByStaffID(staffID);
+        System.out.print(staffID + " " + hotelID);
+        hotelID = "00000001";
+
         return  order.searchHotelOrder(hotelID, os, keyword);
     }
 

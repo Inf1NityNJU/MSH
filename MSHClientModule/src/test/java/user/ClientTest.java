@@ -130,4 +130,5 @@ public class ClientTest {
         int credit = userBLInfo.getCreditOfID("000000005");
         assertEquals(21099, credit);
     }
+
 }

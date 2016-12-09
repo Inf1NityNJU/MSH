@@ -37,7 +37,7 @@ public class Order {
     public ResultMessage startOrder(OrderVO order) {
         this.order = order;
 
-        order.clientID = userBLInfo.getCurrentID();
+        order.clientID = userBLInfo.getCurrentClientID();
 
         orderRooms = new ArrayList<>();
 
