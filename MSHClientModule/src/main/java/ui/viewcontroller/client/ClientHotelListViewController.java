@@ -120,7 +120,7 @@ public class ClientHotelListViewController {
 
     private void clearCells() {
         for (Node cell : cells) {
-            contentVBox.getChildren().remove(cell);
+            tilePane.getChildren().remove(cell);
         }
 
         contentVBox.getChildren().remove(pagePane);
