@@ -67,8 +67,8 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
 
     @Override
     public PromotionPO toPO() {
-        if (promotionName==null){
-            return new PromotionPO(this.promotionID, this.promotionType, this.promotionDiscount,
+        if (promotionID==null){
+            return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
                     "", "", 0, Place.Unnecessary, this.clientGrade);
         }else {

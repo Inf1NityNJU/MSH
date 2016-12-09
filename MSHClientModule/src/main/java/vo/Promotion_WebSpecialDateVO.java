@@ -55,8 +55,15 @@ public class Promotion_WebSpecialDateVO extends Promotion_WebVO {
 
     @Override
     public PromotionPO toPO() {
+        if(this.promotionID==null) {
             return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
                     "", "", 0, Place.Unnecessary, 0);
+
+        }
+        return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
+                this.startDate.toString(), this.endDate.toString(),
+                "", "", 0, Place.Unnecessary, 0);
+
     }
 }
