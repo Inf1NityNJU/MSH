@@ -18,6 +18,9 @@ public class HotelPromotion_EnterpriseAddViewController {
     private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
 
+    private boolean isEdit = false;
+    private String promotionID = null;
+
     @FXML
     private CommonTextField nameTextField;
 
@@ -50,6 +53,9 @@ public class HotelPromotion_EnterpriseAddViewController {
 
     public void clickCancelButton(){
         hotelPromotionViewController.refreshHotelPromotionList();
+        if(isEdit){
+            hotelPromotionViewController.back();
+        }
         hotelPromotionViewController.back();
     }
 
@@ -57,7 +63,14 @@ public class HotelPromotion_EnterpriseAddViewController {
         promotionVO = new Promotion_EnterpriseVO(nameTextField.getText(),PromotionType.Hotel_Enterprise, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
                 enterpriseTextField.getText(), DataClass.hotelID);
-        promotionBLService.addPromotion(promotionVO);
+        if(isEdit){
+            promotionVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotionVO);
+            System.out.println("update successfully!");
+        }else {
+            promotionBLService.addPromotion(promotionVO);
+            System.out.println("save successfully!");
+        }
 
     }
 
@@ -66,5 +79,7 @@ public class HotelPromotion_EnterpriseAddViewController {
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
         enterpriseTextField.setText(promotion_enterpriseVO.enterpriseName+"");
+        isEdit = true;
+        this.promotionID = promotionVO.promotionID;
     }
 }

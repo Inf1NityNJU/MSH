@@ -106,14 +106,6 @@ public class HotelPromotionViewController {
 
 
     /**
-     * 编辑策略
-     */
-//    public void showPromotionDetailEditView(PromotionVO promotionVO) {
-//        this.promotionVO = promotionVO;
-//        this.addWebPromotion(promotionVO.promotionType, true);
-//    }
-
-    /**
      * 增加策略
      */
     public void addHotelPromotion(PromotionType promotionType, boolean isEdit) {
@@ -235,5 +227,13 @@ public class HotelPromotionViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 编辑策略
+     */
+    public void showPromotionDetailEditView(PromotionVO promotionVO) {
+        this.promotionVO = promotionVO;
+        this.addHotelPromotion(promotionVO.promotionType, true);
     }
 }

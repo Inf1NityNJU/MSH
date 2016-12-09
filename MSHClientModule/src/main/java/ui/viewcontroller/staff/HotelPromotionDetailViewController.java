@@ -118,6 +118,6 @@ public class HotelPromotionDetailViewController {
 
     @FXML
     public void clickEditButton() {
-//        webPromotionViewController.showPromotionDetailEditView(promotionVO);
+        hotelPromotionViewController.showPromotionDetailEditView(promotionVO);
     }
 }

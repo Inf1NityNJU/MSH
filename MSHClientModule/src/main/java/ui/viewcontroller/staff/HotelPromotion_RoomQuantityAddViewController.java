@@ -18,6 +18,8 @@ public class HotelPromotion_RoomQuantityAddViewController {
     private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
 
+    private boolean isEdit = false;
+    private String promotionID = null;
     @FXML
     private CommonTextField nameTextField;
 
@@ -50,15 +52,25 @@ public class HotelPromotion_RoomQuantityAddViewController {
 
     public void clickCancelButton(){
         hotelPromotionViewController.refreshHotelPromotionList();
+        if(isEdit){
+            hotelPromotionViewController.back();
+        }
         hotelPromotionViewController.back();
     }
 
     public void clickSaveButton(){
-        promotionVO = new Promotion_RoomQuantityVO(nameTextField.getText(),PromotionType.Hotel_Birthday, Double.valueOf(discountTextField.getText()),
+        promotionVO = new Promotion_RoomQuantityVO(nameTextField.getText(),PromotionType.Hotel_RoomQuantity, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
                 DataClass.hotelID, Integer.valueOf(roomQuantityTextField.getText()));
-        promotionBLService.addPromotion(promotionVO);
-        System.out.println("save successfully!");
+        if(isEdit){
+            promotionVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotionVO);
+            System.out.println("update successfully!");
+        }else {
+            promotionBLService.addPromotion(promotionVO);
+            System.out.println("save successfully!");
+        }
+
     }
 
     public void showEditView(PromotionVO promotionVO){
@@ -66,5 +78,7 @@ public class HotelPromotion_RoomQuantityAddViewController {
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
         roomQuantityTextField.setText(promotion_roomQuantityVO.roomQuantity+"");
+        isEdit = true;
+        this.promotionID = promotionVO.promotionID;
     }
 }

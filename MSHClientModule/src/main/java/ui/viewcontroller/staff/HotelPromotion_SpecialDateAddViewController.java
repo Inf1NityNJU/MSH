@@ -19,6 +19,9 @@ public class HotelPromotion_SpecialDateAddViewController {
     private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
 
+    private boolean isEdit = false;
+    private String promotionID = null;
+
     @FXML
     private CommonTextField nameTextField;
 
@@ -47,18 +50,30 @@ public class HotelPromotion_SpecialDateAddViewController {
 
     public void clickCancelButton(){
         hotelPromotionViewController.refreshHotelPromotionList();
+        if(isEdit){
+            hotelPromotionViewController.back();
+        }
         hotelPromotionViewController.back();
     }
 
     public void clickSaveButton(){
         promotionVO = new Promotion_HotelSpecialDateVO(nameTextField.getText(),PromotionType.Hotel_SpecilaDate, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()), DataClass.hotelID);
-        promotionBLService.addPromotion(promotionVO);
+        if(isEdit){
+            promotionVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotionVO);
+            System.out.println("update successfully!");
+        }else {
+            promotionBLService.addPromotion(promotionVO);
+            System.out.println("save successfully!");
+        }
 
     }
 
     public void showEditView(PromotionVO promotionVO){
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
+        isEdit = true;
+        this.promotionID = promotionVO.promotionID;
     }
 }

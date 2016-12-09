@@ -18,6 +18,9 @@ public class HotelPromotion_BirthdayAddViewController {
     private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
 
+    private boolean isEdit = false;
+    private String promotionID = null;
+
     @FXML
     private CommonTextField nameTextField;
 
@@ -40,18 +43,30 @@ public class HotelPromotion_BirthdayAddViewController {
 
     public void clickCancelButton(){
         hotelPromotionViewController.refreshHotelPromotionList();
+        if(isEdit){
+            hotelPromotionViewController.back();
+        }
         hotelPromotionViewController.back();
     }
 
     public void clickSaveButton(){
         promotionVO = new Promotion_BirthdayVO(nameTextField.getText(),PromotionType.Hotel_Birthday, Double.valueOf(discountTextField.getText()),
                 DataClass.hotelID);
-        promotionBLService.addPromotion(promotionVO);
+        if(isEdit){
+            promotionVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotionVO);
+            System.out.println("update successfully!");
+        }else {
+            promotionBLService.addPromotion(promotionVO);
+            System.out.println("save successfully!");
+        }
 
     }
 
     public void showEditView(PromotionVO promotionVO){
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
+        isEdit = true;
+        this.promotionID = promotionVO.promotionID;
     }
 }
