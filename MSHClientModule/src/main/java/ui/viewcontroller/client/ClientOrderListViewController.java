@@ -41,6 +41,7 @@ public class ClientOrderListViewController {
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
+    private OrderState orderState;
 
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
@@ -86,7 +87,12 @@ public class ClientOrderListViewController {
         this.clientOrderViewController = clientOrderViewController;
     }
 
+    public void refreshShowOrders() {
+        showOrders(orderState);
+    }
+
     public void showOrders(OrderState orderState) {
+        this.orderState = orderState;
         orders = orderBLService.searchClientOrder(orderState, null);
         int size = orders.size();
         clientOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
@@ -94,6 +100,7 @@ public class ClientOrderListViewController {
             turnPage(1);
         } else {
             System.out.println("No Order");
+            clearCells();
         }
 
     }
@@ -105,6 +112,14 @@ public class ClientOrderListViewController {
         setCells(tmpOrders);
     }
 
+    private void clearCells() {
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
+    }
+
     private void setCells(List<OrderVO> orders) {
 
         if (orders.size() > NUM_OF_CELL) {
@@ -112,11 +127,7 @@ public class ClientOrderListViewController {
             return;
         }
 
-        for (Node cell : cells) {
-            contentVBox.getChildren().remove(cell);
-        }
-
-        contentVBox.getChildren().remove(pagePane);
+        clearCells();
 
         for (int i = 0; i < orders.size(); i++) {
 

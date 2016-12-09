@@ -19,11 +19,6 @@ import java.util.ArrayList;
 public class User {
 
     /**
-     * 当前用户ID
-     */
-    private String currentID;
-
-    /**
      * UserBL
      */
     protected UserClientNetworkService userClientNetwork;
@@ -46,16 +41,28 @@ public class User {
         LoginState loginState = userClientNetwork.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("Login Client");
-            ClientPO clientPO = userClientNetwork.searchClient(account).get(0);
-            this.setCurrentID(clientPO.getClientID());
+            ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(account);
+            for(ClientPO clientPO : clientPOs){
+                if(clientPO.getPassword().equals(password) && clientPO.getAccount().equals(account)){
+                    this.setCurrentID(clientPO.getClientID());
+                }
+            }
         } else if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
             System.out.println("Login Salesman");
-            SalesmanPO salesmanPO = userClientNetwork.searchSalesman(account).get(0);
-            this.setCurrentID(salesmanPO.getSalesmanID());
+            ArrayList<SalesmanPO> salesmanPOs = userClientNetwork.searchSalesman(account);
+            for(SalesmanPO salesmanPO : salesmanPOs){
+                if(salesmanPO.getPassword().equals(password) && salesmanPO.getAccount().equals(account)){
+                    this.setCurrentID(salesmanPO.getSalesmanID());
+                }
+            }
         } else if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
             System.out.println("Login Staff");
-            StaffPO staffPO = userClientNetwork.searchStaff(account).get(0);
-            this.setCurrentID(staffPO.getStaffID());
+            ArrayList<StaffPO> staffPOs = userClientNetwork.searchStaff(account);
+            for(StaffPO staffPO : staffPOs){
+                if(staffPO.getPassword().equals(password) && staffPO.getAccount().equals(account)){
+                    this.setCurrentID(staffPO.getStaffID());
+                }
+            }
         }
         return loginState;
     }
@@ -133,27 +140,23 @@ public class User {
     }
 
     /**
-     * 得到某客户的总信用值
-     *
-     * @param clientID
-     * @return 客户总信用值
-     */
-    public int getCreditOfID(String clientID) {
-        if (this instanceof Client) {
-            return this.getCreditOfID(clientID);
-        } else {
-            return -1;
-        }
-    }
-
-    /**
      * 设置当前用户ID
      *
      * @param currentID
      */
     public void setCurrentID(String currentID) {
+        switch (currentID.charAt(0)){
+            case '1':
+                UserInfoManager.getUserInfoManager().setCurrentSalesmanID(currentID);
+                break;
+            case '3':
+                UserInfoManager.getUserInfoManager().setCurrentStaffID(currentID);
+                break;
+            case '0':
+                UserInfoManager.getUserInfoManager().setCurrentClientID(currentID);
+                break;
+        }
         System.out.println("Set ID: " + currentID);
-        this.currentID = currentID;
     }
 
     /**
@@ -161,9 +164,19 @@ public class User {
      *
      * @return 当前用户ID
      */
-    public String getCurrentID() {
-        System.out.println("Get ID: " + currentID);
-        return this.currentID;
+    public String getCurrentClientID() {
+        System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentClientID());
+        return UserInfoManager.getUserInfoManager().getCurrentClientID();
+    }
+
+    public String getCurrentStaffID() {
+        System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentStaffID());
+        return UserInfoManager.getUserInfoManager().getCurrentStaffID();
+    }
+
+    public String getCurrentSalesmanID() {
+        System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentSalesmanID());
+        return UserInfoManager.getUserInfoManager().getCurrentSalesmanID();
     }
 
     public UserClientNetworkService getUserClientNetwork() {

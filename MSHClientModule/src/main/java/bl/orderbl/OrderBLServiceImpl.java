@@ -27,9 +27,8 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否足以生成订单
      */
     public ResultMessage checkCredit() {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-        userBLInfo = new UserBLService_Stub();
-        String clientID = userBLInfo.getCurrentID();
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+        String clientID = userBLInfo.getCurrentClientID();
         int credit = userBLInfo.getCreditOfID(clientID);
         return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
     }
@@ -90,7 +89,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否撤销成功
      */
     public ResultMessage revokeOrder(String orderID) {
-        return null;
+        return order.revoke(orderID);
     }
 
     /**
@@ -100,7 +99,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否更新成功
      */
     public ResultMessage checkInOrder(String orderID, TimeUtil time) {
-        return null;
+        return order.checkIn(orderID, time);
     }
 
     /**
@@ -110,17 +109,17 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return 是否更新成功
      */
     public ResultMessage checkOutOrder(String orderID, TimeUtil time) {
-        return null;
+        return order.checkOut(orderID, time);
     }
 
     /**
      * 编辑订单评分评价
-     * @param orderId
+     * @param orderID
      * @param assessment
      * @return 是否更新成功
      */
-    public ResultMessage editOrderAssessment(String orderId, AssessmentVO assessment) {
-        return null;
+    public ResultMessage editOrderAssessment(String orderID, AssessmentVO assessment) {
+        return order.editAssessment(orderID, assessment);
     }
 
     /**
@@ -129,7 +128,10 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO
      */
     public OrderVO searchOrderByID(String orderID) {
-        return order.searchOrderByID(orderID);
+
+        OrderVO orderVO = order.searchOrderByID(orderID);
+
+        return orderVO;
     }
 
     /**
@@ -139,7 +141,7 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
-        return searchOrder(os, keyword);
+        return order.searchOrder(os, keyword);
     }
 
     /**
@@ -149,10 +151,9 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-//        userBLInfo = new UserBLService_Stub();
-        String clientID = userBLInfo.getCurrentID();
-        clientID = "000101101";
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+        String clientID = userBLInfo.getCurrentClientID();
+
         return  order.searchClientOrder(clientID, os, keyword);
     }
 
@@ -163,10 +164,14 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
-//        userBLInfo = new UserBLService_Stub();
-        String staffID = userBLInfo.getCurrentID();
-        String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
+//        UserBLInfo userBLInfo_Client = new BLFactoryImpl().getUserBLInfo_Client();
+        UserBLInfo userBLInfo_staff = new BLFactoryImpl().getUserBLInfo_Staff();
+
+        String staffID = userBLInfo_staff.getCurrentStaffID();
+        String hotelID = userBLInfo_staff.getHotelIDByStaffID(staffID);
+        System.out.print(staffID + " " + hotelID);
+//        hotelID = "00000001";
+
         return  order.searchHotelOrder(hotelID, os, keyword);
     }
 

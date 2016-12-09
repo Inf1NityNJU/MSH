@@ -104,8 +104,8 @@ public class ClientHotelDetailViewController {
         //Add hotel
         nameLabel.setText(hotel.name);
         starLabel.setStar(hotel.star);
-        cityButton.setText(hotel.city.toString());
-        placeButton.setText(hotel.place.toString());
+        cityButton.setText(hotel.city.getName());
+        placeButton.setText(hotel.place.getName());
         addressLabel.setText(hotel.address);
         introductionText.setText(hotel.introduction);
         facilitiesText.setText(hotel.facilities);
@@ -146,7 +146,7 @@ public class ClientHotelDetailViewController {
         String pattern = "yyyy-MM-dd";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 
-        order = new OrderVO(hotel.ID, new DateUtil(LocalDate.now().format(dateFormatter)), new DateUtil(LocalDate.now().plusDays(1).format(dateFormatter)));
+        order = new OrderVO(hotel.ID, new DateUtil(checkInDatePicker.getDate().format(dateFormatter)), new DateUtil(checkOutDatePicker.getDate().format(dateFormatter)));
         order.rooms = new ArrayList<>();
         order.hotelName = hotel.name;
         orderBLService.startOrder(order);

@@ -195,8 +195,16 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
     }
 
     @Override
-    public String getCurrentID() {
+    public String getCurrentClientID(){
         return "000000001";
+    }
+
+    public String getCurrentStaffID(){
+        return "300001";
+    }
+
+    public String getCurrentSalesmanID(){
+        return "100001";
     }
 
     @Override

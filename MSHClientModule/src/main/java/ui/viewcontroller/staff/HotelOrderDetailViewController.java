@@ -1,23 +1,31 @@
 package ui.viewcontroller.staff;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
+import component.ratestarpane.RateStarPane;
 import component.statebutton.StateButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.Main;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.viewcontroller.client.ClientOrderViewController;
 import util.OrderState;
+import util.TimeUtil;
+import vo.AssessmentVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +46,12 @@ public class HotelOrderDetailViewController {
 
     @FXML
     private StateButton stateLabel;
+
+    @FXML
+    private Label cancelledLabel;
+
+    @FXML
+    private Label cancelledTimeLabel;
 
     @FXML
     private Label checkDateLabel;
@@ -78,34 +92,74 @@ public class HotelOrderDetailViewController {
     @FXML
     private Label totalPriceLabel;
 
+    @FXML
+    private Label noAssessmentLabel;
+
+    @FXML
+    private GridPane scorePane;
+
+    @FXML
+    private RateStarPane serviceScorePane;
+
+    @FXML
+    private RateStarPane facilityScorePane;
+
+    @FXML
+    private RateStarPane healthScorePane;
+
+    @FXML
+    private RateStarPane locationScorePane;
+
+    @FXML
+    private Text commentText;
+
+    private OrderVO order;
+
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+
     public void setHotelOrderViewController(HotelOrderViewController hotelOrderViewController) {
         this.hotelOrderViewController = hotelOrderViewController;
     }
 
     public void showOrder(OrderVO order) {
+        this.order = order;
+
         orderIDLabel.setText(order.orderID);
         hotelNameLabel.setText(order.hotelName);
         bookTimeLabel.setText(order.bookedTime.toString());
-        stateLabel.setText(order.state.getName());
-        stateLabel.setColorProperty(order.state.getColor());
         checkDateLabel.setText(order.checkInDate.toString() + " - " + order.checkOutDate.toString());
-//        checkInTimeLabel.setText((order.checkInTime != null) ? order.checkInTime.toString() : "未入住");
-//        checkOutTimeLabel.setText((order.checkOutTime != null) ? order.checkOutTime.toString() : "未退房");
         latestExecuteDateLabel.setText(order.latestExecuteTime.date.toString());
-        latestExecuteTimeLabel.setText(order.latestExecuteTime.toString());
+        latestExecuteTimeLabel.setText(order.latestExecuteTime.timeString());
         peopleQuantityLabel.setText(order.peopleQuantity + "");
         hasChildrenCheckBox.setIsAbledProperty(false);
         hasChildrenCheckBox.setIsActiveProperty(order.hasChildren);
-        originPriceLabel.setText(order.bill.originPrice + "");
-        totalPriceLabel.setText(order.bill.totalPrice + "");
+        originPriceLabel.setText("¥ " + order.bill.originPrice);
+        totalPriceLabel.setText("¥ " + order.bill.totalPrice);
 
-        if (order.checkInTime == null && order.checkOutDate == null) {
+        updateState();
+
+        addRooms(order.rooms);
+
+        if (order.bill.websitePromotion != null) {
+            addPromotion(order.bill.websitePromotion);
+        }
+        if (order.bill.hotelPromotion != null) {
+            addPromotion(order.bill.hotelPromotion);
+        }
+
+    }
+
+    private void updateState() {
+        stateLabel.setText(order.state.getName());
+        stateLabel.setColorProperty(order.state.getColor());
+
+        if (order.checkInTime == null && order.checkOutTime == null) {
             checkInTimeLabel.setText("未入住");
             checkOutTimeLabel.setText("未入住");
             updateCheckInButton.setVisible(true);
             updateCheckOutButton.setVisible(false);
 
-        } else if (order.checkInTime != null && order.checkOutDate == null){
+        } else if (order.checkInTime != null && order.checkOutTime == null){
             checkInTimeLabel.setText(order.checkInTime.toString());
             checkOutTimeLabel.setText("未退房");
             updateCheckInButton.setVisible(false);
@@ -117,22 +171,40 @@ public class HotelOrderDetailViewController {
             updateCheckOutButton.setVisible(false);
         }
 
-        if (order.state == OrderState.Cancelled) {
-            updateCheckInButton.setVisible(false);
-            updateCheckOutButton.setVisible(false);
-        } else if (order.state == OrderState.Abnormal) {
+        OrderState state = order.state;
+        if (state == OrderState.Cancelled) {
+            cancelledLabel.setVisible(true);
+            cancelledTimeLabel.setVisible(true);
+            cancelledTimeLabel.setText(order.cancelledTime.toString());
+        } else {
+            cancelledLabel.setVisible(false);
+            cancelledTimeLabel.setVisible(false);
+        }
+
+
+        if (state == OrderState.Abnormal) {
             updateCheckInButton.setText("延迟入住");
             updateCheckInButton.setVisible(true);
             updateCheckOutButton.setVisible(false);
         }
 
-        addRooms(order.rooms);
+        if (state == OrderState.Executed) {
+            AssessmentVO assessment = order.assessment;
+            if (assessment == null) {
+                setAssessmentDisplay(false);
 
-        if (order.bill.websitePromotion != null) {
-            addPromotion(order.bill.websitePromotion);
-        }
-        if (order.bill.hotelPromotion != null) {
-            addPromotion(order.bill.hotelPromotion);
+            } else {
+                setAssessmentDisplay(true);
+
+                serviceScorePane.setScore(assessment.serviceScore);
+                facilityScorePane.setScore(assessment.facilityScore);
+                healthScorePane.setScore(assessment.healthScore);
+                locationScorePane.setScore(assessment.locationScore);
+                commentText.setText(assessment.comment);
+            }
+        } else {
+            setAssessmentDisplay(false);
+
         }
 
     }
@@ -172,9 +244,31 @@ public class HotelOrderDetailViewController {
     }
 
     @FXML
+    private void clickCheckInButton() {
+        orderBLService.checkInOrder(order.orderID, new TimeUtil(LocalDateTime.now()));
+        order = orderBLService.searchOrderByID(order.orderID);
+        updateState();
+    }
+
+    @FXML void clickCheckOutButton() {
+        orderBLService.checkOutOrder(order.orderID, new TimeUtil(LocalDateTime.now()));
+        order = orderBLService.searchOrderByID(order.orderID);
+        updateState();
+    }
+
+    @FXML
     private void clickBackButton() {
+        hotelOrderViewController.refreshHotelOrderList();
         hotelOrderViewController.back();
     }
 
+    private void setAssessmentDisplay(boolean display) {
+        noAssessmentLabel.setVisible(!display);
+        noAssessmentLabel.setManaged(!display);
+        scorePane.setVisible(display);
+        scorePane.setManaged(display);
+        commentText.setVisible(display);
+        commentText.setManaged(display);
+    }
 }
 

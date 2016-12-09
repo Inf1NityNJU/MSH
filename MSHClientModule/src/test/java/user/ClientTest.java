@@ -1,6 +1,8 @@
 package user;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.Client;
+import blservice.userblservice.UserBLInfo;
 import org.junit.Test;
 import util.*;
 import vo.*;
@@ -121,4 +123,12 @@ public class ClientTest {
             }
         }
     }
+
+    @Test
+    public void testGetClientByID() throws Exception {
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+        int credit = userBLInfo.getCreditOfID("000000005");
+        assertEquals(21099, credit);
+    }
+
 }

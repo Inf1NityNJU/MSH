@@ -6,6 +6,7 @@ import blservice.userblservice.UserBLInfo;
 import dataimpl.orderdataimpl.OrderDataServiceFactory;
 import dataservice.orderdataservice.OrderDataService;
 import po.AssessmentPO;
+import po.HotelPO;
 import po.OrderPO;
 import po.OrderRoomPO;
 import util.*;
@@ -27,7 +28,7 @@ public class Order {
     private ArrayList<OrderRoom> orderRooms;
     private Bill bill;
 
-    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo();
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
     private HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
 
     //TODO
@@ -36,8 +37,7 @@ public class Order {
     public ResultMessage startOrder(OrderVO order) {
         this.order = order;
 
-        order.clientID = userBLInfo.getCurrentID();
-        order.clientID = "000101101";
+        order.clientID = userBLInfo.getCurrentClientID();
 
         orderRooms = new ArrayList<>();
 
@@ -96,26 +96,29 @@ public class Order {
      */
     public BillVO getBill() {
 
-        Bill mockbill = new MockBill();
-
         int quantity = 0;
 
         for (OrderRoomVO roomItr : order.rooms) {
             quantity += roomItr.quantity;
         }
-        //TODO need userBLInfo
-        ClientVO client = new ClientVO("000000001", "哈哈哈", 3, new DateUtil(2011, 02, 14), 200, 0, "12", "1111111", "123");
-        BillVO billVO = mockbill.refresh(order.hotelID, new DateUtil(LocalDate.now()), client.birthday, client.enterprise, quantity);
+
+        ClientVO client = userBLInfo.getClientByID(order.clientID);
+        Hotel_DetailVO hotel = hotelBLInfo.getHotel(order.hotelID);
+
+        BillVO billVO = bill.refresh(order.hotelID, hotel.place, new DateUtil(LocalDate.now()), client.level,
+                client.birthday, client.enterprise, quantity);
+
+        // calculate price
+        DecimalFormat df = new DecimalFormat("#.0");
 
         double originPrice = 0;
-
 
         for (OrderRoom orderRoomItr : orderRooms) {
             originPrice += orderRoomItr.getTotal();
         }
 
-        billVO.originPrice = originPrice;
-        double totalPrice = originPrice;
+        billVO.originPrice = Double.parseDouble(df.format(originPrice));
+        double totalPrice = billVO.originPrice;
 
         if (billVO.hotelPromotion != null) {
             totalPrice = totalPrice * billVO.hotelPromotion.promotionDiscount;
@@ -125,7 +128,7 @@ public class Order {
             totalPrice = totalPrice * billVO.websitePromotion.promotionDiscount;
         }
 
-        DecimalFormat df = new DecimalFormat("#.00");
+
         billVO.totalPrice = Double.parseDouble(df.format(totalPrice));
 
         order.bill = billVO;
@@ -142,8 +145,15 @@ public class Order {
      * @return 是否成功生成
      */
     public ResultMessage generate(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
-        //TODO
-        order.orderID = "123456789213130213";
+
+        order.bookedTime = new TimeUtil(LocalDateTime.now());
+        order.state = OrderState.Unexecuted;
+
+        order.latestExecuteTime = latest;
+        order.peopleQuantity = peopleQuantity;
+        order.hasChildren = hasChildren;
+
+        generateOrderID();
 
         //OrderRoom
         ArrayList<OrderRoomVO> roomVOs = order.rooms;
@@ -153,15 +163,18 @@ public class Order {
             orderDataService.addOrderRoom(orderRoomPO);
         }
 
-        order.bookedTime = new TimeUtil(LocalDateTime.now());
-        order.state = OrderState.Unexecuted;
-
-        order.latestExecuteTime = latest;
-        order.peopleQuantity = peopleQuantity;
-        order.hasChildren = hasChildren;
-
         OrderPO orderPO = order.toPO();
-        return orderDataService.addOrder(orderPO);
+
+        ResultMessage rm = orderDataService.addOrder(orderPO);
+
+        if (rm == ResultMessage.SUCCESS) {
+
+            for (OrderRoomVO orderRoomVO : roomVOs) {
+                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, order.checkOutDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
+                hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
+            }
+        }
+        return rm;
     }
 
     /**
@@ -171,7 +184,13 @@ public class Order {
      * @return 是否成功撤销
      */
     public ResultMessage revoke(String orderID) {
-        return ResultMessage.SUCCESS;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        orderPO.setCancelledTime(new TimeUtil(LocalDateTime.now()).toString());
+        orderPO.setState(OrderState.Cancelled);
+//        userBLInfo.
+        //TODO
+        //update user credit
+        return orderDataService.updateOrder(orderPO);
     }
 
     /**
@@ -182,7 +201,11 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage checkIn(String orderID, TimeUtil time) {
-        return ResultMessage.SUCCESS;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        orderPO.setCheckInTime(time.toString());
+        orderPO.setState(OrderState.Executed);
+        return orderDataService.updateOrder(orderPO);
+
     }
 
     /**
@@ -193,7 +216,9 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage checkOut(String orderID, TimeUtil time) {
-        return ResultMessage.SUCCESS;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        orderPO.setCheckOutTime(time.toString());
+        return orderDataService.updateOrder(orderPO);
     }
 
     /**
@@ -204,7 +229,9 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
-        return ResultMessage.SUCCESS;
+        OrderVO orderVO = searchOrderByID(orderID);
+        assessment.clientID = orderVO.clientID;
+        return  orderDataService.addAssessment(assessment.toPO(orderID));
     }
 
     /**
@@ -214,7 +241,8 @@ public class Order {
      * @return OrderVO
      */
     public OrderVO searchOrderByID(String orderID) {
-        return null;
+        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        return orderPOToOrderVO(orderPO);
     }
 
     /**
@@ -225,7 +253,8 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
-        return null;
+        ArrayList<OrderPO> orderPOs = orderDataService.searchOrder(os, null, null);
+        return orderPOsToOrderVOs(orderPOs);
     }
 
     /**
@@ -237,37 +266,9 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
-
-        ArrayList<OrderVO> orderVOs = new ArrayList<>();
         ArrayList<OrderPO> orderPOs = orderDataService.searchOrderByClientID(clientID, os);
-        for (OrderPO orderPO : orderPOs) {
-            Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());
-            String hotelName = hotel != null ? hotel.name : "不存在";
-            ClientVO client = userBLInfo.getClientByID(orderPO.getClientID());
-            String clientName = client != null ? client.clientName : "不存在";
+        return orderPOsToOrderVOs(orderPOs);
 
-            ArrayList<OrderRoomPO> orderRoomPOs = orderDataService.searchOrderRoomByOrderID(orderPO.getOrderID());
-            ArrayList<OrderRoomVO> orderRoomVOs = new ArrayList<>();
-
-            for (OrderRoomPO orderRoomPO : orderRoomPOs) {
-                OrderRoomVO orderRoomVO = new OrderRoomVO(orderRoomPO);
-                orderRoomVOs.add(orderRoomVO);
-            }
-
-            BillVO billVO = new BillVO(orderPO);
-
-            AssessmentPO assessmentPO = orderDataService.searchAssessmentByOrderID(orderPO.getOrderID());
-            AssessmentVO assessmentVO = null;
-            if (assessmentPO != null) {
-                assessmentVO = new AssessmentVO(assessmentPO);
-            }
-
-            OrderVO orderVO = new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
-
-            orderVOs.add(orderVO);
-        }
-
-        return orderVOs;
     }
 
     /**
@@ -279,6 +280,59 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword) {
-        return null;
+        ArrayList<OrderPO> orderPOs = orderDataService.searchOrderByHotelID(hotelID, os);
+        return orderPOsToOrderVOs(orderPOs);
+    }
+
+    private ArrayList<OrderVO> orderPOsToOrderVOs(ArrayList<OrderPO> orderPOs) {
+        ArrayList<OrderVO> orderVOs = new ArrayList<>();
+
+        for (OrderPO orderPO : orderPOs) {
+            OrderVO orderVO = orderPOToOrderVO(orderPO);
+            orderVOs.add(orderVO);
+        }
+
+        return orderVOs;
+    }
+
+    private OrderVO orderPOToOrderVO(OrderPO orderPO) {
+        Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());
+        String hotelName = hotel != null ? hotel.name : "不存在";
+        ClientVO client = userBLInfo.getClientByID(orderPO.getClientID());
+        String clientName = client != null ? client.clientName : "不存在";
+
+        ArrayList<OrderRoomPO> orderRoomPOs = orderDataService.searchOrderRoomByOrderID(orderPO.getOrderID());
+        ArrayList<OrderRoomVO> orderRoomVOs = new ArrayList<>();
+
+        for (OrderRoomPO orderRoomPO : orderRoomPOs) {
+            OrderRoomVO orderRoomVO = new OrderRoomVO(orderRoomPO);
+            orderRoomVOs.add(orderRoomVO);
+        }
+
+        BillVO billVO = new BillVO(orderPO);
+
+        AssessmentPO assessmentPO = orderDataService.searchAssessmentByOrderID(orderPO.getOrderID());
+        AssessmentVO assessmentVO = null;
+        if (assessmentPO != null) {
+            assessmentVO = new AssessmentVO(assessmentPO);
+        }
+
+        return new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
+
+    }
+
+    private void generateOrderID() {
+        String prefix = order.bookedTime.date.toString().replace("-", "") + order.hotelID;
+
+        int quantity = orderDataService.searchOrderQuantity(prefix);
+        String quantityString = String.valueOf(quantity);
+
+
+        int length = 4 - quantityString.length();
+        for (int i = 0; i < length; i++) {
+            quantityString = "0" + quantityString;
+        }
+
+        order.orderID = prefix + quantityString;
     }
 }

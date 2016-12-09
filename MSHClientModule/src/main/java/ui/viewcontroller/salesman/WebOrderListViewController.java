@@ -39,6 +39,8 @@ public class WebOrderListViewController {
 
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
+    private OrderState orderState;
+
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
      * after the fxml file has been loaded.
@@ -84,7 +86,12 @@ public class WebOrderListViewController {
         this.webOrderViewController = webOrderViewController;
     }
 
+    public void refreshShowOrders() {
+        showOrders(orderState);
+    }
+
     public void showOrders(OrderState orderState) {
+        this.orderState = orderState;
         orders = orderBLService.searchOrder(orderState, null);
         int size = orders.size();
         webOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
@@ -92,6 +99,7 @@ public class WebOrderListViewController {
             turnPage(1);
         } else {
             System.out.println("No Order");
+            clearCells();
         }
 
     }
@@ -103,6 +111,14 @@ public class WebOrderListViewController {
         setCells(tmpOrders);
     }
 
+    private void clearCells() {
+        for (Node cell : cells) {
+            contentVBox.getChildren().remove(cell);
+        }
+
+        contentVBox.getChildren().remove(pagePane);
+    }
+
     private void setCells(List<OrderVO> orders) {
 
         if (orders.size() > NUM_OF_CELL) {
@@ -110,11 +126,7 @@ public class WebOrderListViewController {
             return;
         }
 
-        for (Node cell : cells) {
-            contentVBox.getChildren().remove(cell);
-        }
-
-        contentVBox.getChildren().remove(pagePane);
+        clearCells();
 
         for (int i = 0; i < orders.size(); i++) {
 

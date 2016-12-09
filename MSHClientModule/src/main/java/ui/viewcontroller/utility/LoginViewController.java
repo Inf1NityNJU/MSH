@@ -2,6 +2,7 @@ package ui.viewcontroller.utility;
 
 import bl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLService;
+import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
 
@@ -14,7 +15,7 @@ public class LoginViewController {
     private CommonTextField accountText;
 
     @FXML
-    private CommonTextField passwordText;
+    private CommonPasswordField passwordText;
 
     private UtilityViewController utilityViewController;
 
@@ -24,7 +25,11 @@ public class LoginViewController {
 
     @FXML
     public void clickLoginButton() {
-        utilityViewController.login(accountText.getText(), passwordText.getText());
+        if (accountText.getText().equals("") || passwordText.getText().equals("")) {
+            System.out.println("Not Complete Info");
+        } else {
+            utilityViewController.login(accountText.getText(), passwordText.getText());
+        }
     }
 
     @FXML

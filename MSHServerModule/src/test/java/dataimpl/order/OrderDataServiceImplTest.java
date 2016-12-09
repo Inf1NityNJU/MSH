@@ -43,15 +43,10 @@ public class OrderDataServiceImplTest {
 
     @Test
     public void searchOrder() {
-        ArrayList<OrderPO> orders = orderDataService.searchOrder("checkInDate", "2016");
-        assertEquals(1, orders.size());
+        ArrayList<OrderPO> orders = orderDataService.searchOrder(null, null, null);
+        assertEquals(5, orders.size());
     }
 
-    @Test
-    public void searchOrderByState() {
-        ArrayList<OrderPO> orders = orderDataService.searchOrderByState(OrderState.Unexecuted);
-        assertEquals(1, orders.size());
-    }
 
     @Test
     public void searchOrderByOrderID() {
@@ -83,8 +78,8 @@ public class OrderDataServiceImplTest {
 
     @Test
     public void searchOrderRoomByOrderID() {
-        ArrayList<OrderRoomPO> rooms = orderDataService.searchOrderRoomByOrderID("20161012010112340000");
-        assertEquals(1, rooms.size());
+        ArrayList<OrderRoomPO> rooms = orderDataService.searchOrderRoomByOrderID("20161209000000010000");
+        assertEquals(2, rooms.size());
     }
 
     @Test
@@ -111,5 +106,11 @@ public class OrderDataServiceImplTest {
         AssessmentPO assessment = orderDataService.searchAssessmentByOrderID("2016101201011234006");
 //        AssessmentPO exampleAssessment = new AssessmentPO("20161012010112340000", 5, 5, 4, 4, "下次再来", "000000001");
         assertEquals(null, assessment);
+    }
+
+    @Test
+    public void searchOrderQuantity() {
+        int quantity = orderDataService.searchOrderQuantity("2016101201011234");
+        assertEquals(5, quantity);
     }
 }

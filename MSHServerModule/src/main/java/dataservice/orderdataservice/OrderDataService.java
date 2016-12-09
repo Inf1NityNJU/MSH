@@ -47,14 +47,7 @@ public interface OrderDataService {
      * @param value
      * @return
      */
-    public ArrayList<OrderPO> searchOrder(String field, String value);
-
-    /**
-     * 根据订单状态搜索订单
-     * @param state
-     * @return
-     */
-    public ArrayList<OrderPO> searchOrderByState(OrderState state);
+    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value);
 
     /**
      * 根据客户ID搜索订单
@@ -97,4 +90,10 @@ public interface OrderDataService {
      * @return
      */
     public AssessmentPO searchAssessmentByOrderID(String orderID);
+
+    /**
+     * 搜索订单数量
+     */
+    public int searchOrderQuantity(String orderIDPrefix);
+
 }

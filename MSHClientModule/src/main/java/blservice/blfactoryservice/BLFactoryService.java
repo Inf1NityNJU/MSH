@@ -29,5 +29,7 @@ public interface BLFactoryService {
 
     public PromotionBLInfo getPromotionBLInfo();
 
-    public UserBLInfo getUserBLInfo();
+    public UserBLInfo getUserBLInfo_Client();
+
+    public UserBLInfo getUserBLInfo_Staff();
 }

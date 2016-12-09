@@ -44,37 +44,37 @@
                         </ImageView>
                         <AnchorPane prefHeight="200.0" prefWidth="600.0">
                            <children>
-                              <Label layoutX="171.0" layoutY="42.0" text="酒店名字" textFill="#5b6e79" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label fx:id="hotelNameLabel" layoutX="171.0" layoutY="42.0" text="酒店名字" textFill="#5b6e79" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="181.0" layoutY="52.0" text="酒店地址" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
-                                 </font>
-                              </Label>
+                              <!--<Label layoutX="181.0" layoutY="52.0" text="酒店地址" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">-->
+                                 <!--<font>-->
+                                    <!--<Font name="PingFang SC Regular" size="14.0" />-->
+                                 <!--</font>-->
+                              <!--</Label>-->
                               <Label layoutX="191.0" layoutY="62.0" text="入离日期" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="86.0" layoutY="68.0" text="2016年10月1日 - 2016年10月4日" textFill="GREY" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="67.0">
+                              <Label fx:id="checkDateLabel" layoutX="86.0" layoutY="68.0" text="2016年10月1日 - 2016年10月4日" textFill="GREY" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="67.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="201.0" layoutY="72.0" text="家庭房 × 1" textFill="#00cccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="94.0">
+                              <Label fx:id="roomLabel" layoutX="201.0" layoutY="72.0" text="家庭房 × 1" textFill="#00cccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="94.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="211.0" layoutY="82.0" text="¥ 1000" textFill="#ff2c14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                              <Label fx:id="priceLabel" layoutX="211.0" layoutY="82.0" text="¥ 1000" textFill="#ff2c14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                                  <font>
                                     <Font name="PingFang SC Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <RectButton isActiveProperty="false" layoutX="500.0" layoutY="151.0" sizeProperty="Small" text="查看详情" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                              <RectButton fx:id="detailButton" isActiveProperty="false" layoutX="500.0" layoutY="151.0" sizeProperty="Small" text="查看详情" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickDetailButton"/>
                            </children>
                         </AnchorPane>
                      </children>
@@ -118,10 +118,10 @@
                                     <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Label>
-                              <RateStarPane GridPane.columnIndex="1" />
-                              <RateStarPane GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <RateStarPane GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <RateStarPane GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <RateStarPane fx:id="serviceScorePane" GridPane.columnIndex="1" />
+                              <RateStarPane fx:id="facilityScorePane" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <RateStarPane fx:id="healthScorePane" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <RateStarPane fx:id="locationScorePane" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                         <Label layoutX="10.0" layoutY="10.0" text="评价" textFill="#cccccc" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="0.0">
@@ -129,13 +129,13 @@
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
                         </Label>
-                        <CommonTextArea layoutX="480.0" prefHeight="120.0" prefWidth="440.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <CommonTextArea fx:id="commentTextArea" layoutX="480.0" prefHeight="120.0" prefWidth="440.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <ButtonBar>
                      <buttons>
-                        <RectButton isActiveProperty="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" text="返 回" onMouseClicked="#clickBackButton"/>
-                        <RectButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" text="确 认" />
+                        <RectButton fx:id="backButton" isActiveProperty="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" text="返 回" onMouseClicked="#clickBackButton"/>
+                        <RectButton fx:id="confirmButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" text="确 认" onMouseClicked="#clickConfirmButton"/>
                      </buttons>
                   </ButtonBar>
                </children>

@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientBookOrderViewController;
 import vo.OrderRoomVO;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Sorumi on 16/12/2.
  */
@@ -69,11 +71,13 @@ public class ClientOrderRoomEditCellController {
     }
 
     private void refreshBill() {
+        DecimalFormat df = new DecimalFormat("#.00");
+
         minusButton.setAbled(room.quantity > 1);
         plusButton.setAbled(room.quantity < availableQuantity);
 
         quantityLabel.setText(room.quantity + "");
-        totalPriceLabel.setText("¥ " + room.price * room.quantity);
+        totalPriceLabel.setText("¥ " + df.format(room.price * room.quantity));
         clientBookOrderViewController.refreshBill();
     }
 }

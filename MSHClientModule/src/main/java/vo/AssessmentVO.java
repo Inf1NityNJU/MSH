@@ -51,6 +51,10 @@ public class AssessmentVO {
         this.clientID = null;
     }
 
+    public AssessmentPO toPO(String orderID) {
+        return new AssessmentPO(orderID,serviceScore, facilityScore, healthScore, locationScore, comment, clientID);
+    }
+
     public AssessmentVO(AssessmentPO assessmentPO) {
         this.serviceScore = assessmentPO.getServiceScore();
         this.facilityScore = assessmentPO.getFacilityScore();
