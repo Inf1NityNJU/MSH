@@ -3,17 +3,22 @@ package ui.viewcontroller.client;
 import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
+import component.ratestarpane.RateStarPane;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.Main;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import util.OrderState;
+import vo.AssessmentVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -78,7 +83,31 @@ public class ClientOrderDetailViewController {
     private Label totalPriceLabel;
 
     @FXML
+    private Label noAssessmentLabel;
+
+    @FXML
+    private GridPane scorePane;
+
+    @FXML
+    private RateStarPane serviceScorePane;
+
+    @FXML
+    private RateStarPane facilityScorePane;
+
+    @FXML
+    private RateStarPane healthScorePane;
+
+    @FXML
+    private RateStarPane locationScorePane;
+
+    @FXML
+    private Text commentText;
+
+    @FXML
     private RectButton cancelButton;
+
+    @FXML
+    private RectButton assessmentButton;
 
     private ClientOrderViewController clientOrderViewController;
 
@@ -124,17 +153,49 @@ public class ClientOrderDetailViewController {
         stateLabel.setText(order.state.getName());
         stateLabel.setColorProperty(order.state.getColor());
 
-        if (order.state == OrderState.Cancelled) {
+        OrderState state = order.state;
+        if (state == OrderState.Cancelled) {
             cancelledLabel.setVisible(true);
             cancelledTimeLabel.setVisible(true);
             cancelledTimeLabel.setText(order.cancelledTime.toString());
             cancelButton.setVisible(false);
             cancelButton.setManaged(false);
-        } else {
+
+        } else if (state == OrderState.Unexecuted) {
             cancelledLabel.setVisible(false);
             cancelledTimeLabel.setVisible(false);
             cancelButton.setVisible(true);
             cancelButton.setManaged(true);
+        } else {
+            cancelledLabel.setVisible(false);
+            cancelledTimeLabel.setVisible(false);
+            cancelButton.setVisible(false);
+            cancelButton.setManaged(false);
+        }
+
+        if (order.state == OrderState.Executed) {
+            AssessmentVO assessment = order.assessment;
+            if (assessment == null) {
+                assessmentButton.setVisible(true);
+                assessmentButton.setManaged(true);
+                setAssessmentDisplay(false);
+
+            } else {
+                assessmentButton.setVisible(false);
+                assessmentButton.setManaged(false);
+                setAssessmentDisplay(true);
+
+                serviceScorePane.setScore(assessment.serviceScore);
+                facilityScorePane.setScore(assessment.facilityScore);
+                healthScorePane.setScore(assessment.healthScore);
+                locationScorePane.setScore(assessment.locationScore);
+                commentText.setText(assessment.comment);
+            }
+        } else {
+            assessmentButton.setVisible(false);
+            assessmentButton.setManaged(false);
+            setAssessmentDisplay(false);
+
         }
     }
 
@@ -182,5 +243,14 @@ public class ClientOrderDetailViewController {
         orderBLService.revokeOrder(order.orderID);
         order = orderBLService.searchOrderByID(order.orderID);
         updateState();
+    }
+
+    private void setAssessmentDisplay(boolean display) {
+        noAssessmentLabel.setVisible(!display);
+        noAssessmentLabel.setManaged(!display);
+        scorePane.setVisible(display);
+        scorePane.setManaged(display);
+        commentText.setVisible(display);
+        commentText.setManaged(display);
     }
 }
