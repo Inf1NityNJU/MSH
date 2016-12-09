@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.rectbutton.RectButton?>
+<?import component.statebutton.StateButton?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelPromotionDetailViewController">
+    <content>
+        <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+            </padding>
+            <children>
+                <VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;">
+                    <effect>
+                        <DropShadow color="#40404080" radius="1.0" />
+                    </effect>
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                    </padding>
+                    <children>
+                        <TitleLabel text="酒店促销策略详情" />
+                        <GridPane alignment="CENTER_LEFT" vgap="30.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <children>
+                        <Label text="名称" textFill="#cccccc">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="合作企业" textFill="#cccccc" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                                <StateButton fx:id="typeButton" textFill="#f9f9f9" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="优惠所需最小房间数量" textFill="#cccccc" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label fx:id="nameLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label text="优惠会员等级" textFill="#cccccc" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="优惠商圈" textFill="#cccccc" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label text="优惠时间" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                        <Insets top="3.0" />
+                                    </GridPane.margin>
+                                </Label>
+                                <Label fx:id="placeLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="timeLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="clientGradeLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label fx:id="roomQuantityLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <Label fx:id="enterpriseLabel" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                            </children>
+                            <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                                <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                            </rowConstraints>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </GridPane>
+                        <ButtonBar buttonMinWidth="100.0" prefHeight="40">
+                            <buttons>
+                                <RectButton fx:id="backButton" onMouseClicked="#clickBackButton" text="返 回" />
+                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickDeleteButton" text="删 除" />
+                                <RectButton fx:id="editButton" minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </VBox>
+            </children></VBox>
+    </content>
+    <padding>
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+    </padding>
+</ScrollPane>
