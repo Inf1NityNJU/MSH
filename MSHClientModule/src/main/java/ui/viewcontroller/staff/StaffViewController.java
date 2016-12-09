@@ -15,6 +15,7 @@ public class StaffViewController {
 
     private RoomInfoViewController roomInfoViewController;
     private HotelOrderViewController hotelOrderViewController;
+    private HotelPromotionViewController hotelPromotionViewController;
 
     public StaffViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
@@ -36,6 +37,7 @@ public class StaffViewController {
 
         roomInfoViewController = new RoomInfoViewController(rootPane);
         hotelOrderViewController = new HotelOrderViewController(rootPane);
+        hotelPromotionViewController = new HotelPromotionViewController(rootPane);
     }
 
     public void showRoomInfoList() {
@@ -45,4 +47,6 @@ public class StaffViewController {
     public void showHotelOrderList() {
         hotelOrderViewController.showHotelOrderList();
     }
+
+    public void showHotelPromotionList(){hotelPromotionViewController.showHotelPromotionList();}
 }
