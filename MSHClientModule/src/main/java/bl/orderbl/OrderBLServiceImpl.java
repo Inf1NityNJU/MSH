@@ -164,13 +164,13 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
-        UserBLInfo userBLInfo_Client = new BLFactoryImpl().getUserBLInfo_Client();
+//        UserBLInfo userBLInfo_Client = new BLFactoryImpl().getUserBLInfo_Client();
         UserBLInfo userBLInfo_staff = new BLFactoryImpl().getUserBLInfo_Staff();
 
-        String staffID = userBLInfo_Client.getCurrentStaffID();
+        String staffID = userBLInfo_staff.getCurrentStaffID();
         String hotelID = userBLInfo_staff.getHotelIDByStaffID(staffID);
         System.out.print(staffID + " " + hotelID);
-        hotelID = "00000001";
+//        hotelID = "00000001";
 
         return  order.searchHotelOrder(hotelID, os, keyword);
     }

@@ -3,19 +3,23 @@ package ui.viewcontroller.staff;
 import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
+import component.ratestarpane.RateStarPane;
 import component.statebutton.StateButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.Main;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.viewcontroller.client.ClientOrderViewController;
 import util.OrderState;
 import util.TimeUtil;
+import vo.AssessmentVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 import vo.PromotionVO;
@@ -88,6 +92,27 @@ public class HotelOrderDetailViewController {
     @FXML
     private Label totalPriceLabel;
 
+    @FXML
+    private Label noAssessmentLabel;
+
+    @FXML
+    private GridPane scorePane;
+
+    @FXML
+    private RateStarPane serviceScorePane;
+
+    @FXML
+    private RateStarPane facilityScorePane;
+
+    @FXML
+    private RateStarPane healthScorePane;
+
+    @FXML
+    private RateStarPane locationScorePane;
+
+    @FXML
+    private Text commentText;
+
     private OrderVO order;
 
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
@@ -146,7 +171,8 @@ public class HotelOrderDetailViewController {
             updateCheckOutButton.setVisible(false);
         }
 
-        if (order.state == OrderState.Cancelled) {
+        OrderState state = order.state;
+        if (state == OrderState.Cancelled) {
             cancelledLabel.setVisible(true);
             cancelledTimeLabel.setVisible(true);
             cancelledTimeLabel.setText(order.cancelledTime.toString());
@@ -156,10 +182,29 @@ public class HotelOrderDetailViewController {
         }
 
 
-        if (order.state == OrderState.Abnormal) {
+        if (state == OrderState.Abnormal) {
             updateCheckInButton.setText("延迟入住");
             updateCheckInButton.setVisible(true);
             updateCheckOutButton.setVisible(false);
+        }
+
+        if (state == OrderState.Executed) {
+            AssessmentVO assessment = order.assessment;
+            if (assessment == null) {
+                setAssessmentDisplay(false);
+
+            } else {
+                setAssessmentDisplay(true);
+
+                serviceScorePane.setScore(assessment.serviceScore);
+                facilityScorePane.setScore(assessment.facilityScore);
+                healthScorePane.setScore(assessment.healthScore);
+                locationScorePane.setScore(assessment.locationScore);
+                commentText.setText(assessment.comment);
+            }
+        } else {
+            setAssessmentDisplay(false);
+
         }
 
     }
@@ -217,5 +262,13 @@ public class HotelOrderDetailViewController {
         hotelOrderViewController.back();
     }
 
+    private void setAssessmentDisplay(boolean display) {
+        noAssessmentLabel.setVisible(!display);
+        noAssessmentLabel.setManaged(!display);
+        scorePane.setVisible(display);
+        scorePane.setManaged(display);
+        commentText.setVisible(display);
+        commentText.setManaged(display);
+    }
 }
 

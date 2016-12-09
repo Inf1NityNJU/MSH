@@ -173,7 +173,7 @@ public class ClientOrderDetailViewController {
             cancelButton.setManaged(false);
         }
 
-        if (order.state == OrderState.Executed) {
+        if (state == OrderState.Executed) {
             AssessmentVO assessment = order.assessment;
             if (assessment == null) {
                 assessmentButton.setVisible(true);
