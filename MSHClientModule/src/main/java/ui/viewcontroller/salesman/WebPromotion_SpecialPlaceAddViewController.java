@@ -23,6 +23,9 @@ public class WebPromotion_SpecialPlaceAddViewController {
     private WebPromotionViewController webPromotionViewController;
     private PromotionBLService promotionBLService;
 
+    private boolean isEdit = false;
+    private String promotionID = null;
+
     @FXML
     private CommonTextField nameTextField;
 
@@ -58,6 +61,9 @@ public class WebPromotion_SpecialPlaceAddViewController {
 
     public void clickCancelButton() {
         webPromotionViewController.refreshWebPromotionList();
+        if(isEdit){
+            webPromotionViewController.back();
+        }
         webPromotionViewController.back();
     }
 
@@ -65,7 +71,14 @@ public class WebPromotion_SpecialPlaceAddViewController {
         promotionVO = new Promotion_SpecialPlaceVO(nameTextField.getText(), PromotionType.Web_SpecilPlace,
                 Double.valueOf(discountTextField.getText()), new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
                 (Place) placeChoiceBox.getValue());
-        promotionBLService.addPromotion(promotionVO);
+        if(isEdit){
+            promotionVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotionVO);
+            System.out.println("update successfully!");
+        }else {
+            promotionBLService.addPromotion(promotionVO);
+            System.out.println("save successfully!");
+        }
 
     }
 
@@ -100,5 +113,7 @@ public class WebPromotion_SpecialPlaceAddViewController {
     public void showEditView(PromotionVO promotionVO){
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
+        isEdit = true;
+        this.promotionID = promotionVO.promotionID;
     }
 }
