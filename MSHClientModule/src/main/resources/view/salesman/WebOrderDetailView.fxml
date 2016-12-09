@@ -3,6 +3,7 @@
 <?import component.mycheckbox.MyCheckBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
+<?import component.tinybutton.TinyButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
@@ -268,12 +269,17 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <StateButton fx:id="stateLabel" colorProperty="00cccc" isActiveProperty="true" text="未执行" />
+                              <TinyButton fx:id="cancelButton" text="撤销异常">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </TinyButton>
                               <Label fx:id="cancelledLabel" prefWidth="150.0" text="撤销时间" textFill="#cccccc">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="200.0" />
+                                    <Insets left="82.0" />
                                  </HBox.margin>
                               </Label>
                               <Label fx:id="cancelledTimeLabel" text="2016年11月19日 21:46" textFill="GREY">
@@ -318,7 +324,7 @@
                   </GridPane>
                   <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                      <buttons>
-                        <RectButton minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回"/>
+                        <RectButton minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
                      </buttons>
                   </ButtonBar>
                </children>

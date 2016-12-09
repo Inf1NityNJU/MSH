@@ -108,18 +108,17 @@ public class Order {
         BillVO billVO = bill.refresh(order.hotelID, hotel.place, new DateUtil(LocalDate.now()), client.level,
                 client.birthday, client.enterprise, quantity);
 
-//        ClientVO client = new ClientVO("000000001", "哈哈哈", 3, new DateUtil(2011, 02, 14), 200, 0, "12", "1111111", "123");
-//        BillVO billVO = mockbill.refresh(order.hotelID, new DateUtil(LocalDate.now()), client.birthday, client.enterprise, quantity);
+        // calculate price
+        DecimalFormat df = new DecimalFormat("#.0");
 
         double originPrice = 0;
-
 
         for (OrderRoom orderRoomItr : orderRooms) {
             originPrice += orderRoomItr.getTotal();
         }
 
-        billVO.originPrice = originPrice;
-        double totalPrice = originPrice;
+        billVO.originPrice = Double.parseDouble(df.format(originPrice));
+        double totalPrice = billVO.originPrice;
 
         if (billVO.hotelPromotion != null) {
             totalPrice = totalPrice * billVO.hotelPromotion.promotionDiscount;
@@ -129,7 +128,7 @@ public class Order {
             totalPrice = totalPrice * billVO.websitePromotion.promotionDiscount;
         }
 
-        DecimalFormat df = new DecimalFormat("#.00");
+
         billVO.totalPrice = Double.parseDouble(df.format(totalPrice));
 
         order.bill = billVO;
@@ -147,14 +146,6 @@ public class Order {
      */
     public ResultMessage generate(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
 
-        //OrderRoom
-        ArrayList<OrderRoomVO> roomVOs = order.rooms;
-
-        for (OrderRoomVO orderRoomVO : roomVOs) {
-            OrderRoomPO orderRoomPO = orderRoomVO.toPO(order.orderID + roomVOs.indexOf(orderRoomVO), order.orderID);
-            orderDataService.addOrderRoom(orderRoomPO);
-        }
-
         order.bookedTime = new TimeUtil(LocalDateTime.now());
         order.state = OrderState.Unexecuted;
 
@@ -163,6 +154,14 @@ public class Order {
         order.hasChildren = hasChildren;
 
         generateOrderID();
+
+        //OrderRoom
+        ArrayList<OrderRoomVO> roomVOs = order.rooms;
+
+        for (OrderRoomVO orderRoomVO : roomVOs) {
+            OrderRoomPO orderRoomPO = orderRoomVO.toPO(order.orderID + roomVOs.indexOf(orderRoomVO), order.orderID);
+            orderDataService.addOrderRoom(orderRoomPO);
+        }
 
         OrderPO orderPO = order.toPO();
 

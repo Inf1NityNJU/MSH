@@ -78,8 +78,8 @@ public class OrderDataServiceImplTest {
 
     @Test
     public void searchOrderRoomByOrderID() {
-        ArrayList<OrderRoomPO> rooms = orderDataService.searchOrderRoomByOrderID("20161012010112340000");
-        assertEquals(1, rooms.size());
+        ArrayList<OrderRoomPO> rooms = orderDataService.searchOrderRoomByOrderID("20161209000000010000");
+        assertEquals(2, rooms.size());
     }
 
     @Test

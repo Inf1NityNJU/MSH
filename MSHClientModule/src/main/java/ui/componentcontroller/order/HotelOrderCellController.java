@@ -62,8 +62,9 @@ public class HotelOrderCellController {
         checkDateLabel.setText(order.checkInDate.toString() + " - " +order.checkOutDate.toString());
 
         String roomText = "";
+
         for (OrderRoomVO room : order.rooms) {
-            roomText = room.type.getName() + " × " + room.quantity;
+            roomText = roomText + " " + room.type.getName() + " × " + room.quantity;
         }
         roomLabel.setText(roomText);
 
