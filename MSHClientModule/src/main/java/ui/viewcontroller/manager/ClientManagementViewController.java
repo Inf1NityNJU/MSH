@@ -61,7 +61,7 @@ public class ClientManagementViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/user/ClientManagementListView.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/manager/ClientManagementListView.fxml"));
             ScrollPane list = listLoader.load();
 
             clientManagementListViewController = listLoader.getController();
@@ -142,7 +142,7 @@ public class ClientManagementViewController {
     public void resetPassword(String account, String ID) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/user/ResetPasswordView.fxml"));
+            loader.setLocation(Main.class.getResource("../view/manager/ResetPasswordView.fxml"));
             ScrollPane view = loader.load();
 
             resetPasswordViewController = loader.getController();

@@ -32,7 +32,7 @@ public class HotelDataServiceImplTest {
 
     }
 
-    @Ignore
+    @Test
     public void addRoom() throws Exception {
         ResultMessage resultMessage = hotelDataService.addRoom(new HotelRoomPO("0000000104", "00000001", RoomType.DoubleDouble, 258.5, 8, false));
         assertEquals(ResultMessage.SUCCESS, resultMessage);

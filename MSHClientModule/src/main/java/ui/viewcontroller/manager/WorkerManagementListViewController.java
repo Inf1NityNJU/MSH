@@ -60,7 +60,7 @@ public class WorkerManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/user/WorkerManagementSearchPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/manager/WorkerManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
             workerManagementSearchPaneController = loader.getController();
@@ -69,7 +69,7 @@ public class WorkerManagementListViewController {
             contentVBox.getChildren().add(pane);
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/user/WorkerManagementPagePane.fxml"));
+            pageLoader.setLocation(Main.class.getResource("../component/manager/WorkerManagementPagePane.fxml"));
             pagePane = pageLoader.load();
 
             workerManagementPaneController = pageLoader.getController();
@@ -78,7 +78,7 @@ public class WorkerManagementListViewController {
             for (int i = 0; i < ROW_IN_PANE; i++) {
 
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/user/WorkerInfoCell.fxml"));
+                cellLoader.setLocation(Main.class.getResource("../component/manager/WorkerInfoCell.fxml"));
                 HBox clientCell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

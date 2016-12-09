@@ -15,6 +15,7 @@ import vo.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -169,6 +170,10 @@ public class Order {
 
         if (rm == ResultMessage.SUCCESS) {
 
+            //TODO
+//            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
+//            DateUtil lastDate = new DateUtil(tmpDate.plusDays(1));
+
             for (OrderRoomVO orderRoomVO : roomVOs) {
                 RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, order.checkOutDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
                 hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
@@ -189,7 +194,7 @@ public class Order {
         orderPO.setState(OrderState.Cancelled);
 //        userBLInfo.
         //TODO
-        //update user credit
+        //update manager credit
         return orderDataService.updateOrder(orderPO);
     }
 

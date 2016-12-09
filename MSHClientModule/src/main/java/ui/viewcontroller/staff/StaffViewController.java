@@ -13,6 +13,7 @@ import java.io.IOException;
 public class StaffViewController {
     private BorderPane rootPane;
 
+    private HotelInfoViewController hotelInfoViewController;
     private RoomInfoViewController roomInfoViewController;
     private HotelOrderViewController hotelOrderViewController;
 
@@ -34,12 +35,17 @@ public class StaffViewController {
             e.printStackTrace();
         }
 
+        hotelInfoViewController = new HotelInfoViewController(rootPane);
         roomInfoViewController = new RoomInfoViewController(rootPane);
         hotelOrderViewController = new HotelOrderViewController(rootPane);
     }
 
+    public void showHotelInfoView() {
+        hotelInfoViewController.showHotelDetail();
+    }
+
     public void showRoomInfoList() {
-        roomInfoViewController.showRoomInfoList();
+        roomInfoViewController.showRoomAllList();
     }
 
     public void showHotelOrderList() {

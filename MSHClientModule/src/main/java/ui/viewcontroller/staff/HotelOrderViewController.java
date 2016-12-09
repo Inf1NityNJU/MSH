@@ -17,7 +17,6 @@ import java.util.Stack;
  */
 public class HotelOrderViewController {
 
-
     private BorderPane rootPane;
 
     private Node initNode;

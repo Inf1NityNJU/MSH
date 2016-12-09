@@ -86,8 +86,10 @@ public class ClientHotelDetailViewController {
 
     private ClientSearchHotelViewController clientSearchHotelViewController;
 
-    private  HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
-    private  OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+    private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+    private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
+
 
     private Hotel_DetailVO hotel;
 
@@ -159,7 +161,6 @@ public class ClientHotelDetailViewController {
 
 
     private void addPromotions() {
-        PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
         ArrayList<PromotionVO> promotions = promotionBLService.searchHotelPromotions(hotel.ID);
 
         for (PromotionVO promotion : promotions) {

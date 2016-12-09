@@ -204,7 +204,6 @@ public class HotelOrderDetailViewController {
             }
         } else {
             setAssessmentDisplay(false);
-
         }
 
     }

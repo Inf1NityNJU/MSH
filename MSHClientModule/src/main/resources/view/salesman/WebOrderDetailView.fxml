@@ -19,6 +19,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import component.ratestarpane.RateStarPane?>
+<?import javafx.scene.text.Text?>
 <ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.WebOrderDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
@@ -305,6 +307,80 @@
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
+                        <Label text="评分评价" textFill="#cccccc" GridPane.rowIndex="13" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="PingFang SC Regular" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets top="3.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                           <children>
+                              <Label fx:id="noAssessmentLabel" text="未评价" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <GridPane fx:id="scorePane" hgap="60.0" vgap="10.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="NEVER" />
+                                    <ColumnConstraints hgrow="NEVER" />
+                                 </columnConstraints>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label prefWidth="60.0" text="服务" textFill="GREY">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <RateStarPane fx:id="serviceScorePane" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label prefWidth="60.0" text="卫生" textFill="GREY">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <RateStarPane fx:id="healthScorePane" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label prefWidth="60.0" text="设施" textFill="GREY">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <RateStarPane fx:id="facilityScorePane" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label prefWidth="60.0" text="位置" textFill="GREY">
+                                             <font>
+                                                <Font name="PingFang SC Regular" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <RateStarPane fx:id="locationScorePane" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Text fx:id="commentText" fill="GREY" strokeType="OUTSIDE" strokeWidth="0.0" text="地段很棒，出门就是地铁口，周围有很多美食，购物商场也很多，对面就有电影院，可以看一场深夜电影。这一片有不少很精致的小店，和朋友们一边走走看看。房子从外面看推开门视觉观感很棒。实物房子比照片更好看，也更舒适，和队友们一起坐在地毯上看剧拍照吃点心，感觉特别棒。" wrappingWidth="770.0">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
                      </children>
                      <rowConstraints>
                         <RowConstraints />

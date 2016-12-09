@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.circlebutton.CircleButton?>
+<?import component.mydatepicker.MyDatePicker?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import component.pagepane.PagePane?>
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;"
+            stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.RoomAvailableListViewController">
+    <content>
+        <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="20.0"
+              style="-fx-background-color: transparent;" stylesheets="@../../css/main.css">
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+            </padding>
+            <children>
+                <VBox prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #ffffff;">
+                    <effect>
+                        <DropShadow color="#40404080" radius="1.0"/>
+                    </effect>
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+                    </padding>
+                    <children>
+                        <TitleLabel text="房间管理"/>
+                        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity"
+                              prefHeight="20.0" spacing="16.0">
+                            <children>
+                                <Label fx:id="AllRoomLabel" alignment="CENTER" contentDisplay="CENTER"
+                                       text="全部房间" textAlignment="CENTER" textFill="#cccccc" wrapText="true" onMouseClicked="#clickAllLabel">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND"/>
+                                    </cursor>
+                                </Label>
+                                <Separator orientation="VERTICAL" stylesheets="@../../css/main.css"/>
+                                <Label fx:id="AvailableRoomLabel" alignment="CENTER" contentDisplay="CENTER"
+                                       text="可用房间" textAlignment="CENTER" textFill="#00cccc" wrapText="true">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <MyDatePicker fx:id="datePicker"/>
+                        <HBox prefHeight="16.0" prefWidth="800.0">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" prefWidth="270.0"
+                                       text="类型" textAlignment="CENTER" textFill="#cccccc">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </Label>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="190.0" text="单价"
+                                       textAlignment="CENTER" textFill="#cccccc">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </Label>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="140.0" text="总计数量"
+                                       textAlignment="CENTER" textFill="#cccccc">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </Label>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" text="可用数量"
+                                       textAlignment="CENTER" textFill="#cccccc">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="120.0" text="操作"
+                                       textAlignment="CENTER" textFill="#cccccc">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0"/>
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <Separator prefWidth="200.0"/>
+                        <VBox fx:id="roomVBox" prefHeight="200.0" prefWidth="100.0" spacing="20.0"/>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <PagePane fx:id="pagePane" alignment="CENTER" onPageChanged="#pageChanged"/>
+                            </children>
+                        </StackPane>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0"/>
+    </padding>
+</ScrollPane>

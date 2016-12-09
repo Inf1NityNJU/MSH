@@ -16,19 +16,19 @@ import java.util.Stack;
 public class RoomInfoViewController {
     private BorderPane rootPane;
 
-    private Node showAllList;
-    private Node showEditList;
-    private Node addRoomPane;
+    private Node initNode;
+//    private Node showEditList;
+//    private Node addRoomPane;
     private Stack<Node> stack = new Stack<Node>();
 
     /**
      * 浏览全部房间的控制器
      */
-    private RoomInfoListViewController roomInfoListViewController;
+    private RoomAllListViewController roomAllListViewController;
     /**
      * 编辑房间信息控制器
      */
-    private EditRoomInfoListViewController editRoomInfoListViewController;
+    private RoomAvailableListViewController roomAvailableListViewController;
 
     /**
      * 添加房间信息控制器
@@ -48,61 +48,53 @@ public class RoomInfoViewController {
             Node node = stack.pop();
             rootPane.setCenter(node);
         }
-        showRoomInfoList();
     }
 
     /**
-     * 显示房全部房间列表
+     * 显示全部房间列表
      */
-    public void showRoomInfoList() {
-        if (showAllList != null) {
-            rootPane.setCenter(showAllList);
-            roomInfoListViewController.showAllRoomList();
+    public void showRoomAllList() {
+        if (initNode != null) {
+            rootPane.setCenter(initNode);
             return;
         }
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/staff/RoomInfoListView.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/staff/RoomAllListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            roomInfoListViewController = listLoader.getController();
-            roomInfoListViewController.setRoomInfoViewController(this);
+            roomAllListViewController = listLoader.getController();
+            roomAllListViewController.setRoomInfoViewController(this);
+            roomAllListViewController.showAllRoomList();
 
-            showAllList = list;
-            stack.push(list);
+            initNode = list;
 
             rootPane.setCenter(list);
 
-            roomInfoListViewController.showAllRoomList();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * 显示编辑房间信息列表
+     * 显示可用房间列表
      */
-    public void showEditRoomView() {
-        if (showEditList != null) {
-            rootPane.setCenter(showEditList);
-            editRoomInfoListViewController.showEditRoomList();
-            return;
-        }
+    public void showRoomAvailableList() {
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/staff/EditRoomInfoListView.fxml"));
+            listLoader.setLocation(Main.class.getResource("../view/staff/RoomAvailableListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            editRoomInfoListViewController = listLoader.getController();
-            editRoomInfoListViewController.setRoomInfoViewController(this);
+            roomAvailableListViewController = listLoader.getController();
+            roomAvailableListViewController.setRoomInfoViewController(this);
+            roomAvailableListViewController.showAvailableRoomList();
 
-            showEditList = list;
-            //stack.push(list);
+            Node node = rootPane.getCenter();
+            stack.push(node);
 
             rootPane.setCenter(list);
 
-            editRoomInfoListViewController.showEditRoomList();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,11 +104,11 @@ public class RoomInfoViewController {
      * 显示添加房间界面
      */
     public void showAddRoomView() {
-        if (addRoomPane != null) {
-            rootPane.setCenter(addRoomPane);
-            addHotelRoomPaneController.clean();
-            return;
-        }
+//        if (addRoomPane != null) {
+//            rootPane.setCenter(addRoomPane);
+//            addHotelRoomPaneController.clean();
+//            return;
+//        }
         try {
             FXMLLoader listLoader = new FXMLLoader();
             listLoader.setLocation(Main.class.getResource("../component/hotel/AddRoomInfoPane.fxml"));
@@ -126,8 +118,8 @@ public class RoomInfoViewController {
             addHotelRoomPaneController.setRoomInfoViewController(this);
             addHotelRoomPaneController.clean();
 
-            addRoomPane = list;
-            //stack.push(list);
+            Node node = rootPane.getCenter();
+            stack.push(node);
 
             rootPane.setCenter(list);
 
@@ -136,28 +128,4 @@ public class RoomInfoViewController {
         }
     }
 
-//    /**
-//     * 客户订单详情
-//     */
-//    public void showClientOrderDetail(OrderVO order) {
-//
-//        try {
-//            FXMLLoader orderLoader = new FXMLLoader();
-//            orderLoader.setLocation(Main.class.getResource("../view/client/ClientOrderDetailView.fxml"));
-//            ScrollPane view = orderLoader.load();
-//
-//            ClientOrderDetailViewController clientOrderDetailViewController = orderLoader.getController();
-//            clientOrderDetailViewController.setClientViewController(this);
-//            clientOrderDetailViewController.showOrder(order);
-//
-////            stack.push(view);
-//            Node node = rootPane.getCenter();
-//            stack.push(node);
-//
-//            rootPane.setCenter(view);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
