@@ -40,8 +40,8 @@ public class HotelPromotion_RoomQuantityAddViewController {
     public void setHotelPromotionViewController(HotelPromotionViewController hotelPromotionViewController) {
         this.hotelPromotionViewController = hotelPromotionViewController;
 
-        typeButton.setText(PromotionType.Hotel_Birthday.getType());
-        typeButton.setColorProperty(PromotionType.Hotel_Birthday.getColor());
+        typeButton.setText(PromotionType.Hotel_RoomQuantity.getType());
+        typeButton.setColorProperty(PromotionType.Hotel_RoomQuantity.getColor());
     }
 
     public void setPromotionBLService(PromotionBLService promotionBLService){

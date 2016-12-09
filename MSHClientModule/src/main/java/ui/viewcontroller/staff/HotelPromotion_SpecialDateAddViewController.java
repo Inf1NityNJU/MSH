@@ -1,5 +1,6 @@
 package ui.viewcontroller.staff;
 
+import bl.hotelbl.Hotel;
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
@@ -8,12 +9,12 @@ import javafx.fxml.FXML;
 import util.DateUtil;
 import util.PromotionType;
 import vo.PromotionVO;
-import vo.Promotion_EnterpriseVO;
+import vo.Promotion_HotelSpecialDateVO;
 
 /**
  * Created by vivian on 16/12/9.
  */
-public class HotelPromotion_EnterpriseAddViewController {
+public class HotelPromotion_SpecialDateAddViewController {
     private PromotionVO promotionVO;
     private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
@@ -33,15 +34,11 @@ public class HotelPromotion_EnterpriseAddViewController {
     @FXML
     private MyDatePicker endTime;
 
-    @FXML
-    private CommonTextField enterpriseTextField;
-
-
     public void setHotelPromotionViewController(HotelPromotionViewController hotelPromotionViewController) {
         this.hotelPromotionViewController = hotelPromotionViewController;
 
-        typeButton.setText(PromotionType.Hotel_Enterprise.getType());
-        typeButton.setColorProperty(PromotionType.Hotel_Enterprise.getColor());
+        typeButton.setText(PromotionType.Hotel_SpecilaDate.getType());
+        typeButton.setColorProperty(PromotionType.Hotel_SpecilaDate.getColor());
     }
 
     public void setPromotionBLService(PromotionBLService promotionBLService){
@@ -54,17 +51,14 @@ public class HotelPromotion_EnterpriseAddViewController {
     }
 
     public void clickSaveButton(){
-        promotionVO = new Promotion_EnterpriseVO(nameTextField.getText(),PromotionType.Hotel_Birthday, Double.valueOf(discountTextField.getText()),
-                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
-                enterpriseTextField.getText(), DataClass.hotelID);
+        promotionVO = new Promotion_HotelSpecialDateVO(nameTextField.getText(),PromotionType.Web_SpecilaDate, Double.valueOf(discountTextField.getText()),
+                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()), DataClass.hotelID);
         promotionBLService.addPromotion(promotionVO);
 
     }
 
     public void showEditView(PromotionVO promotionVO){
-        Promotion_EnterpriseVO promotion_enterpriseVO = (Promotion_EnterpriseVO) promotionVO;
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
-        enterpriseTextField.setText(promotion_enterpriseVO.enterpriseName+"");
     }
 }
