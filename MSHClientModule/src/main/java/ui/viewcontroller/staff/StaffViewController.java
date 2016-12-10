@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
 
@@ -11,15 +12,15 @@ import java.io.IOException;
  * Created by SilverNarcissus on 2016/11/27.
  */
 public class StaffViewController {
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private HotelInfoViewController hotelInfoViewController;
     private RoomInfoViewController roomInfoViewController;
     private HotelOrderViewController hotelOrderViewController;
     private HotelPromotionViewController hotelPromotionViewController;
 
-    public StaffViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public StaffViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
 
         try {
             //加载navbar
@@ -30,16 +31,16 @@ public class StaffViewController {
             StaffNavbarController staffNavbarController = navLoader.getController();
             staffNavbarController.setStaffViewController(this);
 
-            rootPane.setLeft(navbar);
+            mainUIController.setLeft(navbar);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        hotelInfoViewController = new HotelInfoViewController(rootPane);
-        roomInfoViewController = new RoomInfoViewController(rootPane);
-        hotelOrderViewController = new HotelOrderViewController(rootPane);
-        hotelPromotionViewController = new HotelPromotionViewController(rootPane);
+        hotelInfoViewController = new HotelInfoViewController(mainUIController);
+        roomInfoViewController = new RoomInfoViewController(mainUIController);
+        hotelOrderViewController = new HotelOrderViewController(mainUIController);
+        hotelPromotionViewController = new HotelPromotionViewController(mainUIController);
     }
 
     public void showHotelInfoView() {

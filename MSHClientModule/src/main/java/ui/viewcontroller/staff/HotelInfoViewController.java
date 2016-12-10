@@ -7,6 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
+import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -17,13 +18,13 @@ import java.util.Stack;
 public class HotelInfoViewController {
 
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
-    public HotelInfoViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public HotelInfoViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -32,7 +33,7 @@ public class HotelInfoViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -43,7 +44,7 @@ public class HotelInfoViewController {
     public void showHotelDetail() {
         if (initNode != null) {
             stack.empty();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -58,7 +59,7 @@ public class HotelInfoViewController {
 
             initNode = pane;
 
-            rootPane.setCenter(pane);
+            mainUIController.setCenter(pane);
 
         } catch (IOException e) {
             e.printStackTrace();

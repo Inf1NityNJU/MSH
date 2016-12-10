@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import vo.SalesmanVO;
 import vo.StaffVO;
 
@@ -16,15 +17,15 @@ import java.util.Stack;
  */
 public class WorkerManagementViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
     private WorkerManagementListViewController workerManagementListViewController;
 
-    public WorkerManagementViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public WorkerManagementViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -33,7 +34,7 @@ public class WorkerManagementViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -44,7 +45,7 @@ public class WorkerManagementViewController {
     public void showWorkerList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -58,7 +59,7 @@ public class WorkerManagementViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
             workerManagementListViewController.launchSearchPane();
 
@@ -82,10 +83,10 @@ public class WorkerManagementViewController {
             staffManagementDetailViewController.setWorkerManagementViewController(this);
             staffManagementDetailViewController.showStaff(staffVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,10 +108,10 @@ public class WorkerManagementViewController {
             staffManagementDetailViewController.setWorkerManagementViewController(this);
             staffManagementDetailViewController.showSalesman(salesmanVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,10 +133,10 @@ public class WorkerManagementViewController {
             staffManagementDetailEditViewController.setWorkerManagementViewController(this);
             staffManagementDetailEditViewController.showStaffEdit(staffVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -157,10 +158,10 @@ public class WorkerManagementViewController {
             salesmanManagementDetailEditViewController.setWorkerManagementViewController(this);
             salesmanManagementDetailEditViewController.showSalesmanEdit(salesmanVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -179,10 +180,10 @@ public class WorkerManagementViewController {
             WorkerManagementAddViewController workerManagementAddViewController = loader.getController();
             workerManagementAddViewController.setWorkerManagementViewController(this);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -204,10 +205,10 @@ public class WorkerManagementViewController {
             resetPasswordViewController.setAccountAndID(workerAccount, workerID);
 
 //            stack.push(view);
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

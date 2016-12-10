@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import util.PromotionType;
 import vo.PromotionVO;
 
@@ -17,7 +18,7 @@ import java.util.Stack;
  * Created by vivian on 16/12/8.
  */
 public class HotelPromotionViewController {
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -28,9 +29,9 @@ public class HotelPromotionViewController {
 
     private PromotionVO promotionVO;
 
-    public HotelPromotionViewController(BorderPane rootPane) {
+    public HotelPromotionViewController(MainUIController mainUIController) {
         this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
-        this.rootPane = rootPane;
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -39,7 +40,7 @@ public class HotelPromotionViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -50,7 +51,7 @@ public class HotelPromotionViewController {
     public void showHotelPromotionList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -64,7 +65,7 @@ public class HotelPromotionViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,10 +95,10 @@ public class HotelPromotionViewController {
             hotelPromotionDetailViewController.setPromotionBLService(promotionBLService);
             hotelPromotionDetailViewController.showHotelPromotionDetail(promotionVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,10 +142,10 @@ public class HotelPromotionViewController {
                 hotelPromotion_birthdayAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -167,10 +168,10 @@ public class HotelPromotionViewController {
                 hotelPromotion_enterpriseAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -193,10 +194,10 @@ public class HotelPromotionViewController {
                 hotelPromotion_roomQuantityAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -219,10 +220,10 @@ public class HotelPromotionViewController {
                 hotelPromotion_specialDateAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
