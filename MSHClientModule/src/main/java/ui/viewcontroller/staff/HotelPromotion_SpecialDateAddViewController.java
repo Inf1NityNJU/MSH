@@ -1,7 +1,9 @@
 package ui.viewcontroller.staff;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
 import component.statebutton.StateButton;
@@ -21,6 +23,7 @@ public class HotelPromotion_SpecialDateAddViewController {
 
     private boolean isEdit = false;
     private String promotionID = null;
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
     @FXML
     private CommonTextField nameTextField;
@@ -58,7 +61,7 @@ public class HotelPromotion_SpecialDateAddViewController {
 
     public void clickSaveButton(){
         promotionVO = new Promotion_HotelSpecialDateVO(nameTextField.getText(),PromotionType.Hotel_SpecilaDate, Double.valueOf(discountTextField.getText()),
-                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()), DataClass.hotelID);
+                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()), userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
         if(isEdit){
             promotionVO.promotionID = promotionID;
             promotionBLService.updatePromotion(promotionVO);

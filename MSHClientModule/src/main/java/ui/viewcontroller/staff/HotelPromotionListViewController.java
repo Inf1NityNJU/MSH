@@ -3,6 +3,7 @@ package ui.viewcontroller.staff;
 import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,6 +30,8 @@ public class HotelPromotionListViewController {
     private static final int NUM_OF_CELL = 5;
 
     private ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
+
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
     @FXML
     private VBox contentVBox;
@@ -99,7 +102,7 @@ public class HotelPromotionListViewController {
      * 展示所有策略列表
      */
     public void showAllHotelPromotions() {
-        promotionVOs = promotionBLService.searchHotelPromotions(DataClass.hotelID);
+        promotionVOs = promotionBLService.searchHotelPromotions(userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
         showHotelPromotions();
     }
 
@@ -115,7 +118,7 @@ public class HotelPromotionListViewController {
         }
         promotionVOs = tempPromotionVOs;
         showHotelPromotions();
-        promotionVOs = promotionBLService.searchHotelPromotions(DataClass.hotelID);
+        promotionVOs = promotionBLService.searchHotelPromotions(userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
     }
 
     public void showHotelPromotions() {
