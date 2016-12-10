@@ -12,5 +12,6 @@ public class ServerMain {
         //打开定时检测器
         DataChecker dataChecker = new DataChecker();
         dataChecker.lunch();
+        new ServiceGUI().showGUI();
     }
 }
