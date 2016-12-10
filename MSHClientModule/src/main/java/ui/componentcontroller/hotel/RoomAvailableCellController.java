@@ -69,7 +69,6 @@ public class RoomAvailableCellController {
         totalQuantityLabel.setText(hotelRoom.totalQuantity + " 间");
 
         for (RoomStockVO roomStock : hotelRoom.roomStockVOs) {
-            System.out.println(roomStock.date + " " + roomStock.availableQuantity);
             if (roomStock.date.equals(date)) {
                 this.roomStock = roomStock;
                 break;
@@ -82,7 +81,6 @@ public class RoomAvailableCellController {
         } else {
             availableQuantity = roomStock.availableQuantity;
             availableQuantityLabel.setText(availableQuantity + "");
-            System.out.println(availableQuantity);
         }
 
         setEditMode(false);
