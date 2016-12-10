@@ -1,8 +1,10 @@
 package ui.viewcontroller.staff;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
 import bl.userbl.UserBLFactory;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ public class HotelPromotion_BirthdayAddViewController {
 
     private boolean isEdit = false;
     private String promotionID = null;
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
     @FXML
     private CommonTextField nameTextField;
@@ -51,7 +54,7 @@ public class HotelPromotion_BirthdayAddViewController {
 
     public void clickSaveButton(){
         promotionVO = new Promotion_BirthdayVO(nameTextField.getText(),PromotionType.Hotel_Birthday, Double.valueOf(discountTextField.getText()),
-                DataClass.hotelID);
+                userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
         if(isEdit){
             promotionVO.promotionID = promotionID;
             promotionBLService.updatePromotion(promotionVO);
