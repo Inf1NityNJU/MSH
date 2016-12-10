@@ -35,6 +35,8 @@ public class RoomInfoViewController {
      */
     private AddHotelRoomPaneController addHotelRoomPaneController;
 
+
+
     public RoomInfoViewController(BorderPane rootPane) {
         this.rootPane = rootPane;
     }
