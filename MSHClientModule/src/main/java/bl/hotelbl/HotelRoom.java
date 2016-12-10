@@ -75,7 +75,7 @@ public class HotelRoom {
             //添加roomStock
             ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
             //
-            for (RoomStockPO roomStockPO : hotelDataService.getRoomStock(hotelRoomPO.getHotelID())) {
+            for (RoomStockPO roomStockPO : hotelDataService.getRoomStock(hotelRoomPO.getID())) {
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
             hotelRoomVO.roomStockVOs = roomStockVOs;

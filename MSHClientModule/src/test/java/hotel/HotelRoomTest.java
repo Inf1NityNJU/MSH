@@ -24,11 +24,11 @@ public class HotelRoomTest {
     private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
     private HotelBLInfo hotelBLInfo = HotelBLFactory.getHotelBLInfo();
 
-    @Ignore
+    @Test
     public void getRoom() throws Exception {
-        ArrayList<HotelRoomVO> hotelRoomVOs = hotelBLService.getRoom("00000001");
+        ArrayList<HotelRoomVO> hotelRoomVOs = hotelBLService.getRoom("00000000");
         assertEquals(2, hotelRoomVOs.size());
-        assertEquals(10, hotelRoomVOs.get(0).roomStockVOs.get(0).availableQuantity);
+        assertEquals(5, hotelRoomVOs.get(1).roomStockVOs.get(0).availableQuantity);
     }
 
     @Ignore

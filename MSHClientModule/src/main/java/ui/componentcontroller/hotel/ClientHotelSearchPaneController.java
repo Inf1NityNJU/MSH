@@ -1,5 +1,7 @@
 package ui.componentcontroller.hotel;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.userblservice.UserBLInfo;
 import com.sun.xml.internal.bind.v2.TODO;
 import component.commontextfield.CommonTextField;
 import component.mycheckbox.MyCheckBox;
@@ -65,6 +67,8 @@ public class ClientHotelSearchPaneController {
 
     @FXML
     private MyCheckBox orderedBox;
+
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
 
     public void setClientHotelListViewController(ClientHotelListViewController clientHotelListViewController) {
@@ -152,9 +156,12 @@ public class ClientHotelSearchPaneController {
             maxScore = (Integer) maxScoreBox.getSelectionModel().getSelectedItem();
         }
         //ordered
+        String clientID=null;
+        if(orderedBox.getIsActiveProperty()){
+              clientID=userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
+        }
 
-        // TODO: 2016/12/9    client ID
-        FilterFlagsVO flags = new FilterFlagsVO(city, place, name, roomType, minPrice, maxPrice, start, end, quantity, star, minScore, maxScore, null);
+        FilterFlagsVO flags = new FilterFlagsVO(city, place, name, roomType, minPrice, maxPrice, start, end, quantity, star, minScore, maxScore, clientID);
         System.out.println(flags);
         clientHotelListViewController.showHotel(flags);
     }
