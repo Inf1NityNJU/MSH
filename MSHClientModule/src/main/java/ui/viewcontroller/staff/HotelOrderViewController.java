@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import vo.OrderVO;
 
 import java.io.IOException;
@@ -17,15 +18,15 @@ import java.util.Stack;
  */
 public class HotelOrderViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
     private HotelOrderListViewController hotelOrderListViewController;
 
-    public HotelOrderViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public HotelOrderViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -34,7 +35,7 @@ public class HotelOrderViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -45,7 +46,7 @@ public class HotelOrderViewController {
     public void showHotelOrderList() {
         if (initNode != null) {
             stack.empty();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -59,7 +60,7 @@ public class HotelOrderViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,10 +81,10 @@ public class HotelOrderViewController {
             hotelOrderDetailViewController.setHotelOrderViewController(this);
             hotelOrderDetailViewController.showOrder(order);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

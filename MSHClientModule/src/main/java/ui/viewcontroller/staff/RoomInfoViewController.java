@@ -6,6 +6,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
 import ui.componentcontroller.hotel.AddHotelRoomPaneController;
+import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -14,7 +15,7 @@ import java.util.Stack;
  * Created by SilverNarcissus on 2016/11/27.
  */
 public class RoomInfoViewController {
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
 //    private Node showEditList;
@@ -37,8 +38,8 @@ public class RoomInfoViewController {
 
 
 
-    public RoomInfoViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public RoomInfoViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
 
@@ -48,7 +49,7 @@ public class RoomInfoViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
         }
     }
 
@@ -57,7 +58,7 @@ public class RoomInfoViewController {
      */
     public void showRoomAllList() {
         if (initNode != null) {
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -72,7 +73,7 @@ public class RoomInfoViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,10 +93,10 @@ public class RoomInfoViewController {
             roomAvailableListViewController.setRoomInfoViewController(this);
             roomAvailableListViewController.showAvailableRoomList();
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,7 +108,7 @@ public class RoomInfoViewController {
      */
     public void showAddRoomView() {
 //        if (addRoomPane != null) {
-//            rootPane.setCenter(addRoomPane);
+//            mainUIController.setCenter(addRoomPane);
 //            addHotelRoomPaneController.clean();
 //            return;
 //        }
@@ -120,10 +121,10 @@ public class RoomInfoViewController {
             addHotelRoomPaneController.setRoomInfoViewController(this);
             addHotelRoomPaneController.clean();
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();

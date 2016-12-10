@@ -64,7 +64,7 @@ public class ClientManagementListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/manager/ClientManagementSearchPane.fxml"));
+            loader.setLocation(Main.class.getResource("../component/user/ClientManagementSearchPane.fxml"));
             VBox pane = loader.load();
 
             clientManagementSearchPaneController = loader.getController();
@@ -73,7 +73,7 @@ public class ClientManagementListViewController {
             contentVBox.getChildren().add(pane);
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/manager/ClientManagementPagePane.fxml"));
+            pageLoader.setLocation(Main.class.getResource("../component/user/ClientManagementPagePane.fxml"));
             pagePane = pageLoader.load();
 
             clientManagementPaneController = pageLoader.getController();
@@ -82,7 +82,7 @@ public class ClientManagementListViewController {
             for (int i = 0; i < ROW_IN_PANE; i++) {
 
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/manager/ClientInfoCell.fxml"));
+                cellLoader.setLocation(Main.class.getResource("../component/user/ClientInfoCell.fxml"));
                 HBox clientCell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

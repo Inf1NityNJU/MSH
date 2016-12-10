@@ -17,7 +17,7 @@ import java.util.Stack;
  */
 public class UtilityViewController {
 
-    private BorderPane rootPane;
+//    private BorderPane rootPane;
 
     private MainUIController mainUIController;
 
@@ -29,8 +29,8 @@ public class UtilityViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
-    public UtilityViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public UtilityViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
         userBLService = new BLFactoryImpl().getClientBLService();
         showLogin();
 //        showSignUp();
@@ -39,18 +39,18 @@ public class UtilityViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
         }
     }
 
-    public void setMainUIController(MainUIController mainUIController) {
-        this.mainUIController = mainUIController;
-    }
+//    public void setMainUIController(MainUIController mainUIController) {
+//        this.mainUIController = mainUIController;
+//    }
 
     public void showLogin() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -62,9 +62,9 @@ public class UtilityViewController {
             loginViewController = fxmlLoader.getController();
             loginViewController.setUtilityViewController(this);
 
-            rootPane.setTop(null);
-            rootPane.setLeft(null);
-            rootPane.setCenter(list);
+            mainUIController.setTop(null);
+            mainUIController.setLeft(null);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class UtilityViewController {
     public void showSignUp() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -106,9 +106,9 @@ public class UtilityViewController {
             signUpViewController = fxmlLoader.getController();
             signUpViewController.setUtilityViewController(this);
 
-            rootPane.setTop(null);
-            rootPane.setLeft(null);
-            rootPane.setCenter(list);
+            mainUIController.setTop(null);
+            mainUIController.setLeft(null);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();

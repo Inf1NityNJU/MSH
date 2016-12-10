@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import util.PromotionType;
 import vo.PromotionVO;
 
@@ -17,7 +18,7 @@ import java.util.Stack;
  * Created by vivian on 16/11/27.
  */
 public class WebPromotionViewController {
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -28,9 +29,9 @@ public class WebPromotionViewController {
 
     private PromotionVO promotionVO;
 
-    public WebPromotionViewController(BorderPane rootPane) {
+    public WebPromotionViewController(MainUIController mainUIController) {
         this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
-        this.rootPane = rootPane;
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -39,7 +40,7 @@ public class WebPromotionViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -50,7 +51,7 @@ public class WebPromotionViewController {
     public void showWebPromotionList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -64,7 +65,7 @@ public class WebPromotionViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,10 +88,10 @@ public class WebPromotionViewController {
             webPromotionDetailViewController.setPromotionBLService(promotionBLService);
             webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,10 +146,10 @@ public class WebPromotionViewController {
                 webPromotion_clientGradeAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -171,10 +172,10 @@ public class WebPromotionViewController {
                 webPromotion_specialDateAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -197,10 +198,10 @@ public class WebPromotionViewController {
                 webPromotion_specialPlaceAddViewController.showEditView(promotionVO);
             }
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

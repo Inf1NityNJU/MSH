@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 
 import java.io.IOException;
@@ -13,14 +14,14 @@ import java.io.IOException;
  */
 public class ClientViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private ClientOrderViewController clientOrderViewController;
     private ClientSearchHotelViewController clientSearchHotelViewController;
     private ClientManagementViewController clientManagementViewController;
 
-    public ClientViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public ClientViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
 
         try {
             FXMLLoader navLoader = new FXMLLoader();
@@ -30,14 +31,14 @@ public class ClientViewController {
             ClientNavbarController clientNavbarController = navLoader.getController();
             clientNavbarController.setClientViewController(this);
 
-            rootPane.setLeft(navbar);
+            mainUIController.setLeft(navbar);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        clientOrderViewController = new ClientOrderViewController(rootPane);
-        clientSearchHotelViewController = new ClientSearchHotelViewController(rootPane);
-//        clientManagementViewController = new ClientManagementViewController(rootPane);
+        clientOrderViewController = new ClientOrderViewController(mainUIController);
+        clientSearchHotelViewController = new ClientSearchHotelViewController(mainUIController);
+        clientManagementViewController = new ClientManagementViewController(mainUIController);
     }
 
     public void showClientOrderList() {

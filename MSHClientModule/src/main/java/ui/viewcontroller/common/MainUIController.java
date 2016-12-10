@@ -1,9 +1,12 @@
 package ui.viewcontroller.common;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import main.Main;
 import ui.componentcontroller.common.HeaderViewController;
 import ui.viewcontroller.client.ClientViewController;
@@ -21,6 +24,10 @@ import java.io.IOException;
  */
 public class MainUIController {
 
+    @FXML
+    private Pane popPane;
+
+    @FXML
     private BorderPane rootPane;
 
     private HeaderViewController headerViewController;
@@ -31,10 +38,9 @@ public class MainUIController {
     private UtilityViewController utilityViewController;
     private StaffViewController staffViewController;
 
-    public void setRootPane(BorderPane rootPane) {
-        this.rootPane = rootPane;
-
-    }
+//    public void setRootPane(BorderPane rootPane) {
+//        this.rootPane = rootPane;
+//    }
 
     public void showMainView() {
         try {
@@ -57,25 +63,52 @@ public class MainUIController {
         }
     }
 
+    public Node getCenter() {
+        return rootPane.getCenter();
+    }
+
+    public void setCenter(Node node) {
+        rootPane.setCenter(node);
+    }
+
+    public void setTop(Node node) {
+        rootPane.setTop(node);
+    }
+
+    public void setLeft(Node node) {
+        rootPane.setLeft(node);
+    }
+
+    public void showPop(Node node) {
+        popPane.getChildren().add(node);
+        popPane.setVisible(true);
+        popPane.setManaged(true);
+    }
+
+    public void hidePop() {
+        popPane.setVisible(false);
+        popPane.setManaged(false);
+    }
+
     public void showUtilView() {
-        utilityViewController = new UtilityViewController(rootPane);
-        utilityViewController.setMainUIController(this);
+        utilityViewController = new UtilityViewController(this);
+//        utilityViewController.setMainUIController(this);
     }
 
     public void showClientView() {
-        clientViewController = new ClientViewController(rootPane);
+        clientViewController = new ClientViewController(this);
     }
 
     public void showManagerView() {
-        managerViewController = new ManagerViewController(rootPane);
+        managerViewController = new ManagerViewController(this);
     }
 
     public void showSalesmanView() {
-        salesmanViewController = new SalesmanViewController(rootPane);
+        salesmanViewController = new SalesmanViewController(this);
     }
 
     public void showStaffView() {
-        staffViewController = new StaffViewController(rootPane);
+        staffViewController = new StaffViewController(this);
     }
 
 }

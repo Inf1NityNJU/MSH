@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ import java.io.IOException;
  */
 public class ManagerViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     /**
      * 管理所有客户
@@ -23,9 +24,9 @@ public class ManagerViewController {
      */
     private WorkerManagementViewController workerManagementViewController;
 
-    public ManagerViewController(BorderPane rootPane) {
+    public ManagerViewController(MainUIController mainUIController) {
 
-        this.rootPane = rootPane;
+        this.mainUIController = mainUIController;
 
         try {
             FXMLLoader navLoader = new FXMLLoader();
@@ -35,13 +36,13 @@ public class ManagerViewController {
             ManagerNavbarController managerNavbarController = navLoader.getController();
             managerNavbarController.setManagerViewController(this);
 
-            rootPane.setLeft(navbar);
+            mainUIController.setLeft(navbar);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        clientManagementViewController = new ClientManagementViewController(rootPane);
-        workerManagementViewController = new WorkerManagementViewController(rootPane);
+        clientManagementViewController = new ClientManagementViewController(mainUIController);
+        workerManagementViewController = new WorkerManagementViewController(mainUIController);
 
     }
 

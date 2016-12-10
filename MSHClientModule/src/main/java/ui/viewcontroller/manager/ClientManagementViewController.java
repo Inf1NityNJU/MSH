@@ -11,6 +11,7 @@ import main.Main;
 import ui.viewcontroller.client.ClientCreditListViewController;
 import ui.viewcontroller.client.ClientDetailEditViewController;
 import ui.viewcontroller.client.ClientDetailViewController;
+import ui.viewcontroller.common.MainUIController;
 import vo.ClientVO;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.Stack;
  */
 public class ClientManagementViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private boolean isSalesman;
 
@@ -34,8 +35,8 @@ public class ClientManagementViewController {
     private Stack<Node> stack = new Stack<Node>();
     private UserBLService userBLService;
 
-    public ClientManagementViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public ClientManagementViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
         this.userBLService = new BLFactoryImpl().getClientBLService();
     }
 
@@ -45,7 +46,7 @@ public class ClientManagementViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
         }
     }
 
@@ -55,7 +56,7 @@ public class ClientManagementViewController {
     public void showClientList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -70,7 +71,7 @@ public class ClientManagementViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
             clientManagementListViewController.launchSearchPane();
 
@@ -98,10 +99,10 @@ public class ClientManagementViewController {
             clientDetailViewController.setClientManagementViewController(this);
             clientDetailViewController.showClient(clientVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -123,10 +124,10 @@ public class ClientManagementViewController {
             clientDetailEditViewController.setClientManagementViewController(this);
             clientDetailEditViewController.showClientEdit(clientVO);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,10 +150,10 @@ public class ClientManagementViewController {
             resetPasswordViewController.setClientManagementViewController(this);
             resetPasswordViewController.setAccountAndID(account, ID);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -174,10 +175,10 @@ public class ClientManagementViewController {
             clientCreditViewController.setClientID(clientID);
             clientCreditViewController.setClientManagementViewController(this);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

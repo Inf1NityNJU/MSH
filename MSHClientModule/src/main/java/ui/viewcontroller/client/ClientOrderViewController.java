@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import vo.OrderVO;
 
 import java.io.IOException;
@@ -18,15 +19,15 @@ import java.util.Stack;
  */
 public class ClientOrderViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
     private ClientOrderListViewController clientOrderListViewController;
 
-    public ClientOrderViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public ClientOrderViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -35,7 +36,7 @@ public class ClientOrderViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -46,7 +47,7 @@ public class ClientOrderViewController {
     public void showClientOrderList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -60,7 +61,7 @@ public class ClientOrderViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,10 +82,10 @@ public class ClientOrderViewController {
             clientOrderDetailViewController.setClientViewController(this);
             clientOrderDetailViewController.showOrder(order);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,10 +106,10 @@ public class ClientOrderViewController {
             clientAssessmentEditView.setClientViewController(this);
             clientAssessmentEditView.setOrder(order);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import vo.Hotel_DetailVO;
 import vo.OrderVO;
 
@@ -23,7 +24,7 @@ import java.util.Stack;
 public class ClientSearchHotelViewController {
 
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -33,8 +34,8 @@ public class ClientSearchHotelViewController {
 
     private  ClientHotelDetailViewController clientHotelDetailViewController;
 
-    public ClientSearchHotelViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public ClientSearchHotelViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
         hotelBLService = HotelBLFactory.getHotelBLService();
     }
 
@@ -44,7 +45,7 @@ public class ClientSearchHotelViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
         }
     }
 
@@ -54,7 +55,7 @@ public class ClientSearchHotelViewController {
     public void showClientHotelList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -68,7 +69,7 @@ public class ClientSearchHotelViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,10 +92,10 @@ public class ClientSearchHotelViewController {
             clientHotelDetailViewController.setClientSearchHotelViewController(this);
             clientHotelDetailViewController.setHotel(hotel);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(pane);
+            mainUIController.setCenter(pane);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -116,10 +117,10 @@ public class ClientSearchHotelViewController {
             clientBookOrderViewController.setClientSearchHotelViewController(this);
             clientBookOrderViewController.setOrder(order);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(pane);
+            mainUIController.setCenter(pane);
 
         } catch (IOException e) {
             e.printStackTrace();
