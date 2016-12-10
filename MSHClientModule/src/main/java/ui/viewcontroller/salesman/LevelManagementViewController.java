@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.Main;
 import ui.viewcontroller.client.ClientCreditListViewController;
+import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -16,7 +17,7 @@ import java.util.Stack;
  * Created by Kray on 2016/11/29.
  */
 public class LevelManagementViewController {
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -27,13 +28,13 @@ public class LevelManagementViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
 
-    public LevelManagementViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public LevelManagementViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     /**
@@ -42,7 +43,7 @@ public class LevelManagementViewController {
     public void showLevelList(){
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -57,7 +58,7 @@ public class LevelManagementViewController {
             initNode = list;
 //            stack.push(list);
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();

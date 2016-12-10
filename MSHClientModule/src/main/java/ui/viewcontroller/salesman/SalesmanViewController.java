@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import main.Main;
+import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.io.IOException;
  */
 public class SalesmanViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private WebOrderViewController webOrderViewController;
 
@@ -26,8 +27,8 @@ public class SalesmanViewController {
 
     private ClientManagementViewController clientManagementViewController;
 
-    public SalesmanViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public SalesmanViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
 
         try {
             FXMLLoader navLoader = new FXMLLoader();
@@ -37,15 +38,15 @@ public class SalesmanViewController {
             SalesmanNavbarController salesmanNavbarController = navLoader.getController();
             salesmanNavbarController.setSalesmanViewController(this);
 
-            rootPane.setLeft(navbar);
+            mainUIController.setLeft(navbar);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        webOrderViewController = new WebOrderViewController(rootPane);
-        webPromotionViewController = new WebPromotionViewController(rootPane);
-        levelManagementViewController = new LevelManagementViewController(rootPane);
-        clientManagementViewController = new ClientManagementViewController(rootPane);
+        webOrderViewController = new WebOrderViewController(mainUIController);
+        webPromotionViewController = new WebPromotionViewController(mainUIController);
+        levelManagementViewController = new LevelManagementViewController(mainUIController);
+        clientManagementViewController = new ClientManagementViewController(mainUIController);
     }
 
     public void showWebOrderList() {

@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import main.Main;
 import ui.viewcontroller.client.ClientOrderDetailViewController;
 import ui.viewcontroller.client.ClientOrderListViewController;
+import ui.viewcontroller.common.MainUIController;
 import vo.OrderVO;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.util.Stack;
  */
 public class WebOrderViewController {
 
-    private BorderPane rootPane;
+    private MainUIController mainUIController;
 
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
@@ -28,8 +29,8 @@ public class WebOrderViewController {
 
     private WebOrderListViewController webOrderListViewController;
 
-    public WebOrderViewController(BorderPane rootPane) {
-        this.rootPane = rootPane;
+    public WebOrderViewController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
         orderBLService = new BLFactoryImpl().getOrderBLService();
     }
 
@@ -39,7 +40,7 @@ public class WebOrderViewController {
     public void back() {
         if (!stack.empty()) {
             Node node = stack.pop();
-            rootPane.setCenter(node);
+            mainUIController.setCenter(node);
 
         }
     }
@@ -50,7 +51,7 @@ public class WebOrderViewController {
     public void showWebOrderList() {
         if (initNode != null) {
             stack.clear();
-            rootPane.setCenter(initNode);
+            mainUIController.setCenter(initNode);
             return;
         }
 
@@ -64,7 +65,7 @@ public class WebOrderViewController {
 
             initNode = list;
 
-            rootPane.setCenter(list);
+            mainUIController.setCenter(list);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,10 +85,10 @@ public class WebOrderViewController {
             webOrderDetailViewController.setWebOrderViewController(this);
             webOrderDetailViewController.showOrder(order);
 
-            Node node = rootPane.getCenter();
+            Node node = mainUIController.getCenter();
             stack.push(node);
 
-            rootPane.setCenter(view);
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();
