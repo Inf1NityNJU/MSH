@@ -1,6 +1,8 @@
 package launcher;
 
 
+import network.ServerHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -53,7 +55,14 @@ public class ServiceGUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             int port = Integer.parseInt(textField.getText());
-            textField.setEditable(false);
+
+            if(ServerHelper.getServerHelper(port) != null) {
+                textField.setEditable(false);
+                System.out.println("Connect Success");
+            }else{
+                System.out.println("Connect Failed");
+            }
+
         }
     }
 
@@ -62,6 +71,9 @@ public class ServiceGUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             textField.setEditable(true);
+
+            ServerHelper.disableNetwork();
+            System.out.println("Connect Disable");
         }
     }
 }

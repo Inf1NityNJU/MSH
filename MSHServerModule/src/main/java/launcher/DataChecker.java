@@ -39,7 +39,7 @@ public class DataChecker {
     /**
      * 启动checker
      */
-    public void lunch() {
+    public void launch() {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
