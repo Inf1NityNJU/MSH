@@ -35,31 +35,31 @@ public class User {
      * @return 当前登录状态
      */
     public LoginState login(String account, String password) {
-        if(account.equals(ManagerInfo.manager_account) && password.equals(ManagerInfo.manager_password)){
+        if (account.equals(ManagerInfo.manager_account) && password.equals(ManagerInfo.manager_password)) {
             return LoginState.LOGIN_SUCCESS_Manager;
         }
         LoginState loginState = userClientNetwork.login(account, password);
         if (loginState == LoginState.LOGIN_SUCCESS_Client) {
             System.out.println("Login Client");
             ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(account);
-            for(ClientPO clientPO : clientPOs){
-                if(clientPO.getPassword().equals(password) && clientPO.getAccount().equals(account)){
+            for (ClientPO clientPO : clientPOs) {
+                if (clientPO.getPassword().equals(password) && clientPO.getAccount().equals(account)) {
                     this.setCurrentID(clientPO.getClientID());
                 }
             }
         } else if (loginState == LoginState.LOGIN_SUCCESS_Salesman) {
             System.out.println("Login Salesman");
             ArrayList<SalesmanPO> salesmanPOs = userClientNetwork.searchSalesman(account);
-            for(SalesmanPO salesmanPO : salesmanPOs){
-                if(salesmanPO.getPassword().equals(password) && salesmanPO.getAccount().equals(account)){
+            for (SalesmanPO salesmanPO : salesmanPOs) {
+                if (salesmanPO.getPassword().equals(password) && salesmanPO.getAccount().equals(account)) {
                     this.setCurrentID(salesmanPO.getSalesmanID());
                 }
             }
         } else if (loginState == LoginState.LOGIN_SUCCESS_Staff) {
             System.out.println("Login Staff");
             ArrayList<StaffPO> staffPOs = userClientNetwork.searchStaff(account);
-            for(StaffPO staffPO : staffPOs){
-                if(staffPO.getPassword().equals(password) && staffPO.getAccount().equals(account)){
+            for (StaffPO staffPO : staffPOs) {
+                if (staffPO.getPassword().equals(password) && staffPO.getAccount().equals(account)) {
                     this.setCurrentID(staffPO.getStaffID());
                 }
             }
@@ -145,7 +145,7 @@ public class User {
      * @param currentID
      */
     public void setCurrentID(String currentID) {
-        if(!currentID.equals("")) {
+        if (!currentID.equals("")) {
             switch (currentID.charAt(0)) {
                 case '1':
                     UserInfoManager.getUserInfoManager().setCurrentSalesmanID(currentID);
@@ -181,7 +181,4 @@ public class User {
         return UserInfoManager.getUserInfoManager().getCurrentSalesmanID();
     }
 
-    public UserClientNetworkService getUserClientNetwork() {
-        return userClientNetwork;
-    }
 }
