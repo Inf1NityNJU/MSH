@@ -1,10 +1,12 @@
 package network;
 
 import network.hotelnetwork.HotelServerNetworkImpl;
-import network.hotelnetwork.HotelServerNetworkService;
+import network.hotelnetworkservice.HotelServerNetworkService;
+import network.ordernetwork.OrderServerNetworkImpl;
+import network.ordernetworkservice.OrderServerNetworkService;
 import network.promotionnetwork.PromotionServerNetworkImpl;
-import network.promotionnetwork.PromotionServerNetworkService;
-import network.usernetwork.UserServerNetworkService;
+import network.promotionnetworkservice.PromotionServerNetworkService;
+import network.usernetworkservice.UserServerNetworkService;
 import network.usernetwork.UserServerNetworkImpl;
 
 import java.net.MalformedURLException;
@@ -49,9 +51,10 @@ public class ServerHelper {
             UserServerNetworkService userServerNetwork = new UserServerNetworkImpl();
             HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
             PromotionServerNetworkService promotionServerNetworkService = new PromotionServerNetworkImpl();
+            OrderServerNetworkService orderServerNetworkService = new OrderServerNetworkImpl();
 
+            Naming.rebind("OrderServerNetworkService", orderServerNetworkService);
             Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
-
             Naming.rebind("UserServerNetworkService", userServerNetwork);
             Naming.rebind("PromotionServerNetWorkService", promotionServerNetworkService);
 

@@ -1,4 +1,4 @@
-package network.usernetwork;
+package network.usernetworkservice;
 
 import dataservice.userdataservice.UserDataService;
 import po.*;

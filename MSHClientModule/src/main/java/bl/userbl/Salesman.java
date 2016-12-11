@@ -1,12 +1,7 @@
 package bl.userbl;
 
-import dataimpl.userdataimpl.UserDataServiceFactory;
-import dataservice.userdataservice.UserDataService;
-import network.UserClientNetworkImpl;
-import network.UserClientNetworkService;
 import po.LevelPO;
 import po.SalesmanPO;
-import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
 import vo.LevelVO;

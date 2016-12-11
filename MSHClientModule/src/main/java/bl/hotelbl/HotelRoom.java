@@ -1,8 +1,8 @@
 package bl.hotelbl;
 
-import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import network.HotelClientNetworkImpl;
-import network.HotelDataService;
+import dataservice.hoteldataservice.HotelDataService;
+import network.HotelClientNetworkService;
 import po.HotelRoomPO;
 import po.RoomStockPO;
 import util.*;
@@ -19,14 +19,14 @@ public class HotelRoom {
     /**
      * 用于访问data层的接口
      */
-    private HotelDataService hotelDataService;
+    private HotelClientNetworkService hotelClientNetworkService;
     /**
      * 用于缓存HotelRoomVO
      */
     private Map<String, HotelRoomVO> cache;
 
     protected HotelRoom() {
-        hotelDataService = new HotelClientNetworkImpl();
+        hotelClientNetworkService = new HotelClientNetworkImpl();
         cache = new HashMap<String, HotelRoomVO>();
     }
 
@@ -70,12 +70,12 @@ public class HotelRoom {
      */
     public ArrayList<HotelRoomVO> getRoom(String hotelID) {
         ArrayList<HotelRoomVO> result = new ArrayList<HotelRoomVO>();
-        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
+        for (HotelRoomPO hotelRoomPO : hotelClientNetworkService.getRoom(hotelID)) {
             HotelRoomVO hotelRoomVO = roomPOToRoomVO(hotelRoomPO);
             //添加roomStock
             ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
             //
-            for (RoomStockPO roomStockPO : hotelDataService.getRoomStock(hotelRoomPO.getID())) {
+            for (RoomStockPO roomStockPO : hotelClientNetworkService.getRoomStock(hotelRoomPO.getID())) {
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
             hotelRoomVO.roomStockVOs = roomStockVOs;
@@ -123,20 +123,20 @@ public class HotelRoom {
         //
         if (checkChangeIsValidByPO(roomStockPOs
                 , quantity
-                , hotelDataService.getRoomByID(
+                , hotelClientNetworkService.getRoomByID(
                         ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()))
                         .getTotalQuantity())) {
 
             for (RoomStockPO roomStockPO : roomStockPOs) {
                 roomStockPO.setAvailableQuantity(roomStockPO.getAvailableQuantity() - quantity);
-                hotelDataService.updateRoomStock(roomStockPO);
+                hotelClientNetworkService.updateRoomStock(roomStockPO);
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
             }
         } else {
             return ResultMessage.INVALID;
         }
         //更新cache
-        HotelRoomPO roomPO = hotelDataService.getRoomByID(ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
+        HotelRoomPO roomPO = hotelClientNetworkService.getRoomByID(ToolKit.generateID(roomChangeInfoVO.hotelID, roomChangeInfoVO.type.ordinal()));
         HotelRoomVO roomVO = roomPOToRoomVO(roomPO);
         roomVO.roomStockVOs = roomStockVOs;
         cache.remove(roomPO.getID());
@@ -162,7 +162,7 @@ public class HotelRoom {
         criteriaClauses.add(CriteriaClauseImpl.createRangeValueQuery("date", roomChangeInfoVO.start.toString(), roomChangeInfoVO.end.toString(), QueryMethod.Range));
         //得到指定房间的需要被预订的库存
         //保存要修改的数量
-        return hotelDataService.multiSearchRoomStockPO(criteriaClauses);
+        return hotelClientNetworkService.multiSearchRoomStockPO(criteriaClauses);
     }
 
     /**
@@ -173,7 +173,7 @@ public class HotelRoom {
      */
     public ResultMessage addRoom(HotelRoomVO rvo) {
         HotelRoomPO hotelRoomPO = roomVOToRoomPO(rvo);
-        ResultMessage resultMessage = hotelDataService.addRoom(hotelRoomPO);
+        ResultMessage resultMessage = hotelClientNetworkService.addRoom(hotelRoomPO);
         //保存放在HotelRoomVO里面的roomStockVO
         ArrayList<RoomStockVO> roomStockVOs = new ArrayList<RoomStockVO>();
         //
@@ -188,7 +188,7 @@ public class HotelRoom {
                         , today.toString()
                 );
                 //将roomStockPO写入数据库
-                hotelDataService.addRoomStock(roomStockPO);
+                hotelClientNetworkService.addRoomStock(roomStockPO);
                 //
                 roomStockVOs.add(roomStockPOToRoomStockVO(roomStockPO));
                 today.increase();
@@ -216,13 +216,13 @@ public class HotelRoom {
         }
         //
         String hotelRoomID = ToolKit.generateID(hotelID, type.ordinal());
-        ResultMessage resultMessage = hotelDataService.deleteRoom(hotelRoomID);
+        ResultMessage resultMessage = hotelClientNetworkService.deleteRoom(hotelRoomID);
         if (resultMessage == ResultMessage.SUCCESS) {
             //
             cache.remove(hotelRoomID);
             //删除房间的roomStock
-            for (RoomStockPO roomStockPO : hotelDataService.getRoomStock(hotelRoomID)) {
-                hotelDataService.deleteRoomStock(roomStockPO.getID());
+            for (RoomStockPO roomStockPO : hotelClientNetworkService.getRoomStock(hotelRoomID)) {
+                hotelClientNetworkService.deleteRoomStock(roomStockPO.getID());
             }
         }
         return resultMessage;
@@ -283,7 +283,7 @@ public class HotelRoom {
          */
         HotelRoomPO hotelRoom = null;
         //
-        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
+        for (HotelRoomPO hotelRoomPO : hotelClientNetworkService.getRoom(hotelID)) {
             if (hotelRoomPO.getRoomType().equals(type)) {
                 hotelRoom = hotelRoomPO;
                 break;
@@ -294,7 +294,7 @@ public class HotelRoom {
             return ResultMessage.NOT_EXIST;
         } else {
             hotelRoom.setIsCancelled(true);
-            hotelDataService.updateRoom(hotelRoom);
+            hotelClientNetworkService.updateRoom(hotelRoom);
             //更新cache
             cache.remove(hotelRoom.getID());
             cache.put(hotelRoom.getID(), roomPOToRoomVO(hotelRoom));
@@ -325,13 +325,13 @@ public class HotelRoom {
             ArrayList<CriteriaClause> roomStockCriteriaClauses = new ArrayList<CriteriaClause>();
             roomStockCriteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("hotelID", hotelID, QueryMethod.Full));
             roomStockCriteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("roomType", type, QueryMethod.Full));
-            ArrayList<RoomStockPO> roomStockPOs = hotelDataService.multiSearchRoomStockPO(roomStockCriteriaClauses);
+            ArrayList<RoomStockPO> roomStockPOs = hotelClientNetworkService.multiSearchRoomStockPO(roomStockCriteriaClauses);
             //如果找不到对应的房间，返回失败
             if (roomStockPOs.isEmpty()) {
                 return ResultMessage.NOT_EXIST;
             }
             //
-            HotelRoomPO hotelRoomPO = hotelDataService.getRoomByID(ToolKit.generateID(hotelID, type.ordinal()));
+            HotelRoomPO hotelRoomPO = hotelClientNetworkService.getRoomByID(ToolKit.generateID(hotelID, type.ordinal()));
             if (!checkChangeIsValidByPO(roomStockPOs, hotelRoomPO.getTotalQuantity(), hotelRoomPO.getTotalQuantity())) {
                 return ResultMessage.TRUE;
             } else {
@@ -360,7 +360,7 @@ public class HotelRoom {
         //保存结果
         ArrayList<OrderRoomStockVO> result = new ArrayList<OrderRoomStockVO>();
         //
-        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotelID)) {
+        for (HotelRoomPO hotelRoomPO : hotelClientNetworkService.getRoom(hotelID)) {
             //先得到符合日期区间的roomStockPO
             ArrayList<RoomStockPO> roomStockPOs = getRoomStockPOs(new RoomChangeInfoVO(start, end, hotelID, hotelRoomPO.getRoomType(), 0));
             //寻找最小房间量

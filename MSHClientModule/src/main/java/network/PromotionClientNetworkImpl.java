@@ -1,6 +1,6 @@
 package network;
 
-import network.promotionnetwork.PromotionServerNetworkService;
+import network.promotionnetworkservice.PromotionServerNetworkService;
 import po.PromotionPO;
 import util.PromotionType;
 import util.ResultMessage;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 2016/11/27.
  */
-public class PromotionClientNetworkImpl implements PromotionDataService {
+public class PromotionClientNetworkImpl implements PromotionClientNetworkService {
     private PromotionServerNetworkService promotionServerNetworkService;
 
     public PromotionClientNetworkImpl() {

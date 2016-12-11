@@ -1,7 +1,5 @@
 package bl.promotionbl;
 
-import dataservice.promotiondataservice.PromotionDataService;
-import dataservice.promotiondataservice.PromotionDataService_Stub;
 import util.DateUtil;
 import util.Place;
 import util.PromotionType;

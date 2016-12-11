@@ -3,10 +3,9 @@ package bl.orderbl;
 import bl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.userblservice.UserBLInfo;
-import dataimpl.orderdataimpl.OrderDataServiceFactory;
-import dataservice.orderdataservice.OrderDataService;
+import network.OrderClientNetworkImpl;
+import network.OrderClientNetworkService;
 import po.AssessmentPO;
-import po.HotelPO;
 import po.OrderPO;
 import po.OrderRoomPO;
 import util.*;
@@ -15,9 +14,7 @@ import vo.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by Sorumi on 16/10/30.
@@ -32,8 +29,7 @@ public class Order {
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
     private HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
 
-    //TODO
-    private OrderDataService orderDataService = OrderDataServiceFactory.getOrderDataService();
+    private OrderClientNetworkService orderClientNetworkService = new OrderClientNetworkImpl();
 
     public ResultMessage startOrder(OrderVO order) {
         this.order = order;
@@ -161,12 +157,12 @@ public class Order {
 
         for (OrderRoomVO orderRoomVO : roomVOs) {
             OrderRoomPO orderRoomPO = orderRoomVO.toPO(order.orderID + roomVOs.indexOf(orderRoomVO), order.orderID);
-            orderDataService.addOrderRoom(orderRoomPO);
+            orderClientNetworkService.addOrderRoom(orderRoomPO);
         }
 
         OrderPO orderPO = order.toPO();
 
-        ResultMessage rm = orderDataService.addOrder(orderPO);
+        ResultMessage rm = orderClientNetworkService.addOrder(orderPO);
 
         if (rm == ResultMessage.SUCCESS) {
 
@@ -189,13 +185,13 @@ public class Order {
      * @return 是否成功撤销
      */
     public ResultMessage revoke(String orderID) {
-        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
         orderPO.setCancelledTime(new TimeUtil(LocalDateTime.now()).toString());
         orderPO.setState(OrderState.Cancelled);
 //        userBLInfo.
         //TODO
         //update manager credit
-        return orderDataService.updateOrder(orderPO);
+        return orderClientNetworkService.updateOrder(orderPO);
     }
 
     /**
@@ -206,10 +202,10 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage checkIn(String orderID, TimeUtil time) {
-        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
         orderPO.setCheckInTime(time.toString());
         orderPO.setState(OrderState.Executed);
-        return orderDataService.updateOrder(orderPO);
+        return orderClientNetworkService.updateOrder(orderPO);
 
     }
 
@@ -221,9 +217,9 @@ public class Order {
      * @return 是否成功
      */
     public ResultMessage checkOut(String orderID, TimeUtil time) {
-        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
         orderPO.setCheckOutTime(time.toString());
-        return orderDataService.updateOrder(orderPO);
+        return orderClientNetworkService.updateOrder(orderPO);
     }
 
     /**
@@ -236,7 +232,7 @@ public class Order {
     public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
         OrderVO orderVO = searchOrderByID(orderID);
         assessment.clientID = orderVO.clientID;
-        return  orderDataService.addAssessment(assessment.toPO(orderID));
+        return  orderClientNetworkService.addAssessment(assessment.toPO(orderID));
     }
 
     /**
@@ -246,7 +242,7 @@ public class Order {
      * @return OrderVO
      */
     public OrderVO searchOrderByID(String orderID) {
-        OrderPO orderPO = orderDataService.searchOrderByOrderID(orderID);
+        OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
         return orderPOToOrderVO(orderPO);
     }
 
@@ -258,7 +254,7 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
-        ArrayList<OrderPO> orderPOs = orderDataService.searchOrder(os, null, null);
+        ArrayList<OrderPO> orderPOs = orderClientNetworkService.searchOrder(os, null, null);
         return orderPOsToOrderVOs(orderPOs);
     }
 
@@ -271,7 +267,7 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os, String keyword) {
-        ArrayList<OrderPO> orderPOs = orderDataService.searchOrderByClientID(clientID, os);
+        ArrayList<OrderPO> orderPOs = orderClientNetworkService.searchOrderByClientID(clientID, os);
         return orderPOsToOrderVOs(orderPOs);
 
     }
@@ -285,7 +281,7 @@ public class Order {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os, String keyword) {
-        ArrayList<OrderPO> orderPOs = orderDataService.searchOrderByHotelID(hotelID, os);
+        ArrayList<OrderPO> orderPOs = orderClientNetworkService.searchOrderByHotelID(hotelID, os);
         return orderPOsToOrderVOs(orderPOs);
     }
 
@@ -306,7 +302,7 @@ public class Order {
         ClientVO client = userBLInfo.getClientByID(orderPO.getClientID());
         String clientName = client != null ? client.clientName : "不存在";
 
-        ArrayList<OrderRoomPO> orderRoomPOs = orderDataService.searchOrderRoomByOrderID(orderPO.getOrderID());
+        ArrayList<OrderRoomPO> orderRoomPOs = orderClientNetworkService.searchOrderRoomByOrderID(orderPO.getOrderID());
         ArrayList<OrderRoomVO> orderRoomVOs = new ArrayList<>();
 
         for (OrderRoomPO orderRoomPO : orderRoomPOs) {
@@ -316,7 +312,7 @@ public class Order {
 
         BillVO billVO = new BillVO(orderPO);
 
-        AssessmentPO assessmentPO = orderDataService.searchAssessmentByOrderID(orderPO.getOrderID());
+        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderPO.getOrderID());
         AssessmentVO assessmentVO = null;
         if (assessmentPO != null) {
             assessmentVO = new AssessmentVO(assessmentPO);
@@ -329,7 +325,7 @@ public class Order {
     private void generateOrderID() {
         String prefix = order.bookedTime.date.toString().replace("-", "") + order.hotelID;
 
-        int quantity = orderDataService.searchOrderQuantity(prefix);
+        int quantity = orderClientNetworkService.searchOrderQuantity(prefix);
         String quantityString = String.valueOf(quantity);
 
 

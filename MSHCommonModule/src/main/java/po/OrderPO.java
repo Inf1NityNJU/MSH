@@ -5,10 +5,12 @@ import util.OrderState;
 import util.PromotionType;
 import util.TimeUtil;
 
+import java.io.Serializable;
+
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class OrderPO {
+public class OrderPO implements Serializable {
 
     /**
      * 订单ID

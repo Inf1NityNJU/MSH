@@ -12,6 +12,18 @@
     <artifactId>MSHClientModule</artifactId>
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.1.2</version>
+                <configuration>
+                    <mainClass>.src.main.java.main.Main</mainClass>
+                    <vendor>Infinity</vendor>
+                    <allPermissions>true</allPermissions>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -24,6 +36,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -127,11 +140,6 @@
         <dependency>
             <groupId>infinity</groupId>
             <artifactId>MSHCommonModule</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>infinity</groupId>
-            <artifactId>MSHServerModule</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

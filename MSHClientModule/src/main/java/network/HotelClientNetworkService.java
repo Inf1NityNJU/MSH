@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by SilverNarcissus on 16/10/12.
  */
-public interface HotelDataService extends Remote {
+public interface HotelClientNetworkService extends Remote {
 
     public ArrayList<HotelPO> exactlySearchHotel(String field, Object value);
 

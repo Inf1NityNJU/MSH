@@ -1,11 +1,10 @@
 package bl.promotionbl;
 
 //import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
-//import dataservice.promotiondataservice.PromotionDataService;
+//import dataservice.promotiondataservice.PromotionClientNetworkService;
 import network.PromotionClientNetworkImpl;
-import network.PromotionDataService;
+import network.PromotionClientNetworkService;
 import po.PromotionPO;
-import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
 import vo.*;
@@ -17,12 +16,12 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class Promotion{
-//    private PromotionDataService promotionDataService = PromotionDataServiceFactory.getPromotionDataService();
+//    private PromotionClientNetworkService promotionClientNetworkService = PromotionDataServiceFactory.getPromotionDataService();
 
-    private PromotionDataService promotionDataService;
+    private PromotionClientNetworkService promotionClientNetworkService;
 
     public Promotion(){
-        promotionDataService = new PromotionClientNetworkImpl();
+        promotionClientNetworkService = new PromotionClientNetworkImpl();
     }
     /**
      * 增加一个促销策略
@@ -31,7 +30,7 @@ public class Promotion{
      */
     public ResultMessage add(PromotionVO promotionVO){
         PromotionPO promotionPO = promotionVO.toPO();
-        return promotionDataService.addPromotion(promotionPO);
+        return promotionClientNetworkService.addPromotion(promotionPO);
     }
 
     /**
@@ -40,7 +39,7 @@ public class Promotion{
      * @return 删除成功与否
      */
     public ResultMessage delete(String promotionID){
-        return promotionDataService.deletePromotion(promotionID);
+        return promotionClientNetworkService.deletePromotion(promotionID);
     }
 
     /**
@@ -50,7 +49,7 @@ public class Promotion{
      */
     public ResultMessage update(PromotionVO promotionVO){
         PromotionPO promotionPO = promotionVO.toPO();
-        return promotionDataService.updatePromotion(promotionPO);
+        return promotionClientNetworkService.updatePromotion(promotionPO);
     }
 
     /**
@@ -59,7 +58,7 @@ public class Promotion{
      * @return 符合条件的策略VO
      */
     public PromotionVO searchByID(String promotionID) {
-        PromotionPO promotionPO = promotionDataService.searchByPromotionID(promotionID);
+        PromotionPO promotionPO = promotionClientNetworkService.searchByPromotionID(promotionID);
         return this.POToVO(promotionPO);
     }
 
@@ -69,7 +68,7 @@ public class Promotion{
      * @return 符合条件的策略VO的列表
      */
     public ArrayList<PromotionVO> search(PromotionType promotionType){
-        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchPromotionsByType(promotionType);
+        ArrayList<PromotionPO> promotionPOs = promotionClientNetworkService.searchPromotionsByType(promotionType);
         ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
         for(int i=0;i<promotionPOs.size();i++){
             promotionVOs.add(POToVO(promotionPOs.get(i)));
@@ -83,7 +82,7 @@ public class Promotion{
      * @return 符合条件的策略VO的列表
      */
     public ArrayList<PromotionVO> searchHotelPromotions(String HotelID){
-        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchHotelPromotions(HotelID);
+        ArrayList<PromotionPO> promotionPOs = promotionClientNetworkService.searchHotelPromotions(HotelID);
         ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
         for(int i=0;i<promotionPOs.size();i++){
             promotionVOs.add(POToVO(promotionPOs.get(i)));
@@ -96,7 +95,7 @@ public class Promotion{
      * @return 符合条件的策略VO的列表
      */
     public ArrayList<PromotionVO> searchWebPromotions(){
-        ArrayList<PromotionPO> promotionPOs = promotionDataService.searchWebPromotions();
+        ArrayList<PromotionPO> promotionPOs = promotionClientNetworkService.searchWebPromotions();
         ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
         for(int i=0;i<promotionPOs.size();i++){
             promotionVOs.add(POToVO(promotionPOs.get(i)));

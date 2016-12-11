@@ -1,13 +1,8 @@
 package bl.promotionbl;
 
-import dataservice.promotiondataservice.PromotionDataService;
 import util.DateUtil;
-import util.PromotionType;
 import vo.PromotionVO;
 import vo.Promotion_ClientGradeVO;
-import vo.Promotion_WebVO;
-
-import java.util.ArrayList;
 
 /**
  * Created by vivian on 16/11/25.

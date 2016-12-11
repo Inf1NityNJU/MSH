@@ -1,4 +1,4 @@
-package network.hotelnetwork;
+package network.hotelnetworkservice;
 
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
