@@ -53,7 +53,7 @@ public class ClientOrderViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/client/ClientOrderListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/client/ClientOrderListView.fxml"));
             ScrollPane list = listLoader.load();
 
             clientOrderListViewController = listLoader.getController();
@@ -75,7 +75,7 @@ public class ClientOrderViewController {
 
         try {
             FXMLLoader orderLoader = new FXMLLoader();
-            orderLoader.setLocation(Main.class.getResource("../view/client/ClientOrderDetailView.fxml"));
+            orderLoader.setLocation(getClass().getResource("/view/client/ClientOrderDetailView.fxml"));
             ScrollPane view = orderLoader.load();
 
             ClientOrderDetailViewController clientOrderDetailViewController = orderLoader.getController();
@@ -99,7 +99,7 @@ public class ClientOrderViewController {
 
         try {
             FXMLLoader orderLoader = new FXMLLoader();
-            orderLoader.setLocation(Main.class.getResource("../view/client/ClientAssessmentEditView.fxml"));
+            orderLoader.setLocation(getClass().getResource("/view/client/ClientAssessmentEditView.fxml"));
             ScrollPane view = orderLoader.load();
 
             ClientAssessmentEditView clientAssessmentEditView = orderLoader.getController();

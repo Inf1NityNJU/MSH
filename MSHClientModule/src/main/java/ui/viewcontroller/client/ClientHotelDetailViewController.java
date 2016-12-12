@@ -1,11 +1,9 @@
 package ui.viewcontroller.client;
 
 import bl.blfactory.BLFactoryImpl;
-import bl.orderbl.OrderRoom;
 import blservice.hotelblservice.HotelBLService;
 import blservice.orderblservice.OrderBLService;
 import blservice.promotionblservice.PromotionBLService;
-import com.sun.xml.internal.bind.v2.TODO;
 import component.mydatepicker.MyDatePicker;
 import component.ratestarpane.RateStarPane;
 import component.rectbutton.RectButton;
@@ -166,7 +164,7 @@ public class ClientHotelDetailViewController {
         for (PromotionVO promotion : promotions) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
+                loader.setLocation(getClass().getResource("/component/promotion/OrderPromotionCell.fxml"));
                 Pane pane = loader.load();
 
                 OrderPromotionCellController orderPromotionCellController = loader.getController();
@@ -187,7 +185,7 @@ public class ClientHotelDetailViewController {
         for (OrderRoomStockVO room : roomStocks) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/hotel/ClientHotelRoomCell.fxml"));
+                loader.setLocation(getClass().getResource("/component/hotel/ClientHotelRoomCell.fxml"));
                 Pane pane = loader.load();
 
                 ClientHotelRoomCellController clientHotelRoomCellController = loader.getController();

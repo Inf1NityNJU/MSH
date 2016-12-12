@@ -1,11 +1,17 @@
 package launcher;
 
 import dataimpl.orderdataimpl.OrderDataServiceFactory;
+import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.orderdataservice.OrderDataService;
+import dataservice.userdataservice.UserDataService;
+import po.CreditPO;
 import po.OrderPO;
+import util.CreditAction;
+import util.DateUtil;
 import util.OrderState;
 import util.TimeUtil;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,11 +28,6 @@ public class DataChecker {
     private static final int checkInterval = 1000*60*60;
 
     /**
-     * 6小时间隔
-     */
-    private static final long sixHourInterval = 21600000;
-
-    /**
      * 计时器
      */
     private Timer timer;
@@ -38,7 +39,7 @@ public class DataChecker {
     /**
      * 启动checker
      */
-    public void lunch() {
+    public void launch() {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -53,7 +54,11 @@ public class DataChecker {
      */
     private void checkOrder() {
         //得到订单数据库接口
+
+        //修改信用值所用接口
+        UserDataService userDataService= UserDataServiceFactory.getClientDataService();
         OrderDataService orderDataService = OrderDataServiceFactory.getOrderDataService();
+        //
         //得到现在时间
         Calendar calendar = Calendar.getInstance();
         TimeUtil now = new TimeUtil(calendar.get(Calendar.YEAR)
@@ -65,9 +70,16 @@ public class DataChecker {
         //依次检测每一个未执行的Order
         for (OrderPO orderPO : orderDataService.searchOrder(OrderState.Unexecuted, null, null)) {
             TimeUtil lastTime = new TimeUtil(orderPO.getLatestExecuteTime());
-            if (now.getIntervalTime(lastTime) < sixHourInterval) {
+            if (now.getIntervalTime(lastTime) < 0) {
                 orderPO.setState(OrderState.Abnormal);
                 orderDataService.updateOrder(orderPO);
+                //扣除信用值
+                userDataService.addCreditRecord(orderPO.getClientID(),new CreditPO(orderPO.getOrderID()
+                        ,new DateUtil(LocalDate.now()).toString()
+                        ,(int)orderPO.getTotalPrice()
+                        ,0
+                        , CreditAction.DEDUCT_CREDIT
+                        ,orderPO.getClientID()));
             }
         }
         //

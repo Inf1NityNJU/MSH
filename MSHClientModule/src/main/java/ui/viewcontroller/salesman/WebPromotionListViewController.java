@@ -55,7 +55,7 @@ public class WebPromotionListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/promotion/WebPromotionSearchPane.fxml"));
+            loader.setLocation(getClass().getResource("/component/promotion/WebPromotionSearchPane.fxml"));
             VBox pane = loader.load();
 
             WebPromotionSearchPaneController controller = loader.getController();
@@ -71,7 +71,7 @@ public class WebPromotionListViewController {
             contentVBox.getChildren().add(tilePane);
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/promotion/WebPromotionPagePane.fxml"));
+            pageLoader.setLocation(getClass().getResource("/component/promotion/WebPromotionPagePane.fxml"));
             pagePane = pageLoader.load();
 
             webPromotionPagePaneController = pageLoader.getController();
@@ -79,7 +79,7 @@ public class WebPromotionListViewController {
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/promotion/WebPromotionCell.fxml"));
+                cellLoader.setLocation(getClass().getResource("/component/promotion/WebPromotionCell.fxml"));
                 HBox webpromotioncell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

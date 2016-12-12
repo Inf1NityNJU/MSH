@@ -39,31 +39,7 @@ public class ClientCreditCellController {
         deltaLabel.setText(creditVO.deltaCredit + "");
         resultLabel.setText(creditVO.resultCredit + "");
         //CREDIT ACTION
-        switch (creditVO.creditAction) {
-            case ADD_CREDIT:
-                actionButton.setText("执行订单");
-                actionButton.setColorProperty("12B7F3");
-                break;
-            case REVOKE_CREDIT:
-                actionButton.setText("申诉成功");
-                actionButton.setColorProperty("F8E81C");
-                break;
-            case DEDUCT_CREDIT:
-                actionButton.setText("撤销订单");
-                actionButton.setColorProperty("FC537D");
-                break;
-            case INIT_CREDIT:
-                actionButton.setText("初始信用");
-                actionButton.setColorProperty("00CCCC");
-                break;
-            case RECHARGE_CREDIT:
-                actionButton.setText("信用充值");
-                actionButton.setColorProperty("BC52FD");
-                break;
-            case OVERDUE_CREDIT:
-                actionButton.setText("订单超时");
-                actionButton.setColorProperty("FD9C4B");
-                break;
-        }
+        actionButton.setText(creditVO.creditAction.getName());
+        actionButton.setColorProperty(creditVO.creditAction.getColor());
     }
 }

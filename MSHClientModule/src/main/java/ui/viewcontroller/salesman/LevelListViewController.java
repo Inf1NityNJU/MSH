@@ -44,7 +44,7 @@ public class LevelListViewController {
 
         try {
             FXMLLoader cellLoader = new FXMLLoader();
-            cellLoader.setLocation(Main.class.getResource("../component/manager/LevelCell.fxml"));
+            cellLoader.setLocation(getClass().getResource("/component/user/LevelCell.fxml"));
             HBox clientCell = cellLoader.load();
 
             LevelCellController levelCellController = cellLoader.getController();
@@ -75,7 +75,7 @@ public class LevelListViewController {
                 for (int i = levelVOs.size() - 1; i >= 0; i--) {
 
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/manager/LevelCell.fxml"));
+                    cellLoader.setLocation(getClass().getResource("/component/user/LevelCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;

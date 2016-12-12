@@ -49,7 +49,7 @@ public class WebOrderListViewController {
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/order/WebOrderSearchPane.fxml"));
+            loader.setLocation(getClass().getResource("/component/order/WebOrderSearchPane.fxml"));
             VBox pane = loader.load();
 
             WebOrderSearchPaneController webOrderSearchPaneController = loader.getController();
@@ -59,7 +59,7 @@ public class WebOrderListViewController {
 
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/order/WebOrderPagePane.fxml"));
+            pageLoader.setLocation(getClass().getResource("/component/order/WebOrderPagePane.fxml"));
             pagePane = pageLoader.load();
 
             webOrderPagePaneController = pageLoader.getController();
@@ -68,7 +68,7 @@ public class WebOrderListViewController {
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/order/WebOrderCell.fxml"));
+                cellLoader.setLocation(getClass().getResource("/component/order/WebOrderCell.fxml"));
                 HBox ordercell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

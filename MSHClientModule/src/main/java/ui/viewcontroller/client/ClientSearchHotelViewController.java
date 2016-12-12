@@ -61,7 +61,7 @@ public class ClientSearchHotelViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/client/ClientHotelListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/client/ClientHotelListView.fxml"));
             ScrollPane list = listLoader.load();
 
             ClientHotelListViewController clientHotelListViewController = listLoader.getController();
@@ -85,7 +85,7 @@ public class ClientSearchHotelViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/client/ClientHotelDetailView.fxml"));
+            loader.setLocation(getClass().getResource("/view/client/ClientHotelDetailView.fxml"));
             ScrollPane pane = loader.load();
 
             clientHotelDetailViewController = loader.getController();
@@ -110,7 +110,7 @@ public class ClientSearchHotelViewController {
 //        System.out.print("!!!");
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/client/ClientBookOrderView.fxml"));
+            loader.setLocation(getClass().getResource("/view/client/ClientBookOrderView.fxml"));
             ScrollPane pane = loader.load();
 
             ClientBookOrderViewController clientBookOrderViewController = loader.getController();

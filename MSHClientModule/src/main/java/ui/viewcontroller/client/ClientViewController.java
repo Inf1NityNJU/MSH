@@ -25,7 +25,7 @@ public class ClientViewController {
 
         try {
             FXMLLoader navLoader = new FXMLLoader();
-            navLoader.setLocation(Main.class.getResource("../view/client/ClientNavbar.fxml"));
+            navLoader.setLocation(getClass().getResource("/view/client/ClientNavbar.fxml"));
             Pane navbar = navLoader.load();
 
             ClientNavbarController clientNavbarController = navLoader.getController();

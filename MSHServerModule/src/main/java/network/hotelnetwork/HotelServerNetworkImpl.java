@@ -2,7 +2,7 @@ package network.hotelnetwork;
 
 import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
-import network.hotelnetwork.HotelServerNetworkService;
+import network.hotelnetworkservice.HotelServerNetworkService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;

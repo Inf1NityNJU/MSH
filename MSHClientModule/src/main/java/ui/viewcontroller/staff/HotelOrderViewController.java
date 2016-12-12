@@ -52,7 +52,7 @@ public class HotelOrderViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/staff/HotelOrderListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/staff/HotelOrderListView.fxml"));
             ScrollPane list = listLoader.load();
 
             hotelOrderListViewController = listLoader.getController();
@@ -74,7 +74,7 @@ public class HotelOrderViewController {
 //
         try {
             FXMLLoader orderLoader = new FXMLLoader();
-            orderLoader.setLocation(Main.class.getResource("../view/staff/HotelOrderDetailView.fxml"));
+            orderLoader.setLocation(getClass().getResource("/view/staff/HotelOrderDetailView.fxml"));
             ScrollPane view = orderLoader.load();
 
             HotelOrderDetailViewController hotelOrderDetailViewController = orderLoader.getController();

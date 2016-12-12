@@ -132,7 +132,7 @@ public class HotelDetailViewController {
         for (PromotionVO promotion : promotions) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
+                loader.setLocation(getClass().getResource("/component/promotion/OrderPromotionCell.fxml"));
                 Pane pane = loader.load();
 
                 OrderPromotionCellController orderPromotionCellController = loader.getController();
@@ -159,7 +159,7 @@ public class HotelDetailViewController {
 //        for (OrderRoomStockVO room : roomStocks) {
 //            try {
 //                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(Main.class.getResource("../component/hotel/StaffHotelRoomCell.fxml"));
+//                loader.setLocation(getClass().getResource("/component/hotel/StaffHotelRoomCell.fxml"));
 //                Pane pane = loader.load();
 //
 //                StaffHotelRoomCellController staffHotelRoomCellController = loader.getController();

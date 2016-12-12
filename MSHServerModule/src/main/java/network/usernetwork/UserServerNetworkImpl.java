@@ -2,6 +2,7 @@ package network.usernetwork;
 
 import dataimpl.userdataimpl.UserDataServiceFactory;
 import dataservice.userdataservice.UserDataService;
+import network.usernetworkservice.UserServerNetworkService;
 import po.*;
 import util.LoginState;
 import util.ResultMessage;

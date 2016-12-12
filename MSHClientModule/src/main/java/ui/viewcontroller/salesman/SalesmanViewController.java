@@ -32,7 +32,7 @@ public class SalesmanViewController {
 
         try {
             FXMLLoader navLoader = new FXMLLoader();
-            navLoader.setLocation(Main.class.getResource("../view/salesman/SalesmanNavbar.fxml"));
+            navLoader.setLocation(getClass().getResource("/view/salesman/SalesmanNavbar.fxml"));
             Pane navbar = navLoader.load();
 
             SalesmanNavbarController salesmanNavbarController = navLoader.getController();

@@ -20,7 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader rootLoader = new FXMLLoader();
-        rootLoader.setLocation(Main.class.getResource("../view/common/Main.fxml"));
+        rootLoader.setLocation(getClass().getResource("/view/common/Main.fxml"));
         Pane root = rootLoader.load();
 
         primaryStage.setTitle("MSH");

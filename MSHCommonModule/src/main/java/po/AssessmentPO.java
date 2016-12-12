@@ -1,9 +1,11 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * Created by Sorumi on 16/11/1.
  */
-public class AssessmentPO {
+public class AssessmentPO implements Serializable {
 
     /**
      * 订单ID

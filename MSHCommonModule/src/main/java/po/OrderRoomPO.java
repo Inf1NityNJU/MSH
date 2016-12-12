@@ -2,10 +2,12 @@ package po;
 
 import util.RoomType;
 
+import java.io.Serializable;
+
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class OrderRoomPO {
+public class OrderRoomPO implements Serializable {
 
     /**
      * ID

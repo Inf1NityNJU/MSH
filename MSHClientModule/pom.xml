@@ -14,6 +14,21 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.5</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>main.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
@@ -24,12 +39,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix></classpathPrefix>
-                            <mainClass>com.xx.xx.xx</mainClass>
+                            <mainClass>main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -57,11 +73,12 @@
                 <artifactId>maven-install-plugin</artifactId>
                 <version>2.5.2</version>
                 <executions>
+
                     <execution>
                         <id>install-external-components</id>
                         <phase>clean</phase>
                         <configuration>
-                            <file>${basedir}/src/main/resources/lib/components.jar</file>
+                            <file>${basedir}/src/main/resources/lib/components-1.0-SNAPSHOT.jar</file>
                             <repositoryLayout>default</repositoryLayout>
                             <groupId>infinity</groupId>
                             <artifactId>components</artifactId>
@@ -127,11 +144,6 @@
         <dependency>
             <groupId>infinity</groupId>
             <artifactId>MSHCommonModule</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>infinity</groupId>
-            <artifactId>MSHServerModule</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

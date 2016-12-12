@@ -196,7 +196,7 @@ public class WebOrderDetailViewController {
         for (OrderRoomVO room : rooms) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/order/OrderRoomCell.fxml"));
+                loader.setLocation(getClass().getResource("/component/order/OrderRoomCell.fxml"));
                 Pane pane = loader.load();
 
                 OrderRoomCellController orderRoomCellController = loader.getController();
@@ -213,7 +213,7 @@ public class WebOrderDetailViewController {
     private void addPromotion(PromotionVO promotion) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/promotion/OrderPromotionCell.fxml"));
+            loader.setLocation(getClass().getResource("/component/promotion/OrderPromotionCell.fxml"));
             Pane pane = loader.load();
 
             OrderPromotionCellController orderPromotionCellController = loader.getController();

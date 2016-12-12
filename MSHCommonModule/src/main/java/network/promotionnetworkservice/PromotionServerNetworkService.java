@@ -1,4 +1,4 @@
-package network.promotionnetwork;
+package network.promotionnetworkservice;
 
 import po.PromotionPO;
 import util.PromotionType;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by vivian on 16/10/13.
  */
-public interface PromotionDataService {
+public interface PromotionClientNetworkService {
     public ResultMessage addPromotion(PromotionPO promotionpo);
 
     public ResultMessage deletePromotion(String promotionID);

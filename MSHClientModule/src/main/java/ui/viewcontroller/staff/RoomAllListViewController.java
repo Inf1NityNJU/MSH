@@ -58,7 +58,7 @@ public class RoomAllListViewController {
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/hotel/RoomAllCell.fxml"));
+                cellLoader.setLocation(getClass().getResource("/component/hotel/RoomAllCell.fxml"));
                 HBox roomCell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

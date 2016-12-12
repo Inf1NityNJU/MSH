@@ -57,7 +57,7 @@ public class HotelPromotionViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/staff/HotelPromotionListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/staff/HotelPromotionListView.fxml"));
             ScrollPane list = listLoader.load();
 
             hotelPromotionListViewController = listLoader.getController();
@@ -87,7 +87,7 @@ public class HotelPromotionViewController {
     public void showPromotionDetail(PromotionVO promotionVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotionDetailView.fxml"));
+            loader.setLocation(getClass().getResource("/view/staff/HotelPromotionDetailView.fxml"));
             ScrollPane view = loader.load();
 
             HotelPromotionDetailViewController hotelPromotionDetailViewController = loader.getController();
@@ -132,7 +132,7 @@ public class HotelPromotionViewController {
     public void addHotel_BirthdayPromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_BirthdayAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_BirthdayAddView.fxml"));
             ScrollPane view = loader.load();
 
             HotelPromotion_BirthdayAddViewController hotelPromotion_birthdayAddViewController = loader.getController();
@@ -158,7 +158,7 @@ public class HotelPromotionViewController {
     public void addHotel_EnterprisePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_EnterpriseAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_EnterpriseAddView.fxml"));
             ScrollPane view = loader.load();
 
             HotelPromotion_EnterpriseAddViewController hotelPromotion_enterpriseAddViewController = loader.getController();
@@ -184,7 +184,7 @@ public class HotelPromotionViewController {
     public void addHotel_RoomQuantityPromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_RoomQuantityAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_RoomQuantityAddView.fxml"));
             ScrollPane view = loader.load();
 
             HotelPromotion_RoomQuantityAddViewController hotelPromotion_roomQuantityAddViewController = loader.getController();
@@ -210,7 +210,7 @@ public class HotelPromotionViewController {
     public void addHotel_SpecialDatePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/staff/HotelPromotion_SpecialDateAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_SpecialDateAddView.fxml"));
             ScrollPane view = loader.load();
 
             HotelPromotion_SpecialDateAddViewController hotelPromotion_specialDateAddViewController = loader.getController();

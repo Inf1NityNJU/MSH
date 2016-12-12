@@ -2,7 +2,7 @@ package network.promotionnetwork;
 
 import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
 import dataservice.promotiondataservice.PromotionDataService;
-import network.promotionnetwork.PromotionServerNetworkService;
+import network.promotionnetworkservice.PromotionServerNetworkService;
 import po.PromotionPO;
 import util.PromotionType;
 import util.ResultMessage;

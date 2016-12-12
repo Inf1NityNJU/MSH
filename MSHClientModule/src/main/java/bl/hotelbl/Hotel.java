@@ -2,7 +2,7 @@ package bl.hotelbl;
 
 import blservice.orderblservice.OrderHotelInfo;
 import network.HotelClientNetworkImpl;
-import network.HotelDataService;
+import network.HotelClientNetworkService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -21,7 +21,7 @@ public class Hotel {
     /**
      * 用于访问data层的接口
      */
-    private HotelDataService hotelDataService;
+    private HotelClientNetworkService hotelClientNetworkService;
     /**
      * 用于缓存HotelVO
      */
@@ -32,7 +32,7 @@ public class Hotel {
     private OrderHotelInfo orderHotelInfo;
 
     protected Hotel() {
-        hotelDataService = new HotelClientNetworkImpl();
+        hotelClientNetworkService = new HotelClientNetworkImpl();
         cache = new HashMap<String, Hotel_DetailVO>();
     }
 
@@ -82,7 +82,7 @@ public class Hotel {
         if (flags.bookedClientID != null) {
             result = new ArrayList<HotelPO>();
             for (String hotelID : orderHotelInfo.getBookedHotelIDByClientID(flags.bookedClientID)) {
-                result.add(hotelDataService.getHotel(hotelID));
+                result.add(hotelClientNetworkService.getHotel(hotelID));
             }
             //判断是否找不到酒店
             if (result.size() == 0) {
@@ -93,9 +93,9 @@ public class Hotel {
         //
         //先将列表进行合并，缩小酒店房间的搜索范围
         if (result == null) {
-            result = hotelDataService.multiSearchHotel(hotelCriteriaClauses);
+            result = hotelClientNetworkService.multiSearchHotel(hotelCriteriaClauses);
         } else {
-            result.retainAll(hotelDataService.multiSearchHotel(hotelCriteriaClauses));
+            result.retainAll(hotelClientNetworkService.multiSearchHotel(hotelCriteriaClauses));
         }
         //判断是否找不到酒店
         if (result.size() == 0) {
@@ -131,20 +131,20 @@ public class Hotel {
             Set<String> hotelRoomIDs = new HashSet<String>();
 
             //生成满足条件的酒店房间ID
-            for (RoomStockPO roomStockPO : hotelDataService.multiSearchRoomStockPO(roomStockCriteriaClauses)) {
+            for (RoomStockPO roomStockPO : hotelClientNetworkService.multiSearchRoomStockPO(roomStockCriteriaClauses)) {
                 hotelRoomIDs.add(ToolKit.generateID(roomStockPO.getHotelID(), roomStockPO.getRoomType().ordinal()));
             }
 
             //判断这些房间的价格是否在区间内，并将在区间内的房间所属酒店ID记录
             for (String hotelRoomID : hotelRoomIDs) {
-                HotelRoomPO hotelRoomPO = hotelDataService.getRoomByID(hotelRoomID);
+                HotelRoomPO hotelRoomPO = hotelClientNetworkService.getRoomByID(hotelRoomID);
                 if (hotelRoomPO.getPrice() <= flags.maxPrice && hotelRoomPO.getPrice() >= flags.minPrice) {
                     hotelIDs.add(hotelRoomPO.getHotelID());
                 }
             }
 
         } else {
-            for (RoomStockPO roomStockPO : hotelDataService.multiSearchRoomStockPO(roomStockCriteriaClauses)) {
+            for (RoomStockPO roomStockPO : hotelClientNetworkService.multiSearchRoomStockPO(roomStockCriteriaClauses)) {
                 hotelIDs.add(roomStockPO.getHotelID());
             }
         }
@@ -152,7 +152,7 @@ public class Hotel {
         //将结果添加到总结果
         ArrayList<HotelPO> roomSearchResult=new ArrayList<HotelPO>();
         for (String hotelID : hotelIDs) {
-            roomSearchResult.add(hotelDataService.getHotel(hotelID));
+            roomSearchResult.add(hotelClientNetworkService.getHotel(hotelID));
         }
         //判断是否找不到酒店
         if (roomSearchResult.size() == 0) {
@@ -191,7 +191,7 @@ public class Hotel {
             return addMinAndMaxPrice(hotelDetailVO);
         }
         //cache中未找到
-        HotelPO hotelPO = hotelDataService.getHotel(hotelID);
+        HotelPO hotelPO = hotelClientNetworkService.getHotel(hotelID);
         //数据库里也没找到
         if (hotelPO == null) {
             return null;
@@ -212,7 +212,7 @@ public class Hotel {
      */
     public ResultMessage updateHotel(Hotel_DetailVO hvo) {
         HotelPO hotelPO = voToPO(hvo);
-        ResultMessage resultMessage = hotelDataService.updateHotel(hotelPO);
+        ResultMessage resultMessage = hotelClientNetworkService.updateHotel(hotelPO);
         //更新cache
         if (resultMessage.equals(ResultMessage.SUCCESS)) {
             cache.remove(hotelPO.getID());
@@ -231,7 +231,7 @@ public class Hotel {
         HotelPO hotelPO = voToPO(hvo);
         generateHotelID(hotelPO);
         //
-        ResultMessage resultMessage = hotelDataService.addHotel(hotelPO);
+        ResultMessage resultMessage = hotelClientNetworkService.addHotel(hotelPO);
         //更新cache
         if (resultMessage.equals(ResultMessage.SUCCESS)) {
             cache.put(hvo.ID, hvo);
@@ -254,7 +254,7 @@ public class Hotel {
             second = "0" + second;
         }
         //顺序递增酒店编号
-        ArrayList<HotelPO> hotelPOs = hotelDataService.prefixSearchHotel(HOTEL_ID_NAME, first + second);
+        ArrayList<HotelPO> hotelPOs = hotelClientNetworkService.prefixSearchHotel(HOTEL_ID_NAME, first + second);
         if (hotelPOs.size() == 0) {
             //如果没有该编号下的酒店，则生成编号0000
             hotelPO.setID(first + second + "0000");
@@ -278,7 +278,7 @@ public class Hotel {
      * @return 删除成功与否
      */
     public ResultMessage deleteHotel(String hotelID) {
-        ResultMessage resultMessage = hotelDataService.deleteHotel(hotelID);
+        ResultMessage resultMessage = hotelClientNetworkService.deleteHotel(hotelID);
         if (resultMessage.equals(ResultMessage.SUCCESS)) {
             cache.remove(hotelID);
         }
@@ -334,7 +334,7 @@ public class Hotel {
     private Hotel_DetailVO addMinAndMaxPrice(Hotel_DetailVO hotel_detailVO) {
         double min = Double.MAX_VALUE;
         double max = 0;
-        for (HotelRoomPO hotelRoomPO : hotelDataService.getRoom(hotel_detailVO.ID)) {
+        for (HotelRoomPO hotelRoomPO : hotelClientNetworkService.getRoom(hotel_detailVO.ID)) {
             if (min > hotelRoomPO.getPrice()) {
                 min = hotelRoomPO.getPrice();
             }
@@ -427,7 +427,7 @@ public class Hotel {
      * 如果酒店不存在，返回NOT_EXIST
      */
     public ResultMessage addScore(double score, String hotelID) {
-        HotelPO hotelPO = hotelDataService.getHotel(hotelID);
+        HotelPO hotelPO = hotelClientNetworkService.getHotel(hotelID);
         //如果找不到酒店，返回不存在
         if (hotelPO == null) {
             return ResultMessage.NOT_EXIST;
@@ -437,7 +437,7 @@ public class Hotel {
         hotelPO.setScore(((hotelPO.getScore() * ((double) hotelPO.getScoreAmount() - 1) + score) / (double) hotelPO.getScoreAmount()));
         System.out.println(hotelPO.getScore());
         System.out.println(hotelPO.getScoreAmount());
-        hotelDataService.updateHotel(hotelPO);
+        hotelClientNetworkService.updateHotel(hotelPO);
         //更新cache
         cache.remove(hotelID);
         cache.put(hotelID, poToVO(hotelPO));

@@ -6,8 +6,6 @@ import blservice.hotelblservice.HotelBLService;
 import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
-import dataimpl.hoteldataimpl.HotelDataServiceFactory;
-import dataservice.hoteldataservice.HotelDataService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.manager.WorkerManagementListViewController;

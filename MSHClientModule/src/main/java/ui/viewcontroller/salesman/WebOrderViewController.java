@@ -57,7 +57,7 @@ public class WebOrderViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/salesman/WebOrderListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/salesman/WebOrderListView.fxml"));
             ScrollPane list = listLoader.load();
 
             webOrderListViewController = listLoader.getController();
@@ -78,7 +78,7 @@ public class WebOrderViewController {
     public void showWebOrderDetail(OrderVO order) {
         try {
             FXMLLoader orderLoader = new FXMLLoader();
-            orderLoader.setLocation(Main.class.getResource("../view/salesman/WebOrderDetailView.fxml"));
+            orderLoader.setLocation(getClass().getResource("/view/salesman/WebOrderDetailView.fxml"));
             ScrollPane view = orderLoader.load();
 
             WebOrderDetailViewController webOrderDetailViewController = orderLoader.getController();

@@ -50,7 +50,7 @@ public class HotelInfoViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/staff/HotelDetailView.fxml"));
+            loader.setLocation(getClass().getResource("/view/staff/HotelDetailView.fxml"));
             ScrollPane pane = loader.load();
 
             HotelDetailViewController hotelDetailViewController = loader.getController();

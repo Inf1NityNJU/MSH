@@ -56,7 +56,7 @@ public class HotelPromotionListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/promotion/HotelPromotionSearchPane.fxml"));
+            loader.setLocation(getClass().getResource("/component/promotion/HotelPromotionSearchPane.fxml"));
             VBox pane = loader.load();
 
             HotelPromotionSearchPaneController controller = loader.getController();
@@ -72,7 +72,7 @@ public class HotelPromotionListViewController {
             contentVBox.getChildren().add(tilePane);
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/promotion/HotelPromotionPagePane.fxml"));
+            pageLoader.setLocation(getClass().getResource("/component/promotion/HotelPromotionPagePane.fxml"));
             pagePane = pageLoader.load();
 
             hotelPromotionPagePaneController = pageLoader.getController();
@@ -80,7 +80,7 @@ public class HotelPromotionListViewController {
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/promotion/HotelPromotionCell.fxml"));
+                cellLoader.setLocation(getClass().getResource("/component/promotion/HotelPromotionCell.fxml"));
                 HBox webpromotioncell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

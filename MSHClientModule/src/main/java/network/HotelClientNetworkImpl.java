@@ -1,9 +1,6 @@
 package network;
 
-import blservice.hotelblservice.HotelBLInfo;
-import blservice.hotelblservice.HotelBLService;
-import network.hotelnetwork.HotelServerNetworkService;
-import network.usernetwork.UserServerNetworkService;
+import network.hotelnetworkservice.HotelServerNetworkService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -20,7 +17,7 @@ import java.util.ArrayList;
  * Created by Kray on 2016/11/27.
  *
  */
-public class HotelClientNetworkImpl implements HotelDataService {
+public class HotelClientNetworkImpl implements HotelClientNetworkService {
     /**
      * 再次尝试连接的时间间隔
      */

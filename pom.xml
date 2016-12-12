@@ -13,4 +13,27 @@
         <module>MSHServerModule</module>
         <module>MSHCommonModule</module>
     </modules>
+
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <!--<mainClass>MSHClientModule.src.main.java.main.Main</mainClass>-->
+    <!--</properties>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.1.2</version>
+                <configuration>
+                    <mainClass>MSHClientModule.src.main.java.main.Main</mainClass>
+                    <vendor>Infinity</vendor>
+                    <allPermissions>true</allPermissions>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
 </project>
+

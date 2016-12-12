@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by SilverNarcissus on 16/10/11.
  */
-public class HotelRoomPO  implements Serializable {
+public class HotelRoomPO implements Serializable {
     /**
      * 酒店房间编号
      */
