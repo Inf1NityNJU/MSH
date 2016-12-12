@@ -28,3 +28,4 @@
         <mapping resource="AssessmentPO.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
+

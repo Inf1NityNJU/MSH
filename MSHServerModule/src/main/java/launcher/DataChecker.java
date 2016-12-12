@@ -54,9 +54,10 @@ public class DataChecker {
      */
     private void checkOrder() {
         //得到订单数据库接口
-        OrderDataService orderDataService = OrderDataServiceFactory.getOrderDataService();
+
         //修改信用值所用接口
         UserDataService userDataService= UserDataServiceFactory.getClientDataService();
+        OrderDataService orderDataService = OrderDataServiceFactory.getOrderDataService();
         //
         //得到现在时间
         Calendar calendar = Calendar.getInstance();

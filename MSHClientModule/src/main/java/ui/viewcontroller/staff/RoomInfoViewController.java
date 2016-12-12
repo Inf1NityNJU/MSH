@@ -64,7 +64,7 @@ public class RoomInfoViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/staff/RoomAllListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/staff/RoomAllListView.fxml"));
             ScrollPane list = listLoader.load();
 
             roomAllListViewController = listLoader.getController();
@@ -86,7 +86,7 @@ public class RoomInfoViewController {
     public void showRoomAvailableList() {
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/staff/RoomAvailableListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/staff/RoomAvailableListView.fxml"));
             ScrollPane list = listLoader.load();
 
             roomAvailableListViewController = listLoader.getController();
@@ -114,7 +114,7 @@ public class RoomInfoViewController {
 //        }
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../component/hotel/AddRoomInfoPane.fxml"));
+            listLoader.setLocation(getClass().getResource("/component/hotel/AddRoomInfoPane.fxml"));
             ScrollPane list = listLoader.load();
 
             addHotelRoomPaneController = listLoader.getController();

@@ -53,10 +53,11 @@ public class ServerHelper {
             PromotionServerNetworkService promotionServerNetworkService = new PromotionServerNetworkImpl();
             OrderServerNetworkService orderServerNetworkService = new OrderServerNetworkImpl();
 
-            Naming.rebind("OrderServerNetworkService", orderServerNetworkService);
+
             Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
             Naming.rebind("UserServerNetworkService", userServerNetwork);
             Naming.rebind("PromotionServerNetWorkService", promotionServerNetworkService);
+            Naming.rebind("OrderServerNetworkService", orderServerNetworkService);
 
             return serverHelper;
         } catch (RemoteException e) {

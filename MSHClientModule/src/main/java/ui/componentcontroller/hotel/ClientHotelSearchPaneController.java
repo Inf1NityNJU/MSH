@@ -2,7 +2,6 @@ package ui.componentcontroller.hotel;
 
 import bl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLInfo;
-import com.sun.xml.internal.bind.v2.TODO;
 import component.commontextfield.CommonTextField;
 import component.mycheckbox.MyCheckBox;
 import component.mychoicebox.MyChoiceBox;

@@ -57,7 +57,7 @@ public class WebPromotionViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/salesman/WebPromotionListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/salesman/WebPromotionListView.fxml"));
             ScrollPane list = listLoader.load();
 
             webPromotionListViewController = listLoader.getController();
@@ -80,7 +80,7 @@ public class WebPromotionViewController {
     public void showPromotionDetail(PromotionVO promotionVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotionDetailView.fxml"));
+            loader.setLocation(getClass().getResource("/view/salesman/WebPromotionDetailView.fxml"));
             ScrollPane view = loader.load();
 
             WebPromotionDetailViewController webPromotionDetailViewController = loader.getController();
@@ -136,7 +136,7 @@ public class WebPromotionViewController {
     public void addWeb_ClientGradePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_ClientGradeAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/salesman/WebPromotion_ClientGradeAddView.fxml"));
             ScrollPane view = loader.load();
 
             WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
@@ -162,7 +162,7 @@ public class WebPromotionViewController {
     public void addWeb_SpecialDatePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialDateAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/salesman/WebPromotion_SpecialDateAddView.fxml"));
             ScrollPane view = loader.load();
 
             WebPromotion_SpecialDateAddViewController webPromotion_specialDateAddViewController = loader.getController();
@@ -188,7 +188,7 @@ public class WebPromotionViewController {
     public void addWeb_SpecialPlacePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/salesman/WebPromotion_SpecialPlaceAddView.fxml"));
+            loader.setLocation(getClass().getResource("/view/salesman/WebPromotion_SpecialPlaceAddView.fxml"));
             ScrollPane view = loader.load();
 
             WebPromotion_SpecialPlaceAddViewController webPromotion_specialPlaceAddViewController = loader.getController();

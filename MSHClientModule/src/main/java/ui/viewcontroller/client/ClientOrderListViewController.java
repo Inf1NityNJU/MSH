@@ -51,7 +51,7 @@ public class ClientOrderListViewController {
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/order/ClientOrderSearchPane.fxml"));
+            loader.setLocation(getClass().getResource("/component/order/ClientOrderSearchPane.fxml"));
             VBox pane = loader.load();
 
             ClientOrderSearchPaneController clientOrderSearchPaneController = loader.getController();
@@ -61,7 +61,7 @@ public class ClientOrderListViewController {
 
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/order/ClientOrderPagePane.fxml"));
+            pageLoader.setLocation(getClass().getResource("/component/order/ClientOrderPagePane.fxml"));
             pagePane = pageLoader.load();
 
             clientOrderPagePaneController = pageLoader.getController();
@@ -70,7 +70,7 @@ public class ClientOrderListViewController {
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/order/ClientOrderCell.fxml"));
+                cellLoader.setLocation(getClass().getResource("/component/order/ClientOrderCell.fxml"));
                 HBox ordercell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

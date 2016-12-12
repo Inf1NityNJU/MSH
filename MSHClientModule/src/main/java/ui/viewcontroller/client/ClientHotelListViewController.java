@@ -52,7 +52,7 @@ public class ClientHotelListViewController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/hotel/ClientHotelSearchPane.fxml"));
+            loader.setLocation(getClass().getResource("/component/hotel/ClientHotelSearchPane.fxml"));
             VBox pane = loader.load();
 
             ClientHotelSearchPaneController controller = loader.getController();
@@ -68,7 +68,7 @@ public class ClientHotelListViewController {
             contentVBox.getChildren().add(tilePane);
 
             FXMLLoader pageLoader = new FXMLLoader();
-            pageLoader.setLocation(Main.class.getResource("../component/hotel/ClientHotelPagePane.fxml"));
+            pageLoader.setLocation(getClass().getResource("/component/hotel/ClientHotelPagePane.fxml"));
             pagePane = pageLoader.load();
 
             clientHotelPagePaneController = pageLoader.getController();
@@ -76,7 +76,7 @@ public class ClientHotelListViewController {
 
             for (int i = 0; i < NUM_OF_CELL; i++) {
                 FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(Main.class.getResource("../component/hotel/ClientHotelCell.fxml"));
+                cellLoader.setLocation(getClass().getResource("/component/hotel/ClientHotelCell.fxml"));
                 VBox cell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;

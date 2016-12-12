@@ -25,7 +25,7 @@ public class StaffViewController {
         try {
             //加载navbar
             FXMLLoader navLoader = new FXMLLoader();
-            navLoader.setLocation(Main.class.getResource("../view/staff/StaffNavbar.fxml"));
+            navLoader.setLocation(getClass().getResource("/view/staff/StaffNavbar.fxml"));
             Pane navbar = navLoader.load();
 
             StaffNavbarController staffNavbarController = navLoader.getController();

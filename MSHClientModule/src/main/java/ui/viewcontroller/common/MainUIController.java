@@ -38,21 +38,17 @@ public class MainUIController {
     private UtilityViewController utilityViewController;
     private StaffViewController staffViewController;
 
-//    public void setRootPane(BorderPane rootPane) {
-//        this.rootPane = rootPane;
-//    }
-
     public void showMainView() {
         try {
             FXMLLoader headerLoader = new FXMLLoader();
-            headerLoader.setLocation(Main.class.getResource("../component/common/Header.fxml"));
+            headerLoader.setLocation(getClass().getResource("/component/common/Header.fxml"));
             HBox header = headerLoader.load();
 
             headerViewController = headerLoader.getController();
             headerViewController.setMainUIController(this);
 
             FXMLLoader sectionLoader = new FXMLLoader();
-            sectionLoader.setLocation(Main.class.getResource("../component/common/Section.fxml"));
+            sectionLoader.setLocation(getClass().getResource("/component/common/Section.fxml"));
             ScrollPane section = sectionLoader.load();
 
             rootPane.setTop(header);
@@ -86,13 +82,13 @@ public class MainUIController {
     }
 
     public void hidePop() {
+        popPane.getChildren().clear();
         popPane.setVisible(false);
         popPane.setManaged(false);
     }
 
     public void showUtilView() {
         utilityViewController = new UtilityViewController(this);
-//        utilityViewController.setMainUIController(this);
     }
 
     public void showClientView() {

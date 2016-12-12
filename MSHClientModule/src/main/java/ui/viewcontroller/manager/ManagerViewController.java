@@ -30,7 +30,7 @@ public class ManagerViewController {
 
         try {
             FXMLLoader navLoader = new FXMLLoader();
-            navLoader.setLocation(Main.class.getResource("../view/manager/ManagerNavbar.fxml"));
+            navLoader.setLocation(getClass().getResource("/view/manager/ManagerNavbar.fxml"));
             Pane navbar = navLoader.load();
 
             ManagerNavbarController managerNavbarController = navLoader.getController();

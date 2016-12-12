@@ -62,7 +62,7 @@ public class ClientManagementViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/manager/ClientManagementListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/manager/ClientManagementListView.fxml"));
             ScrollPane list = listLoader.load();
 
             clientManagementListViewController = listLoader.getController();
@@ -89,9 +89,9 @@ public class ClientManagementViewController {
         try {
             FXMLLoader loader = new FXMLLoader();
             if(isSalesman) {
-                loader.setLocation(Main.class.getResource("../view/client/ClientDetailCreditView.fxml"));
+                loader.setLocation(getClass().getResource("/view/client/ClientDetailCreditView.fxml"));
             }else{
-                loader.setLocation(Main.class.getResource("../view/client/ClientDetailView.fxml"));
+                loader.setLocation(getClass().getResource("/view/client/ClientDetailView.fxml"));
             }
             ScrollPane view = loader.load();
 
@@ -117,7 +117,7 @@ public class ClientManagementViewController {
     public void editClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/client/ClientDetailEditView.fxml"));
+            loader.setLocation(getClass().getResource("/view/client/ClientDetailEditView.fxml"));
             ScrollPane view = loader.load();
 
             clientDetailEditViewController = loader.getController();
@@ -143,7 +143,7 @@ public class ClientManagementViewController {
     public void resetPassword(String account, String ID) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/manager/ResetPasswordView.fxml"));
+            loader.setLocation(getClass().getResource("/view/manager/ResetPasswordView.fxml"));
             ScrollPane view = loader.load();
 
             resetPasswordViewController = loader.getController();
@@ -168,7 +168,7 @@ public class ClientManagementViewController {
     public void showCreditOfClient(String clientID) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../view/client/ClientCreditListView.fxml"));
+            loader.setLocation(getClass().getResource("/view/client/ClientCreditListView.fxml"));
             ScrollPane view = loader.load();
 
             ClientCreditListViewController clientCreditViewController = loader.getController();

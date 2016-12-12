@@ -49,7 +49,7 @@ public class LevelManagementViewController {
 
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(Main.class.getResource("../view/salesman/LevelListView.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/salesman/LevelListView.fxml"));
             ScrollPane list = listLoader.load();
 
             LevelListViewController levelListViewController = listLoader.getController();

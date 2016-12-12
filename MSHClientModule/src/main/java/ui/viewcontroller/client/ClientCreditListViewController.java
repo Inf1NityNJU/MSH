@@ -68,7 +68,7 @@ public class ClientCreditListViewController {
                 for (int i = 0; i < creditVOs.size(); i++) {
 
                     FXMLLoader cellLoader = new FXMLLoader();
-                    cellLoader.setLocation(Main.class.getResource("../component/user/ClientCreditCell.fxml"));
+                    cellLoader.setLocation(getClass().getResource("/component/user/ClientCreditCell.fxml"));
                     HBox clientCell = cellLoader.load();
 
                     cellLoaders[i] = cellLoader;

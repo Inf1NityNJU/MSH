@@ -56,7 +56,7 @@ public class UtilityViewController {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("../view/utility/LoginView.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/view/utility/LoginView.fxml"));
             Pane list = fxmlLoader.load();
 
             loginViewController = fxmlLoader.getController();
@@ -100,7 +100,7 @@ public class UtilityViewController {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("../view/utility/SignUpView.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/view/utility/SignUpView.fxml"));
             Pane list = fxmlLoader.load();
 
             signUpViewController = fxmlLoader.getController();
