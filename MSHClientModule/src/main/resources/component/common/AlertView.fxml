@@ -17,12 +17,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <RectButton fx:id="sureButton" layoutX="219.0" layoutY="203.0" text="确 认" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <RectButton fx:id="sureButton" layoutX="219.0" layoutY="203.0" text="确 认" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickSureButton">
          <font>
             <Font size="16.0" />
          </font>
       </RectButton>
-      <RectButton fx:id="cancelButton" isActiveProperty="false" layoutX="107.0" layoutY="196.0" text="取 消" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <RectButton fx:id="cancelButton" isActiveProperty="false" layoutX="107.0" layoutY="196.0" text="取 消" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" onMouseClicked="#clickCancelButton">
          <font>
             <Font size="16.0" />
          </font>

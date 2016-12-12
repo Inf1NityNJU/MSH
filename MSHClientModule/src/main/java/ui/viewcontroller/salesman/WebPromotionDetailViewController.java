@@ -4,9 +4,16 @@ import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import util.PromotionType;
 import vo.*;
+
+import java.io.IOException;
 
 /**
  * Created by vivian on 16/11/30.
@@ -15,6 +22,9 @@ public class WebPromotionDetailViewController {
     private PromotionVO promotionVO;
     private WebPromotionViewController webPromotionViewController;
     private PromotionBLService promotionBLService;
+
+    private MainUIController mainUIController;
+    private AlertViewController alertViewController;
 
     @FXML
     private Label nameLabel;
@@ -47,6 +57,10 @@ public class WebPromotionDetailViewController {
 
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController){
         this.webPromotionViewController = webPromotionViewController;
+    }
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     public void showWebPromotionDetail(PromotionVO promotionVO){
@@ -82,13 +96,34 @@ public class WebPromotionDetailViewController {
 
     @FXML
     public void clickDeleteButton(){
-        promotionBLService.deletePromotion(promotionVO.promotionID);
-        webPromotionViewController.refreshWebPromotionList();
-        webPromotionViewController.back();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            alertViewController = loader.getController();
+            alertViewController.setWebPromotionDetailViewController(this);
+            alertViewController.setInfoLabel("确认删除该条网站促销策略吗？");
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void clickEditButton(){
         webPromotionViewController.showPromotionDetailEditView(promotionVO);
+    }
+
+    public void sureDelete(){
+        promotionBLService.deletePromotion(promotionVO.promotionID);
+        webPromotionViewController.refreshWebPromotionList();
+        webPromotionViewController.back();
+        mainUIController.hidePop();
+    }
+
+    public void cancelDelete(){
+        mainUIController.hidePop();
     }
 }

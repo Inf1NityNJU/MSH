@@ -85,6 +85,7 @@ public class WebPromotionViewController {
 
             WebPromotionDetailViewController webPromotionDetailViewController = loader.getController();
             webPromotionDetailViewController.setWebPromotionViewController(this);
+            webPromotionDetailViewController.setMainUIController(mainUIController);
             webPromotionDetailViewController.setPromotionBLService(promotionBLService);
             webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
 

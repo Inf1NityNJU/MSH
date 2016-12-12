@@ -86,6 +86,7 @@ public class MainUIController {
     }
 
     public void hidePop() {
+        popPane.getChildren().clear();
         popPane.setVisible(false);
         popPane.setManaged(false);
     }

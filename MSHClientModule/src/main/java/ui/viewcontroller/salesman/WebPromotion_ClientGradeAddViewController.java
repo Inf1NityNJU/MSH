@@ -63,6 +63,7 @@ public class WebPromotion_ClientGradeAddViewController {
         this.promotionBLService = promotionBLService;
     }
 
+    @FXML
     public void clickCancelButton(){
         webPromotionViewController.refreshWebPromotionList();
         if(isEdit){
@@ -71,6 +72,7 @@ public class WebPromotion_ClientGradeAddViewController {
         webPromotionViewController.back();
     }
 
+    @FXML
     public void clickSaveButton(){
         int clientGrade = (int)levelChoiceBox.getValue();
         promotionVO = new Promotion_ClientGradeVO(nameTextField.getText(),PromotionType.Web_ClientGrade, Double.valueOf(discountTextField.getText()),
@@ -85,8 +87,10 @@ public class WebPromotion_ClientGradeAddViewController {
             System.out.println("save successfully!");
         }
 
+
     }
 
+    @FXML
     public void showEditView(PromotionVO promotionVO){
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount+"");
