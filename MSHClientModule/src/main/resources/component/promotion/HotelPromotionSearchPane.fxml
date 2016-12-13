@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -23,25 +24,26 @@
     </padding>
     <children>
         <TitleLabel text="酒店促销策略" />
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="920.0" spacing="5.0">
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
             <children>
-                <StateButton fx:id="allButton" colorProperty="F8E81C" onMouseClicked="#showAllPromotions" prefHeight="24.0" prefWidth="50.0" text="全部">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></StateButton>
-                <StateButton fx:id="birthdayButton" colorProperty="12B7F3"  prefHeight="24.0" prefWidth="78.0" text="生日折扣" onMouseClicked="#showBirthdayPromotions"/>
-            <StateButton fx:id="roomQuantityButton" colorProperty="00CCCC" prefHeight="24.0" prefWidth="115.0" text="房间数量折扣" onMouseClicked="#showRoomQuantityPromotions"/>
-                <StateButton fx:id="companyButton" colorProperty="BC52FD" maxWidth="1.7976931348623157E308"  prefHeight="24.0" prefWidth="109.0" text="合作企业折扣" onMouseClicked="#showCompanyPromotions"/>
-                <StateButton fx:id="specialDateButton" colorProperty="FC537D"  prefHeight="24.0" prefWidth="107.0" text="特定期间折扣" onMouseClicked="#showSpecialDatePromotions">
+                <StateButton fx:id="allButton" colorProperty="F8E81C" onMouseClicked="#showAllPromotions" text="全部">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin></StateButton>
-                <CircleButton fx:id="addButton"  typeProperty="Add" onMouseClicked="#clickAddButton">
+                <StateButton fx:id="birthdayButton" colorProperty="12B7F3" onMouseClicked="#showBirthdayPromotions" text="生日折扣" />
+            <StateButton fx:id="roomQuantityButton" colorProperty="00CCCC" onMouseClicked="#showRoomQuantityPromotions" text="房间数量折扣" />
+                <StateButton fx:id="companyButton" colorProperty="BC52FD" maxWidth="1.7976931348623157E308" onMouseClicked="#showCompanyPromotions" text="合作企业折扣" />
+                <StateButton fx:id="specialDateButton" colorProperty="FC537D" onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin></StateButton>
+            <Pane HBox.hgrow="ALWAYS" />
+                <CircleButton fx:id="addButton" onMouseClicked="#clickAddButton" typeProperty="Add">
                     <font>
                         <Font size="24.0" />
                     </font>
                     <HBox.margin>
-                        <Insets left="200.0" />
+                        <Insets />
                     </HBox.margin>
                 </CircleButton>
                 <MyChoiceBox fx:id="typeChoiceBox" prefWidth="134.0">

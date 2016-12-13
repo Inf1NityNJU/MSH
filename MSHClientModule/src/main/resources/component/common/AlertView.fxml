@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.common.AlertViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.common.AlertViewController">
    <padding>
       <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
    </padding>
@@ -17,12 +16,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <RectButton fx:id="sureButton" layoutX="219.0" layoutY="203.0" text="确 认" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickSureButton">
+      <RectButton fx:id="sureButton" layoutX="219.0" layoutY="203.0" onMouseClicked="#clickSureButton" text="确 认" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="16.0" />
          </font>
       </RectButton>
-      <RectButton fx:id="cancelButton" isActiveProperty="false" layoutX="107.0" layoutY="196.0" text="取 消" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" onMouseClicked="#clickCancelButton">
+      <RectButton fx:id="cancelButton" isActiveProperty="false" layoutX="107.0" layoutY="196.0" onMouseClicked="#clickCancelButton" text="取 消" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <font>
             <Font size="16.0" />
          </font>
