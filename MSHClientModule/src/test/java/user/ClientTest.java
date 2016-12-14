@@ -31,18 +31,9 @@ public class ClientTest {
 
     @Test
     public void testAdd() throws Exception {
-//        ResultMessage rm = client.add(new ClientVO_Register("KrayC", 0, new DateUtil(2016, 1, 1), 500, 0,
-//                "18795963603", "", "adminClient", "123456789"));
-//        assertEquals(ResultMessage.FAILED, rm);
-//        ResultMessage rm = client.add(new ClientVO_Register("Sorumi", 0, new DateUtil(2016, 1, 1), 500, 0,
-//                "18795963603", "NJU", "srm", "12345678"));
-//        assertEquals(ResultMessage.SUCCESS, rm);
-//        rm = client.add(new ClientVO_Register("Silver Narcissus", 0, new DateUtil(2016, 1, 1), 500, 0,
-//                "18795963603", "", "xuekaifang", "12345678"));
-//        assertEquals(ResultMessage.SUCCESS, rm);
-//        rm = client.add(new ClientVO_Register("Vivian SJ", 0, new DateUtil(2016, 1, 1), 500, 0,
-//                "18795963603", "NJU", "yangsijia", "12345678"));
-//        assertEquals(ResultMessage.SUCCESS, rm);
+        ResultMessage rm = client.add(new ClientVO_Register(new DateUtil(2016, 1, 1), 0,
+                "", "adminClient", "123456789"));
+        assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test

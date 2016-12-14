@@ -95,7 +95,7 @@ public class ClientOrderListViewController {
         this.orderState = orderState;
         orders = orderBLService.searchClientOrder(orderState, null);
         int size = orders.size();
-        clientOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
+        clientOrderPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
             turnPage(1);
         } else {
@@ -106,8 +106,8 @@ public class ClientOrderListViewController {
     }
 
     public void turnPage(int page) {
-        int fromIndex = (page-1)*NUM_OF_CELL;
-        int toIndex = Math.min(page*NUM_OF_CELL, orders.size());
+        int fromIndex = (page - 1) * NUM_OF_CELL;
+        int toIndex = Math.min(page * NUM_OF_CELL, orders.size());
         List<OrderVO> tmpOrders = orders.subList(fromIndex, toIndex);
         setCells(tmpOrders);
     }
