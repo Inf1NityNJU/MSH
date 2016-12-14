@@ -27,8 +27,10 @@ public class SalesmanDataServiceImplTest {
 
     @Test
     public void login() throws Exception {
-        LoginState loginState = userDataService.login("adminSalesman", "password");
+        LoginState loginState = userDataService.login("accountSalesman", "password");
         assertEquals(LoginState.LOGIN_SUCCESS_Salesman, loginState);
+        loginState = userDataService.login("accountSalesman", "password");
+        assertEquals(LoginState.LOGIN_FAIL, loginState);
     }
 
     @Test
@@ -41,49 +43,54 @@ public class SalesmanDataServiceImplTest {
     public void resetPassword() throws Exception {
         ResultMessage resultMessage = userDataService.resetPassword("adminSalesman", "password", "00000000");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.resetPassword("adminStaff", "12345678", "00000000");
-        assertEquals(ResultMessage.FAILED, resultMessage);
+        resultMessage = userDataService.resetPassword("adminSalesman", "password", "password");
+        assertEquals(ResultMessage.EXIST, resultMessage);
     }
 
     @Test
     public void addSalesman() throws Exception {
-        ResultMessage resultMessage = userDataService.addSalesman(new SalesmanPO("100001", "songkuixi", "adminSalesman", "password"));
+        ResultMessage resultMessage = userDataService.addSalesman(new SalesmanPO("100111", "testSalesman",
+                "accountSalesman", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-//        resultMessage = userDataService.addSalesman(new SalesmanPO("100002", "songkuixi", "adminSalesman", "password"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
-//        resultMessage = userDataService.addSalesman(new SalesmanPO("100003", "songkuixi", "adminSalesman", "password"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
-//        resultMessage = userDataService.addSalesman(new SalesmanPO("100004", "songkuixi", "adminSalesman", "password"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.addSalesman(new SalesmanPO("100111", "testSalesman2",
+                "accountSalesman", "password"));
+        assertEquals(ResultMessage.EXIST, resultMessage);
+        resultMessage = userDataService.addSalesman(new SalesmanPO("100110", "",
+                "accountSalesman", "password"));
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchSalesmanByID() throws Exception {
-        SalesmanPO examplePO = new SalesmanPO("100001", "songkuixi", "adminSalesman", "password");
-        SalesmanPO salesmanPO = userDataService.searchSalesmanByID("100001");
+        SalesmanPO examplePO = new SalesmanPO("100111", "testSalesman",
+                "accountSalesman", "password");
+        SalesmanPO salesmanPO = userDataService.searchSalesmanByID("100111");
         assertTrue(salesmanPO.equals(examplePO));
     }
 
     @Test
     public void updateSalesman() throws Exception {
-        ResultMessage resultMessage = userDataService.updateSalesman("100001", new SalesmanPO("100001", "wang ziqin", "adminSalesman", "password"));
+        ResultMessage resultMessage = userDataService.updateSalesman("100111",
+                new SalesmanPO("100111", "testSalesman2", "accountSalesman", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.updateSalesman("100111",
+                new SalesmanPO("100111", "testSalesman", "", "password"));
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void deleteSalesman() throws Exception {
-        ResultMessage resultMessage = userDataService.deleteSalesman("100001");
+        ResultMessage resultMessage = userDataService.deleteSalesman("100111");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.deleteSalesman("100110");
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchSalesman() throws Exception {
-        ArrayList<SalesmanPO> salesmanPOs = userDataService.searchSalesman("1000");
+        ArrayList<SalesmanPO> salesmanPOs = userDataService.searchSalesman("100");
         ArrayList<SalesmanPO> exampleSalesmanPOs = new ArrayList<SalesmanPO>();
-        exampleSalesmanPOs.add(new SalesmanPO("100001", "songkuixi", "adminSalesman", "password"));
-        exampleSalesmanPOs.add(new SalesmanPO("100002", "songkuixi", "adminSalesman", "password"));
-        exampleSalesmanPOs.add(new SalesmanPO("100003", "songkuixi", "adminSalesman", "password"));
-        exampleSalesmanPOs.add(new SalesmanPO("100004", "songkuixi", "adminSalesman", "password"));
+        exampleSalesmanPOs.add(new SalesmanPO("100111", "testSalesman2", "accountSalesman", "password"));
         assertEquals(exampleSalesmanPOs, salesmanPOs);
     }
 
@@ -92,6 +99,9 @@ public class SalesmanDataServiceImplTest {
         LevelPO levelPO = new LevelPO("1",1,500);
         ResultMessage resultMessage = userDataService.addLevel(levelPO);
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        levelPO = new LevelPO("1",1,600);
+        resultMessage = userDataService.addLevel(levelPO);
+        assertEquals(ResultMessage.EXIST, resultMessage);
     }
 
     @Test
@@ -105,5 +115,7 @@ public class SalesmanDataServiceImplTest {
     public void deleteLevel() throws Exception {
         ResultMessage rm = userDataService.deleteLevel("1");
         assertEquals(ResultMessage.SUCCESS, rm);
+        rm = userDataService.deleteLevel("2");
+        assertEquals(ResultMessage.FAILED, rm);
     }
 }
