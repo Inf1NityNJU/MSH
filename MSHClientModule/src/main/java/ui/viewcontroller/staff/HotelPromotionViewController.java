@@ -138,6 +138,7 @@ public class HotelPromotionViewController {
 
             HotelPromotion_BirthdayAddViewController hotelPromotion_birthdayAddViewController = loader.getController();
             hotelPromotion_birthdayAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_birthdayAddViewController.setMainUIController(mainUIController);
             hotelPromotion_birthdayAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_birthdayAddViewController.showEditView(promotionVO);
@@ -164,6 +165,7 @@ public class HotelPromotionViewController {
 
             HotelPromotion_EnterpriseAddViewController hotelPromotion_enterpriseAddViewController = loader.getController();
             hotelPromotion_enterpriseAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_enterpriseAddViewController.setMainUIController(mainUIController);
             hotelPromotion_enterpriseAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_enterpriseAddViewController.showEditView(promotionVO);
@@ -190,6 +192,7 @@ public class HotelPromotionViewController {
 
             HotelPromotion_RoomQuantityAddViewController hotelPromotion_roomQuantityAddViewController = loader.getController();
             hotelPromotion_roomQuantityAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_roomQuantityAddViewController.setMainUIController(mainUIController);
             hotelPromotion_roomQuantityAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_roomQuantityAddViewController.showEditView(promotionVO);
@@ -216,6 +219,7 @@ public class HotelPromotionViewController {
 
             HotelPromotion_SpecialDateAddViewController hotelPromotion_specialDateAddViewController = loader.getController();
             hotelPromotion_specialDateAddViewController.setHotelPromotionViewController(this);
+            hotelPromotion_specialDateAddViewController.setMainUIController(mainUIController);
             hotelPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_specialDateAddViewController.showEditView(promotionVO);
