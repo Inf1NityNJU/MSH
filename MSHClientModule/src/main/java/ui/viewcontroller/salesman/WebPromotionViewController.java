@@ -142,6 +142,7 @@ public class WebPromotionViewController {
 
             WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
             webPromotion_clientGradeAddViewController.setWebPromotionViewController(this);
+            webPromotion_clientGradeAddViewController.setMainUIController(mainUIController);
             webPromotion_clientGradeAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 webPromotion_clientGradeAddViewController.showEditView(promotionVO);
@@ -168,6 +169,7 @@ public class WebPromotionViewController {
 
             WebPromotion_SpecialDateAddViewController webPromotion_specialDateAddViewController = loader.getController();
             webPromotion_specialDateAddViewController.setWebPromotionViewController(this);
+            webPromotion_specialDateAddViewController.setMainUIController(mainUIController);
             webPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 webPromotion_specialDateAddViewController.showEditView(promotionVO);
@@ -194,6 +196,7 @@ public class WebPromotionViewController {
 
             WebPromotion_SpecialPlaceAddViewController webPromotion_specialPlaceAddViewController = loader.getController();
             webPromotion_specialPlaceAddViewController.setWebPromotionViewController(this);
+            webPromotion_specialPlaceAddViewController.setMainUIController(mainUIController);
             webPromotion_specialPlaceAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 webPromotion_specialPlaceAddViewController.showEditView(promotionVO);

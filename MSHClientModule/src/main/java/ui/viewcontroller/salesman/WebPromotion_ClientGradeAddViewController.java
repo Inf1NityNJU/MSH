@@ -10,21 +10,31 @@ import component.statebutton.StateButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import util.DateUtil;
 import util.PromotionType;
 import vo.PromotionVO;
 import vo.Promotion_ClientGradeVO;
 
+import java.io.IOException;
+
 /**
  * Created by vivian on 16/12/6.
  */
-public class WebPromotion_ClientGradeAddViewController {
+public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddViewController{
     private PromotionVO promotionVO;
     private WebPromotionViewController webPromotionViewController;
     private PromotionBLService promotionBLService;
 
     private boolean isEdit = false;
     private String promotionID = null;
+
+    private MainUIController mainUIController;
+    private AlertViewController alertViewController;
 
     @FXML
     private CommonTextField nameTextField;
@@ -44,6 +54,7 @@ public class WebPromotion_ClientGradeAddViewController {
     @FXML
     private MyDatePicker endTime;
 
+    @Override
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
         this.webPromotionViewController = webPromotionViewController;
 
@@ -59,21 +70,40 @@ public class WebPromotion_ClientGradeAddViewController {
         levelChoiceBox.setItems(observableList);
     }
 
+    @Override
     public void setPromotionBLService(PromotionBLService promotionBLService){
         this.promotionBLService = promotionBLService;
     }
 
+    @Override
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
+
     @FXML
     public void clickCancelButton(){
-        webPromotionViewController.refreshWebPromotionList();
-        if(isEdit){
-            webPromotionViewController.back();
-        }
         webPromotionViewController.back();
     }
 
     @FXML
     public void clickSaveButton(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            alertViewController = loader.getController();
+            alertViewController.setWebPromotionAddViewController(this);
+            alertViewController.setInfoLabel("确定保存该条网站促销策略吗？");
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sureSave(){
         int clientGrade = (int)levelChoiceBox.getValue();
         promotionVO = new Promotion_ClientGradeVO(nameTextField.getText(),PromotionType.Web_ClientGrade, Double.valueOf(discountTextField.getText()),
                 new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
@@ -86,8 +116,17 @@ public class WebPromotion_ClientGradeAddViewController {
             promotionBLService.addPromotion(promotionVO);
             System.out.println("save successfully!");
         }
+        mainUIController.hidePop();
+        webPromotionViewController.refreshWebPromotionList();
+        if (isEdit) {
+            webPromotionViewController.back();
+        }
+        webPromotionViewController.back();
+    }
 
-
+    @Override
+    public void cancelSave(){
+        mainUIController.hidePop();
     }
 
     @FXML
