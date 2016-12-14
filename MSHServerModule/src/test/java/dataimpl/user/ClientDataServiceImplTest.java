@@ -27,8 +27,10 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void login() throws Exception {
-        LoginState loginState = userDataService.login("songkuixi", "1");
+        LoginState loginState = userDataService.login("accountClient", "password");
         assertEquals(LoginState.LOGIN_SUCCESS_Client, loginState);
+        loginState = userDataService.login("accountClient", "password2");
+        assertEquals(LoginState.LOGIN_FAIL, loginState);
     }
 
     @Test
@@ -39,65 +41,79 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void resetPassword() throws Exception {
-        ResultMessage resultMessage = userDataService.resetPassword("adminClient", "12345678", "00000000");
+        ResultMessage resultMessage = userDataService.resetPassword("accountClient", "password", "00000000");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.resetPassword("adminClient", "12345678", "00000000");
+        resultMessage = userDataService.resetPassword("accountClient", "password", "password");
         assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void addClient() throws Exception {
-        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000111", "songkuixi", 500, 1,
-                "2016-02-02", "18795963603", "", "testClient", "1234"));
+        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-
-//        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000010", "宋奎熹", 500, 1,
-//                "2016-02-02", "18795963603", "", "adminClient", "12345678"), new CreditPO("000000003"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient2", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
+        assertEquals(ResultMessage.EXIST, resultMessage);
+        resultMessage = userDataService.addClient(new ClientPO("000000111", "", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchClientByID() throws Exception {
-        ClientPO examplePO = new ClientPO("000000003", "songkuixi", 500, 1,
-                "2016-02-02", "18795963603", "", "adminClient", "12345678");
-        ClientPO clientPO = userDataService.searchClientByID("000000003");
+        ClientPO examplePO = new ClientPO("000000111", "testClient", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password");
+        ClientPO clientPO = userDataService.searchClientByID("000000111");
         assertTrue(clientPO.equals(examplePO));
     }
 
     @Test
     public void updateClient() throws Exception {
-        ResultMessage resultMessage = userDataService.updateClient("000000003", new ClientPO("000000003", "songkuixi 2", 500, 1,
-                "2016-02-02", "18795963603", "", "adminClient", "12345678"));
+        ResultMessage resultMessage = userDataService.updateClient("000000111", new ClientPO("000000111", "testClient2", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.updateClient("000000110", new ClientPO("000000111", "testClient", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void deleteClient() throws Exception {
-        ResultMessage resultMessage = userDataService.deleteClient("000000003");
+        ResultMessage resultMessage = userDataService.deleteClient("000000111");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.deleteClient("000000110");
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchClient() throws Exception {
-        userDataService.addClient(new ClientPO("000000003", "songkuixi", 500, 1,
-            "2016-02-02", "18795963603", "", "adminClient", "12345678"));
-        ArrayList<ClientPO> clientPOs = userDataService.searchClient("003");
+        ArrayList<ClientPO> clientPOs = userDataService.searchClient("000");
         ArrayList<ClientPO> exampleClientPOs = new ArrayList<ClientPO>();
-        exampleClientPOs.add(new ClientPO("000000003", "songkuixi", 500, 1, "2016-02-02", "18795963603", "", "adminClient", "12345678"));
+        exampleClientPOs.add(new ClientPO("000000111", "testClient2", 500, 1,
+                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(exampleClientPOs, clientPOs);
     }
 
     @Test
     public void addCreditRecord() throws Exception {
-        ResultMessage resultMessage = userDataService.addCreditRecord("000000003", new CreditPO("20161013000012345678", "2016-10-12", 200, 600, CreditAction.ADD_CREDIT, "000000003"));
+//        ResultMessage resultMessage = userDataService.addCreditRecord("000000111", new CreditPO("20161013000012345678",
+//                "2016-10-12", 200, 700, CreditAction.ADD_CREDIT, "000000111"));
+//        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        ResultMessage resultMessage = userDataService.addCreditRecord("000000111", new CreditPO("20161013000012344618",
+                "2016-10-12", -400, 700, CreditAction.ADD_CREDIT, "000000111"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+//        resultMessage = userDataService.addCreditRecord("000000110", new CreditPO("20161013000012345679",
+//                "2016-10-13", 200, 700, CreditAction.ADD_CREDIT, "000000111"));
+//        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchCreditByID() throws Exception {
-        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID("000000003");
+        ArrayList<CreditPO> creditPOs = userDataService.searchCreditByID("000000111");
         ArrayList<CreditPO> exampleCreditPOs = new ArrayList<CreditPO>();
-        exampleCreditPOs.add(new CreditPO("20161013000012345678", "2016-10-12", 200, 600, CreditAction.ADD_CREDIT, "000000003"));
+        exampleCreditPOs.add(new CreditPO("20161013000012345678",
+                "2016-10-12", 200, 700, CreditAction.ADD_CREDIT, "000000003"));
         assertEquals(exampleCreditPOs, creditPOs);
     }
 

@@ -24,8 +24,10 @@ public class StaffDataServiceImplTest {
 
     @Test
     public void login() throws Exception {
-        LoginState loginState = userDataService.login("adminStaff", "password");
+        LoginState loginState = userDataService.login("accountStaff", "password");
         assertEquals(LoginState.LOGIN_SUCCESS_Staff, loginState);
+        loginState = userDataService.login("accountStaff", "password2");
+        assertEquals(LoginState.LOGIN_FAIL, loginState);
     }
 
     @Test
@@ -36,51 +38,50 @@ public class StaffDataServiceImplTest {
 
     @Test
     public void resetPassword() throws Exception {
-        ResultMessage resultMessage = userDataService.resetPassword("adminStaff", "00000000", "12345678");
+        ResultMessage resultMessage = userDataService.resetPassword("accountStaff", "password", "12345678");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.resetPassword("adminStaff", "12345678", "00000000");
+        resultMessage = userDataService.resetPassword("accountStaff", "password2", "password");
         assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void addStaff() throws Exception {
-        ResultMessage resultMessage = userDataService.addStaff(new StaffPO("300001", "songkuixi", "25010001", "adminStaff", "password"));
+        ResultMessage resultMessage = userDataService.addStaff(new StaffPO("300111", "testStaff", "25010001", "accountStaff", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-//        resultMessage = userDataService.addStaff(new StaffPO("300002", "songkuixi", "25010001", "adminStaff", "password"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
-//        resultMessage = userDataService.addStaff(new StaffPO("300003", "songkuixi", "25010001", "adminStaff", "password"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
-//        resultMessage = userDataService.addStaff(new StaffPO("300004", "songkuixi", "25010001", "adminStaff", "password"));
-//        assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.addStaff(new StaffPO("300111", "testStaff2", "25010001", "adminStaff", "password"));
+        assertEquals(ResultMessage.EXIST, resultMessage);
     }
 
     @Test
     public void searchStaffByID() throws Exception {
-        StaffPO examplePO = new StaffPO("300001", "songkuixi", "25010001", "adminStaff", "password");
-        StaffPO staffPO = userDataService.searchStaffByID("300001");
+        StaffPO examplePO = new StaffPO("300111", "testStaff", "25010001", "accountStaff", "password");
+        StaffPO staffPO = userDataService.searchStaffByID("300111");
         assertTrue(staffPO.equals(examplePO));
     }
 
     @Test
     public void updateStaff() throws Exception {
-        ResultMessage resultMessage = userDataService.updateStaff("300001", new StaffPO("300001", "Kray2", "25010002", "adminStaff", "password"));
+        ResultMessage resultMessage = userDataService.updateStaff("300111",
+                new StaffPO("300111", "testStaff2", "25010002", "adminStaff", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.updateStaff("300111",
+                new StaffPO("300111", "testStaff", "25010001", "adminStaff", "password"));
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void deleteStaff() throws Exception {
-        ResultMessage resultMessage = userDataService.deleteStaff("300001");
+        ResultMessage resultMessage = userDataService.deleteStaff("300111");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
+        resultMessage = userDataService.deleteStaff("300110");
+        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchStaff() throws Exception {
         ArrayList<StaffPO> staffPOs = userDataService.searchStaff("3000");
         ArrayList<StaffPO> exampleStaffPOs = new ArrayList<StaffPO>();
-        exampleStaffPOs.add(new StaffPO("300001", "songkuixi", "25010001", "adminStaff", "password"));
-        exampleStaffPOs.add(new StaffPO("300002", "songkuixi", "25010001", "adminStaff", "password"));
-        exampleStaffPOs.add(new StaffPO("300003", "songkuixi", "25010001", "adminStaff", "password"));
-        exampleStaffPOs.add(new StaffPO("300004", "songkuixi", "25010001", "adminStaff", "password"));
+        exampleStaffPOs.add(new StaffPO("300111", "testStaff2", "25010002", "adminStaff", "password"));
         assertEquals(exampleStaffPOs, staffPOs);
     }
 

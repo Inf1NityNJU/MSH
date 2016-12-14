@@ -421,7 +421,7 @@ public class UserDataServiceImpl implements UserDataService {
         creditPO.setResultCredit(resultCredit);
         ResultMessage rm = creditDataHelper.save(creditPO);
         if (rm == ResultMessage.SUCCESS) {
-            int level = clientPO.getLevel();
+            int level = 1;
 
             while (true) {
                 if (reachedLevel(level, resultCredit)) {
