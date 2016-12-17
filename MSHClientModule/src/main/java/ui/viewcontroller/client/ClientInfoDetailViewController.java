@@ -1,23 +1,20 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.UserBLFactory;
+import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import vo.ClientVO;
 
 /**
- * Created by Kray on 2016/11/26.
+ * Created by Sorumi on 16/12/17.
  */
-public class ClientDetailViewController {
-
-    protected ClientVO clientVO;
-
-    protected ClientManagementViewController clientManagementViewController;
+public class ClientInfoDetailViewController {
 
     @FXML
     protected Label clientIDLabel;
@@ -58,14 +55,17 @@ public class ClientDetailViewController {
     @FXML
     private HBox creditHBox;
 
-    public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
-        this.clientManagementViewController = clientManagementViewController;
+    private ClientInfoViewController clientInfoViewController;
 
-        actionButton.setText("编 辑");
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+
+    public void setClientInfoViewController(ClientInfoViewController clientInfoViewController) {
+        this.clientInfoViewController = clientInfoViewController;
     }
 
-    public void showClient(ClientVO clientVO) {
-        this.clientVO = clientVO;
+    public void showClient() {
+        String clientID = userBLInfo.getCurrentClientID();
+        ClientVO clientVO = userBLInfo.getClientByID(clientID);
 
         clientIDLabel.setText(clientVO.clientID);
         clientNameLabel.setText(clientVO.clientName);
@@ -96,20 +96,15 @@ public class ClientDetailViewController {
 
     }
 
-    public void clickBackButton() {
-        clientManagementViewController.back();
-        clientManagementViewController.getClientManagementListViewController().showClients(clientManagementViewController.getClientManagementListViewController().getType());
-    }
-
     public void clickPasswordButton() {
-        clientManagementViewController.resetPassword(clientVO.account, clientVO.clientID);
+//        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
     }
 
     public void clickEditButton() {
-        clientManagementViewController.editClientDetail(clientVO);
+        clientInfoViewController.editClientInfo();
     }
 
     public void clickCreditButton() {
-        clientManagementViewController.showCreditOfClient(clientVO.clientID);
+        clientInfoViewController.showCredit();
     }
 }

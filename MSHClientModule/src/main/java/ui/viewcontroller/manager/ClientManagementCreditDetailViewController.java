@@ -1,10 +1,9 @@
-package ui.viewcontroller.client;
+package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import util.CreditAction;
 import util.DateUtil;
 import vo.ClientVO;
@@ -15,12 +14,12 @@ import java.util.Date;
 /**
  * Created by Kray on 2016/12/6.
  */
-public class ClientDetailCreditViewController extends ClientDetailViewController {
+public class ClientManagementCreditDetailViewController extends ClientManagementDetailViewController {
 
     @FXML
     private CommonTextField creditText;
 
-    public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
+    public void setClientManagementViewController(ui.viewcontroller.manager.ClientManagementViewController clientManagementViewController) {
         super.clientManagementViewController = clientManagementViewController;
 
         actionButton.setText("确 认");

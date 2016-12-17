@@ -10,6 +10,7 @@ import util.ResultMessage;
 import vo.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Kray on 2016/10/30.
@@ -146,6 +147,7 @@ public class Client extends User {
                     creditPO.getCreditAction(), creditPO.getOrderID(), new DateUtil(creditPO.getDate()));
             creditVOs.add(creditVO);
         }
+        creditVOs.sort(new CreditComparator());
         return creditVOs;
     }
 
@@ -165,4 +167,26 @@ public class Client extends User {
         return searchByID(clientID).credit;
     }
 
+
+    private class CreditComparator implements Comparator<CreditVO> {
+
+        public int compare(CreditVO o1, CreditVO o2) {
+            if (o1.date.compareDate(o2.date) != 0) {
+                return o1.date.compareDate(o2.date);
+
+            } else {
+                if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) != '-') {
+                    return 1;
+                } else if (o1.orderID.charAt(0) != '-' && o2.orderID.charAt(0) == '-') {
+                    return -1;
+                } else if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) == '-') {
+                    return 1;
+                } else {
+                    return Integer.parseInt(o1.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1))
+                            - Integer.parseInt(o2.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1));
+                }
+            }
+
+        }
+    }
 }

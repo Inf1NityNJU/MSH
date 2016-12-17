@@ -70,21 +70,26 @@ public class Order {
             }
         }
 
-        orderRoom.modifyQuantity(quantity);
+        if (orderRoom != null) {
+            orderRoom.modifyQuantity(quantity);
 
-        ArrayList<OrderRoomVO> rooms = order.rooms;
-        OrderRoomVO room = null;
+            ArrayList<OrderRoomVO> rooms = order.rooms;
+            OrderRoomVO room = null;
 
-        for (OrderRoomVO roomItr : rooms) {
-            if (roomItr.type == type) {
-                room = roomItr;
-                break;
+            for (OrderRoomVO roomItr : rooms) {
+                if (roomItr.type == type) {
+                    room = roomItr;
+                    break;
+                }
             }
+
+            room.quantity += quantity;
+
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.FAILED;
         }
 
-        room.quantity += quantity;
-
-        return ResultMessage.SUCCESS;
     }
 
     /**

@@ -1,4 +1,4 @@
-package ui.viewcontroller.client;
+package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 /**
  * Created by Kray on 2016/11/27.
  */
-public class ClientDetailEditViewController {
+public class ClientManagementDetailEditViewController {
 
     private ClientManagementViewController clientManagementViewController;
     private ClientManagementListViewController clientManagementListViewController;
