@@ -63,4 +63,6 @@ public interface UserServerNetworkService extends Remote {
     public LevelPO getLevel(String level) throws RemoteException;
 
     public ArrayList<LevelPO> getAllLevel() throws RemoteException;
+
+    public int getLevelByCredit(int credit) throws RemoteException;
 }

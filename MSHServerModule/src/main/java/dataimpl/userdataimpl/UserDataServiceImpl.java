@@ -8,6 +8,7 @@ import util.LoginState;
 import util.ResultMessage;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Kray on 2016/11/17.
@@ -137,7 +138,7 @@ public class UserDataServiceImpl implements UserDataService {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             ClientPO clientPO = (ClientPO) tmpUserPO;
                             return updateClient(clientPO.getClientID(), new ClientPO(clientPO.getClientID(),
-                                    clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
+                                    clientPO.getClientName(), clientPO.getCredit(),
                                     clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
                                     clientPO.getAccount(), newPassword));
                         }
@@ -180,7 +181,7 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ResultMessage addClient(ClientPO clientPO) {
         String clientID = getMaxClientID();
-        ClientPO tmpPO = new ClientPO(clientID, clientPO.getClientName(), clientPO.getCredit(), clientPO.getLevel(),
+        ClientPO tmpPO = new ClientPO(clientID, clientPO.getClientName(), clientPO.getCredit(),
                 clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount(), clientPO.getPassword());
         if (checkAccountExist(clientPO.getAccount(), "client")) {
             return ResultMessage.EXIST;
@@ -431,7 +432,7 @@ public class UserDataServiceImpl implements UserDataService {
             }
 
             clientDataHelper.update(new ClientPO(clientPO.getClientID(), clientPO.getClientName(), resultCredit,
-                    level, clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
+                    clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
                     clientPO.getAccount(), clientPO.getPassword()));
         }
         return rm;
@@ -501,6 +502,23 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<LevelPO> getAllLevel() {
         return levelDataHelper.prefixMatchQuery("ID", "");
+    }
+
+    /**
+     * 得到对应的等级
+     *
+     * @param credit
+     * @return
+     */
+    public int getLevelByCredit(int credit) {
+        ArrayList<LevelPO> levelPOs = getAllLevel();
+        levelPOs.sort(new LevelComparator());
+        for(LevelPO levelPO : levelPOs){
+            if(levelPO.getCredit() > credit){
+                return levelPO.getLevel() - 1;
+            }
+        }
+        return getAllLevel().size();
     }
 
     /**
@@ -610,6 +628,13 @@ public class UserDataServiceImpl implements UserDataService {
             return true;
         } else {
             return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
+        }
+    }
+
+
+    private class LevelComparator implements Comparator<LevelPO> {
+        public int compare(LevelPO l1, LevelPO l2) {
+            return l1.getLevel() - l2.getLevel();
         }
     }
 

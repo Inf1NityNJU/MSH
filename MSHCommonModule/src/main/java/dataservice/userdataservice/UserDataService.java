@@ -218,4 +218,13 @@ public interface UserDataService {
      * @return
      */
     public ArrayList<LevelPO> getAllLevel();
+
+    /**
+     * 得到对应的等级
+     *
+     * @param credit
+     * @return
+     */
+    public int getLevelByCredit(int credit);
+
 }

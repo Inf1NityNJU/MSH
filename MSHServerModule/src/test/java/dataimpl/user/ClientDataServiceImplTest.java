@@ -49,20 +49,20 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void addClient() throws Exception {
-        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient", 500, 1,
+        ResultMessage resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient2", 500, 1,
+        resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient2", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.EXIST, resultMessage);
-        resultMessage = userDataService.addClient(new ClientPO("000000111", "", 500, 1,
+        resultMessage = userDataService.addClient(new ClientPO("000000111", "", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
     public void searchClientByID() throws Exception {
-        ClientPO examplePO = new ClientPO("000000111", "testClient", 500, 1,
+        ClientPO examplePO = new ClientPO("000000111", "testClient", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password");
         ClientPO clientPO = userDataService.searchClientByID("000000111");
         assertTrue(clientPO.equals(examplePO));
@@ -70,10 +70,10 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void updateClient() throws Exception {
-        ResultMessage resultMessage = userDataService.updateClient("000000111", new ClientPO("000000111", "testClient2", 500, 1,
+        ResultMessage resultMessage = userDataService.updateClient("000000111", new ClientPO("000000111", "testClient2", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.updateClient("000000110", new ClientPO("000000111", "testClient", 500, 1,
+        resultMessage = userDataService.updateClient("000000110", new ClientPO("000000111", "testClient", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.FAILED, resultMessage);
     }
@@ -90,7 +90,7 @@ public class ClientDataServiceImplTest {
     public void searchClient() throws Exception {
         ArrayList<ClientPO> clientPOs = userDataService.searchClient("000");
         ArrayList<ClientPO> exampleClientPOs = new ArrayList<ClientPO>();
-        exampleClientPOs.add(new ClientPO("000000111", "testClient2", 500, 1,
+        exampleClientPOs.add(new ClientPO("000000111", "testClient2", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(exampleClientPOs, clientPOs);
     }
