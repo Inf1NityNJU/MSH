@@ -52,11 +52,11 @@ public class ClientPO extends UserPO implements Serializable {
 
     }
 
-    public ClientPO(String clientID, String clientName, int credit, int level, String birthday, String contactInfo, String enterprise, String account, String password) {
+    public ClientPO(String clientID, String clientName, int credit, String birthday, String contactInfo, String enterprise, String account, String password) {
         this.clientID = clientID;
         this.clientName = clientName;
         this.credit = credit;
-        this.level = level;
+        this.level = 0;
         this.birthday = birthday;
         this.contactInfo = contactInfo;
         this.enterprise = enterprise;

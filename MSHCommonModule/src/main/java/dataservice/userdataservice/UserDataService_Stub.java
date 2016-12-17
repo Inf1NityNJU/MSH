@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class UserDataService_Stub implements UserDataService {
 
-    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, 1, new DateUtil(2015, 10, 10).toString(),
+    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, new DateUtil(2015, 10, 10).toString(),
             "18795963603", "no_enterprise", "songkuixi", "123456");
     StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "adminStaff", "password");
     SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "adminSalesman", "password");
@@ -197,28 +197,33 @@ public class UserDataService_Stub implements UserDataService {
     }
 
     //TODO
-    public ResultMessage addLevel(LevelPO levelPO){
+    public ResultMessage addLevel(LevelPO levelPO) {
         return ResultMessage.SUCCESS;
     }
 
     //TODO
-    public ResultMessage updateLevel(String ID, LevelPO levelPO){
+    public ResultMessage updateLevel(String ID, LevelPO levelPO) {
         return ResultMessage.SUCCESS;
     }
 
     //TODO
-    public ResultMessage deleteLevel(String ID){
+    public ResultMessage deleteLevel(String ID) {
         return ResultMessage.SUCCESS;
     }
 
     //TODO
-    public LevelPO getLevel(String ID){
+    public LevelPO getLevel(String ID) {
         return null;
     }
 
     //TODO
-    public ArrayList<LevelPO> getAllLevel(){
+    public ArrayList<LevelPO> getAllLevel() {
         return null;
+    }
+
+    //TODO
+    public int getLevelByCredit(int credit) {
+        return 1;
     }
 
 }

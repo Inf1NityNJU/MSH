@@ -168,4 +168,10 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
         userDataService = UserDataServiceFactory.getSalesmanDataService();
         return userDataService.getAllLevel();
     }
+
+    public int getLevelByCredit(int credit){
+        userDataService = UserDataServiceFactory.getClientDataService();
+        return userDataService.getLevelByCredit(credit);
+    }
+
 }

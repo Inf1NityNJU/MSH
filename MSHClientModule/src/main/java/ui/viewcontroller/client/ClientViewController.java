@@ -18,7 +18,7 @@ public class ClientViewController {
 
     private ClientOrderViewController clientOrderViewController;
     private ClientSearchHotelViewController clientSearchHotelViewController;
-    private ClientManagementViewController clientManagementViewController;
+    private ClientInfoViewController clientInfoViewController;
 
     public ClientViewController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
@@ -38,7 +38,7 @@ public class ClientViewController {
 
         clientOrderViewController = new ClientOrderViewController(mainUIController);
         clientSearchHotelViewController = new ClientSearchHotelViewController(mainUIController);
-        clientManagementViewController = new ClientManagementViewController(mainUIController);
+        clientInfoViewController = new ClientInfoViewController(mainUIController);
     }
 
     public void showClientOrderList() {
@@ -51,8 +51,7 @@ public class ClientViewController {
     }
 
     public void showClientDetail() {
-        //TODO
-//        clientManagementViewController.showClientDetail();
+        clientInfoViewController.showClientInfo();
     }
 
 }

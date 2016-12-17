@@ -12,8 +12,12 @@ import javafx.scene.layout.VBox;
 import main.Main;
 import ui.componentcontroller.promotion.WebPromotionSearchPaneController;
 import ui.viewcontroller.common.MainUIController;
+import ui.viewcontroller.salesman.WebPromotionAddViewController;
 import ui.viewcontroller.salesman.WebPromotionDetailViewController;
+import ui.viewcontroller.salesman.WebPromotion_SpecialPlaceAddViewController;
+import ui.viewcontroller.staff.HotelPromotionAddViewController;
 import ui.viewcontroller.staff.HotelPromotionDetailViewController;
+import ui.viewcontroller.staff.HotelPromotionViewController;
 
 import java.io.IOException;
 
@@ -24,6 +28,8 @@ public class AlertViewController {
 
     private WebPromotionDetailViewController webPromotionDetailViewController;
     private HotelPromotionDetailViewController hotelPromotionDetailViewController;
+    private WebPromotionAddViewController webPromotionAddViewController;
+    private HotelPromotionAddViewController hotelPromotionAddViewController;
 
     @FXML
     private Label infoLabel;
@@ -42,6 +48,14 @@ public class AlertViewController {
         this.hotelPromotionDetailViewController = hotelPromotionDetailViewController;
     }
 
+    public void setWebPromotionAddViewController(WebPromotionAddViewController webPromotionAddViewController) {
+        this.webPromotionAddViewController = webPromotionAddViewController;
+    }
+
+    public void setHotelPromotionAddViewController(HotelPromotionAddViewController hotelPromotionAddViewController){
+        this.hotelPromotionAddViewController = hotelPromotionAddViewController;
+    }
+
     public void setInfoLabel(String info){
         this.infoLabel.setText(info);
     }
@@ -51,6 +65,10 @@ public class AlertViewController {
             webPromotionDetailViewController.sureDelete();
         }else if(infoLabel.getText().equals("确认删除该条酒店促销策略吗？")){
             hotelPromotionDetailViewController.sureDelete();
+        }else if(infoLabel.getText().equals("确定保存该条网站促销策略吗？")){
+            webPromotionAddViewController.sureSave();
+        }else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")){
+            hotelPromotionAddViewController.sureSave();
         }
     }
 
@@ -59,6 +77,10 @@ public class AlertViewController {
             webPromotionDetailViewController.cancelDelete();
         }else if(infoLabel.getText().equals("确认删除该条酒店促销策略吗？")){
             hotelPromotionDetailViewController.cancelDelete();
+        }else if(infoLabel.getText().equals("确定保存该条网站促销策略吗？")){
+            webPromotionAddViewController.cancelSave();
+        }else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")){
+            hotelPromotionAddViewController.cancelSave();
         }
     }
 }

@@ -90,7 +90,7 @@ public class TimeUtil {
     public boolean equals(Object o) {
         if (o instanceof TimeUtil) {
             TimeUtil timeUtil = (TimeUtil) o;
-            return compareData(timeUtil);
+            return equalsTime(timeUtil);
         }
         return false;
     }
@@ -111,7 +111,7 @@ public class TimeUtil {
      * @param timeUtil
      * @return 比较结果
      */
-    private boolean compareData(TimeUtil timeUtil) {
+    private boolean equalsTime(TimeUtil timeUtil) {
         return judgeEqual(date, timeUtil.date)
                 && judgeEqual(hour, timeUtil.hour)
                 && judgeEqual(min, timeUtil.min)

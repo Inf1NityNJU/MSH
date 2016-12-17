@@ -137,9 +137,6 @@ public class HotelPromotionDetailViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        promotionBLService.deletePromotion(promotionVO.promotionID);
-//        hotelPromotionViewController.refreshHotelPromotionList();
-//        hotelPromotionViewController.back();
     }
 
     @FXML

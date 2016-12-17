@@ -71,7 +71,7 @@ public class SignUpViewController {
                     birthdayPicker.getDate().getMonthValue(), birthdayPicker.getDate().getDayOfMonth());
 
             userBLService = utilityViewController.getUserBLService();
-            if (userBLService.add(new ClientVO_Register(birthday, isEnterprise, "ENTERPRISE",
+            if (userBLService.add(new ClientVO_Register(birthday, isEnterprise, "",
                     accountText.getText(), passwordText.getText())) == ResultMessage.SUCCESS) {
                 utilityViewController.login(accountText.getText(), passwordText.getText());
             }

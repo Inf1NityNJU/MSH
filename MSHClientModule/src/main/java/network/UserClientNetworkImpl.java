@@ -269,4 +269,14 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
+    public int getLevelByCredit(int credit){
+        try {
+            return userServerNetworkService.getLevelByCredit(credit);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
 }

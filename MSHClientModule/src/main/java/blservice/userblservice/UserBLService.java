@@ -4,6 +4,7 @@ import util.CreditAction;
 import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
+import vo.CreditChangeInfoVO;
 import vo.CreditVO;
 import vo.LevelVO;
 import vo.UserVO;
@@ -85,10 +86,10 @@ public interface UserBLService {
      * 给客户增加信用记录
      *
      * @param clientID
-     * @param creditVO
+     * @param creditChangeInfoVO
      * @return 增加是否成功
      */
-    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO);
+    public ResultMessage addCreditRecord(String clientID, CreditChangeInfoVO creditChangeInfoVO);
 
     /**
      * 根据客户ID查找信用记录
