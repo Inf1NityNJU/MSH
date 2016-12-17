@@ -7,10 +7,7 @@ import blservice.userblservice.UserBLService;
 import util.LoginState;
 import util.ResetState;
 import util.ResultMessage;
-import vo.ClientVO;
-import vo.CreditVO;
-import vo.LevelVO;
-import vo.UserVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -120,13 +117,13 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * 给客户增加信用记录
      *
      * @param clientID
-     * @param creditVO
+     * @param creditChangeInfoVO
      * @return 增加是否成功
      */
-    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO) {
+    public ResultMessage addCreditRecord(String clientID, CreditChangeInfoVO creditChangeInfoVO) {
         if (user instanceof Client) {
             Client client = (Client) user;
-            return client.addCreditByID(clientID, creditVO);
+            return client.addCreditByID(clientID, creditChangeInfoVO);
         } else {
             return null;
         }

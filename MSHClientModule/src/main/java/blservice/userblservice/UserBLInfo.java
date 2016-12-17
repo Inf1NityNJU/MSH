@@ -3,6 +3,7 @@ package blservice.userblservice;
 import bl.userbl.Salesman;
 import util.ResultMessage;
 import vo.ClientVO;
+import vo.CreditChangeInfoVO;
 import vo.CreditVO;
 import vo.LevelVO;
 
@@ -56,8 +57,8 @@ public interface UserBLInfo {
      * 给客户增加信用记录
      *
      * @param clientID
-     * @param creditVO
+     * @param creditChangeInfoVO
      * @return
      */
-    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO);
+    public ResultMessage addCreditRecord(String clientID, CreditChangeInfoVO creditChangeInfoVO);
 }

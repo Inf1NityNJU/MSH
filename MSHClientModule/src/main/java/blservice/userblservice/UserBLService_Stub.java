@@ -116,14 +116,15 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
         }
     }
 
-    public ResultMessage addCreditRecord(String clientID, CreditVO creditVO) {
-        if (clientID.equals("000000007") && creditVO.deltaCredit == 200 && creditVO.creditAction == CreditAction.ADD_CREDIT) {
+    @Override
+    public ResultMessage addCreditRecord(String clientID, CreditChangeInfoVO creditChangeInfoVO) {
+        if (clientID.equals("000000007") && creditChangeInfoVO.deltaCredit == 200 && creditChangeInfoVO.creditAction == CreditAction.ADD_CREDIT) {
             System.out.println("Add successfully");
             return ResultMessage.SUCCESS;
-        } else if (clientID.equals("000000007") && creditVO.deltaCredit == 200 && creditVO.creditAction == CreditAction.DEDUCT_CREDIT) {
+        } else if (clientID.equals("000000007") && creditChangeInfoVO.deltaCredit == 200 && creditChangeInfoVO.creditAction == CreditAction.DEDUCT_CREDIT) {
             System.out.println("Deduct successfully");
             return ResultMessage.SUCCESS;
-        } else if (clientID.equals("000000007") && creditVO.deltaCredit == 200 && creditVO.creditAction == CreditAction.REVOKE_CREDIT) {
+        } else if (clientID.equals("000000007") && creditChangeInfoVO.deltaCredit == 200 && creditChangeInfoVO.creditAction == CreditAction.REVOKE_CREDIT) {
             System.out.println("Deduct successfully");
             return ResultMessage.SUCCESS;
         } else {

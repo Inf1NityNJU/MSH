@@ -122,14 +122,16 @@ public class Client extends User {
      * 给对应ID的客户增加信用记录
      *
      * @param clientID
-     * @param creditVO
+     * @param creditChangeInfoVO
      * @return 是否增加成功
      */
-    public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
-//        return userDataService.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
-//                creditVO.deltaCredit, creditVO.resultCredit, creditVO.creditAction, clientID));
-        return userClientNetwork.addCreditRecord(clientID, new CreditPO(creditVO.orderID, creditVO.date.toString(),
-                creditVO.deltaCredit, creditVO.resultCredit, creditVO.creditAction, clientID));
+    public ResultMessage addCreditByID(String clientID, CreditChangeInfoVO creditChangeInfoVO) {
+        ClientVO clientVO = searchByID(clientID);
+        int credit = clientVO.credit;
+
+        System.out.println(creditChangeInfoVO.deltaCredit + credit);
+        return userClientNetwork.addCreditRecord(clientID, new CreditPO(creditChangeInfoVO.orderID, creditChangeInfoVO.date.toString(),
+                creditChangeInfoVO.deltaCredit, creditChangeInfoVO.deltaCredit + credit, creditChangeInfoVO.creditAction, clientID));
     }
 
     /**

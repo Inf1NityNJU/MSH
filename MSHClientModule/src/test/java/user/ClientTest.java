@@ -86,7 +86,7 @@ public class ClientTest {
 
     @Test
     public void testAddCreditByID() throws Exception {
-        ResultMessage rm = client.addCreditByID("000000003", new CreditVO(2000, 0, CreditAction.ADD_CREDIT, "20161012010112341635", new DateUtil(2016, 11, 1)));
+        ResultMessage rm = client.addCreditByID("000000003", new CreditChangeInfoVO(2000, CreditAction.ADD_CREDIT, "20161012010112341635", new DateUtil(2016, 11, 1)));
         assertEquals(ResultMessage.SUCCESS, rm);
 //        rm = client.addCreditByID("000000009", new CreditVO(200, 500, CreditAction.ADD_CREDIT, "20161012010112340000", new DateUtil(2016, 11, 1)));
 //        assertEquals(ResultMessage.FAILED, rm);

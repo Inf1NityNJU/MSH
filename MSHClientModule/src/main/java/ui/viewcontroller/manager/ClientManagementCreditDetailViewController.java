@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import util.CreditAction;
 import util.DateUtil;
 import vo.ClientVO;
+import vo.CreditChangeInfoVO;
 import vo.CreditVO;
 
 import java.util.Date;
@@ -45,9 +46,10 @@ public class ClientManagementCreditDetailViewController extends ClientManagement
     }
 
     public void clickEditButton() {
+        int credit = Integer.parseInt(creditText.getText()) * 100;
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-        userBLService.addCreditRecord(clientVO.clientID, new CreditVO(Integer.parseInt(creditText.getText()) * 100, 0,
-                CreditAction.RECHARGE_CREDIT, "-" + new Date().getTime(), new DateUtil()));
+        userBLService.addCreditRecord(clientVO.clientID, new CreditChangeInfoVO(credit, CreditAction.RECHARGE_CREDIT,
+                "-" + new Date().getTime(), new DateUtil()));
 
         super.clickBackButton();
     }

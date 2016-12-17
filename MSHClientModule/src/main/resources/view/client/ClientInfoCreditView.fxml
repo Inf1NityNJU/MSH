@@ -11,11 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.effect.DropShadow?>
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: EEEEEE;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientInfoCreditViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: transparent;">
             <children>
                 <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: ffffff;">
+                    <effect>
+                        <DropShadow color="#40404080" radius="1.0" />
+                    </effect>
                     <children>
                         <TitleLabel text="信用记录" />
                         <VBox fx:id="contentVBox" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
