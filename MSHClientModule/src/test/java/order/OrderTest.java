@@ -20,17 +20,30 @@ public class OrderTest {
     private Order order;
 
     public OrderTest() {
-        order = new MockOrder();
+        order = new Order();
     }
 
+    private void addOrder() {
+        OrderVO orderVO = new OrderVO("00000001", new DateUtil(2016,12,14), new DateUtil(2016,12,16));
+        OrderRoomVO orderRoomVO = new OrderRoomVO(RoomType.DoubleRoom, 2, 200);
+        orderVO.rooms = new ArrayList<>();
+        orderVO.rooms.add(orderRoomVO);
+        orderVO.clientID = "000000001";
+        order.startOrder(orderVO);
+    }
     @Test
-    public void testGetOrderRoomStocks() {
-
+    public void testStartOrder() {
+        OrderVO orderVO = new OrderVO("00000001", new DateUtil(2016,12,14), new DateUtil(2016,12,16));
+        orderVO.rooms = new ArrayList<>();
+        ResultMessage rm = order.startOrder(orderVO);
+        assertEquals(ResultMessage.SUCCESS, rm);
     }
 
 
     @Test
     public void testModifyRoomQuantity() {
+        this.addOrder();
+
         ResultMessage rm = order.modifyRoomQuantity(RoomType.DoubleRoom, 1);
         assertEquals(ResultMessage.SUCCESS, rm);
         rm = order.modifyRoomQuantity(RoomType.SingleRoom, 1);
@@ -39,12 +52,16 @@ public class OrderTest {
 
     @Test
     public void testGetBill() {
+        this.addOrder();
+
         BillVO bill = order.getBill();
         assertNotNull(bill);
     }
 
     @Test
     public void testGenerate() {
+        this.addOrder();
+
         ResultMessage rm = order.generate(new TimeUtil(2016, 10, 29, 18, 0, 0), 3, true);
         assertEquals(ResultMessage.SUCCESS, rm);
     }

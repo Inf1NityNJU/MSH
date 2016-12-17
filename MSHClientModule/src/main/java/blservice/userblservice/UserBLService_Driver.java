@@ -1,10 +1,7 @@
 package blservice.userblservice;
 
 import util.*;
-import vo.BillVO;
-import vo.CreditVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,7 @@ public class UserBLService_Driver {
             System.out.println("RESET FAIL");
         }
 
-        ResultMessage resultMessage = userBLService.addCreditRecord(clientID, new CreditVO(200, 700, CreditAction.ADD_CREDIT, "20161012010112340000",  new DateUtil(2016, 10, 13)));
+        ResultMessage resultMessage = userBLService.addCreditRecord(clientID, new CreditChangeInfoVO(200, CreditAction.ADD_CREDIT, "20161012010112340000",  new DateUtil(2016, 10, 13)));
         if (resultMessage == ResultMessage.EXIST) {
             System.out.println("EXIST");
         } else if (resultMessage == ResultMessage.SUCCESS) {

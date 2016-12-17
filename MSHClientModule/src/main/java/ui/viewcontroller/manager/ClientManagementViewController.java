@@ -1,16 +1,10 @@
 package ui.viewcontroller.manager;
 
 import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import main.Main;
-import ui.viewcontroller.client.ClientCreditListViewController;
-import ui.viewcontroller.client.ClientDetailEditViewController;
-import ui.viewcontroller.client.ClientDetailViewController;
 import ui.viewcontroller.common.MainUIController;
 import vo.ClientVO;
 
@@ -27,8 +21,8 @@ public class ClientManagementViewController {
     private boolean isSalesman;
 
     private ClientManagementListViewController clientManagementListViewController;
-    private ClientDetailViewController clientDetailViewController;
-    private ClientDetailEditViewController clientDetailEditViewController;
+    private ClientManagementDetailViewController clientManagementDetailViewController;
+    private ClientManagementDetailEditViewController clientManagementDetailEditViewController;
     private ResetPasswordViewController resetPasswordViewController;
 
     private Node initNode;
@@ -89,15 +83,15 @@ public class ClientManagementViewController {
         try {
             FXMLLoader loader = new FXMLLoader();
             if(isSalesman) {
-                loader.setLocation(getClass().getResource("/view/client/ClientDetailCreditView.fxml"));
+                loader.setLocation(getClass().getResource("/view/manager/ClientManagementDetailCreditView.fxml"));
             }else{
-                loader.setLocation(getClass().getResource("/view/client/ClientDetailView.fxml"));
+                loader.setLocation(getClass().getResource("/view/manager/ClientManagementDetailView.fxml"));
             }
             ScrollPane view = loader.load();
 
-            clientDetailViewController = loader.getController();
-            clientDetailViewController.setClientManagementViewController(this);
-            clientDetailViewController.showClient(clientVO);
+            clientManagementDetailViewController = loader.getController();
+            clientManagementDetailViewController.setClientManagementViewController(this);
+            clientManagementDetailViewController.showClient(clientVO);
 
             Node node = mainUIController.getCenter();
             stack.push(node);
@@ -117,12 +111,12 @@ public class ClientManagementViewController {
     public void editClientDetail(ClientVO clientVO) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/client/ClientDetailEditView.fxml"));
+            loader.setLocation(getClass().getResource("/view/manager/ClientManagementDetailEditView.fxml"));
             ScrollPane view = loader.load();
 
-            clientDetailEditViewController = loader.getController();
-            clientDetailEditViewController.setClientManagementViewController(this);
-            clientDetailEditViewController.showClientEdit(clientVO);
+            clientManagementDetailEditViewController = loader.getController();
+            clientManagementDetailEditViewController.setClientManagementViewController(this);
+            clientManagementDetailEditViewController.showClientEdit(clientVO);
 
             Node node = mainUIController.getCenter();
             stack.push(node);
@@ -168,10 +162,10 @@ public class ClientManagementViewController {
     public void showCreditOfClient(String clientID) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/client/ClientCreditListView.fxml"));
+            loader.setLocation(getClass().getResource("/view/manager/ClientManagementCreditView.fxml"));
             ScrollPane view = loader.load();
 
-            ClientCreditListViewController clientCreditViewController = loader.getController();
+            ClientManagementCreditViewController clientCreditViewController = loader.getController();
             clientCreditViewController.setClientID(clientID);
             clientCreditViewController.setClientManagementViewController(this);
 

@@ -1,13 +1,13 @@
-package ui.viewcontroller.client;
+package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import util.CreditAction;
 import util.DateUtil;
 import vo.ClientVO;
+import vo.CreditChangeInfoVO;
 import vo.CreditVO;
 
 import java.util.Date;
@@ -15,12 +15,12 @@ import java.util.Date;
 /**
  * Created by Kray on 2016/12/6.
  */
-public class ClientDetailCreditViewController extends ClientDetailViewController {
+public class ClientManagementCreditDetailViewController extends ClientManagementDetailViewController {
 
     @FXML
     private CommonTextField creditText;
 
-    public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
+    public void setClientManagementViewController(ui.viewcontroller.manager.ClientManagementViewController clientManagementViewController) {
         super.clientManagementViewController = clientManagementViewController;
 
         actionButton.setText("确 认");
@@ -46,9 +46,10 @@ public class ClientDetailCreditViewController extends ClientDetailViewController
     }
 
     public void clickEditButton() {
+        int credit = Integer.parseInt(creditText.getText()) * 100;
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-        userBLService.addCreditRecord(clientVO.clientID, new CreditVO(Integer.parseInt(creditText.getText()) * 100, 0,
-                CreditAction.RECHARGE_CREDIT, "-" + new Date().getTime(), new DateUtil()));
+        userBLService.addCreditRecord(clientVO.clientID, new CreditChangeInfoVO(credit, CreditAction.RECHARGE_CREDIT,
+                "-" + new Date().getTime(), new DateUtil()));
 
         super.clickBackButton();
     }

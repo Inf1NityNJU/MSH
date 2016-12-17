@@ -70,21 +70,26 @@ public class Order {
             }
         }
 
-        orderRoom.modifyQuantity(quantity);
+        if (orderRoom != null) {
+            orderRoom.modifyQuantity(quantity);
 
-        ArrayList<OrderRoomVO> rooms = order.rooms;
-        OrderRoomVO room = null;
+            ArrayList<OrderRoomVO> rooms = order.rooms;
+            OrderRoomVO room = null;
 
-        for (OrderRoomVO roomItr : rooms) {
-            if (roomItr.type == type) {
-                room = roomItr;
-                break;
+            for (OrderRoomVO roomItr : rooms) {
+                if (roomItr.type == type) {
+                    room = roomItr;
+                    break;
+                }
             }
+
+            room.quantity += quantity;
+
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.FAILED;
         }
 
-        room.quantity += quantity;
-
-        return ResultMessage.SUCCESS;
     }
 
     /**
@@ -186,12 +191,23 @@ public class Order {
      */
     public ResultMessage revoke(String orderID) {
         OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
-        orderPO.setCancelledTime(new TimeUtil(LocalDateTime.now()).toString());
+        TimeUtil cancelledTime = new TimeUtil(LocalDateTime.now());
+        TimeUtil latestExecuteTime = new TimeUtil(orderPO.getLatestExecuteTime());
+
+        orderPO.setCancelledTime(cancelledTime.toString());
         orderPO.setState(OrderState.Cancelled);
-//        userBLInfo.
-        //TODO
-        //update manager credit
-        return orderClientNetworkService.updateOrder(orderPO);
+
+        ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+
+        long hour = cancelledTime.getIntervalTime(latestExecuteTime)/1000/60/60;
+
+        System.out.println("Time:" + hour);
+
+        if (hour < 6) {
+            CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int)(-orderPO.getTotalPrice()/2), CreditAction.DEDUCT_CREDIT, orderID, cancelledTime.date);
+            userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
+        }
+        return rm;
     }
 
     /**
@@ -205,8 +221,12 @@ public class Order {
         OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
         orderPO.setCheckInTime(time.toString());
         orderPO.setState(OrderState.Executed);
-        return orderClientNetworkService.updateOrder(orderPO);
-
+        ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+        if (rm == ResultMessage.SUCCESS) {
+            CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int)orderPO.getTotalPrice(), CreditAction.ADD_CREDIT, orderID, time.date);
+            userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
+        }
+        return rm;
     }
 
     /**

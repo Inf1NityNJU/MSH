@@ -34,9 +34,10 @@ public class DateUtil {
         day = Integer.parseInt(param[2]);
     }
 
-    public DateUtil(LocalDate localDate){
+    public DateUtil(LocalDate localDate) {
         this(localDate.toString());
     }
+
     /**
      * 日期向前递增一天
      */
@@ -80,6 +81,21 @@ public class DateUtil {
         }
     }
 
+    public int compareDate(DateUtil date) {
+        if (year - date.year != 0) {
+            return year - date.year;
+        } else {
+            if (month - date.month != 0) {
+                return month - date.month;
+            } else {
+                if (day - date.day != 0) {
+                    return day - date.day;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    }
     /**
      * 比较两个data
      *
@@ -90,11 +106,10 @@ public class DateUtil {
     public boolean equals(Object o) {
         if (o instanceof DateUtil) {
             DateUtil dateUtil = (DateUtil) o;
-            return compareData(dateUtil);
+            return equalsDate(dateUtil);
         }
         return false;
     }
-
     /**
      * 生成对象的hashcode
      *
@@ -111,7 +126,7 @@ public class DateUtil {
      * @param dateUtil
      * @return 比较结果
      */
-    private boolean compareData(DateUtil dateUtil) {
+    private boolean equalsDate(DateUtil dateUtil) {
         return judgeEqual(year, dateUtil.year) && judgeEqual(month, dateUtil.month) && judgeEqual(day, dateUtil.day);
     }
 
@@ -130,13 +145,14 @@ public class DateUtil {
 
     /**
      * 判断该日期是否在指定区间内
+     *
      * @param start 指定区间起始日期
-     * @param end 指定区间结束日期
+     * @param end   指定区间结束日期
      * @return 判断结果
      */
-    public boolean isInRange(DateUtil start,DateUtil end){
-        String thisDate=toString();
-        return (thisDate.compareTo(start.toString())>=0)&&(thisDate.compareTo(end.toString())<=0);
+    public boolean isInRange(DateUtil start, DateUtil end) {
+        String thisDate = toString();
+        return (thisDate.compareTo(start.toString()) >= 0) && (thisDate.compareTo(end.toString()) <= 0);
     }
 
     /**

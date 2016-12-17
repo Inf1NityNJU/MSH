@@ -1,4 +1,4 @@
-package ui.viewcontroller.client;
+package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
@@ -19,7 +19,7 @@ import java.util.Comparator;
 /**
  * Created by Kray on 2016/11/29.
  */
-public class ClientCreditListViewController {
+public class ClientManagementCreditViewController {
 
     private ArrayList<CreditVO> creditVOs;
     private UserBLService userBLService;
@@ -59,7 +59,7 @@ public class ClientCreditListViewController {
 
         creditVOs = userBLService.searchCreditByID(clientID);
 
-        creditVOs.sort(new CreditComparator());
+//        creditVOs.sort(new CreditComparator());
 
         if (creditVOs.size() > 0) {
 
@@ -93,32 +93,32 @@ public class ClientCreditListViewController {
         }
     }
 
-    private class CreditComparator implements Comparator<CreditVO> {
-
-        public int compare(CreditVO o1, CreditVO o2) {
-            if (o1.date.year - o2.date.year != 0) {
-                return o1.date.year - o2.date.year;
-            } else {
-                if (o1.date.month - o2.date.month != 0) {
-                    return o1.date.month - o2.date.month;
-                } else {
-                    if (o1.date.day - o2.date.day != 0) {
-                        return o1.date.day - o2.date.day;
-                    } else {
-                        if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) != '-') {
-                            return 1;
-                        } else if (o1.orderID.charAt(0) != '-' && o2.orderID.charAt(0) == '-') {
-                            return -1;
-                        } else if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) == '-') {
-                            return 1;
-                        } else {
-                            return Integer.parseInt(o1.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1))
-                                    - Integer.parseInt(o2.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1));
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private class CreditComparator implements Comparator<CreditVO> {
+//
+//        public int compare(CreditVO o1, CreditVO o2) {
+//            if (o1.date.year - o2.date.year != 0) {
+//                return o1.date.year - o2.date.year;
+//            } else {
+//                if (o1.date.month - o2.date.month != 0) {
+//                    return o1.date.month - o2.date.month;
+//                } else {
+//                    if (o1.date.day - o2.date.day != 0) {
+//                        return o1.date.day - o2.date.day;
+//                    } else {
+//                        if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) != '-') {
+//                            return 1;
+//                        } else if (o1.orderID.charAt(0) != '-' && o2.orderID.charAt(0) == '-') {
+//                            return -1;
+//                        } else if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) == '-') {
+//                            return 1;
+//                        } else {
+//                            return Integer.parseInt(o1.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1))
+//                                    - Integer.parseInt(o2.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 }
