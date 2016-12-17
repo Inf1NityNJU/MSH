@@ -48,7 +48,11 @@ public class Hotel {
          * 用于保存搜索结果
          */
         ArrayList<HotelPO> result = null;
-        /**
+        /*
+         * 保存返回结果为空
+         */
+        ArrayList<Hotel_DetailVO> nullResult=new ArrayList<Hotel_DetailVO>();
+        /*
          * 用于保存筛选条件
          */
         ArrayList<CriteriaClause> hotelCriteriaClauses = new ArrayList<CriteriaClause>();
@@ -86,7 +90,7 @@ public class Hotel {
             }
             //判断是否找不到酒店
             if (result.size() == 0) {
-                return null;
+                return nullResult;
             }
         }
 
@@ -99,7 +103,7 @@ public class Hotel {
         }
         //判断是否找不到酒店
         if (result.size() == 0) {
-            return null;
+            return nullResult;
         }
 
 
@@ -156,14 +160,14 @@ public class Hotel {
         }
         //判断是否找不到酒店
         if (roomSearchResult.size() == 0) {
-            return null;
+            return nullResult;
         }
         result.retainAll(roomSearchResult);
 
         //所有筛选任务已经完成，现在开始合并列表
         //检查是否有查询结果
         if (result.size() == 0) {
-            return null;
+            return nullResult;
         }
         //现在得到了HotelPO的集合，现在将其转为HotelVO
         ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<Hotel_DetailVO>();
