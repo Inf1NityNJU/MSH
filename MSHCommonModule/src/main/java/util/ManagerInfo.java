@@ -5,5 +5,5 @@ package util;
  */
 public class ManagerInfo {
     public static final String manager_account = "admin";
-    public static final String manager_password = "password";
+    public static final String manager_password = Encryptor.encrypt("password");
 }

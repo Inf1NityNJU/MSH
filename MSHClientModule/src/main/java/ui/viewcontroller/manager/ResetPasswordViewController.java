@@ -2,10 +2,12 @@ package ui.viewcontroller.manager;
 
 import bl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
+import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import util.Encryptor;
 
 /**
  * Created by Kray on 2016/11/28.
@@ -23,13 +25,13 @@ public class ResetPasswordViewController {
     private Label accountLabel;
 
     @FXML
-    private CommonTextField oldPWText;
+    private CommonPasswordField oldPWText;
 
     @FXML
-    private CommonTextField newPWText;
+    private CommonPasswordField newPWText;
 
     @FXML
-    private CommonTextField checkPWText;
+    private CommonPasswordField checkPWText;
 
     @FXML
     private RectButton backButton;
@@ -75,17 +77,17 @@ public class ResetPasswordViewController {
         UserBLService userBLService;
         if (ID.charAt(0) == '3') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-            userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+            userBLService.reset(account, Encryptor.encrypt(oldPWText.getText()), Encryptor.encrypt(newPWText.getText()));
 
             clickBackButton();
         } else if (ID.charAt(0) == '1') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-            userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+            userBLService.reset(account, Encryptor.encrypt(oldPWText.getText()), Encryptor.encrypt(newPWText.getText()));
 
             clickBackButton();
         } else {
             userBLService = UserBLFactory.getUserBLServiceImpl_Client();
-            userBLService.reset(account, oldPWText.getText(), newPWText.getText());
+            userBLService.reset(account, Encryptor.encrypt(oldPWText.getText()), Encryptor.encrypt(newPWText.getText()));
 
             clickBackButton();
         }

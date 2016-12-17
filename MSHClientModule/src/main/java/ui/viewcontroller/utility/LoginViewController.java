@@ -5,6 +5,7 @@ import blservice.userblservice.UserBLService;
 import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
+import util.Encryptor;
 
 /**
  * Created by Kray on 2016/11/27.
@@ -28,7 +29,7 @@ public class LoginViewController {
         if (accountText.getText().equals("") || passwordText.getText().equals("")) {
             System.out.println("Not Complete Info");
         } else {
-            utilityViewController.login(accountText.getText(), passwordText.getText());
+            utilityViewController.login(accountText.getText(), Encryptor.encrypt(passwordText.getText()));
         }
     }
 

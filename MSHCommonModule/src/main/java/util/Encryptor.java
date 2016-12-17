@@ -12,11 +12,16 @@ public class Encryptor {
      * @return 加密后的字符串
      */
     public static String encrypt(String str) {
-        String result = "";
-        for (int i = 0; i < str.length(); i++) {
-            result = result + "!" + str.charAt(i);
+        boolean isTest = true;
+        if(isTest){
+            return str;
+        }else{
+            String result = "";
+            for(int i = 0; i < str.length(); ++i) {
+                result += (char)(str.charAt(i)<<1);
+            }
+            return result;
         }
-        return result;
     }
 
 }

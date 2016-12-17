@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import util.DateUtil;
+import util.Encryptor;
 import util.ResultMessage;
 import vo.ClientVO;
 import vo.ClientVO_Register;
@@ -71,9 +72,14 @@ public class SignUpViewController {
                     birthdayPicker.getDate().getMonthValue(), birthdayPicker.getDate().getDayOfMonth());
 
             userBLService = utilityViewController.getUserBLService();
-            if (userBLService.add(new ClientVO_Register(birthday, isEnterprise, "",
-                    accountText.getText(), passwordText.getText())) == ResultMessage.SUCCESS) {
-                utilityViewController.login(accountText.getText(), passwordText.getText());
+            if (userBLService.add(new ClientVO_Register(
+                    birthday,
+                    isEnterprise,
+                    "",
+                    accountText.getText(),
+                    Encryptor.encrypt(passwordText.getText())
+            )) == ResultMessage.SUCCESS) {
+                utilityViewController.login(accountText.getText(), Encryptor.encrypt(passwordText.getText()));
             }
 
         } else {
