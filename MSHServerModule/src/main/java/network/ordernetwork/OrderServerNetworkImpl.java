@@ -57,7 +57,7 @@ public class OrderServerNetworkImpl extends UnicastRemoteObject implements Order
 
     @Override
     public ArrayList<OrderPO> searchOrderByHotelID(String hotelID, OrderState orderState) throws RemoteException {
-        return orderDataService.searchOrderByClientID(hotelID, orderState);
+        return orderDataService.searchOrderByHotelID(hotelID, orderState);
     }
 
     @Override

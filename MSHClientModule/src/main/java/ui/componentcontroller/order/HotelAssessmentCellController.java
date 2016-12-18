@@ -33,8 +33,9 @@ public class HotelAssessmentCellController {
         double score = (assessment.serviceScore
                 + assessment.facilityScore
                 + assessment.locationScore
-                + assessment.healthScore) / 4;
-        scoreLabel.setText(score + " 分");
+                + assessment.healthScore);
+        score = score / 4.0;
+        scoreLabel.setText(String.format("%.1f", score) + " 分");
         scorePane.setScore((int)score);
         commentText.setText(assessment.comment);
         dateLabel.setText(assessment.date.toString());

@@ -74,6 +74,11 @@ public class OrderBLService_Stub implements OrderBLService {
         }
     }
 
+    @Override
+    public AssessmentVO getOrderAssessment(String orderID) {
+        return null;
+    }
+
     public ResultMessage editOrderAssessment(String orderID, AssessmentVO assessment) {
         if (orderID.equals("20161012010112340000"))
             return ResultMessage.SUCCESS;

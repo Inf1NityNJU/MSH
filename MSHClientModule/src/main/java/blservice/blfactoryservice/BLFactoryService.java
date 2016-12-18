@@ -2,6 +2,7 @@ package blservice.blfactoryservice;
 
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
+import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
 import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
@@ -26,6 +27,8 @@ public interface BLFactoryService {
     public UserBLService getSalesmanBLService();
 
     public HotelBLInfo getHotelBLInfo();
+
+    public OrderBLInfo getOrderBLInfo();
 
     public PromotionBLInfo getPromotionBLInfo();
 

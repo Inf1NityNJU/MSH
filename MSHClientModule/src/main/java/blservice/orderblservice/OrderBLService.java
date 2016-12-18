@@ -75,6 +75,13 @@ public interface OrderBLService {
     public ResultMessage checkOutOrder(String orderID, TimeUtil time);
 
     /**
+     * 得到订单评价
+     * @param orderId
+     * @return
+     */
+    public AssessmentVO getOrderAssessment(String orderID);
+
+    /**
      * 编辑订单评分评价
      * @param orderId
      * @param assessment

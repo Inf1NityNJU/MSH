@@ -23,10 +23,7 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
         this.order = order;
     }
 
-    /**
-     * 检查客户信用值
-     * @return 是否足以生成订单
-     */
+    @Override
     public ResultMessage checkCredit() {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
         String clientID = userBLInfo.getCurrentClientID();
@@ -39,118 +36,68 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
         return this.order.startOrder(order);
     }
 
-
+    @Override
     public int getOrderRoomStock(OrderRoomVO room) {
 
         return this.order.getOrderRoomStock(room);
     }
 
-    /**
-     * 修改入住退房日期
-     * @param start
-     * @param end
-     * @return 是否修改成功
-     */
+    @Override
     public ResultMessage modifyDate(DateUtil start, DateUtil end) {
         return null;
     }
 
-    /**
-     * 修改订单房间数量
-     * @param type
-     * @param quantity
-     * @return 是否成功修改
-     */
+    @Override
     public ResultMessage modifyRoomQuantity(RoomType type, int quantity) {
         return order.modifyRoomQuantity(type, quantity);
     }
 
-    /**
-     * 得到账单信息
-     * @return BillVO
-     */
+    @Override
     public BillVO getBill() {
         return order.getBill();
     }
 
-    /**
-     * 生成订单
-     * @param latest
-     * @param peopleQuantity
-     * @param hasChildren
-     * @return 是否成功生成
-     */
+    @Override
     public ResultMessage generateOrder(TimeUtil latest, int peopleQuantity, boolean hasChildren) {
         return order.generate(latest, peopleQuantity, hasChildren);
     }
 
-    /**
-     * 撤销订单
-     * @param orderID
-     * @return 是否撤销成功
-     */
+    @Override
     public ResultMessage revokeOrder(String orderID) {
         return order.revoke(orderID);
     }
 
-    /**
-     * 更新订单入住
-     * @param orderID
-     * @param time
-     * @return 是否更新成功
-     */
+    @Override
     public ResultMessage checkInOrder(String orderID, TimeUtil time) {
         return order.checkIn(orderID, time);
     }
 
-    /**
-     * 更新订单退房
-     * @param orderID
-     * @param time
-     * @return 是否更新成功
-     */
+    @Override
     public ResultMessage checkOutOrder(String orderID, TimeUtil time) {
         return order.checkOut(orderID, time);
     }
 
-    /**
-     * 编辑订单评分评价
-     * @param orderID
-     * @param assessment
-     * @return 是否更新成功
-     */
+    @Override
+    public AssessmentVO getOrderAssessment(String orderID) {
+        return order.getOrderAssessment(orderID);
+    }
+
+    @Override
     public ResultMessage editOrderAssessment(String orderID, AssessmentVO assessment) {
         return order.editAssessment(orderID, assessment);
     }
 
-    /**
-     * 通过订单ID搜索订单
-     * @param orderID
-     * @return OrderVO
-     */
+    @Override
     public OrderVO searchOrderByID(String orderID) {
-
-        OrderVO orderVO = order.searchOrderByID(orderID);
-
-        return orderVO;
+        return order.searchOrderByID(orderID);
     }
 
-    /**
-     * 通过订单状态、关键字搜索订单
-     * @param os
-     * @param keyword
-     * @return OrderVO列表
-     */
+    @Override
     public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
         return order.searchOrder(os, keyword);
     }
 
-    /**
-     * 通过客户ID、订单状态、关键字搜索订单
-     * @param os
-     * @param keyword
-     * @return OrderVO列表
-     */
+    @Override
     public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
         String clientID = userBLInfo.getCurrentClientID();
@@ -158,12 +105,7 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
         return  order.searchClientOrder(clientID, os, keyword);
     }
 
-    /**
-     * 通过酒店ID、订单状态、关键字搜索订单
-     * @param os
-     * @param keyword
-     * @return OrderVO列表
-     */
+    @Override
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
         UserBLInfo userBLInfo_staff = new BLFactoryImpl().getUserBLInfo_Staff();
 
@@ -176,11 +118,11 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
 
     @Override
     public ArrayList<String> getBookedHotelIDByClientID(String clientID) {
-        return null;
+        return order.getBookedHotelIDByClientID(clientID);
     }
 
     @Override
     public ArrayList<Assessment_HotelVO> getAssessmentByHotelID(String hotelID) {
-        return null;
+        return order.getAssessmentByHotelID(hotelID);
     }
 }

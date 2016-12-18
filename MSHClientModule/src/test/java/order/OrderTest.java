@@ -118,8 +118,19 @@ public class OrderTest {
 
     @Test
     public void testSearchHotelOrder() {
-        ArrayList<OrderVO> orders = order.searchHotelOrder("01011234", OrderState.Executed, null);
+        ArrayList<OrderVO> orders = order.searchHotelOrder("00000001", null, null);
         assertFalse(orders.isEmpty());
     }
 
+    @Test
+    public void testGetBookedHotelIDByClientID() {
+        ArrayList<String> hotels = order.getBookedHotelIDByClientID("000000001");
+        assertEquals(3, hotels.size());
+    }
+
+    @Test
+    public void setGetAssessmentByHotelID() {
+        ArrayList<Assessment_HotelVO> assessment_hotelVOs = order.getAssessmentByHotelID("00000000");
+        assertEquals(1, assessment_hotelVOs.size());
+    }
 }

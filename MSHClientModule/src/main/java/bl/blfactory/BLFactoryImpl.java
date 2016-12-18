@@ -8,6 +8,7 @@ import bl.userbl.UserBLFactory;
 import blservice.blfactoryservice.BLFactoryService;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
+import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
 import blservice.orderblservice.OrderBLService_Stub;
 import blservice.promotionblservice.PromotionBLInfo;
@@ -28,7 +29,6 @@ public class BLFactoryImpl implements BLFactoryService {
     @Override
     public OrderBLService getOrderBLService() {
         return OrderBLFactory.getOrderBLServiceImpl();
-//        return new OrderBLService_Stub();
     }
 
     @Override
@@ -39,6 +39,11 @@ public class BLFactoryImpl implements BLFactoryService {
     @Override
     public HotelBLInfo getHotelBLInfo() {
         return HotelBLFactory.getHotelBLInfo();
+    }
+
+    @Override
+    public OrderBLInfo getOrderBLInfo() {
+        return OrderBLFactory.getOrderBLInfo();
     }
 
     @Override

@@ -66,8 +66,8 @@ public class OrderDataServiceImplTest {
 
     @Test
     public void searchOrderByHotelID() {
-        ArrayList<OrderPO> orders = orderDataService.searchOrderByHotelID("00000001", OrderState.Unexecuted);
-        assertEquals(3, orders.size());
+        ArrayList<OrderPO> orders = orderDataService.searchOrderByHotelID("00000001", null);
+        assertEquals(7, orders.size());
     }
 
     @Test

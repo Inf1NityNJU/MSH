@@ -110,8 +110,11 @@ public class HotelDetailEditViewController {
         hotel.place = Place.getPlaceByName((String)placeBox.getSelectionModel().getSelectedItem());
 
         ResultMessage rm = hotelBLService.updateHotel(hotel);
-        if (rm.equals(ResultMessage.SUCCESS)) {
+
+        if (rm == ResultMessage.SUCCESS) {
             hotelInfoViewController.back();
+            hotelInfoViewController.showHotelDetail();
         }
+
     }
 }

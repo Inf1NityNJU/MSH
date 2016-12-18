@@ -21,290 +21,258 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="1800.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;"
-            stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="1800.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
-                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
             </padding>
             <children>
                 <VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;">
                     <effect>
-                        <DropShadow color="#40404080" radius="1.0"/>
+                        <DropShadow color="#40404080" radius="1.0" />
                     </effect>
                     <children>
                         <ImageView fitHeight="400.0" fitWidth="1000.0" pickOnBounds="true">
                             <image>
-                                <Image url="@../../images/example.jpeg"/>
+                                <Image url="@../../images/example.jpeg" />
                             </image>
                         </ImageView>
                         <VBox spacing="40.0">
                             <VBox.margin>
-                                <Insets left="40.0" right="40.0"/>
+                                <Insets left="40.0" right="40.0" />
                             </VBox.margin>
                             <children>
                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                     <children>
                                         <Label fx:id="nameLabel" text="酒店名称" textFill="#5b6e79">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="24.0"/>
+                                                <Font name="PingFang SC Regular" size="24.0" />
                                             </font>
                                         </Label>
-                                        <StarLabel fx:id="starLabel"/>
-                                        <Pane HBox.hgrow="ALWAYS"/>
-                                        <RectButton text="编辑信息" onMouseClicked="#clickEditButton"/>
+                                        <StarLabel fx:id="starLabel" />
+                                        <Pane HBox.hgrow="ALWAYS" />
+                                        <RectButton onMouseClicked="#clickEditButton" text="编辑信息" />
                                     </children>
                                 </HBox>
                                 <Pane>
                                     <children>
                                         <Label layoutY="2.0" text="酒店地址" textFill="#cccccc">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                <Font name="PingFang SC Regular" size="14.0" />
                                             </font>
                                         </Label>
                                         <HBox alignment="CENTER_LEFT" layoutX="150.0" spacing="10.0">
                                             <children>
-                                                <StateButton fx:id="cityButton" colorProperty="00cccc" text="地址"/>
-                                                <StateButton fx:id="placeButton" colorProperty="00cccc" text="商区"/>
+                                                <StateButton fx:id="cityButton" colorProperty="00cccc" text="地址" />
+                                                <StateButton fx:id="placeButton" colorProperty="00cccc" text="商区" />
                                                 <Label fx:id="addressLabel" text="酒店地址" textFill="GREY">
                                                     <font>
-                                                        <Font name="PingFang SC Regular" size="16.0"/>
+                                                        <Font name="PingFang SC Regular" size="16.0" />
                                                     </font>
                                                 </Label>
                                             </children>
                                         </HBox>
                                     </children>
                                 </Pane>
-                                <Separator prefWidth="200.0"/>
+                                <Separator prefWidth="200.0" />
                                 <Pane>
                                     <children>
                                         <Label layoutY="2.0" text="酒店简介" textFill="#cccccc">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                <Font name="PingFang SC Regular" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Text fx:id="introductionText" fill="GREY" layoutX="150.0" layoutY="15.0"
-                                              strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="可以在别墅大院里晒太阳品咖啡，倾听鸟语花香，一个人发发呆，度过安静的一天。每天都有专人打扫卫生。周边生活设施很齐全，生活方便。酒店门口就是地铁站，去市中心很便利。"
-                                              wrappingWidth="770.0">
+                                        <Text fx:id="introductionText" fill="GREY" layoutX="150.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="可以在别墅大院里晒太阳品咖啡，倾听鸟语花香，一个人发发呆，度过安静的一天。每天都有专人打扫卫生。周边生活设施很齐全，生活方便。酒店门口就是地铁站，去市中心很便利。" wrappingWidth="770.0">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                                <Font name="PingFang SC Regular" size="16.0" />
                                             </font>
                                         </Text>
                                     </children>
                                 </Pane>
-                                <Separator prefWidth="200.0"/>
+                                <Separator prefWidth="200.0" />
                                 <Pane prefWidth="530.0">
                                     <children>
                                         <Label layoutY="2.0" text="服务设施" textFill="#cccccc">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                <Font name="PingFang SC Regular" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Text fx:id="facilitiesText" fill="GREY" layoutX="151.0" layoutY="16.0"
-                                              strokeType="OUTSIDE" strokeWidth="0.0" text="设施">
+                                        <Text fx:id="facilitiesText" fill="GREY" layoutX="151.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="设施">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                                <Font name="PingFang SC Regular" size="16.0" />
                                             </font>
                                         </Text>
                                     </children>
                                 </Pane>
-                                <Separator prefWidth="200.0"/>
+                                <Separator prefWidth="200.0" />
                                 <Pane>
                                     <children>
                                         <Label layoutY="2.0" text="价格优惠" textFill="#cccccc">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                <Font name="PingFang SC Regular" size="14.0" />
                                             </font>
                                         </Label>
-                                        <VBox fx:id="promotionVBox" layoutX="150.0" prefWidth="300.0" spacing="20.0"/>
-                                        <RectButton fx:id="promotionDetailButton" layoutX="820.0" maxHeight="-Infinity"
-                                                    minHeight="-Infinity" prefHeight="40.0" text="详 情"
-                                                    textAlignment="CENTER"/>
+                                        <VBox fx:id="promotionVBox" layoutX="150.0" prefWidth="300.0" spacing="20.0" />
+                                        <RectButton fx:id="promotionDetailButton" layoutX="820.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" text="详 情" textAlignment="CENTER" />
                                     </children>
                                 </Pane>
-                                <Separator prefWidth="200.0"/>
+                                <Separator prefWidth="200.0" />
                                 <Pane>
                                     <children>
                                         <Label layoutY="2.0" text="房间列表" textFill="#cccccc">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                <Font name="PingFang SC Regular" size="14.0" />
                                             </font>
                                         </Label>
                                         <VBox layoutX="150.0" spacing="20.0">
                                             <children>
                                                 <HBox alignment="CENTER_LEFT">
                                                     <children>
-                                                        <MyDatePicker fx:id="datePicker"/>
-                                                        <Pane prefWidth="200.0" HBox.hgrow="ALWAYS"/>
-                                                        <RectButton fx:id="roomDetailButton" maxHeight="-Infinity"
-                                                                    minHeight="-Infinity" prefHeight="40.0" text="详 情"
-                                                                    textAlignment="CENTER" HBox.hgrow="NEVER"/>
+                                                        <MyDatePicker fx:id="datePicker" />
+                                                        <Pane prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                                        <RectButton fx:id="roomDetailButton" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" text="详 情" textAlignment="CENTER" HBox.hgrow="NEVER" />
                                                     </children>
                                                 </HBox>
                                                 <HBox>
                                                     <children>
-                                                        <Label alignment="CENTER" prefWidth="270.0" text="类型"
-                                                               textFill="#cccccc">
+                                                        <Label alignment="CENTER" prefWidth="270.0" text="类型" textFill="#cccccc">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                                <Font name="PingFang SC Regular" size="14.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefWidth="180.0" text="单价"
-                                                               textFill="#cccccc">
+                                                        <Label alignment="CENTER" prefWidth="180.0" text="单价" textFill="#cccccc">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                                <Font name="PingFang SC Regular" size="14.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefWidth="160.0" text="剩余数量"
-                                                               textFill="#cccccc">
+                                                        <Label alignment="CENTER" prefWidth="160.0" text="剩余数量" textFill="#cccccc">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                                <Font name="PingFang SC Regular" size="14.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefWidth="160.0" text="总计数量"
-                                                               textFill="#cccccc">
+                                                        <Label alignment="CENTER" prefWidth="160.0" text="总计数量" textFill="#cccccc">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                                <Font name="PingFang SC Regular" size="14.0" />
                                                             </font>
                                                         </Label>
                                                     </children>
                                                 </HBox>
-                                                <Separator prefWidth="200.0"/>
-                                                <VBox fx:id="roomVBox" spacing="20.0"/>
+                                                <Separator prefWidth="200.0" />
+                                                <VBox fx:id="roomVBox" spacing="20.0" />
                                             </children>
                                         </VBox>
                                     </children>
                                 </Pane>
-                                <Separator prefWidth="200.0"/>
+                                <Separator prefWidth="200.0" />
                                 <Pane>
                                     <children>
                                         <Label layoutY="2.0" text="评分评价" textFill="#cccccc">
                                             <font>
-                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                <Font name="PingFang SC Regular" size="14.0" />
                                             </font>
                                         </Label>
-                                        <VBox fx:id="commentVBox" layoutX="150.0" prefHeight="200.0" prefWidth="770.0"
-                                              spacing="20.0">
+                                        <VBox layoutX="150.0" prefWidth="770.0" spacing="20.0">
                                             <children>
                                                 <HBox alignment="CENTER_LEFT">
                                                     <children>
-                                                        <Label prefWidth="200.0" text="32 条评价" textFill="GREY">
+                                                        <Label fx:id="assessmentCountLabel" prefWidth="200.0" text="32 条评价" textFill="GREY">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                             </font>
                                                         </Label>
-                                                        <RateStarPane fx:id="rateScorePane"/>
-                                                        <Label fx:id="scoreLabel" alignment="CENTER_RIGHT"
-                                                               prefWidth="100.0" text="4.8分" textFill="GREY">
+                                                        <RateStarPane fx:id="rateScorePane" />
+                                                        <Label fx:id="scoreLabel" alignment="CENTER_RIGHT" prefWidth="100.0" text="4.8分" textFill="GREY">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                             </font>
                                                         </Label>
                                                     </children>
                                                 </HBox>
-                                                <Separator prefWidth="200.0"/>
+                                                <Separator prefWidth="200.0" />
                                                 <Pane>
                                                     <children>
                                                         <Label text="评分评价" textFill="#cccccc">
                                                             <font>
-                                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                                                <Font name="PingFang SC Regular" size="14.0" />
                                                             </font>
                                                         </Label>
                                                         <GridPane hgap="40.0" layoutX="242.0" vgap="10.0">
                                                             <columnConstraints>
-                                                                <ColumnConstraints hgrow="NEVER"/>
-                                                                <ColumnConstraints hgrow="NEVER"/>
+                                                                <ColumnConstraints hgrow="NEVER" />
+                                                                <ColumnConstraints hgrow="NEVER" />
                                                             </columnConstraints>
                                                             <children>
                                                                 <HBox alignment="CENTER_LEFT">
                                                                     <children>
-                                                                        <Label prefWidth="60.0" text="服务"
-                                                                               textFill="GREY">
+                                                                        <Label prefWidth="60.0" text="服务" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane/>
-                                                                        <Label alignment="CENTER_RIGHT" prefWidth="60.0"
-                                                                               text="4.8分" textFill="GREY">
+                                                                        <RateStarPane fx:id="serviceScorePane" />
+                                                                        <Label fx:id="serviceScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
                                                                 <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
                                                                     <children>
-                                                                        <Label prefWidth="60.0" text="卫生"
-                                                                               textFill="GREY">
+                                                                        <Label prefWidth="60.0" text="卫生" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane/>
-                                                                        <Label alignment="CENTER_RIGHT" prefWidth="60.0"
-                                                                               text="4.8分" textFill="GREY">
+                                                                        <RateStarPane fx:id="healthScorePane" />
+                                                                        <Label fx:id="healthScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
                                                                 <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
                                                                     <children>
-                                                                        <Label prefWidth="60.0" text="设施"
-                                                                               textFill="GREY">
+                                                                        <Label prefWidth="60.0" text="设施" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane/>
-                                                                        <Label alignment="CENTER_RIGHT" prefWidth="60.0"
-                                                                               text="4.8分" textFill="GREY">
+                                                                        <RateStarPane fx:id="facilityScorePane" />
+                                                                        <Label fx:id="facilityScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
-                                                                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1"
-                                                                      GridPane.rowIndex="1">
+                                                                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                     <children>
-                                                                        <Label prefWidth="60.0" text="位置"
-                                                                               textFill="GREY">
+                                                                        <Label prefWidth="60.0" text="位置" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane/>
-                                                                        <Label alignment="CENTER_RIGHT" prefWidth="60.0"
-                                                                               text="4.8分" textFill="GREY">
+                                                                        <RateStarPane fx:id="locationScorePane" />
+                                                                        <Label fx:id="locationScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                                             <font>
-                                                                                <Font name="PingFang SC Regular"
-                                                                                      size="16.0"/>
+                                                                                <Font name="PingFang SC Regular" size="16.0" />
                                                                             </font>
                                                                         </Label>
                                                                     </children>
                                                                 </HBox>
                                                             </children>
                                                             <rowConstraints>
-                                                                <RowConstraints/>
-                                                                <RowConstraints/>
+                                                                <RowConstraints />
+                                                                <RowConstraints />
                                                             </rowConstraints>
                                                         </GridPane>
                                                     </children>
                                                 </Pane>
-                                                <Separator prefWidth="200.0"/>
+                                                <Separator prefWidth="200.0" />
+                                    <VBox fx:id="commentVBox" prefHeight="200.0" prefWidth="100.0" spacing="20.0" />
                                             </children>
                                         </VBox>
                                     </children>
@@ -313,7 +281,7 @@
                         </VBox>
                     </children>
                     <padding>
-                        <Insets bottom="40.0"/>
+                        <Insets bottom="40.0" />
                     </padding>
 
                 </VBox>
@@ -321,6 +289,6 @@
         </VBox>
     </content>
     <padding>
-        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0"/>
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
     </padding>
 </ScrollPane>

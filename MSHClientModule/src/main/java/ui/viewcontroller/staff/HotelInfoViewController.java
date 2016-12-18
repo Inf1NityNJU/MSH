@@ -36,7 +36,6 @@ public class HotelInfoViewController {
         if (!stack.empty()) {
             Node node = stack.pop();
             mainUIController.setCenter(node);
-
         }
     }
 
@@ -46,8 +45,8 @@ public class HotelInfoViewController {
     public void showHotelDetail() {
         if (initNode != null) {
             stack.empty();
-            mainUIController.setCenter(initNode);
             hotelDetailViewController.setHotel();
+            mainUIController.setCenter(initNode);
             return;
         }
 

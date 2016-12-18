@@ -199,12 +199,12 @@ public class Order {
 
         ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
 
-        long hour = cancelledTime.getIntervalTime(latestExecuteTime)/1000/60/60;
+        long hour = cancelledTime.getIntervalTime(latestExecuteTime) / 1000 / 60 / 60;
 
         System.out.println("Time:" + hour);
 
         if (hour < 6) {
-            CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int)(-orderPO.getTotalPrice()/2), CreditAction.DEDUCT_CREDIT, orderID, cancelledTime.date);
+            CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int) (-orderPO.getTotalPrice() / 2), CreditAction.DEDUCT_CREDIT, orderID, cancelledTime.date);
             userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
         }
         return rm;
@@ -223,7 +223,7 @@ public class Order {
         orderPO.setState(OrderState.Executed);
         ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
         if (rm == ResultMessage.SUCCESS) {
-            CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int)orderPO.getTotalPrice(), CreditAction.ADD_CREDIT, orderID, time.date);
+            CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int) orderPO.getTotalPrice(), CreditAction.ADD_CREDIT, orderID, time.date);
             userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
         }
         return rm;
@@ -243,6 +243,21 @@ public class Order {
     }
 
     /**
+     * 获得订单评价
+     *
+     * @param orderID
+     * @return
+     */
+    public AssessmentVO getOrderAssessment(String orderID) {
+        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderID);
+        AssessmentVO assessmentVO = null;
+        if (assessmentPO != null) {
+            assessmentVO = new AssessmentVO(assessmentPO);
+        }
+        return assessmentVO;
+    }
+
+    /**
      * 编辑评分评价
      *
      * @param orderID
@@ -252,7 +267,7 @@ public class Order {
     public ResultMessage editAssessment(String orderID, AssessmentVO assessment) {
         OrderVO orderVO = searchOrderByID(orderID);
         assessment.clientID = orderVO.clientID;
-        return  orderClientNetworkService.addAssessment(assessment.toPO(orderID));
+        return orderClientNetworkService.addAssessment(assessment.toPO(orderID));
     }
 
     /**
@@ -313,7 +328,15 @@ public class Order {
      * @return 客户预定过的酒店ID
      */
     public ArrayList<String> getBookedHotelIDByClientID(String clientID) {
-        return null;
+        ArrayList<OrderVO> orderVOs = searchClientOrder(clientID, null, null);
+        ArrayList<String> hotelIDs = new ArrayList<>();
+        for (OrderVO orderVO : orderVOs) {
+            if (!hotelIDs.contains(orderVO.hotelID)) {
+                hotelIDs.add(orderVO.hotelID);
+            }
+        }
+
+        return hotelIDs;
     }
 
     /**
@@ -323,7 +346,17 @@ public class Order {
      * @return
      */
     public ArrayList<Assessment_HotelVO> getAssessmentByHotelID(String hotelID) {
-        return null;
+        ArrayList<OrderVO> orderVOs = searchHotelOrder(hotelID, null, null);
+        ArrayList<Assessment_HotelVO> assessments = new ArrayList<>();
+        for (OrderVO orderVO : orderVOs) {
+            if (orderVO.assessment != null) {
+                AssessmentVO assessmentVO = orderVO.assessment;
+                assessments.add(new Assessment_HotelVO(orderVO.clientName,
+                        assessmentVO.serviceScore, assessmentVO.facilityScore, assessmentVO.healthScore, assessmentVO.locationScore,
+                        assessmentVO.comment, orderVO.checkInDate));
+            }
+        }
+        return assessments;
     }
 
 
@@ -355,11 +388,13 @@ public class Order {
 
         BillVO billVO = new BillVO(orderPO);
 
-        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderPO.getOrderID());
-        AssessmentVO assessmentVO = null;
-        if (assessmentPO != null) {
-            assessmentVO = new AssessmentVO(assessmentPO);
-        }
+//        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderPO.getOrderID());
+//        AssessmentVO assessmentVO = null;
+//        if (assessmentPO != null) {
+//            assessmentVO = new AssessmentVO(assessmentPO);
+//        }
+
+        AssessmentVO assessmentVO = getOrderAssessment(orderPO.getOrderID());
 
         return new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
 
