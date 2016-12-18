@@ -1,7 +1,6 @@
 package blservice.hotelblservice;
 
 import util.DateUtil;
-import util.InfoInvalidException;
 import util.ResultMessage;
 import util.RoomType;
 import vo.*;

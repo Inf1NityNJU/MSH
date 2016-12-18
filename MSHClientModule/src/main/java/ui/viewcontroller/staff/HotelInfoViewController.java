@@ -23,6 +23,8 @@ public class HotelInfoViewController {
     private Node initNode;
     private Stack<Node> stack = new Stack<Node>();
 
+    private HotelDetailViewController hotelDetailViewController;
+
     public HotelInfoViewController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
@@ -45,6 +47,7 @@ public class HotelInfoViewController {
         if (initNode != null) {
             stack.empty();
             mainUIController.setCenter(initNode);
+            hotelDetailViewController.setHotel();
             return;
         }
 
@@ -53,11 +56,34 @@ public class HotelInfoViewController {
             loader.setLocation(getClass().getResource("/view/staff/HotelDetailView.fxml"));
             ScrollPane pane = loader.load();
 
-            HotelDetailViewController hotelDetailViewController = loader.getController();
+            hotelDetailViewController = loader.getController();
             hotelDetailViewController.setHotelInfoViewController(this);
             hotelDetailViewController.setHotel();
 
             initNode = pane;
+
+            mainUIController.setCenter(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 编辑酒店信息
+     */
+    public void showHotelDetailEdit() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/staff/HotelDetailEditView.fxml"));
+            ScrollPane pane = loader.load();
+
+            HotelDetailEditViewController hotelDetailEditViewController = loader.getController();
+            hotelDetailEditViewController.setHotelInfoViewController(this);
+            hotelDetailEditViewController.showHotelDetailEdit();
+
+            Node node = mainUIController.getCenter();
+            stack.push(node);
 
             mainUIController.setCenter(pane);
 

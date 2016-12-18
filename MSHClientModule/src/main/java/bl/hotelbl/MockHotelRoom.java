@@ -1,7 +1,6 @@
 package bl.hotelbl;
 
-import util.HotelNotFoundException;
-import util.InfoInvalidException;
+
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
@@ -34,7 +33,6 @@ public class MockHotelRoom extends HotelRoom {
      * 修改指定酒店房间信息(mock)
      * @param rvo
      * @return 修改成功与否
-     * @throws InfoInvalidException
      */
     @Override
     public ResultMessage updateHotelRoom(HotelRoomVO rvo) {
@@ -49,7 +47,6 @@ public class MockHotelRoom extends HotelRoom {
      * 添加酒店房间信息(mock)
      * @param rvo
      * @return 添加成功与否
-     * @throws InfoInvalidException
      */
     @Override
     public ResultMessage addRoom(HotelRoomVO rvo) {
@@ -64,7 +61,6 @@ public class MockHotelRoom extends HotelRoom {
      * 删除酒店房间信息(mock)
      * @param hotelID
      * @return 删除成功与否
-     * @throws HotelNotFoundException
      */
     @Override
     public ResultMessage deleteHotelRoom(String hotelID, RoomType type) {

@@ -52,34 +52,34 @@ public class AlertViewController {
         this.webPromotionAddViewController = webPromotionAddViewController;
     }
 
-    public void setHotelPromotionAddViewController(HotelPromotionAddViewController hotelPromotionAddViewController){
+    public void setHotelPromotionAddViewController(HotelPromotionAddViewController hotelPromotionAddViewController) {
         this.hotelPromotionAddViewController = hotelPromotionAddViewController;
     }
 
-    public void setInfoLabel(String info){
+    public void setInfoLabel(String info) {
         this.infoLabel.setText(info);
     }
 
-    public void clickSureButton(){
-        if(infoLabel.getText().equals("确认删除该条网站促销策略吗？")){
+    public void clickSureButton() {
+        if (infoLabel.getText().equals("确认删除该条网站促销策略吗？")) {
             webPromotionDetailViewController.sureDelete();
-        }else if(infoLabel.getText().equals("确认删除该条酒店促销策略吗？")){
+        } else if (infoLabel.getText().equals("确认删除该条酒店促销策略吗？")) {
             hotelPromotionDetailViewController.sureDelete();
-        }else if(infoLabel.getText().equals("确定保存该条网站促销策略吗？")){
+        } else if (infoLabel.getText().equals("确定保存该条网站促销策略吗？")) {
             webPromotionAddViewController.sureSave();
-        }else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")){
+        } else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")) {
             hotelPromotionAddViewController.sureSave();
         }
     }
 
-    public void clickCancelButton(){
-        if(infoLabel.getText().equals("确认删除该条网站促销策略吗？")){
+    public void clickCancelButton() {
+        if (infoLabel.getText().equals("确认删除该条网站促销策略吗？")) {
             webPromotionDetailViewController.cancelDelete();
-        }else if(infoLabel.getText().equals("确认删除该条酒店促销策略吗？")){
+        } else if (infoLabel.getText().equals("确认删除该条酒店促销策略吗？")) {
             hotelPromotionDetailViewController.cancelDelete();
-        }else if(infoLabel.getText().equals("确定保存该条网站促销策略吗？")){
+        } else if (infoLabel.getText().equals("确定保存该条网站促销策略吗？")) {
             webPromotionAddViewController.cancelSave();
-        }else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")){
+        } else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")) {
             hotelPromotionAddViewController.cancelSave();
         }
     }

@@ -43,7 +43,6 @@ public class RoomAvailableCellController {
     private TinyButton editButton;
 
     private HotelRoomVO hotelRoom;
-
     private RoomStockVO roomStock;
 
     private RoomAvailableListViewController roomAvailableListViewController;

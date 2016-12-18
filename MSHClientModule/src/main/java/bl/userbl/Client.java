@@ -122,7 +122,7 @@ public class Client extends User {
         ClientVO clientVO = searchByID(clientID);
         int credit = clientVO.credit;
 
-        System.out.println(creditChangeInfoVO.deltaCredit + credit);
+//        System.out.println(creditChangeInfoVO.deltaCredit + credit);
         return userClientNetwork.addCreditRecord(clientID, new CreditPO(creditChangeInfoVO.orderID, creditChangeInfoVO.date.toString(),
                 creditChangeInfoVO.deltaCredit, creditChangeInfoVO.deltaCredit + credit, creditChangeInfoVO.creditAction, clientID));
     }

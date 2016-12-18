@@ -150,28 +150,31 @@ public class HotelDetailViewController {
 
         DateUtil date = new DateUtil(datePicker.getDate());
 
-        //TODO
+        ArrayList<HotelRoomVO> hotelRooms = hotelBLService.getRoom(hotel.ID);
 
-//        roomStocks = hotelBLService.ge(date, date, hotel.ID);
+        for (HotelRoomVO hotelRoom : hotelRooms) {
 
-//         = hotelBLService.getRoomStocks(date, date, hotel.ID);
-//
-//        for (OrderRoomStockVO room : roomStocks) {
-//            try {
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(getClass().getResource("/component/hotel/StaffHotelRoomCell.fxml"));
-//                Pane pane = loader.load();
-//
-//                StaffHotelRoomCellController staffHotelRoomCellController = loader.getController();
-//                staffHotelRoomCellController.s(this);
-//                staffHotelRoomCellController.setRoom(room);
-//
-//                roomVBox.getChildren().add(pane);
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/component/hotel/StaffHotelRoomCell.fxml"));
+                Pane pane = loader.load();
+
+                StaffHotelRoomCellController staffHotelRoomCellController = loader.getController();
+                staffHotelRoomCellController.setHotelDetailViewController(this);
+                staffHotelRoomCellController.setRoom(hotelRoom, date);
+
+                roomVBox.getChildren().add(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    @FXML
+    private void clickEditButton() {
+        hotelInfoViewController.showHotelDetailEdit();
     }
 
 }

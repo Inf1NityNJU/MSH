@@ -1,5 +1,7 @@
 package util;
 
+import java.util.ArrayList;
+
 /**
  * Created by SilverNarcissus on 2016/11/24.
  */
@@ -40,5 +42,14 @@ public enum City {
                 return city;
         }
         return null;
+    }
+
+    public static ArrayList<String> getNames(City[] cities) {
+        ArrayList<String> names = new ArrayList<>();
+
+        for (City city : cities) {
+            names.add(city.name);
+        }
+        return names;
     }
 }

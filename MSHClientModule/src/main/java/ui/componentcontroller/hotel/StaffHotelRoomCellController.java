@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientHotelDetailViewController;
 import ui.viewcontroller.staff.HotelDetailViewController;
+import util.DateUtil;
+import vo.HotelRoomVO;
 import vo.OrderRoomStockVO;
+import vo.RoomStockVO;
 
 /**
  * Created by Sorumi on 16/12/2.
@@ -26,19 +29,35 @@ public class StaffHotelRoomCellController {
 
     private HotelDetailViewController hotelDetailViewController;
 
-    private OrderRoomStockVO orderRoomStock;
+    private HotelRoomVO hotelRoom;
+    private RoomStockVO roomStock;
 
     public void setHotelDetailViewController(HotelDetailViewController hotelDetailViewController) {
         this.hotelDetailViewController = hotelDetailViewController;
     }
 
-    public void setRoom(OrderRoomStockVO room) {
-        this.orderRoomStock = room;
+    public void setRoom(HotelRoomVO hotelRoom, DateUtil date) {
+        this.hotelRoom = hotelRoom;
 
-        typeLabel.setText(room.orderRoom.type.getName());
-        priceLabel.setText("¥ " + room.orderRoom.price);
-        availableQuantityLabel.setText(room.availableQuantity + " 间");
-//        totalQuantityLabel.setText(room.availableQuantity + " 间");
+        typeLabel.setText(hotelRoom.roomType.getName());
+        priceLabel.setText("¥ " + hotelRoom.price);
+        totalQuantityLabel.setText(hotelRoom.totalQuantity + " 间");
+
+        for (RoomStockVO roomStock : hotelRoom.roomStockVOs) {
+            if (roomStock.date.equals(date)) {
+                this.roomStock = roomStock;
+                break;
+            }
+        }
+
+        if (roomStock == null) {
+            System.out.println("Can't find roomStockVO");
+
+        } else {
+            int availableQuantity = roomStock.availableQuantity;
+            availableQuantityLabel.setText(availableQuantity + "");
+        }
+
     }
 
 }

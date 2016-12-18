@@ -1,5 +1,7 @@
 package util;
 
+import java.util.ArrayList;
+
 /**
  * Created by SilverNarcissus on 16/10/14.
  */
@@ -25,6 +27,12 @@ public enum Place {
         this.name = name;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+
     /**
      * 通过名称获取枚举值
      *
@@ -39,7 +47,12 @@ public enum Place {
         return null;
     }
 
-    public String getName() {
-        return name;
+    public static ArrayList<String> getNames(Place[] places) {
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Place place : places) {
+            names.add(place.name);
+        }
+        return names;
     }
 }
