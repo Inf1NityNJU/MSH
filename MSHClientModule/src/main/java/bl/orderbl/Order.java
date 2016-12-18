@@ -305,6 +305,28 @@ public class Order {
         return orderPOsToOrderVOs(orderPOs);
     }
 
+    /**
+     * 通过客户ID得到其预订过的酒店ID<br>
+     * 注：接受方认为这些ID不重复
+     *
+     * @param clientID 客户ID
+     * @return 客户预定过的酒店ID
+     */
+    public ArrayList<String> getBookedHotelIDByClientID(String clientID) {
+        return null;
+    }
+
+    /**
+     * 通过酒店ID得到该酒店的评价
+     *
+     * @param hotelID
+     * @return
+     */
+    public ArrayList<Assessment_HotelVO> getAssessmentByHotelID(String hotelID) {
+        return null;
+    }
+
+
     private ArrayList<OrderVO> orderPOsToOrderVOs(ArrayList<OrderPO> orderPOs) {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
 
@@ -315,6 +337,7 @@ public class Order {
 
         return orderVOs;
     }
+
 
     private OrderVO orderPOToOrderVO(OrderPO orderPO) {
         Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());

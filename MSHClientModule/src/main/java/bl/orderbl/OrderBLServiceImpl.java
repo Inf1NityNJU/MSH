@@ -3,6 +3,7 @@ package bl.orderbl;
 import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
 import bl.hotelbl.HotelRoom;
+import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService_Stub;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Sorumi on 16/11/10.
  */
-public class OrderBLServiceImpl implements OrderBLService {
+public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
 
     private Order order;
 
@@ -164,15 +165,22 @@ public class OrderBLServiceImpl implements OrderBLService {
      * @return OrderVO列表
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
-//        UserBLInfo userBLInfo_Client = new BLFactoryImpl().getUserBLInfo_Client();
         UserBLInfo userBLInfo_staff = new BLFactoryImpl().getUserBLInfo_Staff();
 
         String staffID = userBLInfo_staff.getCurrentStaffID();
         String hotelID = userBLInfo_staff.getHotelIDByStaffID(staffID);
         System.out.print(staffID + " " + hotelID);
-//        hotelID = "00000001";
 
         return  order.searchHotelOrder(hotelID, os, keyword);
     }
 
+    @Override
+    public ArrayList<String> getBookedHotelIDByClientID(String clientID) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Assessment_HotelVO> getAssessmentByHotelID(String hotelID) {
+        return null;
+    }
 }

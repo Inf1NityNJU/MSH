@@ -2,6 +2,10 @@ package ui.componentcontroller.common;
 
 import bl.blfactory.BLFactoryImpl;
 import component.rectbutton.RectButton;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -27,7 +31,7 @@ import java.io.IOException;
 public class AlertViewController {
 
     private WebPromotionDetailViewController webPromotionDetailViewController;
-    private HotelPromotionDetailViewController hotelPromotionDetailViewController;
+//    private HotelPromotionDetailViewController hotelPromotionDetailViewController;
     private WebPromotionAddViewController webPromotionAddViewController;
     private HotelPromotionAddViewController hotelPromotionAddViewController;
 
@@ -40,13 +44,36 @@ public class AlertViewController {
     @FXML
     private RectButton cancelButton;
 
+    private ObjectProperty<EventHandler<Event>> onClickSureButton = new SimpleObjectProperty<EventHandler<Event>>();
+
+    private ObjectProperty<EventHandler<Event>> onClickCancelButton = new SimpleObjectProperty<EventHandler<Event>>();
+
+    @FXML
+    public void initialize() {
+
+        setOnClickSureButton(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+
+            }
+        });
+
+        setOnClickCancelButton(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+
+            }
+        });
+
+    }
+
     public void setWebPromotionDetailViewController(WebPromotionDetailViewController webPromotionDetailViewController) {
         this.webPromotionDetailViewController = webPromotionDetailViewController;
     }
 
-    public void setHotelPromotionDetailViewController(HotelPromotionDetailViewController hotelPromotionDetailViewController) {
-        this.hotelPromotionDetailViewController = hotelPromotionDetailViewController;
-    }
+//    public void setHotelPromotionDetailViewController(HotelPromotionDetailViewController hotelPromotionDetailViewController) {
+//        this.hotelPromotionDetailViewController = hotelPromotionDetailViewController;
+//    }
 
     public void setWebPromotionAddViewController(WebPromotionAddViewController webPromotionAddViewController) {
         this.webPromotionAddViewController = webPromotionAddViewController;
@@ -60,11 +87,45 @@ public class AlertViewController {
         this.infoLabel.setText(info);
     }
 
-    public void clickSureButton() {
+     /* onClickSureButton */
+
+    public final ObjectProperty<EventHandler<Event>> onClickSureButtonProperty() {
+        return onClickSureButton;
+    }
+
+    public final void setOnClickSureButton(EventHandler<Event> handler) {
+        onClickSureButton.set(handler);
+    }
+
+    public final EventHandler<Event> getOnClickSureButton() {
+        return onClickSureButton.get();
+
+    }
+
+      /* onClickCancelButton */
+
+    public final ObjectProperty<EventHandler<Event>> onClickCancelButtonProperty() {
+        return onClickCancelButton;
+    }
+
+    public final void setOnClickCancelButton(EventHandler<Event> handler) {
+        onClickCancelButton.set(handler);
+    }
+
+    public final EventHandler<Event> getOnClickCancelButton() {
+        return onClickCancelButton.get();
+
+    }
+
+
+
+    @FXML
+    public void clickSureButton(Event event) {
+
+        onClickSureButton.getValue().handle(event);
+
         if (infoLabel.getText().equals("确认删除该条网站促销策略吗？")) {
             webPromotionDetailViewController.sureDelete();
-        } else if (infoLabel.getText().equals("确认删除该条酒店促销策略吗？")) {
-            hotelPromotionDetailViewController.sureDelete();
         } else if (infoLabel.getText().equals("确定保存该条网站促销策略吗？")) {
             webPromotionAddViewController.sureSave();
         } else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")) {
@@ -72,11 +133,9 @@ public class AlertViewController {
         }
     }
 
-    public void clickCancelButton() {
+    public void clickCancelButton(Event event) {
         if (infoLabel.getText().equals("确认删除该条网站促销策略吗？")) {
             webPromotionDetailViewController.cancelDelete();
-        } else if (infoLabel.getText().equals("确认删除该条酒店促销策略吗？")) {
-            hotelPromotionDetailViewController.cancelDelete();
         } else if (infoLabel.getText().equals("确定保存该条网站促销策略吗？")) {
             webPromotionAddViewController.cancelSave();
         } else if (infoLabel.getText().equals("确定保存该条酒店促销策略吗？")) {

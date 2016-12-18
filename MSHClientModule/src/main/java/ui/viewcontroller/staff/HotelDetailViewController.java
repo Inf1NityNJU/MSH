@@ -120,13 +120,13 @@ public class HotelDetailViewController {
             }
         });
 
-
         addPromotions();
         addRooms();
     }
 
 
     private void addPromotions() {
+        promotionVBox.getChildren().clear();
         ArrayList<PromotionVO> promotions = promotionBLService.searchHotelPromotions(hotel.ID);
 
         for (PromotionVO promotion : promotions) {

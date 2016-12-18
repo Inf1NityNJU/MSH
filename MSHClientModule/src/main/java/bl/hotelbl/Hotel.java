@@ -1,6 +1,6 @@
 package bl.hotelbl;
 
-import blservice.orderblservice.OrderHotelInfo;
+import blservice.orderblservice.OrderBLInfo;
 import network.HotelClientNetworkImpl;
 import network.HotelClientNetworkService;
 import po.HotelPO;
@@ -29,7 +29,7 @@ public class Hotel {
     /**
      * 用于从Order模块拿到信息
      */
-    private OrderHotelInfo orderHotelInfo;
+    private OrderBLInfo orderBLInfo;
 
     protected Hotel() {
         hotelClientNetworkService = new HotelClientNetworkImpl();
@@ -85,7 +85,7 @@ public class Hotel {
         //按照预定过的情况查询酒店
         if (flags.bookedClientID != null) {
             result = new ArrayList<HotelPO>();
-            for (String hotelID : orderHotelInfo.getBookedHotelIDByClientID(flags.bookedClientID)) {
+            for (String hotelID : orderBLInfo.getBookedHotelIDByClientID(flags.bookedClientID)) {
                 result.add(hotelClientNetworkService.getHotel(hotelID));
             }
             //判断是否找不到酒店

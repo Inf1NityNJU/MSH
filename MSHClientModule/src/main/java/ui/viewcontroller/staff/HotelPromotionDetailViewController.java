@@ -5,6 +5,8 @@ import bl.promotionbl.Promotion_HotelSpecialDate;
 import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -25,7 +27,7 @@ public class HotelPromotionDetailViewController {
     private HotelPromotionViewController hotelPromotionViewController;
     private PromotionBLService promotionBLService;
 
-    private AlertViewController alertViewController;
+//    private AlertViewController alertViewController;
     private MainUIController mainUIController;
     @FXML
     private Label nameLabel;
@@ -129,9 +131,20 @@ public class HotelPromotionDetailViewController {
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
-            alertViewController = loader.getController();
-            alertViewController.setHotelPromotionDetailViewController(this);
+            AlertViewController alertViewController = loader.getController();
             alertViewController.setInfoLabel("确认删除该条酒店促销策略吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureDelete();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelDelete();
+                }
+            });
             mainUIController.showPop(pane);
 
         } catch (IOException e) {
