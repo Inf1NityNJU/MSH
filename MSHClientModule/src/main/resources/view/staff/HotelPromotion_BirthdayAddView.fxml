@@ -11,7 +11,6 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -38,7 +37,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
+                                <CommonTextField fx:id="nameTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -64,18 +63,12 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <CommonTextField fx:id="discountTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <CommonTextField fx:id="discountTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
                             </rowConstraints>
                             <VBox.margin>
                                 <Insets />

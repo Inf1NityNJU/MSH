@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.pagepane.PagePane?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.HotelPromotionPagePaneController">
-    <effect>
-        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
-    </effect>
-    <padding>
-        <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
-    </padding>
-    <children>
-        <PagePane fx:id="pagePane" onPageChanged="#pageChanged"/>
-    </children>
-</StackPane>
+<VBox alignment="TOP_CENTER" prefWidth="920.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.HotelPromotionPagePaneController">
+   <children>
+      <HBox prefWidth="200.0">
+         <children>
+            <Label alignment="CENTER" prefWidth="320.0" text="名称" textFill="#cccccc">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefWidth="280.0" text="类型" textFill="#cccccc">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefWidth="100.0" text="折扣数额" textFill="#cccccc">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font></Label>
+            <Label alignment="CENTER" prefWidth="220.0" text="操作" textFill="#cccccc">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font></Label>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <VBox fx:id="promotionVBox" spacing="20.0" />
+      <PagePane fx:id="pagePane" />
+   </children>
+</VBox>

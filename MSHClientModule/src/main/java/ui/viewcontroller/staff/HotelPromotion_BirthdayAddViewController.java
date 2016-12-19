@@ -97,9 +97,9 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
         }
         mainUIController.hidePop();
         hotelPromotionViewController.refreshHotelPromotionList();
-        if(isEdit){
-            hotelPromotionViewController.back();
-        }
+//        if(isEdit){
+//            hotelPromotionViewController.back();
+//        }
         hotelPromotionViewController.back();
     }
 

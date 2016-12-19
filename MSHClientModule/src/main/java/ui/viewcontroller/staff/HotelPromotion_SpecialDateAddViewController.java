@@ -105,9 +105,9 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
         }
         mainUIController.hidePop();
         hotelPromotionViewController.refreshHotelPromotionList();
-        if(isEdit){
-            hotelPromotionViewController.back();
-        }
+//        if(isEdit){
+//            hotelPromotionViewController.back();
+//        }
         hotelPromotionViewController.back();
     }
 

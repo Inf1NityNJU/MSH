@@ -122,7 +122,7 @@ public class AlertViewController {
     @FXML
     public void clickSureButton(Event event) {
 
-        onClickSureButton.getValue().handle(event);
+        onClickSureButton.get().handle(event);
 
         if (infoLabel.getText().equals("确认删除该条网站促销策略吗？")) {
             webPromotionDetailViewController.sureDelete();
@@ -134,6 +134,8 @@ public class AlertViewController {
     }
 
     public void clickCancelButton(Event event) {
+        onClickCancelButton.get().handle(event);
+
         if (infoLabel.getText().equals("确认删除该条网站促销策略吗？")) {
             webPromotionDetailViewController.cancelDelete();
         } else if (infoLabel.getText().equals("确定保存该条网站促销策略吗？")) {

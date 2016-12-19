@@ -39,7 +39,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <children>
-                                <CommonTextField fx:id="nameTextField" GridPane.columnIndex="1" />
+                                <CommonTextField fx:id="nameTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" />
                                 <Label text="类型" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
@@ -73,17 +73,25 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <children>
-                                        <Label text="StartTime" textFill="GREY" />
+                                        <Label text="开始日期" textFill="GREY">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <MyDatePicker fx:id="startTime" />
-                                        <Label text="EndTime" textFill="GREY" />
+                                        <Label text="结束日期" textFill="GREY">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0" />
+                                            </font>
+                                        </Label>
                                         <MyDatePicker fx:id="endTime" />
                                     </children>
                                 </HBox>
                                 <HBox prefHeight="0.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <children>
-                                        <CommonTextField fx:id="discountTextField" />
+                                        <CommonTextField fx:id="discountTextField" prefWidth="100.0" />
                                     </children>
                                 </HBox>
                                 <StateButton fx:id="typeButton" isActiveProperty="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -93,10 +101,7 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
-                                <RowConstraints />
+                        <RowConstraints />
                             </rowConstraints>
                             <VBox.margin>
                                 <Insets />
@@ -110,7 +115,8 @@
                         </ButtonBar>
                     </children>
                 </VBox>
-            </children></VBox>
+            </children>
+        </VBox>
     </content>
     <padding>
         <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />

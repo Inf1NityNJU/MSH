@@ -27,24 +27,11 @@ import java.util.List;
 public class HotelPromotionListViewController {
     private HotelPromotionViewController hotelPromotionViewController;
 
-    private static final int NUM_OF_CELL = 5;
-
-    private ArrayList<PromotionVO> promotionVOs = new ArrayList<PromotionVO>();
-
-    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
-
     @FXML
     private VBox contentVBox;
 
-    private FXMLLoader[] cellLoaders = new FXMLLoader[NUM_OF_CELL];
-    private Node[] cells = new Node[NUM_OF_CELL];
-
-    private Node pagePane;
     private HotelPromotionPagePaneController hotelPromotionPagePaneController;
-
-    private PromotionBLService promotionBLService;
-
-    private TilePane tilePane;
+    private PromotionType promotionType;
 
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
@@ -52,42 +39,29 @@ public class HotelPromotionListViewController {
      */
     @FXML
     public void initialize() {
-        promotionBLService = new BLFactoryImpl().getPromotionBLService();
+//        promotionBLService = new BLFactoryImpl().getPromotionBLService();
 
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/component/promotion/HotelPromotionSearchPane.fxml"));
             VBox pane = loader.load();
 
-            HotelPromotionSearchPaneController controller = loader.getController();
-            controller.setHotelPromotionListViewController(this);
+            HotelPromotionSearchPaneController hotelPromotionSearchPaneController = loader.getController();
+            hotelPromotionSearchPaneController.setHotelPromotionListViewController(this);
 
             contentVBox.getChildren().add(pane);
 
-            tilePane = new TilePane();
-            tilePane.setPrefColumns(5);
-            tilePane.setHgap(20);
-            tilePane.setVgap(10);
-
-            contentVBox.getChildren().add(tilePane);
 
             FXMLLoader pageLoader = new FXMLLoader();
             pageLoader.setLocation(getClass().getResource("/component/promotion/HotelPromotionPagePane.fxml"));
-            pagePane = pageLoader.load();
+            VBox pagePane = pageLoader.load();
 
             hotelPromotionPagePaneController = pageLoader.getController();
             hotelPromotionPagePaneController.setHotelPromotionListViewController(this);
 
-            for (int i = 0; i < NUM_OF_CELL; i++) {
-                FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(getClass().getResource("/component/promotion/HotelPromotionCell.fxml"));
-                HBox webpromotioncell = cellLoader.load();
+            contentVBox.getChildren().add(pagePane);
 
-                cellLoaders[i] = cellLoader;
-                cells[i] = webpromotioncell;
-            }
-
-            controller.showAllPromotions();
+            hotelPromotionSearchPaneController.showAllPromotions();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,72 +73,19 @@ public class HotelPromotionListViewController {
     }
 
     /**
-     * 展示所有策略列表
+     * 展示策略列表
+     * @param promotionType
      */
-    public void showAllHotelPromotions() {
-        promotionVOs = promotionBLService.searchHotelPromotions(userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
-        showHotelPromotions();
+    public void showHotelPromotionsByType(PromotionType promotionType) {
+        this.promotionType = promotionType;
+        hotelPromotionPagePaneController.showHotelPromotionsByType(promotionType);
     }
 
     /**
-     * 根据策略类型展示策略
+     * 更新策略列表
      */
-    public void showHotelPromotionsByType(PromotionType promotionType) {
-        ArrayList<PromotionVO> tempPromotionVOs = new ArrayList<PromotionVO>();
-        for(int i=0;i<promotionVOs.size();i++){
-            if(promotionVOs.get(i).promotionType==promotionType){
-                tempPromotionVOs.add(promotionVOs.get(i));
-            }
-        }
-        promotionVOs = tempPromotionVOs;
-        showHotelPromotions();
-        promotionVOs = promotionBLService.searchHotelPromotions(userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
-    }
-
-    public void showHotelPromotions() {
-        int size = promotionVOs.size();
-        hotelPromotionPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
-        if (size > 0) {
-            turnPage(1);
-        } else {
-            System.out.println("No Promotion");
-        }
-    }
-
-    public void turnPage(int page) {
-        int fromIndex = (page - 1) * NUM_OF_CELL;
-        int toIndex = Math.min(page * NUM_OF_CELL, promotionVOs.size());
-        List<PromotionVO> tmpPromotions = promotionVOs.subList(fromIndex, toIndex);
-        setCells(tmpPromotions);
-    }
-
-    private void setCells(List<PromotionVO> tmpPromotions) {
-
-        if (tmpPromotions.size() > NUM_OF_CELL) {
-            System.out.println("ERROR");
-            return;
-        }
-
-        for (Node cell : cells) {
-            tilePane.getChildren().remove(cell);
-        }
-
-        contentVBox.getChildren().remove(pagePane);
-
-        for (int i = 0; i < tmpPromotions.size(); i++) {
-
-            PromotionVO promotionVO = tmpPromotions.get(i);
-            FXMLLoader loader = cellLoaders[i];
-            Node promotionCell = cells[i];
-
-            HotelPromotionCellController hotelPromotionCellController = loader.getController();
-            hotelPromotionCellController.setHotelPromotionListViewController(this);
-            hotelPromotionCellController.setPromotionVO(promotionVO);
-
-            tilePane.getChildren().add(promotionCell);
-        }
-
-        contentVBox.getChildren().add(pagePane);
+    public void refreshHotelPromotions() {
+        showHotelPromotionsByType(promotionType);
     }
 
     /**

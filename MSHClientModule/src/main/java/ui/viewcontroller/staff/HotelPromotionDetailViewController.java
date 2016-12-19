@@ -1,16 +1,19 @@
 package ui.viewcontroller.staff;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
 import bl.promotionbl.Promotion_HotelSpecialDate;
 import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
@@ -25,9 +28,8 @@ import java.io.IOException;
 public class HotelPromotionDetailViewController {
     private PromotionVO promotionVO;
     private HotelPromotionViewController hotelPromotionViewController;
-    private PromotionBLService promotionBLService;
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
 
-//    private AlertViewController alertViewController;
     private MainUIController mainUIController;
     @FXML
     private Label nameLabel;
@@ -59,10 +61,20 @@ public class HotelPromotionDetailViewController {
     @FXML
     private RectButton editButton;
 
+    @FXML
+    private HBox clientGradePane;
 
-    public void setPromotionBLService(PromotionBLService promotionBLService) {
-        this.promotionBLService = promotionBLService;
-    }
+    @FXML
+    private HBox placePane;
+
+    @FXML
+    private HBox timePane;
+
+    @FXML
+    private HBox roomQuantityPane;
+
+    @FXML
+    private HBox enterprisePane;
 
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
@@ -79,42 +91,47 @@ public class HotelPromotionDetailViewController {
         typeButton.setText(promotionVO.promotionType.getType());
         typeButton.setColorProperty(promotionVO.promotionType.getColor());
 
+        clientGradePane.setVisible(false);
+        clientGradePane.setManaged(false);
+        placePane.setVisible(false);
+        placePane.setManaged(false);
+        timePane.setVisible(false);
+        timePane.setManaged(false);
+        roomQuantityPane.setVisible(false);
+        roomQuantityPane.setManaged(false);
+        enterprisePane.setVisible(false);
+        enterprisePane.setManaged(false);
 
         switch (promotionVO.promotionType) {
             case Hotel_Birthday:
-                timeLabel.setText("According to client's birthday");
                 break;
+
             case Hotel_Enterprise:
                 Promotion_EnterpriseVO promotion_enterpriseVO = (Promotion_EnterpriseVO) promotionVO;
                 timeLabel.setText(promotion_enterpriseVO.startDate.toString() + " - " + promotion_enterpriseVO.endDate.toString());
+                enterpriseLabel.setText(promotion_enterpriseVO.enterpriseName);
+                timePane.setVisible(true);
+                timePane.setManaged(true);
+                enterprisePane.setVisible(true);
+                enterprisePane.setManaged(true);
                 break;
+
             case Hotel_RoomQuantity:
                 Promotion_RoomQuantityVO promotion_roomQuantityVO = (Promotion_RoomQuantityVO) promotionVO;
                 timeLabel.setText(promotion_roomQuantityVO.startDate.toString() + " - " + promotion_roomQuantityVO.endDate.toString());
+                roomQuantityLabel.setText(promotion_roomQuantityVO.roomQuantity + "");
+                timePane.setVisible(true);
+                timePane.setManaged(true);
+                roomQuantityPane.setVisible(true);
+                roomQuantityPane.setManaged(true);
                 break;
+
             case Hotel_SpecilaDate:
                 Promotion_HotelSpecialDateVO promotion_hotelSpecialDateVO = (Promotion_HotelSpecialDateVO) promotionVO;
                 timeLabel.setText(promotion_hotelSpecialDateVO.startDate.toString() + " - " + promotion_hotelSpecialDateVO.endDate.toString());
+                timePane.setVisible(true);
+                timePane.setManaged(true);
                 break;
-        }
-
-
-        clientGradeLabel.setText("1");
-
-        placeLabel.setText("No special place");
-
-        if (promotionVO.promotionType == PromotionType.Hotel_RoomQuantity) {
-            Promotion_RoomQuantityVO promotion_roomQuantityVO = (Promotion_RoomQuantityVO) promotionVO;
-            roomQuantityLabel.setText(promotion_roomQuantityVO.roomQuantity + "");
-        } else {
-            roomQuantityLabel.setText("No special requirement");
-        }
-
-        if (promotionVO.promotionType == PromotionType.Hotel_Enterprise) {
-            Promotion_EnterpriseVO promotion_enterpriseVO = (Promotion_EnterpriseVO) promotionVO;
-            enterpriseLabel.setText(promotion_enterpriseVO.enterpriseName);
-        } else {
-            enterpriseLabel.setText("No special requirement");
         }
 
     }

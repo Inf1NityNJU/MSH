@@ -109,9 +109,9 @@ public class HotelPromotion_RoomQuantityAddViewController extends HotelPromotion
         }
         mainUIController.hidePop();
         hotelPromotionViewController.refreshHotelPromotionList();
-        if(isEdit){
-            hotelPromotionViewController.back();
-        }
+//        if(isEdit){
+//            hotelPromotionViewController.back();
+//        }
         hotelPromotionViewController.back();
     }
 

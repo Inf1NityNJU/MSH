@@ -46,7 +46,7 @@ public class HotelPromotionSearchPaneController {
     public void showAllPromotions() {
         setButtonsInactive();
         allButton.setIsActiveProperty(true);
-        hotelPromotionListViewController.showAllHotelPromotions();
+        hotelPromotionListViewController.showHotelPromotionsByType(null);
     }
 
     @FXML
@@ -81,7 +81,7 @@ public class HotelPromotionSearchPaneController {
     public void clickAddButton() {
         PromotionType promotionType = null;
         setButtonsInactive();
-        if (typeChoiceBox.getValue()!=null){
+        if (typeChoiceBox.getValue() != null){
             switch ((String) typeChoiceBox.getValue()) {
                 case "生日折扣":
                     promotionType = PromotionType.Hotel_Birthday;

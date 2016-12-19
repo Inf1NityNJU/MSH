@@ -76,7 +76,7 @@ public class HotelPromotionViewController {
      * 更新策略列表
      */
     public void refreshHotelPromotionList() {
-        hotelPromotionListViewController.showAllHotelPromotions();
+        hotelPromotionListViewController.refreshHotelPromotions();
     }
 
     /**
@@ -93,7 +93,6 @@ public class HotelPromotionViewController {
             HotelPromotionDetailViewController hotelPromotionDetailViewController = loader.getController();
             hotelPromotionDetailViewController.setHotelPromotionViewController(this);
             hotelPromotionDetailViewController.setMainUIController(mainUIController);
-            hotelPromotionDetailViewController.setPromotionBLService(promotionBLService);
             hotelPromotionDetailViewController.showHotelPromotionDetail(promotionVO);
 
             Node node = mainUIController.getCenter();

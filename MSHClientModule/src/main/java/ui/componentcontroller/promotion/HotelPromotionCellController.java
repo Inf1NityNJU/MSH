@@ -3,6 +3,7 @@ package ui.componentcontroller.promotion;
 import bl.hotelbl.Hotel;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.staff.HotelPromotionListViewController;
@@ -14,7 +15,7 @@ import vo.PromotionVO;
 public class HotelPromotionCellController {
     private PromotionVO promotionVO;
 
-    private HotelPromotionListViewController hotelPromotionListViewController;
+    private HotelPromotionPagePaneController hotelPromotionPagePaneController;
 
     @FXML
     private Label promotionNameLabel;
@@ -26,10 +27,10 @@ public class HotelPromotionCellController {
     private Label promotionDiscountLabel;
 
     @FXML
-    private RectButton detailButton;
+    private TinyButton detailButton;
 
-    public void setHotelPromotionListViewController(HotelPromotionListViewController hotelPromotionListViewController) {
-        this.hotelPromotionListViewController = hotelPromotionListViewController;
+    public void setHotelPromotionPagePaneController(HotelPromotionPagePaneController hotelPromotionPagePaneController) {
+        this.hotelPromotionPagePaneController = hotelPromotionPagePaneController;
     }
 
     public void setPromotionVO(PromotionVO promotionVO){
@@ -43,6 +44,6 @@ public class HotelPromotionCellController {
 
     @FXML
     public void clickDetailButton(){
-        hotelPromotionListViewController.showPromotionDetail(promotionVO);
+        hotelPromotionPagePaneController.showPromotionDetail(promotionVO);
     }
 }
