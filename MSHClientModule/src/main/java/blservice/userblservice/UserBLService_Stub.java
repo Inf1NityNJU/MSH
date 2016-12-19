@@ -170,6 +170,14 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
         return null;
     }
 
+    public StaffVO getStaffByID(String ID) {
+        return null;
+    }
+
+    public SalesmanVO getSalesmanByID(String ID) {
+        return null;
+    }
+
     //TODO
     public ResultMessage updateLevel(LevelVO levelVO){
         return null;

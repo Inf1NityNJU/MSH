@@ -162,20 +162,30 @@ public class User {
     }
 
     /**
-     * 返回当前用户ID
+     * 返回当前客户ID
      *
-     * @return 当前用户ID
+     * @return 当前客户ID
      */
     public String getCurrentClientID() {
         System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentClientID());
         return UserInfoManager.getUserInfoManager().getCurrentClientID();
     }
 
+    /**
+     * 返回当前酒店工作人员ID
+     *
+     * @return 当前酒店工作人员ID
+     */
     public String getCurrentStaffID() {
         System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentStaffID());
         return UserInfoManager.getUserInfoManager().getCurrentStaffID();
     }
 
+    /**
+     * 返回当前网站营销人员ID
+     *
+     * @return 当前网站营销人员ID
+     */
     public String getCurrentSalesmanID() {
         System.out.println("Get ID: " + UserInfoManager.getUserInfoManager().getCurrentSalesmanID());
         return UserInfoManager.getUserInfoManager().getCurrentSalesmanID();

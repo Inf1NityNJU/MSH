@@ -2,10 +2,7 @@ package blservice.userblservice;
 
 import bl.userbl.Salesman;
 import util.ResultMessage;
-import vo.ClientVO;
-import vo.CreditChangeInfoVO;
-import vo.CreditVO;
-import vo.LevelVO;
+import vo.*;
 
 import java.util.ArrayList;
 
@@ -32,6 +29,7 @@ public interface UserBLInfo {
     public String getCurrentStaffID();
 
     public String getCurrentSalesmanID();
+
     /**
      * 得到酒店工作人员对应的酒店名字
      *
@@ -48,10 +46,28 @@ public interface UserBLInfo {
     public ArrayList<LevelVO> getAllLevel();
 
     /**
+     * 得到客户
+     *
      * @param ID
      * @return
      */
     public ClientVO getClientByID(String ID);
+
+    /**
+     * 得到酒店工作人员
+     *
+     * @param ID
+     * @return
+     */
+    public StaffVO getStaffByID(String ID);
+
+    /**
+     * 得到网站营销人员
+     *
+     * @param ID
+     * @return
+     */
+    public SalesmanVO getSalesmanByID(String ID);
 
     /**
      * 给客户增加信用记录

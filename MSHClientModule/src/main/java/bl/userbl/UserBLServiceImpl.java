@@ -303,7 +303,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      * @param ID
      * @return
      */
-    public StaffVO getStaffById(String ID) {
+    public StaffVO getStaffByID(String ID) {
         return (StaffVO) user.searchByID(ID);
     }
 
