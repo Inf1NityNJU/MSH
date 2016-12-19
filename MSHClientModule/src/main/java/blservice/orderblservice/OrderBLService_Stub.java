@@ -58,6 +58,11 @@ public class OrderBLService_Stub implements OrderBLService {
         }
     }
 
+    @Override
+    public ResultMessage revokeAbnormalOrder(String orderID, int credit) {
+        return null;
+    }
+
     public ResultMessage checkInOrder(String orderID, TimeUtil time) {
         if (orderID.equals("20161012010112340000")) {
             return ResultMessage.SUCCESS;

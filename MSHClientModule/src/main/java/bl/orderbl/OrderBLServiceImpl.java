@@ -68,6 +68,11 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
     }
 
     @Override
+    public ResultMessage revokeAbnormalOrder(String orderID, int credit) {
+        return order.revokeAbnormal(orderID, credit);
+    }
+
+    @Override
     public ResultMessage checkInOrder(String orderID, TimeUtil time) {
         return order.checkIn(orderID, time);
     }

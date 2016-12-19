@@ -59,6 +59,14 @@ public interface OrderBLService {
     public ResultMessage revokeOrder(String orderID);
 
     /**
+     * 撤销异常订单
+     * @param orderID
+     * @param credit
+     * @return
+     */
+    public ResultMessage revokeAbnormalOrder(String orderID, int credit);
+
+    /**
      * 更新订单入住
      * @param orderID
      * @param time
@@ -76,7 +84,7 @@ public interface OrderBLService {
 
     /**
      * 得到订单评价
-     * @param orderId
+     * @param orderID
      * @return
      */
     public AssessmentVO getOrderAssessment(String orderID);

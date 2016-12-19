@@ -7,6 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import component.circleimage.CircleImage?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #313B42;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.SalesmanNavbarController">
     <children>
         <CircleImage radius="50" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
@@ -20,6 +23,31 @@
                 <NavButton fx:id="clientRechargeButton" isCurrentProperty="false" onMouseClicked="#clickClientRechargeButton" text="客户充值" />
                 <NavButton fx:id="promotionButton" isCurrentProperty="false" onMouseClicked="#clickPromotionButton" text="促销策略" />
             <NavButton fx:id="clientGradeButton" isCurrentProperty="false" onMouseClicked="#clickClientGradeButton" text="会员等级" />
+            </children>
+        </VBox>
+        <Label fx:id="nameLabel" alignment="CENTER" layoutY="70.0" prefHeight="26.0" prefWidth="200.0" text="名称" textFill="WHITE">
+            <font>
+                <Font name="PingFang SC Light" size="20.0" />
+            </font>
+        </Label>
+        <VBox layoutY="120.0">
+            <children>
+                <Label fx:id="typeLabel" alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="200.0" text="用户：网站营销人员" textFill="WHITE">
+                    <font>
+                        <Font name="PingFang SC Regular" size="16.0" />
+                    </font>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </Label>
+                <Label fx:id="IDLabel" alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="200.0" text="编号：" textFill="WHITE">
+                    <font>
+                        <Font name="PingFang SC Regular" size="16.0" />
+                    </font>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </Label>
             </children>
         </VBox>
     </children>

@@ -75,4 +75,9 @@ public class BLFactoryImpl implements BLFactoryService {
     public UserBLInfo getUserBLInfo_Staff() {
         return UserBLFactory.getUserInfo_Staff();
     }
+
+    @Override
+    public UserBLInfo getUserBLInfo_Salesman() {
+        return UserBLFactory.getUserInfo_Salesman();
+    }
 }

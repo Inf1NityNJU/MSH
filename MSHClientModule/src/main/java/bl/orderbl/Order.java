@@ -211,6 +211,27 @@ public class Order {
     }
 
     /**
+     * 撤销异常订单
+     * @param orderID
+     * @param credit
+     * @return
+     */
+    public ResultMessage revokeAbnormal(String orderID, int credit) {
+        OrderPO orderPO = orderClientNetworkService.searchOrderByOrderID(orderID);
+        TimeUtil cancelledTime = new TimeUtil(LocalDateTime.now());
+
+        orderPO.setCancelledTime(cancelledTime.toString());
+        orderPO.setState(OrderState.Cancelled);
+
+        ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+
+        CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO(credit, CreditAction.REVOKE_CREDIT, orderID, cancelledTime.date);
+        userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
+
+        return rm;
+    }
+
+    /**
      * 更新入住
      *
      * @param orderID

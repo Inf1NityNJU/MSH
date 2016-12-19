@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -52,6 +53,15 @@ public class WebOrderDetailViewController {
 
     @FXML
     private TinyButton cancelButton;
+
+    @FXML
+    private HBox revokeHBox;
+
+    @FXML
+    private TinyButton halfCreditButton;
+
+    @FXML
+    private TinyButton allCreditButton;
 
     @FXML
     private Label cancelledLabel;
@@ -155,6 +165,8 @@ public class WebOrderDetailViewController {
     private void updateState() {
         stateLabel.setText(order.state.getName());
         stateLabel.setColorProperty(order.state.getColor());
+        revokeHBox.setVisible(false);
+        revokeHBox.setManaged(false);
 
         OrderState state = order.state;
         if (state == OrderState.Cancelled) {
@@ -235,7 +247,23 @@ public class WebOrderDetailViewController {
 
     @FXML
     private void clickCancelButton() {
-        orderBLService.revokeOrder(order.orderID);
+        cancelButton.setVisible(false);
+        cancelButton.setManaged(false);
+        revokeHBox.setVisible(true);
+        revokeHBox.setManaged(true);
+    }
+
+    @FXML
+    private void clickHalfRevokeButton() {
+        orderBLService.revokeAbnormalOrder(order.orderID, (int)order.bill.totalPrice/2);
+        order = orderBLService.searchOrderByID(order.orderID);
+        updateState();
+    }
+
+
+    @FXML
+    private void clickAllRevokeButton() {
+        orderBLService.revokeAbnormalOrder(order.orderID, (int)order.bill.totalPrice);
         order = orderBLService.searchOrderByID(order.orderID);
         updateState();
     }

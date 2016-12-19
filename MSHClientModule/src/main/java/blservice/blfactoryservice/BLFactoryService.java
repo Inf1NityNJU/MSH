@@ -35,4 +35,6 @@ public interface BLFactoryService {
     public UserBLInfo getUserBLInfo_Client();
 
     public UserBLInfo getUserBLInfo_Staff();
+
+    public UserBLInfo getUserBLInfo_Salesman();
 }

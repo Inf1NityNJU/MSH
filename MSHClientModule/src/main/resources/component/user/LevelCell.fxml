@@ -10,9 +10,6 @@
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="920.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.user.LevelCellController">
-    <effect>
-        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
-    </effect>
     <children>
         <AnchorPane prefHeight="30.0" prefWidth="1200.0">
             <children>

@@ -162,7 +162,6 @@ public class WebPromotion_SpecialPlaceAddViewController extends WebPromotionAddV
         endTime.setDate(LocalDate.parse(promotion_specialPlaceVO.endDate.toString()));
 
         cityChoiceBox.getSelectionModel().select(promotion_specialPlaceVO.city.getName());
-//        placeChoiceBox.setItems(FXCollections.observableArrayList(Place.getNames(promotion_specialPlaceVO.city.getPlaces())));
         placeChoiceBox.getSelectionModel().select(promotion_specialPlaceVO.place.getName());
 
 

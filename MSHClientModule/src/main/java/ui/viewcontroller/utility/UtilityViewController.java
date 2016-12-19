@@ -105,6 +105,7 @@ public class UtilityViewController {
 
             signUpViewController = fxmlLoader.getController();
             signUpViewController.setUtilityViewController(this);
+            signUpViewController.clickNormalLabel();
 
             mainUIController.setTop(null);
             mainUIController.setLeft(null);

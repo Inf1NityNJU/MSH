@@ -9,6 +9,7 @@ import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.manager.WorkerManagementListViewController;
+import vo.Hotel_DetailVO;
 import vo.SalesmanVO;
 import vo.StaffVO;
 
@@ -63,7 +64,18 @@ public class WorkerManagementCellController {
         workerIDLabel.setText(staffVO.staffID);
 
         HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
-        staffHotelLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
+        if (staffVO.hotelID != null) {
+            Hotel_DetailVO hotel = hotelBLService.getHotel(staffVO.hotelID);
+            if (hotel != null) {
+                staffHotelLabel.setText(hotel.name);
+
+            } else {
+                staffHotelLabel.setText("无");
+            }
+        } else {
+            staffHotelLabel.setText("无");
+
+        }
 
         staffHotelLabel.setVisible(true);
         hotelLabel.setVisible(true);

@@ -29,6 +29,8 @@ public class ManagerNavbarController {
         hotelListButton.setIsCurrentProperty(true);
         clientListButton.setIsCurrentProperty(false);
         workerListButton.setIsCurrentProperty(false);
+
+        managerViewController.showHotelList();
     }
 
     @FXML

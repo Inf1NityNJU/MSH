@@ -93,6 +93,7 @@ public class ClientHotelSearchPaneController {
                     Label label = new Label(place.getName());
                     placeSelect.getLabels().add(label);
                 }
+                placeSelect.setValue(city.getPlaces()[0].getName());
             }
         });
     }

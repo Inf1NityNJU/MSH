@@ -1,16 +1,27 @@
 package ui.viewcontroller.staff;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.userblservice.UserBLInfo;
 import component.navbutton.NavButton;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientViewController;
+import vo.ClientVO;
+import vo.StaffVO;
 
 /**
  * Created by SilverNarcissus on 2016/11/27.
  *
  */
 public class StaffNavbarController {
-    //下层组件
+
     private StaffViewController staffViewController;
+
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label IDLabel;
 
     @FXML
     private NavButton hotelInfoButton;
@@ -23,6 +34,18 @@ public class StaffNavbarController {
 
     @FXML
     private NavButton promotionButton;
+
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+
+    @FXML
+    public void initialize() {
+        String staffID = userBLInfo.getCurrentStaffID();
+        if (staffID != null) {
+            StaffVO staff = userBLInfo.getStaffByID(staffID);
+            nameLabel.setText(staff.staffName);
+            IDLabel.setText("编号：" + staffID);
+        }
+    }
 
     public void setStaffViewController(StaffViewController staffViewController) {
         this.staffViewController = staffViewController;

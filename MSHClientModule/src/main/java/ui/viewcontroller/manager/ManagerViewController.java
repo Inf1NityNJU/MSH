@@ -16,6 +16,10 @@ public class ManagerViewController {
     private MainUIController mainUIController;
 
     /**
+     * 管理酒店
+     */
+    private HotelManagementViewController hotelManagementViewController;
+    /**
      * 管理所有客户
      */
     private ClientManagementViewController clientManagementViewController;
@@ -43,7 +47,7 @@ public class ManagerViewController {
 
         clientManagementViewController = new ClientManagementViewController(mainUIController);
         workerManagementViewController = new WorkerManagementViewController(mainUIController);
-
+        hotelManagementViewController = new HotelManagementViewController(mainUIController);
     }
 
     public void showClientList() {
@@ -55,4 +59,7 @@ public class ManagerViewController {
         workerManagementViewController.showWorkerList();
     }
 
+    public void showHotelList() {
+        hotelManagementViewController.showHotelList();
+    }
 }

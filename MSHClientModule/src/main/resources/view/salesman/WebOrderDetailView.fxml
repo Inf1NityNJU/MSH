@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.mycheckbox.MyCheckBox?>
+<?import component.ratestarpane.RateStarPane?>
 <?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
 <?import component.tinybutton.TinyButton?>
@@ -18,9 +19,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<?import component.ratestarpane.RateStarPane?>
 <?import javafx.scene.text.Text?>
+
 <ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.WebOrderDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
@@ -271,17 +271,39 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <StateButton fx:id="stateLabel" colorProperty="00cccc" isActiveProperty="true" text="未执行" />
-                              <TinyButton fx:id="cancelButton" text="撤销异常" onMouseClicked="#clickCancelButton">
+                              <TinyButton fx:id="cancelButton" onMouseClicked="#clickCancelButton" text="撤销异常">
                                  <HBox.margin>
                                     <Insets left="50.0" />
                                  </HBox.margin>
                               </TinyButton>
+                              <HBox fx:id="revokeHBox" alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Label text="恢复信用值" textFill="GREY">
+                                       <font>
+                                          <Font name="PingFang SC Regular" size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TinyButton fx:id="halfCreditButton" onMouseClicked="#clickHalfRevokeButton" text="一半">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TinyButton>
+                                    <TinyButton fx:id="allCreditButton" onMouseClicked="#clickAllRevokeButton" text="全部">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TinyButton>
+                                 </children>
+                              </HBox>
                               <Label fx:id="cancelledLabel" prefWidth="150.0" text="撤销时间" textFill="#cccccc">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="82.0" />
+                                    <Insets left="80.0" />
                                  </HBox.margin>
                               </Label>
                               <Label fx:id="cancelledTimeLabel" text="2016年11月19日 21:46" textFill="GREY">
@@ -383,6 +405,7 @@
                         </VBox>
                      </children>
                      <rowConstraints>
+                        <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />

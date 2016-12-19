@@ -8,15 +8,17 @@ import component.mydatepicker.MyDatePicker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import util.DateUtil;
 import util.Encryptor;
 import util.ResultMessage;
 import vo.ClientVO;
 import vo.ClientVO_Register;
 
+import java.time.LocalDate;
+
 /**
  * Created by Kray on 2016/11/27.
- * 
  */
 public class SignUpViewController {
 
@@ -36,7 +38,13 @@ public class SignUpViewController {
     private CommonPasswordField confirmPasswordText;
 
     @FXML
+    private Label enterpriseTextLabel;
+
+    @FXML
     private MyDatePicker birthdayPicker;
+
+    @FXML
+    private CommonTextField enterpriseText;
 
     private int isEnterprise = 0;
 
@@ -49,13 +57,32 @@ public class SignUpViewController {
     }
 
     @FXML
-    public void clickNormalLabel(){
-        isEnterprise = 0;
+    public void initialize() {
+        birthdayPicker.setDate(LocalDate.now());
     }
 
     @FXML
-    public void clickEnterpriseLabel(){
+    public void clickNormalLabel() {
+        isEnterprise = 0;
+
+        normalLabel.setTextFill(Color.web("#00cccc"));
+        enterpriseLabel.setTextFill(Color.web("#cccccc"));
+        enterpriseTextLabel.setVisible(false);
+        enterpriseTextLabel.setManaged(false);
+        enterpriseText.setVisible(false);
+        enterpriseText.setManaged(false);
+    }
+
+    @FXML
+    public void clickEnterpriseLabel() {
         isEnterprise = 1;
+
+        normalLabel.setTextFill(Color.web("#cccccc"));
+        enterpriseLabel.setTextFill(Color.web("#00cccc"));
+        enterpriseTextLabel.setVisible(true);
+        enterpriseTextLabel.setManaged(true);
+        enterpriseText.setVisible(true);
+        enterpriseText.setManaged(true);
     }
 
     @FXML
@@ -67,18 +94,20 @@ public class SignUpViewController {
     @FXML
     public void clickSignUpButton() {
         if (passwordText.getText().equals(confirmPasswordText.getText())) {
+            userBLService = utilityViewController.getUserBLService();
 
             DateUtil birthday = new DateUtil(birthdayPicker.getDate().getYear(),
                     birthdayPicker.getDate().getMonthValue(), birthdayPicker.getDate().getDayOfMonth());
 
-            userBLService = utilityViewController.getUserBLService();
-            if (userBLService.add(new ClientVO_Register(
+            ResultMessage rm = userBLService.add(new ClientVO_Register(
                     birthday,
                     isEnterprise,
-                    "",
+                    isEnterprise == 1 ? enterpriseText.getText() : "",
                     accountText.getText(),
                     Encryptor.encrypt(passwordText.getText())
-            )) == ResultMessage.SUCCESS) {
+            ));
+
+            if (rm == ResultMessage.SUCCESS) {
                 utilityViewController.login(accountText.getText(), Encryptor.encrypt(passwordText.getText()));
             }
 
