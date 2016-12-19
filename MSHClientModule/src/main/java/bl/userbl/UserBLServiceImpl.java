@@ -164,7 +164,7 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
      *
      * @return 当前登录状态下的客户ID
      */
-    public String getCurrentClientID(){
+    public String getCurrentClientID() {
         if (user instanceof Client) {
             Client client = (Client) user;
             return client.getCurrentClientID();
@@ -173,7 +173,12 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
         }
     }
 
-    public String getCurrentStaffID(){
+    /**
+     * 得到当前登录状态下的酒店工作人员ID
+     *
+     * @return 当前登录状态下的酒店工作人员ID
+     */
+    public String getCurrentStaffID() {
         if (user instanceof Staff) {
             Staff staff = (Staff) user;
             return staff.getCurrentStaffID();
@@ -182,7 +187,12 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
         }
     }
 
-    public String getCurrentSalesmanID(){
+    /**
+     * 得到当前登录状态下的网站营销人员ID
+     *
+     * @return 当前登录状态下的网站营销人员ID
+     */
+    public String getCurrentSalesmanID() {
         if (user instanceof Salesman) {
             Salesman salesman = (Salesman) user;
             return salesman.getCurrentSalesmanID();
@@ -287,6 +297,31 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
         return (ClientVO) user.searchByID(ID);
     }
 
+    /**
+     * 得到酒店工作人员
+     *
+     * @param ID
+     * @return
+     */
+    public StaffVO getStaffById(String ID) {
+        return (StaffVO) user.searchByID(ID);
+    }
+
+    /**
+     * 得到网站营销人员
+     *
+     * @param ID
+     * @return
+     */
+    public SalesmanVO getSalesmanByID(String ID) {
+        return (SalesmanVO) user.searchByID(ID);
+    }
+
+    /**
+     * 得到当前用户
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
