@@ -7,65 +7,52 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.WebPromotionSearchPaneController">
-    <effect>
-        <DropShadow color="#40404080" radius="1.0" />
-    </effect>
-    <padding>
-        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-    </padding>
+<VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ui.componentcontroller.promotion.WebPromotionSearchPaneController">
     <children>
-        <TitleLabel text="网站促销策略" />
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="920.0" spacing="5.0">
+        <TitleLabel text="网站促销策略"/>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
             <children>
-                <StateButton fx:id="allButton" colorProperty="F8E81C" onMouseClicked="#showAllPromotions" prefHeight="24.0" prefWidth="50.0" text="全部">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin></StateButton>
-                <StateButton fx:id="clientGradeButton" colorProperty="12B7F3" onMouseClicked="#showClientGradePromotions" prefHeight="24.0" prefWidth="107.0" text="会员等级折扣" />
-                <StateButton fx:id="placeButton" colorProperty="BC52FD" maxWidth="1.7976931348623157E308" onMouseClicked="#showPlacePromotions" prefHeight="24.0" prefWidth="109.0" text="会员商圈折扣" />
-                <StateButton fx:id="specialDateButton" colorProperty="FC537D" onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin></StateButton>
-            <CircleButton fx:id="addButton" onMouseClicked="#clickAddButton" typeProperty="Add">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="300.0" />
-               </HBox.margin>
-            </CircleButton>
-            <MyChoiceBox fx:id="typeChoiceBox" prefWidth="134.0">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="会员等级折扣" />
-                        <String fx:value="会员商圈折扣" />
-                        <String fx:value="特定期间折扣" />
-                    </FXCollections>
-                </items>
+                <StateButton fx:id="allButton" colorProperty="F8E81C"
+                             onMouseClicked="#showAllPromotions" text="全部"/>
+                <StateButton fx:id="clientGradeButton" colorProperty="12B7F3"
+                             onMouseClicked="#showClientGradePromotions" text="会员等级折扣"/>
+                <StateButton fx:id="placeButton" colorProperty="00CCCC"
+                             onMouseClicked="#showPlacePromotions" text="会员商圈折扣"/>
+                <StateButton fx:id="specialDateButton" colorProperty="BC52FD"
+                             onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </StateButton>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <MyChoiceBox fx:id="typeChoiceBox" prefWidth="134.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="会员等级折扣"/>
+                            <String fx:value="会员商圈折扣"/>
+                            <String fx:value="特定期间折扣"/>
+                        </FXCollections>
+                    </items>
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
                 </MyChoiceBox>
+                <CircleButton fx:id="addButton" onMouseClicked="#clickAddButton" typeProperty="Add">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </CircleButton>
             </children>
         </HBox>
-      <HBox prefWidth="200.0" spacing="150.0">
-         <children>
-            <Label alignment="CENTER" prefWidth="200.0" text="名称" textFill="#cccccc" />
-            <Label text="类型" textFill="#cccccc" />
-            <Label text="折扣数额" textFill="#cccccc" />
-            <Label text="操作" textFill="#cccccc" />
-         </children>
-      </HBox>
-      <Line endX="800.0" startX="-100.0" stroke="#eeeeee">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Line>
     </children>
 </VBox>

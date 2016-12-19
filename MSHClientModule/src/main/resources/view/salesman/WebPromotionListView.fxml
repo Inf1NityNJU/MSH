@@ -2,22 +2,42 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.salesman.WebPromotionListViewController">
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;"
+            stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.viewcontroller.salesman.WebPromotionListViewController">
     <content>
-        <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="20.0" style="-fx-background-color: transparent;" stylesheets="@../../css/main.css">
+        <VBox prefHeight="100.0" prefWidth="1002.0" spacing="20.0" style="-fx-background-color: transparent;"
+              stylesheets="@../../css/main.css">
             <opaqueInsets>
-                <Insets />
+                <Insets/>
             </opaqueInsets>
             <padding>
-                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-            </padding></VBox>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+            </padding>
+            <children>
+                <VBox fx:id="contentVBox" spacing="40.0" style="-fx-background-color: #ffffff;">
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                    <effect>
+                        <DropShadow color="#40404080" radius="1.0"/>
+                    </effect>
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+                    </padding>
+                </VBox>
+            </children>
+        </VBox>
     </content>
     <opaqueInsets>
-        <Insets />
+        <Insets/>
     </opaqueInsets>
     <padding>
-        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0"/>
     </padding>
 </ScrollPane>

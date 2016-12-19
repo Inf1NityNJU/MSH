@@ -38,10 +38,15 @@ public class ClientNavbarController {
     @FXML
     public void initialize() {
         String clientID = userBLInfo.getCurrentClientID();
-        ClientVO client = userBLInfo.getClientByID(clientID);
-        nameLabel.setText(client.clientName);
-        typeLabel.setText("客户类型：" + (client.enterprise.equals("") ? "普通客户" : "企业客户"));
-        IDLabel.setText("编号：" + clientID);
+        if (clientID != null) {
+            ClientVO client = userBLInfo.getClientByID(clientID);
+            nameLabel.setText(client.clientName);
+            typeLabel.setText("客户类型：" + (client.enterprise.equals("") ? "普通客户" : "企业客户"));
+            IDLabel.setText("编号：" + clientID);
+        } else {
+            nameLabel.setText("游客");
+        }
+
     }
 
     public void setClientViewController(ClientViewController clientViewController) {

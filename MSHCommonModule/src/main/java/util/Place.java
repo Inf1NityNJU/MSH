@@ -18,8 +18,8 @@ public enum Place {
     JiaYunPort("佳韵港"),
     NewRing("新环区"),
     Airport("机场区"),
-    RailwayStation("火车站区"),
-    Unnecessary("不需要(不应该作为选项出现)");
+    RailwayStation("火车站区");
+//    Unnecessary("不需要(不应该作为选项出现)");
 
     private final String name;
 

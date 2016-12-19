@@ -1,5 +1,6 @@
 package blservice.promotionblservice;
 
+import util.City;
 import util.DateUtil;
 import util.Place;
 import vo.OrderRoomVO;
@@ -19,7 +20,7 @@ public interface PromotionBLInfo {
      * @param place 所在商圈
      * @return
      */
-    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, Place place);
+    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, City city, Place place);
 
     /**
      * 获得最小酒店促销策略

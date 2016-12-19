@@ -36,6 +36,11 @@ public class HotelPromotionSearchPaneController {
 
     private StateButton[] buttons;
 
+    @FXML
+    public void initialize() {
+        typeChoiceBox.getSelectionModel().selectFirst();
+    }
+
     public void setHotelPromotionListViewController(HotelPromotionListViewController hotelPromotionListViewController) {
         this.hotelPromotionListViewController = hotelPromotionListViewController;
 

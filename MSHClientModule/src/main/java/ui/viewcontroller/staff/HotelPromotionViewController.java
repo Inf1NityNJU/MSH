@@ -26,7 +26,6 @@ public class HotelPromotionViewController {
     private HotelPromotionListViewController hotelPromotionListViewController;
     private HotelPromotionDetailViewController hotelPromotionDetailViewController;
 
-
     private PromotionVO promotionVO;
 
     public HotelPromotionViewController(MainUIController mainUIController) {
@@ -103,13 +102,13 @@ public class HotelPromotionViewController {
             e.printStackTrace();
         }
     }
+
     /**
      * 更新策略详情
      */
     public void refreshHotelPromotionDetail(PromotionVO promotionVO) {
         hotelPromotionDetailViewController.showHotelPromotionDetail(promotionVO);
     }
-
 
     /**
      * 增加策略

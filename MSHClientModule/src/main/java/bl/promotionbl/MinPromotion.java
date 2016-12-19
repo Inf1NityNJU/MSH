@@ -1,5 +1,6 @@
 package bl.promotionbl;
 
+import util.City;
 import util.DateUtil;
 import util.Place;
 import util.PromotionType;
@@ -28,7 +29,7 @@ public class MinPromotion {
      * @param place 所在商圈
      * @return
      */
-    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, Place place) {
+    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, City city, Place place) {
         double currentDiscount = 0;
         ArrayList<PromotionVO> promotionVOs = promotion.searchWebPromotions();
         for (int i = 0; i < promotionVOs.size(); i++) {
@@ -43,7 +44,7 @@ public class MinPromotion {
                     break;
                 default:
                     concretePromotion = new Promotion_WebSpecialPlace(date);
-                    currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), place);
+                    currentDiscount = concretePromotion.getPromotionDiscount(promotionVOs.get(i), city, place);
             }
             if(minWebPromDiscount>currentDiscount||minWebPromDiscount==0){
                 promotion_webVO = (Promotion_WebVO)promotionVOs.get(i);

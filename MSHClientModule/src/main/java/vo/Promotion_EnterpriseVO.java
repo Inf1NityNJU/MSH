@@ -87,11 +87,11 @@ public class Promotion_EnterpriseVO extends Promotion_HotelVO{
         if(this.promotionID==null) {
             return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
-                    this.enterpriseName, this.hotelID, 0, Place.Unnecessary, 0);
+                    this.enterpriseName, this.hotelID, 0, null, null, 0);
         }else {
             return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
-                    this.enterpriseName, this.hotelID, 0, Place.Unnecessary, 0);
+                    this.enterpriseName, this.hotelID, 0, null, null, 0);
         }
 
     }

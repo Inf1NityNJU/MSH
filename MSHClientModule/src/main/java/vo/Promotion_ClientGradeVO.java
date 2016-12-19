@@ -70,11 +70,11 @@ public class Promotion_ClientGradeVO extends Promotion_WebVO{
         if (promotionID==null){
             return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
-                    "", "", 0, Place.Unnecessary, this.clientGrade);
+                    "", "", 0, null, null, this.clientGrade);
         }else {
             return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
-                    "", "", 0, Place.Unnecessary, this.clientGrade);
+                    "", "", 0, null, null, this.clientGrade);
         }
 
     }

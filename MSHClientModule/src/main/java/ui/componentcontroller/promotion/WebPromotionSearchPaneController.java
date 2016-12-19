@@ -37,6 +37,11 @@ public class WebPromotionSearchPaneController {
 
     private StateButton[] buttons;
 
+    @FXML
+    public void initialize() {
+        typeChoiceBox.getSelectionModel().selectFirst();
+    }
+
     public void setWebPromotionListViewController(WebPromotionListViewController webPromotionListViewController) {
         this.webPromotionListViewController = webPromotionListViewController;
 
@@ -47,7 +52,7 @@ public class WebPromotionSearchPaneController {
     public void showAllPromotions() {
         setButtonsInactive();
         allButton.setIsActiveProperty(true);
-        webPromotionListViewController.showAllWebPromotions();
+        webPromotionListViewController.showWebPromotionsByType(null);
     }
 
     @FXML

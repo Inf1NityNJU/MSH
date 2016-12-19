@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import component.rectbutton.RectButton?>
 <?import component.statebutton.StateButton?>
+<?import component.tinybutton.TinyButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.effect.DropShadow?>
-<HBox spacing="160.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.WebPromotionCellController">
-    <effect>
-        <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
-    </effect>
+<HBox alignment="CENTER" prefWidth="920.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.promotion.WebPromotionCellController">
     <children>
-        <Label fx:id="promotionNameLabel" prefWidth="80.0" text="名称1" textFill="GREY">
-         <padding>
-            <Insets top="5.0" />
-         </padding></Label>
-        <StateButton fx:id="promotionType" colorProperty="12B7F3" isActiveProperty="true" text="类型" />
-        <Label fx:id="promotionDiscountLabel" text="折扣" textFill="GREY">
-         <padding>
-            <Insets top="5.0" />
-         </padding>
-         <HBox.margin>
-            <Insets left="-15.0" />
-         </HBox.margin></Label>
-      <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看">
-         <HBox.margin>
-            <Insets left="-10.0" />
-         </HBox.margin></RectButton>
+        <Label fx:id="promotionNameLabel" alignment="CENTER" prefWidth="320.0" text="名称1" textFill="GREY">
+            <font>
+                <Font name="PingFang SC Regular" size="16.0" />
+            </font></Label>
+        <StackPane prefWidth="280.0">
+            <children>
+                <StateButton fx:id="promotionType" colorProperty="12B7F3" isActiveProperty="true" text="类型" />
+            </children>
+        </StackPane>
+        <Label fx:id="promotionDiscountLabel" alignment="CENTER" prefWidth="100.0" text="折扣" textFill="GREY">
+            <padding>
+                <Insets top="5.0" />
+            </padding>
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+            <font>
+                <Font name="PingFang SC Regular" size="16.0" />
+            </font></Label>
+        <StackPane prefWidth="220.0">
+            <children>
+                <TinyButton fx:id="detailButton" text="查看" onMouseClicked="#clickDetailButton"/>
+            </children>
+        </StackPane>
     </children>
     <opaqueInsets>
         <Insets />
     </opaqueInsets>
-    <padding>
-        <Insets left="110.0" />
-    </padding>
 </HBox>

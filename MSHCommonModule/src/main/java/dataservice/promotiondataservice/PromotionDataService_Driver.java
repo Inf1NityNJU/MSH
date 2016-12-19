@@ -1,6 +1,7 @@
 package dataservice.promotiondataservice;
 
 import po.PromotionPO;
+import util.City;
 import util.Place;
 import util.PromotionType;
 import util.ResultMessage;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class PromotionDataService_Driver {
 
     public void drive(PromotionDataService promotionDataService){
-        ResultMessage result = promotionDataService.addPromotion(new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80, "2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, Place.XinJieKou, 0));
+        ResultMessage result = promotionDataService.addPromotion(new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80, "2016-10-01", "2016-10-03","VivianCompany" ,"00000000",1, City.NanJing, Place.XinJieKou, 0));
         if(result== ResultMessage.SUCCESS){
             System.out.println("Add Success");
         }else{
@@ -27,7 +28,7 @@ public class PromotionDataService_Driver {
             System.out.println("Delete Failed");
         }
 
-        result = promotionDataService.updatePromotion(new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03", "VivianCompany" ,"00000000",1, Place.XinJieKou, 0));
+        result = promotionDataService.updatePromotion(new PromotionPO("201610120102", PromotionType.Hotel_Birthday, 0.80,"2016-10-01", "2016-10-03", "VivianCompany" ,"00000000",1, City.NanJing, Place.XinJieKou, 0));
         if(result== ResultMessage.SUCCESS){
             System.out.println("Update Success");
         }else{

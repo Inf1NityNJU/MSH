@@ -31,6 +31,6 @@
       </HBox>
       <Separator prefWidth="200.0" />
       <VBox fx:id="promotionVBox" spacing="20.0" />
-      <PagePane fx:id="pagePane" />
+      <PagePane fx:id="pagePane" onPageChanged="#pageChanged" />
    </children>
 </VBox>

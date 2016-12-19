@@ -3,6 +3,7 @@ package ui.componentcontroller.promotion;
 import bl.promotionbl.Promotion;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.salesman.WebPromotionListViewController;
@@ -14,7 +15,7 @@ import vo.PromotionVO;
 public class WebPromotionCellController {
     private PromotionVO promotionVO;
 
-    private WebPromotionListViewController webPromotionListViewController;
+    private WebPromotionPagePaneController webPromotionPagePaneController;
 
     @FXML
     private Label promotionNameLabel;
@@ -26,10 +27,10 @@ public class WebPromotionCellController {
     private Label promotionDiscountLabel;
 
     @FXML
-    private RectButton detailButton;
+    private TinyButton detailButton;
 
-    public void setWebPromotionListViewController(WebPromotionListViewController webPromotionListViewController) {
-        this.webPromotionListViewController = webPromotionListViewController;
+    public void setWebPromotionPagePaneController(WebPromotionPagePaneController webPromotionPagePaneController) {
+        this.webPromotionPagePaneController = webPromotionPagePaneController;
     }
 
     public void setPromotionVO(PromotionVO promotionVO){
@@ -43,6 +44,6 @@ public class WebPromotionCellController {
 
     @FXML
     public void clickDetailButton(){
-        webPromotionListViewController.showPromotionDetail(promotionVO);
+        webPromotionPagePaneController.showPromotionDetail(promotionVO);
     }
 }

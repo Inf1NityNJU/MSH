@@ -48,10 +48,10 @@ public class HotelPromotionPagePaneController {
             try {
                 FXMLLoader cellLoader = new FXMLLoader();
                 cellLoader.setLocation(getClass().getResource("/component/promotion/HotelPromotionCell.fxml"));
-                HBox webpromotioncell = cellLoader.load();
+                HBox cell = cellLoader.load();
 
                 cellLoaders[i] = cellLoader;
-                cells[i] = webpromotioncell;
+                cells[i] = cell;
             } catch (IOException e) {
                 e.printStackTrace();
             }

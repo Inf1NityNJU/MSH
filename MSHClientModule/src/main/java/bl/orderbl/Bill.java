@@ -2,6 +2,7 @@ package bl.orderbl;
 
 import bl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLInfo;
+import util.City;
 import util.DateUtil;
 import util.Place;
 import vo.BillVO;
@@ -29,11 +30,11 @@ public class Bill {
      * @param roomQuantity
      * @return
      */
-    public BillVO refresh(String hotelID, Place place, DateUtil date, int clentGrade,
+    public BillVO refresh(String hotelID, City city, Place place, DateUtil date, int clentGrade,
                           DateUtil birthday, String enterpriseName, int roomQuantity) {
 //        return null;
         PromotionVO hotelPromotion = promotionBLInfo.getMinHotelProm(hotelID, date, birthday, enterpriseName, roomQuantity);
-        PromotionVO websitePromotion = promotionBLInfo.getMinWebProm(date, clentGrade, place);
+        PromotionVO websitePromotion = promotionBLInfo.getMinWebProm(date, clentGrade, city, place);
         return new BillVO(websitePromotion, hotelPromotion, 0, 0);
     }
 }

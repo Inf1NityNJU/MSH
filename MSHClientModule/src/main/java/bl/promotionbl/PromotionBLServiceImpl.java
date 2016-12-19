@@ -2,10 +2,7 @@ package bl.promotionbl;
 
 import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
-import util.DateUtil;
-import util.Place;
-import util.PromotionType;
-import util.ResultMessage;
+import util.*;
 import vo.PromotionVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
@@ -62,8 +59,8 @@ public class PromotionBLServiceImpl implements PromotionBLService, PromotionBLIn
     }
 
     @Override
-    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, Place place) {
-        return minPromotion.getMinWebProm(date, clientGrade, place);
+    public Promotion_WebVO getMinWebProm(DateUtil date, int clientGrade, City city, Place place) {
+        return minPromotion.getMinWebProm(date, clientGrade, city, place);
     }
 
     @Override

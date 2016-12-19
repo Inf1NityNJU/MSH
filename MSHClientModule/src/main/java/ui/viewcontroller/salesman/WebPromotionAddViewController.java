@@ -8,8 +8,6 @@ import vo.PromotionVO;
  * Created by vivian on 16/12/14.
  */
 public abstract class WebPromotionAddViewController {
-    public void setPromotionBLService(PromotionBLService promotionBLService){}
-
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController){}
 
     public void setMainUIController(MainUIController mainUIController){}

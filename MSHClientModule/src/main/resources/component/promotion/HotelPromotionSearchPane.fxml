@@ -19,16 +19,13 @@
         <TitleLabel text="酒店促销策略"/>
         <HBox alignment="CENTER_LEFT" spacing="10.0">
             <children>
-                <StateButton fx:id="allButton" colorProperty="F8E81C" onMouseClicked="#showAllPromotions" text="全部">
-                    <HBox.margin>
-                        <Insets/>
-                    </HBox.margin>
-                </StateButton>
-                <StateButton fx:id="birthdayButton" colorProperty="12B7F3" onMouseClicked="#showBirthdayPromotions"
-                             text="生日折扣"/>
+                <StateButton fx:id="allButton" colorProperty="F8E81C"
+                             onMouseClicked="#showAllPromotions" text="全部"/>
+                <StateButton fx:id="birthdayButton" colorProperty="12B7F3"
+                             onMouseClicked="#showBirthdayPromotions" text="生日折扣"/>
                 <StateButton fx:id="roomQuantityButton" colorProperty="00CCCC"
                              onMouseClicked="#showRoomQuantityPromotions" text="房间数量折扣"/>
-                <StateButton fx:id="companyButton" colorProperty="BC52FD" maxWidth="1.7976931348623157E308"
+                <StateButton fx:id="companyButton" colorProperty="BC52FD"
                              onMouseClicked="#showCompanyPromotions" text="合作企业折扣"/>
                 <StateButton fx:id="specialDateButton" colorProperty="FC537D"
                              onMouseClicked="#showSpecialDatePromotions" text="特定期间折扣">

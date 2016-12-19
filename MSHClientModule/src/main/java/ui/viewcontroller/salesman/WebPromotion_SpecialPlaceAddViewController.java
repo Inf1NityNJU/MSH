@@ -1,12 +1,17 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
 import component.mychoicebox.MyChoiceBox;
 import component.mydatepicker.MyDatePicker;
 import component.statebutton.StateButton;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -21,20 +26,20 @@ import vo.PromotionVO;
 import vo.Promotion_SpecialPlaceVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Created by vivian on 16/12/6.
  */
 public class WebPromotion_SpecialPlaceAddViewController extends WebPromotionAddViewController {
-    private PromotionVO promotionVO;
+    private Promotion_SpecialPlaceVO promotion_specialPlaceVO;
     private WebPromotionViewController webPromotionViewController;
-    private PromotionBLService promotionBLService;
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
 
     private boolean isEdit = false;
     private String promotionID = null;
 
     private MainUIController mainUIController;
-    private AlertViewController alertViewController;
 
     @FXML
     private CommonTextField nameTextField;
@@ -64,11 +69,21 @@ public class WebPromotion_SpecialPlaceAddViewController extends WebPromotionAddV
         typeButton.setText(PromotionType.Web_SpecilPlace.getType());
         typeButton.setColorProperty(PromotionType.Web_SpecilPlace.getColor());
 
-    }
+        cityChoiceBox.setItems(FXCollections.observableArrayList(City.getNames(City.values())));
 
-    @Override
-    public void setPromotionBLService(PromotionBLService promotionBLService) {
-        this.promotionBLService = promotionBLService;
+        cityChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener() {
+                    @Override
+                    public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                        City city = City.getCityByName((String)newValue);
+                        placeChoiceBox.setItems(FXCollections.observableArrayList(Place.getNames(city.getPlaces())));
+                        placeChoiceBox.getSelectionModel().selectFirst();
+                    }
+                }
+        );
+
+        cityChoiceBox.getSelectionModel().selectFirst();
+
     }
 
     @Override
@@ -88,9 +103,20 @@ public class WebPromotion_SpecialPlaceAddViewController extends WebPromotionAddV
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
-            alertViewController = loader.getController();
-            alertViewController.setWebPromotionAddViewController(this);
+            AlertViewController alertViewController = loader.getController();
             alertViewController.setInfoLabel("确定保存该条网站促销策略吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
             mainUIController.showPop(pane);
 
         } catch (IOException e) {
@@ -100,22 +126,26 @@ public class WebPromotion_SpecialPlaceAddViewController extends WebPromotionAddV
 
     @Override
     public void sureSave() {
-        promotionVO = new Promotion_SpecialPlaceVO(nameTextField.getText(), PromotionType.Web_SpecilPlace,
-                Double.valueOf(discountTextField.getText()), new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
-                (Place) placeChoiceBox.getValue());
+        String name = nameTextField.getText();
+        double discount = Double.valueOf(discountTextField.getText());
+        DateUtil startDate = new DateUtil(startTime.getDate());
+        DateUtil endDate = new DateUtil(endTime.getDate());
+        City city = City.getCityByName((String)cityChoiceBox.getSelectionModel().getSelectedItem());
+        Place place = Place.getPlaceByName((String)placeChoiceBox.getSelectionModel().getSelectedItem());
+
+        promotion_specialPlaceVO = new Promotion_SpecialPlaceVO(name, PromotionType.Web_SpecilPlace,
+                discount, startDate, endDate, city, place);
         if (isEdit) {
-            promotionVO.promotionID = promotionID;
-            promotionBLService.updatePromotion(promotionVO);
+            promotion_specialPlaceVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotion_specialPlaceVO);
+            webPromotionViewController.refreshWebPromotionDetail(promotion_specialPlaceVO);
             System.out.println("update successfully!");
         } else {
-            promotionBLService.addPromotion(promotionVO);
+            promotionBLService.addPromotion(promotion_specialPlaceVO);
             System.out.println("save successfully!");
         }
         mainUIController.hidePop();
         webPromotionViewController.refreshWebPromotionList();
-        if (isEdit) {
-            webPromotionViewController.back();
-        }
         webPromotionViewController.back();
     }
 
@@ -124,37 +154,18 @@ public class WebPromotion_SpecialPlaceAddViewController extends WebPromotionAddV
         mainUIController.hidePop();
     }
 
-    public void clickPlaceChoiceBox() {
-        ObservableList observableList = FXCollections.observableArrayList();
-        City city = null;
-        switch ((String) cityChoiceBox.getValue()) {
-            case "NanJing":
-                city = City.NanJing;
-                break;
-            case "ShangHai":
-                city = City.ShangHai;
-            case "BeiJing":
-                city = City.BeiJing;
-                break;
-            case "GuangZhou":
-                city = City.GuangZhou;
-                break;
-            case "LanZhou":
-                city = City.LanZhou;
-                break;
-            case "GuiYang":
-                city = City.GuiYang;
-                break;
-        }
-        for (int i = 0; i < city.getPlaces().length; i++) {
-            observableList.add(city.getPlaces()[i]);
-        }
-        placeChoiceBox.setItems(observableList);
-    }
-
     public void showEditView(PromotionVO promotionVO) {
+        promotion_specialPlaceVO = (Promotion_SpecialPlaceVO)promotionVO;
         nameTextField.setText(promotionVO.promotionName);
         discountTextField.setText(promotionVO.promotionDiscount + "");
+        startTime.setDate(LocalDate.parse(promotion_specialPlaceVO.startDate.toString()));
+        endTime.setDate(LocalDate.parse(promotion_specialPlaceVO.endDate.toString()));
+
+        cityChoiceBox.getSelectionModel().select(promotion_specialPlaceVO.city.getName());
+//        placeChoiceBox.setItems(FXCollections.observableArrayList(Place.getNames(promotion_specialPlaceVO.city.getPlaces())));
+        placeChoiceBox.getSelectionModel().select(promotion_specialPlaceVO.place.getName());
+
+
         isEdit = true;
         this.promotionID = promotionVO.promotionID;
     }

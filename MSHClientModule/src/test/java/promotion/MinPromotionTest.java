@@ -3,6 +3,7 @@ package promotion;
 import bl.promotionbl.MinPromotion;
 import bl.promotionbl.MockMinPromotion;
 import org.junit.Test;
+import util.City;
 import util.DateUtil;
 import util.Place;
 import vo.OrderRoomVO;
@@ -24,7 +25,7 @@ public class MinPromotionTest {
 
     @Test
     public void testMinWebProm(){
-        Promotion_WebVO promotion = minPromotion.getMinWebProm(new DateUtil(2016,01,11), 2, Place.TangShan);
+        Promotion_WebVO promotion = minPromotion.getMinWebProm(new DateUtil(2016,01,11), 2, City.NanJing, Place.TangShan);
         assertEquals(0.50, promotion.promotionDiscount, 0);
     }
 

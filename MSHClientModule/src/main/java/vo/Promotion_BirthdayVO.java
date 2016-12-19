@@ -49,11 +49,11 @@ public class Promotion_BirthdayVO extends Promotion_HotelVO {
         if(this.promotionID==null){
             return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     "", "",
-                    "", this.hotelID, 0, Place.Unnecessary, 0);
+                    "", this.hotelID, 0, null, null, 0);
         }else {
             return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
                     "", "",
-                    "", this.hotelID, 0, Place.Unnecessary, 0);
+                    "", this.hotelID, 0, null, null, 0);
         }
     }
 }

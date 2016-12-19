@@ -25,10 +25,11 @@ import java.util.List;
  * Created by vivian on 16/12/8.
  */
 public class HotelPromotionListViewController {
-    private HotelPromotionViewController hotelPromotionViewController;
 
     @FXML
     private VBox contentVBox;
+
+    private HotelPromotionViewController hotelPromotionViewController;
 
     private HotelPromotionPagePaneController hotelPromotionPagePaneController;
     private PromotionType promotionType;
@@ -39,7 +40,6 @@ public class HotelPromotionListViewController {
      */
     @FXML
     public void initialize() {
-//        promotionBLService = new BLFactoryImpl().getPromotionBLService();
 
         try {
             FXMLLoader loader = new FXMLLoader();

@@ -12,146 +12,153 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelPromotionDetailViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;"
+            stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.viewcontroller.staff.HotelPromotionDetailViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
-                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
             </padding>
             <children>
                 <VBox prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;">
                     <effect>
-                        <DropShadow color="#40404080" radius="1.0" />
+                        <DropShadow color="#40404080" radius="1.0"/>
                     </effect>
                     <padding>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
                     </padding>
                     <children>
-                        <TitleLabel text="酒店促销策略详情" />
-                  <VBox spacing="40.0">
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefWidth="150.0" text="名称" textFill="#cccccc">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
-                                 </font>
-                              </Label>
-                                      <Label fx:id="nameLabel" text="策略名称" textFill="GREY">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="16.0" />
-                                          </font>
-                                      </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <Label prefWidth="150.0" text="类型" textFill="#cccccc">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="14.0" />
-                                          </font>
-                                      </Label>
-                                      <StateButton fx:id="typeButton" textFill="#f9f9f9" />
-                           </children>
-                        </HBox>
-                        <HBox fx:id="clientGradePane" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <Label prefWidth="150.0" text="优惠会员等级" textFill="#cccccc">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="14.0" />
-                                          </font>
-                                      </Label>
-                                      <Label fx:id="clientGradeLabel" text="3" textFill="GREY">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="placePane" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <Label prefWidth="150.0" text="优惠商圈" textFill="#cccccc">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="14.0" />
-                                          </font>
-                                      </Label>
-                                      <Label fx:id="placeLabel" text="城市商圈名字" textFill="GREY">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="16.0" />
-                                          </font>
-                                      </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="timePane" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <Label prefWidth="150.0" text="优惠时间" textFill="#cccccc">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="14.0" />
-                                          </font>
-                                      </Label>
-                                      <Label fx:id="timeLabel" text="2016-12-19 - 2016-12-31" textFill="GREY">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="16.0" />
-                                          </font>
-                                      </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="roomQuantityPane" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                                      <Label prefWidth="150.0" text="最小房间数量" textFill="#cccccc">
-                                          <font>
-                                              <Font name="PingFang SC Regular" size="14.0" />
-                                          </font>
-                                      </Label>
-                              <Label fx:id="roomQuantityLabel" text="3" textFill="GREY">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="enterprisePane" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefWidth="150.0" text="合作企业" textFill="#cccccc">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="enterpriseLabel" text="企业名称" textFill="GREY">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label prefWidth="150.0" text="优惠折扣" textFill="#cccccc">
-                                 <font>
-                                    <Font name="PingFang SC Regular" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="discountLabel" text="0.9" textFill="GREY">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
+                        <TitleLabel text="酒店促销策略详情"/>
+                        <VBox spacing="40.0">
+                            <children>
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="名称" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="nameLabel" text="策略名称" textFill="GREY">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="类型" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <StateButton fx:id="typeButton" textFill="#f9f9f9"/>
+                                    </children>
+                                </HBox>
+                                <HBox fx:id="clientGradePane" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="优惠会员等级" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="clientGradeLabel" text="3" textFill="GREY">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox fx:id="placePane" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="优惠商圈" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="placeLabel" text="城市商圈名字" textFill="GREY">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox fx:id="timePane" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="优惠时间" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="timeLabel" text="2016-12-19 - 2016-12-31" textFill="GREY">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox fx:id="roomQuantityPane" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="最小房间数量" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="roomQuantityLabel" text="3" textFill="GREY">
+                                            <font>
+                                                <Font size="15.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox fx:id="enterprisePane" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="合作企业" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="enterpriseLabel" text="企业名称" textFill="GREY">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label prefWidth="150.0" text="优惠折扣" textFill="#cccccc">
+                                            <font>
+                                                <Font name="PingFang SC Regular" size="14.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="discountLabel" text="0.9" textFill="GREY">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
-                                <RectButton fx:id="backButton" isActiveProperty="false" onMouseClicked="#clickBackButton" text="返 回" />
-                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickDeleteButton" text="删 除" />
-                                <RectButton fx:id="editButton" minHeight="40.0" onMouseClicked="#clickEditButton" text="编 辑" />
+                                <RectButton fx:id="backButton" isActiveProperty="false"
+                                            onMouseClicked="#clickBackButton" text="返 回"/>
+                                <RectButton fx:id="deleteButton" isActiveProperty="false" minHeight="40.0"
+                                            onMouseClicked="#clickDeleteButton" text="删 除"/>
+                                <RectButton fx:id="editButton" minHeight="40.0" onMouseClicked="#clickEditButton"
+                                            text="编 辑"/>
                             </buttons>
                         </ButtonBar>
                     </children>
                 </VBox>
-            </children></VBox>
+            </children>
+        </VBox>
     </content>
     <padding>
-        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0" />
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0"/>
     </padding>
 </ScrollPane>

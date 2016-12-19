@@ -23,7 +23,7 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO {
     public DateUtil endDate;
 
     /**
-     * @param promotionName       策略名称
+     * @param promotionName     策略名称
      * @param promotionType     策略类型
      * @param promotionDiscount 策略折扣
      * @param startDate         策略起始日期
@@ -41,7 +41,7 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO {
         this.endDate = endDate;
     }
 
-    public Promotion_HotelSpecialDateVO(PromotionPO promotionPO){
+    public Promotion_HotelSpecialDateVO(PromotionPO promotionPO) {
         super(promotionPO);
         this.startDate = new DateUtil(promotionPO.getStartDate());
         this.endDate = new DateUtil(promotionPO.getEndDate());
@@ -72,14 +72,14 @@ public class Promotion_HotelSpecialDateVO extends Promotion_HotelVO {
 
     @Override
     public PromotionPO toPO() {
-        if(this.promotionID==null){
+        if (this.promotionID == null) {
             return new PromotionPO(this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
-                    "", this.hotelID, 0, Place.Unnecessary, 0);
-        }else {
+                    "", this.hotelID, 0, null, null, 0);
+        } else {
             return new PromotionPO(this.promotionID, this.promotionName, this.promotionType, this.promotionDiscount,
                     this.startDate.toString(), this.endDate.toString(),
-                    "", this.hotelID, 0, Place.Unnecessary, 0);
+                    "", this.hotelID, 0, null, null, 0);
 
         }
 

@@ -107,7 +107,7 @@ public class Order {
         ClientVO client = userBLInfo.getClientByID(order.clientID);
         Hotel_DetailVO hotel = hotelBLInfo.getHotel(order.hotelID);
 
-        BillVO billVO = bill.refresh(order.hotelID, hotel.place, new DateUtil(LocalDate.now()), client.level,
+        BillVO billVO = bill.refresh(order.hotelID, hotel.city, hotel.place, new DateUtil(LocalDate.now()), client.level,
                 client.birthday, client.enterprise, quantity);
 
         // calculate price

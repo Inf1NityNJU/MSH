@@ -17,4 +17,6 @@ public class ConcretePromotion {
     }
 
     public double getPromotionDiscount(PromotionVO promotionVO , Object o){return 0;}
+
+    public double getPromotionDiscount(PromotionVO promotionVO , Object o1, Object o2){return 0;}
 }

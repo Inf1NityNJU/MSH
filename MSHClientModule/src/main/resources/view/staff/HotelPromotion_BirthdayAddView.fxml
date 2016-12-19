@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.HBox?>
 <ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.HotelPromotion_BirthdayAddViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
@@ -63,7 +64,11 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <CommonTextField fx:id="discountTextField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <children>
+                                        <CommonTextField fx:id="discountTextField" prefWidth="100.0"/>
+                                    </children>
+                                </HBox>
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

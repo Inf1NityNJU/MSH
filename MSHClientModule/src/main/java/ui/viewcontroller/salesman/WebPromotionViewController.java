@@ -24,13 +24,11 @@ public class WebPromotionViewController {
     private Stack<Node> stack = new Stack<Node>();
 
     private WebPromotionListViewController webPromotionListViewController;
-
-    private PromotionBLService promotionBLService;
+    private WebPromotionDetailViewController webPromotionDetailViewController;
 
     private PromotionVO promotionVO;
 
     public WebPromotionViewController(MainUIController mainUIController) {
-        this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
         this.mainUIController = mainUIController;
     }
 
@@ -71,6 +69,12 @@ public class WebPromotionViewController {
             e.printStackTrace();
         }
     }
+    /**
+     * 更新策略列表
+     */
+    public void refreshWebPromotionList() {
+        webPromotionListViewController.refreshHotelPromotions();
+    }
 
     /**
      * 展示策略详情
@@ -83,10 +87,9 @@ public class WebPromotionViewController {
             loader.setLocation(getClass().getResource("/view/salesman/WebPromotionDetailView.fxml"));
             ScrollPane view = loader.load();
 
-            WebPromotionDetailViewController webPromotionDetailViewController = loader.getController();
+            webPromotionDetailViewController = loader.getController();
             webPromotionDetailViewController.setWebPromotionViewController(this);
             webPromotionDetailViewController.setMainUIController(mainUIController);
-            webPromotionDetailViewController.setPromotionBLService(promotionBLService);
             webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
 
             Node node = mainUIController.getCenter();
@@ -100,10 +103,10 @@ public class WebPromotionViewController {
     }
 
     /**
-     * 更新策略列表
+     * 更新策略详情
      */
-    public void refreshWebPromotionList() {
-        webPromotionListViewController.showAllWebPromotions();
+    public void refreshWebPromotionDetail(PromotionVO promotionVO) {
+        webPromotionDetailViewController.showWebPromotionDetail(promotionVO);
     }
 
     /**
@@ -113,6 +116,7 @@ public class WebPromotionViewController {
         this.promotionVO = promotionVO;
         this.addWebPromotion(promotionVO.promotionType, true);
     }
+
 
     /**
      * 增加策略
@@ -143,7 +147,6 @@ public class WebPromotionViewController {
             WebPromotion_ClientGradeAddViewController webPromotion_clientGradeAddViewController = loader.getController();
             webPromotion_clientGradeAddViewController.setWebPromotionViewController(this);
             webPromotion_clientGradeAddViewController.setMainUIController(mainUIController);
-            webPromotion_clientGradeAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 webPromotion_clientGradeAddViewController.showEditView(promotionVO);
             }
@@ -170,7 +173,6 @@ public class WebPromotionViewController {
             WebPromotion_SpecialDateAddViewController webPromotion_specialDateAddViewController = loader.getController();
             webPromotion_specialDateAddViewController.setWebPromotionViewController(this);
             webPromotion_specialDateAddViewController.setMainUIController(mainUIController);
-            webPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 webPromotion_specialDateAddViewController.showEditView(promotionVO);
             }
@@ -197,8 +199,7 @@ public class WebPromotionViewController {
             WebPromotion_SpecialPlaceAddViewController webPromotion_specialPlaceAddViewController = loader.getController();
             webPromotion_specialPlaceAddViewController.setWebPromotionViewController(this);
             webPromotion_specialPlaceAddViewController.setMainUIController(mainUIController);
-            webPromotion_specialPlaceAddViewController.setPromotionBLService(promotionBLService);
-            if(isEdit){
+           if(isEdit){
                 webPromotion_specialPlaceAddViewController.showEditView(promotionVO);
             }
 

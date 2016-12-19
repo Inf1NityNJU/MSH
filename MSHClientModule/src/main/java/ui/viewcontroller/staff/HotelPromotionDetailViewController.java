@@ -32,6 +32,7 @@ public class HotelPromotionDetailViewController {
     private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
 
     private MainUIController mainUIController;
+
     @FXML
     private Label nameLabel;
 
@@ -90,7 +91,6 @@ public class HotelPromotionDetailViewController {
 
     public void showHotelPromotionDetail(PromotionVO promotionVO) {
         this.promotionVO = promotionVO;
-        System.out.println(promotionVO.promotionName);
 
         nameLabel.setText(promotionVO.promotionName);
         typeButton.setText(promotionVO.promotionType.getType());

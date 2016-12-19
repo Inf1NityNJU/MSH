@@ -7,6 +7,8 @@ import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
 import component.statebutton.StateButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -70,9 +72,20 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
-            alertViewController = loader.getController();
-            alertViewController.setHotelPromotionAddViewController(this);
+            AlertViewController alertViewController = loader.getController();
             alertViewController.setInfoLabel("确定保存该条酒店促销策略吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
             mainUIController.showPop(pane);
 
         } catch (IOException e) {

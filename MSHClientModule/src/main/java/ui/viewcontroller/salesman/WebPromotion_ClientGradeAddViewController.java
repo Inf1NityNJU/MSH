@@ -1,5 +1,6 @@
 package ui.viewcontroller.salesman;
 
+import bl.blfactory.BLFactoryImpl;
 import bl.userbl.UserBLFactory;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
@@ -9,6 +10,8 @@ import component.mydatepicker.MyDatePicker;
 import component.statebutton.StateButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -21,20 +24,21 @@ import vo.PromotionVO;
 import vo.Promotion_ClientGradeVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Created by vivian on 16/12/6.
  */
-public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddViewController{
-    private PromotionVO promotionVO;
+public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddViewController {
+    private Promotion_ClientGradeVO promotion_clientGradeVO;
     private WebPromotionViewController webPromotionViewController;
-    private PromotionBLService promotionBLService;
 
     private boolean isEdit = false;
     private String promotionID = null;
 
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
+
     private MainUIController mainUIController;
-    private AlertViewController alertViewController;
 
     @FXML
     private CommonTextField nameTextField;
@@ -63,16 +67,12 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
 
         ObservableList observableList = FXCollections.observableArrayList();
         UserBLInfo userBLInfo = UserBLFactory.getUserBLServiceImpl_Salesman();
-        for(int i=0;i<userBLInfo.getAllLevel().size();i++){
-            observableList.add(i+1);
+
+        for (int i = 0; i < userBLInfo.getAllLevel().size(); i++) {
+            observableList.add(i + 1);
         }
 
         levelChoiceBox.setItems(observableList);
-    }
-
-    @Override
-    public void setPromotionBLService(PromotionBLService promotionBLService){
-        this.promotionBLService = promotionBLService;
     }
 
     @Override
@@ -81,20 +81,31 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
     }
 
     @FXML
-    public void clickCancelButton(){
+    public void clickCancelButton() {
         webPromotionViewController.back();
     }
 
     @FXML
-    public void clickSaveButton(){
+    public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
-            alertViewController = loader.getController();
-            alertViewController.setWebPromotionAddViewController(this);
+            AlertViewController alertViewController = loader.getController();
             alertViewController.setInfoLabel("确定保存该条网站促销策略吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
             mainUIController.showPop(pane);
 
         } catch (IOException e) {
@@ -103,36 +114,45 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
     }
 
     @Override
-    public void sureSave(){
+    public void sureSave() {
+
+        String name = nameTextField.getText();
+        double discount = Double.valueOf(discountTextField.getText());
+        DateUtil startDate = new DateUtil(startTime.getDate());
+        DateUtil endDate = new DateUtil(endTime.getDate());
         int clientGrade = (int)levelChoiceBox.getValue();
-        promotionVO = new Promotion_ClientGradeVO(nameTextField.getText(),PromotionType.Web_ClientGrade, Double.valueOf(discountTextField.getText()),
-                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
+
+        promotion_clientGradeVO = new Promotion_ClientGradeVO(name, PromotionType.Web_ClientGrade,
+                discount, startDate, endDate,
                 clientGrade);
-        if(isEdit){
-            promotionVO.promotionID = promotionID;
-            promotionBLService.updatePromotion(promotionVO);
+        if (isEdit) {
+            promotion_clientGradeVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotion_clientGradeVO);
+
+            webPromotionViewController.refreshWebPromotionDetail(promotion_clientGradeVO);
             System.out.println("update successfully!");
-        }else {
-            promotionBLService.addPromotion(promotionVO);
+        } else {
+            promotionBLService.addPromotion(promotion_clientGradeVO);
             System.out.println("save successfully!");
         }
         mainUIController.hidePop();
         webPromotionViewController.refreshWebPromotionList();
-        if (isEdit) {
-            webPromotionViewController.back();
-        }
         webPromotionViewController.back();
     }
 
     @Override
-    public void cancelSave(){
+    public void cancelSave() {
         mainUIController.hidePop();
     }
 
     @FXML
-    public void showEditView(PromotionVO promotionVO){
+    public void showEditView(PromotionVO promotionVO) {
+        promotion_clientGradeVO = (Promotion_ClientGradeVO)promotionVO;
         nameTextField.setText(promotionVO.promotionName);
-        discountTextField.setText(promotionVO.promotionDiscount+"");
+        discountTextField.setText(promotionVO.promotionDiscount + "");
+        startTime.setDate(LocalDate.parse(promotion_clientGradeVO.startDate.toString()));
+        endTime.setDate(LocalDate.parse(promotion_clientGradeVO.endDate.toString()));
+        levelChoiceBox.getSelectionModel().select(promotion_clientGradeVO.clientGrade-1);
         isEdit = true;
         this.promotionID = promotionVO.promotionID;
     }
