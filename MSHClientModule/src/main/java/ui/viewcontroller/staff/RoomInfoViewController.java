@@ -3,9 +3,6 @@ package ui.viewcontroller.staff;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import main.Main;
-import ui.componentcontroller.hotel.AddHotelRoomPaneController;
 import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;
@@ -18,25 +15,9 @@ public class RoomInfoViewController {
     private MainUIController mainUIController;
 
     private Node initNode;
-//    private Node showEditList;
-//    private Node addRoomPane;
     private Stack<Node> stack = new Stack<Node>();
 
-    /**
-     * 浏览全部房间的控制器
-     */
     private RoomAllListViewController roomAllListViewController;
-    /**
-     * 编辑房间信息控制器
-     */
-    private RoomAvailableListViewController roomAvailableListViewController;
-
-    /**
-     * 添加房间信息控制器
-     */
-    private AddHotelRoomPaneController addHotelRoomPaneController;
-
-
 
     public RoomInfoViewController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
@@ -58,7 +39,9 @@ public class RoomInfoViewController {
      */
     public void showRoomAllList() {
         if (initNode != null) {
+            stack.clear();
             mainUIController.setCenter(initNode);
+            roomAllListViewController.showAllRoomList();
             return;
         }
 
@@ -89,7 +72,7 @@ public class RoomInfoViewController {
             listLoader.setLocation(getClass().getResource("/view/staff/RoomAvailableListView.fxml"));
             ScrollPane list = listLoader.load();
 
-            roomAvailableListViewController = listLoader.getController();
+            RoomAvailableListViewController roomAvailableListViewController = listLoader.getController();
             roomAvailableListViewController.setRoomInfoViewController(this);
             roomAvailableListViewController.showAvailableRoomList();
 
@@ -107,19 +90,13 @@ public class RoomInfoViewController {
      * 显示添加房间界面
      */
     public void showAddRoomView() {
-//        if (addRoomPane != null) {
-//            mainUIController.setCenter(addRoomPane);
-//            addHotelRoomPaneController.clean();
-//            return;
-//        }
         try {
             FXMLLoader listLoader = new FXMLLoader();
-            listLoader.setLocation(getClass().getResource("/component/hotel/AddRoomInfoPane.fxml"));
+            listLoader.setLocation(getClass().getResource("/view/staff/RoomAddView.fxml"));
             ScrollPane list = listLoader.load();
 
-            addHotelRoomPaneController = listLoader.getController();
-            addHotelRoomPaneController.setRoomInfoViewController(this);
-            addHotelRoomPaneController.clean();
+            RoomAddViewController roomAddViewController = listLoader.getController();
+            roomAddViewController.setRoomInfoViewController(this);
 
             Node node = mainUIController.getCenter();
             stack.push(node);

@@ -64,8 +64,6 @@ public class ClientBookOrderViewController {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
     }
 
-
-    //TODO
     public void setOrder(OrderVO order) {
         this.order = order;
         orderBLService.startOrder(order);

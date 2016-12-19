@@ -1,24 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.circleimage.CircleImage?>
 <?import component.navbutton.NavButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<?import component.circleimage.CircleImage?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="200.0" style="-fx-background-color: #313B42;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.client.ClientNavbarController">
     <children>
-        <CircleImage radius="50" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
+        <CircleImage layoutX="50.0" layoutY="-50.0" pickOnBounds="true" radius="50">
             <image>
                 <Image url="@../../images/example.jpeg" />
             </image>
         </CircleImage>
       <VBox layoutY="360.0" prefWidth="200.0">
          <children>
-            <NavButton fx:id="searchHotelButton" text="搜索酒店" isCurrentProperty="false" onMouseClicked="#clickSearchHotelButton" />
-            <NavButton fx:id="orderButton" text="我的订单" isCurrentProperty="false" onMouseClicked="#clickOrderButton" />
-            <NavButton fx:id="infoButton" text="个人信息" isCurrentProperty="false" onMouseClicked="#clickInfoButton" />
+            <NavButton fx:id="searchHotelButton" isCurrentProperty="false" onMouseClicked="#clickSearchHotelButton" text="搜索酒店" />
+            <NavButton fx:id="orderButton" isCurrentProperty="false" onMouseClicked="#clickOrderButton" text="我的订单" />
+            <NavButton fx:id="infoButton" isCurrentProperty="false" onMouseClicked="#clickInfoButton" text="个人信息" />
+         </children>
+      </VBox>
+      <Label fx:id="nameLabel" alignment="CENTER" layoutY="70.0" prefHeight="26.0" prefWidth="200.0" text="客户名称" textFill="WHITE">
+         <font>
+            <Font name="PingFang SC Light" size="20.0" />
+         </font>
+      </Label>
+      <VBox layoutY="120.0">
+         <children>
+            <Label fx:id="typeLabel" alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="200.0" text="客户类型：" textFill="WHITE">
+               <font>
+                  <Font name="PingFang SC Regular" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="IDLabel" alignment="BOTTOM_LEFT" prefHeight="26.0" prefWidth="200.0" text="编号：" textFill="WHITE">
+               <font>
+                  <Font name="PingFang SC Regular" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
          </children>
       </VBox>
     </children>

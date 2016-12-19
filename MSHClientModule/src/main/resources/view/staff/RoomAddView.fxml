@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.commontextfield.CommonTextField?>
+<?import component.radioboxpane.RadioBoxPane?>
+<?import component.rectbutton.RectButton?>
+<?import component.titlelabel.TitleLabel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;"
+            stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.staff.RoomAddViewController">
+    <content>
+        <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0"
+              style="-fx-background-color: transparent;">
+            <padding>
+                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+            </padding>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                  prefHeight="640.0" prefWidth="1000.0" spacing="40.0" style="-fx-background-color: #ffffff;">
+                <effect>
+                    <DropShadow color="#40404080" radius="1.0"/>
+                </effect>
+                <padding>
+                    <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+                </padding>
+                <children>
+                    <TitleLabel text="新增房间"/>
+                    <GridPane vgap="40.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity"
+                                               prefWidth="150.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <children>
+                            <Label prefHeight="28.0" prefWidth="56.0" text="房间类型" textFill="#cccccc">
+                                <font>
+                                    <Font name="PingFang SC Regular" size="14.0"/>
+                                </font>
+                            </Label>
+                            <Label prefHeight="28.0" prefWidth="56.0" text="房间单价" textFill="#cccccc"
+                                   GridPane.rowIndex="1">
+                                <font>
+                                    <Font name="PingFang SC Regular" size="14.0"/>
+                                </font>
+                            </Label>
+                            <Label prefHeight="28.0" prefWidth="56.0" text="全部数量" textFill="#cccccc"
+                                   GridPane.rowIndex="2">
+                                <font>
+                                    <Font name="PingFang SC Regular" size="14.0"/>
+                                </font>
+                            </Label>
+                            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <children>
+                                    <Label prefHeight="28.0" prefWidth="15.0" text="¥" textFill="#ff2c14">
+                                        <font>
+                                            <Font name="PingFang SC Regular" size="16.0"/>
+                                        </font>
+                                    </Label>
+                                    <CommonTextField fx:id="priceTextField" prefWidth="100.0"/>
+                                    <Label fx:id="priceAlertLabel" text="请输入正确的价格" textFill="#ff2c14">
+                                        <font>
+                                            <Font name="PingFang SC Regular" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="960.0" spacing="10.0"
+                                  GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <children>
+                                    <CommonTextField fx:id="quantityTextField" prefWidth="100.0"/>
+                                    <Label text="间" textFill="GREY">
+                                        <font>
+                                            <Font name="PingFang SC Regular" size="16.0"/>
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="quantityAlertLabel" text="请输入正确的数量" textFill="#ff2c14">
+                                        <font>
+                                            <Font name="PingFang SC Regular" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                </children>
+                            </HBox>
+                            <RadioBoxPane fx:id="typeBoxPane" hgap="70.0" GridPane.columnIndex="1"/>
+                        </children>
+                    </GridPane>
+                    <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                        <buttons>
+                            <RectButton fx:id="cancelButton" isActiveProperty="false" text="取 消" onMouseClicked="#clickCancelButton">
+                                <font>
+                                    <Font name="PingFang SC Regular" size="13.0"/>
+                                </font>
+                            </RectButton>
+                            <RectButton fx:id="saveButton" text="保 存" onMouseClicked="#clickSaveButton">
+                                <font>
+                                    <Font name="PingFang SC Regular" size="13.0"/>
+                                </font>
+                            </RectButton>
+                        </buttons>
+                    </ButtonBar>
+                </children>
+            </VBox>
+        </VBox>
+    </content>
+    <padding>
+        <Insets bottom="39.0" left="39.0" right="20.0" top="39.0"/>
+    </padding>
+</ScrollPane>

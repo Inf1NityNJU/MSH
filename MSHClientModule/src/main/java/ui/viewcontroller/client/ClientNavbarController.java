@@ -1,8 +1,12 @@
 package ui.viewcontroller.client;
 
+import bl.blfactory.BLFactoryImpl;
+import blservice.userblservice.UserBLInfo;
 import component.navbutton.NavButton;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import ui.viewcontroller.common.MainUIController;
+import vo.ClientVO;
 
 /**
  * Created by Sorumi on 16/11/17.
@@ -12,6 +16,15 @@ public class ClientNavbarController {
     private ClientViewController clientViewController;
 
     @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label typeLabel;
+
+    @FXML
+    private Label IDLabel;
+
+    @FXML
     private NavButton searchHotelButton;
 
     @FXML
@@ -19,6 +32,17 @@ public class ClientNavbarController {
 
     @FXML
     private NavButton infoButton;
+
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+
+    @FXML
+    public void initialize() {
+        String clientID = userBLInfo.getCurrentClientID();
+        ClientVO client = userBLInfo.getClientByID(clientID);
+        nameLabel.setText(client.clientName);
+        typeLabel.setText("客户类型：" + (client.enterprise.equals("") ? "普通客户" : "企业客户"));
+        IDLabel.setText("编号：" + clientID);
+    }
 
     public void setClientViewController(ClientViewController clientViewController) {
         this.clientViewController = clientViewController;
