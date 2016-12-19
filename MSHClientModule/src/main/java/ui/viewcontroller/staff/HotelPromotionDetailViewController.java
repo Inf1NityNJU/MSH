@@ -2,6 +2,7 @@ package ui.viewcontroller.staff;
 
 import bl.blfactory.BLFactoryImpl;
 import bl.hotelbl.Hotel;
+import bl.promotionbl.Promotion;
 import bl.promotionbl.Promotion_HotelSpecialDate;
 import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
@@ -53,6 +54,9 @@ public class HotelPromotionDetailViewController {
     private Label enterpriseLabel;
 
     @FXML
+    private Label discountLabel;
+
+    @FXML
     private RectButton backButton;
 
     @FXML
@@ -86,10 +90,12 @@ public class HotelPromotionDetailViewController {
 
     public void showHotelPromotionDetail(PromotionVO promotionVO) {
         this.promotionVO = promotionVO;
+        System.out.println(promotionVO.promotionName);
 
         nameLabel.setText(promotionVO.promotionName);
         typeButton.setText(promotionVO.promotionType.getType());
         typeButton.setColorProperty(promotionVO.promotionType.getColor());
+        discountLabel.setText(promotionVO.promotionDiscount + "");
 
         clientGradePane.setVisible(false);
         clientGradePane.setManaged(false);
@@ -174,14 +180,14 @@ public class HotelPromotionDetailViewController {
         hotelPromotionViewController.showPromotionDetailEditView(promotionVO);
     }
 
-    public void sureDelete(){
+    private void sureDelete(){
         promotionBLService.deletePromotion(promotionVO.promotionID);
         hotelPromotionViewController.refreshHotelPromotionList();
         hotelPromotionViewController.back();
         mainUIController.hidePop();
     }
 
-    public void cancelDelete(){
+    private void cancelDelete(){
         mainUIController.hidePop();
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
+import util.DateUtil;
 import util.PromotionType;
 import vo.PromotionVO;
 import vo.Promotion_BirthdayVO;
@@ -22,13 +23,14 @@ import java.io.IOException;
 /**
  * Created by vivian on 16/12/9.
  */
-public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddViewController{
-    private PromotionVO promotionVO;
+public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddViewController {
+    private Promotion_BirthdayVO promotion_birthdayVO;
     private HotelPromotionViewController hotelPromotionViewController;
-    private PromotionBLService promotionBLService;
 
     private boolean isEdit = false;
     private String promotionID = null;
+
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
     private MainUIController mainUIController;
@@ -52,22 +54,17 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
     }
 
     @Override
-    public void setPromotionBLService(PromotionBLService promotionBLService){
-        this.promotionBLService = promotionBLService;
-    }
-
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
 
     @Override
-    public void clickCancelButton(){
+    public void clickCancelButton() {
         hotelPromotionViewController.back();
     }
 
     @Override
-    public void clickSaveButton(){
+    public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
@@ -84,33 +81,38 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
     }
 
     @Override
-    public void sureSave(){
-        promotionVO = new Promotion_BirthdayVO(nameTextField.getText(),PromotionType.Hotel_Birthday, Double.valueOf(discountTextField.getText()),
-                userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
-        if(isEdit){
-            promotionVO.promotionID = promotionID;
-            promotionBLService.updatePromotion(promotionVO);
+    public void sureSave() {
+        String hotelID = userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
+        String name = nameTextField.getText();
+        double discount = Double.valueOf(discountTextField.getText());
+
+        promotion_birthdayVO = new Promotion_BirthdayVO(name, PromotionType.Hotel_Birthday,
+                discount, hotelID);
+
+        if (isEdit) {
+            promotion_birthdayVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotion_birthdayVO);
+            hotelPromotionViewController.refreshHotelPromotionDetail(promotion_birthdayVO);
             System.out.println("update successfully!");
-        }else {
-            promotionBLService.addPromotion(promotionVO);
+        } else {
+            promotionBLService.addPromotion(promotion_birthdayVO);
             System.out.println("save successfully!");
         }
         mainUIController.hidePop();
         hotelPromotionViewController.refreshHotelPromotionList();
-//        if(isEdit){
-//            hotelPromotionViewController.back();
-//        }
         hotelPromotionViewController.back();
     }
 
     @Override
-    public void cancelSave(){
+    public void cancelSave() {
         mainUIController.hidePop();
     }
 
-    public void showEditView(PromotionVO promotionVO){
+    public void showEditView(PromotionVO promotionVO) {
+        promotion_birthdayVO = (Promotion_BirthdayVO)promotionVO;
         nameTextField.setText(promotionVO.promotionName);
-        discountTextField.setText(promotionVO.promotionDiscount+"");
+        discountTextField.setText(promotionVO.promotionDiscount + "");
+
         isEdit = true;
         this.promotionID = promotionVO.promotionID;
     }

@@ -124,6 +124,20 @@
                               </Label>
                            </children>
                         </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefWidth="150.0" text="优惠折扣" textFill="#cccccc">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="discountLabel" text="0.9" textFill="GREY">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">

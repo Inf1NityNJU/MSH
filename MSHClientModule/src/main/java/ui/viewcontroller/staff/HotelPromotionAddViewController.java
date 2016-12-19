@@ -7,8 +7,6 @@ import ui.viewcontroller.common.MainUIController;
  * Created by vivian on 16/12/14.
  */
 public abstract class HotelPromotionAddViewController {
-    public void setPromotionBLService(PromotionBLService promotionBLService){}
-
     public void setHotelPromotionViewController(HotelPromotionViewController hotelPromotionViewController){}
 
     public void setMainUIController(MainUIController mainUIController){}

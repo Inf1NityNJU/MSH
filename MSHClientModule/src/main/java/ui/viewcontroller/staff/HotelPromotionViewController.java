@@ -24,13 +24,12 @@ public class HotelPromotionViewController {
     private Stack<Node> stack = new Stack<Node>();
 
     private HotelPromotionListViewController hotelPromotionListViewController;
+    private HotelPromotionDetailViewController hotelPromotionDetailViewController;
 
-    private PromotionBLService promotionBLService;
 
     private PromotionVO promotionVO;
 
     public HotelPromotionViewController(MainUIController mainUIController) {
-        this.promotionBLService = new BLFactoryImpl().getPromotionBLService();
         this.mainUIController = mainUIController;
     }
 
@@ -90,7 +89,7 @@ public class HotelPromotionViewController {
             loader.setLocation(getClass().getResource("/view/staff/HotelPromotionDetailView.fxml"));
             ScrollPane view = loader.load();
 
-            HotelPromotionDetailViewController hotelPromotionDetailViewController = loader.getController();
+            hotelPromotionDetailViewController = loader.getController();
             hotelPromotionDetailViewController.setHotelPromotionViewController(this);
             hotelPromotionDetailViewController.setMainUIController(mainUIController);
             hotelPromotionDetailViewController.showHotelPromotionDetail(promotionVO);
@@ -103,6 +102,12 @@ public class HotelPromotionViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    /**
+     * 更新策略详情
+     */
+    public void refreshHotelPromotionDetail(PromotionVO promotionVO) {
+        hotelPromotionDetailViewController.showHotelPromotionDetail(promotionVO);
     }
 
 
@@ -129,7 +134,7 @@ public class HotelPromotionViewController {
     /**
      * 增加或编辑酒店生日策略
      */
-    public void addHotel_BirthdayPromotion(boolean isEdit) {
+    private void addHotel_BirthdayPromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_BirthdayAddView.fxml"));
@@ -138,7 +143,6 @@ public class HotelPromotionViewController {
             HotelPromotion_BirthdayAddViewController hotelPromotion_birthdayAddViewController = loader.getController();
             hotelPromotion_birthdayAddViewController.setHotelPromotionViewController(this);
             hotelPromotion_birthdayAddViewController.setMainUIController(mainUIController);
-            hotelPromotion_birthdayAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_birthdayAddViewController.showEditView(promotionVO);
             }
@@ -156,7 +160,7 @@ public class HotelPromotionViewController {
     /**
      * 增加或编辑酒店合作企业折扣策略
      */
-    public void addHotel_EnterprisePromotion(boolean isEdit) {
+    private void addHotel_EnterprisePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_EnterpriseAddView.fxml"));
@@ -165,7 +169,6 @@ public class HotelPromotionViewController {
             HotelPromotion_EnterpriseAddViewController hotelPromotion_enterpriseAddViewController = loader.getController();
             hotelPromotion_enterpriseAddViewController.setHotelPromotionViewController(this);
             hotelPromotion_enterpriseAddViewController.setMainUIController(mainUIController);
-            hotelPromotion_enterpriseAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_enterpriseAddViewController.showEditView(promotionVO);
             }
@@ -183,7 +186,7 @@ public class HotelPromotionViewController {
     /**
      * 增加或编辑房间数量折扣策略
      */
-    public void addHotel_RoomQuantityPromotion(boolean isEdit) {
+    private void addHotel_RoomQuantityPromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_RoomQuantityAddView.fxml"));
@@ -192,7 +195,6 @@ public class HotelPromotionViewController {
             HotelPromotion_RoomQuantityAddViewController hotelPromotion_roomQuantityAddViewController = loader.getController();
             hotelPromotion_roomQuantityAddViewController.setHotelPromotionViewController(this);
             hotelPromotion_roomQuantityAddViewController.setMainUIController(mainUIController);
-            hotelPromotion_roomQuantityAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_roomQuantityAddViewController.showEditView(promotionVO);
             }
@@ -210,7 +212,7 @@ public class HotelPromotionViewController {
     /**
      * 增加或编辑特定期间折扣策略
      */
-    public void addHotel_SpecialDatePromotion(boolean isEdit) {
+    private void addHotel_SpecialDatePromotion(boolean isEdit) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/staff/HotelPromotion_SpecialDateAddView.fxml"));
@@ -219,7 +221,6 @@ public class HotelPromotionViewController {
             HotelPromotion_SpecialDateAddViewController hotelPromotion_specialDateAddViewController = loader.getController();
             hotelPromotion_specialDateAddViewController.setHotelPromotionViewController(this);
             hotelPromotion_specialDateAddViewController.setMainUIController(mainUIController);
-            hotelPromotion_specialDateAddViewController.setPromotionBLService(promotionBLService);
             if(isEdit){
                 hotelPromotion_specialDateAddViewController.showEditView(promotionVO);
             }

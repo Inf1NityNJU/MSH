@@ -19,17 +19,19 @@ import vo.PromotionVO;
 import vo.Promotion_HotelSpecialDateVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Created by vivian on 16/12/9.
  */
-public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionAddViewController{
-    private PromotionVO promotionVO;
+public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionAddViewController {
+    private Promotion_HotelSpecialDateVO promotion_hotelSpecialDateVO;
     private HotelPromotionViewController hotelPromotionViewController;
-    private PromotionBLService promotionBLService;
 
     private boolean isEdit = false;
     private String promotionID = null;
+
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
     private MainUIController mainUIController;
@@ -59,22 +61,17 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
     }
 
     @Override
-    public void setPromotionBLService(PromotionBLService promotionBLService){
-        this.promotionBLService = promotionBLService;
-    }
-
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
 
     @Override
-    public void clickCancelButton(){
+    public void clickCancelButton() {
         hotelPromotionViewController.back();
     }
 
     @Override
-    public void clickSaveButton(){
+    public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
@@ -92,33 +89,41 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
     }
 
     @Override
-    public void sureSave(){
-        promotionVO = new Promotion_HotelSpecialDateVO(nameTextField.getText(),PromotionType.Hotel_SpecilaDate, Double.valueOf(discountTextField.getText()),
-                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()), userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()));
-        if(isEdit){
-            promotionVO.promotionID = promotionID;
-            promotionBLService.updatePromotion(promotionVO);
+    public void sureSave() {
+        String hotelID = userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
+        String name = nameTextField.getText();
+        double discount = Double.valueOf(discountTextField.getText());
+        DateUtil startDate = new DateUtil(startTime.getDate());
+        DateUtil endDate = new DateUtil(endTime.getDate());
+
+        promotion_hotelSpecialDateVO = new Promotion_HotelSpecialDateVO(name, PromotionType.Hotel_SpecilaDate,
+                discount, startDate, endDate, hotelID);
+        if (isEdit) {
+            promotion_hotelSpecialDateVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotion_hotelSpecialDateVO);
+            hotelPromotionViewController.refreshHotelPromotionDetail(promotion_hotelSpecialDateVO);
             System.out.println("update successfully!");
-        }else {
-            promotionBLService.addPromotion(promotionVO);
+        } else {
+            promotionBLService.addPromotion(promotion_hotelSpecialDateVO);
             System.out.println("save successfully!");
         }
         mainUIController.hidePop();
+
         hotelPromotionViewController.refreshHotelPromotionList();
-//        if(isEdit){
-//            hotelPromotionViewController.back();
-//        }
         hotelPromotionViewController.back();
     }
 
     @Override
-    public void cancelSave(){
+    public void cancelSave() {
         mainUIController.hidePop();
     }
 
-    public void showEditView(PromotionVO promotionVO){
+    public void showEditView(PromotionVO promotionVO) {
+        promotion_hotelSpecialDateVO = (Promotion_HotelSpecialDateVO) promotionVO;
         nameTextField.setText(promotionVO.promotionName);
-        discountTextField.setText(promotionVO.promotionDiscount+"");
+        discountTextField.setText(promotionVO.promotionDiscount + "");
+        startTime.setDate(LocalDate.parse(promotion_hotelSpecialDateVO.startDate.toString()));
+        endTime.setDate(LocalDate.parse(promotion_hotelSpecialDateVO.endDate.toString()));
         isEdit = true;
         this.promotionID = promotionVO.promotionID;
     }

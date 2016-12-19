@@ -18,17 +18,19 @@ import vo.PromotionVO;
 import vo.Promotion_RoomQuantityVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Created by vivian on 16/12/9.
  */
-public class HotelPromotion_RoomQuantityAddViewController extends HotelPromotionAddViewController{
-    private PromotionVO promotionVO;
+public class HotelPromotion_RoomQuantityAddViewController extends HotelPromotionAddViewController {
+    private Promotion_RoomQuantityVO promotion_roomQuantityVO;
     private HotelPromotionViewController hotelPromotionViewController;
-    private PromotionBLService promotionBLService;
 
     private boolean isEdit = false;
     private String promotionID = null;
+
+    private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
 
     private MainUIController mainUIController;
@@ -62,22 +64,17 @@ public class HotelPromotion_RoomQuantityAddViewController extends HotelPromotion
     }
 
     @Override
-    public void setPromotionBLService(PromotionBLService promotionBLService){
-        this.promotionBLService = promotionBLService;
-    }
-
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
 
     @Override
-    public void clickCancelButton(){
+    public void clickCancelButton() {
         hotelPromotionViewController.back();
     }
 
     @Override
-    public void clickSaveButton(){
+    public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
@@ -95,36 +92,46 @@ public class HotelPromotion_RoomQuantityAddViewController extends HotelPromotion
     }
 
     @Override
-    public void sureSave(){
-        promotionVO = new Promotion_RoomQuantityVO(nameTextField.getText(),PromotionType.Hotel_RoomQuantity, Double.valueOf(discountTextField.getText()),
-                new DateUtil(startTime.getDate()), new DateUtil(endTime.getDate()),
-                userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID()), Integer.valueOf(roomQuantityTextField.getText()));
-        if(isEdit){
-            promotionVO.promotionID = promotionID;
-            promotionBLService.updatePromotion(promotionVO);
+    public void sureSave() {
+        String hotelID = userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
+        String name = nameTextField.getText();
+        double discount = Double.valueOf(discountTextField.getText());
+        DateUtil startDate = new DateUtil(startTime.getDate());
+        DateUtil endDate = new DateUtil(endTime.getDate());
+        int roomQuantity = Integer.valueOf(roomQuantityTextField.getText());
+
+        promotion_roomQuantityVO = new Promotion_RoomQuantityVO(name, PromotionType.Hotel_RoomQuantity,
+                discount, startDate, endDate, hotelID, roomQuantity);
+
+        if (isEdit) {
+            promotion_roomQuantityVO.promotionID = promotionID;
+            promotionBLService.updatePromotion(promotion_roomQuantityVO);
+            hotelPromotionViewController.refreshHotelPromotionDetail(promotion_roomQuantityVO);
             System.out.println("update successfully!");
-        }else {
-            promotionBLService.addPromotion(promotionVO);
+
+        } else {
+            promotionBLService.addPromotion(promotion_roomQuantityVO);
             System.out.println("save successfully!");
         }
         mainUIController.hidePop();
+
         hotelPromotionViewController.refreshHotelPromotionList();
-//        if(isEdit){
-//            hotelPromotionViewController.back();
-//        }
         hotelPromotionViewController.back();
+
     }
 
     @Override
-    public void cancelSave(){
+    public void cancelSave() {
         mainUIController.hidePop();
     }
 
-    public void showEditView(PromotionVO promotionVO){
-        Promotion_RoomQuantityVO promotion_roomQuantityVO = (Promotion_RoomQuantityVO)promotionVO;
+    public void showEditView(PromotionVO promotionVO) {
+        promotion_roomQuantityVO = (Promotion_RoomQuantityVO) promotionVO;
         nameTextField.setText(promotionVO.promotionName);
-        discountTextField.setText(promotionVO.promotionDiscount+"");
-        roomQuantityTextField.setText(promotion_roomQuantityVO.roomQuantity+"");
+        discountTextField.setText(promotionVO.promotionDiscount + "");
+        roomQuantityTextField.setText(promotion_roomQuantityVO.roomQuantity + "");
+        startTime.setDate(LocalDate.parse(promotion_roomQuantityVO.startDate.toString()));
+        endTime.setDate(LocalDate.parse(promotion_roomQuantityVO.endDate.toString()));
         isEdit = true;
         this.promotionID = promotionVO.promotionID;
     }
