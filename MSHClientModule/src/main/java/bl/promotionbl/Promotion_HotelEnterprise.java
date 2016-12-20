@@ -19,6 +19,8 @@ public class Promotion_HotelEnterprise extends ConcretePromotion {
             String currentEnterprise = (String) o;
             Promotion_EnterpriseVO promotion_enterpriseVO = (Promotion_EnterpriseVO) promotionVO;
             if (dateUtil.isInRange(promotion_enterpriseVO.startDate, promotion_enterpriseVO.endDate)) {
+
+                System.out.println();
                 if (promotion_enterpriseVO.enterpriseName.equals(currentEnterprise)) {
                     discount = promotion_enterpriseVO.promotionDiscount;
                 }

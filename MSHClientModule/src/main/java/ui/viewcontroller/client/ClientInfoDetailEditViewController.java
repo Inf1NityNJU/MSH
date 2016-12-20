@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import ui.viewcontroller.manager.ClientManagementListViewController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
+import util.ResultMessage;
 import vo.ClientVO;
 
 import java.time.LocalDate;
@@ -42,7 +43,7 @@ public class ClientInfoDetailEditViewController {
     private StateButton enterpriseButton;
 
     @FXML
-    private Label typeHintLabel;
+    private Label enterpriseLabel;
 
     @FXML
     private CommonTextField enterpriseText;
@@ -69,6 +70,8 @@ public class ClientInfoDetailEditViewController {
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
         accountLabel.setText(clientVO.account);
+        birthdayPicker.setDate(LocalDate.parse(clientVO.birthday.toString()));
+
         if (clientVO.enterprise.equals("")) {
             enterpriseButton.setVisible(false);
             enterpriseButton.setManaged(false);
@@ -76,17 +79,13 @@ public class ClientInfoDetailEditViewController {
             enterpriseText.setVisible(false);
             enterpriseText.setManaged(false);
 
-            typeHintLabel.setText("生日");
-            birthdayPicker.setDate(LocalDate.parse(clientVO.birthday.toString()));
+            enterpriseLabel.setVisible(false);
+            enterpriseLabel.setManaged(false);
 
         } else {
             normalButton.setVisible(false);
             normalButton.setManaged(false);
 
-            birthdayPicker.setVisible(false);
-            birthdayPicker.setManaged(false);
-
-            typeHintLabel.setText("企业名称");
             enterpriseText.setText(clientVO.enterprise);
         }
 
@@ -96,7 +95,6 @@ public class ClientInfoDetailEditViewController {
 
     public void clickBackButton() {
         clientInfoViewController.back();
-//        clientInfoViewController.showClientInfo();
     }
 
     public void clickSaveButton() {
@@ -105,17 +103,20 @@ public class ClientInfoDetailEditViewController {
 
         if (normalButton.visibleProperty().getValue()) {
             clientVO.enterprise = "";
-            DateUtil birthday = new DateUtil(birthdayPicker.getDate());
-            clientVO.birthday = birthday;
-
         } else {
             clientVO.enterprise = enterpriseText.getText();
         }
 
-        userBLService.update(clientVO);
+        DateUtil birthday = new DateUtil(birthdayPicker.getDate());
+        clientVO.birthday = birthday;
 
-        clientInfoViewController.back();
-        clientInfoViewController.showClientInfo();
+        ResultMessage rm = userBLService.update(clientVO);
+
+        if (rm == ResultMessage.SUCCESS) {
+            clientInfoViewController.back();
+            clientInfoViewController.showClientInfo();
+        }
+
     }
 
 }

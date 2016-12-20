@@ -34,7 +34,7 @@ public class MinPromotionTest {
 
     @Test
         public void testMinHotelProm(){
-        Promotion_HotelVO promotion = minPromotion.getMinHotelProm("00000001", new DateUtil(2016,01,12), new DateUtil(2016,01,11), "001", 3);
+        Promotion_HotelVO promotion = minPromotion.getMinHotelProm("00000000", new DateUtil(2016,12,12), new DateUtil(2016,01,11), "名字", 3);
         assertEquals(0.8, promotion.promotionDiscount, 0);
     }
 }
