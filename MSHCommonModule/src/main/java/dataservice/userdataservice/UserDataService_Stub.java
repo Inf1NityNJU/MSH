@@ -177,6 +177,11 @@ public class UserDataService_Stub implements UserDataService {
         }
     }
 
+    //TODO
+    public StaffPO getStaffByHotelID(String hotelID){
+        return null;
+    }
+
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
         if (clientID.equals("000000007")) {
             return ResultMessage.SUCCESS;

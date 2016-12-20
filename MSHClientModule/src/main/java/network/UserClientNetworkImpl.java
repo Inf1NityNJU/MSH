@@ -224,6 +224,15 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
+    public StaffPO getStaffByHotelID(String hotelID) {
+        try {
+            return userServerNetworkService.getStaffByHotelID(hotelID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public ResultMessage addLevel(LevelPO levelPO) {
         try {
             return userServerNetworkService.addLevel(levelPO);
@@ -269,7 +278,7 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
         }
     }
 
-    public int getLevelByCredit(int credit){
+    public int getLevelByCredit(int credit) {
         try {
             return userServerNetworkService.getLevelByCredit(credit);
         } catch (Exception e) {

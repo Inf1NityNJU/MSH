@@ -1,5 +1,6 @@
 package network.usernetworkservice;
 
+import com.sun.org.apache.regexp.internal.RE;
 import dataservice.userdataservice.UserDataService;
 import po.*;
 import util.LoginState;
@@ -49,6 +50,8 @@ public interface UserServerNetworkService extends Remote {
     public ResultMessage deleteSalesman(String salesmanID) throws RemoteException;
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword) throws RemoteException;
+
+    public StaffPO getStaffByHotelID(String hotelID) throws RemoteException;
 
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) throws RemoteException;
 

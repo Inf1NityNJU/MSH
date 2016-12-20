@@ -70,6 +70,14 @@ public interface UserBLInfo {
     public SalesmanVO getSalesmanByID(String ID);
 
     /**
+     * 通过酒店ID得到酒店工作人员
+     *
+     * @param hotelID
+     * @return
+     */
+    public StaffVO getStaffByHotelID(String hotelID);
+
+    /**
      * 给客户增加信用记录
      *
      * @param clientID

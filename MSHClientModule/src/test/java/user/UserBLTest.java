@@ -69,16 +69,18 @@ public class UserBLTest {
 
         */
 
-        UserBLService userBLService = new BLFactoryImpl().getClientBLService();
-        userBLService.login("s", "s");
-
-        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
-        System.out.println(userBLInfo.getCurrentClientID());
-
-        userBLService = new BLFactoryImpl().getStaffBLService();
-        userBLService.login("AAAAA", "B");
-
-        userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
-        System.out.println(userBLInfo.getCurrentStaffID());
+//        UserBLService userBLService = new BLFactoryImpl().getClientBLService();
+//        userBLService.login("s", "s");
+//
+//        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+//        System.out.println(userBLInfo.getCurrentClientID());
+//
+//        userBLService = new BLFactoryImpl().getStaffBLService();
+//        userBLService.login("AAAAA", "B");
+//
+//        userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+//        System.out.println(userBLInfo.getCurrentStaffID());
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+        System.out.println(userBLInfo.getStaffByHotelID("00000001").staffID);
     }
 }

@@ -179,6 +179,14 @@ public interface UserClientNetworkService extends Remote {
     public ArrayList<CreditPO> searchCreditByID(String clientID);
 
     /**
+     * 通过酒店ID得到酒店工作人员
+     *
+     * @param hotelID
+     * @return
+     */
+    public StaffPO getStaffByHotelID(String hotelID);
+
+    /**
      * 增加一条等级信息
      *
      * @param levelPO

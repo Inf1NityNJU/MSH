@@ -43,7 +43,6 @@ public class Staff extends User {
     public ResultMessage add(UserVO userVO) {
         StaffVO_Register staffVO = (StaffVO_Register) userVO;
         StaffPO staffPO = new StaffPO(null, staffVO.staffName, staffVO.hotelID, staffVO.account, staffVO.password);
-//        return userDataService.addStaff(staffPO);
         return userClientNetwork.addStaff(staffPO);
     }
 
@@ -55,7 +54,6 @@ public class Staff extends User {
      */
     public StaffVO searchByID(String staffID) {
         StaffPO staffPO = super.userClientNetwork.searchStaffByID(staffID);
-//        StaffPO staffPO = userDataService.searchStaffByID(staffID);
         if (staffPO == null) {
             return null;
         } else {
@@ -72,10 +70,8 @@ public class Staff extends User {
      */
     public ResultMessage update(UserVO userVO) {
         StaffVO staffVO = (StaffVO) userVO;
-//        StaffPO tmpPO = userDataService.searchStaffByID(staffVO.staffID);
         StaffPO tmpPO = userClientNetwork.searchStaffByID(staffVO.staffID);
         StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, tmpPO.getAccount(), tmpPO.getPassword());
-//        return userDataService.updateStaff(staffVO.staffID, staffPO);
         return userClientNetwork.updateStaff(staffVO.staffID, staffPO);
     }
 
@@ -86,7 +82,6 @@ public class Staff extends User {
      * @return 是否删除成功
      */
     public ResultMessage delete(String staffID) {
-//        return userDataService.deleteStaff(staffID);
         return userClientNetwork.deleteStaff(staffID);
     }
 
@@ -97,7 +92,6 @@ public class Staff extends User {
      * @return 符合关键词的所有酒店工作人员
      */
     public ArrayList<StaffVO> search(String keyword) {
-//        ArrayList<StaffPO> staffPOs = userDataService.searchStaff(keyword);
         ArrayList<StaffPO> staffPOs = userClientNetwork.searchStaff(keyword);
         ArrayList<StaffVO> staffVOs = new ArrayList<StaffVO>();
         for (StaffPO staffPO : staffPOs) {
@@ -114,5 +108,20 @@ public class Staff extends User {
      */
     public String getHotelIDByStaffID(String ID) {
         return userClientNetwork.searchStaffByID(ID).getHotelID();
+    }
+
+    /**
+     * 通过酒店ID得到酒店工作人员
+     *
+     * @param hotelID
+     * @return
+     */
+    public StaffVO getStaffByHotelID(String hotelID){
+        StaffPO staffPO = super.userClientNetwork.getStaffByHotelID(hotelID);
+        if (staffPO == null) {
+            return null;
+        } else {
+            return new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount());
+        }
     }
 }

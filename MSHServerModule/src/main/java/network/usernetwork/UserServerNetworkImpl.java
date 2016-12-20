@@ -144,6 +144,11 @@ public class UserServerNetworkImpl extends UnicastRemoteObject implements UserSe
         return userDataService.searchCreditByID(clientID);
     }
 
+    public StaffPO getStaffByHotelID(String hotelID){
+        userDataService = UserDataServiceFactory.getStaffDataService();
+        return userDataService.getStaffByHotelID(hotelID);
+    }
+
     public ResultMessage addLevel(LevelPO levelPO) {
         userDataService = UserDataServiceFactory.getSalesmanDataService();
         return userDataService.addLevel(levelPO);

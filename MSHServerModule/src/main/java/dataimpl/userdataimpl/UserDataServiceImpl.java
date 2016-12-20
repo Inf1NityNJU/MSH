@@ -455,6 +455,16 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     /**
+     * 通过酒店ID得到酒店工作人员
+     *
+     * @param hotelID
+     * @return
+     */
+    public StaffPO getStaffByHotelID(String hotelID){
+        return staffDataHelper.exactlyQuery("hotelID", hotelID);
+    }
+
+    /**
      * 增加一条等级信息
      *
      * @param levelPO

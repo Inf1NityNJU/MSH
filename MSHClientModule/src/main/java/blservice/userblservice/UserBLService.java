@@ -100,6 +100,7 @@ public interface UserBLService {
     public ArrayList<CreditVO> searchCreditByID(String clientID);
 
 
+
     /**
      * 增加一条等级信息
      *

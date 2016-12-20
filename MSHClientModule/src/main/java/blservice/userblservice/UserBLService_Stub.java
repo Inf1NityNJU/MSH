@@ -161,7 +161,7 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
 
 
     //TODO
-    public ArrayList<LevelVO> getAllLevel(){
+    public ArrayList<LevelVO> getAllLevel() {
         return null;
     }
 
@@ -179,22 +179,27 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
     }
 
     //TODO
-    public ResultMessage updateLevel(LevelVO levelVO){
+    public ResultMessage updateLevel(LevelVO levelVO) {
         return null;
     }
 
     //TODO
-    public ResultMessage addLevel(LevelVO levelVO){
+    public ResultMessage addLevel(LevelVO levelVO) {
         return null;
     }
 
     //TODO
-    public ResultMessage deleteLevel(String ID){
+    public ResultMessage deleteLevel(String ID) {
         return null;
     }
 
     //TODO
-    public LevelVO getLevel(String ID){
+    public StaffVO getStaffByHotelID(String hotelID) {
+        return null;
+    }
+
+    //TODO
+    public LevelVO getLevel(String ID) {
         return null;
     }
 
@@ -204,15 +209,15 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
     }
 
     @Override
-    public String getCurrentClientID(){
+    public String getCurrentClientID() {
         return "000000001";
     }
 
-    public String getCurrentStaffID(){
+    public String getCurrentStaffID() {
         return "300001";
     }
 
-    public String getCurrentSalesmanID(){
+    public String getCurrentSalesmanID() {
         return "100001";
     }
 

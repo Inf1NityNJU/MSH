@@ -318,6 +318,21 @@ public class UserBLServiceImpl implements UserBLService, UserBLInfo {
     }
 
     /**
+     * 通过酒店ID得到酒店工作人员
+     *
+     * @param hotelID
+     * @return
+     */
+    public StaffVO getStaffByHotelID(String hotelID) {
+        if (user instanceof Staff) {
+            Staff staff = (Staff) user;
+            return staff.getStaffByHotelID(hotelID);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * 得到当前用户
      *
      * @return
