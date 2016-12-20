@@ -42,6 +42,11 @@ public class SalesmanNavbarController {
             nameLabel.setText(salesman.salesmanName);
             IDLabel.setText("编号：" + salesmanID);
         }
+
+        orderManageButton.setIcon("\ue673");
+        clientRechargeButton.setIcon("\ue678");
+        promotionButton.setIcon("\ue676");
+        clientGradeButton.setIcon("\ue674");
     }
 
     public void setSalesmanViewController(SalesmanViewController salesmanViewController) {
