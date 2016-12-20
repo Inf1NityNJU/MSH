@@ -168,7 +168,7 @@ public class Client extends User {
     }
 
     /**
-     * 根据信c're用值得到等级
+     * 根据信用值得到等级
      * @param credit
      * @return
      */
