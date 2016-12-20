@@ -7,6 +7,7 @@ import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import ui.viewcontroller.client.ClientInfoViewController;
 import util.Encryptor;
 
 /**
@@ -15,6 +16,7 @@ import util.Encryptor;
 public class ResetPasswordViewController {
 
     private ClientManagementViewController clientManagementViewController;
+    private ClientInfoViewController clientInfoViewController;
 
     private WorkerManagementViewController workerManagementViewController;
 
@@ -63,11 +65,17 @@ public class ResetPasswordViewController {
         this.workerManagementViewController = workerManagementViewController;
     }
 
+    public void setClientInfoViewController(ClientInfoViewController clientInfoViewController) {
+        this.clientInfoViewController = clientInfoViewController;
+    }
+
     public void clickBackButton() {
-        if (clientManagementViewController != null) {
-            clientManagementViewController.back();
+        if (clientInfoViewController != null) {
+            clientInfoViewController.back();
         } else if (workerManagementViewController != null) {
             workerManagementViewController.back();
+        } else if (clientManagementViewController != null) {
+            clientManagementViewController.back();
         } else {
             return;
         }

@@ -97,7 +97,10 @@ public class ClientInfoDetailViewController {
     }
 
     public void clickPasswordButton() {
-//        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
+        String clientID = userBLInfo.getCurrentClientID();
+        ClientVO clientVO = userBLInfo.getClientByID(clientID);
+
+        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
     }
 
     public void clickEditButton() {
