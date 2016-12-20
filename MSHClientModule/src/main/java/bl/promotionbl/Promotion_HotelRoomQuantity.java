@@ -19,7 +19,7 @@ public class Promotion_HotelRoomQuantity extends ConcretePromotion {
             int currentRoomQuantity = (Integer) o;
             Promotion_RoomQuantityVO promotion_roomQuantityVO = (Promotion_RoomQuantityVO) promotionVO;
             if (dateUtil.isInRange(promotion_roomQuantityVO.startDate, promotion_roomQuantityVO.endDate)) {
-                if (promotion_roomQuantityVO.roomQuantity == currentRoomQuantity) {
+                if (promotion_roomQuantityVO.roomQuantity <= currentRoomQuantity) {
                     discount = promotion_roomQuantityVO.promotionDiscount;
                 }
             }

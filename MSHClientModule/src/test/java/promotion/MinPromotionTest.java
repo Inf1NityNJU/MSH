@@ -25,7 +25,7 @@ public class MinPromotionTest {
 
     @Test
     public void testMinWebProm(){
-        Promotion_WebVO promotion = minPromotion.getMinWebProm(new DateUtil(2016,01,11), 2, City.NanJing, Place.TangShan);
+        Promotion_WebVO promotion = minPromotion.getMinWebProm(new DateUtil(2016,1,10), 2, City.NanJing, Place.XianLin);
         assertEquals(0.50, promotion.promotionDiscount, 0);
     }
 
@@ -34,7 +34,7 @@ public class MinPromotionTest {
 
     @Test
         public void testMinHotelProm(){
-        Promotion_HotelVO promotion = minPromotion.getMinHotelProm("02", new DateUtil(2016,01,11), new DateUtil(2016,01,11), "001", 5);
-        assertEquals(0.40, promotion.promotionDiscount, 0);
+        Promotion_HotelVO promotion = minPromotion.getMinHotelProm("00000001", new DateUtil(2016,01,12), new DateUtil(2016,01,11), "001", 3);
+        assertEquals(0.8, promotion.promotionDiscount, 0);
     }
 }

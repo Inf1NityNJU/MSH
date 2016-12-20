@@ -104,6 +104,9 @@ public class ClientHotelSearchPaneController {
                 placeSelect.setValue(city.getPlaces()[0].getName());
             }
         });
+
+        scoreSequenceButton.setIsActive(true);
+        scoreSequenceButton.setState(SequenceButtonState.Descending);
     }
 
     @FXML

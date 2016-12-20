@@ -100,7 +100,7 @@ public class ClientHotelListViewController {
     public void searchHotel(FilterFlagsVO filterFlagsVO) {
         hotelBLService = HotelBLFactory.getHotelBLService();
         hotels = hotelBLService.searchHotel(filterFlagsVO);
-        sortHotel(HotelSortMethod.ScoreAscendingSort);
+        sortHotel(HotelSortMethod.ScoreDescendingSort);
     }
 
     public void sortHotel(HotelSortMethod sortMethod) {
