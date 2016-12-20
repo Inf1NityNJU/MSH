@@ -127,7 +127,7 @@ public class ClientHotelSearchPaneController {
         double maxPrice = roomPriceSlider.getMaxValue();
         //date
         DateUtil start = new DateUtil(checkInDatePicker.getDate());
-        DateUtil end = new DateUtil(checkOutDatePicker.getDate());
+        DateUtil end = new DateUtil(checkOutDatePicker.getDate().plusDays(-1));
         //quantity
         String quantityName = roomQuantitySelect.getText();
         int quantity = 0;

@@ -171,12 +171,12 @@ public class Order {
 
         if (rm == ResultMessage.SUCCESS) {
 
-            //TODO
-//            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
-//            DateUtil lastDate = new DateUtil(tmpDate.plusDays(1));
+            //前一天
+            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
+            DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
 
             for (OrderRoomVO orderRoomVO : roomVOs) {
-                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, order.checkOutDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
+                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
                 hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
             }
         }
@@ -416,12 +416,6 @@ public class Order {
         }
 
         BillVO billVO = new BillVO(orderPO);
-
-//        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderPO.getOrderID());
-//        AssessmentVO assessmentVO = null;
-//        if (assessmentPO != null) {
-//            assessmentVO = new AssessmentVO(assessmentPO);
-//        }
 
         AssessmentVO assessmentVO = getOrderAssessment(orderPO.getOrderID());
 
