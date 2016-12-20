@@ -7,6 +7,7 @@
 <?import component.myrangeslider.MyRangeSlider?>
 <?import component.radioboxpane.RadioBoxPane?>
 <?import component.selectpane.SelectPane?>
+<?import component.sequencebutton.SequenceButton?>
 <?import java.lang.Integer?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
@@ -40,6 +41,7 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints />
                   <RowConstraints />
                   <RowConstraints />
               </rowConstraints>
@@ -140,6 +142,13 @@
                      </items>
                   </RadioBoxPane>
                   <MyCheckBox fx:id="orderedBox" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <SequenceButton fx:id="scoreSequenceButton" text="评分" onMouseClicked="#clickScoreSequenceButton"/>
+                        <SequenceButton fx:id="priceSequenceButton" text="价格" onMouseClicked="#clickPriceSequenceButton"/>
+                        <SequenceButton fx:id="starSequenceButton" text="星级" onMouseClicked="#clickStarSequenceButton"/>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
             <CommonTextField fx:id="keywordTextField" layoutX="258.0" prefHeight="60.0" prefWidth="640.0" promptText="输入关键字" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="0.0" />

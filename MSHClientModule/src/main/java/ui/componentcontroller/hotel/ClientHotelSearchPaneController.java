@@ -10,16 +10,15 @@ import component.myrangeslider.MyRangeSlider;
 import component.radioboxpane.RadioBoxPane;
 import component.selectpane.SelectPane;
 
+import component.sequencebutton.SequenceButton;
+import component.sequencebutton.SequenceButton.SequenceButtonState;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientHotelListViewController;
 
-import util.DateUtil;
-import util.City;
-import util.Place;
-import util.RoomType;
+import util.*;
 import vo.FilterFlagsVO;
 
 import java.time.LocalDate;
@@ -67,7 +66,16 @@ public class ClientHotelSearchPaneController {
     @FXML
     private MyCheckBox orderedBox;
 
-    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+    @FXML
+    private SequenceButton scoreSequenceButton;
+
+    @FXML
+    private SequenceButton priceSequenceButton;
+
+    @FXML
+    private SequenceButton starSequenceButton;
+
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
 
 
     public void setClientHotelListViewController(ClientHotelListViewController clientHotelListViewController) {
@@ -119,9 +127,9 @@ public class ClientHotelSearchPaneController {
         DateUtil end = new DateUtil(checkOutDatePicker.getDate());
         //quantity
         String quantityName = roomQuantitySelect.getText();
-        int quantity=0;
-        if(quantityName.charAt(0)!='房'){
-           quantity = Integer.parseInt(quantityName.substring(0, 1));
+        int quantity = 0;
+        if (quantityName.charAt(0) != '房') {
+            quantity = Integer.parseInt(quantityName.substring(0, 1));
         }
         //star
         String starName = starPane.getText();
@@ -147,22 +155,79 @@ public class ClientHotelSearchPaneController {
             }
         }
         //score
-        int minScore=0;
-        int maxScore=0;
-        if(minScoreBox.getSelectionModel().getSelectedItem()!=null) {
+        int minScore = 0;
+        int maxScore = 0;
+        if (minScoreBox.getSelectionModel().getSelectedItem() != null) {
             minScore = (Integer) minScoreBox.getSelectionModel().getSelectedItem();
         }
-        if(minScoreBox.getSelectionModel().getSelectedItem()!=null) {
+        if (minScoreBox.getSelectionModel().getSelectedItem() != null) {
             maxScore = (Integer) maxScoreBox.getSelectionModel().getSelectedItem();
         }
         //ordered
-        String clientID=null;
-        if(orderedBox.getIsActiveProperty()){
-              clientID=userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
+        String clientID = null;
+        if (orderedBox.getIsActiveProperty()) {
+            clientID = userBLInfo.getCurrentClientID();
         }
 
         FilterFlagsVO flags = new FilterFlagsVO(city, place, name, roomType, minPrice, maxPrice, start, end, quantity, star, minScore, maxScore, clientID);
         System.out.println(flags);
-        clientHotelListViewController.showHotel(flags);
+        clientHotelListViewController.searchHotel(flags);
+    }
+
+    @FXML
+    private void clickScoreSequenceButton() {
+        if (!scoreSequenceButton.getIsActive()) {
+            scoreSequenceButton.setIsActive(true);
+            priceSequenceButton.setIsActive(false);
+            starSequenceButton.setIsActive(false);
+            scoreSequenceButton.setState(SequenceButtonState.Descending);
+            clientHotelListViewController.sortHotel(HotelSortMethod.ScoreDescendingSort);
+        } else {
+            if (scoreSequenceButton.getState() == SequenceButtonState.Descending) {
+                scoreSequenceButton.setState(SequenceButtonState.Ascending);
+                clientHotelListViewController.sortHotel(HotelSortMethod.ScoreAscendingSort);
+            } else {
+                scoreSequenceButton.setState(SequenceButtonState.Descending);
+                clientHotelListViewController.sortHotel(HotelSortMethod.ScoreDescendingSort);
+            }
+        }
+    }
+
+    @FXML
+    private void clickPriceSequenceButton() {
+        if (!priceSequenceButton.getIsActive()) {
+            priceSequenceButton.setIsActive(true);
+            scoreSequenceButton.setIsActive(false);
+            starSequenceButton.setIsActive(false);
+            priceSequenceButton.setState(SequenceButtonState.Descending);
+            clientHotelListViewController.sortHotel(HotelSortMethod.PriceDescendingSort);
+        } else {
+            if (priceSequenceButton.getState() == SequenceButtonState.Descending) {
+                priceSequenceButton.setState(SequenceButtonState.Ascending);
+                clientHotelListViewController.sortHotel(HotelSortMethod.PriceAscendingSort);
+            } else {
+                priceSequenceButton.setState(SequenceButtonState.Descending);
+                clientHotelListViewController.sortHotel(HotelSortMethod.PriceDescendingSort);
+            }
+        }
+    }
+
+    @FXML
+    private void clickStarSequenceButton() {
+        if (!starSequenceButton.getIsActive()) {
+            starSequenceButton.setIsActive(true);
+            scoreSequenceButton.setIsActive(false);
+            priceSequenceButton.setIsActive(false);
+            starSequenceButton.setState(SequenceButtonState.Descending);
+            clientHotelListViewController.sortHotel(HotelSortMethod.StarDescendingSort);
+        } else {
+            if (starSequenceButton.getState() == SequenceButtonState.Descending) {
+                starSequenceButton.setState(SequenceButtonState.Ascending);
+                clientHotelListViewController.sortHotel(HotelSortMethod.StarAscendingSort);
+            } else {
+                starSequenceButton.setState(SequenceButtonState.Descending);
+                clientHotelListViewController.sortHotel(HotelSortMethod.StarDescendingSort);
+            }
+        }
     }
 }

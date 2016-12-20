@@ -11,8 +11,10 @@ import main.Main;
 import ui.componentcontroller.hotel.ClientHotelCellController;
 import ui.componentcontroller.hotel.ClientHotelPagePaneController;
 import ui.componentcontroller.hotel.ClientHotelSearchPaneController;
+import util.HotelSortMethod;
 import vo.FilterFlagsVO;
 import vo.Hotel_BriefVO;
+import vo.Hotel_DetailVO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class ClientHotelListViewController {
 
     private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
 
-    private ArrayList<Hotel_BriefVO> hotels = new ArrayList<>();
+    private ArrayList<Hotel_DetailVO> hotels = new ArrayList<>();
 
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
@@ -95,9 +97,37 @@ public class ClientHotelListViewController {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
     }
 
-    public void showHotel(FilterFlagsVO filterFlagsVO) {
+    public void searchHotel(FilterFlagsVO filterFlagsVO) {
         hotelBLService = HotelBLFactory.getHotelBLService();
-        hotels = hotelBLService.searchHotelInBriefVO(filterFlagsVO);
+        hotels = hotelBLService.searchHotel(filterFlagsVO);
+        sortHotel(HotelSortMethod.ScoreAscendingSort);
+    }
+
+    public void sortHotel(HotelSortMethod sortMethod) {
+        switch (sortMethod) {
+            case ScoreAscendingSort:
+                hotelBLService.scoreAscendingSort(hotels);
+                break;
+            case ScoreDescendingSort:
+                hotelBLService.scoreDescendingSort(hotels);
+                break;
+            case PriceAscendingSort:
+                hotelBLService.priceAscendingSort(hotels);
+                break;
+            case PriceDescendingSort:
+                hotelBLService.priceDescendingSort(hotels);
+                break;
+            case StarAscendingSort:
+                hotelBLService.starAscendingSort(hotels);
+                break;
+            case StarDescendingSort:
+                hotelBLService.starDescendingSort(hotels);
+                break;
+        }
+        showHotel();
+    }
+
+    private void showHotel() {
 
         int size = hotels.size();
         clientHotelPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
@@ -113,7 +143,7 @@ public class ClientHotelListViewController {
     public void turnPage(int page) {
         int fromIndex = (page - 1) * NUM_OF_CELL;
         int toIndex = Math.min(page * NUM_OF_CELL, hotels.size());
-        List<Hotel_BriefVO> tmpHotels = hotels.subList(fromIndex, toIndex);
+        List<Hotel_DetailVO> tmpHotels = hotels.subList(fromIndex, toIndex);
 
         setCells(tmpHotels);
     }
@@ -126,19 +156,19 @@ public class ClientHotelListViewController {
         contentVBox.getChildren().remove(pagePane);
     }
 
-    private void setCells(List<Hotel_BriefVO> hotel_BriefVOs) {
+    private void setCells(List<Hotel_DetailVO> hotels) {
 
 
-        if (hotel_BriefVOs.size() > NUM_OF_CELL) {
+        if (hotels.size() > NUM_OF_CELL) {
             System.out.println("ERROR");
             return;
         }
 
         clearCells();
 
-        for (int i = 0; i < hotel_BriefVOs.size(); i++) {
+        for (int i = 0; i < hotels.size(); i++) {
 
-            Hotel_BriefVO hotel = hotel_BriefVOs.get(i);
+            Hotel_DetailVO hotel = hotels.get(i);
 
             FXMLLoader loader = cellLoaders[i];
             Node cell = cells[i];
