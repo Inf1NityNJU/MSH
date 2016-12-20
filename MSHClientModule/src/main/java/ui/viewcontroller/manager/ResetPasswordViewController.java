@@ -5,10 +5,19 @@ import blservice.userblservice.UserBLService;
 import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.client.ClientInfoViewController;
+import ui.viewcontroller.common.MainUIController;
 import util.Encryptor;
+
+import java.io.IOException;
 
 /**
  * Created by Kray on 2016/11/28.
@@ -22,6 +31,8 @@ public class ResetPasswordViewController {
 
     private String account;
     private String ID;
+
+    private MainUIController mainUIController;
 
     @FXML
     private Label accountLabel;
@@ -46,6 +57,10 @@ public class ResetPasswordViewController {
 
     @FXML
     private Label checkAlertLabel;
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
 
     public void setAccountAndID(String account, String ID) {
         this.account = account;
@@ -82,6 +97,36 @@ public class ResetPasswordViewController {
     }
 
     public void clickSaveButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("确定更新密码吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sureSave() {
+        mainUIController.hidePop();
+
         UserBLService userBLService;
         if (ID.charAt(0) == '3') {
             userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
@@ -99,6 +144,10 @@ public class ResetPasswordViewController {
 
             clickBackButton();
         }
+    }
+
+    private void cancelSave() {
+        mainUIController.hidePop();
     }
 
     public void checkOldText() {

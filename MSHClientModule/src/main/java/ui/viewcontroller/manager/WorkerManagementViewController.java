@@ -202,6 +202,7 @@ public class WorkerManagementViewController {
 
             ResetPasswordViewController resetPasswordViewController = loader.getController();
             resetPasswordViewController.setWorkerManagementViewController(this);
+            resetPasswordViewController.setMainUIController(mainUIController);
             resetPasswordViewController.setAccountAndID(workerAccount, workerID);
 
 //            stack.push(view);

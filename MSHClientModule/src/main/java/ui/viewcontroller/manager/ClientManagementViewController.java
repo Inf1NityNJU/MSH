@@ -142,6 +142,7 @@ public class ClientManagementViewController {
 
             resetPasswordViewController = loader.getController();
             resetPasswordViewController.setClientManagementViewController(this);
+            resetPasswordViewController.setMainUIController(mainUIController);
             resetPasswordViewController.setAccountAndID(account, ID);
 
             Node node = mainUIController.getCenter();

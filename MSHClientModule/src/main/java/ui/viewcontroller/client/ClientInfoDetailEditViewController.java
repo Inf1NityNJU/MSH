@@ -165,7 +165,6 @@ public class ClientInfoDetailEditViewController {
 
     private void cancelSave() {
         mainUIController.hidePop();
-        clientInfoViewController.back();
     }
 
 }

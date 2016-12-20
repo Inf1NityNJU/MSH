@@ -71,6 +71,7 @@ public class HotelManagementViewController {
 
             HotelManagementAddViewController hotelManagementAddViewController = loader.getController();
             hotelManagementAddViewController.setHotelManagementViewController(this);
+            hotelManagementAddViewController.setMainUIController(mainUIController);
             hotelManagementAddViewController.addHotel();
 
             Node node = mainUIController.getCenter();

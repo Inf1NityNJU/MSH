@@ -10,12 +10,18 @@ import component.radioboxpane.RadioBoxPane;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.user.HotelStaffCellController;
+import ui.viewcontroller.common.MainUIController;
 import util.City;
 import util.Place;
 import util.ResultMessage;
@@ -62,8 +68,14 @@ public class HotelManagementAddViewController {
 
     private StaffVO staff;
 
+    private MainUIController mainUIController;
+
     public void setHotelManagementViewController(HotelManagementViewController hotelManagementViewController) {
         this.hotelManagementViewController = hotelManagementViewController;
+    }
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     public void addHotel() {
@@ -119,6 +131,7 @@ public class HotelManagementAddViewController {
 
     @FXML
     public void clickConfirmButton() {
+
         String name = nameTextField.getText();
         int star = starPane.getValueIndex() + 1;
         String address = addressTextField.getText();
@@ -139,6 +152,34 @@ public class HotelManagementAddViewController {
             return;
         }
 
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("确定增加该酒店吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave(name, city, address, place, star);
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sureSave(String name, City city, String address, Place place, int star) {
         Hotel_DetailVO hotel = new Hotel_DetailVO("", name, city, address, place, star, "", "", null, 0, 0);
         ResultMessage rm = hotelBLService.addHotel(hotel);
         System.out.println(rm);
@@ -148,5 +189,10 @@ public class HotelManagementAddViewController {
             hotelManagementViewController.back();
             hotelManagementViewController.showHotelList();
         }
+        mainUIController.hidePop();
+    }
+
+    private void cancelSave() {
+        mainUIController.hidePop();
     }
 }

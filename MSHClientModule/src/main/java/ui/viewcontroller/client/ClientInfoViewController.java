@@ -125,6 +125,7 @@ public class ClientInfoViewController {
 
             ResetPasswordViewController resetPasswordViewController = loader.getController();
             resetPasswordViewController.setClientInfoViewController(this);
+            resetPasswordViewController.setMainUIController(mainUIController);
             resetPasswordViewController.setAccountAndID(account, clientID);
 
             Node node = mainUIController.getCenter();
