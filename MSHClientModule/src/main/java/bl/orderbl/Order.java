@@ -15,6 +15,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Sorumi on 16/10/30.
@@ -389,6 +390,17 @@ public class Order {
     }
 
 
+    private void sortOrderByTime(ArrayList<OrderVO> orders) {
+        orders.sort(new OrderComparator());
+    }
+
+    private class OrderComparator implements Comparator<OrderVO> {
+        @Override
+        public int compare(OrderVO o1, OrderVO o2) {
+            return o2.bookedTime.compareTime(o1.bookedTime);
+        }
+    }
+
     private ArrayList<OrderVO> orderPOsToOrderVOs(ArrayList<OrderPO> orderPOs) {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
 
@@ -397,6 +409,7 @@ public class Order {
             orderVOs.add(orderVO);
         }
 
+        sortOrderByTime(orderVOs);
         return orderVOs;
     }
 

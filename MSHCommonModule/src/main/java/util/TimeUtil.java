@@ -49,6 +49,22 @@ public class TimeUtil {
 
     }
 
+    public int compareTime(TimeUtil time) {
+        if (!date.equals(time.date)) {
+            return date.compareDate(time.date);
+        } else {
+            if (hour != time.hour) {
+                return hour - time.hour;
+            } else {
+                if (min != time.min) {
+                    return min - time.min;
+                } else {
+                    return sec - time.sec;
+                }
+            }
+        }
+    }
+
     /**
      * 得到两个时间的间隔
      *
