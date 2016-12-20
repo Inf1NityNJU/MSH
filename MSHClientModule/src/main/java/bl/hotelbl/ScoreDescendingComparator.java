@@ -13,6 +13,12 @@ public class ScoreDescendingComparator implements Comparator<Hotel_DetailVO> {
 
     @Override
     public int compare(Hotel_DetailVO o1, Hotel_DetailVO o2) {
-        return (int)(o2.score-o1.score);
+        if(o1.score<o2.score){
+            return 1;
+        }
+        if(o1.score>o2.score){
+            return -1;
+        }
+        return 0;
     }
 }

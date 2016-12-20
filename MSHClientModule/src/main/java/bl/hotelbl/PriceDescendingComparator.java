@@ -13,6 +13,12 @@ public class PriceDescendingComparator implements Comparator<Hotel_DetailVO> {
 
     @Override
     public int compare(Hotel_DetailVO o1, Hotel_DetailVO o2) {
-        return (int)(o2.maxPrice-o1.maxPrice);
+        if(o1.maxPrice<o2.maxPrice){
+            return 1;
+        }
+        if(o1.maxPrice>o2.maxPrice){
+            return -1;
+        }
+        return 0;
     }
 }

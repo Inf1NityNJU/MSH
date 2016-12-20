@@ -149,4 +149,18 @@ public class FilterFlagsVO {
         return result;
     }
 
+    /**
+     * 判断是否有对房间的搜索条件
+     *
+     * @return true-有对房间的搜索条件<br>
+     * false-没有对房间的搜索条件
+     */
+    public boolean roomIsSet() {
+        return !(minPrice == 0
+                && maxPrice == 0
+                && roomType == null
+                && checkInDate == null
+                && checkOutDate == null
+                && quantity == 0);
+    }
 }
