@@ -9,10 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import main.Main;
 import ui.componentcontroller.promotion.WebPromotionSearchPaneController;
 import ui.viewcontroller.common.MainUIController;
@@ -38,12 +35,17 @@ public class AlertViewController {
     @FXML
     private RectButton cancelButton;
 
+    @FXML
+    private Pane leftPane;
+
     private ObjectProperty<EventHandler<Event>> onClickSureButton = new SimpleObjectProperty<EventHandler<Event>>();
 
     private ObjectProperty<EventHandler<Event>> onClickCancelButton = new SimpleObjectProperty<EventHandler<Event>>();
 
     @FXML
     public void initialize() {
+        leftPane.setVisible(true);
+        leftPane.setManaged(true);
 
         setOnClickSureButton(new EventHandler<Event>() {
             @Override
@@ -104,5 +106,10 @@ public class AlertViewController {
 
     public void clickCancelButton(Event event) {
         onClickCancelButton.get().handle(event);
+    }
+
+    public void hideLeftButton() {
+        leftPane.setVisible(false);
+        leftPane.setManaged(false);
     }
 }

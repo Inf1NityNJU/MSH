@@ -115,6 +115,7 @@ public class ClientSearchHotelViewController {
 
             ClientBookOrderViewController clientBookOrderViewController = loader.getController();
             clientBookOrderViewController.setClientSearchHotelViewController(this);
+            clientBookOrderViewController.setMainUIController(mainUIController);
             clientBookOrderViewController.setOrder(order);
 
             Node node = mainUIController.getCenter();
