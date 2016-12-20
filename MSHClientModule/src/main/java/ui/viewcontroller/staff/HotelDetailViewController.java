@@ -244,11 +244,13 @@ public class HotelDetailViewController {
             locationScore += assessment_hotelVO.locationScore;
         }
 
-        score = score/size/4.0;
-        serviceScore /= size;
-        facilityScore /= size;
-        healthScore /= size;
-        locationScore /= size;
+        if (size != 0) {
+            score = score/size/4.0;
+            serviceScore /= size;
+            facilityScore /= size;
+            healthScore /= size;
+            locationScore /= size;
+        }
 
         scoreLabel.setText(String.format("%.1f", score) + " 分");
         rateScorePane.setScore((int)score);

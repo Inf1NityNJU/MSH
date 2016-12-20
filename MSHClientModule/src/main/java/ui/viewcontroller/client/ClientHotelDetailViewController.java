@@ -2,6 +2,7 @@ package ui.viewcontroller.client;
 
 import bl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
+import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
 import blservice.promotionblservice.PromotionBLService;
 import component.mydatepicker.MyDatePicker;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.Main;
+import ui.componentcontroller.order.HotelAssessmentCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
 import util.DateUtil;
@@ -39,6 +41,9 @@ public class ClientHotelDetailViewController {
 
     @FXML
     private VBox roomVBox;
+
+    @FXML
+    private VBox commentVBox;
 
     @FXML
     private MyDatePicker checkInDatePicker;
@@ -68,16 +73,43 @@ public class ClientHotelDetailViewController {
     private Text facilitiesText;
 
     @FXML
-    private Label scoreLabel;
-
-    @FXML
     private Label bookRoomLabel;
 
     @FXML
     private RectButton bookButton;
 
     @FXML
+    private Label assessmentCountLabel;
+
+    @FXML
     private RateStarPane rateScorePane;
+
+    @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private RateStarPane serviceScorePane;
+
+    @FXML
+    private Label serviceScoreLabel;
+
+    @FXML
+    private RateStarPane facilityScorePane;
+
+    @FXML
+    private Label facilityScoreLabel;
+
+    @FXML
+    private RateStarPane healthScorePane;
+
+    @FXML
+    private Label healthScoreLabel;
+
+    @FXML
+    private RateStarPane locationScorePane;
+
+    @FXML
+    private Label locationScoreLabel;
 
     private OrderVO order;
 
@@ -86,8 +118,8 @@ public class ClientHotelDetailViewController {
 
     private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
+    private OrderBLInfo orderBLInfo = new BLFactoryImpl().getOrderBLInfo();
     private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
-
 
     private Hotel_DetailVO hotel;
 
@@ -137,7 +169,7 @@ public class ClientHotelDetailViewController {
         });
 
         addPromotions();
-
+        addAssessment();
         newOrder();
 
     }
@@ -208,7 +240,6 @@ public class ClientHotelDetailViewController {
 
     @FXML
     private void clickBookButton() {
-        //TODO
 
         for (OrderRoomStockVO room : roomStocks) {
             if (room.orderRoom.quantity > 0) {
@@ -220,4 +251,61 @@ public class ClientHotelDetailViewController {
         clientSearchHotelViewController.showBookOrder(order);
     }
 
+    private void addAssessment() {
+        commentVBox.getChildren().clear();
+
+        ArrayList<Assessment_HotelVO> assessment_hotelVOs = orderBLInfo.getAssessmentByHotelID(hotel.ID);
+
+        int size = assessment_hotelVOs.size();
+        assessmentCountLabel.setText(size + " 条评论");
+
+        double score = 0;
+        double serviceScore = 0;
+        double facilityScore = 0;
+        double healthScore = 0;
+        double locationScore = 0;
+
+        for (Assessment_HotelVO assessment_hotelVO : assessment_hotelVOs) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/component/order/HotelAssessmentCell.fxml"));
+                Pane pane = loader.load();
+
+                HotelAssessmentCellController hotelAssessmentCellController = loader.getController();
+                hotelAssessmentCellController.setAssessment(assessment_hotelVO);
+
+                commentVBox.getChildren().add(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            score += assessment_hotelVO.serviceScore + assessment_hotelVO.healthScore + assessment_hotelVO.facilityScore + assessment_hotelVO.locationScore;
+            serviceScore += assessment_hotelVO.serviceScore;
+            facilityScore += assessment_hotelVO.facilityScore;
+            healthScore += assessment_hotelVO.healthScore;
+            locationScore += assessment_hotelVO.locationScore;
+        }
+
+        if (size != 0) {
+            score = score/size/4.0;
+            serviceScore /= size;
+            facilityScore /= size;
+            healthScore /= size;
+            locationScore /= size;
+        }
+
+        scoreLabel.setText(String.format("%.1f", score) + " 分");
+        rateScorePane.setScore((int)score);
+
+        serviceScoreLabel.setText(String.format("%.1f", serviceScore) + " 分");
+        serviceScorePane.setScore((int)serviceScore);
+        facilityScoreLabel.setText(String.format("%.1f", facilityScore) + " 分");
+        facilityScorePane.setScore((int)facilityScore);
+        healthScoreLabel.setText(String.format("%.1f", healthScore) + " 分");
+        healthScorePane.setScore((int)healthScore);
+        locationScoreLabel.setText(String.format("%.1f", locationScore) + " 分");
+        locationScorePane.setScore((int)locationScore);
+    }
 }

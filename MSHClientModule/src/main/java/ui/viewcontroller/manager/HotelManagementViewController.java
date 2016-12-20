@@ -63,4 +63,24 @@ public class HotelManagementViewController {
         }
     }
 
+    public void showAddHotel() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/manager/HotelManagementAddView.fxml"));
+            ScrollPane pane = loader.load();
+
+            HotelManagementAddViewController hotelManagementAddViewController = loader.getController();
+            hotelManagementAddViewController.setHotelManagementViewController(this);
+            hotelManagementAddViewController.addHotel();
+
+            Node node = mainUIController.getCenter();
+            stack.push(node);
+
+            mainUIController.setCenter(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

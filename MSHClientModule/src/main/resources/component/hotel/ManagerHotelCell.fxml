@@ -11,71 +11,61 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.ManagerHotelCellController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.ManagerHotelCellController">
    <effect>
       <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
    </effect>
    <children>
-      <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="140.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/example.jpeg" />
          </image></ImageView>
-      <AnchorPane prefHeight="200.0" prefWidth="700.0">
+      <AnchorPane prefHeight="200.0" prefWidth="750.0">
          <children>
-            <Label text="订单编号：" textFill="#cccccc">
+            <Label layoutX="-7.0" layoutY="45.0" text="酒店编号：" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="orderIDLabel" text="20161016010112340000" textFill="#cccccc" AnchorPane.leftAnchor="70.0">
+            <Label fx:id="hotelIDLabel" text="01011234" textFill="#cccccc" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label text="订单日期：" textFill="#cccccc" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="0.0">
+            <Label text="酒店地址：" textFill="#cccccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="orderDateLabel" text="2016-11-18" textFill="#cccccc" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="addressLabel" text="XXXXX" textFill="#cccccc" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="45.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <StateButton fx:id="stateLabel" alignment="CENTER" colorProperty="00cccc" isActiveProperty="true" text="已执行" AnchorPane.rightAnchor="0.0" />
-            <Label fx:id="hotelNameLabel" text="喵喵喵酒店" textFill="#5b6e79" AnchorPane.topAnchor="20.0">
+            <Label fx:id="hotelNameLabel" text="喵喵喵酒店" textFill="#5b6e79" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="PingFang SC Regular" size="18.0" />
                </font>
             </Label>
-            <Label text="入离日期" textFill="#cccccc" AnchorPane.topAnchor="70.0">
+            <Label text="工作人员：" textFill="#cccccc" AnchorPane.bottomAnchor="0.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="checkDateLabel" layoutX="10.0" layoutY="10.0" text="2016年11月20日 - 2016年11月21日" textFill="GREY" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="67.0">
+            <Label fx:id="staffLabel" layoutX="10.0" layoutY="10.0" text="XXXXX" textFill="GREY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0">
                <font>
                   <Font name="PingFang SC Regular" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="roomLabel" layoutX="10.0" layoutY="10.0" text="大床房 × 1" textFill="#00cccc" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="90.0">
-               <font>
-                  <Font name="PingFang SC Regular" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="priceLabel" layoutX="20.0" layoutY="20.0" text="¥ 1200" textFill="#ff2c14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-               <font>
-                  <Font name="PingFang SC Regular" size="20.0" />
-               </font>
-            </Label>
             <HBox alignment="TOP_RIGHT" layoutX="428.0" layoutY="41.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Label fx:id="assessmentLabel" alignment="CENTER" prefHeight="30.0" prefWidth="80.0" text="已评价" textFill="#cccccc">
-                     <font>
-                        <Font name="PingFang SC Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <RectButton fx:id="detailButton" sizeProperty="Small" text="查看详情" onMouseClicked="#clickDetailButton"/>
+                  <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情" />
+               </children>
+            </HBox>
+            <HBox layoutX="405.0" layoutY="30.0" spacing="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <StateButton fx:id="cityLabel" alignment="CENTER" colorProperty="00cccc" text="南京" />
+                  <StateButton fx:id="placeLabel" alignment="CENTER" colorProperty="00cccc" text="仙林" />
                </children>
             </HBox>
          </children>

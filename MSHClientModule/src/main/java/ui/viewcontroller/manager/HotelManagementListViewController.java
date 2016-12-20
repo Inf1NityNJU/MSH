@@ -16,7 +16,7 @@ import ui.componentcontroller.hotel.ManagerHotelSearchPaneController;
 import ui.componentcontroller.order.ClientOrderCellController;
 import ui.componentcontroller.order.ClientOrderSearchPaneController;
 import vo.FilterFlagsVO;
-import vo.Hotel_BriefVO;
+import vo.Hotel_DetailVO;
 import vo.Hotel_DetailVO;
 import vo.OrderVO;
 
@@ -44,7 +44,7 @@ public class HotelManagementListViewController {
 
     private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
 
-    private ArrayList<Hotel_BriefVO> hotels = new ArrayList<>();
+    private ArrayList<Hotel_DetailVO> hotels = new ArrayList<>();
 //    private OrderState orderState;
 
     @FXML
@@ -87,9 +87,12 @@ public class HotelManagementListViewController {
         this.hotelManagementViewController = hotelManagementViewController;
     }
 
+//    public void refreshHotels() {
+//
+//    }
 
     public void showHotels(FilterFlagsVO flags) {
-        hotels = hotelBLService.searchHotelInBriefVO(flags);
+        hotels = hotelBLService.searchHotel(flags);
         int size = hotels.size();
         managerHotelPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
@@ -103,7 +106,7 @@ public class HotelManagementListViewController {
     public void turnPage(int page) {
         int fromIndex = (page - 1) * NUM_OF_CELL;
         int toIndex = Math.min(page * NUM_OF_CELL, hotels.size());
-        List<Hotel_BriefVO> tmpHotels = hotels.subList(fromIndex, toIndex);
+        List<Hotel_DetailVO> tmpHotels = hotels.subList(fromIndex, toIndex);
         setCells(tmpHotels);
     }
 
@@ -115,7 +118,7 @@ public class HotelManagementListViewController {
         contentVBox.getChildren().remove(pagePane);
     }
 
-    private void setCells(List<Hotel_BriefVO> hotels) {
+    private void setCells(List<Hotel_DetailVO> hotels) {
 
         if (hotels.size() > NUM_OF_CELL) {
             System.out.println("ERROR");
@@ -126,7 +129,7 @@ public class HotelManagementListViewController {
 
         for (int i = 0; i < hotels.size(); i++) {
 
-            Hotel_BriefVO hotel = hotels.get(i);
+            Hotel_DetailVO hotel = hotels.get(i);
             FXMLLoader loader = cellLoaders[i];
             Node cell = cells[i];
 
@@ -140,7 +143,11 @@ public class HotelManagementListViewController {
         contentVBox.getChildren().add(pagePane);
     }
 
-    public void showHotelDetail(Hotel_BriefVO hotel_briefVO) {
+    public void showHotelDetail(Hotel_DetailVO hotel_briefVO) {
 
+    }
+
+    public void showAddHotel() {
+        hotelManagementViewController.showAddHotel();
     }
 }

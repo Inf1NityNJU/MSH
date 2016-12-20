@@ -1,5 +1,9 @@
 package ui.componentcontroller.hotel;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.userbl.Staff;
+import blservice.hotelblservice.HotelBLInfo;
+import blservice.userblservice.UserBLInfo;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
@@ -7,10 +11,7 @@ import javafx.scene.control.Label;
 import ui.viewcontroller.client.ClientOrderListViewController;
 import ui.viewcontroller.manager.HotelManagementListViewController;
 import util.OrderState;
-import vo.BillVO;
-import vo.Hotel_BriefVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
+import vo.*;
 
 /**
  * Created by Sorumi on 16/11/18.
@@ -18,84 +19,48 @@ import vo.OrderVO;
 public class ManagerHotelCellController {
 
     private HotelManagementListViewController hotelManagementListViewController;
-    private Hotel_BriefVO hotel;
+    private Hotel_DetailVO hotel;
 
-//    @FXML
-//    private Label orderIDLabel;
-//
-//    @FXML
-//    private Label orderDateLabel;
-//
-//    @FXML
-//    private StateButton stateLabel;
-//
-//    @FXML
-//    private Label hotelNameLabel;
-//
-//    @FXML
-//    private Label checkDateLabel;
-//
-//    @FXML
-//    private Label roomLabel;
-//
-//    @FXML
-//    private Label priceLabel;
-//
-//    @FXML
-//    private Label assessmentLabel;
-//
-//    @FXML
-//    private RectButton assessmentButton;
-//
-//    @FXML
-//    private RectButton detailButton;
+    @FXML
+    private Label hotelNameLabel;
+
+    @FXML
+    private Label hotelIDLabel;
+
+    @FXML
+    private Label addressLabel;
+
+    @FXML
+    private Label staffLabel;
+
+    @FXML
+    private StateButton cityLabel;
+
+    @FXML
+    private StateButton placeLabel;
+
+    @FXML
+    private RectButton detailButton;
 
     public void setHotelManagementListViewController(HotelManagementListViewController hotelManagementListViewController) {
         this.hotelManagementListViewController = hotelManagementListViewController;
     }
 
-    public void setHotel(Hotel_BriefVO hotel) {
+    public void setHotel(Hotel_DetailVO hotel) {
         this.hotel = hotel;
 
-//        orderIDLabel.setText(order.orderID != null ? order.orderID : "") ;
-//        orderDateLabel.setText(order.bookedTime.toString());
-//        stateLabel.setText(order.state.getName());
-//        stateLabel.setColorProperty(order.state.getColor());
-//        hotelNameLabel.setText(order.hotelName);
-//        checkDateLabel.setText(order.checkInDate.toString() + " - " +order.checkOutDate.toString());
-//
-//        String roomText = "";
-//
-//        for (OrderRoomVO room : order.rooms) {
-//            if (order.rooms.indexOf(room) > 0) {
-//                roomText = roomText + " ";
-//            }
-//            roomText = roomText + room.type.getName() + " × " + room.quantity;
-//        }
-//        roomLabel.setText(roomText);
-//
-//        BillVO bill = order.bill;
-//        priceLabel.setText("¥ " + String.format("%.2f", bill.totalPrice));
-//
-//        if (order.state == OrderState.Executed) {
-//            if (order.assessment == null) {
-//                assessmentButton.setVisible(true);
-//                assessmentButton.setManaged(true);
-//                assessmentLabel.setVisible(false);
-//                assessmentLabel.setManaged(false);
-//
-//            } else {
-//                assessmentButton.setVisible(false);
-//                assessmentButton.setManaged(false);
-//                assessmentLabel.setVisible(true);
-//                assessmentLabel.setManaged(true);
-//            }
-//        } else {
-//            assessmentLabel.setVisible(false);
-//            assessmentLabel.setManaged(false);
-//            assessmentButton.setVisible(false);
-//            assessmentButton.setManaged(false);
-//        }
+        hotelNameLabel.setText(hotel.name);
+        hotelIDLabel.setText(hotel.ID);
+        addressLabel.setText(hotel.address);
+        cityLabel.setText(hotel.city.getName());
+        placeLabel.setText(hotel.place.getName());
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+        StaffVO staff = userBLInfo.getStaffByHotelID(hotel.ID);
+        if (staff != null) {
+            staffLabel.setText(staff.staffName + " " + staff.staffID);
+        } else {
+            staffLabel.setText("无");
+        }
 
     }
 

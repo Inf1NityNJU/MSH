@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.circlebutton.CircleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.user.HotelStaffCellController">
+    <children>
+        <Label fx:id="IDLabel" alignment="CENTER" prefWidth="150.0" text="300909" textFill="GREY">
+            <font>
+                <Font name="PingFang SC Regular" size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="nameLabel" alignment="CENTER" prefWidth="210.0" text="用户名" textFill="GREY">
+            <font>
+                <Font name="PingFang SC Regular" size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="hotelNameLabel" alignment="CENTER" prefWidth="290.0" text="XX酒店" textFill="GREY">
+            <font>
+                <Font name="PingFang SC Regular" size="16.0"/>
+            </font>
+        </Label>
+        <StackPane prefWidth="120.0">
+            <children>
+                <CircleButton fx:id="addButton" typeProperty="Add" onMouseClicked="#clickAddButton"/>
+            </children>
+        </StackPane>
+    </children>
+</HBox>

@@ -188,11 +188,11 @@
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <VBox fx:id="commentVBox" layoutX="150.0" prefHeight="200.0" prefWidth="770.0" spacing="20.0">
+                              <VBox fx:id="commentVBox" layoutX="150.0" spacing="20.0">
                                  <children>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Label prefWidth="200.0" text="32 条评价" textFill="GREY">
+                                          <Label fx:id="assessmentCountLabel" prefWidth="200.0" text="32 条评价" textFill="GREY">
                                              <font>
                                                 <Font name="PingFang SC Regular" size="16.0" />
                                              </font>
@@ -226,8 +226,8 @@
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <RateStarPane />
-                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                      <RateStarPane fx:id="serviceScorePane" />
+                                                      <Label fx:id="serviceScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                          <font>
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
@@ -241,8 +241,8 @@
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <RateStarPane />
-                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                      <RateStarPane fx:id="healthScorePane" />
+                                                      <Label fx:id="healthScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                          <font>
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
@@ -256,8 +256,8 @@
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <RateStarPane />
-                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                      <RateStarPane fx:id="facilityScorePane" />
+                                                      <Label fx:id="facilityScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                          <font>
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
@@ -271,8 +271,8 @@
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <RateStarPane />
-                                                      <Label alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
+                                                      <RateStarPane fx:id="locationScorePane" />
+                                                      <Label fx:id="locationScoreLabel" alignment="CENTER_RIGHT" prefWidth="60.0" text="4.8分" textFill="GREY">
                                                          <font>
                                                             <Font name="PingFang SC Regular" size="16.0" />
                                                          </font>
@@ -288,6 +288,7 @@
                                        </children>
                                     </Pane>
                                     <Separator prefWidth="200.0" />
+                                    <VBox fx:id="commentVBox" spacing="10.0" />
                                  </children>
                               </VBox>
                            </children>

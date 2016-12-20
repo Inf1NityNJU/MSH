@@ -2,6 +2,7 @@
 
 <?import component.circlebutton.CircleButton?>
 <?import component.mychoicebox.MyChoiceBox?>
+<?import component.tinybutton.TinyButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
@@ -22,8 +23,13 @@
          <children>
             <MyChoiceBox fx:id="cityChoiceBox" />
             <MyChoiceBox fx:id="placeChoiceBox" />
+            <TinyButton text="搜索" onMouseClicked="#clickSearchButton">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TinyButton>
             <Pane HBox.hgrow="ALWAYS" />
-            <CircleButton typeProperty="Add" />
+            <CircleButton typeProperty="Add" onMouseClicked="#clickAddButton"/>
          </children></HBox>
     </children>
 </VBox>
