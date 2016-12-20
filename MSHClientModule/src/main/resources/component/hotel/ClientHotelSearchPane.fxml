@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.commontextfield.CommonTextField?>
+<?import component.largedatepicker.LargeDatePicker?>
 <?import component.mycheckbox.MyCheckBox?>
 <?import component.mychoicebox.MyChoiceBox?>
-<?import component.mydatepicker.MyDatePicker?>
 <?import component.myrangeslider.MyRangeSlider?>
 <?import component.radioboxpane.RadioBoxPane?>
 <?import component.selectpane.SelectPane?>
@@ -144,9 +144,9 @@
                   <MyCheckBox fx:id="orderedBox" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <SequenceButton fx:id="scoreSequenceButton" text="评分" onMouseClicked="#clickScoreSequenceButton"/>
-                        <SequenceButton fx:id="priceSequenceButton" text="价格" onMouseClicked="#clickPriceSequenceButton"/>
-                        <SequenceButton fx:id="starSequenceButton" text="星级" onMouseClicked="#clickStarSequenceButton"/>
+                        <SequenceButton fx:id="scoreSequenceButton" onMouseClicked="#clickScoreSequenceButton" text="评分" />
+                        <SequenceButton fx:id="priceSequenceButton" onMouseClicked="#clickPriceSequenceButton" text="价格" />
+                        <SequenceButton fx:id="starSequenceButton" onMouseClicked="#clickStarSequenceButton" text="星级" />
                      </children>
                   </HBox>
                </children>
@@ -166,8 +166,8 @@
                   <Font name="PingFang SC Regular" size="20.0" />
                </font>
             </Button>
-            <MyDatePicker fx:id="checkInDatePicker" editable="false" layoutX="201.0" layoutY="80.0" prefHeight="60.0" prefWidth="291.0" AnchorPane.leftAnchor="200.0" />
-            <MyDatePicker fx:id="checkOutDatePicker" editable="false" layoutX="490.0" layoutY="80.0" prefHeight="60.0" prefWidth="291.0" AnchorPane.leftAnchor="490.0" />
+            <LargeDatePicker fx:id="checkInDatePicker" layoutX="200.0" layoutY="81.0" prefHeight="60.0" prefWidth="291.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="80.0" />
+            <LargeDatePicker fx:id="checkOutDatePicker" layoutX="490.0" layoutY="80.0" prefHeight="60.0" prefWidth="291.0" AnchorPane.leftAnchor="490.0" />
             <SelectPane fx:id="citySelect" labelWidth="141.0" text="地址">
                <labels>
                   <Label text="上海" />

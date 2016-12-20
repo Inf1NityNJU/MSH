@@ -212,7 +212,7 @@ public class ClientHotelDetailViewController {
     private void addRooms() {
         roomVBox.getChildren().clear();
 
-        roomStocks = hotelBLService.getRoomStocks(new DateUtil(checkInDatePicker.getDate()), new DateUtil(checkOutDatePicker.getDate()), hotel.ID);
+        roomStocks = hotelBLService.getRoomStocks(new DateUtil(checkInDatePicker.getDate()), new DateUtil(checkOutDatePicker.getDate().plusDays(-1)), hotel.ID);
 
         for (OrderRoomStockVO room : roomStocks) {
             try {

@@ -141,6 +141,15 @@ public class OrderVO {
         this.assessment = assessment;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof OrderVO) {
+            OrderVO order = (OrderVO)obj;
+            return orderID.equals(order.orderID);
+        }
+        return false;
+    }
+
     public OrderPO toPO() {
         String websitePromotionName = null;
         double websitePromotionDiscount = 1;

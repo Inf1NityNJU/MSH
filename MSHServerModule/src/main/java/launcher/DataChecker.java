@@ -40,6 +40,7 @@ public class DataChecker {
      * 启动checker
      */
     public void launch() {
+        checkOrder();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -76,9 +77,9 @@ public class DataChecker {
                 //扣除信用值
                 userDataService.addCreditRecord(orderPO.getClientID(),new CreditPO(orderPO.getOrderID()
                         ,new DateUtil(LocalDate.now()).toString()
-                        ,(int)orderPO.getTotalPrice()
+                        ,-(int)orderPO.getTotalPrice()
                         ,0
-                        , CreditAction.DEDUCT_CREDIT
+                        , CreditAction.OVERDUE_CREDIT
                         ,orderPO.getClientID()));
             }
         }

@@ -121,10 +121,13 @@ public class Client extends User {
     public ResultMessage addCreditByID(String clientID, CreditChangeInfoVO creditChangeInfoVO) {
         ClientVO clientVO = searchByID(clientID);
         int credit = clientVO.credit;
-
-//        System.out.println(creditChangeInfoVO.deltaCredit + credit);
-        return userClientNetwork.addCreditRecord(clientID, new CreditPO(creditChangeInfoVO.orderID, creditChangeInfoVO.date.toString(),
-                creditChangeInfoVO.deltaCredit, creditChangeInfoVO.deltaCredit + credit, creditChangeInfoVO.creditAction, clientID));
+        return userClientNetwork.addCreditRecord(clientID, new CreditPO(
+                creditChangeInfoVO.orderID + creditChangeInfoVO.creditAction.getNum(), //增加一位标示位
+                creditChangeInfoVO.date.toString(),
+                creditChangeInfoVO.deltaCredit,
+                creditChangeInfoVO.deltaCredit + credit,
+                creditChangeInfoVO.creditAction,
+                clientID));
     }
 
     /**
@@ -137,8 +140,12 @@ public class Client extends User {
         ArrayList<CreditPO> creditPOs = userClientNetwork.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
         for (CreditPO creditPO : creditPOs) {
-            CreditVO creditVO = new CreditVO(creditPO.getDeltaCredit(), creditPO.getResultCredit(),
-                    creditPO.getCreditAction(), creditPO.getOrderID(), new DateUtil(creditPO.getDate()));
+            CreditVO creditVO = new CreditVO(
+                    creditPO.getDeltaCredit(),
+                    creditPO.getResultCredit(),
+                    creditPO.getCreditAction(),
+                    creditPO.getOrderID().substring(0, creditPO.getOrderID().length()-1),
+                    new DateUtil(creditPO.getDate()));
             creditVOs.add(creditVO);
         }
         creditVOs.sort(new CreditComparator());
@@ -183,8 +190,8 @@ public class Client extends User {
                 } else if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) == '-') {
                     return 1;
                 } else {
-                    return Integer.parseInt(o1.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1))
-                            - Integer.parseInt(o2.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1));
+                    return Integer.parseInt(o1.orderID.substring(o1.orderID.length() - 6, o1.orderID.length() - 1))
+                            - Integer.parseInt(o2.orderID.substring(o1.orderID.length() - 6, o1.orderID.length() - 1));
                 }
             }
         }

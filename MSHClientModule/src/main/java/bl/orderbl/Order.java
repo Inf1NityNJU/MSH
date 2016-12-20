@@ -15,6 +15,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Sorumi on 16/10/30.
@@ -171,12 +172,12 @@ public class Order {
 
         if (rm == ResultMessage.SUCCESS) {
 
-            //TODO
-//            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
-//            DateUtil lastDate = new DateUtil(tmpDate.plusDays(1));
+            //前一天
+            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
+            DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
 
             for (OrderRoomVO orderRoomVO : roomVOs) {
-                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, order.checkOutDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
+                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
                 hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
             }
         }
@@ -292,7 +293,7 @@ public class Order {
         ResultMessage rm = orderClientNetworkService.addAssessment(assessment.toPO(orderID));
 
         if (rm == ResultMessage.SUCCESS) {
-            double score = assessment.healthScore + assessment.healthScore + assessment.locationScore + assessment.facilityScore / 4.0;
+            double score = (assessment.healthScore + assessment.healthScore + assessment.locationScore + assessment.facilityScore)/ 4.0;
             hotelBLInfo.addScoreToHotelByHotelID(score, orderVO.hotelID);
         }
 
@@ -389,6 +390,17 @@ public class Order {
     }
 
 
+    private void sortOrderByTime(ArrayList<OrderVO> orders) {
+        orders.sort(new OrderComparator());
+    }
+
+    private class OrderComparator implements Comparator<OrderVO> {
+        @Override
+        public int compare(OrderVO o1, OrderVO o2) {
+            return o2.bookedTime.compareTime(o1.bookedTime);
+        }
+    }
+
     private ArrayList<OrderVO> orderPOsToOrderVOs(ArrayList<OrderPO> orderPOs) {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
 
@@ -397,6 +409,7 @@ public class Order {
             orderVOs.add(orderVO);
         }
 
+        sortOrderByTime(orderVOs);
         return orderVOs;
     }
 
@@ -416,12 +429,6 @@ public class Order {
         }
 
         BillVO billVO = new BillVO(orderPO);
-
-//        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderPO.getOrderID());
-//        AssessmentVO assessmentVO = null;
-//        if (assessmentPO != null) {
-//            assessmentVO = new AssessmentVO(assessmentPO);
-//        }
 
         AssessmentVO assessmentVO = getOrderAssessment(orderPO.getOrderID());
 
