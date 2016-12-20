@@ -37,8 +37,6 @@ public class Hotel {
         System.out.println("hotel");
         hotelClientNetworkService = new HotelClientNetworkImpl();
         cache = new HashMap<String, Hotel_DetailVO>();
-        BLFactoryImpl blFactory=new BLFactoryImpl();
-
     }
 
     /**
