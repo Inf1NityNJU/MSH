@@ -15,6 +15,7 @@ import util.Encryptor;
  */
 public class ResetPasswordViewController {
 
+    private ClientManagementViewController clientManagementViewController;
     private ClientInfoViewController clientInfoViewController;
 
     private WorkerManagementViewController workerManagementViewController;
@@ -55,7 +56,11 @@ public class ResetPasswordViewController {
         newAlertLabel.setVisible(false);
         checkAlertLabel.setVisible(false);
     }
-    
+
+    public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
+        this.clientManagementViewController = clientManagementViewController;
+    }
+
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
         this.workerManagementViewController = workerManagementViewController;
     }
@@ -69,6 +74,8 @@ public class ResetPasswordViewController {
             clientInfoViewController.back();
         } else if (workerManagementViewController != null) {
             workerManagementViewController.back();
+        } else if (clientManagementViewController != null) {
+            clientManagementViewController.back();
         } else {
             return;
         }
