@@ -1,5 +1,7 @@
 package bl.hotelbl;
 
+import bl.blfactory.BLFactoryImpl;
+import bl.orderbl.OrderBLFactory;
 import blservice.orderblservice.OrderBLInfo;
 import network.HotelClientNetworkImpl;
 import network.HotelClientNetworkService;
@@ -32,8 +34,11 @@ public class Hotel {
     private OrderBLInfo orderBLInfo;
 
     protected Hotel() {
+        System.out.println("hotel");
         hotelClientNetworkService = new HotelClientNetworkImpl();
         cache = new HashMap<String, Hotel_DetailVO>();
+        BLFactoryImpl blFactory=new BLFactoryImpl();
+
     }
 
     /**
@@ -44,6 +49,10 @@ public class Hotel {
      * 如果找不到符合条件的酒店，则返回null
      */
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
+        /*
+         *初始化order信息
+         */
+        orderBLInfo= OrderBLFactory.getOrderBLInfo();
         /*
          * 用于保存搜索结果
          */
@@ -162,7 +171,10 @@ public class Hotel {
         if (roomSearchResult.size() == 0) {
             return nullResult;
         }
-        result.retainAll(roomSearchResult);
+        if(flags.roomIsSet()) {
+            System.out.println("1asdj");
+            result.retainAll(roomSearchResult);
+        }
 
         //所有筛选任务已经完成，现在开始合并列表
         //检查是否有查询结果

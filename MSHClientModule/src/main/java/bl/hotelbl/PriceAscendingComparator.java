@@ -13,6 +13,12 @@ public class PriceAscendingComparator implements Comparator<Hotel_DetailVO> {
 
     @Override
     public int compare(Hotel_DetailVO o1, Hotel_DetailVO o2) {
-        return (int)(o1.minPrice-o2.minPrice);
+        if(o1.minPrice<o2.minPrice){
+            return -1;
+        }
+        if(o1.minPrice>o2.minPrice){
+            return 1;
+        }
+        return 0;
     }
 }

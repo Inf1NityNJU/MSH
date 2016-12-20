@@ -8,27 +8,23 @@ import blservice.hotelblservice.HotelBLService;
  * All Done on 16/11/26
  */
 public class HotelBLFactory {
+
+    private static Hotel hotel = new Hotel();
+    private static HotelRoom hotelRoom = new HotelRoom();
     private static HotelBLServiceImpl hotelBLServiceImpl;
 
     public synchronized static HotelBLServiceImpl getHotelBLService() {
         if (hotelBLServiceImpl == null) {
-            hotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
+            hotelBLServiceImpl = new HotelBLServiceImpl(hotel, hotelRoom);
         }
         return hotelBLServiceImpl;
     }
 
     public synchronized static HotelBLInfo getHotelBLInfo() {
         if (hotelBLServiceImpl == null) {
-            hotelBLServiceImpl = new HotelBLServiceImpl(getHotel(),getHotelRoom());
+            hotelBLServiceImpl = new HotelBLServiceImpl(hotel, hotelRoom);
         }
         return hotelBLServiceImpl;
     }
 
-    private synchronized static Hotel getHotel(){
-        return new Hotel();
-    }
-
-    private synchronized static HotelRoom getHotelRoom(){
-        return new HotelRoom();
-    }
 }
