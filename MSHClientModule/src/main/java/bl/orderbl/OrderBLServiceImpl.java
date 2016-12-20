@@ -28,7 +28,7 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
         String clientID = userBLInfo.getCurrentClientID();
         int credit = userBLInfo.getCreditOfID(clientID);
-        return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
+        return credit > 0 ? ResultMessage.SUFFICIENT : ResultMessage.INSUFFICIENT;
     }
 
     @Override

@@ -13,17 +13,23 @@ import component.starlabel.StarLabel;
 import component.statebutton.StateButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.Main;
+import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.order.HotelAssessmentCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
+import ui.viewcontroller.common.MainUIController;
 import util.DateUtil;
+import util.ResultMessage;
 import util.RoomType;
 import vo.*;
 
@@ -117,7 +123,7 @@ public class ClientHotelDetailViewController {
 
     private OrderVO order;
 
-
+    private MainUIController mainUIController;
     private ClientSearchHotelViewController clientSearchHotelViewController;
 
     private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
@@ -131,6 +137,10 @@ public class ClientHotelDetailViewController {
 
     private ArrayList<OrderRoomStockVO> roomStocks;
     private int bookRoomQuantity;
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
 
     public void setClientSearchHotelViewController(ClientSearchHotelViewController clientSearchHotelViewController) {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
@@ -242,6 +252,30 @@ public class ClientHotelDetailViewController {
     }
 
     public void addRoomInOrder(OrderRoomStockVO orderRoomStock) {
+        ResultMessage rm = orderBLService.checkCredit();
+        if (rm == ResultMessage.INSUFFICIENT) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                AnchorPane pane = loader.load();
+
+                AlertViewController alertViewController = loader.getController();
+                alertViewController.setInfoLabel("信用值不足！可进行线下信用充值！");
+                alertViewController.hideLeftButton();
+                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        mainUIController.hidePop();
+                    }
+                });
+                mainUIController.showPop(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
         bookRoomQuantity++;
         bookButton.setVisible(true);
         bookRoomLabel.setText("已定 " + bookRoomQuantity + " 间");

@@ -90,6 +90,7 @@ public class ClientSearchHotelViewController {
 
             clientHotelDetailViewController = loader.getController();
             clientHotelDetailViewController.setClientSearchHotelViewController(this);
+            clientHotelDetailViewController.setMainUIController(mainUIController);
             clientHotelDetailViewController.setHotel(hotel);
 
             Node node = mainUIController.getCenter();
