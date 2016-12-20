@@ -3,6 +3,7 @@ package ui.componentcontroller.hotel;
 import bl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
+import component.largedatepicker.LargeDatePicker;
 import component.mycheckbox.MyCheckBox;
 import component.mychoicebox.MyChoiceBox;
 import component.mydatepicker.MyDatePicker;
@@ -37,10 +38,10 @@ public class ClientHotelSearchPaneController {
     private SelectPane placeSelect;
 
     @FXML
-    private MyDatePicker checkInDatePicker;
+    private LargeDatePicker checkInDatePicker;
 
     @FXML
-    private MyDatePicker checkOutDatePicker;
+    private LargeDatePicker checkOutDatePicker;
 
     @FXML
     private RadioBoxPane roomTypePane;

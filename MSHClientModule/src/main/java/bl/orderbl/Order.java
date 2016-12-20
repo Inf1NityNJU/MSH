@@ -292,7 +292,7 @@ public class Order {
         ResultMessage rm = orderClientNetworkService.addAssessment(assessment.toPO(orderID));
 
         if (rm == ResultMessage.SUCCESS) {
-            double score = assessment.healthScore + assessment.healthScore + assessment.locationScore + assessment.facilityScore / 4.0;
+            double score = (assessment.healthScore + assessment.healthScore + assessment.locationScore + assessment.facilityScore)/ 4.0;
             hotelBLInfo.addScoreToHotelByHotelID(score, orderVO.hotelID);
         }
 
