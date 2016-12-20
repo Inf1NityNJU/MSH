@@ -390,7 +390,7 @@
                      <buttons>
                         <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
                         <RectButton fx:id="cancelButton" minHeight="40.0" onMouseClicked="#clickCancelButton" text="撤销订单" />
-                        <RectButton fx:id="assessmentButton" minHeight="40.0" onMouseClicked="#clickCancelButton" text="评 价" />
+                        <RectButton fx:id="assessmentButton" minHeight="40.0" onMouseClicked="#clickAssessmentButton" text="评 价" />
                      </buttons>
                   </ButtonBar>
                </children>

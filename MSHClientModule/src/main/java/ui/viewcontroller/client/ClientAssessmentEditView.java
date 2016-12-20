@@ -5,12 +5,21 @@ import blservice.orderblservice.OrderBLService;
 import component.commontextarea.CommonTextArea;
 import component.ratestarpane.RateStarPane;
 import component.rectbutton.RectButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import vo.AssessmentVO;
 import vo.BillVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
+
+import java.io.IOException;
 
 /**
  * Created by Sorumi on 16/11/28.
@@ -59,6 +68,12 @@ public class ClientAssessmentEditView {
 
     private OrderVO order;
 
+    private MainUIController mainUIController;
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
+
     public void setClientViewController(ClientOrderViewController clientOrderViewController) {
         this.clientOrderViewController = clientOrderViewController;
     }
@@ -67,7 +82,7 @@ public class ClientAssessmentEditView {
         this.order = order;
 
         hotelNameLabel.setText(order.hotelName);
-        checkDateLabel.setText(order.checkInDate.toString() + " - " +order.checkOutDate.toString());
+        checkDateLabel.setText(order.checkInDate.toString() + " - " + order.checkOutDate.toString());
 
         String roomText = "";
 
@@ -101,5 +116,33 @@ public class ClientAssessmentEditView {
 
         AssessmentVO assessment = new AssessmentVO(serviceScore, facilityScore, healthScore, locationScore, comment);
         orderBLService.editOrderAssessment(order.orderID, assessment);
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+            alertViewController.hideLeftButton();
+            alertViewController.setInfoLabel("评价成功！");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    confirm();
+                }
+            });
+
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    private void confirm() {
+        mainUIController.hidePop();
+        clientOrderViewController.refreshHotelOrderList();
+        clientOrderViewController.showClientOrderList();
+    }
+
 }

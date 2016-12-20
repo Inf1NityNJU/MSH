@@ -74,6 +74,7 @@ public class ClientInfoViewController {
 
             ClientInfoDetailEditViewController clientInfoDetailEditViewController = listLoader.getController();
             clientInfoDetailEditViewController.setClientInfoViewController(this);
+            clientInfoDetailEditViewController.setMainUIController(mainUIController);
             clientInfoDetailEditViewController.showClientEdit();
 
             Node node = mainUIController.getCenter();

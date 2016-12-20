@@ -80,6 +80,7 @@ public class ClientOrderViewController {
 
             ClientOrderDetailViewController clientOrderDetailViewController = orderLoader.getController();
             clientOrderDetailViewController.setClientViewController(this);
+            clientOrderDetailViewController.setMainUIController(mainUIController);
             clientOrderDetailViewController.showOrder(order);
 
             Node node = mainUIController.getCenter();
@@ -104,6 +105,7 @@ public class ClientOrderViewController {
 
             ClientAssessmentEditView clientAssessmentEditView = orderLoader.getController();
             clientAssessmentEditView.setClientViewController(this);
+            clientAssessmentEditView.setMainUIController(mainUIController);
             clientAssessmentEditView.setOrder(order);
 
             Node node = mainUIController.getCenter();
