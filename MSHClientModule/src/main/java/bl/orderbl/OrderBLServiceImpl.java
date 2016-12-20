@@ -127,6 +127,11 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
     }
 
     @Override
+    public boolean isBookedHotelByClient(String hotelID, String clientID) {
+        return order.isBookedHotelByClient(hotelID, clientID);
+    }
+
+    @Override
     public ArrayList<Assessment_HotelVO> getAssessmentByHotelID(String hotelID) {
         return order.getAssessmentByHotelID(hotelID);
     }

@@ -5,6 +5,7 @@ import blservice.hotelblservice.HotelBLService;
 import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import component.mydatepicker.MyDatePicker;
 import component.ratestarpane.RateStarPane;
 import component.rectbutton.RectButton;
@@ -56,6 +57,9 @@ public class ClientHotelDetailViewController {
 
     @FXML
     private StarLabel starLabel;
+
+    @FXML
+    private Label bookedLabel;
 
     @FXML
     private StateButton cityButton;
@@ -120,6 +124,8 @@ public class ClientHotelDetailViewController {
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
     private OrderBLInfo orderBLInfo = new BLFactoryImpl().getOrderBLInfo();
     private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+
 
     private Hotel_DetailVO hotel;
 
@@ -143,7 +149,6 @@ public class ClientHotelDetailViewController {
         facilitiesText.setText(hotel.facilities);
         scoreLabel.setText(String.valueOf(hotel.score)+"分");
         rateScorePane.setScore((int)hotel.score);
-        //AddPromotion
 
         checkInDatePicker.setDate(LocalDate.now());
         checkInDatePicker.setMinDate(LocalDate.now());
@@ -167,6 +172,10 @@ public class ClientHotelDetailViewController {
                 newOrder();
             }
         });
+
+        String clientID = userBLInfo.getCurrentClientID();
+        boolean isBooked = orderBLInfo.isBookedHotelByClient(hotel.ID, clientID);
+        bookedLabel.setVisible(isBooked);
 
         addPromotions();
         addAssessment();

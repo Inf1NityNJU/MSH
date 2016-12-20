@@ -50,11 +50,11 @@ public class ClientHotelCellController {
         imageView.setImage(new Image(getClass().getResource("/images/hotel/" + num + ".png").toExternalForm()));
 
         nameLabel.setText(hotel.name);
-        addressLabel.setText("地址:"+hotel.address);
+        addressLabel.setText("地址：" + hotel.address);
         starLabel.setStar(hotel.star);
         scoreLabel.setText(String.valueOf(hotel.score));
-        rateScorePane.setScore((int)hotel.score);
-        minPriceLabel.setText("￥"+String.valueOf(hotel.minPrice));
+        rateScorePane.setScore((int) hotel.score);
+        minPriceLabel.setText("￥" + String.valueOf(hotel.minPrice));
     }
 
     @FXML
