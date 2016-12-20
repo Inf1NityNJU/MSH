@@ -8,14 +8,22 @@ import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.manager.ClientManagementListViewController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import util.ResultMessage;
 import vo.ClientVO;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 /**
@@ -59,6 +67,12 @@ public class ClientInfoDetailEditViewController {
 
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
 
+    private MainUIController mainUIController;
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
+
     public void setClientInfoViewController(ClientInfoViewController clientInfoViewController) {
         this.clientInfoViewController = clientInfoViewController;
     }
@@ -98,6 +112,34 @@ public class ClientInfoDetailEditViewController {
     }
 
     public void clickSaveButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("确定保存新的用户信息吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sureSave() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
 
@@ -117,6 +159,13 @@ public class ClientInfoDetailEditViewController {
             clientInfoViewController.showClientInfo();
         }
 
+        mainUIController.hidePop();
+        clientInfoViewController.back();
+    }
+
+    private void cancelSave() {
+        mainUIController.hidePop();
+        clientInfoViewController.back();
     }
 
 }

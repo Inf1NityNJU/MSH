@@ -6,17 +6,22 @@ import component.mycheckbox.MyCheckBox;
 import component.ratestarpane.RateStarPane;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.Main;
+import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
+import ui.viewcontroller.common.MainUIController;
 import util.OrderState;
 import vo.AssessmentVO;
 import vo.OrderRoomVO;
@@ -115,8 +120,14 @@ public class ClientOrderDetailViewController {
 
     private OrderVO order;
 
+    private MainUIController mainUIController;
+
     public void setClientViewController(ClientOrderViewController clientOrderViewController) {
         this.clientOrderViewController = clientOrderViewController;
+    }
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     public void showOrder(OrderVO order) {
@@ -240,9 +251,48 @@ public class ClientOrderDetailViewController {
 
     @FXML
     private void clickCancelButton() {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                AnchorPane pane = loader.load();
+
+                AlertViewController alertViewController = loader.getController();
+
+                alertViewController.setInfoLabel("确定撤销该订单吗？");
+                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        sureCancel();
+                    }
+                });
+                alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        noCancel();
+                    }
+                });
+                mainUIController.showPop(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
+
+    private void sureCancel() {
         orderBLService.revokeOrder(order.orderID);
         order = orderBLService.searchOrderByID(order.orderID);
         updateState();
+        mainUIController.hidePop();
+        clientOrderViewController.back();
+    }
+
+    private void noCancel() {
+        mainUIController.hidePop();
+    }
+
+    @FXML
+    private void clickAssessmentButton() {
+        clientOrderViewController.showAssessmentEditView(order);
     }
 
     private void setAssessmentDisplay(boolean display) {
