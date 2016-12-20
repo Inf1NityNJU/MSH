@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import ui.viewcontroller.common.MainUIController;
+import ui.viewcontroller.manager.ResetPasswordViewController;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -104,6 +105,32 @@ public class ClientInfoViewController {
             stack.push(node);
 
             mainUIController.setCenter(list);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param account
+     * @param clientID
+     */
+    public void resetPassword(String account, String clientID) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/manager/ResetPasswordView.fxml"));
+            ScrollPane view = loader.load();
+
+            ResetPasswordViewController resetPasswordViewController = loader.getController();
+            resetPasswordViewController.setClientInfoViewController(this);
+            resetPasswordViewController.setAccountAndID(account, clientID);
+
+            Node node = mainUIController.getCenter();
+            stack.push(node);
+
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -18,19 +18,19 @@
    <children>
       <Label fx:id="infoLabel" alignment="CENTER" layoutX="97.0" layoutY="48.0" text="Label" textAlignment="CENTER" textFill="GREY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
-            <Font size="16.0" />
+            <Font name="PingFang SC Regular" size="16.0" />
          </font>
       </Label>
       <RectButton fx:id="sureButton" layoutX="219.0" layoutY="203.0" onMouseClicked="#clickSureButton" text="确 认" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font size="16.0" />
+            <Font name="PingFang SC Regular" size="16.0" />
          </font>
       </RectButton>
       <Pane fx:id="leftPane" layoutX="33.0" layoutY="111.0" prefHeight="59.0" prefWidth="115.0">
          <children>
             <RectButton fx:id="cancelButton" isActiveProperty="false" layoutX="8.0" layoutY="10.0" onMouseClicked="#clickCancelButton" text="取 消">
                <font>
-                  <Font size="16.0" />
+                  <Font name="PingFang SC Regular" size="16.0" />
                </font>
             </RectButton>
          </children>

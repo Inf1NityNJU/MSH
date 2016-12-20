@@ -13,6 +13,8 @@ import component.selectpane.SelectPane;
 
 import component.sequencebutton.SequenceButton;
 import component.sequencebutton.SequenceButton.SequenceButtonState;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -86,7 +88,20 @@ public class ClientHotelSearchPaneController {
     @FXML
     public void initialize() {
         checkInDatePicker.setDate(LocalDate.now());
-        checkOutDatePicker.setDate(LocalDate.now().plusDays(1));
+        checkInDatePicker.setMinDate(LocalDate.now());
+        checkInDatePicker.setMaxDate(LocalDate.now().plusDays(28));
+        checkOutDatePicker.setDate(checkInDatePicker.getDate().plusDays(1));
+        checkOutDatePicker.setMinDate(checkInDatePicker.getDate().plusDays(1));
+        checkOutDatePicker.setMaxDate(LocalDate.now().plusDays(29));
+        checkInDatePicker.dateProperty().addListener(new ChangeListener<LocalDate>() {
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                checkOutDatePicker.setMinDate(newValue.plusDays(1));
+                if (checkOutDatePicker.getDate().isBefore(newValue)) {
+                    checkOutDatePicker.setDate(newValue.plusDays(1));
+                }
+            }
+        });
 
         citySelect.getLabels().clear();
         for (City city : City.values()) {

@@ -32,7 +32,8 @@ public class ClientCreditCellController {
 
         dateLabel.setText(creditVO.date.toString());
         if (creditVO.orderID.charAt(0) != '-') {
-            orderIDLabel.setText(creditVO.orderID.substring(0, creditVO.orderID.length()-1));
+//            orderIDLabel.setText(creditVO.orderID.substring(0, creditVO.orderID.length()-1));
+            orderIDLabel.setText(creditVO.orderID);
         } else {
             orderIDLabel.setText("/");
         }

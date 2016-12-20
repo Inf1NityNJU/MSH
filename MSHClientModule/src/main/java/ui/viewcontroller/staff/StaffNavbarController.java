@@ -45,6 +45,11 @@ public class StaffNavbarController {
             nameLabel.setText(staff.staffName);
             IDLabel.setText("编号：" + staffID);
         }
+
+        hotelInfoButton.setIcon("\ue675");
+        roomInfoButton.setIcon("\ue677");
+        hotelOrderButton.setIcon("\ue673");
+        promotionButton.setIcon("\ue676");
     }
 
     public void setStaffViewController(StaffViewController staffViewController) {
