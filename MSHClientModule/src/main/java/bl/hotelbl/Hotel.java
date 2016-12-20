@@ -170,7 +170,7 @@ public class Hotel {
             return nullResult;
         }
         if(flags.roomIsSet()) {
-            System.out.println("1asdj");
+//            System.out.println("1asdj");
             result.retainAll(roomSearchResult);
         }
 

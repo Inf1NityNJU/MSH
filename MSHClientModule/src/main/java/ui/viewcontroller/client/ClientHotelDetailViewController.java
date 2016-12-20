@@ -5,6 +5,7 @@ import blservice.hotelblservice.HotelBLService;
 import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.userblservice.UserBLInfo;
 import component.mydatepicker.MyDatePicker;
 import component.ratestarpane.RateStarPane;
 import component.rectbutton.RectButton;
@@ -12,17 +13,23 @@ import component.starlabel.StarLabel;
 import component.statebutton.StateButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.Main;
+import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.order.HotelAssessmentCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
+import ui.viewcontroller.common.MainUIController;
 import util.DateUtil;
+import util.ResultMessage;
 import util.RoomType;
 import vo.*;
 
@@ -56,6 +63,9 @@ public class ClientHotelDetailViewController {
 
     @FXML
     private StarLabel starLabel;
+
+    @FXML
+    private Label bookedLabel;
 
     @FXML
     private StateButton cityButton;
@@ -113,18 +123,24 @@ public class ClientHotelDetailViewController {
 
     private OrderVO order;
 
-
+    private MainUIController mainUIController;
     private ClientSearchHotelViewController clientSearchHotelViewController;
 
     private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
     private OrderBLInfo orderBLInfo = new BLFactoryImpl().getOrderBLInfo();
     private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
+    private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+
 
     private Hotel_DetailVO hotel;
 
     private ArrayList<OrderRoomStockVO> roomStocks;
     private int bookRoomQuantity;
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
 
     public void setClientSearchHotelViewController(ClientSearchHotelViewController clientSearchHotelViewController) {
         this.clientSearchHotelViewController = clientSearchHotelViewController;
@@ -143,7 +159,6 @@ public class ClientHotelDetailViewController {
         facilitiesText.setText(hotel.facilities);
         scoreLabel.setText(String.valueOf(hotel.score)+"分");
         rateScorePane.setScore((int)hotel.score);
-        //AddPromotion
 
         checkInDatePicker.setDate(LocalDate.now());
         checkInDatePicker.setMinDate(LocalDate.now());
@@ -167,6 +182,10 @@ public class ClientHotelDetailViewController {
                 newOrder();
             }
         });
+
+        String clientID = userBLInfo.getCurrentClientID();
+        boolean isBooked = orderBLInfo.isBookedHotelByClient(hotel.ID, clientID);
+        bookedLabel.setVisible(isBooked);
 
         addPromotions();
         addAssessment();
@@ -233,6 +252,30 @@ public class ClientHotelDetailViewController {
     }
 
     public void addRoomInOrder(OrderRoomStockVO orderRoomStock) {
+        ResultMessage rm = orderBLService.checkCredit();
+        if (rm == ResultMessage.INSUFFICIENT) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                AnchorPane pane = loader.load();
+
+                AlertViewController alertViewController = loader.getController();
+                alertViewController.setInfoLabel("信用值不足！可进行线下信用充值！");
+                alertViewController.hideLeftButton();
+                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        mainUIController.hidePop();
+                    }
+                });
+                mainUIController.showPop(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
         bookRoomQuantity++;
         bookButton.setVisible(true);
         bookRoomLabel.setText("已定 " + bookRoomQuantity + " 间");

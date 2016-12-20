@@ -2,6 +2,7 @@
 
 <?import component.circlebutton.CircleButton?>
 <?import component.circleimage.CircleImage?>
+<?import component.tinybutton.TinyButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
@@ -29,13 +30,13 @@
          <children>
             <HBox alignment="CENTER" prefWidth="140.0">
                <children>
-                  <CircleButton fx:id="minusButton" typeProperty="Minus" onMouseClicked="#clickMinusButton"/>
+                  <CircleButton fx:id="minusButton" onMouseClicked="#clickMinusButton" typeProperty="Minus" />
                   <Label fx:id="quantityLabel" alignment="CENTER" prefWidth="50.0" text="1" textFill="GREY">
                      <font>
                         <Font name="PingFang SC Regular" size="16.0" />
                      </font>
                   </Label>
-                  <CircleButton fx:id="plusButton" typeProperty="Add" onMouseClicked="#clickPlusButton"/>
+                  <CircleButton fx:id="plusButton" onMouseClicked="#clickPlusButton" typeProperty="Add" />
                </children>
             </HBox>
             <Label fx:id="availableQuantityLabel" text="剩余 3 间" textFill="#dddddd" StackPane.alignment="BOTTOM_CENTER">
@@ -50,10 +51,10 @@
                 <Font name="PingFang SC Regular" size="16.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" prefWidth="100.0" text="删除" textFill="#ff2c14">
-            <font>
-                <Font name="PingFang SC Regular" size="16.0" />
-            </font>
-        </Label>
+      <StackPane prefWidth="100.0">
+         <children>
+            <TinyButton fx:id="deleteButton" text="删除" />
+         </children>
+      </StackPane>
     </children>
 </HBox>

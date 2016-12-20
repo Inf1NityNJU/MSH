@@ -47,6 +47,9 @@ public class ClientNavbarController {
             nameLabel.setText("游客");
         }
 
+        searchHotelButton.setIcon("\ue675");
+        orderButton.setIcon("\ue673");
+        infoButton.setIcon("\ue678");
     }
 
     public void setClientViewController(ClientViewController clientViewController) {

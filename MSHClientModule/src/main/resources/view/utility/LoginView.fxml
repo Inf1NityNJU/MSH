@@ -31,7 +31,7 @@
                </font>
             </Label>
             <RectButton layoutX="48.0" layoutY="314.0" onAction="#clickLoginButton" onMouseClicked="#clickLoginButton" text="登 录" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-            <RectButton isActiveProperty="false" layoutX="171.0" layoutY="310.0" onMouseClicked="#clickTouristButton" text="游 客" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" />
+            <!--<RectButton isActiveProperty="false" layoutX="171.0" layoutY="310.0" onMouseClicked="#clickTouristButton" text="游 客" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" />-->
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

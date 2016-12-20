@@ -370,6 +370,17 @@ public class Order {
     }
 
     /**
+     * 客户是否预定过该酒店
+     * @param hotelID
+     * @param clientID
+     * @return
+     */
+    public boolean isBookedHotelByClient(String hotelID, String clientID) {
+        ArrayList<String> hotels = getBookedHotelIDByClientID(clientID);
+        return hotels.contains(hotelID);
+    }
+
+    /**
      * 通过酒店ID得到该酒店的评价
      *
      * @param hotelID

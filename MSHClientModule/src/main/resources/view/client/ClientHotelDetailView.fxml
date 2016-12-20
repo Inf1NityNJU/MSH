@@ -53,7 +53,7 @@
                               <StarLabel fx:id="starLabel" />
                               <Pane HBox.hgrow="ALWAYS" />
                               <!--<RectButton layoutX="866.0" layoutY="15.0" text="预 定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />-->
-                              <Label text="曾经预定过该酒店" textFill="#cccccc">
+                              <Label fx:id="bookedLabel" text="曾经预定过该酒店" textFill="#cccccc">
                                  <font>
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
@@ -188,7 +188,7 @@
                                     <Font name="PingFang SC Regular" size="14.0" />
                                  </font>
                               </Label>
-                              <VBox fx:id="commentVBox" layoutX="150.0" spacing="20.0">
+                              <VBox layoutX="150.0" spacing="20.0">
                                  <children>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
@@ -208,7 +208,7 @@
                                     <Separator prefWidth="200.0" />
                                     <Pane>
                                        <children>
-                                          <Label text="评分评价" textFill="#cccccc">
+                                          <Label text="详细评分" textFill="#cccccc">
                                              <font>
                                                 <Font name="PingFang SC Regular" size="14.0" />
                                              </font>
@@ -288,7 +288,7 @@
                                        </children>
                                     </Pane>
                                     <Separator prefWidth="200.0" />
-                                    <VBox fx:id="commentVBox" spacing="10.0" />
+                                    <VBox fx:id="commentVBox" spacing="30.0" />
                                  </children>
                               </VBox>
                            </children>

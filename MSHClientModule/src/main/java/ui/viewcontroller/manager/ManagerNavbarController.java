@@ -24,6 +24,12 @@ public class ManagerNavbarController {
     }
 
     @FXML
+    public void initialize() {
+        hotelListButton.setIcon("\ue675");
+        clientListButton.setIcon("\ue678");
+        workerListButton.setIcon("\ue678");
+    }
+    @FXML
     public void clickHotelButton() {
 
         hotelListButton.setIsCurrentProperty(true);

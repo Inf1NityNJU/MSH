@@ -19,6 +19,13 @@ public interface OrderBLInfo {
     public ArrayList<String> getBookedHotelIDByClientID(String clientID);
 
     /**
+     * 客户是否预定过该酒店
+     * @param hotelID
+     * @param clientID
+     * @return
+     */
+    public boolean isBookedHotelByClient(String hotelID, String clientID);
+    /**
      * 通过酒店ID得到该酒店的评价
      *
      * @param hotelID

@@ -28,7 +28,7 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
         String clientID = userBLInfo.getCurrentClientID();
         int credit = userBLInfo.getCreditOfID(clientID);
-        return credit > 0 ? ResultMessage.TRUE : ResultMessage.FAILED;
+        return credit > 0 ? ResultMessage.SUFFICIENT : ResultMessage.INSUFFICIENT;
     }
 
     @Override
@@ -124,6 +124,11 @@ public class OrderBLServiceImpl implements OrderBLService, OrderBLInfo {
     @Override
     public ArrayList<String> getBookedHotelIDByClientID(String clientID) {
         return order.getBookedHotelIDByClientID(clientID);
+    }
+
+    @Override
+    public boolean isBookedHotelByClient(String hotelID, String clientID) {
+        return order.isBookedHotelByClient(hotelID, clientID);
     }
 
     @Override
