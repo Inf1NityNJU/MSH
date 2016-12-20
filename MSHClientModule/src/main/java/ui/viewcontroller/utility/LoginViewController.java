@@ -1,10 +1,10 @@
 package ui.viewcontroller.utility;
 
-import bl.blfactory.BLFactoryImpl;
-import blservice.userblservice.UserBLService;
 import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import util.Encryptor;
 
 /**
@@ -13,10 +13,16 @@ import util.Encryptor;
 public class LoginViewController {
 
     @FXML
+    private ImageView bgImageView;
+
+    @FXML
     private CommonTextField accountText;
 
     @FXML
     private CommonPasswordField passwordText;
+
+    @FXML
+    private Label alertLabel;
 
     private UtilityViewController utilityViewController;
 
@@ -25,18 +31,31 @@ public class LoginViewController {
     }
 
     @FXML
+    public void initialize() {
+        alertLabel.setText("");
+    }
+
+    @FXML
     public void clickLoginButton() {
-        if (accountText.getText().equals("") || passwordText.getText().equals("")) {
-            System.out.println("Not Complete Info");
-        } else {
-            utilityViewController.login(accountText.getText(), Encryptor.encrypt(passwordText.getText()));
+        if (accountText.getText().equals("")) {
+            showAlertView("请输入账号！");
+            return;
+        } else if (passwordText.getText().equals("")) {
+            showAlertView("请输入密码！");
+            return;
         }
+        utilityViewController.login(accountText.getText(), Encryptor.encrypt(passwordText.getText()));
+
     }
 
     @FXML
     public void clickSignUpButton() {
         utilityViewController.back();
         utilityViewController.showSignUp();
+    }
+
+    public void showAlertView(String text) {
+        alertLabel.setText(text);
     }
 
     @FXML

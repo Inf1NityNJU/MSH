@@ -67,6 +67,11 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
+            <Label fx:id="alertLabel" layoutX="50.0" layoutY="60.0" text="alert" textFill="#ff2c14" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="120.0">
+               <font>
+                  <Font name="PingFang SC Regular" size="14.0" />
+               </font>
+            </Label>
             </children>
             <padding>
                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
