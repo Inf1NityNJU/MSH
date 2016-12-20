@@ -131,6 +131,7 @@ public class UtilityViewController {
                 showManagerView();
                 break;
             case LOGIN_FAIL:
+                loginViewController.showAlertView("账户和密码不匹配！");
                 break;
         }
     }

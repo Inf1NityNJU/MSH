@@ -46,6 +46,9 @@ public class SignUpViewController {
     @FXML
     private CommonTextField enterpriseText;
 
+    @FXML
+    private Label alertLabel;
+
     private int isEnterprise = 0;
 
     private UtilityViewController utilityViewController;
@@ -58,6 +61,7 @@ public class SignUpViewController {
 
     @FXML
     public void initialize() {
+        alertLabel.setText("");
         birthdayPicker.setDate(LocalDate.now());
     }
 
@@ -93,6 +97,18 @@ public class SignUpViewController {
 
     @FXML
     public void clickSignUpButton() {
+
+        if (accountText.getText().equals("")) {
+            alertLabel.setText("请输入账号！");
+            return;
+        } else if (passwordText.getText().equals("")) {
+            alertLabel.setText("请输入密码！");
+            return;
+        } else if (confirmPasswordText.getText().equals("")) {
+            alertLabel.setText("请再次输入密码！");
+            return;
+        }
+
         if (passwordText.getText().equals(confirmPasswordText.getText())) {
             userBLService = utilityViewController.getUserBLService();
 
@@ -109,10 +125,12 @@ public class SignUpViewController {
 
             if (rm == ResultMessage.SUCCESS) {
                 utilityViewController.login(accountText.getText(), Encryptor.encrypt(passwordText.getText()));
+            } else {
+                alertLabel.setText("该账号已存在！");
             }
 
         } else {
-            System.out.println("NOT SAME PASSWORD");
+            alertLabel.setText("两次输入密码不一致！");
         }
     }
 }
