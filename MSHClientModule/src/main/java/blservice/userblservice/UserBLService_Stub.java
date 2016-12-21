@@ -5,6 +5,7 @@ import util.*;
 import vo.*;
 
 import java.util.ArrayList;
+import java.util.jar.Pack200;
 
 /**
  * Created by Kray on 2016/10/12.
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 public class UserBLService_Stub implements UserBLService, UserBLInfo {
 
     private ClientVO exampleClientVO = new ClientVO("000000007", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
+    private StaffVO exampleStaffVO = new StaffVO("300001", "testStaff", "25010001", "adminStaff");
+    private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "testSalesman", "adminSalesman1");
 
     public LoginState login(String account, String password) {
         if (account.equals("admin") && password.equals("12345678")) {
@@ -156,59 +159,84 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
 
         }
         return creditVOs;
-
     }
 
-
-    //TODO
     public ArrayList<LevelVO> getAllLevel() {
-        return null;
+        ArrayList<LevelVO> levelVOs = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            levelVOs.add(new LevelVO(i + "", i * 100 + ""));
+        }
+        return levelVOs;
     }
 
-    @Override
     public ClientVO getClientByID(String ID) {
-        return null;
+        if (ID.equals("000000007")) {
+            return exampleClientVO;
+        } else {
+            return null;
+        }
     }
 
     public StaffVO getStaffByID(String ID) {
-        return null;
+        if (ID.equals("300001")) {
+            return exampleStaffVO;
+        } else {
+            return null;
+        }
     }
 
     public SalesmanVO getSalesmanByID(String ID) {
-        return null;
+        if (ID.equals("100001")) {
+            return exampleSalesmanVO;
+        } else {
+            return null;
+        }
     }
 
-    //TODO
     public ResultMessage updateLevel(LevelVO levelVO) {
-        return null;
+        if (levelVO.level.equals("1")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.FAILED;
+        }
     }
 
-    //TODO
     public ResultMessage addLevel(LevelVO levelVO) {
-        return null;
+        if ((Integer.parseInt(levelVO.level)) >= 1 && (Integer.parseInt(levelVO.level)) <= 10) {
+            return ResultMessage.EXIST;
+        } else {
+            return ResultMessage.SUCCESS;
+        }
     }
 
-    //TODO
     public ResultMessage deleteLevel(String ID) {
-        return null;
+        if (Integer.parseInt(ID) >= 1 && Integer.parseInt(ID) <= 10) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.FAILED;
+        }
     }
 
-    //TODO
     public StaffVO getStaffByHotelID(String hotelID) {
-        return null;
+        if (hotelID.equals("25010001")) {
+            return exampleStaffVO;
+        } else {
+            return null;
+        }
     }
 
-    //TODO
     public LevelVO getLevel(String ID) {
-        return null;
+        if (Integer.parseInt(ID) >= 1 && Integer.parseInt(ID) <= 10) {
+            return new LevelVO(ID, Integer.parseInt(ID) * 100 + "");
+        } else {
+            return null;
+        }
     }
 
-    @Override
     public int getCreditOfID(String id) {
         return 200;
     }
 
-    @Override
     public String getCurrentClientID() {
         return "000000001";
     }
@@ -221,9 +249,13 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
         return "100001";
     }
 
-    @Override
     public String getHotelIDByStaffID(String ID) {
-        return null;
+        if (ID.equals("300001")) {
+            return "25010001";
+        } else {
+            return "";
+        }
     }
+
 
 }
