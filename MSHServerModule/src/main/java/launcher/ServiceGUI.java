@@ -16,10 +16,12 @@ public class ServiceGUI {
     private Box vBox;
     private Box box1;
     private Box box2;
+//    private Box box3;
     private JLabel portLabel;
-    private TextField textField;
+    private TextField portTextField;
     private JButton startButton;
     private JButton endButton;
+    private TextField logTextField;
 
     void showGUI() {
         JFrame frame = new JFrame("Server");
@@ -34,9 +36,9 @@ public class ServiceGUI {
         panel.add(vBox);
         //
         portLabel = new JLabel("Port: ");
-        textField = new TextField("1099");
+        portTextField = new TextField("1099");
         box1.add(portLabel);
-        box1.add(textField);
+        box1.add(portTextField);
         //
         startButton = new JButton("Start");
         endButton = new JButton("Stop");
@@ -44,6 +46,9 @@ public class ServiceGUI {
         endButton.addActionListener(new EndListener());
         box2.add(startButton);
         box2.add(endButton);
+        //
+        logTextField = new TextField();
+        vBox.add(logTextField);
         //
         frame.setVisible(true);
         frame.setBounds(200, 200, 400, 200);
@@ -54,13 +59,15 @@ public class ServiceGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            int port = Integer.parseInt(textField.getText());
+            int port = Integer.parseInt(portTextField.getText());
 
             if(ServerHelper.getServerHelper(port) != null) {
-                textField.setEditable(false);
+                portTextField.setEditable(false);
                 System.out.println("Connect Success");
+                logTextField.setText("Connect Success");
             }else{
                 System.out.println("Connect Failed");
+                logTextField.setText("Connect Failed");
             }
 
         }
@@ -70,10 +77,11 @@ public class ServiceGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            textField.setEditable(true);
+            portTextField.setEditable(true);
 
             ServerHelper.disableNetwork();
             System.out.println("Connect Disable");
+            logTextField.setText("Connect Disable");
         }
     }
 }
