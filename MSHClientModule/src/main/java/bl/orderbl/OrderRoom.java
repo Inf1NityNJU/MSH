@@ -31,17 +31,25 @@ public class OrderRoom {
 
     /**
      * 修改数量
+     *
      * @param quantity
      * @return 是否修改成功
      */
     public ResultMessage modifyQuantity(int quantity) {
         this.quantity += quantity;
-        return ResultMessage.SUCCESS;
+
+        if (this.quantity > 0) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.NULL;
+        }
+
     }
 
 
     /**
      * 计算房间价格小计
+     *
      * @return 房间价格小计
      */
     public double getTotal() {

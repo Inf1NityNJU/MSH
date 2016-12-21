@@ -53,7 +53,7 @@
         </Label>
       <StackPane prefWidth="100.0">
          <children>
-            <TinyButton fx:id="deleteButton" text="删除" />
+            <TinyButton fx:id="deleteButton" text="删除" onMouseClicked="#clickDeleteButton"/>
          </children>
       </StackPane>
     </children>
