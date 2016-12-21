@@ -91,6 +91,7 @@ public class ClientManagementViewController {
 
             clientManagementDetailViewController = loader.getController();
             clientManagementDetailViewController.setClientManagementViewController(this);
+            clientManagementDetailViewController.setMainUIController(mainUIController);
             clientManagementDetailViewController.showClient(clientVO);
 
             Node node = mainUIController.getCenter();

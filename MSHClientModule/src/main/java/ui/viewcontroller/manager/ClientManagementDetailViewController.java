@@ -7,6 +7,7 @@ import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import vo.ClientVO;
 
@@ -18,6 +19,7 @@ public class ClientManagementDetailViewController {
     protected ClientVO clientVO;
 
     protected ClientManagementViewController clientManagementViewController;
+    protected MainUIController mainUIController;
 
     @FXML
     protected Label clientIDLabel;
@@ -62,6 +64,10 @@ public class ClientManagementDetailViewController {
         this.clientManagementViewController = clientManagementViewController;
 
         actionButton.setText("编 辑");
+    }
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     public void showClient(ClientVO clientVO) {
