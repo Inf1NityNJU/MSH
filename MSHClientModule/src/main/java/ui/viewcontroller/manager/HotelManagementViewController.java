@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import ui.viewcontroller.common.MainUIController;
+import vo.Hotel_DetailVO;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -43,6 +44,7 @@ public class HotelManagementViewController {
         if (initNode != null) {
             stack.clear();
             mainUIController.setCenter(initNode);
+            hotelManagementListViewController.refreshHotels();
             return;
         }
 
@@ -63,6 +65,32 @@ public class HotelManagementViewController {
         }
     }
 
+    /**
+     * 增加酒店
+     */
+    public void showHotelDetail(Hotel_DetailVO hotel) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/manager/HotelManagementDetailView.fxml"));
+            ScrollPane pane = loader.load();
+
+            HotelManagementDetailViewController hotelManagementDetailViewController = loader.getController();
+            hotelManagementDetailViewController.setHotelManagementViewController(this);
+            hotelManagementDetailViewController.setMainUIController(mainUIController);
+            hotelManagementDetailViewController.setHotel(hotel);
+
+            Node node = mainUIController.getCenter();
+            stack.push(node);
+
+            mainUIController.setCenter(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 增加酒店
+     */
     public void showAddHotel() {
         try {
             FXMLLoader loader = new FXMLLoader();

@@ -45,7 +45,7 @@ public class HotelManagementListViewController {
     private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
 
     private ArrayList<Hotel_DetailVO> hotels = new ArrayList<>();
-//    private OrderState orderState;
+    private FilterFlagsVO flags;
 
     @FXML
     public void initialize() {
@@ -87,11 +87,16 @@ public class HotelManagementListViewController {
         this.hotelManagementViewController = hotelManagementViewController;
     }
 
-//    public void refreshHotels() {
-//
-//    }
+    public void refreshHotels() {
+        if (flags == null) {
+            flags = new FilterFlagsVO(null, null, "", null, 0, 0, null, null, 0, -1, 0, 0, null);
+        }
+        showHotels(flags);
+    }
 
     public void showHotels(FilterFlagsVO flags) {
+        this.flags = flags;
+
         hotels = hotelBLService.searchHotel(flags);
         int size = hotels.size();
         managerHotelPagePaneController.setPageCount(size / NUM_OF_CELL + ((size % NUM_OF_CELL == 0) ? 0 : 1));
@@ -143,7 +148,8 @@ public class HotelManagementListViewController {
         contentVBox.getChildren().add(pagePane);
     }
 
-    public void showHotelDetail(Hotel_DetailVO hotel_briefVO) {
+    public void showHotelDetail(Hotel_DetailVO hotel) {
+        hotelManagementViewController.showHotelDetail(hotel);
 
     }
 
