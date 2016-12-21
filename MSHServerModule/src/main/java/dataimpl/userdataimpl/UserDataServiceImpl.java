@@ -522,7 +522,7 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public int getLevelByCredit(int credit) {
         ArrayList<LevelPO> levelPOs = getAllLevel();
-        levelPOs.sort(new LevelComparator());
+        levelPOs.sort((LevelPO l1, LevelPO l2) -> l1.getLevel() - l2.getLevel());
         for(LevelPO levelPO : levelPOs){
             if(levelPO.getCredit() > credit){
                 return levelPO.getLevel() - 1;
@@ -638,12 +638,6 @@ public class UserDataServiceImpl implements UserDataService {
             return true;
         } else {
             return credit >= getLevel(level + "").getCredit() && credit < getLevel((level + 1) + "").getCredit();
-        }
-    }
-
-    private class LevelComparator implements Comparator<LevelPO> {
-        public int compare(LevelPO l1, LevelPO l2) {
-            return l1.getLevel() - l2.getLevel();
         }
     }
 

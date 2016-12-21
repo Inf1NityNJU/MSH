@@ -9,7 +9,7 @@ public class EncryptorTest {
 
     @Test
     public void testEncryptor(){
-        String s = "songkuixi";
+        String s = "123456";
         Encryptor.encrypt(s);
     }
 }
