@@ -73,7 +73,7 @@
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <StateButton fx:id="staffButton" colorProperty="12B7F3" onMouseClicked="#clickStaffButton" text="酒店工作人员" />
                               <StateButton fx:id="salesmanButton" colorProperty="BC52FD" onMouseClicked="#clickSalesmanButton" text="网站营销人员" />
@@ -84,11 +84,11 @@
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
                         </Label>
-                        <MyChoiceBox fx:id="hotelChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <CommonTextField fx:id="accountText" GridPane.columnIndex="1" />
-                        <CommonTextField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <CommonTextField fx:id="checkPasswordText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <CommonTextField fx:id="nameText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <MyChoiceBox fx:id="hotelChoiceBox" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <CommonTextField fx:id="accountText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" />
+                        <CommonTextField fx:id="passwordText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CommonTextField fx:id="checkPasswordText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CommonTextField fx:id="nameText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />

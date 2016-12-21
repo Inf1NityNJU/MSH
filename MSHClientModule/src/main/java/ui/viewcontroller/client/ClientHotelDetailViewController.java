@@ -17,7 +17,10 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -42,6 +45,9 @@ import java.util.ArrayList;
  * Created by Sorumi on 16/12/2.
  */
 public class ClientHotelDetailViewController {
+
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private VBox promotionVBox;
@@ -148,6 +154,16 @@ public class ClientHotelDetailViewController {
 
     public void setHotel(Hotel_DetailVO hotel) {
         this.hotel = hotel;
+
+        //image
+        int num = hotel.ID.charAt(7) - '0';
+        Image image = new Image(getClass().getResource("/images/hotel/" + num + ".png").toExternalForm());
+
+        double width = image.getWidth();
+        double height = image.getHeight();
+        Rectangle2D viewportRect = new Rectangle2D(0, (height-400)/2, width, width*2/5);
+        imageView.setViewport(viewportRect);
+        imageView.setImage(image);
 
         //Add hotel
         nameLabel.setText(hotel.name);

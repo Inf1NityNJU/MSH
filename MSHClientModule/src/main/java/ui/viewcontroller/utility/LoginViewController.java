@@ -4,6 +4,7 @@ import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import util.Encryptor;
 
@@ -32,6 +33,8 @@ public class LoginViewController {
 
     @FXML
     public void initialize() {
+        Image image = new Image(getClass().getResource("/images/hotel/2.png").toExternalForm());
+        bgImageView.setImage(image);
         alertLabel.setText("");
     }
 

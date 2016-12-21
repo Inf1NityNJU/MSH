@@ -52,12 +52,6 @@ public class HotelManagementAddViewController {
     private RadioBoxPane starPane;
 
     @FXML
-    private Label staffLabel;
-
-    @FXML
-    private VBox staffVBox;
-
-    @FXML
     private Label alertLabel;
 
     private HotelManagementViewController hotelManagementViewController;
@@ -65,8 +59,6 @@ public class HotelManagementAddViewController {
     private UserBLService userBLService = new BLFactoryImpl().getStaffBLService();
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
     private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
-
-    private StaffVO staff;
 
     private MainUIController mainUIController;
 
@@ -80,7 +72,6 @@ public class HotelManagementAddViewController {
 
     public void addHotel() {
         alertLabel.setText("");
-        staffLabel.setText("");
 
         starPane.setValueIndex(0);
 
@@ -100,29 +91,9 @@ public class HotelManagementAddViewController {
                 }
         );
 
-        ArrayList<StaffVO> staffs = userBLService.search("");
 
-        try {
-            for (StaffVO staff : staffs) {
-                FXMLLoader cellLoader = new FXMLLoader();
-                cellLoader.setLocation(getClass().getResource("/component/user/HotelStaffCell.fxml"));
-                HBox cell = cellLoader.load();
-
-                HotelStaffCellController hotelStaffCellController = cellLoader.getController();
-                hotelStaffCellController.setHotelManagementAddViewController(this);
-                hotelStaffCellController.setStaff(staff);
-
-                staffVBox.getChildren().add(cell);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void addStaff(StaffVO staff) {
-        this.staff = staff;
-        staffLabel.setText(staff.staffName + " (" + staff.staffID + ")");
-    }
 
     @FXML
     public void clickBackButton() {
@@ -146,9 +117,6 @@ public class HotelManagementAddViewController {
             return;
         } else if (address.equals("")) {
             alertLabel.setText("请填写酒店地址");
-            return;
-        } else if (staff == null) {
-            alertLabel.setText("请选择酒店工作人员");
             return;
         }
 
@@ -182,10 +150,8 @@ public class HotelManagementAddViewController {
     private void sureSave(String name, City city, String address, Place place, int star) {
         Hotel_DetailVO hotel = new Hotel_DetailVO("", name, city, address, place, star, "", "", null, 0, 0);
         ResultMessage rm = hotelBLService.addHotel(hotel);
-        System.out.println(rm);
 
         if (rm == ResultMessage.SUCCESS) {
-//            staff.hotelID =
             hotelManagementViewController.back();
             hotelManagementViewController.showHotelList();
         }

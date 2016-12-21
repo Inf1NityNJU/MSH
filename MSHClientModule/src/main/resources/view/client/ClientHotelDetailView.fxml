@@ -33,7 +33,7 @@
                         <DropShadow color="#40404080" radius="1.0" />
                     </effect>
                <children>
-                  <ImageView fitHeight="400.0" fitWidth="1000.0" pickOnBounds="true">
+                  <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="1000.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../images/example.jpeg" />
                      </image>

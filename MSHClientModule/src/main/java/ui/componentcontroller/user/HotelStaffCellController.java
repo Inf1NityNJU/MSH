@@ -6,6 +6,7 @@ import component.circlebutton.CircleButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import ui.viewcontroller.manager.HotelManagementAddViewController;
+import ui.viewcontroller.manager.HotelManagementDetailViewController;
 import vo.Hotel_DetailVO;
 import vo.StaffVO;
 
@@ -27,12 +28,12 @@ public class HotelStaffCellController {
     private CircleButton addButton;
 
     private HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
-    private HotelManagementAddViewController hotelManagementAddViewController;
+    private HotelManagementDetailViewController hotelManagementDetailViewController;
 
     private StaffVO staff;
 
-    public void setHotelManagementAddViewController(HotelManagementAddViewController hotelManagementAddViewController) {
-        this.hotelManagementAddViewController = hotelManagementAddViewController;
+    public void setHotelManagementDetailViewController(HotelManagementDetailViewController hotelManagementDetailViewController) {
+        this.hotelManagementDetailViewController = hotelManagementDetailViewController;
     }
 
     public void setStaff(StaffVO staff) {
@@ -59,6 +60,6 @@ public class HotelStaffCellController {
 
     @FXML
     public void clickAddButton() {
-        hotelManagementAddViewController.addStaff(staff);
+        hotelManagementDetailViewController.addStaff(staff);
     }
 }

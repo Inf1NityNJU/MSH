@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import component.commontextfield.CommonTextField?>
-<?import component.mycheckbox.MyCheckBox?>
-<?import component.mychoicebox.MyChoiceBox?>
-<?import component.radioboxpane.RadioBoxPane?>
 <?import component.rectbutton.RectButton?>
+<?import component.starlabel.StarLabel?>
+<?import component.statebutton.StateButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.HotelManagementAddViewController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.HotelManagementDetailViewController">
     <content>
         <VBox fx:id="contentVBox" prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
             <padding>
@@ -34,7 +33,7 @@
                         <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                     </padding>
                     <children>
-                        <TitleLabel text="新增酒店" />
+                        <TitleLabel text="酒店详情" />
                         <GridPane vgap="40.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
@@ -50,9 +49,13 @@
                                     </GridPane.margin>
                                 </Label>
                                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                                    <children>
-                                        <CommonTextField fx:id="nameTextField" maxWidth="-Infinity" minHeight="-Infinity" prefWidth="300.0" />
-                                    </children>
+                           <children>
+                              <Label fx:id="nameLabel" text="酒店" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
                                 </VBox>
                                 <Label text="酒店星级" textFill="#cccccc" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                     <font>
@@ -70,31 +73,65 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <GridPane.margin>
                                         <Insets />
                                     </GridPane.margin>
-                                    <children>
-                                        <MyChoiceBox fx:id="cityBox" />
-                                        <MyChoiceBox fx:id="placeBox" />
-                                        <CommonTextField fx:id="addressTextField">
-                                            <HBox.margin>
-                                                <Insets left="20.0" />
-                                            </HBox.margin>
-                                        </CommonTextField>
-                                    </children>
+                           <children>
+                              <StateButton fx:id="cityStateLabel" colorProperty="00cccc" />
+                              <StateButton fx:id="placeStateLabel" colorProperty="00cccc" />
+                              <Label fx:id="addressLabel" text="地址" textFill="GREY">
+                                 <font>
+                                    <Font name="PingFang SC Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
                                 </HBox>
-                                <RadioBoxPane fx:id="starPane" hgap="70.0" tileAlignment="TOP_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                    <items>
-                                        <MyCheckBox text="一星" />
-                                        <MyCheckBox text="二星" />
-                                        <MyCheckBox text="三星" />
-                                        <MyCheckBox text="四星" />
-                                        <MyCheckBox text="五星" />
-                                    </items>
-                                </RadioBoxPane>
+                                <Label text="工作人员" textFill="#cccccc" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="staffLabel" text="Label" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="PingFang SC Regular" size="16.0" />
+                                    </font>
+                                </Label>
+                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <children>
+                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label alignment="CENTER" prefWidth="150.0" text="编号" textFill="#cccccc">
+                                                    <font>
+                                                        <Font name="PingFang SC Regular" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefWidth="210.0" text="姓名" textFill="#cccccc">
+                                                    <font>
+                                                        <Font name="PingFang SC Regular" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefWidth="290.0" text="所属酒店" textFill="#cccccc">
+                                                    <font>
+                                                        <Font name="PingFang SC Regular" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefWidth="120.0" text="操作" textFill="#cccccc">
+                                                    <font>
+                                                        <Font name="PingFang SC Regular" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <Separator prefWidth="200.0" />
+                                        <VBox fx:id="staffVBox" prefHeight="200.0" prefWidth="100.0" spacing="20.0" />
+                                    </children>
+                                </VBox>
+                        <StarLabel fx:id="starLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             </children>
                             <rowConstraints>
+                                <RowConstraints />
+                                <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
@@ -112,7 +149,7 @@
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
                                 <RectButton isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickBackButton" text="返 回" />
-                                <RectButton minHeight="40.0" onMouseClicked="#clickConfirmButton" text="确 认" />
+                                <!--<RectButton minHeight="40.0" onMouseClicked="#clickConfirmButton" text="确 认" />-->
                             </buttons>
                         </ButtonBar>
                     </children>

@@ -125,7 +125,7 @@ public class Hotel {
             roomStockCriteriaClauses.add(CriteriaClauseImpl.createRangeValueQuery("date", flags.checkInDate.toString(), flags.checkOutDate.toString(), QueryMethod.Range));
         }
         //确定房间类型
-        if(flags.roomType!=null){
+        if(flags.roomType != null){
             roomStockCriteriaClauses.add(CriteriaClauseImpl.createSingleValueQuery("roomType",flags.roomType,QueryMethod.Full));
         }
 
