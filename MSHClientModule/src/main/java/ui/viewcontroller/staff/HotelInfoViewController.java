@@ -79,6 +79,7 @@ public class HotelInfoViewController {
 
             HotelDetailEditViewController hotelDetailEditViewController = loader.getController();
             hotelDetailEditViewController.setHotelInfoViewController(this);
+            hotelDetailEditViewController.setMainUIController(mainUIController);
             hotelDetailEditViewController.showHotelDetailEdit();
 
             Node node = mainUIController.getCenter();

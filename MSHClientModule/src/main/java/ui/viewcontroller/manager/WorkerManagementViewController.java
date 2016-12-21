@@ -131,6 +131,7 @@ public class WorkerManagementViewController {
 
             StaffManagementDetailEditViewController staffManagementDetailEditViewController = loader.getController();
             staffManagementDetailEditViewController.setWorkerManagementViewController(this);
+            staffManagementDetailEditViewController.setMainUIController(mainUIController);
             staffManagementDetailEditViewController.showStaffEdit(staffVO);
 
             Node node = mainUIController.getCenter();
@@ -156,6 +157,7 @@ public class WorkerManagementViewController {
 
             SalesmanManagementDetailEditViewController salesmanManagementDetailEditViewController = loader.getController();
             salesmanManagementDetailEditViewController.setWorkerManagementViewController(this);
+            salesmanManagementDetailEditViewController.setMainUIController(mainUIController);
             salesmanManagementDetailEditViewController.showSalesmanEdit(salesmanVO);
 
             Node node = mainUIController.getCenter();
@@ -179,6 +181,7 @@ public class WorkerManagementViewController {
 
             WorkerManagementAddViewController workerManagementAddViewController = loader.getController();
             workerManagementAddViewController.setWorkerManagementViewController(this);
+            workerManagementAddViewController.setMainUIController(mainUIController);
 
             Node node = mainUIController.getCenter();
             stack.push(node);

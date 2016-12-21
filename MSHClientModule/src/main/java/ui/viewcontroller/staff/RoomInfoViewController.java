@@ -97,6 +97,7 @@ public class RoomInfoViewController {
 
             RoomAddViewController roomAddViewController = listLoader.getController();
             roomAddViewController.setRoomInfoViewController(this);
+            roomAddViewController.setMainUIController(mainUIController);
 
             Node node = mainUIController.getCenter();
             stack.push(node);

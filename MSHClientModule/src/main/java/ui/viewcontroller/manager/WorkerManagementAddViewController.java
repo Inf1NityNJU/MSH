@@ -11,12 +11,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
 import po.StaffPO;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import vo.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +33,7 @@ import java.util.ArrayList;
 public class WorkerManagementAddViewController {
 
     private WorkerManagementViewController workerManagementViewController;
+    private MainUIController mainUIController;
 
     @FXML
     private CommonTextField accountText;
@@ -77,6 +86,10 @@ public class WorkerManagementAddViewController {
         hotelChoiceBox.setItems(observableList);
     }
 
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
+
     @FXML
     public void clickBackButton() {
         workerManagementViewController.back();
@@ -92,13 +105,31 @@ public class WorkerManagementAddViewController {
                     || hotelChoiceBox.getValue() == null) {
                 System.out.println("Not complete");
             } else {
-                int index = hotelChoiceBox.getItems().indexOf(hotelChoiceBox.getValue());
-                String hotelID = this.hotel_detailVOs.get(index).ID;
-                UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-                userBLService.add(new StaffVO_Register(nameText.getText(), hotelID,
-                        accountText.getText(), passwordText.getText()));
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                    AnchorPane pane = loader.load();
 
-                clickBackButton();
+                    AlertViewController alertViewController = loader.getController();
+
+                    alertViewController.setInfoLabel("确定保存新的酒店工作人员信息吗？");
+                    alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                        @Override
+                        public void handle(Event event) {
+                            sureSave();
+                        }
+                    });
+                    alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                        @Override
+                        public void handle(Event event) {
+                            cancelSave();
+                        }
+                    });
+                    mainUIController.showPop(pane);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } else if (salesmanButton.getIsActiveProperty()) {
             //存网站营销人员
@@ -106,10 +137,31 @@ public class WorkerManagementAddViewController {
                     || passwordText.getText().equals("") || checkPasswordText.getText().equals("")) {
                 System.out.println("Not complete");
             } else {
-                UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-                userBLService.add(new SalesmanVO_Register(nameText.getText(), accountText.getText(), passwordText.getText()));
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                    AnchorPane pane = loader.load();
 
-                clickBackButton();
+                    AlertViewController alertViewController = loader.getController();
+
+                    alertViewController.setInfoLabel("确定保存新的网站营销人员信息吗？");
+                    alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                        @Override
+                        public void handle(Event event) {
+                            sureSave();
+                        }
+                    });
+                    alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                        @Override
+                        public void handle(Event event) {
+                            cancelSave();
+                        }
+                    });
+                    mainUIController.showPop(pane);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             System.out.println("Not complete");
@@ -132,5 +184,28 @@ public class WorkerManagementAddViewController {
 
         hotelLabel.setVisible(false);
         hotelChoiceBox.setVisible(false);
+    }
+
+    private void sureSave() {
+        if (staffButton.getIsActiveProperty()) {
+            int index = hotelChoiceBox.getItems().indexOf(hotelChoiceBox.getValue());
+            String hotelID = this.hotel_detailVOs.get(index).ID;
+            UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
+            userBLService.add(new StaffVO_Register(nameText.getText(), hotelID,
+                    accountText.getText(), passwordText.getText()));
+
+            clickBackButton();
+        }else if(salesmanButton.getIsActiveProperty()) {
+            UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
+            userBLService.add(new SalesmanVO_Register(nameText.getText(), accountText.getText(), passwordText.getText()));
+
+            clickBackButton();
+        }
+
+        mainUIController.hidePop();
+    }
+
+    private void cancelSave() {
+        mainUIController.hidePop();
     }
 }

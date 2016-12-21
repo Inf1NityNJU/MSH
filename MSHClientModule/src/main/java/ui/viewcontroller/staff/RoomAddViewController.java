@@ -7,14 +7,22 @@ import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
 import component.mycheckbox.MyCheckBox;
 import component.radioboxpane.RadioBoxPane;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.staff.RoomInfoViewController;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -25,6 +33,7 @@ public class RoomAddViewController {
 
     private RoomInfoViewController roomInfoViewController;
 
+    private MainUIController mainUIController;
     @FXML
     private CommonTextField priceTextField;
 
@@ -59,6 +68,9 @@ public class RoomAddViewController {
         this.roomInfoViewController = roomInfoViewController;
     }
 
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
+    }
 
     @FXML
     public void clickCancelButton() {
@@ -77,26 +89,60 @@ public class RoomAddViewController {
         quantityAlertLabel.setVisible(!isQuantity);
 
         if (isPrice && isQuantity) {
-            HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
-            UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
-            String staffID = userBLInfo.getCurrentStaffID();
-            String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                AnchorPane pane = loader.load();
 
-            String roomTypeName = typeBoxPane.getText();
-            RoomType roomType = RoomType.getRoomTypeByName(roomTypeName);
-            double price = Double.parseDouble(priceTextField.getText());
-            int quantity = Integer.parseInt(quantityTextField.getText());
+                AlertViewController alertViewController = loader.getController();
 
-            HotelRoomVO hotelRoom = new HotelRoomVO(hotelID, roomType, price, quantity, null);
+                alertViewController.setInfoLabel("确定保存新的房间信息吗？");
+                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        sureSave();
+                    }
+                });
+                alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        cancelSave();
+                    }
+                });
+                mainUIController.showPop(pane);
 
-
-            ResultMessage rm = hotelBLService.addRoom(hotelRoom);
-
-            System.out.println(rm);
-            if (rm == ResultMessage.SUCCESS) {
-                roomInfoViewController.back();
-                roomInfoViewController.showRoomAllList();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+
+    private void sureSave() {
+        HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
+        UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
+        String staffID = userBLInfo.getCurrentStaffID();
+        String hotelID = userBLInfo.getHotelIDByStaffID(staffID);
+
+        String roomTypeName = typeBoxPane.getText();
+        RoomType roomType = RoomType.getRoomTypeByName(roomTypeName);
+        double price = Double.parseDouble(priceTextField.getText());
+        int quantity = Integer.parseInt(quantityTextField.getText());
+
+        HotelRoomVO hotelRoom = new HotelRoomVO(hotelID, roomType, price, quantity, null);
+
+
+        ResultMessage rm = hotelBLService.addRoom(hotelRoom);
+
+        System.out.println(rm);
+        if (rm == ResultMessage.SUCCESS) {
+            roomInfoViewController.back();
+            roomInfoViewController.showRoomAllList();
+        }
+        mainUIController.hidePop();
+    }
+
+    private void cancelSave() {
+        mainUIController.hidePop();
     }
 }
