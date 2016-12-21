@@ -641,7 +641,6 @@ public class UserDataServiceImpl implements UserDataService {
         }
     }
 
-
     private class LevelComparator implements Comparator<LevelPO> {
         public int compare(LevelPO l1, LevelPO l2) {
             return l1.getLevel() - l2.getLevel();

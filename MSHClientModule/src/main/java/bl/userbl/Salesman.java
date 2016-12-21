@@ -10,6 +10,7 @@ import vo.SalesmanVO_Register;
 import vo.UserVO;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Kray on 2016/10/30.
@@ -154,10 +155,19 @@ public class Salesman extends User {
             for (LevelPO levelPO : levelPOs) {
                 levelVOs.add(new LevelVO(levelPO.getLevel() + "", levelPO.getCredit() + ""));
             }
+            levelVOs.sort(new LevelComparator());
             return levelVOs;
         } else {
             return null;
         }
+    }
+
+    private class LevelComparator implements Comparator<LevelVO> {
+
+        public int compare(LevelVO l1, LevelVO l2) {
+            return Integer.parseInt(l1.level) - Integer.parseInt(l2.level);
+        }
+
     }
 
 }

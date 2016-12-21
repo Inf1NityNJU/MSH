@@ -65,8 +65,6 @@ public class LevelListViewController {
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         levelVOs = userBLService.getAllLevel();
 
-        levelVOs.sort(new LevelComparator());
-
         if (levelVOs == null) {
             System.out.println("NO LEVEL INFO");
         } else {
@@ -100,14 +98,5 @@ public class LevelListViewController {
         }
 
     }
-
-    private class LevelComparator implements Comparator<LevelVO> {
-
-        public int compare(LevelVO l1, LevelVO l2) {
-            return Integer.parseInt(l1.level) - Integer.parseInt(l2.level);
-        }
-
-    }
-
 
 }
