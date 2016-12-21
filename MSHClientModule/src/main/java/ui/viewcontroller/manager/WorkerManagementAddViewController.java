@@ -1,16 +1,14 @@
 package ui.viewcontroller.manager;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import main.Main;
-import po.StaffPO;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
 import vo.*;

@@ -1,7 +1,6 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.Salesman;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLInfo;
 import component.navbutton.NavButton;
 import javafx.fxml.FXML;

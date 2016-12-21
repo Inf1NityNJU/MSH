@@ -1,15 +1,8 @@
 package user;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLInfo;
-import blservice.userblservice.UserBLService;
 import org.junit.Test;
-import util.LoginState;
-import vo.SalesmanVO;
-import vo.StaffVO;
-
-import java.util.ArrayList;
 
 /**
  * Created by Kray on 2016/11/18.

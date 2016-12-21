@@ -1,16 +1,13 @@
 package promotion;
 
-import bl.promotionbl.MinPromotion;
-import bl.promotionbl.MockMinPromotion;
+import blimpl.promotionbl.MinPromotion;
 import org.junit.Test;
 import util.City;
 import util.DateUtil;
 import util.Place;
-import vo.OrderRoomVO;
 import vo.Promotion_HotelVO;
 import vo.Promotion_WebVO;
 
-import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 /**

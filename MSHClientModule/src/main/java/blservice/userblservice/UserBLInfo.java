@@ -1,6 +1,5 @@
 package blservice.userblservice;
 
-import bl.userbl.Salesman;
 import util.ResultMessage;
 import vo.*;
 

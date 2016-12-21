@@ -1,7 +1,6 @@
 package hotel;
 
-import bl.hotelbl.HotelBLFactory;
-import bl.hotelbl.HotelRoom;
+import blimpl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
 import org.junit.Ignore;

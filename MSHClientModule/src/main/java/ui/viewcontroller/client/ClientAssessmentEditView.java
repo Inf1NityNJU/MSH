@@ -1,6 +1,6 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.commontextarea.CommonTextArea;
 import component.ratestarpane.RateStarPane;

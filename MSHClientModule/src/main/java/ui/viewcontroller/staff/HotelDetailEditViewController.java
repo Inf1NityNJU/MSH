@@ -1,12 +1,10 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
-import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
 import component.commontextarea.CommonTextArea;
 import component.commontextfield.CommonTextField;
-import component.mycheckbox.MyCheckBox;
 import component.mychoicebox.MyChoiceBox;
 import component.radioboxpane.RadioBoxPane;
 import javafx.beans.value.ChangeListener;
@@ -24,7 +22,6 @@ import ui.viewcontroller.common.MainUIController;
 import util.City;
 import util.Place;
 import util.ResultMessage;
-import vo.HotelRoomVO;
 import vo.Hotel_DetailVO;
 
 import java.io.IOException;

@@ -45,7 +45,7 @@ public class OrderDataServiceImpl implements OrderDataService {
     }
 
     @Override
-    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value) {
+    public ArrayList<OrderPO> searchOrder(OrderState orderState) {
         ArrayList<CriteriaClause> queries = new ArrayList<>();
 
         if (orderState != null) {

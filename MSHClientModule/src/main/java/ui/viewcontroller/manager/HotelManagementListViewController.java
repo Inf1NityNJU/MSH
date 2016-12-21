@@ -1,10 +1,7 @@
 package ui.viewcontroller.manager;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.hotelbl.Hotel;
-import blservice.hotelblservice.HotelBLInfo;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
-import blservice.orderblservice.OrderBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,12 +10,8 @@ import javafx.scene.layout.VBox;
 import ui.componentcontroller.hotel.ManagerHotelCellController;
 import ui.componentcontroller.hotel.ManagerHotelPagePaneController;
 import ui.componentcontroller.hotel.ManagerHotelSearchPaneController;
-import ui.componentcontroller.order.ClientOrderCellController;
-import ui.componentcontroller.order.ClientOrderSearchPaneController;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;
-import vo.Hotel_DetailVO;
-import vo.OrderVO;
 
 import java.io.IOException;
 import java.util.ArrayList;

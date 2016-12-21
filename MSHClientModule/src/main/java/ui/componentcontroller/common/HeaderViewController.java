@@ -1,6 +1,6 @@
 package ui.componentcontroller.common;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

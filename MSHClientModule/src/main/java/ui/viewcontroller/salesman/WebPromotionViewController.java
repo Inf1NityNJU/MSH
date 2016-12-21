@@ -1,12 +1,8 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
-import blservice.promotionblservice.PromotionBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import main.Main;
 import ui.viewcontroller.common.MainUIController;
 import util.PromotionType;
 import vo.PromotionVO;

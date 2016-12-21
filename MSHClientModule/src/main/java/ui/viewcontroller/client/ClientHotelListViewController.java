@@ -1,19 +1,17 @@
 package ui.viewcontroller.client;
 
-import bl.hotelbl.HotelBLFactory;
+import blimpl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import main.Main;
 import ui.componentcontroller.hotel.ClientHotelCellController;
 import ui.componentcontroller.hotel.ClientHotelPagePaneController;
 import ui.componentcontroller.hotel.ClientHotelSearchPaneController;
 import util.HotelSortMethod;
 import vo.FilterFlagsVO;
-import vo.Hotel_BriefVO;
 import vo.Hotel_DetailVO;
 
 import java.io.IOException;

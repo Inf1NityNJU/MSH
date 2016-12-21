@@ -1,12 +1,9 @@
 package ui.componentcontroller.promotion;
 
-import bl.hotelbl.Hotel;
-import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import ui.viewcontroller.staff.HotelPromotionListViewController;
 import vo.PromotionVO;
 
 /**

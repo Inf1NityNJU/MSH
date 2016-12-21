@@ -1,26 +1,13 @@
 package ui.componentcontroller.common;
 
-import bl.blfactory.BLFactoryImpl;
 import component.rectbutton.RectButton;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import main.Main;
-import ui.componentcontroller.promotion.WebPromotionSearchPaneController;
-import ui.viewcontroller.common.MainUIController;
-import ui.viewcontroller.salesman.WebPromotionAddViewController;
-import ui.viewcontroller.salesman.WebPromotionDetailViewController;
-import ui.viewcontroller.salesman.WebPromotion_SpecialPlaceAddViewController;
-import ui.viewcontroller.staff.HotelPromotionAddViewController;
-import ui.viewcontroller.staff.HotelPromotionDetailViewController;
-import ui.viewcontroller.staff.HotelPromotionViewController;
-
-import java.io.IOException;
 
 /**
  * Created by vivian on 16/12/10.

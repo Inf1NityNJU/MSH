@@ -1,7 +1,7 @@
 package user;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.Client;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.Client;
 import blservice.userblservice.UserBLInfo;
 import org.junit.Test;
 import util.*;

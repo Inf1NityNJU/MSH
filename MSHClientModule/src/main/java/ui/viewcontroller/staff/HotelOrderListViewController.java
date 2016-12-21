@@ -1,14 +1,12 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.Main;
-import ui.componentcontroller.order.ClientOrderPagePaneController;
 import ui.componentcontroller.order.HotelOrderCellController;
 import ui.componentcontroller.order.HotelOrderPagePaneController;
 import ui.componentcontroller.order.HotelOrderSearchPaneController;
@@ -91,7 +89,7 @@ public class HotelOrderListViewController {
 
     public void showOrders(OrderState orderState) {
         this.orderState = orderState;
-        orders = orderBLService.searchHotelOrder(orderState, null);
+        orders = orderBLService.searchHotelOrder(orderState);
         int size = orders.size();
         hotelOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {

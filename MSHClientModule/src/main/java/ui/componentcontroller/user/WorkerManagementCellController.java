@@ -1,7 +1,6 @@
 package ui.componentcontroller.user;
 
-import bl.blfactory.BLFactoryImpl;
-import blservice.blfactoryservice.BLFactoryService;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
 import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;

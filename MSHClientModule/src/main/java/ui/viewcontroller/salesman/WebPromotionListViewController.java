@@ -1,26 +1,14 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.promotionbl.PromotionBLFactory;
-import bl.promotionbl.PromotionBLServiceImpl;
-import blservice.promotionblservice.PromotionBLService;
-import blservice.promotionblservice.PromotionBLService_Stub;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import main.Main;
-import ui.componentcontroller.promotion.WebPromotionCellController;
 import ui.componentcontroller.promotion.WebPromotionPagePaneController;
 import ui.componentcontroller.promotion.WebPromotionSearchPaneController;
 import util.PromotionType;
 import vo.PromotionVO;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by vivian on 16/11/29.

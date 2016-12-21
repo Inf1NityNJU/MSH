@@ -1,6 +1,6 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;

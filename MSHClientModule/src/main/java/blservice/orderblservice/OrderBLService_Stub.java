@@ -79,11 +79,6 @@ public class OrderBLService_Stub implements OrderBLService {
         }
     }
 
-    @Override
-    public AssessmentVO getOrderAssessment(String orderID) {
-        return null;
-    }
-
     public ResultMessage editOrderAssessment(String orderID, AssessmentVO assessment) {
         if (orderID.equals("20161012010112340000"))
             return ResultMessage.SUCCESS;
@@ -105,7 +100,7 @@ public class OrderBLService_Stub implements OrderBLService {
         }
     }
 
-    public ArrayList<OrderVO> searchOrder(OrderState os, String keyword) {
+    public ArrayList<OrderVO> searchOrder(OrderState os) {
         ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
@@ -158,11 +153,11 @@ public class OrderBLService_Stub implements OrderBLService {
         return orderVOs;
     }
 
-    public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword) {
-        return searchOrder(os, null);
+    public ArrayList<OrderVO> searchClientOrder(OrderState os) {
+        return searchOrder(os);
     }
 
-    public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword) {
-        return searchOrder(os, null);
+    public ArrayList<OrderVO> searchHotelOrder(OrderState os) {
+        return searchOrder(os);
     }
 }

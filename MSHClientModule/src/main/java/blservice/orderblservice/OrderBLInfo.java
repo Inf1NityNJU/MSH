@@ -25,6 +25,7 @@ public interface OrderBLInfo {
      * @return
      */
     public boolean isBookedHotelByClient(String hotelID, String clientID);
+
     /**
      * 通过酒店ID得到该酒店的评价
      *

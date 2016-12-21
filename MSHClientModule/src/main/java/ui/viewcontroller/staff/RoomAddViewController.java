@@ -1,7 +1,6 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.hotelbl.HotelBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
@@ -12,18 +11,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
-import ui.viewcontroller.staff.RoomInfoViewController;
 import util.ResultMessage;
 import util.RoomType;
 import vo.HotelRoomVO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**

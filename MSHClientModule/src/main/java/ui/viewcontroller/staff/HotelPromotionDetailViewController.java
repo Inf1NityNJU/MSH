@@ -1,13 +1,9 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.hotelbl.Hotel;
-import bl.promotionbl.Promotion;
-import bl.promotionbl.Promotion_HotelSpecialDate;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
-import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,7 +14,6 @@ import javafx.scene.layout.HBox;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
-import util.PromotionType;
 import vo.*;
 
 import java.io.IOException;

@@ -1,13 +1,12 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.UserBLFactory;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.Main;
 import ui.componentcontroller.user.ClientManagementCellController;
 import ui.componentcontroller.user.ClientManagementPaneController;
 import ui.componentcontroller.user.ClientManagementSearchPaneController;

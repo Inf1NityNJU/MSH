@@ -1,6 +1,5 @@
 package vo;
 
-import bl.hotelbl.HotelRoom;
 import util.RoomType;
 
 import java.util.ArrayList;

@@ -1,9 +1,8 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.UserBLFactory;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.commonpasswordfield.CommonPasswordField;
-import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import javafx.event.Event;
 import javafx.event.EventHandler;

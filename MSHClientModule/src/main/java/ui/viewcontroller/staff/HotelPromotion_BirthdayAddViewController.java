@@ -1,8 +1,6 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.hotelbl.Hotel;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;
@@ -15,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
-import util.DateUtil;
 import util.PromotionType;
 import vo.PromotionVO;
 import vo.Promotion_BirthdayVO;

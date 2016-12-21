@@ -1,7 +1,7 @@
 package hotel;
 
-import bl.hotelbl.Hotel;
-import bl.hotelbl.MockHotel;
+import blimpl.hotelbl.Hotel;
+import blimpl.hotelbl.MockHotel;
 import org.junit.Test;
 import util.City;
 import util.ResultMessage;

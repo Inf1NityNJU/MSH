@@ -1,6 +1,6 @@
 package ui.componentcontroller.order;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.circlebutton.CircleButton;
 import component.circleimage.CircleImage;

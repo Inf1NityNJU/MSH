@@ -1,7 +1,7 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ui.componentcontroller.user.ClientCreditCellController;
-import vo.ClientVO;
 import vo.CreditVO;
 
 import java.util.ArrayList;

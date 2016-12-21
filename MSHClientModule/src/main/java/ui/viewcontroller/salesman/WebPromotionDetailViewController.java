@@ -1,6 +1,6 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
@@ -14,7 +14,6 @@ import javafx.scene.layout.HBox;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
-import util.PromotionType;
 import vo.*;
 
 import java.io.IOException;

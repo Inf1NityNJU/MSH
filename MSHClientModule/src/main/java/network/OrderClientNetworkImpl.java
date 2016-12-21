@@ -71,9 +71,9 @@ public class OrderClientNetworkImpl implements OrderClientNetworkService {
         }
     }
 
-    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value) {
+    public ArrayList<OrderPO> searchOrder(OrderState orderState) {
         try {
-            return orderServerNetworkService.searchOrder(orderState, field, value);
+            return orderServerNetworkService.searchOrder(orderState);
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<OrderPO>();

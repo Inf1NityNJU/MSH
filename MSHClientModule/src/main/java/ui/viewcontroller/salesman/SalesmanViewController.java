@@ -1,12 +1,7 @@
 package ui.viewcontroller.salesman;
 
-import bl.userbl.Salesman;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import main.Main;
 import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 

@@ -74,7 +74,7 @@
                                     <Font name="PingFang SC Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <RectButton fx:id="detailButton" isActiveProperty="false" layoutX="500.0" layoutY="151.0" sizeProperty="Small" text="查看详情" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" onMouseClicked="#clickDetailButton"/>
+                              <RectButton fx:id="detailButton" isActiveProperty="false" layoutX="500.0" layoutY="151.0" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -129,13 +129,13 @@
                               <Font name="PingFang SC Regular" size="14.0" />
                            </font>
                         </Label>
-                        <CommonTextArea fx:id="commentTextArea" layoutX="480.0" prefHeight="120.0" prefWidth="440.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <CommonTextArea fx:id="commentTextArea" layoutX="480.0" prefHeight="120.0" prefWidth="440.0" wrapText="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <ButtonBar>
                      <buttons>
-                        <RectButton fx:id="backButton" isActiveProperty="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" text="返 回" onMouseClicked="#clickBackButton"/>
-                        <RectButton fx:id="confirmButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" text="确 认" onMouseClicked="#clickConfirmButton"/>
+                        <RectButton fx:id="backButton" isActiveProperty="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#clickBackButton" prefHeight="40.0" text="返 回" />
+                        <RectButton fx:id="confirmButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#clickConfirmButton" prefHeight="40.0" text="确 认" />
                      </buttons>
                   </ButtonBar>
                </children>

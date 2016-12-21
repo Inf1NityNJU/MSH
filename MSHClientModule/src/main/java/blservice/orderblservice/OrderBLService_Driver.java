@@ -27,13 +27,6 @@ public class OrderBLService_Driver {
             System.out.print("Credit not enough");
         }
 
-        rm = orderBLService.modifyDate(new DateUtil(2016, 11, 10), new DateUtil(2016, 11, 14));
-        if (rm == ResultMessage.SUCCESS) {
-            System.out.print("Modify Success");
-        } else {
-            System.out.print("Modify Failed");
-        }
-
         rm = orderBLService.modifyRoomQuantity(RoomType.SingleRoom, 2);
         if (rm == ResultMessage.SUCCESS) {
             System.out.print("Modify Success");
@@ -90,49 +83,49 @@ public class OrderBLService_Driver {
             System.out.print("Failed");
         }
 
-        ArrayList<OrderVO> orders = orderBLService.searchOrder(null, null);
+        ArrayList<OrderVO> orders = orderBLService.searchOrder(null);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchOrder(OrderState.Unexecuted, null);
+        orders = orderBLService.searchOrder(OrderState.Unexecuted);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchOrder(OrderState.Executed, null);
+        orders = orderBLService.searchOrder(OrderState.Executed);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchOrder(OrderState.Abnormal, null);
+        orders = orderBLService.searchOrder(OrderState.Abnormal);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchOrder(OrderState.Cancelled, null);
+        orders = orderBLService.searchOrder(OrderState.Cancelled);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchClientOrder(null, null);
+        orders = orderBLService.searchClientOrder(null);
         if (orders != null) {
             System.out.print("Success");
         } else {
             System.out.print("Failed");
         }
 
-        orders = orderBLService.searchHotelOrder(null, null);
+        orders = orderBLService.searchHotelOrder(null);
         if (orders != null) {
             System.out.print("Success");
         } else {

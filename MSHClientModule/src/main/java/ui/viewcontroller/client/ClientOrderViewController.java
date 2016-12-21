@@ -1,13 +1,8 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import blservice.orderblservice.OrderBLService;
-import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import main.Main;
 import ui.viewcontroller.common.MainUIController;
 import vo.OrderVO;
 

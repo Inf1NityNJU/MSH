@@ -1,6 +1,6 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;

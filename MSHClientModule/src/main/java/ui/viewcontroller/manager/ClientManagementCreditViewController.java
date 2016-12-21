@@ -1,6 +1,6 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.UserBLFactory;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
@@ -8,13 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.Main;
 import ui.componentcontroller.user.ClientCreditCellController;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import vo.CreditVO;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Created by Kray on 2016/11/29.

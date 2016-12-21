@@ -1,10 +1,8 @@
 package promotion;
 
-import bl.promotionbl.MockPromotion;
-import bl.promotionbl.Promotion;
+import blimpl.promotionbl.Promotion;
 import org.junit.Test;
 import util.DateUtil;
-import util.Place;
 import util.PromotionType;
 import util.ResultMessage;
 import vo.*;

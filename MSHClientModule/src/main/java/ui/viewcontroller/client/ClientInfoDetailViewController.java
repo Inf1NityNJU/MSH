@@ -1,7 +1,7 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
