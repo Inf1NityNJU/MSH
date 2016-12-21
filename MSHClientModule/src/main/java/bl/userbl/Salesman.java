@@ -45,8 +45,11 @@ public class Salesman extends User {
      */
     public ResultMessage add(UserVO userVO) {
         SalesmanVO_Register salesmanVO = (SalesmanVO_Register) userVO;
-        SalesmanPO salesmanPO = new SalesmanPO(null, salesmanVO.salesmanName, salesmanVO.account, salesmanVO.password);
-//        return userDataService.addSalesman(salesmanPO);
+        SalesmanPO salesmanPO = new SalesmanPO(
+                null,
+                salesmanVO.salesmanName,
+                salesmanVO.account,
+                salesmanVO.password);
         return userClientNetwork.addSalesman(salesmanPO);
     }
 
@@ -57,13 +60,14 @@ public class Salesman extends User {
      * @return 符合ID的SalesmanVO
      */
     public SalesmanVO searchByID(String SalesmanID) {
-//        SalesmanPO SalesmanPO = userDataService.searchSalesmanByID(SalesmanID);
         SalesmanPO SalesmanPO = userClientNetwork.searchSalesmanByID(SalesmanID);
         if (SalesmanPO == null) {
             return null;
         } else {
-            SalesmanVO SalesmanVO = new SalesmanVO(SalesmanPO.getSalesmanID(), SalesmanPO.getSalesmanName(), SalesmanPO.getAccount());
-            return SalesmanVO;
+            return new SalesmanVO(
+                    SalesmanPO.getSalesmanID(),
+                    SalesmanPO.getSalesmanName(),
+                    SalesmanPO.getAccount());
         }
     }
 
@@ -75,11 +79,12 @@ public class Salesman extends User {
      */
     public ResultMessage update(UserVO userVO) {
         SalesmanVO salesmanVO = (SalesmanVO) userVO;
-//        SalesmanPO tmpPO = userDataService.searchSalesmanByID(salesmanVO.salesmanID);
         SalesmanPO tmpPO = userClientNetwork.searchSalesmanByID(salesmanVO.salesmanID);
-        SalesmanPO SalesmanPO = new SalesmanPO(salesmanVO.salesmanID, salesmanVO.salesmanName,
-                tmpPO.getAccount(), tmpPO.getPassword());
-//        return userDataService.updateSalesman(salesmanVO.salesmanID, SalesmanPO);
+        SalesmanPO SalesmanPO = new SalesmanPO(
+                salesmanVO.salesmanID,
+                salesmanVO.salesmanName,
+                tmpPO.getAccount(),
+                tmpPO.getPassword());
         return userClientNetwork.updateSalesman(salesmanVO.salesmanID, SalesmanPO);
     }
 
@@ -90,7 +95,6 @@ public class Salesman extends User {
      * @return 是否删除成功
      */
     public ResultMessage delete(String salesmanID) {
-//        return userDataService.deleteSalesman(salesmanID);
         return userClientNetwork.deleteSalesman(salesmanID);
     }
 
@@ -101,12 +105,12 @@ public class Salesman extends User {
      * @return 符合关键词的所有网站营销人员
      */
     public ArrayList<SalesmanVO> search(String keyword) {
-//        ArrayList<SalesmanPO> salesmanPOs = userDataService.searchSalesman(keyword);
         ArrayList<SalesmanPO> salesmanPOs = userClientNetwork.searchSalesman(keyword);
         ArrayList<SalesmanVO> salesmanVOs = new ArrayList<SalesmanVO>();
-        for (SalesmanPO salesmanPO : salesmanPOs) {
-            salesmanVOs.add(new SalesmanVO(salesmanPO.getSalesmanID(), salesmanPO.getSalesmanName(), salesmanPO.getAccount()));
-        }
+        salesmanPOs.forEach(salesmanPO -> salesmanVOs.add(new SalesmanVO(
+                salesmanPO.getSalesmanID(),
+                salesmanPO.getSalesmanName(),
+                salesmanPO.getAccount())));
         return salesmanVOs;
     }
 
@@ -117,7 +121,6 @@ public class Salesman extends User {
      */
     public ResultMessage addLevel(LevelVO levelVO) {
         LevelPO levelPO = new LevelPO(levelVO.level, Integer.parseInt(levelVO.level), Integer.parseInt(levelVO.credit));
-//        return userDataService.addLevel(levelPO);
         return userClientNetwork.addLevel(levelPO);
     }
 
@@ -128,7 +131,6 @@ public class Salesman extends User {
      */
     public ResultMessage updateLevel(LevelVO levelVO) {
         LevelPO levelPO = new LevelPO(levelVO.level, Integer.parseInt(levelVO.level), Integer.parseInt(levelVO.credit));
-//        return userDataService.updateLevel(levelVO.level, levelPO);
         return userClientNetwork.updateLevel(levelVO.level, levelPO);
     }
 
@@ -138,7 +140,6 @@ public class Salesman extends User {
      * @return
      */
     public ResultMessage deleteLevel(String ID) {
-//        return userDataService.deleteLevel(ID);
         return userClientNetwork.deleteLevel(ID);
     }
 
@@ -148,13 +149,10 @@ public class Salesman extends User {
      * @return
      */
     public ArrayList<LevelVO> getAllLevel() {
-//        ArrayList<LevelPO> levelPOs = userDataService.getAllLevel();
         ArrayList<LevelPO> levelPOs = userClientNetwork.getAllLevel();
         ArrayList<LevelVO> levelVOs = new ArrayList<LevelVO>();
         if (levelPOs.size() > 0) {
-            for (LevelPO levelPO : levelPOs) {
-                levelVOs.add(new LevelVO(levelPO.getLevel() + "", levelPO.getCredit() + ""));
-            }
+            levelPOs.forEach(levelPO -> levelVOs.add(new LevelVO(levelPO.getLevel() + "", levelPO.getCredit() + "")));
             levelVOs.sort((LevelVO l1, LevelVO l2) -> Integer.parseInt(l1.level) - Integer.parseInt(l2.level));
             return levelVOs;
         } else {

@@ -42,7 +42,12 @@ public class Staff extends User {
      */
     public ResultMessage add(UserVO userVO) {
         StaffVO_Register staffVO = (StaffVO_Register) userVO;
-        StaffPO staffPO = new StaffPO(null, staffVO.staffName, staffVO.hotelID, staffVO.account, staffVO.password);
+        StaffPO staffPO = new StaffPO(
+                null,
+                staffVO.staffName,
+                staffVO.hotelID,
+                staffVO.account,
+                staffVO.password);
         return userClientNetwork.addStaff(staffPO);
     }
 
@@ -57,8 +62,11 @@ public class Staff extends User {
         if (staffPO == null) {
             return null;
         } else {
-            StaffVO staffVO = new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount());
-            return staffVO;
+            return new StaffVO(
+                    staffPO.getStaffID(),
+                    staffPO.getStaffName(),
+                    staffPO.getHotelID(),
+                    staffPO.getAccount());
         }
     }
 
@@ -71,7 +79,12 @@ public class Staff extends User {
     public ResultMessage update(UserVO userVO) {
         StaffVO staffVO = (StaffVO) userVO;
         StaffPO tmpPO = userClientNetwork.searchStaffByID(staffVO.staffID);
-        StaffPO staffPO = new StaffPO(staffVO.staffID, staffVO.staffName, staffVO.hotelID, tmpPO.getAccount(), tmpPO.getPassword());
+        StaffPO staffPO = new StaffPO(
+                staffVO.staffID,
+                staffVO.staffName,
+                staffVO.hotelID,
+                tmpPO.getAccount(),
+                tmpPO.getPassword());
         return userClientNetwork.updateStaff(staffVO.staffID, staffPO);
     }
 
@@ -94,9 +107,12 @@ public class Staff extends User {
     public ArrayList<StaffVO> search(String keyword) {
         ArrayList<StaffPO> staffPOs = userClientNetwork.searchStaff(keyword);
         ArrayList<StaffVO> staffVOs = new ArrayList<StaffVO>();
-        for (StaffPO staffPO : staffPOs) {
-            staffVOs.add(new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount()));
-        }
+        staffPOs.forEach(staffPO -> staffVOs.add(
+                new StaffVO(
+                        staffPO.getStaffID(),
+                        staffPO.getStaffName(),
+                        staffPO.getHotelID(),
+                        staffPO.getAccount())));
         return staffVOs;
     }
 
@@ -121,7 +137,11 @@ public class Staff extends User {
         if (staffPO == null) {
             return null;
         } else {
-            return new StaffVO(staffPO.getStaffID(), staffPO.getStaffName(), staffPO.getHotelID(), staffPO.getAccount());
+            return new StaffVO(
+                    staffPO.getStaffID(),
+                    staffPO.getStaffName(),
+                    staffPO.getHotelID(),
+                    staffPO.getAccount());
         }
     }
 }

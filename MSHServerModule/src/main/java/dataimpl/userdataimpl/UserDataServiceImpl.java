@@ -9,6 +9,7 @@ import util.ResultMessage;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 /**
  * Created by Kray on 2016/11/17.
@@ -62,9 +63,6 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Client Login");
             if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-                //Encryption
-//                password = Encryptor.encrypt(password);
-
                 if ((tmpUserPO = clientDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Client;
@@ -75,7 +73,6 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Staff Login");
             if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-//                password = Encryptor.encrypt(password);
                 if ((tmpUserPO = staffDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Staff;
@@ -86,7 +83,6 @@ public class UserDataServiceImpl implements UserDataService {
             System.out.println("Salesman Login");
             if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
                 UserPO tmpUserPO;
-//                password = Encryptor.encrypt(password);
                 if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", password)) != null) {
                     if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                         return LoginState.LOGIN_SUCCESS_Salesman;
@@ -119,9 +115,6 @@ public class UserDataServiceImpl implements UserDataService {
      * @return
      */
     public ResultMessage resetPassword(String account, String oldPassword, String newPassword) {
-        System.out.println(account);
-        System.out.println(oldPassword);
-        System.out.println(newPassword);
         if (newPassword.equals("")) {
             System.out.println("Empty Password");
             return ResultMessage.FAILED;
@@ -133,38 +126,51 @@ public class UserDataServiceImpl implements UserDataService {
             if (clientDataHelper != null) {
                 if ((userPO = clientDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = clientDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             ClientPO clientPO = (ClientPO) tmpUserPO;
-                            return updateClient(clientPO.getClientID(), new ClientPO(clientPO.getClientID(),
-                                    clientPO.getClientName(), clientPO.getCredit(),
-                                    clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
-                                    clientPO.getAccount(), newPassword));
+                            return updateClient(
+                                    clientPO.getClientID(),
+                                    new ClientPO(
+                                            clientPO.getClientID(),
+                                            clientPO.getClientName(),
+                                            clientPO.getCredit(),
+                                            clientPO.getBirthday(),
+                                            clientPO.getContactInfo(),
+                                            clientPO.getEnterprise(),
+                                            clientPO.getAccount(),
+                                            newPassword));
                         }
                     }
                 }
             } else if (staffDataHelper != null) {
                 if ((userPO = staffDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = staffDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             StaffPO staffPO = (StaffPO) tmpUserPO;
-                            return updateStaff(staffPO.getStaffID(), new StaffPO(staffPO.getStaffID(), staffPO.getStaffName(),
-                                    staffPO.getHotelID(), staffPO.getAccount(), newPassword));
+                            return updateStaff(staffPO.getStaffID(),
+                                    new StaffPO(
+                                            staffPO.getStaffID(),
+                                            staffPO.getStaffName(),
+                                            staffPO.getHotelID(),
+                                            staffPO.getAccount(),
+                                            newPassword));
                         }
                     }
                 }
             } else if (salesmanDataHelper != null) {
                 if ((userPO = salesmanDataHelper.exactlyQuery("account", account)) != null) {
                     UserPO tmpUserPO;
-//                    oldPassword = Encryptor.encrypt(oldPassword);
                     if ((tmpUserPO = salesmanDataHelper.exactlyQuery("password", oldPassword)) != null) {
                         if (userPO.getPassword().equals(tmpUserPO.getPassword())) {
                             SalesmanPO salesmanPO = (SalesmanPO) tmpUserPO;
-                            return updateSalesman(salesmanPO.getSalesmanID(), new SalesmanPO(salesmanPO.getSalesmanID(),
-                                    salesmanPO.getSalesmanName(), salesmanPO.getAccount(), newPassword));
+                            return updateSalesman(salesmanPO.getSalesmanID(),
+                                    new SalesmanPO(
+                                            salesmanPO.getSalesmanID(),
+                                            salesmanPO.getSalesmanName(),
+                                            salesmanPO.getAccount(),
+                                            newPassword));
                         }
                     }
                 }
@@ -181,8 +187,15 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ResultMessage addClient(ClientPO clientPO) {
         String clientID = getMaxClientID();
-        ClientPO tmpPO = new ClientPO(clientID, clientPO.getClientName(), clientPO.getCredit(),
-                clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount(), clientPO.getPassword());
+        ClientPO tmpPO = new ClientPO(
+                clientID,
+                clientPO.getClientName(),
+                clientPO.getCredit(),
+                clientPO.getBirthday(),
+                clientPO.getContactInfo(),
+                clientPO.getEnterprise(),
+                clientPO.getAccount(),
+                clientPO.getPassword());
         if (checkAccountExist(clientPO.getAccount(), "client")) {
             return ResultMessage.EXIST;
         } else if (clientDataHelper.save(tmpPO) == ResultMessage.SUCCESS
@@ -238,21 +251,10 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<ClientPO> searchClient(String keyword) {
         ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
-        for (ClientPO clientPO : clientDataHelper.fuzzyMatchQuery("clientID", keyword)) {
-            if (!clientPOs.contains(clientPO)) {
-                clientPOs.add(clientPO);
-            }
-        }
-        for (ClientPO clientPO : clientDataHelper.fuzzyMatchQuery("clientName", keyword)) {
-            if (!clientPOs.contains(clientPO)) {
-                clientPOs.add(clientPO);
-            }
-        }
-        for (ClientPO clientPO : clientDataHelper.fuzzyMatchQuery("account", keyword)) {
-            if (!clientPOs.contains(clientPO)) {
-                clientPOs.add(clientPO);
-            }
-        }
+        Predicate<ClientPO> clientPOPredicate = (clientPO) -> !(clientPOs.contains(clientPO));
+        clientDataHelper.fuzzyMatchQuery("clientID", keyword).stream().filter(clientPOPredicate).forEach(clientPOs::add);
+        clientDataHelper.fuzzyMatchQuery("clientName", keyword).stream().filter(clientPOPredicate).forEach(clientPOs::add);
+        clientDataHelper.fuzzyMatchQuery("account", keyword).stream().filter(clientPOPredicate).forEach(clientPOs::add);
         return clientPOs;
     }
 
@@ -311,26 +313,11 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<StaffPO> searchStaff(String keyword) {
         ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
-        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("staffID", keyword)) {
-            if (!staffPOs.contains(staffPO)) {
-                staffPOs.add(staffPO);
-            }
-        }
-        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("staffName", keyword)) {
-            if (!staffPOs.contains(staffPO)) {
-                staffPOs.add(staffPO);
-            }
-        }
-        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("hotelID", keyword)) {
-            if (!staffPOs.contains(staffPO)) {
-                staffPOs.add(staffPO);
-            }
-        }
-        for (StaffPO staffPO : staffDataHelper.fuzzyMatchQuery("account", keyword)) {
-            if (!staffPOs.contains(staffPO)) {
-                staffPOs.add(staffPO);
-            }
-        }
+        Predicate<StaffPO> staffPOPredicate = (staffPO -> !staffPOs.contains(staffPO));
+        staffDataHelper.fuzzyMatchQuery("staffID", keyword).stream().filter(staffPOPredicate).forEach(staffPOs::add);
+        staffDataHelper.fuzzyMatchQuery("staffName", keyword).stream().filter(staffPOPredicate).forEach(staffPOs::add);
+        staffDataHelper.fuzzyMatchQuery("hotelID", keyword).stream().filter(staffPOPredicate).forEach(staffPOs::add);
+        staffDataHelper.fuzzyMatchQuery("account", keyword).stream().filter(staffPOPredicate).forEach(staffPOs::add);
         return staffPOs;
     }
 
@@ -342,7 +329,11 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ResultMessage addSalesman(SalesmanPO salesmanPO) {
         String salesmanID = getMaxSalesmanID();
-        SalesmanPO tmpPO = new SalesmanPO(salesmanID, salesmanPO.getSalesmanName(), salesmanPO.getAccount(), salesmanPO.getPassword());
+        SalesmanPO tmpPO = new SalesmanPO(
+                salesmanID,
+                salesmanPO.getSalesmanName(),
+                salesmanPO.getAccount(),
+                salesmanPO.getPassword());
         if (checkAccountExist(salesmanPO.getAccount(), "salesman")) {
             return ResultMessage.FAILED;
         } else {
@@ -389,21 +380,10 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {
         ArrayList<SalesmanPO> salesmanPOs = new ArrayList<SalesmanPO>();
-        for (SalesmanPO salesmanPO : salesmanDataHelper.fuzzyMatchQuery("salesmanID", keyword)) {
-            if (!salesmanPOs.contains(salesmanPO)) {
-                salesmanPOs.add(salesmanPO);
-            }
-        }
-        for (SalesmanPO salesmanPO : salesmanDataHelper.fuzzyMatchQuery("salesmanName", keyword)) {
-            if (!salesmanPOs.contains(salesmanPO)) {
-                salesmanPOs.add(salesmanPO);
-            }
-        }
-        for (SalesmanPO salesmanPO : salesmanDataHelper.fuzzyMatchQuery("account", keyword)) {
-            if (!salesmanPOs.contains(salesmanPO)) {
-                salesmanPOs.add(salesmanPO);
-            }
-        }
+        Predicate<SalesmanPO> salesmanPOPredicate = (salesmanPO -> !salesmanPOs.contains(salesmanPO));
+        salesmanDataHelper.fuzzyMatchQuery("salesmanID", keyword).stream().filter(salesmanPOPredicate).forEach(salesmanPOs::add);
+        salesmanDataHelper.fuzzyMatchQuery("salesmanName", keyword).stream().filter(salesmanPOPredicate).forEach(salesmanPOs::add);
+        salesmanDataHelper.fuzzyMatchQuery("account", keyword).stream().filter(salesmanPOPredicate).forEach(salesmanPOs::add);
         return salesmanPOs;
     }
 
@@ -417,23 +397,25 @@ public class UserDataServiceImpl implements UserDataService {
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
         ClientPO clientPO = clientDataHelper.exactlyQuery("clientID", clientID);
         int resultCredit = clientPO.getCredit() + creditPO.getDeltaCredit();
-        System.out.println(clientPO.getAccount());
-        System.out.println(resultCredit);
         creditPO.setResultCredit(resultCredit);
         ResultMessage rm = creditDataHelper.save(creditPO);
         if (rm == ResultMessage.SUCCESS) {
             int level = 1;
-
             while (true) {
                 if (reachedLevel(level, resultCredit)) {
                     break;
                 }
                 level++;
             }
-
-            clientDataHelper.update(new ClientPO(clientPO.getClientID(), clientPO.getClientName(), resultCredit,
-                    clientPO.getBirthday(), clientPO.getContactInfo(), clientPO.getEnterprise(),
-                    clientPO.getAccount(), clientPO.getPassword()));
+            clientDataHelper.update(new ClientPO(
+                    clientPO.getClientID(),
+                    clientPO.getClientName(),
+                    resultCredit,
+                    clientPO.getBirthday(),
+                    clientPO.getContactInfo(),
+                    clientPO.getEnterprise(),
+                    clientPO.getAccount(),
+                    clientPO.getPassword()));
         }
         return rm;
     }
@@ -446,11 +428,8 @@ public class UserDataServiceImpl implements UserDataService {
      */
     public ArrayList<CreditPO> searchCreditByID(String clientID) {
         ArrayList<CreditPO> creditPOs = new ArrayList<CreditPO>();
-        for (CreditPO creditPO : creditDataHelper.prefixMatchQuery("clientID", clientID)) {
-            if (!creditPOs.contains(creditPO)) {
-                creditPOs.add(creditPO);
-            }
-        }
+        Predicate<CreditPO> creditPOPredicate = creditPO -> !creditPOs.contains(creditPO);
+        creditDataHelper.prefixMatchQuery("clientID", clientID).stream().filter(creditPOPredicate).forEach(creditPOs::add);
         return creditPOs;
     }
 
@@ -613,14 +592,11 @@ public class UserDataServiceImpl implements UserDataService {
      */
     private boolean checkAccountExist(String account, String userType) {
         if (userType.equals("client")) {
-            ClientPO clientPO = clientDataHelper.exactlyQuery("account", account);
-            return clientPO != null;
+            return clientDataHelper.exactlyQuery("account", account) != null;
         } else if (userType.equals("staff")) {
-            StaffPO staffPO = staffDataHelper.exactlyQuery("account", account);
-            return staffPO != null;
+            return staffDataHelper.exactlyQuery("account", account) != null;
         } else if (userType.equals("salesman")) {
-            SalesmanPO salesmanPO = salesmanDataHelper.exactlyQuery("account", account);
-            return salesmanPO != null;
+            return salesmanDataHelper.exactlyQuery("account", account) != null;
         } else {
             return false;
         }

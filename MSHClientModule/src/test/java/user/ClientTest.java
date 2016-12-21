@@ -94,6 +94,8 @@ public class ClientTest {
 
     @Test
     public void testSearchCreditByID() throws Exception {
+//        System.out.println(client.searchCreditByID("000000002"));
+//
         ArrayList<CreditVO> acvo = new ArrayList<CreditVO>();
         acvo.add(new CreditVO(200, 700, CreditAction.ADD_CREDIT, "20161012010112340002", new DateUtil(2016, 10, 12)));
         for (int i = 0; i < acvo.size(); i++) {

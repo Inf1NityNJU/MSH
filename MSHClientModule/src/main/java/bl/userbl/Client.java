@@ -47,8 +47,15 @@ public class Client extends User {
      */
     public ResultMessage add(UserVO userVO) {
         ClientVO_Register clientVO = (ClientVO_Register) userVO;
-        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit,
-                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, clientVO.password);
+        ClientPO clientPO = new ClientPO(
+                clientVO.clientID,
+                clientVO.clientName,
+                clientVO.credit,
+                clientVO.birthday.toString(),
+                clientVO.contactInfo,
+                clientVO.enterprise,
+                clientVO.account,
+                clientVO.password);
         return userClientNetwork.addClient(clientPO);
     }
 
@@ -63,9 +70,16 @@ public class Client extends User {
         if (clientPO == null) {
             return null;
         } else {
-            return new ClientVO(clientPO.getClientID(), clientPO.getClientName(), getLevelByCredit(clientPO.getCredit()),
-                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
-                    clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount());
+            return new ClientVO(
+                    clientPO.getClientID(),
+                    clientPO.getClientName(),
+                    getLevelByCredit(clientPO.getCredit()),
+                    new DateUtil(clientPO.getBirthday()),
+                    clientPO.getCredit(),
+                    clientPO.getEnterprise().equals("") ? 0 : 1,
+                    clientPO.getContactInfo(),
+                    clientPO.getEnterprise(),
+                    clientPO.getAccount());
         }
     }
 
@@ -78,8 +92,15 @@ public class Client extends User {
     public ResultMessage update(UserVO userVO) {
         ClientVO clientVO = (ClientVO) userVO;
         ClientPO tmpPO = userClientNetwork.searchClientByID(clientVO.clientID);
-        ClientPO clientPO = new ClientPO(clientVO.clientID, clientVO.clientName, clientVO.credit,
-                clientVO.birthday.toString(), clientVO.contactInfo, clientVO.enterprise, clientVO.account, tmpPO.getPassword());
+        ClientPO clientPO = new ClientPO(
+                clientVO.clientID,
+                clientVO.clientName,
+                clientVO.credit,
+                clientVO.birthday.toString(),
+                clientVO.contactInfo,
+                clientVO.enterprise,
+                clientVO.account,
+                tmpPO.getPassword());
         return userClientNetwork.updateClient(clientVO.clientID, clientPO);
     }
 
@@ -102,12 +123,17 @@ public class Client extends User {
     public ArrayList<ClientVO> search(String keyword) {
         ArrayList<ClientPO> clientPOs = userClientNetwork.searchClient(keyword);
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
-
-        for (ClientPO clientPO : clientPOs) {
-            clientVOs.add(new ClientVO(clientPO.getClientID(), clientPO.getClientName(), getLevelByCredit(clientPO.getCredit()),
-                    new DateUtil(clientPO.getBirthday()), clientPO.getCredit(), clientPO.getEnterprise().equals("") ? 0 : 1,
-                    clientPO.getContactInfo(), clientPO.getEnterprise(), clientPO.getAccount()));
-        }
+        clientPOs.forEach(clientPO -> clientVOs.add(new ClientVO(
+                clientPO.getClientID(),
+                clientPO.getClientName(),
+                getLevelByCredit(clientPO.getCredit()),
+                new DateUtil(clientPO.getBirthday()),
+                clientPO.getCredit(),
+                clientPO.getEnterprise().equals("") ? 0 : 1,
+                clientPO.getContactInfo(),
+                clientPO.getEnterprise(),
+                clientPO.getAccount()))
+        );
         return clientVOs;
     }
 
@@ -139,15 +165,14 @@ public class Client extends User {
     public ArrayList<CreditVO> searchCreditByID(String clientID) {
         ArrayList<CreditPO> creditPOs = userClientNetwork.searchCreditByID(clientID);
         ArrayList<CreditVO> creditVOs = new ArrayList<CreditVO>();
-        for (CreditPO creditPO : creditPOs) {
-            CreditVO creditVO = new CreditVO(
+        creditPOs.forEach(creditPO -> {
+            creditVOs.add(new CreditVO(
                     creditPO.getDeltaCredit(),
                     creditPO.getResultCredit(),
                     creditPO.getCreditAction(),
                     creditPO.getOrderID().substring(0, creditPO.getOrderID().length()-1),
-                    new DateUtil(creditPO.getDate()));
-            creditVOs.add(creditVO);
-        }
+                    new DateUtil(creditPO.getDate())));
+        });
         creditVOs.sort(new CreditComparator());
         return creditVOs;
     }
