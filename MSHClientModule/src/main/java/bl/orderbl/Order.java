@@ -71,26 +71,30 @@ public class Order {
             }
         }
 
-        if (orderRoom != null) {
-            orderRoom.modifyQuantity(quantity);
-
-            ArrayList<OrderRoomVO> rooms = order.rooms;
-            OrderRoomVO room = null;
-
-            for (OrderRoomVO roomItr : rooms) {
-                if (roomItr.type == type) {
-                    room = roomItr;
-                    break;
-                }
-            }
-
-            room.quantity += quantity;
-
-            return ResultMessage.SUCCESS;
-        } else {
+        if (orderRoom == null) {
             return ResultMessage.FAILED;
         }
 
+        ResultMessage rm = orderRoom.modifyQuantity(quantity);
+
+        ArrayList<OrderRoomVO> rooms = order.rooms;
+        OrderRoomVO room = null;
+
+        for (OrderRoomVO roomItr : rooms) {
+            if (roomItr.type == type) {
+                room = roomItr;
+                break;
+            }
+        }
+
+        room.quantity += quantity;
+
+        if (rm == ResultMessage.NULL) {
+            orderRooms.remove(orderRoom);
+            rooms.remove(room);
+        }
+
+        return rm;
     }
 
     /**
@@ -213,6 +217,7 @@ public class Order {
 
     /**
      * 撤销异常订单
+     *
      * @param orderID
      * @param credit
      * @return
@@ -293,7 +298,7 @@ public class Order {
         ResultMessage rm = orderClientNetworkService.addAssessment(assessment.toPO(orderID));
 
         if (rm == ResultMessage.SUCCESS) {
-            double score = (assessment.healthScore + assessment.healthScore + assessment.locationScore + assessment.facilityScore)/ 4.0;
+            double score = (assessment.healthScore + assessment.healthScore + assessment.locationScore + assessment.facilityScore) / 4.0;
             hotelBLInfo.addScoreToHotelByHotelID(score, orderVO.hotelID);
         }
 
@@ -371,6 +376,7 @@ public class Order {
 
     /**
      * 客户是否预定过该酒店
+     *
      * @param hotelID
      * @param clientID
      * @return

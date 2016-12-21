@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.Main;
+import sun.jvm.hotspot.debugger.Page;
 import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.order.ClientOrderRoomEditCellController;
@@ -102,6 +103,7 @@ public class ClientBookOrderViewController {
                 ClientOrderRoomEditCellController clientOrderRoomEditCellController = loader.getController();
                 clientOrderRoomEditCellController.setClientBookOrderViewController(this);
                 clientOrderRoomEditCellController.setRoom(room);
+                clientOrderRoomEditCellController.setPane(pane);
 
                 roomVBox.getChildren().add(pane);
 
@@ -187,12 +189,12 @@ public class ClientBookOrderViewController {
         ResultMessage rm = orderBLService.generateOrder(latest, peopleQuantity, hasChildren);
 
         if (rm == ResultMessage.SUCCESS) {
-            //TODO
+            mainUIController.hidePop();
+            clientSearchHotelViewController.back();
+            clientSearchHotelViewController.back();
+            clientSearchHotelViewController.refreshHotel();
         }
-        mainUIController.hidePop();
-        clientSearchHotelViewController.back();
-        clientSearchHotelViewController.back();
-        clientSearchHotelViewController.refreshHotel();
+
     }
 
     private void cancelBook() {
@@ -203,6 +205,10 @@ public class ClientBookOrderViewController {
     private void clickBackButton() {
         clientSearchHotelViewController.back();
         clientSearchHotelViewController.refreshHotel();
+    }
+
+    public void removeRoom(Pane pane) {
+        roomVBox.getChildren().remove(pane);
     }
 
 

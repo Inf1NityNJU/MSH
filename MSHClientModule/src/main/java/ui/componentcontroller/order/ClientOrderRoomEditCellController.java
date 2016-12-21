@@ -5,6 +5,7 @@ import blservice.orderblservice.OrderBLService;
 import component.circlebutton.CircleButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import ui.viewcontroller.client.ClientBookOrderViewController;
 import vo.OrderRoomVO;
 
@@ -38,6 +39,7 @@ public class ClientOrderRoomEditCellController {
 
     private ClientBookOrderViewController clientBookOrderViewController;
 
+    private Pane pane;
     private OrderRoomVO room;
     private int availableQuantity;
 
@@ -45,6 +47,10 @@ public class ClientOrderRoomEditCellController {
 
     public void setClientBookOrderViewController(ClientBookOrderViewController clientBookOrderViewController) {
         this.clientBookOrderViewController = clientBookOrderViewController;
+    }
+
+    public void setPane(Pane pane) {
+        this.pane = pane;
     }
 
     public void setRoom(OrderRoomVO room) {
@@ -67,6 +73,13 @@ public class ClientOrderRoomEditCellController {
     @FXML
     private void clickPlusButton() {
         orderBLService.modifyRoomQuantity(room.type, 1);
+        refreshBill();
+    }
+
+    @FXML
+    private void clickDeleteButton() {
+        orderBLService.modifyRoomQuantity(room.type, -room.quantity);
+        clientBookOrderViewController.removeRoom(pane);
         refreshBill();
     }
 
