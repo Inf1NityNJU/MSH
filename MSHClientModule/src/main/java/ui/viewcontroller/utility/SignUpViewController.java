@@ -7,6 +7,8 @@ import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import util.DateUtil;
@@ -21,6 +23,9 @@ import java.time.LocalDate;
  * Created by Kray on 2016/11/27.
  */
 public class SignUpViewController {
+
+    @FXML
+    private ImageView bgImageView;
 
     @FXML
     private Label normalLabel;
@@ -61,6 +66,8 @@ public class SignUpViewController {
 
     @FXML
     public void initialize() {
+        Image image = new Image(getClass().getResource("/images/hotel/2.png").toExternalForm());
+        bgImageView.setImage(image);
         alertLabel.setText("");
         birthdayPicker.setDate(LocalDate.now());
     }

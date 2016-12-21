@@ -3,8 +3,10 @@ package ui.componentcontroller.order;
 import bl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.circlebutton.CircleButton;
+import component.circleimage.CircleImage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import ui.viewcontroller.client.ClientBookOrderViewController;
 import vo.OrderRoomVO;
@@ -15,6 +17,9 @@ import java.text.DecimalFormat;
  * Created by Sorumi on 16/12/2.
  */
 public class ClientOrderRoomEditCellController {
+
+    @FXML
+    private CircleImage imageView;
 
     @FXML
     private Label typeLabel;
@@ -55,6 +60,10 @@ public class ClientOrderRoomEditCellController {
 
     public void setRoom(OrderRoomVO room) {
         this.room = room;
+
+        imageView.setImage(new Image(getClass().getResource("/images/room/" + room.type.toString() + ".png").toExternalForm()));
+        imageView.setRadius(40);
+
         availableQuantity = orderBLService.getOrderRoomStock(room);
 
         typeLabel.setText(room.type.getName());

@@ -4,6 +4,8 @@ import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ui.viewcontroller.client.ClientOrderListViewController;
 import ui.viewcontroller.salesman.WebOrderListViewController;
 import vo.BillVO;
@@ -17,6 +19,9 @@ public class WebOrderCellController {
 
     private WebOrderListViewController webOrderListViewController;
     private OrderVO order;
+
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private Label orderIDLabel;
@@ -54,6 +59,9 @@ public class WebOrderCellController {
 
     public void setOrder(OrderVO order) {
         this.order = order;
+
+        int num = order.hotelID.charAt(7) - '0';
+        imageView.setImage(new Image(getClass().getResource("/images/hotel/" + num + ".png").toExternalForm()));
 
         orderIDLabel.setText(order.orderID != null ? order.orderID : "") ;
         orderDateLabel.setText(order.bookedTime.toString());
