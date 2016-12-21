@@ -6,14 +6,22 @@ import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import main.Main;
+import ui.componentcontroller.common.AlertViewController;
+import ui.viewcontroller.common.MainUIController;
 import ui.viewcontroller.manager.ClientManagementListViewController;
 import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import vo.ClientVO;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 /**
@@ -23,6 +31,7 @@ public class ClientManagementDetailEditViewController {
 
     private ClientManagementViewController clientManagementViewController;
     private ClientManagementListViewController clientManagementListViewController;
+    private MainUIController mainUIController;
 
     private ClientVO clientVO;
 
@@ -58,6 +67,10 @@ public class ClientManagementDetailEditViewController {
 
     public void setClientManagementViewController(ClientManagementViewController clientManagementViewController) {
         this.clientManagementViewController = clientManagementViewController;
+    }
+
+    public void setMainUIController(MainUIController mainUIController) {
+        this.mainUIController = mainUIController;
     }
 
     public void showClientEdit(ClientVO clientVO) {
@@ -104,6 +117,35 @@ public class ClientManagementDetailEditViewController {
     }
 
     public void clickSaveButton() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("确定保存信息吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureSave();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sureSave() {
+        mainUIController.hidePop();
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
         DateUtil birthday = new DateUtil(birthdayPicker.getDate().getYear(),
@@ -119,6 +161,10 @@ public class ClientManagementDetailEditViewController {
         userBLService.update(clientVO);
 
         this.clickBackButton();
+    }
+
+    private void cancelSave() {
+        mainUIController.hidePop();
     }
 
 }

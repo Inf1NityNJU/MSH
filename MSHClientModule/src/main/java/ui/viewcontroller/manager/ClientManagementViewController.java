@@ -116,6 +116,7 @@ public class ClientManagementViewController {
 
             clientManagementDetailEditViewController = loader.getController();
             clientManagementDetailEditViewController.setClientManagementViewController(this);
+            clientManagementDetailEditViewController.setMainUIController(mainUIController);
             clientManagementDetailEditViewController.showClientEdit(clientVO);
 
             Node node = mainUIController.getCenter();
