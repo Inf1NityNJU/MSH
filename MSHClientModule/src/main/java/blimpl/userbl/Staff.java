@@ -132,7 +132,7 @@ public class Staff extends User {
      * @param hotelID
      * @return
      */
-    public StaffVO getStaffByHotelID(String hotelID){
+    public StaffVO getStaffByHotelID(String hotelID) {
         StaffPO staffPO = super.userClientNetwork.getStaffByHotelID(hotelID);
         if (staffPO == null) {
             return null;

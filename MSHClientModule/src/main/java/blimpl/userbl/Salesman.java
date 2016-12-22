@@ -55,18 +55,18 @@ public class Salesman extends User {
     /**
      * 根据ID查找网站营销人员
      *
-     * @param SalesmanID
+     * @param salesmanID
      * @return 符合ID的SalesmanVO
      */
-    public SalesmanVO searchByID(String SalesmanID) {
-        SalesmanPO SalesmanPO = userClientNetwork.searchSalesmanByID(SalesmanID);
-        if (SalesmanPO == null) {
+    public SalesmanVO searchByID(String salesmanID) {
+        SalesmanPO salesmanPO = userClientNetwork.searchSalesmanByID(salesmanID);
+        if (salesmanPO == null) {
             return null;
         } else {
             return new SalesmanVO(
-                    SalesmanPO.getSalesmanID(),
-                    SalesmanPO.getSalesmanName(),
-                    SalesmanPO.getAccount());
+                    salesmanPO.getSalesmanID(),
+                    salesmanPO.getSalesmanName(),
+                    salesmanPO.getAccount());
         }
     }
 

@@ -206,7 +206,6 @@ public class Client extends User {
         public int compare(CreditVO o1, CreditVO o2) {
             if (o1.date.compareDate(o2.date) != 0) {
                 return o1.date.compareDate(o2.date);
-
             } else {
                 if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) != '-') {
                     return 1;

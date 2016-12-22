@@ -439,7 +439,7 @@ public class UserDataServiceImpl implements UserDataService {
      * @param hotelID
      * @return
      */
-    public StaffPO getStaffByHotelID(String hotelID){
+    public StaffPO getStaffByHotelID(String hotelID) {
         return staffDataHelper.exactlyQuery("hotelID", hotelID);
     }
 
@@ -502,8 +502,8 @@ public class UserDataServiceImpl implements UserDataService {
     public int getLevelByCredit(int credit) {
         ArrayList<LevelPO> levelPOs = getAllLevel();
         levelPOs.sort((LevelPO l1, LevelPO l2) -> l1.getLevel() - l2.getLevel());
-        for(LevelPO levelPO : levelPOs){
-            if(levelPO.getCredit() > credit){
+        for (LevelPO levelPO : levelPOs) {
+            if (levelPO.getCredit() > credit) {
                 return levelPO.getLevel() - 1;
             }
         }
