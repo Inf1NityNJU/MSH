@@ -92,4 +92,8 @@ public class PromotionTest {
         assertEquals(tempPvos, pvos);
     }
 
+    @Test
+    public void testOrder(){
+        promotion.POToVO(null);
+    }
 }

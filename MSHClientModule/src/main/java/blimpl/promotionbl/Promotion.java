@@ -10,7 +10,10 @@ import util.ResultMessage;
 import vo.*;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by vivian on 16/11/2.
@@ -105,28 +108,20 @@ public class Promotion{
 
     /**
      * 将PO转换成易于显示的VO对象
-     * @param promotionPO
-     * @return
+     * @param promotionPO 需要转换的PO
+     * @return 得到的VO
      */
-    private PromotionVO POToVO(PromotionPO promotionPO){
-        switch (promotionPO.getPromotionType()){
-            case Hotel_Birthday:
-                return new Promotion_BirthdayVO(promotionPO);
-            case Hotel_SpecilaDate:
-                return new Promotion_HotelSpecialDateVO(promotionPO);
-            case Hotel_RoomQuantity:
-                return new Promotion_RoomQuantityVO(promotionPO);
-            case Hotel_Enterprise:
-                return new Promotion_EnterpriseVO(promotionPO);
-            case Web_ClientGrade:
-                return new Promotion_ClientGradeVO(promotionPO);
-            case Web_SpecilPlace:
-                return new Promotion_SpecialPlaceVO(promotionPO);
-            case Web_SpecilaDate:
-                return new Promotion_WebSpecialDateVO(promotionPO);
-            default:return null;
+    public PromotionVO POToVO(PromotionPO promotionPO){
+        try {
+            //得到和排序方法列表
+            Method[] factoryMethods= PromotionFactory.class.getDeclaredMethods();
+            Arrays.sort(factoryMethods,new PromotionMethodComparator());
+            //
+            return (PromotionVO) factoryMethods[promotionPO.getPromotionType().ordinal()]
+                    .invoke(promotionPO);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
         }
+        return null;
     }
-
-
 }
