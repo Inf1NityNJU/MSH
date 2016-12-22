@@ -366,4 +366,10 @@ public class ClientHotelDetailViewController {
         locationScoreLabel.setText(String.format("%.1f", locationScore) + " 分");
         locationScorePane.setScore((int)locationScore);
     }
+
+
+    @FXML
+    private void clickBackButton() {
+        clientSearchHotelViewController.back();
+    }
 }

@@ -6,6 +6,7 @@
 <?import component.starlabel.StarLabel?>
 <?import component.statebutton.StateButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -293,6 +294,11 @@
                               </VBox>
                            </children>
                         </Pane>
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                          <buttons>
+                              <RectButton fx:id="backButton" text="返 回" onMouseClicked="#clickBackButton"/>
+                          </buttons>
+                        </ButtonBar>
                      </children>
                   </VBox>
                </children>

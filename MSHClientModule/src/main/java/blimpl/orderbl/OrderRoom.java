@@ -10,20 +10,11 @@ import util.RoomType;
  */
 public class OrderRoom {
 
-
-    private HotelBLInfo hotelBLInfo;
-
     private RoomType type;
     private double price;
     private int quantity;
 
-
-    public OrderRoom() {
-        hotelBLInfo = HotelBLFactory.getHotelBLService();
-    }
-
     public OrderRoom(RoomType roomType, int quantity, double price) {
-        hotelBLInfo = HotelBLFactory.getHotelBLService();
         this.type = roomType;
         this.quantity = quantity;
         this.price = price;

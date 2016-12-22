@@ -96,18 +96,18 @@ public class ClientInfoDetailViewController {
 
     }
 
-    public void clickPasswordButton() {
-        String clientID = userBLInfo.getCurrentClientID();
-        ClientVO clientVO = userBLInfo.getClientByID(clientID);
-
-        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
-    }
-
     public void clickEditButton() {
         clientInfoViewController.editClientInfo();
     }
 
     public void clickCreditButton() {
         clientInfoViewController.showCredit();
+    }
+
+    public void clickPasswordButton() {
+        String clientID = userBLInfo.getCurrentClientID();
+        ClientVO clientVO = userBLInfo.getClientByID(clientID);
+
+        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
     }
 }

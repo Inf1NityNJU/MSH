@@ -281,7 +281,7 @@ public class ClientOrderDetailViewController {
         orderBLService.revokeOrder(order.orderID);
         order = orderBLService.searchOrderByID(order.orderID);
         updateState();
-        clientOrderViewController.refreshHotelOrderList();
+        clientOrderViewController.refreshClientOrderList();
         mainUIController.hidePop();
         clientOrderViewController.back();
     }

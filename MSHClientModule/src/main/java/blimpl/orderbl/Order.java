@@ -32,6 +32,11 @@ public class Order {
 
     private OrderClientNetworkService orderClientNetworkService = new OrderClientNetworkImpl();
 
+    /**
+     * 开始新的订单回合
+     * @param order
+     * @return
+     */
     public ResultMessage startOrder(OrderVO order) {
         this.order = order;
 
@@ -48,6 +53,11 @@ public class Order {
         return ResultMessage.SUCCESS;
     }
 
+    /**
+     * 得到房间库存
+     * @param room
+     * @return
+     */
     public int getOrderRoomStock(OrderRoomVO room) {
         HotelBLInfo hotelBLInfo = new BLFactoryImpl().getHotelBLInfo();
         return hotelBLInfo.getAvailableQuantity(order.checkInDate, order.checkOutDate, order.hotelID, room.type);
@@ -269,20 +279,6 @@ public class Order {
         return orderClientNetworkService.updateOrder(orderPO);
     }
 
-    /**
-     * 获得订单评价
-     *
-     * @param orderID
-     * @return
-     */
-    public AssessmentVO getOrderAssessment(String orderID) {
-        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderID);
-        AssessmentVO assessmentVO = null;
-        if (assessmentPO != null) {
-            assessmentVO = new AssessmentVO(assessmentPO);
-        }
-        return assessmentVO;
-    }
 
     /**
      * 编辑评分评价
@@ -337,7 +333,6 @@ public class Order {
     public ArrayList<OrderVO> searchClientOrder(String clientID, OrderState os) {
         ArrayList<OrderPO> orderPOs = orderClientNetworkService.searchOrderByClientID(clientID, os);
         return orderPOsToOrderVOs(orderPOs);
-
     }
 
     /**
@@ -353,7 +348,7 @@ public class Order {
     }
 
     /**
-     * 通过客户ID得到其预订过的酒店ID<br>
+     * 通过客户ID得到其预订过的酒店ID
      * 注：接受方认为这些ID不重复
      *
      * @param clientID 客户ID
@@ -404,6 +399,10 @@ public class Order {
     }
 
 
+    /**
+     * 按时间近远对订单排序
+     * @param orders
+     */
     private void sortOrderByTime(ArrayList<OrderVO> orders) {
         orders.sort(new OrderComparator());
     }
@@ -415,6 +414,11 @@ public class Order {
         }
     }
 
+    /**
+     * orderPO 列表装化为 orderVO 列表
+     * @param orderPOs
+     * @return
+     */
     private ArrayList<OrderVO> orderPOsToOrderVOs(ArrayList<OrderPO> orderPOs) {
         ArrayList<OrderVO> orderVOs = new ArrayList<>();
 
@@ -428,6 +432,11 @@ public class Order {
     }
 
 
+    /**
+     * orderPO 转化为 orderVO
+     * @param orderPO
+     * @return
+     */
     private OrderVO orderPOToOrderVO(OrderPO orderPO) {
         Hotel_DetailVO hotel = hotelBLInfo.getHotel(orderPO.getHotelID());
         String hotelName = hotel != null ? hotel.name : "不存在";
@@ -448,6 +457,21 @@ public class Order {
 
         return new OrderVO(orderPO, hotelName, clientName, orderRoomVOs, billVO, assessmentVO);
 
+    }
+
+    /**
+     * 获得订单评价
+     *
+     * @param orderID
+     * @return
+     */
+    private AssessmentVO getOrderAssessment(String orderID) {
+        AssessmentPO assessmentPO = orderClientNetworkService.searchAssessmentByOrderID(orderID);
+        AssessmentVO assessmentVO = null;
+        if (assessmentPO != null) {
+            assessmentVO = new AssessmentVO(assessmentPO);
+        }
+        return assessmentVO;
     }
 
     private void generateOrderID() {
