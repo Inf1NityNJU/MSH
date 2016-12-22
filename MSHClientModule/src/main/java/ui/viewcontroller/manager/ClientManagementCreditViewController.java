@@ -56,8 +56,6 @@ public class ClientManagementCreditViewController {
 
         creditVOs = userBLService.searchCreditByID(clientID);
 
-//        creditVOs.sort(new CreditComparator());
-
         if (creditVOs.size() > 0) {
 
             cellLoaders = new FXMLLoader[creditVOs.size()];
@@ -89,33 +87,5 @@ public class ClientManagementCreditViewController {
             System.out.println("no credit");
         }
     }
-
-//    private class CreditComparator implements Comparator<CreditVO> {
-//
-//        public int compare(CreditVO o1, CreditVO o2) {
-//            if (o1.date.year - o2.date.year != 0) {
-//                return o1.date.year - o2.date.year;
-//            } else {
-//                if (o1.date.month - o2.date.month != 0) {
-//                    return o1.date.month - o2.date.month;
-//                } else {
-//                    if (o1.date.day - o2.date.day != 0) {
-//                        return o1.date.day - o2.date.day;
-//                    } else {
-//                        if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) != '-') {
-//                            return 1;
-//                        } else if (o1.orderID.charAt(0) != '-' && o2.orderID.charAt(0) == '-') {
-//                            return -1;
-//                        } else if (o1.orderID.charAt(0) == '-' && o2.orderID.charAt(0) == '-') {
-//                            return 1;
-//                        } else {
-//                            return Integer.parseInt(o1.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1))
-//                                    - Integer.parseInt(o2.orderID.substring(o1.orderID.length() - 5, o1.orderID.length() - 1));
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 
 }

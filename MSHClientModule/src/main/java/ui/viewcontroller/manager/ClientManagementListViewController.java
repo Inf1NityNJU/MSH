@@ -189,13 +189,4 @@ public class ClientManagementListViewController {
         clientManagementViewController.showClientDetail(clientVO);
     }
 
-    /**
-     * 更新客户信息
-     *
-     * @param clientVO
-     * @return
-     */
-    public ResultMessage updateClient(ClientVO clientVO) {
-        return userBLService.update(clientVO);
-    }
 }
