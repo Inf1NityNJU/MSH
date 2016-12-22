@@ -6,6 +6,7 @@
 <?import component.starlabel.StarLabel?>
 <?import component.statebutton.StateButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -105,7 +106,7 @@
                               </Label>
                               <Text fx:id="facilitiesText" fill="GREY" layoutX="151.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="哈哈哈哈哈哈啊哈哈哈哈哈哈哈按实际的哈桑就等哈看收到货">
                                  <font>
-                                    <Font name="PingFang SC Regular" size="13.0" />
+                                    <Font name="PingFang SC Regular" size="16.0" />
                                  </font>
                               </Text>
                            </children>
@@ -293,6 +294,11 @@
                               </VBox>
                            </children>
                         </Pane>
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                          <buttons>
+                              <RectButton fx:id="backButton" text="返 回" onMouseClicked="#clickBackButton"/>
+                          </buttons>
+                        </ButtonBar>
                      </children>
                   </VBox>
                </children>

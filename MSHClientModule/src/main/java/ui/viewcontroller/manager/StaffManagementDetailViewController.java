@@ -1,13 +1,12 @@
 package ui.viewcontroller.manager;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import vo.SalesmanVO;
 import vo.StaffVO;
 
 /**

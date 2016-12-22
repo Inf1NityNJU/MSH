@@ -1,7 +1,5 @@
 package vo;
 
-import bl.userbl.Salesman;
-
 import static util.EqualJudgeHelper.judgeEqual;
 
 /**

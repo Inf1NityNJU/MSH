@@ -1,7 +1,7 @@
 package hotel;
 
-import bl.hotelbl.HotelRoom;
-import bl.hotelbl.MockHotelRoom;
+import blimpl.hotelbl.HotelRoom;
+import blimpl.hotelbl.MockHotelRoom;
 import org.junit.Test;
 import util.ResultMessage;
 import util.RoomType;

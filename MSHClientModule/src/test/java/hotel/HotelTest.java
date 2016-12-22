@@ -1,13 +1,11 @@
 package hotel;
 
-import bl.hotelbl.Hotel;
-import bl.hotelbl.HotelBLFactory;
+import blimpl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import po.HotelPO;
 import util.*;
 import vo.FilterFlagsVO;
 import vo.Hotel_DetailVO;

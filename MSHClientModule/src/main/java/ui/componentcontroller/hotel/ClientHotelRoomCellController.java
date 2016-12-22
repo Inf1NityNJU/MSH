@@ -1,8 +1,10 @@
 package ui.componentcontroller.hotel;
 
+import component.circleimage.CircleImage;
 import component.rectbutton.RectButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import ui.viewcontroller.client.ClientHotelDetailViewController;
 import vo.OrderRoomStockVO;
 import vo.RoomStockVO;
@@ -11,6 +13,9 @@ import vo.RoomStockVO;
  * Created by Sorumi on 16/12/2.
  */
 public class ClientHotelRoomCellController {
+
+    @FXML
+    private CircleImage imageView;
 
     @FXML
     private Label typeLabel;
@@ -34,6 +39,9 @@ public class ClientHotelRoomCellController {
 
     public void setRoom(OrderRoomStockVO room) {
         this.orderRoomStock = room;
+
+        imageView.setImage(new Image(getClass().getResource("/images/room/" + room.orderRoom.type.toString() + ".png").toExternalForm()));
+        imageView.setRadius(40);
 
         typeLabel.setText(room.orderRoom.type.getName());
         priceLabel.setText("¥ " + room.orderRoom.price);

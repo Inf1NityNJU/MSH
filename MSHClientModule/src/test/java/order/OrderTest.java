@@ -1,7 +1,6 @@
 package order;
 
-import bl.orderbl.MockOrder;
-import bl.orderbl.Order;
+import blimpl.orderbl.Order;
 import util.*;
 import vo.*;
 
@@ -106,19 +105,19 @@ public class OrderTest {
 
     @Test
     public void testSearchOrder() {
-        ArrayList<OrderVO> orders = order.searchOrder(OrderState.Abnormal, null);
+        ArrayList<OrderVO> orders = order.searchOrder(OrderState.Abnormal);
         assertFalse(orders.isEmpty());
     }
 
     @Test
     public void testSearchClientOrder() {
-        ArrayList<OrderVO> orders = order.searchClientOrder("000000001", OrderState.Unexecuted, null);
+        ArrayList<OrderVO> orders = order.searchClientOrder("000000001", OrderState.Unexecuted);
         assertFalse(orders.isEmpty());
     }
 
     @Test
     public void testSearchHotelOrder() {
-        ArrayList<OrderVO> orders = order.searchHotelOrder("00000001", null, null);
+        ArrayList<OrderVO> orders = order.searchHotelOrder("00000001", null);
         assertFalse(orders.isEmpty());
     }
 

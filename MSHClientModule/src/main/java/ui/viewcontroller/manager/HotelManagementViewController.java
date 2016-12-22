@@ -1,6 +1,5 @@
 package ui.viewcontroller.manager;
 
-import bl.hotelbl.Hotel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;

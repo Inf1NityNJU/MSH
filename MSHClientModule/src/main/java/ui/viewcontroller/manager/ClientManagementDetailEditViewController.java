@@ -1,6 +1,6 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.UserBLFactory;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
@@ -11,18 +11,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
-import ui.viewcontroller.manager.ClientManagementListViewController;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import vo.ClientVO;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 /**
  * Created by Kray on 2016/11/27.

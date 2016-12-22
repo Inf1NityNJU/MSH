@@ -1,6 +1,6 @@
 package ui.componentcontroller.promotion;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.pagepane.PagePane;
 import javafx.fxml.FXML;

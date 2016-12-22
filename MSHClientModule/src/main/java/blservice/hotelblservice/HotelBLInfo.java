@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public interface HotelBLInfo {
 
     /**
-     * 更新房间数量
+     * 更新酒店房间数量
      *
      * @param roomChangeInfoVO
      * @return 更新成功与否

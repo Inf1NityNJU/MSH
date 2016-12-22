@@ -1,13 +1,8 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import blservice.orderblservice.OrderBLService;
-import blservice.orderblservice.OrderBLService_Stub;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import main.Main;
 import ui.viewcontroller.common.MainUIController;
 import vo.OrderVO;
 
@@ -103,10 +98,10 @@ public class ClientOrderViewController {
             orderLoader.setLocation(getClass().getResource("/view/client/ClientAssessmentEditView.fxml"));
             ScrollPane view = orderLoader.load();
 
-            ClientAssessmentEditView clientAssessmentEditView = orderLoader.getController();
-            clientAssessmentEditView.setClientViewController(this);
-            clientAssessmentEditView.setMainUIController(mainUIController);
-            clientAssessmentEditView.setOrder(order);
+            ClientAssessmentEditViewController clientAssessmentEditViewController = orderLoader.getController();
+            clientAssessmentEditViewController.setClientViewController(this);
+            clientAssessmentEditViewController.setMainUIController(mainUIController);
+            clientAssessmentEditViewController.setOrder(order);
 
             Node node = mainUIController.getCenter();
             stack.push(node);
@@ -118,7 +113,7 @@ public class ClientOrderViewController {
         }
     }
 
-    public void refreshHotelOrderList() {
+    public void refreshClientOrderList() {
         if (clientOrderListViewController != null) {
             clientOrderListViewController.refreshShowOrders();
         }

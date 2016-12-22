@@ -43,7 +43,7 @@ public class OrderDataServiceImplTest {
 
     @Test
     public void searchOrder() {
-        ArrayList<OrderPO> orders = orderDataService.searchOrder(null, null, null);
+        ArrayList<OrderPO> orders = orderDataService.searchOrder(null);
         assertEquals(5, orders.size());
     }
 

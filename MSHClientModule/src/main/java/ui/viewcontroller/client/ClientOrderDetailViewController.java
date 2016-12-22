@@ -1,6 +1,6 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
 import component.ratestarpane.RateStarPane;
@@ -11,7 +11,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -282,7 +281,7 @@ public class ClientOrderDetailViewController {
         orderBLService.revokeOrder(order.orderID);
         order = orderBLService.searchOrderByID(order.orderID);
         updateState();
-        clientOrderViewController.refreshHotelOrderList();
+        clientOrderViewController.refreshClientOrderList();
         mainUIController.hidePop();
         clientOrderViewController.back();
     }

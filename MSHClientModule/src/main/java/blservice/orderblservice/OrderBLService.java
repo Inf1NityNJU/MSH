@@ -16,17 +16,19 @@ public interface OrderBLService {
      */
     public ResultMessage checkCredit();
 
+    /**
+     * 开启新的生成订单回合
+     * @param order
+     * @return
+     */
     public ResultMessage startOrder(OrderVO order);
 
-    public int getOrderRoomStock(OrderRoomVO roomVO);
-
     /**
-     * 修改入住退房日期
-     * @param start
-     * @param end
-     * @return 是否修改成功
+     * 获得本次订单的某房间的库存
+     * @param roomVO
+     * @return
      */
-    public ResultMessage modifyDate(DateUtil start, DateUtil end);
+    public int getOrderRoomStock(OrderRoomVO roomVO);
 
     /**
      * 修改订单房间数量
@@ -83,13 +85,6 @@ public interface OrderBLService {
     public ResultMessage checkOutOrder(String orderID, TimeUtil time);
 
     /**
-     * 得到订单评价
-     * @param orderID
-     * @return
-     */
-    public AssessmentVO getOrderAssessment(String orderID);
-
-    /**
      * 编辑订单评分评价
      * @param orderId
      * @param assessment
@@ -105,27 +100,24 @@ public interface OrderBLService {
     public OrderVO searchOrderByID(String orderID);
 
     /**
-     * 通过订单状态、关键字搜索订单
+     * 通过订单状态搜索订单
      * @param os
-     * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchOrder(OrderState os, String keyword);
+    public ArrayList<OrderVO> searchOrder(OrderState os);
 
     /**
-     * 通过客户ID、订单状态、关键字搜索订单
+     * 通过订单状态搜索当前登录客户订单
      * @param os
-     * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchClientOrder(OrderState os, String keyword);
+    public ArrayList<OrderVO> searchClientOrder(OrderState os);
 
     /**
-     * 通过酒店ID、订单状态、关键字搜索订单
+     * 通过订单状态搜索当前登录酒店管理人员所属酒店订单
      * @param os
-     * @param keyword
      * @return OrderVO列表
      */
-    public ArrayList<OrderVO> searchHotelOrder(OrderState os, String keyword);
+    public ArrayList<OrderVO> searchHotelOrder(OrderState os);
 
 }

@@ -173,7 +173,7 @@ public class WorkerManagementViewController {
     /**
      * 增加工作人员
      */
-    public void addWorker(){
+    public void addWorker() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/manager/WorkerManagementAddView.fxml"));
@@ -195,9 +195,10 @@ public class WorkerManagementViewController {
 
     /**
      * 修改密码
+     *
      * @param workerAccount
      */
-    public void resetPassword(String workerAccount, String workerID){
+    public void resetPassword(String workerAccount, String workerID) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/manager/ResetPasswordView.fxml"));
@@ -208,7 +209,6 @@ public class WorkerManagementViewController {
             resetPasswordViewController.setMainUIController(mainUIController);
             resetPasswordViewController.setAccountAndID(workerAccount, workerID);
 
-//            stack.push(view);
             Node node = mainUIController.getCenter();
             stack.push(node);
 

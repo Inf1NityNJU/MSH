@@ -1,6 +1,5 @@
 package vo;
 
-import bl.orderbl.Bill;
 import po.OrderPO;
 
 /**

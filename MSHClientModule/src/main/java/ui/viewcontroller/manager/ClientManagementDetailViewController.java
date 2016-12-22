@@ -1,6 +1,6 @@
 package ui.viewcontroller.manager;
 
-import bl.userbl.UserBLFactory;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
 import component.tinybutton.TinyButton;
@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import ui.viewcontroller.common.MainUIController;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import vo.ClientVO;
 
 /**

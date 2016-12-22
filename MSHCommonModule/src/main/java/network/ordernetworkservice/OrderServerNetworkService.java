@@ -23,7 +23,7 @@ public interface OrderServerNetworkService extends Remote{
 
     public OrderPO searchOrderByOrderID(String orderID) throws RemoteException;
 
-    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value) throws RemoteException;
+    public ArrayList<OrderPO> searchOrder(OrderState orderState) throws RemoteException;
 
     public ArrayList<OrderPO> searchOrderByClientID(String clientID, OrderState orderState) throws RemoteException;
 

@@ -1,6 +1,6 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import component.commontextfield.CommonTextField;
 import component.mychoicebox.MyChoiceBox;
@@ -9,7 +9,6 @@ import component.statebutton.StateButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

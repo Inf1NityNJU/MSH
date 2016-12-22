@@ -1,12 +1,11 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import component.mydatepicker.MyDatePicker;
-import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -17,8 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
-import ui.viewcontroller.manager.ClientManagementListViewController;
-import ui.viewcontroller.manager.ClientManagementViewController;
 import util.DateUtil;
 import util.ResultMessage;
 import vo.ClientVO;

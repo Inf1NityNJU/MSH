@@ -1,7 +1,7 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
@@ -96,18 +96,18 @@ public class ClientInfoDetailViewController {
 
     }
 
-    public void clickPasswordButton() {
-        String clientID = userBLInfo.getCurrentClientID();
-        ClientVO clientVO = userBLInfo.getClientByID(clientID);
-
-        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
-    }
-
     public void clickEditButton() {
         clientInfoViewController.editClientInfo();
     }
 
     public void clickCreditButton() {
         clientInfoViewController.showCredit();
+    }
+
+    public void clickPasswordButton() {
+        String clientID = userBLInfo.getCurrentClientID();
+        ClientVO clientVO = userBLInfo.getClientByID(clientID);
+
+        clientInfoViewController.resetPassword(clientVO.account, clientVO.clientID);
     }
 }

@@ -1,18 +1,16 @@
 package ui.viewcontroller.salesman;
 
-import bl.userbl.UserBLFactory;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.Main;
 import ui.componentcontroller.user.LevelCellController;
 import vo.LevelVO;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Created by Kray on 2016/11/30.
@@ -65,8 +63,6 @@ public class LevelListViewController {
         userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
         levelVOs = userBLService.getAllLevel();
 
-        levelVOs.sort(new LevelComparator());
-
         if (levelVOs == null) {
             System.out.println("NO LEVEL INFO");
         } else {
@@ -100,14 +96,5 @@ public class LevelListViewController {
         }
 
     }
-
-    private class LevelComparator implements Comparator<LevelVO> {
-
-        public int compare(LevelVO l1, LevelVO l2) {
-            return Integer.parseInt(l1.level) - Integer.parseInt(l2.level);
-        }
-
-    }
-
 
 }

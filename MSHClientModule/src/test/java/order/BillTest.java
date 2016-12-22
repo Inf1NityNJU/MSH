@@ -1,7 +1,7 @@
 package order;
 
-import bl.orderbl.Bill;
-import bl.orderbl.MockBill;
+import blimpl.orderbl.Bill;
+import blimpl.orderbl.MockBill;
 import util.City;
 import util.DateUtil;
 import util.Place;

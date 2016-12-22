@@ -1,12 +1,10 @@
 package ui.viewcontroller.staff;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLInfo;
 import component.navbutton.NavButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import ui.viewcontroller.client.ClientViewController;
-import vo.ClientVO;
 import vo.StaffVO;
 
 /**

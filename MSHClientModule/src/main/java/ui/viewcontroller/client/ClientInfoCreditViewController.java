@@ -1,7 +1,7 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.userbl.UserBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userbl.UserBLFactory;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
 import component.rectbutton.RectButton;
@@ -11,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ui.componentcontroller.user.ClientCreditCellController;
-import vo.ClientVO;
 import vo.CreditVO;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 public class ClientInfoCreditViewController {
 
     private ArrayList<CreditVO> creditVOs;
-    private UserBLService userBLService;
 
     private String clientID;
     private ClientInfoViewController clientInfoViewController;
@@ -36,13 +34,9 @@ public class ClientInfoCreditViewController {
     @FXML
     private RectButton backButton;
 
-
     private UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Client();
+    private UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
 
-//    public void setClientID(String clientID) {
-//        this.clientID = clientID;
-//        showCredit();
-//    }
 
     public void setClientInfoViewController(ClientInfoViewController clientInfoViewController) {
         this.clientInfoViewController = clientInfoViewController;
@@ -57,9 +51,7 @@ public class ClientInfoCreditViewController {
             contentVBox.getChildren().remove(cell);
         }
 
-        userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientID = userBLInfo.getCurrentClientID();
-
         creditVOs = userBLService.searchCreditByID(clientID);
 
         if (creditVOs.size() > 0) {

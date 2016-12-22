@@ -42,22 +42,21 @@ public interface OrderDataService {
     public OrderPO searchOrderByOrderID(String orderID);
 
     /**
-     * 模糊搜索订单
-     * @param field
-     * @param value
+     * 根据订单状态搜索订单
+     * @param orderState
      * @return
      */
-    public ArrayList<OrderPO> searchOrder(OrderState orderState, String field, String value);
+    public ArrayList<OrderPO> searchOrder(OrderState orderState);
 
     /**
-     * 根据客户ID搜索订单
+     * 根据订单状态、客户ID搜索订单
      * @param clientID
      * @return
      */
     public ArrayList<OrderPO> searchOrderByClientID(String clientID, OrderState orderState);
 
     /**
-     * 根据酒店ID搜索订单
+     * 根据订单状态、酒店ID搜索订单
      * @param hotelID
      * @return
      */

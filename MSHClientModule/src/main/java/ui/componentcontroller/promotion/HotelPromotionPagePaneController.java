@@ -1,6 +1,6 @@
 package ui.componentcontroller.promotion;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
 import component.pagepane.PagePane;
@@ -8,10 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import ui.viewcontroller.staff.HotelPromotionListViewController;
-import ui.viewcontroller.staff.HotelPromotionViewController;
 import util.PromotionType;
 import vo.PromotionVO;
 

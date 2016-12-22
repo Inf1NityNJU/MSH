@@ -49,6 +49,7 @@ public class ServiceGUI {
         //
         logTextField = new TextField();
         vBox.add(logTextField);
+        logTextField.setEditable(false);
         //
         frame.setVisible(true);
         frame.setBounds(200, 200, 400, 200);

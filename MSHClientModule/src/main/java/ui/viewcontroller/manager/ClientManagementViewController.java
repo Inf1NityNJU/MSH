@@ -1,6 +1,6 @@
 package ui.viewcontroller.manager;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

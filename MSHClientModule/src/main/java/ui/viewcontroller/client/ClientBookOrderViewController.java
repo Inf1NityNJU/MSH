@@ -1,6 +1,6 @@
 package ui.viewcontroller.client;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import component.mycheckbox.MyCheckBox;
 import component.mychoicebox.MyChoiceBox;
@@ -102,6 +102,7 @@ public class ClientBookOrderViewController {
                 ClientOrderRoomEditCellController clientOrderRoomEditCellController = loader.getController();
                 clientOrderRoomEditCellController.setClientBookOrderViewController(this);
                 clientOrderRoomEditCellController.setRoom(room);
+                clientOrderRoomEditCellController.setPane(pane);
 
                 roomVBox.getChildren().add(pane);
 
@@ -187,12 +188,12 @@ public class ClientBookOrderViewController {
         ResultMessage rm = orderBLService.generateOrder(latest, peopleQuantity, hasChildren);
 
         if (rm == ResultMessage.SUCCESS) {
-            //TODO
+            mainUIController.hidePop();
+            clientSearchHotelViewController.back();
+            clientSearchHotelViewController.back();
+            clientSearchHotelViewController.refreshHotel();
         }
-        mainUIController.hidePop();
-        clientSearchHotelViewController.back();
-        clientSearchHotelViewController.back();
-        clientSearchHotelViewController.refreshHotel();
+
     }
 
     private void cancelBook() {
@@ -203,6 +204,10 @@ public class ClientBookOrderViewController {
     private void clickBackButton() {
         clientSearchHotelViewController.back();
         clientSearchHotelViewController.refreshHotel();
+    }
+
+    public void removeRoom(Pane pane) {
+        roomVBox.getChildren().remove(pane);
     }
 
 

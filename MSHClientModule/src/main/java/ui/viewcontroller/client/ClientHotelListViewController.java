@@ -1,19 +1,18 @@
 package ui.viewcontroller.client;
 
-import bl.hotelbl.HotelBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import main.Main;
 import ui.componentcontroller.hotel.ClientHotelCellController;
 import ui.componentcontroller.hotel.ClientHotelPagePaneController;
 import ui.componentcontroller.hotel.ClientHotelSearchPaneController;
 import util.HotelSortMethod;
 import vo.FilterFlagsVO;
-import vo.Hotel_BriefVO;
 import vo.Hotel_DetailVO;
 
 import java.io.IOException;
@@ -41,7 +40,7 @@ public class ClientHotelListViewController {
     private TilePane tilePane;
 
 
-    private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
+    private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
 
     private ArrayList<Hotel_DetailVO> hotels = new ArrayList<>();
 
@@ -98,7 +97,6 @@ public class ClientHotelListViewController {
     }
 
     public void searchHotel(FilterFlagsVO filterFlagsVO) {
-        hotelBLService = HotelBLFactory.getHotelBLService();
         hotels = hotelBLService.searchHotel(filterFlagsVO);
         sortHotel(HotelSortMethod.ScoreDescendingSort);
     }

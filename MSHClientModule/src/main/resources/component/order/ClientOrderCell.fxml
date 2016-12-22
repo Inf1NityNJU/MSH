@@ -16,7 +16,7 @@
       <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
    </effect>
    <children>
-      <ImageView fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/example.jpeg" />
          </image></ImageView>
@@ -75,8 +75,8 @@
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>
                   </Label>
-                  <RectButton fx:id="assessmentButton" isActiveProperty="false" sizeProperty="Small" text="评价" onMouseClicked="#clickAssessmentButton"/>
-                  <RectButton fx:id="detailButton" sizeProperty="Small" text="查看详情" onMouseClicked="#clickDetailButton"/>
+                  <RectButton fx:id="assessmentButton" isActiveProperty="false" onMouseClicked="#clickAssessmentButton" sizeProperty="Small" text="评价" />
+                  <RectButton fx:id="detailButton" onMouseClicked="#clickDetailButton" sizeProperty="Small" text="查看详情" />
                </children>
             </HBox>
          </children>

@@ -1,12 +1,9 @@
 package ui.componentcontroller.promotion;
 
-import bl.promotionbl.Promotion;
-import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import ui.viewcontroller.salesman.WebPromotionListViewController;
 import vo.PromotionVO;
 
 /**

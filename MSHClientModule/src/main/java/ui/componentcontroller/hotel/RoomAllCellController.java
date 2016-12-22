@@ -1,10 +1,8 @@
 package ui.componentcontroller.hotel;
 
-import bl.blfactory.BLFactoryImpl;
-import bl.hotelbl.HotelBLFactory;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
 import component.commontextfield.CommonTextField;
-import component.statebutton.StateButton;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

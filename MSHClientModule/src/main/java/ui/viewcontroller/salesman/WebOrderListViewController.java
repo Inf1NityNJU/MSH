@@ -1,15 +1,13 @@
 package ui.viewcontroller.salesman;
 
-import bl.blfactory.BLFactoryImpl;
+import blimpl.blfactory.BLFactoryImpl;
 import blservice.orderblservice.OrderBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.Main;
 import ui.componentcontroller.order.*;
-import ui.viewcontroller.client.ClientOrderViewController;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -92,7 +90,7 @@ public class WebOrderListViewController {
 
     public void showOrders(OrderState orderState) {
         this.orderState = orderState;
-        orders = orderBLService.searchOrder(orderState, null);
+        orders = orderBLService.searchOrder(orderState);
         int size = orders.size();
         webOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
