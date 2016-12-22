@@ -25,7 +25,7 @@ import java.time.LocalDate;
 /**
  * Created by vivian on 16/12/9.
  */
-public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionAddViewController {
+public class HotelPromotion_SpecialDateAddViewController{
     private Promotion_HotelSpecialDateVO promotion_hotelSpecialDateVO;
     private HotelPromotionViewController hotelPromotionViewController;
 
@@ -52,7 +52,6 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
     @FXML
     private MyDatePicker endTime;
 
-    @Override
     public void setHotelPromotionViewController(HotelPromotionViewController hotelPromotionViewController) {
         this.hotelPromotionViewController = hotelPromotionViewController;
 
@@ -60,17 +59,14 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
         typeButton.setColorProperty(PromotionType.Hotel_SpecilaDate.getColor());
     }
 
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
 
-    @Override
     public void clickCancelButton() {
         hotelPromotionViewController.back();
     }
 
-    @Override
     public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -99,7 +95,6 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
 
     }
 
-    @Override
     public void sureSave() {
         String hotelID = userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
         String name = nameTextField.getText();
@@ -124,7 +119,6 @@ public class HotelPromotion_SpecialDateAddViewController extends HotelPromotionA
         hotelPromotionViewController.back();
     }
 
-    @Override
     public void cancelSave() {
         mainUIController.hidePop();
     }
