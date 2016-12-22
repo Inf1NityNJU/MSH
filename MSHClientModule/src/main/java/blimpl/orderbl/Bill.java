@@ -32,7 +32,6 @@ public class Bill {
      */
     public BillVO refresh(String hotelID, City city, Place place, DateUtil date, int clentGrade,
                           DateUtil birthday, String enterpriseName, int roomQuantity) {
-//        return null;
         PromotionVO hotelPromotion = promotionBLInfo.getMinHotelProm(hotelID, date, birthday, enterpriseName, roomQuantity);
         PromotionVO websitePromotion = promotionBLInfo.getMinWebProm(date, clentGrade, city, place);
         return new BillVO(websitePromotion, hotelPromotion, 0, 0);

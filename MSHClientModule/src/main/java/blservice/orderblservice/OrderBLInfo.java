@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface OrderBLInfo {
 
     /**
-     * 通过客户ID得到其预订过的酒店ID<br>
+     * 通过客户ID得到其预订过的酒店ID
      * 注：接受方认为这些ID不重复
      *
      * @param clientID 客户ID

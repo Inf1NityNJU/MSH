@@ -1,5 +1,6 @@
 package ui.viewcontroller.client;
 
+import blimpl.blfactory.BLFactoryImpl;
 import blimpl.hotelbl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import javafx.fxml.FXML;
@@ -39,7 +40,7 @@ public class ClientHotelListViewController {
     private TilePane tilePane;
 
 
-    private HotelBLService hotelBLService = HotelBLFactory.getHotelBLService();
+    private HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
 
     private ArrayList<Hotel_DetailVO> hotels = new ArrayList<>();
 
@@ -96,7 +97,6 @@ public class ClientHotelListViewController {
     }
 
     public void searchHotel(FilterFlagsVO filterFlagsVO) {
-        hotelBLService = HotelBLFactory.getHotelBLService();
         hotels = hotelBLService.searchHotel(filterFlagsVO);
         sortHotel(HotelSortMethod.ScoreDescendingSort);
     }

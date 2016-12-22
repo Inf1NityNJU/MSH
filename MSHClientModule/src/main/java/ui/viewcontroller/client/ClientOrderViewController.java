@@ -98,10 +98,10 @@ public class ClientOrderViewController {
             orderLoader.setLocation(getClass().getResource("/view/client/ClientAssessmentEditView.fxml"));
             ScrollPane view = orderLoader.load();
 
-            ClientAssessmentEditView clientAssessmentEditView = orderLoader.getController();
-            clientAssessmentEditView.setClientViewController(this);
-            clientAssessmentEditView.setMainUIController(mainUIController);
-            clientAssessmentEditView.setOrder(order);
+            ClientAssessmentEditViewController clientAssessmentEditViewController = orderLoader.getController();
+            clientAssessmentEditViewController.setClientViewController(this);
+            clientAssessmentEditViewController.setMainUIController(mainUIController);
+            clientAssessmentEditViewController.setOrder(order);
 
             Node node = mainUIController.getCenter();
             stack.push(node);
@@ -113,7 +113,7 @@ public class ClientOrderViewController {
         }
     }
 
-    public void refreshHotelOrderList() {
+    public void refreshClientOrderList() {
         if (clientOrderListViewController != null) {
             clientOrderListViewController.refreshShowOrders();
         }

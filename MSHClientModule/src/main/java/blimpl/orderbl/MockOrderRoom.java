@@ -38,7 +38,8 @@ public class MockOrderRoom extends OrderRoom {
         return this.price * this.quantity;
     }
 
-    public MockOrderRoom(RoomType type, double price, int quantity) {
+    public MockOrderRoom(RoomType type, int quantity, double price) {
+        super(type, quantity, price);
         this.type = type;
         this.price = price;
         this.quantity = quantity;

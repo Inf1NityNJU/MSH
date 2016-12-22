@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * Created by Sorumi on 16/11/28.
  */
-public class ClientAssessmentEditView {
+public class ClientAssessmentEditViewController {
 
     @FXML
     private Label hotelNameLabel;
@@ -141,8 +141,8 @@ public class ClientAssessmentEditView {
 
     private void confirm() {
         mainUIController.hidePop();
-        clientOrderViewController.refreshHotelOrderList();
-        clientOrderViewController.showClientOrderList();
+        clientOrderViewController.refreshClientOrderList();
+//        clientOrderViewController.showClientOrderList();
     }
 
 }
