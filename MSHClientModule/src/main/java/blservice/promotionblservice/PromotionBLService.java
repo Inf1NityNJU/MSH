@@ -61,17 +61,5 @@ public interface PromotionBLService {
      */
     public ArrayList<PromotionVO> searchWebPromotions();
 
-//    /**
-//     * 查看某个酒店的某种类型促销策略
-//     * @param HotelID
-//     * @return
-//     */
-//    public ArrayList<PromotionVO> searchHotelPromotionsByType(String HotelID, PromotionType promotionType);
-//
-//    /**
-//     * 查看网站的某种类型促销策略
-//     * @return
-//     */
-//    public ArrayList<PromotionVO> searchWebPromotionsByType(PromotionType promotionType);
 
 }

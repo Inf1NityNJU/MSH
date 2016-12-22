@@ -24,7 +24,7 @@ import java.time.LocalDate;
 /**
  * Created by vivian on 16/12/6.
  */
-public class WebPromotion_SpecialDateAddViewController extends WebPromotionAddViewController {
+public class WebPromotion_SpecialDateAddViewController  {
     private Promotion_WebSpecialDateVO promotion_webSpecialDateVO;
     private WebPromotionViewController webPromotionViewController;
     private PromotionBLService promotionBLService = new BLFactoryImpl().getPromotionBLService();
@@ -49,7 +49,6 @@ public class WebPromotion_SpecialDateAddViewController extends WebPromotionAddVi
     @FXML
     private MyDatePicker endTime;
 
-    @Override
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
         this.webPromotionViewController = webPromotionViewController;
 
@@ -57,12 +56,10 @@ public class WebPromotion_SpecialDateAddViewController extends WebPromotionAddVi
         typeButton.setColorProperty(PromotionType.Web_SpecilaDate.getColor());
     }
 
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
 
-    @Override
     public void clickCancelButton() {
         webPromotionViewController.back();
     }
@@ -95,7 +92,6 @@ public class WebPromotion_SpecialDateAddViewController extends WebPromotionAddVi
         }
     }
 
-    @Override
     public void sureSave() {
         String name = nameTextField.getText();
         double discount = Double.valueOf(discountTextField.getText());
@@ -119,7 +115,6 @@ public class WebPromotion_SpecialDateAddViewController extends WebPromotionAddVi
         webPromotionViewController.back();
     }
 
-    @Override
     public void cancelSave() {
         mainUIController.hidePop();
     }

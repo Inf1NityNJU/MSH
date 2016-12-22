@@ -11,14 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import main.Main;
-import ui.componentcontroller.promotion.WebPromotionSearchPaneController;
-import ui.viewcontroller.common.MainUIController;
-import ui.viewcontroller.salesman.WebPromotionAddViewController;
-import ui.viewcontroller.salesman.WebPromotionDetailViewController;
-import ui.viewcontroller.salesman.WebPromotion_SpecialPlaceAddViewController;
-import ui.viewcontroller.staff.HotelPromotionAddViewController;
-import ui.viewcontroller.staff.HotelPromotionDetailViewController;
-import ui.viewcontroller.staff.HotelPromotionViewController;
+
 
 import java.io.IOException;
 

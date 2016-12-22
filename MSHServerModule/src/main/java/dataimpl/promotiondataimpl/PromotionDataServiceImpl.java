@@ -70,7 +70,7 @@ public class PromotionDataServiceImpl implements PromotionDataService{
         return promotionPOs1;
     }
 
-    public String getHotelPromotionID(){
+    private String getHotelPromotionID(){
         ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionID", "1");
         if(promotionPOs.size()==0){
             return "10001";
@@ -81,7 +81,7 @@ public class PromotionDataServiceImpl implements PromotionDataService{
         }
     }
 
-    public String getWebPromotionID(){
+    private String getWebPromotionID(){
         ArrayList<PromotionPO> promotionPOs = promotionDataHelper.prefixMatchQuery("promotionID", "2");
         if(promotionPOs.size()==0){
             return "20001";
