@@ -35,6 +35,9 @@ public class ClientInfoDetailViewController {
     protected Label birthdayLabel;
 
     @FXML
+    private Label contactInfoLabel;
+
+    @FXML
     protected Label creditLabel;
 
     @FXML
@@ -79,6 +82,7 @@ public class ClientInfoDetailViewController {
 
         birthdayLabel.setText(clientVO.birthday.toString());
         creditLabel.setText(clientVO.credit + "");
+        contactInfoLabel.setText(clientVO.contactInfo);
 
         currentLevelLabel.setText("Lv." + clientVO.level);
 

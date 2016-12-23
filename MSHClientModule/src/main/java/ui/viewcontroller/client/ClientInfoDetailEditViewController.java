@@ -54,6 +54,9 @@ public class ClientInfoDetailEditViewController {
     private CommonTextField enterpriseText;
 
     @FXML
+    private CommonTextField contactInfoText;
+
+    @FXML
     private MyDatePicker birthdayPicker;
 
     @FXML
@@ -81,6 +84,7 @@ public class ClientInfoDetailEditViewController {
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
         accountLabel.setText(clientVO.account);
+        contactInfoText.setText(clientVO.contactInfo);
         birthdayPicker.setDate(LocalDate.parse(clientVO.birthday.toString()));
 
         if (clientVO.enterprise.equals("")) {
@@ -139,6 +143,7 @@ public class ClientInfoDetailEditViewController {
     private void sureSave() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Client();
         clientVO.clientName = clientNameText.getText();
+        clientVO.contactInfo = contactInfoText.getText();
 
         if (normalButton.visibleProperty().getValue()) {
             clientVO.enterprise = "";
