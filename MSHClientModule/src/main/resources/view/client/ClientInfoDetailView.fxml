@@ -31,7 +31,7 @@
                     </padding>
                     <children>
                         <TitleLabel text="个人信息" />
-                        <GridPane alignment="CENTER_LEFT" vgap="30.0">
+                        <GridPane alignment="CENTER_LEFT" vgap="25.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -95,7 +95,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -103,7 +103,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -126,7 +126,7 @@
                                         <Font name="PingFang SC Regular" size="16.0" />
                                     </font>
                                 </Label>
-                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                                     <children>
                                         <Label fx:id="creditLabel" text="信用值" textFill="GREY">
                                             <font>
@@ -136,7 +136,7 @@
                                         <TinyButton fx:id="creditButton" onMouseClicked="#clickCreditButton" text="信用记录" />
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                     <children>
                                         <Label fx:id="currentLevelLabel" text="Label" textFill="#00cccc">
                                             <font>
@@ -170,6 +170,16 @@
                                     </children>
                                 </HBox>
                                 <TinyButton fx:id="passwordButton" onMouseClicked="#clickPasswordButton" text="修改密码" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="联系方式" textFill="#cccccc" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="PingFang SC Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="contactInfoLabel" text="联系方式" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="PingFang SC Regular" size="16.0" />
+                           </font>
+                        </Label>
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
@@ -178,6 +188,7 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
+                        <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
                             </rowConstraints>
