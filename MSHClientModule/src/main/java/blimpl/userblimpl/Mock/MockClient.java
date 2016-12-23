@@ -11,7 +11,12 @@ import java.util.ArrayList;
  */
 public class MockClient extends Client {
 
-    private ClientVO exampleClientVO = new ClientVO("000000007", "老宋", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
+    private ClientVO exampleClientVO;
+
+    public MockClient(){
+        this.exampleClientVO = new ClientVO("000000001", "KrayC", 1, new DateUtil(1996, 4, 25),
+                500, 0, "18795963603", "", "adminClient");
+    }
 
     /**
      * 登录方法
@@ -36,7 +41,7 @@ public class MockClient extends Client {
      * @return
      */
     public ResultMessage add(ClientVO clientVO) {
-        if (!clientVO.clientID.equals("000000007")) {
+        if (!clientVO.clientID.equals("000000001")) {
             return ResultMessage.SUCCESS;
         } else {
             System.out.println("Client Exist");
@@ -51,7 +56,7 @@ public class MockClient extends Client {
      * @return
      */
     public ClientVO searchByID(String clientID) {
-        if (clientID.equals("000000007")) {
+        if (clientID.equals("000000001")) {
             return exampleClientVO;
         } else {
             return null;
@@ -65,7 +70,7 @@ public class MockClient extends Client {
      * @return
      */
     public ResultMessage update(ClientVO clientVO) {
-        if (clientVO.clientID.equals("000000007")) {
+        if (clientVO.clientID.equals("000000001")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -79,7 +84,7 @@ public class MockClient extends Client {
      * @return
      */
     public ResultMessage delete(String clientID) {
-        if (clientID.equals("000000007")) {
+        if (clientID.equals("000000001")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;
@@ -98,17 +103,13 @@ public class MockClient extends Client {
         ClientVO exampleClientVO3 = new ClientVO("000000003", "老三", 0, new DateUtil(2016, 3, 3), 500, 0, "18795963603", "", "songkuixi");
         ClientVO exampleClientVO4 = new ClientVO("000000004", "老四", 0, new DateUtil(2016, 4, 4), 500, 0, "18795963603", "", "songkuixi");
         ArrayList<ClientVO> clientVOs = new ArrayList<ClientVO>();
-        if (keyword.equals("老")) {
+        if (keyword.equals("000")) {
             clientVOs.add(exampleClientVO1);
             clientVOs.add(exampleClientVO2);
             clientVOs.add(exampleClientVO3);
             clientVOs.add(exampleClientVO4);
         } else if (keyword.equals("000000003")) {
             clientVOs.add(exampleClientVO3);
-        } else if (keyword.equals("老二")) {
-            clientVOs.add(exampleClientVO2);
-        } else {
-
         }
         return clientVOs;
     }
@@ -121,7 +122,7 @@ public class MockClient extends Client {
      * @return
      */
     public ResultMessage addCreditByID(String clientID, CreditVO creditVO) {
-        if (clientID.equals("000000007")) {
+        if (clientID.equals("000000001")) {
             return ResultMessage.SUCCESS;
         } else {
             return ResultMessage.FAILED;

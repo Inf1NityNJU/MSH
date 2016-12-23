@@ -1,6 +1,8 @@
 package blimpl.userblimpl;
 
 
+import network.UserClientNetworkImpl;
+import network.UserClientNetworkService;
 import po.ClientPO;
 import po.CreditPO;
 import po.LevelPO;
@@ -18,6 +20,8 @@ import java.util.Comparator;
 public class Client extends User {
 
     //这里进行Dateutil和String的转换
+
+//    private UserClientNetworkService userClientNetwork;
 
     public Client() {
         super();

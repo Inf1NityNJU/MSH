@@ -49,7 +49,6 @@ public class OrderBLFactory {
         return new Order(blFactory.getUserBLInfo_Stub(), blFactory.getHotelBLInfo_Stub(), getOrderClientNetworkService());
     }
 
-
     // private
 
     private synchronized static HotelBLInfo getHotelBLInfo() {

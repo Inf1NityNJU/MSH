@@ -118,4 +118,11 @@ public class SalesmanDataServiceImplTest {
         rm = userDataService.deleteLevel("2");
         assertEquals(ResultMessage.FAILED, rm);
     }
+
+    @Test
+    public void getLevel() throws Exception{
+        LevelPO levelPO = userDataService.getLevel("1");
+        assertEquals(new LevelPO("1",1,500), levelPO);
+    }
+
 }

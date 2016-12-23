@@ -85,4 +85,10 @@ public class StaffDataServiceImplTest {
         assertEquals(exampleStaffPOs, staffPOs);
     }
 
+    @Test
+    public void getStaffByHotelID() throws Exception{
+        StaffPO staffPO = userDataService.getStaffByHotelID("25010001");
+        assertEquals(new StaffPO("300111", "testStaff", "25010001", "adminStaff", "password"), staffPO);
+    }
+
 }
