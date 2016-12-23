@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Created by vivian on 16/12/9.
  */
-public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddViewController {
+public class HotelPromotion_BirthdayAddViewController{
     private Promotion_BirthdayVO promotion_birthdayVO;
     private HotelPromotionViewController hotelPromotionViewController;
 
@@ -44,7 +44,6 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
     @FXML
     private CommonTextField discountTextField;
 
-    @Override
     public void setHotelPromotionViewController(HotelPromotionViewController hotelPromotionViewController) {
         this.hotelPromotionViewController = hotelPromotionViewController;
 
@@ -52,17 +51,14 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
         typeButton.setColorProperty(PromotionType.Hotel_Birthday.getColor());
     }
 
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
 
-    @Override
     public void clickCancelButton() {
         hotelPromotionViewController.back();
     }
 
-    @Override
     public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -90,7 +86,6 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
         }
     }
 
-    @Override
     public void sureSave() {
         String hotelID = userBLInfo.getHotelIDByStaffID(userBLInfo.getCurrentStaffID());
         String name = nameTextField.getText();
@@ -113,7 +108,6 @@ public class HotelPromotion_BirthdayAddViewController extends HotelPromotionAddV
         hotelPromotionViewController.back();
     }
 
-    @Override
     public void cancelSave() {
         mainUIController.hidePop();
     }

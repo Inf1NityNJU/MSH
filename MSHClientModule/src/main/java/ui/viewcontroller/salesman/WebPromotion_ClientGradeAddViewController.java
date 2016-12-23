@@ -29,7 +29,7 @@ import java.time.LocalDate;
 /**
  * Created by vivian on 16/12/6.
  */
-public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddViewController {
+public class WebPromotion_ClientGradeAddViewController  {
     private Promotion_ClientGradeVO promotion_clientGradeVO;
     private WebPromotionViewController webPromotionViewController;
 
@@ -58,7 +58,6 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
     @FXML
     private MyDatePicker endTime;
 
-    @Override
     public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
         this.webPromotionViewController = webPromotionViewController;
 
@@ -75,7 +74,6 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
         levelChoiceBox.setItems(observableList);
     }
 
-    @Override
     public void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
@@ -113,7 +111,6 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
         }
     }
 
-    @Override
     public void sureSave() {
 
         String name = nameTextField.getText();
@@ -140,7 +137,6 @@ public class WebPromotion_ClientGradeAddViewController extends WebPromotionAddVi
         webPromotionViewController.back();
     }
 
-    @Override
     public void cancelSave() {
         mainUIController.hidePop();
     }
