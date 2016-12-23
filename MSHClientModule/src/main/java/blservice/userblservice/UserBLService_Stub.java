@@ -12,12 +12,12 @@ import java.util.jar.Pack200;
  */
 public class UserBLService_Stub implements UserBLService, UserBLInfo {
 
-    private ClientVO exampleClientVO = new ClientVO("000000001", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
+    private ClientVO exampleClientVO = new ClientVO("000000007", "KrayC", 0, new DateUtil(1996, 4, 25), 500, 0, "18795963603", "", "adminClient");
     private StaffVO exampleStaffVO = new StaffVO("300001", "testStaff", "25010001", "adminStaff");
-    private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "testSalesman", "adminSalesman1");
+    private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "testSalesman", "adminSalesman");
 
     public LoginState login(String account, String password) {
-        if (account.equals("admin") && password.equals("12345678")) {
+        if (account.equals("adminClient") && password.equals("12345678")) {
             System.out.println("Login successfully");
             return LoginState.LOGIN_SUCCESS_Client;
         } else {
@@ -119,7 +119,6 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
         }
     }
 
-    @Override
     public ResultMessage addCreditRecord(String clientID, CreditChangeInfoVO creditChangeInfoVO) {
         if (clientID.equals("000000007") && creditChangeInfoVO.deltaCredit == 200 && creditChangeInfoVO.creditAction == CreditAction.ADD_CREDIT) {
             System.out.println("Add successfully");
@@ -238,7 +237,7 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
     }
 
     public String getCurrentClientID() {
-        return "000000001";
+        return "000000007";
     }
 
     public String getCurrentStaffID() {
@@ -256,6 +255,5 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
             return "";
         }
     }
-
 
 }

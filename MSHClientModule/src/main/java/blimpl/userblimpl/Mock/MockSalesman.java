@@ -12,7 +12,11 @@ import java.util.ArrayList;
  */
 public class MockSalesman extends Salesman {
 
-    private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "老王", "adminSalesman1");
+    private SalesmanVO exampleSalesmanVO;
+
+    public MockSalesman() {
+        this.exampleSalesmanVO = new SalesmanVO("100001", "salesman", "adminSalesman");
+    }
 
     /**
      * 登录

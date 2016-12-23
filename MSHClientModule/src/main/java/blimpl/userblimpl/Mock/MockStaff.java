@@ -12,7 +12,11 @@ import java.util.ArrayList;
  */
 public class MockStaff extends Staff {
 
-    private StaffVO exampleStaffVO = new StaffVO("300001", "隔壁老王", "25010001", "adminStaff");
+    private StaffVO exampleStaffVO;
+
+    public MockStaff(){
+        this.exampleStaffVO = new StaffVO("300001", "staff1", "25010001", "adminStaff");
+    }
 
     /**
      * 登录

@@ -23,7 +23,7 @@ public class User {
      */
     protected UserClientNetworkService userClientNetwork;
 
-    public User() {
+    public User(){
         this.userClientNetwork = new UserClientNetworkImpl();
     }
 

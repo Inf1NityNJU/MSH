@@ -2,7 +2,13 @@ package blimpl.userblimpl;
 
 //import blservice.userblservice.LevelService;
 
+import blimpl.blfactory.BLFactoryImpl;
+import blimpl.userblimpl.mock.MockClient;
+import blimpl.userblimpl.mock.MockSalesman;
+import blimpl.userblimpl.mock.MockStaff;
+import blservice.blfactoryservice.BLFactoryService;
 import blservice.userblservice.UserBLInfo;
+import blservice.userblservice.UserBLService;
 import util.LoginState;
 
 /**
@@ -54,4 +60,29 @@ public class UserBLFactory {
         return userBLService;
     }
 
+    //Test
+
+    public synchronized static UserBLService getUser_Client_BLServiceImplForTest() {
+        return new UserBLServiceImpl(getClientForTest(), LoginState.LOGOUT);
+    }
+
+    public synchronized static UserBLService getUser_Staff_BLServiceImplForTest() {
+        return new UserBLServiceImpl(getStaffForTest(), LoginState.LOGOUT);
+    }
+
+    public synchronized static UserBLService getUser_Salesman_BLServiceImplForTest() {
+        return new UserBLServiceImpl(getSalesmanForTest(), LoginState.LOGOUT);
+    }
+
+    private synchronized static User getClientForTest() {
+        return new MockClient();
+    }
+
+    private synchronized static User getStaffForTest() {
+        return new MockStaff();
+    }
+
+    private synchronized static User getSalesmanForTest() {
+        return new MockSalesman();
+    }
 }
