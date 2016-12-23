@@ -39,8 +39,8 @@ public class HotelRoomTest {
 
     @Test
     public void updateHotelRoomQuantity1() throws Exception {
-        DateUtil start = new DateUtil(2016, 12, 4);
-        DateUtil end = new DateUtil(2016, 12, 20);
+        DateUtil start = new DateUtil(2016, 1,5);
+        DateUtil end = new DateUtil(2016, 1, 10);
         int quantity = 3;
         RoomChangeInfoVO roomChangeInfoVO = new RoomChangeInfoVO(start, end, "00000000", RoomType.DoubleDouble, quantity);
         ResultMessage resultMessage = hotelBLService.updateHotelRoomQuantity(roomChangeInfoVO);
