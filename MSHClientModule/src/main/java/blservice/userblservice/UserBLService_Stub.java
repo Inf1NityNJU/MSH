@@ -12,7 +12,7 @@ import java.util.jar.Pack200;
  */
 public class UserBLService_Stub implements UserBLService, UserBLInfo {
 
-    private ClientVO exampleClientVO = new ClientVO("000000007", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
+    private ClientVO exampleClientVO = new ClientVO("000000001", "KrayC", 0, new DateUtil(2016, 1, 1), 500, 0, "18795963603", "", "songkuixi");
     private StaffVO exampleStaffVO = new StaffVO("300001", "testStaff", "25010001", "adminStaff");
     private SalesmanVO exampleSalesmanVO = new SalesmanVO("100001", "testSalesman", "adminSalesman1");
 
@@ -170,7 +170,7 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
     }
 
     public ClientVO getClientByID(String ID) {
-        if (ID.equals("000000007")) {
+        if (ID.equals("000000001")) {
             return exampleClientVO;
         } else {
             return null;

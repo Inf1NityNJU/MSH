@@ -1,6 +1,6 @@
 package user;
 
-import blimpl.userbl.Salesman;
+import blimpl.userblimpl.Salesman;
 import org.junit.Test;
 import util.LoginState;
 import util.ResultMessage;

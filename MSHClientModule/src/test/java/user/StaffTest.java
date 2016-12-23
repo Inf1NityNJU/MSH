@@ -1,7 +1,7 @@
 package user;
 
 import blimpl.blfactory.BLFactoryImpl;
-import blimpl.userbl.Staff;
+import blimpl.userblimpl.Staff;
 import blservice.userblservice.UserBLInfo;
 import org.junit.Test;
 import util.LoginState;

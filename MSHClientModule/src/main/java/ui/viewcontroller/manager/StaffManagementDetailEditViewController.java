@@ -1,7 +1,7 @@
 package ui.viewcontroller.manager;
 
 import blimpl.blfactory.BLFactoryImpl;
-import blimpl.userbl.UserBLFactory;
+import blimpl.userblimpl.UserBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;

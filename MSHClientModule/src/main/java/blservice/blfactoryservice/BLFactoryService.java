@@ -37,4 +37,19 @@ public interface BLFactoryService {
     public UserBLInfo getUserBLInfo_Staff();
 
     public UserBLInfo getUserBLInfo_Salesman();
+
+
+    // Stub
+    public OrderBLService getOrderBLService_Stub();
+
+    public HotelBLService getHotelBLService_Stub();
+
+    public PromotionBLService getPromotionBLService_Stub();
+
+    public UserBLService getUserBLService_Stub();
+
+    public HotelBLInfo getHotelBLInfo_Stub();
+
+    public UserBLInfo getUserBLInfo_Stub();
+
 }

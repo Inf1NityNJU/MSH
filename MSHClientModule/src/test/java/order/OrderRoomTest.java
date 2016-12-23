@@ -1,7 +1,7 @@
 package order;
 
-import blimpl.orderbl.MockOrderRoom;
-import blimpl.orderbl.OrderRoom;
+import blimpl.orderblimpl.MockOrderRoom;
+import blimpl.orderblimpl.OrderRoom;
 import util.ResultMessage;
 import util.RoomType;
 

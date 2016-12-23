@@ -1,6 +1,6 @@
 package ui.viewcontroller.manager;
 
-import blimpl.userbl.UserBLFactory;
+import blimpl.userblimpl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import ui.componentcontroller.user.ClientManagementCellController;
 import ui.componentcontroller.user.ClientManagementPaneController;
 import ui.componentcontroller.user.ClientManagementSearchPaneController;
-import util.ResultMessage;
 import vo.ClientVO;
 
 import java.io.IOException;

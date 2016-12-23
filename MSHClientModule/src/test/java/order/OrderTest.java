@@ -1,6 +1,7 @@
 package order;
 
-import blimpl.orderbl.Order;
+import blimpl.orderblimpl.Order;
+import blimpl.orderblimpl.OrderBLFactory;
 import util.*;
 import vo.*;
 
@@ -19,7 +20,7 @@ public class OrderTest {
     private Order order;
 
     public OrderTest() {
-        order = new Order();
+        order = OrderBLFactory.getOrder();
     }
 
     private void addOrder() {

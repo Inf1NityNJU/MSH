@@ -1,7 +1,7 @@
 package ui.viewcontroller.salesman;
 
 import blimpl.blfactory.BLFactoryImpl;
-import blimpl.userbl.UserBLFactory;
+import blimpl.userblimpl.UserBLFactory;
 import blservice.promotionblservice.PromotionBLService;
 import blservice.userblservice.UserBLInfo;
 import component.commontextfield.CommonTextField;

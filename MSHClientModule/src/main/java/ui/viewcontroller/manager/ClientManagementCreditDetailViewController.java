@@ -1,6 +1,6 @@
 package ui.viewcontroller.manager;
 
-import blimpl.userbl.UserBLFactory;
+import blimpl.userblimpl.UserBLFactory;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
 import javafx.event.Event;
