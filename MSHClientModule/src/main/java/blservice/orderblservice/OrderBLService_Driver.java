@@ -30,12 +30,6 @@ public class OrderBLService_Driver {
         rooms.add(room1);
 
         ResultMessage rm;
-//      rm = orderBLService.checkCredit();
-//        if (rm == ResultMessage.SUCCESS) {
-//            System.out.println();("Credit enough");
-//        } else {
-//            System.out.println();("Credit not enough");
-//        }
 
         OrderVO orderVO = new OrderVO("00000001", new DateUtil(2016, 12, 23), new DateUtil(2016, 12, 24));
         orderVO.bookedTime = new TimeUtil(2016, 12, 23, 10, 0, 0);
@@ -47,7 +41,7 @@ public class OrderBLService_Driver {
         } else {
             System.out.println("Start Failed");
         }
-        orderVO.clientID = "000000001";
+//        orderVO.clientID = "000000001";
 
         rm = orderBLService.modifyRoomQuantity(RoomType.SingleRoom, 1);
         if (rm == ResultMessage.SUCCESS) {

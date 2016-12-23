@@ -1,4 +1,4 @@
-package blimpl.promotionbl;
+package blimpl.promotionblimpl;
 
 import po.PromotionPO;
 import vo.*;
