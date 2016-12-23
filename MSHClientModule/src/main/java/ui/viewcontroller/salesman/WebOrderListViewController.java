@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ui.componentcontroller.order.*;
+import util.DateUtil;
 import util.OrderState;
 import vo.OrderVO;
 
@@ -38,6 +39,7 @@ public class WebOrderListViewController {
     private ArrayList<OrderVO> orders = new ArrayList<>();
 
     private OrderState orderState;
+    private DateUtil date;
 
     /**
      * Initializes the ClientOrderListViewController class. This method is automatically called
@@ -85,12 +87,23 @@ public class WebOrderListViewController {
     }
 
     public void refreshShowOrders() {
-        showOrders(orderState);
+        showOrders(orderState, date);
     }
 
-    public void showOrders(OrderState orderState) {
+    public void showOrders(OrderState orderState, DateUtil date) {
         this.orderState = orderState;
-        orders = orderBLService.searchOrder(orderState);
+        ArrayList<OrderVO> tmpOrders = orderBLService.searchOrder(orderState);
+        orders = new ArrayList<>();
+
+        if (date != null) {
+            for (OrderVO order : tmpOrders) {
+                if (order.checkInDate.equals(date)) {
+                    orders.add(order);
+                }
+            }
+        } else {
+            orders = tmpOrders;
+        }
         int size = orders.size();
         webOrderPagePaneController.setPageCount(size/NUM_OF_CELL + ((size%NUM_OF_CELL == 0) ? 0 : 1));
         if (size > 0) {
