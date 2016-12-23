@@ -132,15 +132,7 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-
+                                <RowConstraints />
                             </rowConstraints>
                         </GridPane>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">

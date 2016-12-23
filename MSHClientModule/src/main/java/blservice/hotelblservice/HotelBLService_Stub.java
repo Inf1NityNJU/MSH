@@ -1,9 +1,6 @@
 package blservice.hotelblservice;
 
-import util.City;
-import util.DateUtil;
-import util.ResultMessage;
-import util.RoomType;
+import util.*;
 import vo.*;
 
 import java.util.ArrayList;
@@ -12,7 +9,7 @@ import java.util.Iterator;
 /**
  * Created by SilverNarcissus on 16/10/12.
  */
-public class HotelBLService_Stub implements HotelBLService {
+public class HotelBLService_Stub implements HotelBLService, HotelBLInfo {
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
         System.out.println("Search Success!");
         return new ArrayList<Hotel_DetailVO>();
@@ -20,9 +17,9 @@ public class HotelBLService_Stub implements HotelBLService {
 
 
     public Hotel_DetailVO getHotel(String hotelID) {
-        if (hotelID.equals("00000000")) {
+        if (hotelID.equals("00000001")) {
             System.out.println("Get hotel Success!");
-            return new Hotel_DetailVO(null, null, City.NanJing, null, null, 0, null, null, null, 0, 0);
+            return new Hotel_DetailVO("00000001", "酒店名称", City.NanJing, "仙林中心", Place.XianLin, 0, null, null, null, 0, 0);
         }
         return null;
     }
@@ -56,7 +53,25 @@ public class HotelBLService_Stub implements HotelBLService {
 
     @Override
     public ResultMessage updateHotelRoomQuantity(RoomChangeInfoVO roomChangeInfoVO) {
-        return null;
+        if (roomChangeInfoVO != null) {
+            System.out.println("Update hotel room Success!");
+            return ResultMessage.SUCCESS;
+        }
+        return ResultMessage.FAILED;
+    }
+
+    @Override
+    public ResultMessage addScoreToHotelByHotelID(double score, String hotelID) {
+        if (hotelID != null) {
+            System.out.println("Update hotel Success!");
+            return ResultMessage.SUCCESS;
+        }
+        return ResultMessage.FAILED;
+    }
+
+    @Override
+    public int getAvailableQuantity(DateUtil start, DateUtil end, String hotelID, RoomType roomType) {
+        return 0;
     }
 
     public ResultMessage addHotel(Hotel_DetailVO hvo) {

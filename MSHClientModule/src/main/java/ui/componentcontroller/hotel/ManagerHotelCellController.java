@@ -6,6 +6,8 @@ import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ui.viewcontroller.manager.HotelManagementListViewController;
 import vo.*;
 
@@ -16,6 +18,9 @@ public class ManagerHotelCellController {
 
     private HotelManagementListViewController hotelManagementListViewController;
     private Hotel_DetailVO hotel;
+
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private Label hotelNameLabel;
@@ -44,6 +49,9 @@ public class ManagerHotelCellController {
 
     public void setHotel(Hotel_DetailVO hotel) {
         this.hotel = hotel;
+
+        int num = hotel.ID.charAt(7) - '0';
+        imageView.setImage(new Image(getClass().getResource("/images/hotel/" + num + ".png").toExternalForm()));
 
         hotelNameLabel.setText(hotel.name);
         hotelIDLabel.setText(hotel.ID);

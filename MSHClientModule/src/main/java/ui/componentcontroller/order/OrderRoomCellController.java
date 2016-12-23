@@ -1,7 +1,10 @@
 package ui.componentcontroller.order;
 
+import component.circleimage.CircleImage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import ui.viewcontroller.client.ClientOrderDetailViewController;
 import vo.OrderRoomVO;
 
@@ -11,6 +14,9 @@ import java.text.DecimalFormat;
  * Created by Sorumi on 16/12/3.
  */
 public class OrderRoomCellController {
+
+    @FXML
+    private CircleImage imageView;
 
     @FXML
     private Label typeLabel;
@@ -28,6 +34,9 @@ public class OrderRoomCellController {
 
     public void setRoom(OrderRoomVO room) {
         DecimalFormat df = new DecimalFormat("#.0");
+
+        imageView.setImage(new Image(getClass().getResource("/images/room/" + room.type.toString() + ".png").toExternalForm()));
+        imageView.setRadius(40);
 
         typeLabel.setText(room.type.getName());
         priceLabel.setText("¥ " + room.price);

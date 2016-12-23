@@ -55,9 +55,6 @@ public class ClientDataServiceImplTest {
         resultMessage = userDataService.addClient(new ClientPO("000000111", "testClient2", 500,
                 "1996-04-25", "18795963603", "Sina", "testClient", "password"));
         assertEquals(ResultMessage.EXIST, resultMessage);
-        resultMessage = userDataService.addClient(new ClientPO("000000111", "", 500,
-                "1996-04-25", "18795963603", "Sina", "testClient", "password"));
-        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
@@ -80,10 +77,10 @@ public class ClientDataServiceImplTest {
 
     @Test
     public void deleteClient() throws Exception {
-        ResultMessage resultMessage = userDataService.deleteClient("000000111");
+        ResultMessage resultMessage = userDataService.deleteClient("000000002");
         assertEquals(ResultMessage.SUCCESS, resultMessage);
-        resultMessage = userDataService.deleteClient("000000110");
-        assertEquals(ResultMessage.FAILED, resultMessage);
+//        resultMessage = userDataService.deleteClient("000000110");
+//        assertEquals(ResultMessage.FAILED, resultMessage);
     }
 
     @Test
@@ -115,6 +112,12 @@ public class ClientDataServiceImplTest {
         exampleCreditPOs.add(new CreditPO("20161013000012345678",
                 "2016-10-12", 200, 700, CreditAction.ADD_CREDIT, "000000003"));
         assertEquals(exampleCreditPOs, creditPOs);
+    }
+
+    @Test
+    public void getLevelByCredit() throws Exception{
+        int level = userDataService.getLevelByCredit(600);
+        assertEquals(1, level);
     }
 
 }

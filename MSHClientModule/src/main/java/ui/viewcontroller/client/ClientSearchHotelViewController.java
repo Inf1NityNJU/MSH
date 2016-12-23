@@ -1,6 +1,6 @@
 package ui.viewcontroller.client;
 
-import blimpl.hotelbl.HotelBLFactory;
+import blimpl.hotelblimpl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

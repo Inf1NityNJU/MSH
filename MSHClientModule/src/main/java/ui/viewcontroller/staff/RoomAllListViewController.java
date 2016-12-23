@@ -1,7 +1,7 @@
 package ui.viewcontroller.staff;
 
 import blimpl.blfactory.BLFactoryImpl;
-import blimpl.hotelbl.HotelBLFactory;
+import blimpl.hotelblimpl.HotelBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLInfo;
 import component.pagepane.PagePane;

@@ -1,18 +1,22 @@
 package blimpl.blfactory;
 
-import blimpl.hotelbl.HotelBLFactory;
-import blimpl.orderbl.OrderBLFactory;
-import blimpl.promotionbl.PromotionBLFactory;
-import blimpl.userbl.UserBLFactory;
+import blimpl.hotelblimpl.HotelBLFactory;
+import blimpl.orderblimpl.OrderBLFactory;
+import blimpl.promotionblimpl.PromotionBLFactory;
+import blimpl.userblimpl.UserBLFactory;
 import blservice.blfactoryservice.BLFactoryService;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
+import blservice.hotelblservice.HotelBLService_Stub;
 import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
+import blservice.orderblservice.OrderBLService_Stub;
 import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
+import blservice.promotionblservice.PromotionBLService_Stub;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
+import blservice.userblservice.UserBLService_Stub;
 
 /**
  * Created by Sorumi on 16/12/3.
@@ -78,4 +82,40 @@ public class BLFactoryImpl implements BLFactoryService {
     public UserBLInfo getUserBLInfo_Salesman() {
         return UserBLFactory.getUserInfo_Salesman();
     }
+
+
+
+    // Stub
+
+    @Override
+    public OrderBLService getOrderBLService_Stub() {
+        return new OrderBLService_Stub();
+    }
+
+    @Override
+    public HotelBLService getHotelBLService_Stub() {
+        return new HotelBLService_Stub();
+    }
+
+    @Override
+    public PromotionBLService getPromotionBLService_Stub() {
+        return new PromotionBLService_Stub();
+    }
+
+    @Override
+    public UserBLService getUserBLService_Stub() {
+        return new UserBLService_Stub();
+    }
+
+    @Override
+    public HotelBLInfo getHotelBLInfo_Stub() {
+        return new HotelBLService_Stub();
+    }
+
+    @Override
+    public UserBLInfo getUserBLInfo_Stub() {
+        return new UserBLService_Stub();
+    }
+
+
 }

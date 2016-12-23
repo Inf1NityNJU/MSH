@@ -1,6 +1,6 @@
 package promotion;
 
-import blimpl.promotionbl.MinPromotion;
+import blimpl.promotionblimpl.MinPromotion;
 import org.junit.Test;
 import util.City;
 import util.DateUtil;

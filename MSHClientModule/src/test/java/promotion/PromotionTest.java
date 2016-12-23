@@ -1,6 +1,6 @@
 package promotion;
 
-import blimpl.promotionbl.Promotion;
+import blimpl.promotionblimpl.Promotion;
 import org.junit.Test;
 import util.DateUtil;
 import util.PromotionType;

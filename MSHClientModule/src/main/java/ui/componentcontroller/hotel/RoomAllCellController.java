@@ -2,10 +2,12 @@ package ui.componentcontroller.hotel;
 
 import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
+import component.circleimage.CircleImage;
 import component.commontextfield.CommonTextField;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import ui.viewcontroller.staff.RoomAllListViewController;
 import util.ResultMessage;
 import vo.HotelRoomVO;
@@ -16,6 +18,10 @@ import java.util.regex.Pattern;
  * Created by SilverNarcissus on 2016/11/27.
  */
 public class RoomAllCellController {
+
+    @FXML
+    private CircleImage imageView;
+
     @FXML
     private Label roomTypeLabel;
 
@@ -57,6 +63,9 @@ public class RoomAllCellController {
 
     public void setRoom(HotelRoomVO hotelRoom) {
         this.hotelRoom = hotelRoom;
+
+        imageView.setImage(new Image(getClass().getResource("/images/room/" + hotelRoom.roomType.toString() + ".png").toExternalForm()));
+        imageView.setRadius(40);
 
         roomTypeLabel.setText(hotelRoom.roomType.getName());
         setEditMode(false);
