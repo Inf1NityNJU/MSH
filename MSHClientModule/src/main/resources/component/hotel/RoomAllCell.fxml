@@ -11,7 +11,7 @@
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="920.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.RoomAllCellController">
     <children>
-      <CircleImage radius="40.0">
+      <CircleImage fx:id="imageView" radius="40.0">
          <image>
             <Image url="@../../images/example.jpeg" />
          </image>

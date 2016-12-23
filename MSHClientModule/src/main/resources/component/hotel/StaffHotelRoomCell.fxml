@@ -8,7 +8,7 @@
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.hotel.StaffHotelRoomCellController">
    <children>
-      <CircleImage radius="40.0">
+      <CircleImage fx:id="imageView" radius="40.0">
          <image>
             <Image url="@../../images/example.jpeg" />
          </image>

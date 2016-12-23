@@ -74,6 +74,8 @@ public class RoomAvailableListViewController {
         }
 
         datePicker.setDate(LocalDate.now());
+        datePicker.setMinDate(LocalDate.now());
+        datePicker.setMaxDate(LocalDate.now().plusDays(30));
         datePicker.dateProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {

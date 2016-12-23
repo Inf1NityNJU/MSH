@@ -26,7 +26,7 @@ public class OrderBLService_Driver {
         ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 
         ArrayList<OrderRoomVO> rooms = new ArrayList<OrderRoomVO>();
-        OrderRoomVO room1 = new OrderRoomVO(RoomType.SingleRoom, 300, 1);
+        OrderRoomVO room1 = new OrderRoomVO(RoomType.SingleRoom, 1, 300);
         rooms.add(room1);
 
         ResultMessage rm;

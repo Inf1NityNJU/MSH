@@ -120,9 +120,9 @@
                                             </font>
                                         </Label>
                                         <VBox fx:id="promotionVBox" layoutX="150.0" prefWidth="300.0" spacing="20.0"/>
-                                        <RectButton fx:id="promotionDetailButton" layoutX="820.0" maxHeight="-Infinity"
-                                                    minHeight="-Infinity" prefHeight="40.0" text="详 情"
-                                                    textAlignment="CENTER"/>
+                                        <!--<RectButton fx:id="promotionDetailButton" layoutX="820.0" maxHeight="-Infinity"-->
+                                                    <!--minHeight="-Infinity" prefHeight="40.0" text="详 情"-->
+                                                    <!--textAlignment="CENTER"/>-->
                                     </children>
                                 </Pane>
                                 <Separator prefWidth="200.0"/>
@@ -139,9 +139,9 @@
                                                     <children>
                                                         <MyDatePicker fx:id="datePicker"/>
                                                         <Pane prefWidth="200.0" HBox.hgrow="ALWAYS"/>
-                                                        <RectButton fx:id="roomDetailButton" maxHeight="-Infinity"
-                                                                    minHeight="-Infinity" prefHeight="40.0" text="详 情"
-                                                                    textAlignment="CENTER" HBox.hgrow="NEVER"/>
+                                                        <!--<RectButton fx:id="roomDetailButton" maxHeight="-Infinity"-->
+                                                                    <!--minHeight="-Infinity" prefHeight="40.0" text="详 情"-->
+                                                                    <!--textAlignment="CENTER" HBox.hgrow="NEVER"/>-->
                                                     </children>
                                                 </HBox>
                                                 <HBox>
@@ -196,7 +196,7 @@
                                                                 <Font name="PingFang SC Regular" size="16.0"/>
                                                             </font>
                                                         </Label>
-                                                        <RateStarPane fx:id="rateScorePane"/>
+                                                        <RateStarPane fx:id="rateScorePane" abled="false"/>
                                                         <Label fx:id="scoreLabel" alignment="CENTER_RIGHT"
                                                                prefWidth="100.0" text="4.8分" textFill="GREY">
                                                             <font>
@@ -228,7 +228,7 @@
                                                                                       size="16.0"/>
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane fx:id="serviceScorePane"/>
+                                                                        <RateStarPane fx:id="serviceScorePane" abled="false"/>
                                                                         <Label fx:id="serviceScoreLabel"
                                                                                alignment="CENTER_RIGHT" prefWidth="60.0"
                                                                                text="4.8分" textFill="GREY">
@@ -248,7 +248,7 @@
                                                                                       size="16.0"/>
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane fx:id="healthScorePane"/>
+                                                                        <RateStarPane fx:id="healthScorePane" abled="false"/>
                                                                         <Label fx:id="healthScoreLabel"
                                                                                alignment="CENTER_RIGHT" prefWidth="60.0"
                                                                                text="4.8分" textFill="GREY">
@@ -268,7 +268,7 @@
                                                                                       size="16.0"/>
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane fx:id="facilityScorePane"/>
+                                                                        <RateStarPane fx:id="facilityScorePane" abled="false"/>
                                                                         <Label fx:id="facilityScoreLabel"
                                                                                alignment="CENTER_RIGHT" prefWidth="60.0"
                                                                                text="4.8分" textFill="GREY">
@@ -289,7 +289,7 @@
                                                                                       size="16.0"/>
                                                                             </font>
                                                                         </Label>
-                                                                        <RateStarPane fx:id="locationScorePane"/>
+                                                                        <RateStarPane fx:id="locationScorePane" abled="false"/>
                                                                         <Label fx:id="locationScoreLabel"
                                                                                alignment="CENTER_RIGHT" prefWidth="60.0"
                                                                                text="4.8分" textFill="GREY">

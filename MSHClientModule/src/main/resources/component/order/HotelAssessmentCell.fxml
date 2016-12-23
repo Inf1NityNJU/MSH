@@ -30,7 +30,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" spacing="30.0">
                <children>
-                  <RateStarPane fx:id="scorePane" />
+                  <RateStarPane fx:id="scorePane" abled="false"/>
                   <Label fx:id="scoreLabel" text="4.5 分" textFill="GREY">
                      <font>
                         <Font name="PingFang SC Regular" size="16.0" />

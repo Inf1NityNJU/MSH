@@ -3,9 +3,11 @@ package ui.componentcontroller.hotel;
 import blimpl.blfactory.BLFactoryImpl;
 import blservice.hotelblservice.HotelBLService;
 import component.circlebutton.CircleButton;
+import component.circleimage.CircleImage;
 import component.tinybutton.TinyButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import ui.viewcontroller.staff.RoomAvailableListViewController;
 import util.DateUtil;
 import util.ResultMessage;
@@ -17,6 +19,10 @@ import vo.RoomStockVO;
  * Created by SilverNarcissus on 2016/11/29.
  */
 public class RoomAvailableCellController {
+
+    @FXML
+    private CircleImage imageView;
+
     @FXML
     private Label roomTypeLabel;
 
@@ -56,6 +62,9 @@ public class RoomAvailableCellController {
     public void setRoom(HotelRoomVO hotelRoom, DateUtil date) {
         this.hotelRoom = hotelRoom;
         this.date = date;
+
+        imageView.setImage(new Image(getClass().getResource("/images/room/" + hotelRoom.roomType.toString() + ".png").toExternalForm()));
+        imageView.setRadius(40);
 
         roomTypeLabel.setText(hotelRoom.roomType.getName());
         priceLabel.setText("¥ " + String.format("%.2f", hotelRoom.price));
