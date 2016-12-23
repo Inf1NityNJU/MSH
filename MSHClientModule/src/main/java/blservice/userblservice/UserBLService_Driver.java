@@ -4,7 +4,6 @@ import blimpl.userblimpl.Client;
 import blimpl.userblimpl.Salesman;
 import blimpl.userblimpl.UserBLFactory;
 import org.junit.Test;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import po.StaffPO;
 import util.*;
 import vo.*;
@@ -53,11 +52,11 @@ public class UserBLService_Driver {
 
         rm = userBLService.add(clientVO_register);
         if (rm == ResultMessage.SUCCESS) {
-            System.out.println("ADD SUCCESS");
+            System.out.println("ADD CLIENT SUCCESS");
         } else if (rm == ResultMessage.EXIST) {
             System.out.println("CLIENT EXIST");
         } else if (rm == ResultMessage.FAILED) {
-            System.out.println("ADD FAILED");
+            System.out.println("ADD CLIENT FAILED");
         }
 
         LoginState loginState = userBLService.login(userName, password);
@@ -106,7 +105,7 @@ public class UserBLService_Driver {
 
         int level = Integer.parseInt(userBLService.getLevel(exampleClientVO.level + "").level);
         if (level == 1) {
-            System.out.println("FIND LEVEL SUCCESS" + level);
+            System.out.println("FIND LEVEL SUCCESS : " + level);
         } else {
             System.out.println("FIND LEVEL FAILED" + level);
         }
@@ -127,11 +126,11 @@ public class UserBLService_Driver {
 
         rm = userBLService.add(staffVO_register);
         if (rm == ResultMessage.SUCCESS) {
-            System.out.println("ADD SUCCESS");
+            System.out.println("ADD STAFF SUCCESS");
         } else if (rm == ResultMessage.EXIST) {
             System.out.println("STAFF EXIST");
         } else if (rm == ResultMessage.FAILED) {
-            System.out.println("ADD FAILED");
+            System.out.println("ADD STAFF FAILED");
         }
 
         LoginState loginState = userBLService.login(userName, password);
@@ -185,11 +184,11 @@ public class UserBLService_Driver {
 
         rm = userBLService.add(salesmanVO_register);
         if (rm == ResultMessage.SUCCESS) {
-            System.out.println("ADD SUCCESS");
+            System.out.println("ADD SALESMAN SUCCESS");
         } else if (rm == ResultMessage.EXIST) {
-            System.out.println("STAFF EXIST");
+            System.out.println("SALESMAN EXIST");
         } else if (rm == ResultMessage.FAILED) {
-            System.out.println("ADD FAILED");
+            System.out.println("ADD SALESMAN FAILED");
         }
 
         LoginState loginState = userBLService.login(userName, password);

@@ -114,4 +114,10 @@ public class ClientDataServiceImplTest {
         assertEquals(exampleCreditPOs, creditPOs);
     }
 
+    @Test
+    public void getLevelByCredit() throws Exception{
+        int level = userDataService.getLevelByCredit(600);
+        assertEquals(1, level);
+    }
+
 }
