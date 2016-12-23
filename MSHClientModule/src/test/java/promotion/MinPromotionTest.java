@@ -1,6 +1,7 @@
 package promotion;
 
 import blimpl.promotionblimpl.MinPromotion;
+import blimpl.promotionblimpl.PromotionBLFactory;
 import org.junit.Test;
 import util.City;
 import util.DateUtil;
@@ -17,7 +18,7 @@ public class MinPromotionTest {
     private MinPromotion minPromotion;
 
     public MinPromotionTest(){
-        minPromotion = new MinPromotion();
+        minPromotion = PromotionBLFactory.getMinPromotion();
     }
 
     @Test

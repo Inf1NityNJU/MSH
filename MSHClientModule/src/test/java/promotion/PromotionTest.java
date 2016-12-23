@@ -1,6 +1,7 @@
 package promotion;
 
 import blimpl.promotionblimpl.Promotion;
+import blimpl.promotionblimpl.PromotionBLFactory;
 import org.junit.Test;
 import util.DateUtil;
 import util.PromotionType;
@@ -20,7 +21,7 @@ public class PromotionTest {
     private Promotion promotion;
 
     public PromotionTest() {
-        promotion = new Promotion();
+        promotion = PromotionBLFactory.getPromotion();
     }
 
     @Test
