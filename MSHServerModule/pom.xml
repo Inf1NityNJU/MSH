@@ -37,11 +37,11 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-install-plugin</artifactId>-->
+                <!--<version>2.5.2</version>-->
+                <!--<executions>-->
                     <!--<execution>-->
                         <!--<id>install-external-common</id>-->
                         <!--<phase>clean</phase>-->
@@ -58,8 +58,8 @@
                             <!--<goal>install-file</goal>-->
                         <!--</goals>-->
                     <!--</execution>-->
-                </executions>
-            </plugin>
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
