@@ -22,7 +22,6 @@ public class OrderClientNetworkImpl implements OrderClientNetworkService {
 
     private OrderServerNetworkService orderServerNetworkService;
 
-
     public OrderClientNetworkImpl() {
         try {
             orderServerNetworkService = (OrderServerNetworkService) Naming.lookup("OrderServerNetworkService");

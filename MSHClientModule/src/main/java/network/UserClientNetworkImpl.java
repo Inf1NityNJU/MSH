@@ -19,29 +19,30 @@ public class UserClientNetworkImpl implements UserClientNetworkService {
     private UserServerNetworkService userServerNetworkService;
 
     public UserClientNetworkImpl() {
-        while (userServerNetworkService == null) {
+//        while (userServerNetworkService == null) {
             try {
                 userServerNetworkService = (UserServerNetworkService) Naming.lookup("UserServerNetworkService");
             } catch (NotBoundException e) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                System.err.println("Client.network.userServerNetworkService: Not bound, trying to connect");
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e1) {
+//                    e1.printStackTrace();
+//                }
+//                System.err.println("Client.network.userServerNetworkService: Not bound, trying to connect");
+                e.printStackTrace();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-                break;
+//                break;
             } catch (RemoteException e) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                System.err.println("Client.network.userServerNetworkService: No service, trying to connect");
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e1) {
+//                    e1.printStackTrace();
+//                }
+//                System.err.println("Client.network.userServerNetworkService: No service, trying to connect");
+                e.printStackTrace();
             }
-        }
-
+//        }
     }
 
     public LoginState login(String account, String password) {

@@ -22,6 +22,7 @@ public class ServerHelper {
 
     private static ServerHelper serverHelper;
     private static Registry registry;
+    private static int currentConnectionNum = 0;
 
     private ServerHelper(int port) {
         buildNetwork(port);
@@ -35,6 +36,20 @@ public class ServerHelper {
         }
     }
 
+    public static int getCurrentConnectionNum() {
+        return currentConnectionNum;
+    }
+
+    public static void addCurrentConnectionNum(){
+        currentConnectionNum++;
+        System.out.println("Current Connection: " + currentConnectionNum);
+    }
+
+    public static void minusCurrentConnectionNum(){
+        currentConnectionNum--;
+        System.out.println("Current Connection: " + currentConnectionNum);
+    }
+
     public static ServerHelper buildNetwork(int port) {
 
         try {
@@ -43,21 +58,24 @@ public class ServerHelper {
             //这里用这种方式避免了再打开一个DOS窗口
             //而且用命令rmiregistry启动注册服务还必须事先用RMIC生成一个stub类为它所用
             registry = LocateRegistry.createRegistry(port);
-            //创建远程对象的一个或多个实例，下面是hello对象
+            //创建远程对象的一个或多个实例
             //可以用不同名字注册不同的实例
             System.out.println("RMI server is ready!");
 
-            //把clientServerService注册到RMI注册服务器上，命名为testRMI
+            //把clientServerService注册到RMI注册服务器上
             UserServerNetworkService userServerNetwork = new UserServerNetworkImpl();
             HotelServerNetworkService hotelServerNetworkService = new HotelServerNetworkImpl();
             PromotionServerNetworkService promotionServerNetworkService = new PromotionServerNetworkImpl();
             OrderServerNetworkService orderServerNetworkService = new OrderServerNetworkImpl();
 
+            UtilNetworkService utilNetworkService = new UtilNetworkImpl();
 
             Naming.rebind("HotelServerNetworkService", hotelServerNetworkService);
             Naming.rebind("UserServerNetworkService", userServerNetwork);
             Naming.rebind("PromotionServerNetWorkService", promotionServerNetworkService);
             Naming.rebind("OrderServerNetworkService", orderServerNetworkService);
+
+            Naming.rebind("UtilNetworkService", utilNetworkService);
 
             return serverHelper;
         } catch (RemoteException e) {

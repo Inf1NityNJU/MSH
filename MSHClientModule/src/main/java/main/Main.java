@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import network.UtilClientNetworkImpl;
 import ui.viewcontroller.common.MainUIController;
 
 public class Main extends Application {
@@ -18,7 +19,10 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+
+        UtilClientNetworkImpl utilClientNetwork = new UtilClientNetworkImpl();
+
         FXMLLoader rootLoader = new FXMLLoader();
         rootLoader.setLocation(getClass().getResource("/view/common/Main.fxml"));
         Pane root = rootLoader.load();
@@ -27,7 +31,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
-
 
         MainUIController controller = rootLoader.getController();
         controller.showUtilView();

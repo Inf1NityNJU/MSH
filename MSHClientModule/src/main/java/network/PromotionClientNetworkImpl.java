@@ -29,7 +29,6 @@ public class PromotionClientNetworkImpl implements PromotionClientNetworkService
         }
     }
 
-
     @Override
     public ResultMessage addPromotion(PromotionPO promotionpo) {
         try {

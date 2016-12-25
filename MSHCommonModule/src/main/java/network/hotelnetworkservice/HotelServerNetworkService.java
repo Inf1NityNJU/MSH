@@ -1,6 +1,5 @@
 package network.hotelnetworkservice;
 
-import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
