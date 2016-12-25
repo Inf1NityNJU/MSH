@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import network.UtilClientNetworkImpl;
 import ui.viewcontroller.common.MainUIController;
 
@@ -27,6 +28,8 @@ public class Main extends Application {
         rootLoader.setLocation(getClass().getResource("/view/common/Main.fxml"));
         Pane root = rootLoader.load();
 
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("MSH");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);

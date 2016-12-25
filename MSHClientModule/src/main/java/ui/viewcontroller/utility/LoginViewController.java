@@ -66,4 +66,9 @@ public class LoginViewController {
         //TODO
         utilityViewController.showClientView();
     }
+
+    @FXML
+    public void clickCloseButton(){
+        utilityViewController.close();
+    }
 }

@@ -107,4 +107,8 @@ public class MainUIController {
         staffViewController = new StaffViewController(this);
     }
 
+    public void close() {
+        System.exit(0);
+    }
+
 }

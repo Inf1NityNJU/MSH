@@ -31,7 +31,6 @@ public class UtilityViewController {
         this.mainUIController = mainUIController;
         userBLService = new BLFactoryImpl().getClientBLService();
         showLogin();
-//        showSignUp();
     }
 
     public void back() {
@@ -41,9 +40,6 @@ public class UtilityViewController {
         }
     }
 
-//    public void setMainUIController(MainUIController mainUIController) {
-//        this.mainUIController = mainUIController;
-//    }
 
     public void showLogin() {
         if (initNode != null) {
@@ -136,5 +132,9 @@ public class UtilityViewController {
 
     public UserBLService getUserBLService() {
         return userBLService;
+    }
+
+    public void close() {
+        mainUIController.close();
     }
 }
