@@ -3,9 +3,7 @@ package promotion;
 import blimpl.promotionblimpl.Promotion;
 import blimpl.promotionblimpl.PromotionBLFactory;
 import org.junit.Test;
-import util.DateUtil;
-import util.PromotionType;
-import util.ResultMessage;
+import util.*;
 import vo.*;
 
 import java.util.ArrayList;
@@ -26,70 +24,81 @@ public class PromotionTest {
 
     @Test
     public void testAdd() {
-//        ResultMessage rm = promotion.add(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"));
-//        ResultMessage rm = promotion.add(new Promotion_ClientGradeVO("1", PromotionType.Web_ClientGrade, 0.70, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
-//        promotion.add(new Promotion_WebSpecialDateVO("2", PromotionType.Web_SpecilaDate, 0.60, new DateUtil(2016,01,02), new DateUtil(2016,02,02)));
-//        promotion.add(new Promotion_SpecialPlaceVO("3", PromotionType.Web_SpecilPlace, 0.50, new DateUtil(2016,01,02), new DateUtil(2016,02,02), Place.TangShan));
-//        promotion.add(new Promotion_HotelSpecialDateVO("4", PromotionType.Hotel_SpecilaDate, 0.60, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"01"));
-        ResultMessage rm = promotion.add(new Promotion_BirthdayVO("5", PromotionType.Hotel_Birthday, 0.40,"00000001"));
-//        promotion.add(new Promotion_EnterpriseVO("6", PromotionType.Hotel_Enterprise, 0.80, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"001","01"));
-//        promotion.add(new Promotion_RoomQuantityVO("7", PromotionType.Hotel_RoomQuantity, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"01",5));
+        ResultMessage rm = promotion.add(new Promotion_BirthdayVO("1", PromotionType.Hotel_Birthday, 0.80, "00000000"));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        rm = promotion.add(new Promotion_ClientGradeVO("2", PromotionType.Web_ClientGrade, 0.70, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.add(new Promotion_WebSpecialDateVO("3", PromotionType.Web_SpecilaDate, 0.60, new DateUtil(2016,01,02), new DateUtil(2016,02,02)));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.add(new Promotion_SpecialPlaceVO("4", PromotionType.Web_SpecilPlace, 0.40, new DateUtil(2016, 01, 02), new DateUtil(2016, 02, 02), City.NanJing, Place.TangShan));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.add(new Promotion_HotelSpecialDateVO("5", PromotionType.Hotel_SpecilaDate, 0.60, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"01"));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.add(new Promotion_EnterpriseVO("6", PromotionType.Hotel_Enterprise, 0.80, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"001","01"));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.add(new Promotion_RoomQuantityVO("7", PromotionType.Hotel_RoomQuantity, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"01",5));
         assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test
     public void testDelete() {
-//        ResultMessage rm = promotion.delete("201610120102");
-//        assertEquals(ResultMessage.SUCCESS, rm);
-//        rm = promotion.delete("201610120103");
-//        assertEquals(ResultMessage.FAILED, rm);
-        promotion.delete("20003");
+        ResultMessage rm = promotion.delete("10003");
+        assertEquals(ResultMessage.SUCCESS, rm);
+        rm = promotion.delete("10003");
+        assertEquals(ResultMessage.FAILED, rm);
     }
 
     @Test
     public void testUpdate() {
-//        ResultMessage rm = promotion.update(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"));
-//        assertEquals(ResultMessage.SUCCESS, rm);
-//        rm = promotion.update(new Promotion_HotelVO("201610120103", PromotionType.Hotel_Birthday, 0.80, "00000000"));
-//        assertEquals(ResultMessage.FAILED, rm);
-        promotion.update(new Promotion_BirthdayVO("5", "test", PromotionType.Hotel_Birthday, 0.40,"02"));
+        ResultMessage rm = promotion.update(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000001"));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        rm = promotion.update(new Promotion_ClientGradeVO("20001", "2", PromotionType.Web_ClientGrade, 0.75, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.update(new Promotion_WebSpecialDateVO("20002", "3", PromotionType.Web_SpecilaDate, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02)));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.update(new Promotion_HotelSpecialDateVO("10002", "5", PromotionType.Hotel_SpecilaDate, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"00000001"));
+        assertEquals(ResultMessage.SUCCESS, rm);
+        promotion.update(new Promotion_RoomQuantityVO("10004", "7", PromotionType.Hotel_RoomQuantity, 0.60, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"00000001",5));
+        assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test
     public void testSearchByID() {
-        PromotionVO pvo = promotion.searchByID("201610120102");
-//        assertFalse(!pvo.equals(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, new DateUtil(2016,10,01), new DateUtil(2016,10,03), 0.80, "00000000", null, null, 0, 0)));
-        assertEquals(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"), pvo);
-//        assertNotNull(pvo);
-        pvo = promotion.searchByID("201610120103");
-        assertEquals(null, pvo);
+        PromotionVO pvo = promotion.searchByID("10001");
+        assertEquals(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000000"), pvo);
+        pvo = promotion.searchByID("20001");
+        assertEquals(new Promotion_ClientGradeVO("20001", "2", PromotionType.Web_ClientGrade, 0.75, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2), pvo);
     }
 
     @Test
     public void testSearch() {
         ArrayList<PromotionVO> pvos = promotion.search(PromotionType.Hotel_Birthday);
-        ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
-        tempPvos.add(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"));
-        assertEquals(tempPvos, pvos);
-        pvos = promotion.search(PromotionType.Hotel_RoomQuantity);
-        assertEquals(null, pvos);
+        ArrayList<PromotionVO> tempPvos1 = new ArrayList<PromotionVO>();
+        tempPvos1.add(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000001"));
+        assertEquals(tempPvos1, pvos);
+        pvos = promotion.search(PromotionType.Web_SpecilaDate);
+        ArrayList<PromotionVO> tempPvos2 = new ArrayList<PromotionVO>();
+        tempPvos2.add(new Promotion_WebSpecialDateVO("20002", "3", PromotionType.Web_SpecilaDate, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02)));
+        assertEquals(tempPvos2, pvos);
     }
+
 
     @Test
     public void testSearchHotelPromotions() {
-        ArrayList<PromotionVO> pvos = promotion.searchHotelPromotions("00000000");
+        ArrayList<PromotionVO> pvos = promotion.searchHotelPromotions("00000001");
         ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
-        tempPvos.add(new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday, 0.80, "00000000"));
+        tempPvos.add(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000001"));
+        tempPvos.add(new Promotion_HotelSpecialDateVO("10002", "5", PromotionType.Hotel_SpecilaDate, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"00000001"));
+        tempPvos.add(new Promotion_RoomQuantityVO("10004", "7", PromotionType.Hotel_RoomQuantity, 0.60, new DateUtil(2016,01,02), new DateUtil(2016,02,02),"00000001",5));
         assertEquals(tempPvos, pvos);
-        pvos = promotion.searchHotelPromotions("00000001");
-        assertEquals(null, pvos);
     }
 
     @Test
     public void testSearchWebPromotions() {
         ArrayList<PromotionVO> pvos = promotion.searchWebPromotions();
         ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
-        tempPvos.add(new Promotion_WebVO("201610120103", PromotionType.Web_SpecilaDate, 0.80, new DateUtil(2016, 10, 01), new DateUtil(2016, 10, 03)));
+        tempPvos.add(new Promotion_ClientGradeVO("20001", "2", PromotionType.Web_ClientGrade, 0.75, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
+        tempPvos.add(new Promotion_WebSpecialDateVO("20002", "3", PromotionType.Web_SpecilaDate, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02)));
         assertEquals(tempPvos, pvos);
     }
 
