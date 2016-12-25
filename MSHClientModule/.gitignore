@@ -19,3 +19,4 @@ target/
 
 !components-1.0-SNAPSHOT.jar
 !jfxrt.jar
+!MSHCommonModule-1.0-SNAPSHOT.jar
