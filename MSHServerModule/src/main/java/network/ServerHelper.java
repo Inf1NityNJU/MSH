@@ -1,5 +1,6 @@
 package network;
 
+import launcher.ServiceGUI;
 import network.hotelnetwork.HotelServerNetworkImpl;
 import network.hotelnetworkservice.HotelServerNetworkService;
 import network.ordernetwork.OrderServerNetworkImpl;
@@ -42,12 +43,12 @@ public class ServerHelper {
 
     public static void addCurrentConnectionNum(){
         currentConnectionNum++;
-        System.out.println("Current Connection: " + currentConnectionNum);
+        ServiceGUI.getServiceGUI().postText("Current Connection Num: " + currentConnectionNum);
     }
 
     public static void minusCurrentConnectionNum(){
         currentConnectionNum--;
-        System.out.println("Current Connection: " + currentConnectionNum);
+        ServiceGUI.getServiceGUI().postText("Current Connection Num: " + currentConnectionNum);
     }
 
     public static ServerHelper buildNetwork(int port) {
@@ -92,15 +93,13 @@ public class ServerHelper {
     public static void disableNetwork() {
 
         if(currentConnectionNum > 0){
-            System.out.println(currentConnectionNum + " client(s) online, still close connection?");
+//            ServiceGUI.getServiceGUI().postText("You have " + currentConnectionNum + " client(s) online, still want to close connection?");
         }else {
-
             try {
                 UnicastRemoteObject.unexportObject(registry, true);
             } catch (NoSuchObjectException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
