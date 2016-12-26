@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import main.Main;
+import network.UtilClientNetworkImpl;
 import ui.componentcontroller.common.HeaderViewController;
 import ui.viewcontroller.client.ClientViewController;
 import ui.viewcontroller.manager.ManagerViewController;
@@ -108,6 +109,7 @@ public class MainUIController {
     }
 
     public void close() {
+        UtilClientNetworkImpl.getUtilClientNetwork().endConnection();
         System.exit(0);
     }
 

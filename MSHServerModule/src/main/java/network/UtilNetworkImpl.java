@@ -13,12 +13,10 @@ public class UtilNetworkImpl extends UnicastRemoteObject implements UtilNetworkS
     }
 
     public void addCurrentConnectionNum() throws RemoteException {
-        System.out.println("ADD");
         ServerHelper.addCurrentConnectionNum();
     }
 
     public void minusCurrentConnectionNum() throws RemoteException {
-        System.out.println("MINUS");
         ServerHelper.minusCurrentConnectionNum();
     }
 

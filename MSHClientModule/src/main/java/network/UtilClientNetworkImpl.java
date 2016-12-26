@@ -17,7 +17,16 @@ public class UtilClientNetworkImpl {
 
     private UtilNetworkService utilNetworkService;
 
-    public UtilClientNetworkImpl() {
+    private static UtilClientNetworkImpl utilClientNetwork;
+
+    public synchronized static UtilClientNetworkImpl getUtilClientNetwork() {
+        if (utilClientNetwork == null) {
+            utilClientNetwork = new UtilClientNetworkImpl();
+        }
+        return utilClientNetwork;
+    }
+
+    private UtilClientNetworkImpl() {
         while (utilNetworkService == null) {
             try {
                 utilNetworkService = (UtilNetworkService) Naming.lookup("UtilNetworkService");
@@ -33,8 +42,20 @@ public class UtilClientNetworkImpl {
             }
         }
 
+        startConnection();
+    }
+
+    public void startConnection() {
         try {
             utilNetworkService.addCurrentConnectionNum();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void endConnection() {
+        try {
+            utilNetworkService.minusCurrentConnectionNum();
         } catch (RemoteException e) {
             e.printStackTrace();
         }

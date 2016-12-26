@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        UtilClientNetworkImpl utilClientNetwork = new UtilClientNetworkImpl();
+        UtilClientNetworkImpl.getUtilClientNetwork();
 
         FXMLLoader rootLoader = new FXMLLoader();
         rootLoader.setLocation(getClass().getResource("/view/common/Main.fxml"));

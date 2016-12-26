@@ -90,10 +90,17 @@ public class ServerHelper {
     }
 
     public static void disableNetwork() {
-        try {
-            UnicastRemoteObject.unexportObject(registry, true);
-        } catch (NoSuchObjectException e) {
-            e.printStackTrace();
+
+        if(currentConnectionNum > 0){
+            System.out.println(currentConnectionNum + " client(s) online, still close connection?");
+        }else {
+
+            try {
+                UnicastRemoteObject.unexportObject(registry, true);
+            } catch (NoSuchObjectException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

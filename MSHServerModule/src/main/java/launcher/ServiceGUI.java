@@ -23,6 +23,8 @@ public class ServiceGUI {
     private JButton endButton;
     private TextField logTextField;
 
+
+
     void showGUI() {
         JFrame frame = new JFrame("Server");
         panel = new JPanel();
