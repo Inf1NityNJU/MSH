@@ -90,7 +90,6 @@ public class StaffDataServiceImplTest {
         assertEquals(ResultMessage.NOT_EXIST, resultMessage);
     }
 
-
     @Test
     public void i_logout() throws Exception {
         LoginState loginState = userDataService.logout();
