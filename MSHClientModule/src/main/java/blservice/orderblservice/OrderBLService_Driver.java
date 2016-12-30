@@ -9,6 +9,8 @@ import vo.BillVO;
 import vo.OrderRoomVO;
 import vo.OrderVO;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -41,7 +43,6 @@ public class OrderBLService_Driver {
         } else {
             System.out.println("Start Failed");
         }
-//        orderVO.clientID = "000000001";
 
         rm = orderBLService.modifyRoomQuantity(RoomType.SingleRoom, 1);
         if (rm == ResultMessage.SUCCESS) {
@@ -64,35 +65,37 @@ public class OrderBLService_Driver {
             System.out.println("Generate Failed");
         }
 
-        rm = orderBLService.revokeOrder("20161223000000010000");
+        String orderID = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE) + "000000010000";
+
+        rm = orderBLService.revokeOrder(orderID);
         if (rm == ResultMessage.SUCCESS) {
             System.out.println("Revoke Success");
         } else {
             System.out.println("Revoke Failed");
         }
 
-        rm = orderBLService.checkInOrder("20161223000000010000", new TimeUtil(2016, 10, 17, 18, 0, 0));
+        rm = orderBLService.checkInOrder(orderID, new TimeUtil(2016, 10, 17, 18, 0, 0));
         if (rm == ResultMessage.SUCCESS) {
             System.out.println("CheckIn Success");
         } else {
             System.out.println("CheckIn Failed");
         }
 
-        rm = orderBLService.checkOutOrder("20161223000000010000", new TimeUtil(2016, 10, 18, 18, 0, 0));
+        rm = orderBLService.checkOutOrder(orderID, new TimeUtil(2016, 10, 18, 18, 0, 0));
         if (rm == ResultMessage.SUCCESS) {
             System.out.println("CheckOut Success");
         } else {
             System.out.println("CheckOut Failed");
         }
 
-        rm = orderBLService.editOrderAssessment("20161223000000010000", new AssessmentVO(5, 5, 5, 5, "很好很舒适，下次再来"));
+        rm = orderBLService.editOrderAssessment(orderID, new AssessmentVO(5, 5, 5, 5, "很好很舒适，下次再来"));
         if (rm == ResultMessage.SUCCESS) {
             System.out.println("Edit Success");
         } else {
             System.out.println("Edit Failed");
         }
 
-        OrderVO order = orderBLService.searchOrderByID("20161223000000010000");
+        OrderVO order = orderBLService.searchOrderByID(orderID);
         if (order != null) {
             System.out.println("Success");
         } else {
