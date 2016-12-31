@@ -18,7 +18,7 @@ public class BillTest {
     private Bill bill;
 
     public BillTest() {
-        bill = new MockBill();
+        bill = new Bill();
     }
 
     @Test
