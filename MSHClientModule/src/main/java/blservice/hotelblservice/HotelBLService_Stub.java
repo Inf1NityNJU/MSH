@@ -10,6 +10,8 @@ import java.util.Iterator;
  * Created by SilverNarcissus on 16/10/12.
  */
 public class HotelBLService_Stub implements HotelBLService, HotelBLInfo {
+    private static final Hotel_DetailVO TEST_HOTEL_DETAIL_VO = new Hotel_DetailVO("00000000", "Driver Test", City.NanJing, "Center Park", Place.XianLin, 3, "The test hotel", "All", null, 4.5, 2);
+
     public ArrayList<Hotel_DetailVO> searchHotel(FilterFlagsVO flags) {
         System.out.println("Search Success!");
         return new ArrayList<Hotel_DetailVO>();
@@ -108,51 +110,65 @@ public class HotelBLService_Stub implements HotelBLService, HotelBLInfo {
 
     @Override
     public ResultMessage setRoomWillBeCancel(String hotelID, RoomType type) {
-        return null;
+        return ResultMessage.SUCCESS;
     }
 
     @Override
     public ResultMessage isOrdered(String hotelID, RoomType type) {
-        return null;
+        return ResultMessage.TRUE;
     }
 
     @Override
     public Iterator<Hotel_DetailVO> priceAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        return null;
+        ArrayList<Hotel_DetailVO> result=new ArrayList<Hotel_DetailVO>();
+        result.add(TEST_HOTEL_DETAIL_VO);
+        return result.iterator();
     }
 
     @Override
     public Iterator<Hotel_DetailVO> priceDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        return null;
+        ArrayList<Hotel_DetailVO> result=new ArrayList<Hotel_DetailVO>();
+        result.add(TEST_HOTEL_DETAIL_VO);
+        return result.iterator();
     }
 
     @Override
     public Iterator<Hotel_DetailVO> starAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        return null;
+        ArrayList<Hotel_DetailVO> result=new ArrayList<Hotel_DetailVO>();
+        result.add(TEST_HOTEL_DETAIL_VO);
+        return result.iterator();
     }
 
     @Override
     public Iterator<Hotel_DetailVO> starDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        return null;
+        ArrayList<Hotel_DetailVO> result=new ArrayList<Hotel_DetailVO>();
+        result.add(TEST_HOTEL_DETAIL_VO);
+        return result.iterator();
     }
 
     @Override
     public Iterator<Hotel_DetailVO> scoreAscendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        return null;
+        ArrayList<Hotel_DetailVO> result=new ArrayList<Hotel_DetailVO>();
+        result.add(TEST_HOTEL_DETAIL_VO);
+        return result.iterator();
     }
 
     @Override
     public Iterator<Hotel_DetailVO> scoreDescendingSort(ArrayList<Hotel_DetailVO> hotel_detailVOs) {
-        return null;
+        ArrayList<Hotel_DetailVO> result=new ArrayList<Hotel_DetailVO>();
+        result.add(TEST_HOTEL_DETAIL_VO);
+        return result.iterator();
     }
 
     @Override
     public ArrayList<Hotel_BriefVO> searchHotelInBriefVO(FilterFlagsVO flags) {
-        return null;
+        ArrayList<Hotel_BriefVO> result=new ArrayList<Hotel_BriefVO>();
+        result.add(new Hotel_BriefVO(TEST_HOTEL_DETAIL_VO));
+        return result;
     }
 
     @Override
     public ArrayList<OrderRoomStockVO> getRoomStocks(DateUtil start, DateUtil end, String hotelID) {
-        return null;
+        return new ArrayList<OrderRoomStockVO>();
     }
 }
