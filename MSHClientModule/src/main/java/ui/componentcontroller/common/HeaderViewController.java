@@ -31,7 +31,12 @@ public class HeaderViewController {
     }
 
     @FXML
-    public void clickAboutButton(){
+    public void clickCloseButton() {
+        mainUIController.close();
+    }
+
+    @FXML
+    public void clickAboutButton() {
 
     }
 

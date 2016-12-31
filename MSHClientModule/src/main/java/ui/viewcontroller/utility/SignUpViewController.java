@@ -137,4 +137,9 @@ public class SignUpViewController {
             alertLabel.setText("两次输入密码不一致！");
         }
     }
+
+    @FXML
+    public void clickCloseButton(){
+        utilityViewController.close();
+    }
 }

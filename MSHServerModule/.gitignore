@@ -18,3 +18,5 @@ hs_err_pid*
 target/
 
 */hibernate.cfg.xml
+
+!MSHCommonModule-1.0-SNAPSHOT.jar

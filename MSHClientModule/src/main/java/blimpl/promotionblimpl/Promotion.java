@@ -24,8 +24,8 @@ public class Promotion {
 
     private PromotionClientNetworkService promotionClientNetworkService;
 
-    public Promotion() {
-        promotionClientNetworkService = new PromotionClientNetworkImpl();
+    public Promotion(PromotionClientNetworkService promotionClientNetworkService) {
+        this.promotionClientNetworkService = promotionClientNetworkService;
     }
 
     /**

@@ -33,7 +33,7 @@
                     </padding>
                     <children>
                         <TitleLabel text="客户信息" />
-                        <GridPane alignment="CENTER_LEFT" vgap="30.0">
+                        <GridPane alignment="CENTER_LEFT" vgap="25.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -84,7 +84,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                <Label text="会员等级" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -92,7 +92,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                <Label text="信用值" textFill="#cccccc" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                                     <font>
                                         <Font name="PingFang SC Regular" size="14.0" />
                                     </font>
@@ -100,7 +100,7 @@
                                         <Insets top="3.0" />
                                     </GridPane.margin>
                                 </Label>
-                                  <Label fx:id="creditLabel" text="信用值" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                  <Label fx:id="creditLabel" text="信用值" textFill="GREY" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                       <font>
                                           <Font name="PingFang SC Regular" size="16.0" />
                                       </font>
@@ -112,7 +112,7 @@
                               <CommonTextField fx:id="enterpriseText" />
                            </children>
                         </HBox>
-                        <Label fx:id="levelLabel" text="Lv." textFill="#00cccc" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="levelLabel" text="Lv." textFill="#00cccc" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <font>
                               <Font name="Bangla MN" size="14.0" />
                            </font>
@@ -124,6 +124,12 @@
                               <Font name="PingFang SC Regular" size="16.0" />
                            </font>
                         </Label>
+                        <Label text="联系方式" textFill="#cccccc" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="PingFang SC Regular" size="14.0" />
+                           </font>
+                        </Label>
+                        <CommonTextField fx:id="contactInfoText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                             </children>
                             <rowConstraints>
                                 <RowConstraints />
@@ -131,6 +137,7 @@
                                 <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
+                        <RowConstraints />
                                 <RowConstraints />
                                 <RowConstraints />
                             </rowConstraints>

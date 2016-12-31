@@ -1,5 +1,6 @@
 package blimpl.promotionblimpl;
 
+import network.PromotionClientNetworkService;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;
@@ -13,6 +14,10 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class MockPromotion extends Promotion{
+
+    public MockPromotion(PromotionClientNetworkService promotionClientNetworkService) {
+        super(promotionClientNetworkService);
+    }
     private PromotionVO promotionVO = new Promotion_HotelVO("201610120102", PromotionType.Hotel_Birthday,  0.80,"00000000");
 
     /**

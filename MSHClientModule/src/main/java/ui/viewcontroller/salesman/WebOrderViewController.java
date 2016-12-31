@@ -91,7 +91,7 @@ public class WebOrderViewController {
         }
     }
 
-    public void refreshHotelOrderList() {
+    public void refreshWebOrderList() {
         if (webOrderListViewController != null) {
             webOrderListViewController.refreshShowOrders();
         }

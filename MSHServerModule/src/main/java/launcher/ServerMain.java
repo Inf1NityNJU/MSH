@@ -6,7 +6,8 @@ package launcher;
 public class ServerMain {
     public static void main(String[] args) {
         //打开定时检测器
-        new ServiceGUI().showGUI();
+        ServiceGUI serviceGUI = ServiceGUI.getServiceGUI();
+        serviceGUI.showGUI();
         DataChecker dataChecker = new DataChecker();
         dataChecker.launch();
     }

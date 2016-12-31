@@ -39,6 +39,9 @@ public class ClientManagementDetailViewController {
     protected Label birthdayLabel;
 
     @FXML
+    private Label contactInfoLabel;
+
+    @FXML
     protected Label creditLabel;
 
     @FXML
@@ -75,6 +78,7 @@ public class ClientManagementDetailViewController {
         clientIDLabel.setText(clientVO.clientID);
         clientNameLabel.setText(clientVO.clientName);
         accountLabel.setText(clientVO.account);
+        contactInfoLabel.setText(clientVO.contactInfo);
 
         if (clientVO.enterprise.equals("")) {
             typeLabel.setText("普通会员");

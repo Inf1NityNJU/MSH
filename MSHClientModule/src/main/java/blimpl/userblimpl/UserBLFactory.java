@@ -3,9 +3,9 @@ package blimpl.userblimpl;
 //import blservice.userblservice.LevelService;
 
 import blimpl.blfactory.BLFactoryImpl;
-import blimpl.userblimpl.mock.MockClient;
-import blimpl.userblimpl.mock.MockSalesman;
-import blimpl.userblimpl.mock.MockStaff;
+import blimpl.userblimpl.Mock.MockClient;
+import blimpl.userblimpl.Mock.MockSalesman;
+import blimpl.userblimpl.Mock.MockStaff;
 import blservice.blfactoryservice.BLFactoryService;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;

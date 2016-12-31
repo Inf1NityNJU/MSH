@@ -9,8 +9,10 @@ import vo.Promotion_WebVO;
  * Created by vivian on 16/11/2.
  */
 public class MockMinPromotion extends MinPromotion {
-    private double minWebProm;
-    private double minHotelProm;
+
+    public MockMinPromotion(Promotion promotion) {
+        super(promotion);
+    }
 
     /**
      * 获得网站最小促销策略

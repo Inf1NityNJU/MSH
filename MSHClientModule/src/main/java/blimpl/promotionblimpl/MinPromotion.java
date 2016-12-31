@@ -13,13 +13,11 @@ import java.util.ArrayList;
  * Created by vivian on 16/11/2.
  */
 public class MinPromotion {
-//    private double minWebPromDiscount = 0;
-//    private double minHotelPromDiscount = 0;
-//    private Promotion_WebVO promotion_webVO;
-//    private Promotion_HotelVO promotion_hotelVO;
-    private Promotion promotion = new Promotion();
-//    private ConcretePromotion concretePromotion;
+    private Promotion promotion;
 
+    public MinPromotion(Promotion promotion) {
+        this.promotion = promotion;
+    }
     /**
      * 获得网站最小促销策略
      *

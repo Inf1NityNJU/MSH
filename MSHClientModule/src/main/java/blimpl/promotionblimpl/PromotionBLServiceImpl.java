@@ -17,9 +17,9 @@ public class PromotionBLServiceImpl implements PromotionBLService, PromotionBLIn
     private Promotion promotion;
     private MinPromotion minPromotion;
 
-    public PromotionBLServiceImpl() {
-        promotion = new Promotion();
-        minPromotion = new MinPromotion();
+    protected PromotionBLServiceImpl(Promotion promotion, MinPromotion minPromotion) {
+        this.promotion = promotion;
+        this.minPromotion = minPromotion;
     }
 
 

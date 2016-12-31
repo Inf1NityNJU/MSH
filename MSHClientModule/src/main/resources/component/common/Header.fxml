@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.circlebutton.CircleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -32,16 +33,17 @@
          <right>
             <HBox spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="aboutButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="关于" textFill="#00cccc" onMouseClicked="#clickAboutButton">
+                  <Button fx:id="aboutButton" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#clickAboutButton" style="-fx-background-color: #00000000;" text="关于" textFill="#00cccc">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="logoutButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="注销" textFill="#00cccc" onMouseClicked="#clickLogoutButton">
+                  <Button fx:id="logoutButton" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#clickLogoutButton" style="-fx-background-color: #00000000;" text="注销" textFill="#00cccc">
                      <font>
                         <Font name="PingFang SC Regular" size="14.0" />
                      </font>
                   </Button>
+                  <CircleButton rotate="45.0" typeProperty="Add" onMouseClicked="#clickCloseButton"/>
                </children>
                <padding>
                   <Insets bottom="25.0" top="25.0" />

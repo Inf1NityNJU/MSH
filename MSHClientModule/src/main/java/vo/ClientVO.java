@@ -106,7 +106,7 @@ public class ClientVO extends UserVO {
         return judgeEqual(clientID, clientVO.clientID)
                 && judgeEqual(clientName, clientVO.clientName)
                 && judgeEqual(credit, clientVO.credit)
-                && judgeEqual(level, clientVO.level)
+//                && judgeEqual(level, clientVO.level)
                 && judgeEqual(birthday, clientVO.birthday)
                 && judgeEqual(type, clientVO.type)
                 && judgeEqual(contactInfo, clientVO.contactInfo)

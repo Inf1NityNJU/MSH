@@ -33,6 +33,7 @@ public class UserDataServiceImpl implements UserDataService {
         this.creditDataHelper = new HibernateHelper<CreditPO>(CreditPO.class);
         this.levelDataHelper = new HibernateHelper<LevelPO>(LevelPO.class);
         this.userDataState = UserDataState.CLIENT;
+        System.out.println(clientDataHelper);
     }
 
     protected void setStaff(DataHelper<StaffPO> staffDataHelper) {

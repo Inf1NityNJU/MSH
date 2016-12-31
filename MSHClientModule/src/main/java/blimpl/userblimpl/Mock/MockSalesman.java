@@ -1,4 +1,4 @@
-package blimpl.userblimpl.mock;
+package blimpl.userblimpl.Mock;
 
 import blimpl.userblimpl.Salesman;
 import util.LoginState;

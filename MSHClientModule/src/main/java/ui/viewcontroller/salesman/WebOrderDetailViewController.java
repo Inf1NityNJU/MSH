@@ -236,7 +236,7 @@ public class WebOrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
-        webOrderViewController.refreshHotelOrderList();
+        webOrderViewController.refreshWebOrderList();
         webOrderViewController.back();
     }
 

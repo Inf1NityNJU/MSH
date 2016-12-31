@@ -169,7 +169,7 @@ public class UserBLService_Stub implements UserBLService, UserBLInfo {
     }
 
     public ClientVO getClientByID(String ID) {
-        if (ID.equals("000000001")) {
+        if (ID.equals("000000007")) {
             return exampleClientVO;
         } else {
             return null;

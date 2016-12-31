@@ -19,6 +19,7 @@ import util.DateUtil;
 import vo.ClientVO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  * Created by Kray on 2016/11/27.
@@ -45,6 +46,9 @@ public class ClientManagementDetailEditViewController {
 
     @FXML
     private StateButton enterpriseButton;
+
+    @FXML
+    private CommonTextField contactInfoText;
 
     @FXML
     private CommonTextField enterpriseText;
@@ -75,6 +79,7 @@ public class ClientManagementDetailEditViewController {
         clientIDLabel.setText(clientVO.clientID);
         clientNameText.setText(clientVO.clientName);
         accountLabel.setText(clientVO.account);
+        contactInfoText.setText(clientVO.contactInfo);
         if (clientVO.enterprise.equals("")) {
             enterpriseButton.setIsActiveProperty(false);
             normalButton.setIsActiveProperty(true);
@@ -87,6 +92,8 @@ public class ClientManagementDetailEditViewController {
             enterpriseText.setVisible(true);
             enterpriseText.setText(clientVO.enterprise);
         }
+
+        birthdayPicker.setDate(LocalDate.parse(clientVO.birthday.toString()));
 
         levelLabel.setText("Lv." + clientVO.level);
         creditLabel.setText(clientVO.credit + "");
@@ -147,6 +154,7 @@ public class ClientManagementDetailEditViewController {
         DateUtil birthday = new DateUtil(birthdayPicker.getDate().getYear(),
                 birthdayPicker.getDate().getMonthValue(), birthdayPicker.getDate().getDayOfMonth());
         clientVO.birthday = birthday;
+        clientVO.contactInfo = contactInfoText.getText();
 
         if (normalButton.getIsActiveProperty()) {
             clientVO.enterprise = "";

@@ -2,11 +2,17 @@ package launcher;
 
 
 import network.ServerHelper;
+import util.TimeUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by SilverNarcissus on 2016/12/10.
@@ -16,12 +22,22 @@ public class ServiceGUI {
     private Box vBox;
     private Box box1;
     private Box box2;
-//    private Box box3;
+    //    private Box box3;
     private JLabel portLabel;
     private TextField portTextField;
     private JButton startButton;
     private JButton endButton;
     private TextField logTextField;
+    private TextArea logTextArea;
+
+    private static ServiceGUI serviceGUI;
+
+    public static ServiceGUI getServiceGUI() {
+        if (serviceGUI == null) {
+            serviceGUI = new ServiceGUI();
+        }
+        return serviceGUI;
+    }
 
     void showGUI() {
         JFrame frame = new JFrame("Server");
@@ -47,13 +63,21 @@ public class ServiceGUI {
         box2.add(startButton);
         box2.add(endButton);
         //
-        logTextField = new TextField();
-        vBox.add(logTextField);
-        logTextField.setEditable(false);
+//        logTextField = new TextField();
+//        vBox.add(logTextField);
+//        logTextField.setEditable(false);
+
+        logTextArea = new TextArea();
+        vBox.add(logTextArea);
+        logTextArea.setEditable(false);
+        logTextArea.setBounds(200, 200, 200, 200);
         //
         frame.setVisible(true);
-        frame.setBounds(200, 200, 400, 200);
+        frame.setBounds(0, 0, 600, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setLocationRelativeTo(null);
+
     }
 
     class StartListener implements ActionListener {
@@ -62,13 +86,11 @@ public class ServiceGUI {
         public void actionPerformed(ActionEvent e) {
             int port = Integer.parseInt(portTextField.getText());
 
-            if(ServerHelper.getServerHelper(port) != null) {
+            if (ServerHelper.getServerHelper(port) != null) {
                 portTextField.setEditable(false);
-                System.out.println("Connect Success");
-                logTextField.setText("Connect Success");
-            }else{
-                System.out.println("Connect Failed");
-                logTextField.setText("Connect Failed");
+                postText("Connect Success");
+            } else {
+                postText("Connect Failes");
             }
 
         }
@@ -81,8 +103,11 @@ public class ServiceGUI {
             portTextField.setEditable(true);
 
             ServerHelper.disableNetwork();
-            System.out.println("Connect Disable");
-            logTextField.setText("Connect Disable");
+            postText("Connect Disable");
         }
+    }
+
+    public void postText(String s) {
+        logTextArea.setText(logTextArea.getText() + LocalDateTime.now().toString() + ": " + s + "\n");
     }
 }

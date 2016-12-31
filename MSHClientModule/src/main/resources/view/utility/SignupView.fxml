@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import component.circlebutton.CircleButton?>
 <?import component.commonpasswordfield.CommonPasswordField?>
 <?import component.commontextfield.CommonTextField?>
 <?import component.mydatepicker.MyDatePicker?>
@@ -15,7 +16,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-image: url('../../images/example.jpeg');" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.utility.SignUpViewController">
     <children>
-      <ImageView fx:id="bgImageView" fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="bgImageView" fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true" />
         <AnchorPane layoutX="540.0" layoutY="180.0" prefHeight="440.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
             <children>
                 <Label text="注 册" textFill="#00cccc" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -92,5 +93,6 @@
                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
             </padding>
         </AnchorPane>
+      <CircleButton layoutX="1224.0" layoutY="40.0" onMouseClicked="#clickCloseButton" rotate="45.0" typeProperty="Add" />
     </children>
 </Pane>

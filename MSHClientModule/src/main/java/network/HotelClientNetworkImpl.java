@@ -15,46 +15,46 @@ import java.util.ArrayList;
 
 /**
  * Created by Kray on 2016/11/27.
- *
  */
 public class HotelClientNetworkImpl implements HotelClientNetworkService {
     /**
      * 再次尝试连接的时间间隔
      */
-    private static final int SLEEP_TIME = 2000;
+//    private static final int SLEEP_TIME = 2000;
     /**
      * 传递过来的数据持久化接口
      */
     private HotelServerNetworkService hotelServerNetworkService;
 
     public HotelClientNetworkImpl() {
-        while (hotelServerNetworkService==null) {
+//        while (hotelServerNetworkService == null) {
             try {
                 hotelServerNetworkService = (HotelServerNetworkService) Naming.lookup("HotelServerNetworkService");
             } catch (NotBoundException e) {
-                sleep();
-                System.err.println("Client.network.hotelServerNetworkService: Not bound, trying to connect");
+//                sleep();
+//                System.err.println("Client.network.hotelServerNetworkService: Not bound, trying to connect");
+                e.printStackTrace();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-                break;
+//                break;
             } catch (RemoteException e) {
-                sleep();
-                System.err.println("Client.network.hotelServerNetworkService: No service, trying to connect");
+//                sleep();
+//                System.err.println("Client.network.hotelServerNetworkService: No service, trying to connect");
+                e.printStackTrace();
             }
-        }
+//        }
     }
 
     /**
      * 线程睡眠一段时间
      */
-    private void sleep() {
-        try {
-            Thread.sleep(SLEEP_TIME);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
-    }
-
+//    private void sleep() {
+//        try {
+//            Thread.sleep(SLEEP_TIME);
+//        } catch (InterruptedException e1) {
+//            e1.printStackTrace();
+//        }
+//    }
 
     @Override
     public ArrayList<HotelPO> exactlySearchHotel(String field, Object value) {
