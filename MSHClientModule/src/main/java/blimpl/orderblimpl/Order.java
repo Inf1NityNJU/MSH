@@ -221,8 +221,6 @@ public class Order {
 
         long hour = cancelledTime.getIntervalTime(latestExecuteTime) / 1000 / 60 / 60;
 
-//        System.out.println("Time:" + hour);
-
         if (hour < 6) {
             CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO((int) (-orderPO.getTotalPrice() / 2), CreditAction.DEDUCT_CREDIT, orderID, cancelledTime.date);
             userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
