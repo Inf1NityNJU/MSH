@@ -1,5 +1,6 @@
-package blservice.promotionblservice;
+package blstubdriver.promotionstubdriver;
 
+import blservice.promotionblservice.PromotionBLService;
 import util.DateUtil;
 import util.PromotionType;
 import util.ResultMessage;

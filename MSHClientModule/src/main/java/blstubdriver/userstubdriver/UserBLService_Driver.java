@@ -1,8 +1,9 @@
-package blservice.userblservice;
+package blstubdriver.userstubdriver;
 
 import blimpl.userblimpl.Client;
 import blimpl.userblimpl.Salesman;
 import blimpl.userblimpl.UserBLFactory;
+import blservice.userblservice.UserBLService;
 import org.junit.Test;
 import po.StaffPO;
 import util.*;

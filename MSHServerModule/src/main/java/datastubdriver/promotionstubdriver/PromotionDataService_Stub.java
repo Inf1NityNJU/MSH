@@ -1,4 +1,4 @@
-package dataimpl.promotiondataimpl;
+package datastubdriver.promotionstubdriver;
 
 import dataservice.promotiondataservice.PromotionDataService;
 import po.PromotionPO;

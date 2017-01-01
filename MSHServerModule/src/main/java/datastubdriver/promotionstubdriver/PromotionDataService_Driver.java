@@ -1,5 +1,6 @@
-package dataimpl.promotiondataimpl;
+package datastubdriver.promotionstubdriver;
 
+import dataimpl.promotiondataimpl.PromotionDataServiceFactory;
 import dataservice.promotiondataservice.PromotionDataService;
 import org.junit.Test;
 import po.PromotionPO;
