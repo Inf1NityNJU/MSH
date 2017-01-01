@@ -62,30 +62,36 @@ public class StaffManagementDetailEditViewController {
     }
 
     public void clickSaveButton() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
-            AnchorPane pane = loader.load();
 
-            AlertViewController alertViewController = loader.getController();
+        if (staffNameText.getText().equals("")) {
+            showNotCompleteAlertView();
+        } else {
 
-            alertViewController.setInfoLabel("确定保存信息吗？");
-            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
-                @Override
-                public void handle(Event event) {
-                    sureSave();
-                }
-            });
-            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
-                @Override
-                public void handle(Event event) {
-                    cancelSave();
-                }
-            });
-            mainUIController.showPop(pane);
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                AnchorPane pane = loader.load();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                AlertViewController alertViewController = loader.getController();
+
+                alertViewController.setInfoLabel("确定保存信息吗？");
+                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        sureSave();
+                    }
+                });
+                alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        cancelSave();
+                    }
+                });
+                mainUIController.showPop(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -107,6 +113,29 @@ public class StaffManagementDetailEditViewController {
 
         this.clickBackButton();
         mainUIController.hidePop();
+    }
+
+    private void showNotCompleteAlertView(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("工作人员信息不完整!");
+            alertViewController.hideLeftButton();
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void cancelSave() {
