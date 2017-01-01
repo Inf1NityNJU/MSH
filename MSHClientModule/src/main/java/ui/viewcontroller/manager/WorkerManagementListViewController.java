@@ -40,6 +40,7 @@ public class WorkerManagementListViewController {
     private Node[] cells = new Node[ROW_IN_PANE];
 
     private Node pagePane;
+    private int state;
 
     @FXML
     private VBox contentVBox;
@@ -93,10 +94,26 @@ public class WorkerManagementListViewController {
         workerManagementSearchPaneController.showAllWorkers();
     }
 
+    public void refreshList() {
+        switch (state) {
+            case 0:
+                showAllWorkers();
+                break;
+            case 1:
+                showStaff();
+                break;
+            case 2:
+                showSalesman();
+                break;
+            default:
+        }
+    }
+
     /**
      * 展示酒店工作人员
      */
     public void showStaff() {
+        state = 1;
         tmpVOs.clear();
 
         for (Node cell : cells) {
@@ -125,6 +142,7 @@ public class WorkerManagementListViewController {
      * 展示网站营销人员
      */
     public void showSalesman() {
+        state = 2;
         tmpVOs.clear();
 
         for (Node cell : cells) {
@@ -154,6 +172,7 @@ public class WorkerManagementListViewController {
      * 展示所有工作人员
      */
     public void showAllWorkers() {
+        state = 0;
         tmpVOs.clear();
 
         for (Node cell : cells) {
