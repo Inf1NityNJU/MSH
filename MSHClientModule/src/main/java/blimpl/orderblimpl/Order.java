@@ -190,15 +190,16 @@ public class Order {
         ResultMessage rm = orderClientNetworkService.addOrder(orderPO);
 
         if (rm == ResultMessage.SUCCESS) {
+            rm = updateHotelRoom(order, false);
 
-            //前一天
-            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
-            DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
-
-            for (OrderRoomVO orderRoomVO : roomVOs) {
-                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
-                hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
-            }
+//            //前一天
+//            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
+//            DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
+//
+//            for (OrderRoomVO orderRoomVO : roomVOs) {
+//                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
+//                hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
+//            }
         }
         return rm;
     }
@@ -218,6 +219,11 @@ public class Order {
         orderPO.setState(OrderState.Cancelled);
 
         ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+
+        if (rm == ResultMessage.SUCCESS) {
+            OrderVO orderVO = searchOrderByID(orderID);
+            rm = updateHotelRoom(orderVO, true);
+        }
 
         long hour = cancelledTime.getIntervalTime(latestExecuteTime) / 1000 / 60 / 60;
 
@@ -243,6 +249,11 @@ public class Order {
         orderPO.setState(OrderState.Cancelled);
 
         ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+
+        if (rm == ResultMessage.SUCCESS) {
+            OrderVO orderVO = searchOrderByID(orderID);
+            rm = updateHotelRoom(orderVO, true);
+        }
 
         CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO(credit, CreditAction.REVOKE_CREDIT, orderID, cancelledTime.date);
         userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
@@ -490,5 +501,29 @@ public class Order {
         }
 
         order.orderID = prefix + quantityString;
+    }
+
+    /**
+     * 更新酒店房间
+     * @param orderVO
+     * @param isAdd
+     * @return
+     */
+    private ResultMessage updateHotelRoom(OrderVO orderVO, boolean isAdd) {
+
+        int add = isAdd ? -1 : 1 ;
+
+        //前一天
+        ResultMessage rm = ResultMessage.SUCCESS;
+
+        LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
+        DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
+
+        ArrayList<OrderRoomVO> roomVOs = orderVO.rooms;
+        for (OrderRoomVO orderRoomVO : roomVOs) {
+            RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, add * orderRoomVO.quantity);
+            rm = hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
+        }
+        return rm;
     }
 }
