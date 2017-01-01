@@ -1,5 +1,6 @@
-package dataservice.hoteldataservice;
+package dataimpl.hoteldataimpl;
 
+import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;
 import po.HotelRoomPO;
 import po.RoomStockPO;
@@ -11,36 +12,36 @@ import java.util.ArrayList;
 /**
  * Created by SilverNarcissus on 16/10/12.
  */
-public class HotelDataService_Stub implements HotelDataService{
+public class HotelDataService_Stub implements HotelDataService {
 
     @Override
     public ArrayList<HotelPO> exactlySearchHotel(String field, Object value) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     @Override
     public ArrayList<HotelPO> prefixSearchHotel(String field, String value) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     @Override
     public ArrayList<HotelPO> fullSearchHotel(String field, Object value) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     @Override
     public ArrayList<HotelPO> suffixSearchHotel(String field, String value) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     @Override
     public ArrayList<HotelPO> fuzzySearchHotel(String field, String value) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     @Override
     public ArrayList<HotelPO> rangeSearchHotel(String field, Object min, Object max) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     public HotelPO getHotel(String hotelID) {
@@ -80,51 +81,51 @@ public class HotelDataService_Stub implements HotelDataService{
 
     @Override
     public ResultMessage deleteRoom(String roomID) {
-        return null;
+        return ResultMessage.SUCCESS;
     }
 
     @Override
     public ResultMessage addRoomStock(RoomStockPO roomStockPO) {
-        return null;
+        return ResultMessage.SUCCESS;
     }
 
     @Override
     public ResultMessage updateRoomStock(RoomStockPO roomStockPO) {
-        return null;
+        return ResultMessage.SUCCESS;
     }
 
     @Override
     public ResultMessage deleteRoomStock(String roomStockID) {
-        return null;
+        return ResultMessage.SUCCESS;
     }
 
     @Override
     public ArrayList<RoomStockPO> getRoomStock(String roomStockID) {
-        return null;
+        return new ArrayList<RoomStockPO>();
     }
 
     @Override
     public HotelRoomPO getRoomByID(String hotelRoomID) {
-        return null;
+        return new HotelRoomPO();
     }
 
     @Override
     public ArrayList<HotelRoomPO> fullSearchHotelRoom(String field, Object value) {
-        return null;
+        return new ArrayList<HotelRoomPO>();
     }
 
     @Override
     public ArrayList<HotelPO> multiSearchHotel(ArrayList<CriteriaClause> criteriaClauses) {
-        return null;
+        return new ArrayList<HotelPO>();
     }
 
     @Override
     public ArrayList<HotelRoomPO> multiSearchHotelRoom(ArrayList<CriteriaClause> criteriaClauses) {
-        return null;
+        return new ArrayList<HotelRoomPO>();
     }
 
     @Override
     public ArrayList<RoomStockPO> multiSearchRoomStockPO(ArrayList<CriteriaClause> criteriaClauses) {
-        return null;
+        return new ArrayList<RoomStockPO>();
     }
 }
