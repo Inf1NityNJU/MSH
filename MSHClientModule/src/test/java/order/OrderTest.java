@@ -134,4 +134,12 @@ public class OrderTest {
         ArrayList<Assessment_HotelVO> assessment_hotelVOs = order.getAssessmentByHotelID("00000001");
         assertEquals(1, assessment_hotelVOs.size());
     }
+
+
+//    @Test
+//    public void testSearchClientHotelOrder() {
+//        order = OrderBLFactory.getOrder();
+//        ArrayList<OrderVO> orderVOs = order.searchClientHotelOrder("000000001", "00000001");
+//        assertEquals(1, orderVOs.size());
+//    }
 }

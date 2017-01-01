@@ -120,4 +120,13 @@ public interface OrderBLService {
      */
     public ArrayList<OrderVO> searchHotelOrder(OrderState os);
 
+
+    /**
+     * 搜索客户与酒店之间的订单
+     * @param clientID
+     * @param hotelID
+     * @return OrderVO列表
+     */
+    public ArrayList<OrderVO> searchClientHotelOrder(String clientID, String hotelID);
+
 }

@@ -102,7 +102,6 @@ public class ClientSearchHotelViewController {
      */
     public void showBookOrder(OrderVO order) {
 
-//        System.out.print("!!!");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/client/ClientBookOrderView.fxml"));
@@ -117,6 +116,31 @@ public class ClientSearchHotelViewController {
             stack.push(node);
 
             mainUIController.setCenter(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 客户订单详情
+     */
+    public void showClientOrderDetail(OrderVO order) {
+
+        try {
+            FXMLLoader orderLoader = new FXMLLoader();
+            orderLoader.setLocation(getClass().getResource("/view/client/ClientOrderDetailView.fxml"));
+            ScrollPane view = orderLoader.load();
+
+            ClientOrderDetailViewController clientOrderDetailViewController = orderLoader.getController();
+            clientOrderDetailViewController.setClientSearchHotelViewController(this);
+            clientOrderDetailViewController.setMainUIController(mainUIController);
+            clientOrderDetailViewController.showOrder(order);
+
+            Node node = mainUIController.getCenter();
+            stack.push(node);
+
+            mainUIController.setCenter(view);
 
         } catch (IOException e) {
             e.printStackTrace();

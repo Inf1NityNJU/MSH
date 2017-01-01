@@ -22,11 +22,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
+import ui.componentcontroller.order.ClientHotelOrderCellController;
 import ui.componentcontroller.order.HotelAssessmentCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.hotel.ClientHotelRoomCellController;
@@ -47,6 +49,15 @@ public class ClientHotelDetailViewController {
 
     @FXML
     private ImageView imageView;
+
+    @FXML
+    private Label orderLabel;
+
+    @FXML
+    private VBox orderPane;
+
+    @FXML
+    private VBox orderVBox;
 
     @FXML
     private VBox promotionVBox;
@@ -204,6 +215,7 @@ public class ClientHotelDetailViewController {
 
         addPromotions();
         addAssessment();
+        addOrders();
         newOrder();
 
     }
@@ -223,6 +235,35 @@ public class ClientHotelDetailViewController {
         bookButton.setVisible(false);
     }
 
+
+    private void addOrders() {
+        String clientID = userBLInfo.getCurrentClientID();
+        ArrayList<OrderVO> orderVOs = orderBLService.searchClientHotelOrder(clientID, hotel.ID);
+
+        if (orderVOs.size() < 0) {
+            orderPane.setVisible(false);
+            orderPane.setManaged(false);
+        } else {
+            orderLabel.setVisible(false);
+            orderLabel.setManaged(false);
+
+            for (OrderVO orderVO : orderVOs) {
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/component/order/ClientHotelOrderCell.fxml"));
+                    HBox pane = loader.load();
+
+                    ClientHotelOrderCellController clientHotelOrderCellController = loader.getController();
+                    clientHotelOrderCellController.setClientHotelDetailViewController(this);
+                    clientHotelOrderCellController.setOrder(orderVO);
+
+                    orderVBox.getChildren().add(pane);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     private void addPromotions() {
         ArrayList<PromotionVO> promotions = promotionBLService.searchHotelPromotions(hotel.ID);
@@ -367,6 +408,10 @@ public class ClientHotelDetailViewController {
         locationScorePane.setScore((int)locationScore);
     }
 
+
+    public void showClientOrderDetail(OrderVO orderVO) {
+        clientSearchHotelViewController.showClientOrderDetail(orderVO);
+    }
 
     @FXML
     private void clickBackButton() {

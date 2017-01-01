@@ -26,6 +26,30 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
+            <HBox prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+               <children>
+                  <Label fx:id="unexecutedLabel" text="未执行" textFill="#12b7f3">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="executedLabel" text="已执行" textFill="#00cccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cancelledLabel" text="已撤销" textFill="#bc52fd">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="abnormalLabel" text="异常" textFill="#fc537d">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="nameLabel" onMouseClicked="#showHotelDetail" text="酒店名称" textFill="#5b6e79">

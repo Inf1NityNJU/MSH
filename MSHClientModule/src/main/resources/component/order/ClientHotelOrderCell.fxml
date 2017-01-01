@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import component.statebutton.StateButton?>
+<?import component.tinybutton.TinyButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.componentcontroller.order.ClientHotelOrderCellController">
+   <children>
+      <Label fx:id="orderIDLabel" alignment="CENTER" prefWidth="220.0" text="20170101000012340000" textFill="GREY">
+         <font>
+            <Font name="PingFang SC Regular" size="14.0" />
+         </font>
+      </Label>
+      <StackPane prefWidth="140.0">
+         <children>
+            <StateButton fx:id="stateLabel" />
+         </children>
+      </StackPane>
+      <Label fx:id="dateLabel" alignment="CENTER" prefWidth="300.0" text="2017-01-01 - 2017-01-02" textFill="GREY">
+         <font>
+            <Font name="PingFang SC Regular" size="14.0" />
+         </font>
+      </Label>
+      <StackPane prefWidth="110.0">
+         <children>
+            <TinyButton fx:id="detailButton" text="详情" onMouseClicked="#clickDetailButton"/>
+         </children>
+      </StackPane>
+   </children>
+</HBox>

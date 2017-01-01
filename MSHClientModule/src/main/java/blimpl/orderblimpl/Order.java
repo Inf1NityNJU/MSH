@@ -191,15 +191,6 @@ public class Order {
 
         if (rm == ResultMessage.SUCCESS) {
             rm = updateHotelRoom(order, false);
-
-//            //前一天
-//            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
-//            DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
-//
-//            for (OrderRoomVO orderRoomVO : roomVOs) {
-//                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
-//                hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
-//            }
         }
         return rm;
     }
@@ -359,6 +350,21 @@ public class Order {
     public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os) {
         ArrayList<OrderPO> orderPOs = orderClientNetworkService.searchOrderByHotelID(hotelID, os);
         return orderPOsToOrderVOs(orderPOs);
+    }
+
+
+    /**
+     * 搜索客户与酒店之间的订单
+     * @param clientID
+     * @param hotelID
+     * @return OrderVO列表
+     */
+    public ArrayList<OrderVO> searchClientHotelOrder(String clientID, String hotelID) {
+        ArrayList<OrderVO> clientOrders = searchClientOrder(clientID, null);
+        ArrayList<OrderVO> hotelOrders = searchHotelOrder(hotelID, null);
+        clientOrders.retainAll(hotelOrders);
+
+        return clientOrders;
     }
 
     /**
