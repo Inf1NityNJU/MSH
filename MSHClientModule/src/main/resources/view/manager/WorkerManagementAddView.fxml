@@ -17,6 +17,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
+<?import component.commonpasswordfield.CommonPasswordField?>
 <ScrollPane hbarPolicy="NEVER" prefHeight="1000.0" prefWidth="1080.0" style="-fx-background-color: #ffffff00;" stylesheets="@../../css/main.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.viewcontroller.manager.WorkerManagementAddViewController">
     <content>
         <VBox prefHeight="100.0" prefWidth="1002.0" spacing="10.0" style="-fx-background-color: transparent;">
@@ -86,8 +88,8 @@
                         </Label>
                         <MyChoiceBox fx:id="hotelChoiceBox" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <CommonTextField fx:id="accountText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" />
-                        <CommonTextField fx:id="passwordText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <CommonTextField fx:id="checkPasswordText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CommonPasswordField fx:id="passwordText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CommonPasswordField fx:id="checkPasswordText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <CommonTextField fx:id="nameText" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                             <rowConstraints>

@@ -57,6 +57,38 @@ public class SalesmanManagementDetailEditViewController {
     }
 
     public void clickSaveButton() {
+        if (salesmanNameText.getText().equals("")) {
+            showNotCompleteAlertView();
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                AnchorPane pane = loader.load();
+
+                AlertViewController alertViewController = loader.getController();
+
+                alertViewController.setInfoLabel("确定保存信息吗？");
+                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        sureSave();
+                    }
+                });
+                alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                    @Override
+                    public void handle(Event event) {
+                        cancelSave();
+                    }
+                });
+                mainUIController.showPop(pane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void showNotCompleteAlertView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
@@ -64,14 +96,9 @@ public class SalesmanManagementDetailEditViewController {
 
             AlertViewController alertViewController = loader.getController();
 
-            alertViewController.setInfoLabel("确定保存信息吗？");
+            alertViewController.setInfoLabel("工作人员信息不完整!");
+            alertViewController.hideLeftButton();
             alertViewController.setOnClickSureButton(new EventHandler<Event>() {
-                @Override
-                public void handle(Event event) {
-                    sureSave();
-                }
-            });
-            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
                 @Override
                 public void handle(Event event) {
                     cancelSave();
