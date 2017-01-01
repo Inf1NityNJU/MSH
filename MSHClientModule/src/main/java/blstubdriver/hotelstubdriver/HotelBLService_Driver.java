@@ -1,6 +1,7 @@
-package blservice.hotelblservice;
+package blstubdriver.hotelstubdriver;
 
 import blimpl.hotelblimpl.HotelBLFactory;
+import blservice.hotelblservice.HotelBLService;
 import org.junit.Test;
 import util.*;
 import vo.*;

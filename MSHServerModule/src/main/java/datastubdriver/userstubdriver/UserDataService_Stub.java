@@ -1,4 +1,4 @@
-package dataimpl.userdataimpl;
+package datastubdriver.userstubdriver;
 
 import dataservice.userdataservice.UserDataService;
 import po.*;

@@ -1,4 +1,4 @@
-package dataimpl.hoteldataimpl;
+package datastubdriver.hotelstubdriver;
 
 import dataservice.hoteldataservice.HotelDataService;
 import po.HotelPO;

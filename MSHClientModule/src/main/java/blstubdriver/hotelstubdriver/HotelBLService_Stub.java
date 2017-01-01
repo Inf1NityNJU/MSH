@@ -1,5 +1,7 @@
-package blservice.hotelblservice;
+package blstubdriver.hotelstubdriver;
 
+import blservice.hotelblservice.HotelBLInfo;
+import blservice.hotelblservice.HotelBLService;
 import util.*;
 import vo.*;
 
