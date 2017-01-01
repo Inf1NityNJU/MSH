@@ -1,5 +1,6 @@
-package dataimpl.hoteldataimpl;
+package datastubdriver.hotelstubdriver;
 
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataservice.hoteldataservice.HotelDataService;
 import org.junit.Test;
 import po.HotelPO;

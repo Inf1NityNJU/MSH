@@ -1,5 +1,6 @@
-package blservice.orderblservice;
+package blstubdriver.orderstubdriver;
 
+import blservice.orderblservice.OrderBLService;
 import util.*;
 import vo.*;
 

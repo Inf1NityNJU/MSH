@@ -7,16 +7,16 @@ import blimpl.userblimpl.UserBLFactory;
 import blservice.blfactoryservice.BLFactoryService;
 import blservice.hotelblservice.HotelBLInfo;
 import blservice.hotelblservice.HotelBLService;
-import blservice.hotelblservice.HotelBLService_Stub;
+import blstubdriver.hotelstubdriver.HotelBLService_Stub;
 import blservice.orderblservice.OrderBLInfo;
 import blservice.orderblservice.OrderBLService;
-import blservice.orderblservice.OrderBLService_Stub;
+import blstubdriver.orderstubdriver.OrderBLService_Stub;
 import blservice.promotionblservice.PromotionBLInfo;
 import blservice.promotionblservice.PromotionBLService;
-import blservice.promotionblservice.PromotionBLService_Stub;
+import blstubdriver.promotionstubdriver.PromotionBLService_Stub;
 import blservice.userblservice.UserBLInfo;
 import blservice.userblservice.UserBLService;
-import blservice.userblservice.UserBLService_Stub;
+import blstubdriver.userstubdriver.UserBLService_Stub;
 
 /**
  * Created by Sorumi on 16/12/3.
