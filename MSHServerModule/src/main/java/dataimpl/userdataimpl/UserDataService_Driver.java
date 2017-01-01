@@ -1,5 +1,6 @@
-package dataservice.userdataservice;
+package dataimpl.userdataimpl;
 
+import dataservice.userdataservice.UserDataService;
 import po.*;
 import util.CreditAction;
 
@@ -12,10 +13,10 @@ public class UserDataService_Driver {
 
     public void drive(UserDataService userDataService) {
 
-        ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, new DateUtil(2015, 10, 10).toString(),
+        ClientPO exampleClientPO = new ClientPO("000000007", "testClient", 500, new DateUtil(2015, 10, 10).toString(),
                 "18795963603", "no_enterprise", "songkuixi", "123456");
-        StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "adminStaff", "password");
-        SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "adminSalesman", "password");
+        StaffPO exampleStaffPO = new StaffPO("300001", "testStaff", "25010001", "adminStaff", "password");
+        SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "testSalesman", "adminSalesman", "password");
         CreditPO exampleCreditPO = new CreditPO("20161012010112340000", "2016-01-01", 200, 700, CreditAction.ADD_CREDIT, "000000007");
 
         userDataService.login("songkuixi", "123456");
@@ -30,7 +31,7 @@ public class UserDataService_Driver {
         userDataService.searchClientByID("000000007");
         userDataService.updateClient("000000007", exampleClientPO);
         userDataService.deleteClient("000000007");
-        userDataService.searchClient("老宋");
+        userDataService.searchClient("testClient");
         userDataService.addCreditRecord("000000007", exampleCreditPO);
         userDataService.searchCreditByID("000000007");
 
@@ -38,13 +39,13 @@ public class UserDataService_Driver {
         userDataService.searchStaffByID("300001");
         userDataService.updateStaff("300001", exampleStaffPO);
         userDataService.deleteStaff("300001");
-        userDataService.searchStaff("隔壁老王");
+        userDataService.searchStaff("testStaff");
 
         userDataService.addSalesman(exampleSalesmanPO);
         userDataService.searchSalesmanByID("100001");
         userDataService.updateSalesman("100001", exampleSalesmanPO);
         userDataService.deleteSalesman("100001");
-        userDataService.searchSalesman("隔壁老李");
+        userDataService.searchSalesman("testSalesman");
     }
 
 }

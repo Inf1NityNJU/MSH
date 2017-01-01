@@ -2,7 +2,9 @@ package promotion;
 
 import blimpl.promotionblimpl.Promotion;
 import blimpl.promotionblimpl.PromotionBLFactory;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import util.*;
 import vo.*;
 
@@ -15,6 +17,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by vivian on 16/11/6.
  */
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PromotionTest {
     private Promotion promotion;
 
@@ -23,7 +27,7 @@ public class PromotionTest {
     }
 
     @Test
-    public void testAdd() {
+    public void a_testAdd() {
         ResultMessage rm = promotion.add(new Promotion_BirthdayVO("1", PromotionType.Hotel_Birthday, 0.80, "00000000"));
         assertEquals(ResultMessage.SUCCESS, rm);
         rm = promotion.add(new Promotion_ClientGradeVO("2", PromotionType.Web_ClientGrade, 0.70, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
@@ -41,15 +45,15 @@ public class PromotionTest {
     }
 
     @Test
-    public void testDelete() {
+    public void b_testDelete() {
         ResultMessage rm = promotion.delete("10003");
         assertEquals(ResultMessage.SUCCESS, rm);
-        rm = promotion.delete("10003");
-        assertEquals(ResultMessage.FAILED, rm);
+        rm = promotion.delete("20003");
+        assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test
-    public void testUpdate() {
+    public void c_testUpdate() {
         ResultMessage rm = promotion.update(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000001"));
         assertEquals(ResultMessage.SUCCESS, rm);
         rm = promotion.update(new Promotion_ClientGradeVO("20001", "2", PromotionType.Web_ClientGrade, 0.75, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
@@ -63,7 +67,7 @@ public class PromotionTest {
     }
 
     @Test
-    public void testSearchByID() {
+    public void d_testSearchByID() {
         PromotionVO pvo = promotion.searchByID("10001");
         assertEquals(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000000"), pvo);
         pvo = promotion.searchByID("20001");
@@ -71,7 +75,7 @@ public class PromotionTest {
     }
 
     @Test
-    public void testSearch() {
+    public void e_testSearch() {
         ArrayList<PromotionVO> pvos = promotion.search(PromotionType.Hotel_Birthday);
         ArrayList<PromotionVO> tempPvos1 = new ArrayList<PromotionVO>();
         tempPvos1.add(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000001"));
@@ -84,7 +88,7 @@ public class PromotionTest {
 
 
     @Test
-    public void testSearchHotelPromotions() {
+    public void f_testSearchHotelPromotions() {
         ArrayList<PromotionVO> pvos = promotion.searchHotelPromotions("00000001");
         ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
         tempPvos.add(new Promotion_BirthdayVO("10001", "1", PromotionType.Hotel_Birthday, 0.85, "00000001"));
@@ -94,16 +98,18 @@ public class PromotionTest {
     }
 
     @Test
-    public void testSearchWebPromotions() {
+    public void g_testSearchWebPromotions() {
         ArrayList<PromotionVO> pvos = promotion.searchWebPromotions();
         ArrayList<PromotionVO> tempPvos = new ArrayList<PromotionVO>();
         tempPvos.add(new Promotion_ClientGradeVO("20001", "2", PromotionType.Web_ClientGrade, 0.75, new DateUtil(2016,01,02), new DateUtil(2016,02,02), 2));
         tempPvos.add(new Promotion_WebSpecialDateVO("20002", "3", PromotionType.Web_SpecilaDate, 0.65, new DateUtil(2016,01,02), new DateUtil(2016,02,02)));
         assertEquals(tempPvos, pvos);
+//        promotion.delete("10001");
+//        promotion.delete("10002");
+//        promotion.delete("10004");
+//        promotion.delete("10005");
+//        promotion.delete("20001");
+//        promotion.delete("20002");
     }
 
-    @Test
-    public void testOrder(){
-        promotion.POToVO(null);
-    }
 }

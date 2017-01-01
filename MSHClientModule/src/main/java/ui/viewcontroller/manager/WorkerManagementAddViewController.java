@@ -4,6 +4,7 @@ import blimpl.blfactory.BLFactoryImpl;
 import blimpl.userblimpl.UserBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
+import component.commonpasswordfield.CommonPasswordField;
 import component.commontextfield.CommonTextField;
 import component.rectbutton.RectButton;
 import component.statebutton.StateButton;
@@ -36,10 +37,10 @@ public class WorkerManagementAddViewController {
     private CommonTextField accountText;
 
     @FXML
-    private CommonTextField passwordText;
+    private CommonPasswordField passwordText;
 
     @FXML
-    private CommonTextField checkPasswordText;
+    private CommonPasswordField checkPasswordText;
 
     @FXML
     private CommonTextField nameText;
@@ -76,7 +77,7 @@ public class WorkerManagementAddViewController {
         HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
         hotel_detailVOs = hotelBLService.searchHotel(new FilterFlagsVO(null, null, "", null, 0, 0, null, null, 0, -1, 0, 0, null));
 
-        for(Hotel_DetailVO hotel_detailVO : hotel_detailVOs){
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
             observableList.add(hotel_detailVO.name);
         }
 
@@ -93,6 +94,29 @@ public class WorkerManagementAddViewController {
         workerManagementViewController.getWorkerManagementListViewController().showAllWorkers();
     }
 
+    private void showNotCompleteAlertView(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("工作人员信息不完整!");
+            alertViewController.hideLeftButton();
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void clickSaveButton() {
         if (staffButton.getIsActiveProperty()) {
@@ -100,7 +124,9 @@ public class WorkerManagementAddViewController {
             if (accountText.getText().equals("") || nameText.getText().equals("")
                     || passwordText.getText().equals("") || checkPasswordText.getText().equals("")
                     || hotelChoiceBox.getValue() == null) {
-                System.out.println("Not complete");
+
+                showNotCompleteAlertView();
+
             } else {
                 try {
                     FXMLLoader loader = new FXMLLoader();
@@ -132,7 +158,9 @@ public class WorkerManagementAddViewController {
             //存网站营销人员
             if (accountText.getText().equals("") || nameText.getText().equals("")
                     || passwordText.getText().equals("") || checkPasswordText.getText().equals("")) {
-                System.out.println("Not complete");
+
+                showNotCompleteAlertView();
+
             } else {
                 try {
                     FXMLLoader loader = new FXMLLoader();
@@ -161,7 +189,7 @@ public class WorkerManagementAddViewController {
                 }
             }
         } else {
-            System.out.println("Not complete");
+            showNotCompleteAlertView();
         }
     }
 
@@ -192,7 +220,7 @@ public class WorkerManagementAddViewController {
                     accountText.getText(), passwordText.getText()));
 
             clickBackButton();
-        }else if(salesmanButton.getIsActiveProperty()) {
+        } else if (salesmanButton.getIsActiveProperty()) {
             UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
             userBLService.add(new SalesmanVO_Register(nameText.getText(), accountText.getText(), passwordText.getText()));
 

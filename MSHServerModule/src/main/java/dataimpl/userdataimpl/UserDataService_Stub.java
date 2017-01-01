@@ -1,5 +1,6 @@
-package dataservice.userdataservice;
+package dataimpl.userdataimpl;
 
+import dataservice.userdataservice.UserDataService;
 import po.*;
 import util.CreditAction;
 import util.DateUtil;
@@ -14,10 +15,10 @@ import java.util.Date;
  */
 public class UserDataService_Stub implements UserDataService {
 
-    ClientPO exampleClientPO = new ClientPO("000000007", "老宋", 500, new DateUtil(2015, 10, 10).toString(),
+    ClientPO exampleClientPO = new ClientPO("000000007", "testClient", 500, new DateUtil(2015, 10, 10).toString(),
             "18795963603", "no_enterprise", "songkuixi", "123456");
-    StaffPO exampleStaffPO = new StaffPO("300001", "隔壁老王", "25010001", "adminStaff", "password");
-    SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "隔壁老李", "adminSalesman", "password");
+    StaffPO exampleStaffPO = new StaffPO("300001", "testStaff", "25010001", "adminStaff", "password");
+    SalesmanPO exampleSalesmanPO = new SalesmanPO("100001", "testSalesman", "adminSalesman", "password");
     CreditPO exampleCreditPO = new CreditPO("20161012010112340000", "2016-01-01", 20, 500, CreditAction.ADD_CREDIT, "000000007");
 
     public LoginState login(String account, String password) {
@@ -83,7 +84,7 @@ public class UserDataService_Stub implements UserDataService {
 
     public ArrayList<ClientPO> searchClient(String keyword) {
         ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
-        if (keyword.contains("000000007") || keyword.contains("老宋")) {
+        if (keyword.contains("000000007") || keyword.contains("testClient")) {
             clientPOs.add(exampleClientPO);
             return clientPOs;
         } else {
@@ -126,7 +127,7 @@ public class UserDataService_Stub implements UserDataService {
 
     public ArrayList<StaffPO> searchStaff(String keyword) {
         ArrayList<StaffPO> staffPOs = new ArrayList<StaffPO>();
-        if (keyword.contains("300001") || keyword.contains("隔壁老王")) {
+        if (keyword.contains("300001") || keyword.contains("testStaff")) {
             staffPOs.add(exampleStaffPO);
             return staffPOs;
         } else {
@@ -169,7 +170,7 @@ public class UserDataService_Stub implements UserDataService {
 
     public ArrayList<SalesmanPO> searchSalesman(String keyword) {
         ArrayList<SalesmanPO> salesmanPOs = new ArrayList<SalesmanPO>();
-        if (keyword.contains("100001") || keyword.contains("隔壁老李")) {
+        if (keyword.contains("100001") || keyword.contains("testSalesman")) {
             salesmanPOs.add(exampleSalesmanPO);
             return salesmanPOs;
         } else {
@@ -177,9 +178,12 @@ public class UserDataService_Stub implements UserDataService {
         }
     }
 
-    //TODO
-    public StaffPO getStaffByHotelID(String hotelID){
-        return null;
+    public StaffPO getStaffByHotelID(String hotelID) {
+        if(hotelID.equals("25010001")){
+            return exampleStaffPO;
+        }else{
+            return null;
+        }
     }
 
     public ResultMessage addCreditRecord(String clientID, CreditPO creditPO) {
@@ -201,34 +205,50 @@ public class UserDataService_Stub implements UserDataService {
         }
     }
 
-    //TODO
     public ResultMessage addLevel(LevelPO levelPO) {
-        return ResultMessage.SUCCESS;
+        if (levelPO.getID().equals("1")) {
+            return ResultMessage.EXIST;
+        } else {
+            return ResultMessage.SUCCESS;
+        }
     }
 
-    //TODO
     public ResultMessage updateLevel(String ID, LevelPO levelPO) {
-        return ResultMessage.SUCCESS;
+        if (levelPO.getID().equals("1")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.NOT_EXIST;
+        }
     }
 
-    //TODO
     public ResultMessage deleteLevel(String ID) {
-        return ResultMessage.SUCCESS;
+        if (ID.equals("1")) {
+            return ResultMessage.SUCCESS;
+        } else {
+            return ResultMessage.NOT_EXIST;
+        }
     }
 
-    //TODO
     public LevelPO getLevel(String ID) {
-        return null;
+        if (ID.equals("1")) {
+            return new LevelPO(1, 500);
+        } else {
+            return null;
+        }
     }
 
-    //TODO
     public ArrayList<LevelPO> getAllLevel() {
-        return null;
+        ArrayList<LevelPO> levelPOs = new ArrayList<>();
+        levelPOs.add(new LevelPO(1, 500));
+        return levelPOs;
     }
 
-    //TODO
     public int getLevelByCredit(int credit) {
-        return 1;
+        if (credit <= 500 && credit >= 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }
