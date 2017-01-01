@@ -8,7 +8,7 @@ import java.util.Comparator;
  * Created by SilverNarcissus on 2016/11/19.
  * All Done on 16/11/26
  */
-public class PriceAscendingComparator implements Comparator<Hotel_DetailVO> {
+class PriceAscendingComparator implements Comparator<Hotel_DetailVO> {
 
     @Override
     public int compare(Hotel_DetailVO o1, Hotel_DetailVO o2) {

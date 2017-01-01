@@ -8,6 +8,7 @@ import blservice.hotelblservice.HotelBLInfo;
  */
 public class HotelBLFactory {
 
+
     private static Hotel hotel = new Hotel();
     private static HotelRoom hotelRoom = new HotelRoom();
     private static HotelBLServiceImpl hotelBLServiceImpl;

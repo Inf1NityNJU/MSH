@@ -281,7 +281,6 @@ public class Hotel {
             }
             hotelPO.setID(first + second + number);
         }
-        //
     }
 
     /**
