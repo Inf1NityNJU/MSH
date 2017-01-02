@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
+import util.Encryptor;
 import vo.*;
 
 import java.io.IOException;
@@ -216,13 +217,21 @@ public class WorkerManagementAddViewController {
             int index = hotelChoiceBox.getItems().indexOf(hotelChoiceBox.getValue());
             String hotelID = this.hotel_detailVOs.get(index).ID;
             UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-            userBLService.add(new StaffVO_Register(nameText.getText(), hotelID,
-                    accountText.getText(), passwordText.getText()));
+            userBLService.add(new StaffVO_Register(
+                    nameText.getText(),
+                    hotelID,
+                    accountText.getText(),
+                    Encryptor.encrypt(passwordText.getText())
+            ));
 
             clickBackButton();
         } else if (salesmanButton.getIsActiveProperty()) {
             UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-            userBLService.add(new SalesmanVO_Register(nameText.getText(), accountText.getText(), passwordText.getText()));
+            userBLService.add(new SalesmanVO_Register(
+                    nameText.getText(),
+                    accountText.getText(),
+                    Encryptor.encrypt(passwordText.getText())
+            ));
 
             clickBackButton();
         }

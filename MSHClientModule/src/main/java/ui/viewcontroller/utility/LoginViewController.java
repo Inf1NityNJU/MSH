@@ -62,12 +62,6 @@ public class LoginViewController {
     }
 
     @FXML
-    public void clickTouristButton() {
-        //TODO
-        utilityViewController.showClientView();
-    }
-
-    @FXML
     public void clickCloseButton(){
         utilityViewController.close();
     }
