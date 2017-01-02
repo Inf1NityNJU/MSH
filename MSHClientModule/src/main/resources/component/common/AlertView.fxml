@@ -16,7 +16,7 @@
       <DropShadow color="#40404080" radius="1.0" />
    </effect>
    <children>
-      <Label fx:id="infoLabel" alignment="CENTER" layoutX="97.0" layoutY="48.0" text="Label" textAlignment="CENTER" textFill="GREY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="infoLabel" alignment="CENTER" layoutX="97.0" layoutY="48.0" text="Label" textAlignment="CENTER" textFill="GREY" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="PingFang SC Regular" size="16.0" />
          </font>

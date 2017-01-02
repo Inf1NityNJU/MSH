@@ -53,7 +53,7 @@ public class ClientManagementCreditDetailViewController extends ClientManagement
     public void clickEditButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(main.Main.class.getResource("../component/common/AlertView.fxml"));
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
             AlertViewController alertViewController = loader.getController();

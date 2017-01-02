@@ -48,6 +48,15 @@ public class Staff extends User {
                 staffVO.hotelID,
                 staffVO.account,
                 staffVO.password);
+
+        // add
+        StaffVO oldStaffVO = getStaffByHotelID(staffVO.hotelID);
+        if (oldStaffVO != null) {
+            oldStaffVO.hotelID = null;
+        }
+        update(oldStaffVO);
+        // end
+
         return userClientNetwork.addStaff(staffPO);
     }
 

@@ -3,7 +3,7 @@ package ui.viewcontroller.staff;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import main.Main;
+
 import ui.viewcontroller.common.MainUIController;
 
 import java.io.IOException;

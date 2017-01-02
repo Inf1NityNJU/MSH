@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import main.Main;
+
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
 import util.DateUtil;
@@ -115,7 +115,7 @@ public class ClientInfoDetailEditViewController {
     public void clickSaveButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
             AlertViewController alertViewController = loader.getController();

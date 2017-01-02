@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import main.Main;
+
 import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.componentcontroller.order.ClientOrderRoomEditCellController;
@@ -132,7 +132,7 @@ public class ClientBookOrderViewController {
     private void clickBookButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
             AlertViewController alertViewController = loader.getController();
@@ -160,7 +160,7 @@ public class ClientBookOrderViewController {
     private void sureBook() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
             AlertViewController alertViewController = loader.getController();
