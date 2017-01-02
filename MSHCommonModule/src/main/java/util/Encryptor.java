@@ -35,7 +35,7 @@ public class Encryptor {
                     buf.append(Integer.toHexString(i));
                 }
                 result = buf.toString();
-                System.out.println("MD5(" + str + ",32) = " + result);
+//                System.out.println("MD5(" + str + ",32) = " + result);
                 return result;
             }catch (Exception e){
                 e.printStackTrace();
