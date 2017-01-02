@@ -217,6 +217,8 @@ public class ClientOrderDetailViewController {
         if (clientSearchHotelViewController != null) {
             assessmentButton.setVisible(false);
             assessmentButton.setManaged(false);
+            cancelButton.setVisible(false);
+            cancelButton.setManaged(false);
         }
     }
 
