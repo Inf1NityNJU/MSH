@@ -66,7 +66,7 @@ public class HotelTest {
 
     @Test
     public void e_searchHotelByName() throws Exception {
-        FilterFlagsVO flags = new FilterFlagsVO(null, null, "te", null, 0, 0, null, null, 0, -1, 0, 0, null);
+        FilterFlagsVO flags = new FilterFlagsVO(null, null, "test", null, 0, 0, null, null, 0, -1, 0, 0, null);
         ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
         for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
             System.out.println(hotel_detailVO);
@@ -136,7 +136,7 @@ public class HotelTest {
 
     @Test
     public void m_searchHotelInAll() throws Exception {
-        FilterFlagsVO flags = new FilterFlagsVO(City.NanJing, Place.XianLin, "te", RoomType.SingleRoom, 250, 400, new DateUtil(2016, 12, 9), new DateUtil(2016, 12, 20), 2, 4, 3, 5, null);
+        FilterFlagsVO flags = new FilterFlagsVO(City.NanJing, Place.XianLin, "test", RoomType.SingleRoom, 250, 400, new DateUtil(2016, 12, 9), new DateUtil(2016, 12, 20), 2, 4, 3, 5, null);
         ArrayList<Hotel_DetailVO> hotel_detailVOs = hotelBLService.searchHotel(flags);
         for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
             System.out.println(hotel_detailVO);
