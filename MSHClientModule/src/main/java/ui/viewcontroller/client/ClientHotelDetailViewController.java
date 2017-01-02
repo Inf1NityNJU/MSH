@@ -283,7 +283,7 @@ public class ClientHotelDetailViewController {
         if (orderVOs.size() == 0) {
             orderPane.setVisible(false);
             orderPane.setManaged(false);
-            
+
         } else {
             orderLabel.setVisible(false);
             orderLabel.setManaged(false);

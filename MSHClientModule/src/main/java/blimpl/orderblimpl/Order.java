@@ -522,12 +522,12 @@ public class Order {
         //前一天
         ResultMessage rm = ResultMessage.SUCCESS;
 
-        LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
+        LocalDate tmpDate = LocalDate.parse(orderVO.checkOutDate.toString());
         DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
 
         ArrayList<OrderRoomVO> roomVOs = orderVO.rooms;
         for (OrderRoomVO orderRoomVO : roomVOs) {
-            RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, add * orderRoomVO.quantity);
+            RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(orderVO.checkInDate, lastDate, orderVO.hotelID, orderRoomVO.type, add * orderRoomVO.quantity);
             rm = hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
         }
         return rm;
