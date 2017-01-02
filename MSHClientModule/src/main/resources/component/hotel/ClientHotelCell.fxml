@@ -2,6 +2,7 @@
 
 <?import component.ratestarpane.RateStarPane?>
 <?import component.starlabel.StarLabel?>
+<?import component.tinybutton.TinyButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -81,6 +82,7 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
+            <TinyButton isActiveProperty="false" layoutX="244.0" layoutY="24.0" text="预定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" onMouseClicked="#showHotelDetail"/>
          </children>
       </AnchorPane>
    </children>

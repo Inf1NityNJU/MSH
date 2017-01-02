@@ -48,6 +48,7 @@ public class WebOrderViewController {
         if (initNode != null) {
             stack.clear();
             mainUIController.setCenter(initNode);
+            webOrderListViewController.refreshShowOrders();
             return;
         }
 

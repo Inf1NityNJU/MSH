@@ -43,6 +43,7 @@ public class ClientOrderViewController {
         if (initNode != null) {
             stack.clear();
             mainUIController.setCenter(initNode);
+            clientOrderListViewController.refreshShowOrders();
             return;
         }
 
