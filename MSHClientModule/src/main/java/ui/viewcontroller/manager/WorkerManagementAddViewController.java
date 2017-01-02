@@ -95,7 +95,7 @@ public class WorkerManagementAddViewController {
         workerManagementViewController.getWorkerManagementListViewController().refreshList();
     }
 
-    private void showNotCompleteAlertView(){
+    private void showNotCompleteAlertView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
@@ -104,6 +104,29 @@ public class WorkerManagementAddViewController {
             AlertViewController alertViewController = loader.getController();
 
             alertViewController.setInfoLabel("工作人员信息不完整!");
+            alertViewController.hideLeftButton();
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPasswordAlertView() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("两次输入密码不一致!");
             alertViewController.hideLeftButton();
             alertViewController.setOnClickSureButton(new EventHandler<Event>() {
                 @Override
@@ -127,6 +150,10 @@ public class WorkerManagementAddViewController {
                     || hotelChoiceBox.getValue() == null) {
 
                 showNotCompleteAlertView();
+
+            } else if (!passwordText.getText().equals(checkPasswordText.getText())) {
+
+                showPasswordAlertView();
 
             } else {
                 try {
@@ -161,6 +188,10 @@ public class WorkerManagementAddViewController {
                     || passwordText.getText().equals("") || checkPasswordText.getText().equals("")) {
 
                 showNotCompleteAlertView();
+
+            }else if (!passwordText.getText().equals(checkPasswordText.getText())) {
+
+                showPasswordAlertView();
 
             } else {
                 try {
