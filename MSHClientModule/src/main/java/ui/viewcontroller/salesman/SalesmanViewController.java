@@ -14,12 +14,11 @@ public class SalesmanViewController {
 
     private MainUIController mainUIController;
 
+    SalesmanNavbarController salesmanNavbarController;
+
     private WebOrderViewController webOrderViewController;
-
     private WebPromotionViewController webPromotionViewController;
-
     private LevelManagementViewController levelManagementViewController;
-
     private ClientManagementViewController clientManagementViewController;
 
     public SalesmanViewController(MainUIController mainUIController) {
@@ -30,7 +29,7 @@ public class SalesmanViewController {
             navLoader.setLocation(getClass().getResource("/view/salesman/SalesmanNavbar.fxml"));
             Pane navbar = navLoader.load();
 
-            SalesmanNavbarController salesmanNavbarController = navLoader.getController();
+            salesmanNavbarController = navLoader.getController();
             salesmanNavbarController.setSalesmanViewController(this);
 
             mainUIController.setLeft(navbar);
@@ -42,6 +41,8 @@ public class SalesmanViewController {
         webPromotionViewController = new WebPromotionViewController(mainUIController);
         levelManagementViewController = new LevelManagementViewController(mainUIController);
         clientManagementViewController = new ClientManagementViewController(mainUIController);
+
+        salesmanNavbarController.clickOrderManageButton();
     }
 
     public void showWebOrderList() {

@@ -66,7 +66,7 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <RateStarPane fx:id="rateScorePane" layoutX="20.0" layoutY="94.0" score="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+            <RateStarPane fx:id="rateScorePane" layoutX="20.0" layoutY="94.0" score="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" abled="false"/>
             <Label fx:id="scoreLabel" layoutX="199.0" layoutY="102.0" text="4.8分" textFill="GREY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="140.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
