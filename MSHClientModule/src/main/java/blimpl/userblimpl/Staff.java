@@ -53,8 +53,8 @@ public class Staff extends User {
         StaffVO oldStaffVO = getStaffByHotelID(staffVO.hotelID);
         if (oldStaffVO != null) {
             oldStaffVO.hotelID = null;
+            update(oldStaffVO);
         }
-        update(oldStaffVO);
         // end
 
         return userClientNetwork.addStaff(staffPO);
@@ -94,6 +94,13 @@ public class Staff extends User {
                 staffVO.hotelID,
                 tmpPO.getAccount(),
                 tmpPO.getPassword());
+
+        StaffVO oldStaffVO = getStaffByHotelID(staffVO.hotelID);
+        if (oldStaffVO != null) {
+            oldStaffVO.hotelID = null;
+            update(oldStaffVO);
+        }
+
         return userClientNetwork.updateStaff(staffVO.staffID, staffPO);
     }
 

@@ -54,7 +54,13 @@ public class StaffManagementDetailViewController {
         staffNameLabel.setText(staffVO.staffName);
 
         HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
-        hotelNameLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
+
+        if (staffVO.hotelID != null) {
+            hotelNameLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
+        } else {
+            hotelNameLabel.setText("无");
+        }
+
     }
 
     public void clickBackButton() {

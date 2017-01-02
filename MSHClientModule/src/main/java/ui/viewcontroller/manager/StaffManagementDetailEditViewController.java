@@ -5,7 +5,10 @@ import blimpl.userblimpl.UserBLFactory;
 import blservice.hotelblservice.HotelBLService;
 import blservice.userblservice.UserBLService;
 import component.commontextfield.CommonTextField;
+import component.mychoicebox.MyChoiceBox;
 import component.rectbutton.RectButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,9 +18,12 @@ import javafx.scene.layout.AnchorPane;
 
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
+import vo.FilterFlagsVO;
+import vo.Hotel_DetailVO;
 import vo.StaffVO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Kray on 2016/11/26.
@@ -42,10 +48,16 @@ public class StaffManagementDetailEditViewController {
     private Label hotelNameLabel;
 
     @FXML
+    private MyChoiceBox hotelChoiceBox;
+
+    @FXML
     private RectButton cancelButton;
 
     @FXML
     private RectButton saveButton;
+
+    private ArrayList<Hotel_DetailVO> hotel_detailVOs = new ArrayList<>();
+    private ObservableList observableList;
 
     public void setWorkerManagementViewController(WorkerManagementViewController workerManagementViewController) {
         this.workerManagementViewController = workerManagementViewController;
@@ -102,17 +114,41 @@ public class StaffManagementDetailEditViewController {
         staffIDLabel.setText(staffVO.staffID);
         staffNameText.setText(staffVO.staffName);
 
+
+        observableList = FXCollections.observableArrayList();
+
         HotelBLService hotelBLService = new BLFactoryImpl().getHotelBLService();
-        hotelNameLabel.setText(hotelBLService.getHotel(staffVO.hotelID).name);
+        hotel_detailVOs = hotelBLService.searchHotel(new FilterFlagsVO(null, null, "", null, 0, 0, null, null, 0, -1, 0, 0, null));
+
+        for (Hotel_DetailVO hotel_detailVO : hotel_detailVOs) {
+            observableList.add(hotel_detailVO.name);
+        }
+
+        hotelChoiceBox.setItems(observableList);
+
+        if (staffVO.hotelID != null) {
+            hotelBLService = new BLFactoryImpl().getHotelBLService();
+            Hotel_DetailVO hotel_detailVO = hotelBLService.getHotel(staffVO.hotelID);
+            String name = hotel_detailVO.name;
+            hotelChoiceBox.getSelectionModel().select(name);
+        }
+
     }
 
     private void sureSave() {
         UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
+
+        int index = hotelChoiceBox.getItems().indexOf(hotelChoiceBox.getValue());
+        if (index >= 0) {
+            String hotelID = this.hotel_detailVOs.get(index).ID;
+            staffVO.hotelID = hotelID;
+        }
+
         staffVO.staffName = staffNameText.getText();
-        userBLService.update(staffVO);
 
         this.clickBackButton();
         mainUIController.hidePop();
+        userBLService.update(staffVO);
     }
 
     private void showNotCompleteAlertView(){

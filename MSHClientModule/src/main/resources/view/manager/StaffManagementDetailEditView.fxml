@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import component.commontextfield.CommonTextField?>
+<?import component.mychoicebox.MyChoiceBox?>
 <?import component.rectbutton.RectButton?>
 <?import component.titlelabel.TitleLabel?>
 <?import javafx.geometry.Insets?>
@@ -81,6 +82,7 @@
                                     </font>
                                 </Label>
                                 <CommonTextField fx:id="staffNameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <MyChoiceBox fx:id="hotelChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                             </children>
                             <rowConstraints>
                         <RowConstraints />
