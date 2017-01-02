@@ -161,4 +161,9 @@ public class OrderBLService_Stub implements OrderBLService {
     public ArrayList<OrderVO> searchHotelOrder(OrderState os) {
         return searchOrder(os);
     }
+
+    @Override
+    public ArrayList<OrderVO> searchClientHotelOrder(String clientID, String hotelID) {
+        return null;
+    }
 }

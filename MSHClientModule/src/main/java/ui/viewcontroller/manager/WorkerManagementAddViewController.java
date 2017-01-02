@@ -91,7 +91,7 @@ public class WorkerManagementAddViewController {
     @FXML
     public void clickBackButton() {
         workerManagementViewController.back();
-        workerManagementViewController.getWorkerManagementListViewController().showAllWorkers();
+        workerManagementViewController.getWorkerManagementListViewController().refreshList();
     }
 
     private void showNotCompleteAlertView(){

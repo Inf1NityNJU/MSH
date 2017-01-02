@@ -58,6 +58,7 @@ public class WorkerManagementCellController {
 
     public void setStaffVO(StaffVO staffVO) {
         this.staffVO = staffVO;
+        this.salesmanVO = null;
 
         workerNameLabel.setText(staffVO.staffName);
         workerIDLabel.setText(staffVO.staffID);
@@ -85,6 +86,7 @@ public class WorkerManagementCellController {
 
     public void setSalesmanVO(SalesmanVO salesmanVO) {
         this.salesmanVO = salesmanVO;
+        this.staffVO = null;
 
         workerNameLabel.setText(salesmanVO.salesmanName);
         workerIDLabel.setText(salesmanVO.salesmanID);

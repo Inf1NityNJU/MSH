@@ -1,7 +1,9 @@
 package launcher;
 
+import dataimpl.hoteldataimpl.HotelDataServiceFactory;
 import dataimpl.orderdataimpl.OrderDataServiceFactory;
 import dataimpl.userdataimpl.UserDataServiceFactory;
+import dataservice.hoteldataservice.HotelDataService;
 import dataservice.orderdataservice.OrderDataService;
 import dataservice.userdataservice.UserDataService;
 import po.CreditPO;
@@ -59,6 +61,7 @@ public class DataChecker {
         //修改信用值所用接口
         UserDataService userDataService= UserDataServiceFactory.getClientDataService();
         OrderDataService orderDataService = OrderDataServiceFactory.getOrderDataService();
+        HotelDataService hotelDataService = HotelDataServiceFactory.getHotelDataService();
         //
         //得到现在时间
         Calendar calendar = Calendar.getInstance();

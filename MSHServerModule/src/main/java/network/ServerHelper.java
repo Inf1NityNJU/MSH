@@ -92,15 +92,15 @@ public class ServerHelper {
 
     public static void disableNetwork() {
 
-        if(currentConnectionNum > 0){
+//        if(currentConnectionNum > 0){
 //            ServiceGUI.getServiceGUI().postText("You have " + currentConnectionNum + " client(s) online, still want to close connection?");
-        }else {
+//        }else {
             try {
                 UnicastRemoteObject.unexportObject(registry, true);
             } catch (NoSuchObjectException e) {
                 e.printStackTrace();
             }
-        }
+//        }
     }
 
 }

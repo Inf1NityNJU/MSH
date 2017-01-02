@@ -32,7 +32,6 @@ public class HotelOrderViewController {
         if (!stack.empty()) {
             Node node = stack.pop();
             mainUIController.setCenter(node);
-
         }
     }
 
@@ -43,6 +42,7 @@ public class HotelOrderViewController {
         if (initNode != null) {
             stack.empty();
             mainUIController.setCenter(initNode);
+            hotelOrderListViewController.refreshShowOrders();
             return;
         }
 

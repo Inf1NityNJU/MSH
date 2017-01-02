@@ -59,7 +59,7 @@ public class StaffManagementDetailViewController {
 
     public void clickBackButton() {
         workerManagementViewController.back();
-        workerManagementViewController.getWorkerManagementListViewController().showAllWorkers();
+        workerManagementViewController.getWorkerManagementListViewController().refreshList();
     }
 
     public void clickPasswordButton() {

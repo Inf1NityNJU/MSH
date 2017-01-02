@@ -31,13 +31,16 @@ public class OrderTest {
     }
 
     private void addOrder() {
-        OrderVO orderVO = new OrderVO("00000001", new DateUtil(2016,12,14), new DateUtil(2016,12,16));
-        OrderRoomVO orderRoomVO = new OrderRoomVO(RoomType.DoubleRoom, 2, 200);
+        OrderVO orderVO = new OrderVO("00000001", new DateUtil(2016,10,1), new DateUtil(2016,10,2));
+        OrderRoomVO orderRoomVO1 = new OrderRoomVO(RoomType.DoubleRoom, 2, 300);
+        OrderRoomVO orderRoomVO2 = new OrderRoomVO(RoomType.SingleRoom, 1, 230);
         orderVO.rooms = new ArrayList<>();
-        orderVO.rooms.add(orderRoomVO);
+        orderVO.rooms.add(orderRoomVO1);
+        orderVO.rooms.add(orderRoomVO2);
         orderVO.clientID = "000000007";
         order.startOrder(orderVO);
     }
+
     @Test
     public void a_testStartOrder() {
         OrderVO orderVO = new OrderVO("00000001", new DateUtil(2016,12,14), new DateUtil(2016,12,16));
@@ -53,14 +56,17 @@ public class OrderTest {
 
         ResultMessage rm = order.modifyRoomQuantity(RoomType.DoubleRoom, 1);
         assertEquals(ResultMessage.SUCCESS, rm);
+
         rm = order.modifyRoomQuantity(RoomType.SingleRoom, 1);
-        assertEquals(ResultMessage.FAILED, rm);
+        assertEquals(ResultMessage.SUCCESS, rm);
+
+        rm = order.modifyRoomQuantity(RoomType.SingleRoom, -1);
+        assertEquals(ResultMessage.SUCCESS, rm);
     }
 
     @Test
     public void c_testGetBill() {
         this.addOrder();
-
 
         BillVO bill = order.getBill();
         assertNotNull(bill);
@@ -71,7 +77,7 @@ public class OrderTest {
         this.addOrder();
         order.getBill();
 
-        ResultMessage rm = order.generate(new TimeUtil(2016, 10, 29, 18, 0, 0), 3, true);
+        ResultMessage rm = order.generate(new TimeUtil(2016, 10, 1, 18, 0, 0), 2, true);
         assertEquals(ResultMessage.SUCCESS, rm);
     }
 
@@ -134,4 +140,6 @@ public class OrderTest {
         ArrayList<Assessment_HotelVO> assessment_hotelVOs = order.getAssessmentByHotelID("00000001");
         assertEquals(1, assessment_hotelVOs.size());
     }
+
+
 }

@@ -13,6 +13,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import main.Main;
 import ui.componentcontroller.common.AlertViewController;
@@ -26,6 +27,7 @@ import vo.Promotion_SpecialPlaceVO;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 /**
  * Created by vivian on 16/12/6.
@@ -61,9 +63,11 @@ public class WebPromotion_SpecialPlaceAddViewController{
     @FXML
     private MyDatePicker endTime;
 
-    public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
-        this.webPromotionViewController = webPromotionViewController;
+    @FXML
+    private Label alertLabel;
 
+    @FXML
+    public void initialize() {
         typeButton.setText(PromotionType.Web_SpecilPlace.getType());
         typeButton.setColorProperty(PromotionType.Web_SpecilPlace.getColor());
 
@@ -82,6 +86,13 @@ public class WebPromotion_SpecialPlaceAddViewController{
 
         cityChoiceBox.getSelectionModel().selectFirst();
 
+        startTime.setDate(LocalDate.now());
+        endTime.setDate(LocalDate.now().plusDays(30));
+        alertLabel.setText("");
+    }
+
+    public void setWebPromotionViewController(WebPromotionViewController webPromotionViewController) {
+        this.webPromotionViewController = webPromotionViewController;
     }
 
     public void setMainUIController(MainUIController mainUIController) {
@@ -93,6 +104,26 @@ public class WebPromotion_SpecialPlaceAddViewController{
     }
 
     public void clickSaveButton() {
+
+        String name = nameTextField.getText();
+        if (name.equals("")) {
+            alertLabel.setText("请填写折扣名称");
+            return;
+        }
+
+        Pattern pricePattern = Pattern.compile("^0.[0-9]([0-9]?)$");
+        boolean isDiscount = pricePattern.matcher(discountTextField.getText()).matches();
+        if (!isDiscount) {
+            alertLabel.setText("折扣数额格式应为 0.XX ！");
+            return;
+        }
+
+        double discount = Double.valueOf(discountTextField.getText());
+        if (discount < 0 || discount > 1) {
+            alertLabel.setText("请填写正确的折扣数额 0 - 1");
+            return;
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
