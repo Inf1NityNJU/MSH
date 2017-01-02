@@ -14,7 +14,7 @@
     <children>
         <CircleImage radius="50" layoutX="50.0" layoutY="-50.0" pickOnBounds="true">
             <image>
-                <Image url="@../../images/example.jpeg" />
+                <Image url="@../../images/Mika.png" />
             </image>
         </CircleImage>
         <VBox layoutY="360.0" prefWidth="200.0">

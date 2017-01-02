@@ -36,7 +36,7 @@
                <children>
                   <ImageView fx:id="imageView" fitHeight="400.0" fitWidth="1000.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../../images/example.jpeg" />
+                        <Image url="@../../images/Mika.png" />
                      </image>
                   </ImageView>
                   <VBox spacing="40.0">

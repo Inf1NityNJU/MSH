@@ -21,7 +21,7 @@
             <Insets />
          </HBox.margin>
          <image>
-            <Image url="@../../images/example.jpeg" />
+            <Image url="@../../images/Mika.png" />
          </image>
       </CircleImage>
         <AnchorPane prefHeight="200.0" prefWidth="800.0">

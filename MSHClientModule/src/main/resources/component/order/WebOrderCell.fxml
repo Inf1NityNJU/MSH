@@ -19,7 +19,7 @@
     <children>
         <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="false">
             <image>
-                <Image url="@../../images/example.jpeg" />
+                <Image url="@../../images/Mika.png" />
             </image>
         </ImageView>
         <AnchorPane prefHeight="200.0" prefWidth="700.0">

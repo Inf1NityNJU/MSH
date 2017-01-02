@@ -16,7 +16,7 @@
          <children>
             <CircleImage radius="40.0">
                <image>
-                  <Image url="@../../images/example.jpeg" />
+                  <Image url="@../../images/Mika.png" />
                </image>
             </CircleImage>
             <Label fx:id="clientNameLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="80.0" text="昵称" textAlignment="CENTER" textFill="GREY" wrapText="true">

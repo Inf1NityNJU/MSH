@@ -10,7 +10,7 @@
     <children>
         <CircleImage fx:id="imageView" radius="40.0">
             <image>
-                <Image url="@../../images/example.jpeg" />
+                <Image url="@../../images/Mika.png" />
             </image>
         </CircleImage>
         <Label fx:id="typeLabel" alignment="CENTER" prefWidth="190.0" text="大床房" textFill="GREY">
