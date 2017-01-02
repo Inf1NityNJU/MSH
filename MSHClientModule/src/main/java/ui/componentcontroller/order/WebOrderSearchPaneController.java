@@ -56,12 +56,18 @@ public class WebOrderSearchPaneController {
         datePicker.setDate(LocalDate.now());
         datePicker.setMaxDate(LocalDate.now());
 
+        dateCheckBox.setVisible(false);
+        dateCheckBox.setIsActiveProperty(false);
+        datePicker.setVisible(false);
+
         dateCheckBox.isActiveProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (newValue) {
                     DateUtil date = new DateUtil(datePicker.getDate());
                     webOrderListViewController.showOrders(orderState, date);
+                } else {
+                    webOrderListViewController.showOrders(orderState, null);
                 }
             }
         });

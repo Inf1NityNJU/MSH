@@ -122,6 +122,11 @@
                                 <Insets/>
                             </VBox.margin>
                         </GridPane>
+                        <Label fx:id="alertLabel" text="alert" textFill="#ff2c14">
+                            <font>
+                                <Font name="PingFang SC Regular" size="14.0"/>
+                            </font>
+                        </Label>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
                                 <RectButton fx:id="cancelButton" isActiveProperty="false" minHeight="40.0"

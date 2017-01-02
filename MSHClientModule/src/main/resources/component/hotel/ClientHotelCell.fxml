@@ -2,6 +2,7 @@
 
 <?import component.ratestarpane.RateStarPane?>
 <?import component.starlabel.StarLabel?>
+<?import component.tinybutton.TinyButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -26,6 +27,30 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
+            <HBox prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+               <children>
+                  <Label fx:id="unexecutedLabel" text="未执行" textFill="#12b7f3">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="executedLabel" text="已执行" textFill="#00cccc">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cancelledLabel" text="已撤销" textFill="#bc52fd">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="abnormalLabel" text="异常" textFill="#fc537d">
+                     <font>
+                        <Font name="PingFang SC Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="nameLabel" onMouseClicked="#showHotelDetail" text="酒店名称" textFill="#5b6e79">
@@ -41,7 +66,7 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
-            <RateStarPane fx:id="rateScorePane" layoutX="20.0" layoutY="94.0" score="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+            <RateStarPane fx:id="rateScorePane" layoutX="20.0" layoutY="94.0" score="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" abled="false"/>
             <Label fx:id="scoreLabel" layoutX="199.0" layoutY="102.0" text="4.8分" textFill="GREY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="140.0">
                <font>
                   <Font name="PingFang SC Regular" size="14.0" />
@@ -57,6 +82,7 @@
                   <Font name="PingFang SC Regular" size="14.0" />
                </font>
             </Label>
+            <TinyButton isActiveProperty="false" layoutX="244.0" layoutY="24.0" text="预定" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" onMouseClicked="#showHotelDetail"/>
          </children>
       </AnchorPane>
    </children>

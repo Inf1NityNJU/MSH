@@ -68,7 +68,7 @@
                                 </Label>
                                 <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <children>
-                                        <CommonTextField fx:id="discountTextField" prefWidth="100.0"/>
+                                        <CommonTextField fx:id="discountTextField" prefWidth="100.0" />
                                     </children>
                                 </HBox>
                                 <Label text="优惠时间" textFill="#cccccc" GridPane.rowIndex="4" GridPane.valignment="CENTER">
@@ -122,6 +122,11 @@
                                 <Insets />
                             </VBox.margin>
                         </GridPane>
+                        <Label fx:id="alertLabel" text="alert" textFill="#ff2c14">
+                            <font>
+                                <Font name="PingFang SC Regular" size="14.0"/>
+                            </font>
+                        </Label>
                         <ButtonBar buttonMinWidth="100.0" prefHeight="40">
                             <buttons>
                                 <RectButton fx:id="cancelButton" isActiveProperty="false" minHeight="40.0" onMouseClicked="#clickCancelButton" text="取 消" />

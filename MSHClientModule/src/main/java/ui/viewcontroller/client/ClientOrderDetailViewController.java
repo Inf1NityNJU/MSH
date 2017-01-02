@@ -114,6 +114,7 @@ public class ClientOrderDetailViewController {
     private RectButton assessmentButton;
 
     private ClientOrderViewController clientOrderViewController;
+    private ClientSearchHotelViewController clientSearchHotelViewController;
 
     private OrderBLService orderBLService = new BLFactoryImpl().getOrderBLService();
 
@@ -123,6 +124,10 @@ public class ClientOrderDetailViewController {
 
     public void setClientViewController(ClientOrderViewController clientOrderViewController) {
         this.clientOrderViewController = clientOrderViewController;
+    }
+
+    public void setClientSearchHotelViewController(ClientSearchHotelViewController clientSearchHotelViewController) {
+        this.clientSearchHotelViewController = clientSearchHotelViewController;
     }
 
     public void setMainUIController(MainUIController mainUIController) {
@@ -207,6 +212,14 @@ public class ClientOrderDetailViewController {
             setAssessmentDisplay(false);
 
         }
+
+
+        if (clientSearchHotelViewController != null) {
+            assessmentButton.setVisible(false);
+            assessmentButton.setManaged(false);
+            cancelButton.setVisible(false);
+            cancelButton.setManaged(false);
+        }
     }
 
     private void addRooms(ArrayList<OrderRoomVO> rooms) {
@@ -245,7 +258,11 @@ public class ClientOrderDetailViewController {
 
     @FXML
     private void clickBackButton() {
-        clientOrderViewController.back();
+        if (clientSearchHotelViewController == null) {
+            clientOrderViewController.back();
+        } else {
+            clientSearchHotelViewController.back();
+        }
     }
 
     @FXML

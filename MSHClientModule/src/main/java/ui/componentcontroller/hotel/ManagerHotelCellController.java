@@ -61,7 +61,7 @@ public class ManagerHotelCellController {
         UserBLInfo userBLInfo = new BLFactoryImpl().getUserBLInfo_Staff();
         StaffVO staff = userBLInfo.getStaffByHotelID(hotel.ID);
         if (staff != null) {
-            staffLabel.setText(staff.staffName + " " + staff.staffID);
+            staffLabel.setText(staff.staffName + " (" + staff.staffID + ")");
         } else {
             staffLabel.setText("无");
         }

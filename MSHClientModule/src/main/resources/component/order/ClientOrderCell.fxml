@@ -16,7 +16,7 @@
       <DropShadow blurType="GAUSSIAN" color="#40404080" radius="1.0" />
    </effect>
    <children>
-      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="false">
          <image>
             <Image url="@../../images/example.jpeg" />
          </image></ImageView>

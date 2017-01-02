@@ -15,6 +15,8 @@ public class ManagerViewController {
 
     private MainUIController mainUIController;
 
+    private ManagerNavbarController managerNavbarController;
+
     /**
      * 管理酒店
      */
@@ -37,7 +39,7 @@ public class ManagerViewController {
             navLoader.setLocation(getClass().getResource("/view/manager/ManagerNavbar.fxml"));
             Pane navbar = navLoader.load();
 
-            ManagerNavbarController managerNavbarController = navLoader.getController();
+            managerNavbarController = navLoader.getController();
             managerNavbarController.setManagerViewController(this);
 
             mainUIController.setLeft(navbar);
@@ -48,6 +50,8 @@ public class ManagerViewController {
         clientManagementViewController = new ClientManagementViewController(mainUIController);
         workerManagementViewController = new WorkerManagementViewController(mainUIController);
         hotelManagementViewController = new HotelManagementViewController(mainUIController);
+
+        managerNavbarController.clickClientButton();
     }
 
     public void showClientList() {

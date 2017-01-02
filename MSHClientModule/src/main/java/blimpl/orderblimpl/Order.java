@@ -190,15 +190,7 @@ public class Order {
         ResultMessage rm = orderClientNetworkService.addOrder(orderPO);
 
         if (rm == ResultMessage.SUCCESS) {
-
-            //前一天
-            LocalDate tmpDate = LocalDate.parse(order.checkOutDate.toString());
-            DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
-
-            for (OrderRoomVO orderRoomVO : roomVOs) {
-                RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(order.checkInDate, lastDate, order.hotelID, orderRoomVO.type, orderRoomVO.quantity);
-                hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
-            }
+            rm = updateHotelRoom(order, false);
         }
         return rm;
     }
@@ -218,6 +210,11 @@ public class Order {
         orderPO.setState(OrderState.Cancelled);
 
         ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+
+        if (rm == ResultMessage.SUCCESS) {
+            OrderVO orderVO = searchOrderByID(orderID);
+            rm = updateHotelRoom(orderVO, true);
+        }
 
         long hour = cancelledTime.getIntervalTime(latestExecuteTime) / 1000 / 60 / 60;
 
@@ -243,6 +240,11 @@ public class Order {
         orderPO.setState(OrderState.Cancelled);
 
         ResultMessage rm = orderClientNetworkService.updateOrder(orderPO);
+
+        if (rm == ResultMessage.SUCCESS) {
+            OrderVO orderVO = searchOrderByID(orderID);
+            rm = updateHotelRoom(orderVO, true);
+        }
 
         CreditChangeInfoVO creditChangeInfoVO = new CreditChangeInfoVO(credit, CreditAction.REVOKE_CREDIT, orderID, cancelledTime.date);
         userBLInfo.addCreditRecord(orderPO.getClientID(), creditChangeInfoVO);
@@ -348,6 +350,21 @@ public class Order {
     public ArrayList<OrderVO> searchHotelOrder(String hotelID, OrderState os) {
         ArrayList<OrderPO> orderPOs = orderClientNetworkService.searchOrderByHotelID(hotelID, os);
         return orderPOsToOrderVOs(orderPOs);
+    }
+
+
+    /**
+     * 搜索客户与酒店之间的订单
+     * @param clientID
+     * @param hotelID
+     * @return OrderVO列表
+     */
+    public ArrayList<OrderVO> searchClientHotelOrder(String clientID, String hotelID) {
+        ArrayList<OrderVO> clientOrders = searchClientOrder(clientID, null);
+        ArrayList<OrderVO> hotelOrders = searchHotelOrder(hotelID, null);
+        clientOrders.retainAll(hotelOrders);
+
+        return clientOrders;
     }
 
     /**
@@ -490,5 +507,29 @@ public class Order {
         }
 
         order.orderID = prefix + quantityString;
+    }
+
+    /**
+     * 更新酒店房间
+     * @param orderVO
+     * @param isAdd
+     * @return
+     */
+    private ResultMessage updateHotelRoom(OrderVO orderVO, boolean isAdd) {
+
+        int add = isAdd ? -1 : 1 ;
+
+        //前一天
+        ResultMessage rm = ResultMessage.SUCCESS;
+
+        LocalDate tmpDate = LocalDate.parse(orderVO.checkOutDate.toString());
+        DateUtil lastDate = new DateUtil(tmpDate.plusDays(-1));
+
+        ArrayList<OrderRoomVO> roomVOs = orderVO.rooms;
+        for (OrderRoomVO orderRoomVO : roomVOs) {
+            RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(orderVO.checkInDate, lastDate, orderVO.hotelID, orderRoomVO.type, add * orderRoomVO.quantity);
+            rm = hotelBLInfo.updateHotelRoomQuantity(roomChangeInfo);
+        }
+        return rm;
     }
 }

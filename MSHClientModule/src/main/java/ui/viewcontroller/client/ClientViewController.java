@@ -16,6 +16,8 @@ public class ClientViewController {
 
     private MainUIController mainUIController;
 
+    private ClientNavbarController clientNavbarController;
+
     private ClientOrderViewController clientOrderViewController;
     private ClientSearchHotelViewController clientSearchHotelViewController;
     private ClientInfoViewController clientInfoViewController;
@@ -28,7 +30,7 @@ public class ClientViewController {
             navLoader.setLocation(getClass().getResource("/view/client/ClientNavbar.fxml"));
             Pane navbar = navLoader.load();
 
-            ClientNavbarController clientNavbarController = navLoader.getController();
+            clientNavbarController = navLoader.getController();
             clientNavbarController.setClientViewController(this);
 
             mainUIController.setLeft(navbar);
@@ -39,6 +41,8 @@ public class ClientViewController {
         clientOrderViewController = new ClientOrderViewController(mainUIController);
         clientSearchHotelViewController = new ClientSearchHotelViewController(mainUIController);
         clientInfoViewController = new ClientInfoViewController(mainUIController);
+
+        clientNavbarController.clickSearchHotelButton();
     }
 
     public void showClientOrderList() {

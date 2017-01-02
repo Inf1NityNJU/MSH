@@ -14,6 +14,8 @@ import java.io.IOException;
 public class StaffViewController {
     private MainUIController mainUIController;
 
+    private StaffNavbarController staffNavbarController;
+
     private HotelInfoViewController hotelInfoViewController;
     private RoomInfoViewController roomInfoViewController;
     private HotelOrderViewController hotelOrderViewController;
@@ -28,7 +30,7 @@ public class StaffViewController {
             navLoader.setLocation(getClass().getResource("/view/staff/StaffNavbar.fxml"));
             Pane navbar = navLoader.load();
 
-            StaffNavbarController staffNavbarController = navLoader.getController();
+            staffNavbarController = navLoader.getController();
             staffNavbarController.setStaffViewController(this);
 
             mainUIController.setLeft(navbar);
@@ -41,6 +43,8 @@ public class StaffViewController {
         roomInfoViewController = new RoomInfoViewController(mainUIController);
         hotelOrderViewController = new HotelOrderViewController(mainUIController);
         hotelPromotionViewController = new HotelPromotionViewController(mainUIController);
+
+        staffNavbarController.clickHotelInfoButton();
     }
 
     public void showHotelInfoView() {

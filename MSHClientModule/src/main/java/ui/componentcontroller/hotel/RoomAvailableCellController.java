@@ -102,7 +102,7 @@ public class RoomAvailableCellController {
     }
 
     private void refreshQuantity() {
-        minusButton.setAbled(availableQuantity > 1);
+        minusButton.setAbled(availableQuantity > 0);
         plusButton.setAbled(availableQuantity < hotelRoom.totalQuantity);
 
         availableQuantityLabel.setText(availableQuantity + "");
@@ -123,10 +123,12 @@ public class RoomAvailableCellController {
             setEditMode(true);
 
         } else {
+
             RoomChangeInfoVO roomChangeInfo = new RoomChangeInfoVO(date, date, hotelRoom.hotelID, hotelRoom.roomType, roomStock.availableQuantity - availableQuantity);
             ResultMessage resultMessage = hotelBLService.updateHotelRoomQuantity(roomChangeInfo);
 
             if (resultMessage.equals(ResultMessage.SUCCESS)) {
+                roomStock.availableQuantity = availableQuantity;
 //            roomAvailableListViewController.showAvailableRoomList();
                 setEditMode(false);
             } else {
