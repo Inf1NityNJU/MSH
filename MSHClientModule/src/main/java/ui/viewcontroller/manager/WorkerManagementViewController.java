@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
-import main.Main;
+
 import ui.viewcontroller.common.MainUIController;
 import vo.SalesmanVO;
 import vo.StaffVO;

@@ -27,7 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import main.Main;
+
 import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.order.ClientHotelOrderCellController;
 import ui.componentcontroller.order.HotelAssessmentCellController;
@@ -248,7 +248,7 @@ public class ClientHotelDetailViewController {
         if (rm == ResultMessage.INSUFFICIENT) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+                loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
                 AnchorPane pane = loader.load();
 
                 AlertViewController alertViewController = loader.getController();

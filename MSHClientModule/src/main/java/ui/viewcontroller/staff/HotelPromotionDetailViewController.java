@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import main.Main;
+
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
 import vo.*;
@@ -146,7 +146,7 @@ public class HotelPromotionDetailViewController {
     public void clickDeleteButton() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
             AnchorPane pane = loader.load();
 
             AlertViewController alertViewController = loader.getController();

@@ -16,18 +16,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import main.Main;
+
 import ui.componentcontroller.common.AlertViewController;
 import ui.componentcontroller.order.OrderRoomCellController;
 import ui.componentcontroller.promotion.OrderPromotionCellController;
 import ui.viewcontroller.common.MainUIController;
+import util.CreditAction;
 import util.OrderState;
-import vo.AssessmentVO;
-import vo.OrderRoomVO;
-import vo.OrderVO;
-import vo.PromotionVO;
+import util.TimeUtil;
+import vo.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -267,31 +267,37 @@ public class ClientOrderDetailViewController {
 
     @FXML
     private void clickCancelButton() {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../component/common/AlertView.fxml"));
-                AnchorPane pane = loader.load();
 
-                AlertViewController alertViewController = loader.getController();
+        TimeUtil cancelledTime = new TimeUtil(LocalDateTime.now());
+        TimeUtil latestExecuteTime = new TimeUtil(order.latestExecuteTime.toString());
 
-                alertViewController.setInfoLabel("确定撤销该订单吗？");
-                alertViewController.setOnClickSureButton(new EventHandler<Event>() {
-                    @Override
-                    public void handle(Event event) {
-                        sureCancel();
-                    }
-                });
-                alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
-                    @Override
-                    public void handle(Event event) {
-                        noCancel();
-                    }
-                });
-                mainUIController.showPop(pane);
+        long hour = cancelledTime.getIntervalTime(latestExecuteTime) / 1000 / 60 / 60;
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel( hour < 6 ? "确定撤销该订单吗？离执行时间不足 6 小时，将会扣除信用值！" : "确定撤销该订单吗？");
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    sureCancel();
+                }
+            });
+            alertViewController.setOnClickCancelButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    noCancel();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void sureCancel() {

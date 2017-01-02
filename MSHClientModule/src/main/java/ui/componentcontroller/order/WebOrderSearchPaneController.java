@@ -54,7 +54,7 @@ public class WebOrderSearchPaneController {
     @FXML
     public void initialize() {
         datePicker.setDate(LocalDate.now());
-        datePicker.setMaxDate(LocalDate.now());
+//        datePicker.setMaxDate(LocalDate.now());
 
         dateCheckBox.setVisible(false);
         dateCheckBox.setIsActiveProperty(false);

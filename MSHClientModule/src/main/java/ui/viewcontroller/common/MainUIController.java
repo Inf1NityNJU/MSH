@@ -7,7 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import main.Main;
+
 import network.UtilClientNetworkImpl;
 import ui.componentcontroller.common.HeaderViewController;
 import ui.viewcontroller.client.ClientViewController;
