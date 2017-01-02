@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 
 import ui.componentcontroller.common.AlertViewController;
 import ui.viewcontroller.common.MainUIController;
+import util.Encryptor;
 import vo.*;
 
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class WorkerManagementAddViewController {
         workerManagementViewController.getWorkerManagementListViewController().refreshList();
     }
 
-    private void showNotCompleteAlertView(){
+    private void showNotCompleteAlertView() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
@@ -103,6 +104,29 @@ public class WorkerManagementAddViewController {
             AlertViewController alertViewController = loader.getController();
 
             alertViewController.setInfoLabel("工作人员信息不完整!");
+            alertViewController.hideLeftButton();
+            alertViewController.setOnClickSureButton(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    cancelSave();
+                }
+            });
+            mainUIController.showPop(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPasswordAlertView() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/component/common/AlertView.fxml"));
+            AnchorPane pane = loader.load();
+
+            AlertViewController alertViewController = loader.getController();
+
+            alertViewController.setInfoLabel("两次输入密码不一致!");
             alertViewController.hideLeftButton();
             alertViewController.setOnClickSureButton(new EventHandler<Event>() {
                 @Override
@@ -126,6 +150,10 @@ public class WorkerManagementAddViewController {
                     || hotelChoiceBox.getValue() == null) {
 
                 showNotCompleteAlertView();
+
+            } else if (!passwordText.getText().equals(checkPasswordText.getText())) {
+
+                showPasswordAlertView();
 
             } else {
                 try {
@@ -160,6 +188,10 @@ public class WorkerManagementAddViewController {
                     || passwordText.getText().equals("") || checkPasswordText.getText().equals("")) {
 
                 showNotCompleteAlertView();
+
+            }else if (!passwordText.getText().equals(checkPasswordText.getText())) {
+
+                showPasswordAlertView();
 
             } else {
                 try {
@@ -216,13 +248,21 @@ public class WorkerManagementAddViewController {
             int index = hotelChoiceBox.getItems().indexOf(hotelChoiceBox.getValue());
             String hotelID = this.hotel_detailVOs.get(index).ID;
             UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Staff();
-            userBLService.add(new StaffVO_Register(nameText.getText(), hotelID,
-                    accountText.getText(), passwordText.getText()));
+            userBLService.add(new StaffVO_Register(
+                    nameText.getText(),
+                    hotelID,
+                    accountText.getText(),
+                    Encryptor.encrypt(passwordText.getText())
+            ));
 
             clickBackButton();
         } else if (salesmanButton.getIsActiveProperty()) {
             UserBLService userBLService = UserBLFactory.getUserBLServiceImpl_Salesman();
-            userBLService.add(new SalesmanVO_Register(nameText.getText(), accountText.getText(), passwordText.getText()));
+            userBLService.add(new SalesmanVO_Register(
+                    nameText.getText(),
+                    accountText.getText(),
+                    Encryptor.encrypt(passwordText.getText())
+            ));
 
             clickBackButton();
         }
